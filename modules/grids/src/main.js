@@ -36,7 +36,7 @@ import {
 // import components
 import Item from './components/item'
 import Animate from './components/animate'
-import Filterbar from './components/filterbar'
+import Toolbar from './components/toolbar'
 
 // import models
 import Grid from './models/grid'
@@ -75,7 +75,7 @@ class Grids extends Component {
 
     this.initGlobalArgs()
 
-    this.initFilterbar()
+    this.initToolbar()
 
     if (this.options.imgSelector) {
       this.imgs = queryAll(this.options.imgSelector, this.$container)
@@ -155,13 +155,13 @@ class Grids extends Component {
     this.ANIMATE = new Animate(this)
   }
 
-  initFilterbar() {
-    const { filters, sort } = this.options.filterbar
+  initToolbar() {
+    const { filters, sort } = this.options.toolbar
     if (!filters && !sort) {
       return
     }
 
-    this.FILTERBAR = new Filterbar(this, this.options.filterbar)
+    this.TOOLBAR = new Toolbar(this, this.options.toolbar)
   }
 
   createChunks(items) {
@@ -396,7 +396,7 @@ class Grids extends Component {
       chunk.moveTo(chunk.movePosition)
     })
 
-    toggleClass(this.classes.REVERSEMIN, this.FILTERBAR.$reverse)
+    toggleClass(this.classes.REVERSEMIN, this.TOOLBAR.$reverse)
     this.trigger(EVENTS.REVERSE)
   }
 

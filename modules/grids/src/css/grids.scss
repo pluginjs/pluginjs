@@ -1,23 +1,28 @@
-@import "filterbar.core";
+@import "@pluginjs/styles/variables.scss";
+@import "toolbar.core";
 @import "grids.core";
 
 // Vars
 // =====================
 $grids: "pj-grids";
-$arrow: "pj-arrow";
 
-$grids-arrow-margin-x: 15px;
-$grids-arrow-padding: 11px;
+$grids-font-size: $font-size-lg;
+$toolbar-margin-bottom: 30px;
+$toolbar-filters-margin-right: 10px;
 
 // Skins
 // =====================
+.#{$grids}-wrap {
+  font-size: $grids-font-size;
+}
+
+.#{$toolbar} {
+  margin-bottom: $toolbar-margin-bottom;
+}
+
 .#{$grids} {
-  &-inner {
-    .#{$arrow}-next,
-    .#{$arrow}-prev {
-      padding: $grids-arrow-padding;
-      margin: 0 $grids-arrow-margin-x !important;
-      line-height: 1;
-    }
+  &-sort,
+  &-filters {
+    margin-right: $toolbar-filters-margin-right;
   }
 }

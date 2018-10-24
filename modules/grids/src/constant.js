@@ -22,11 +22,14 @@ export const classes = {
   INNERSHOW: '{namespace}-inner-show',
   LOADED: '{namespace}-loaded',
   CONTAINER: '{namespace}-container',
-  FILTERBAR: '{namespace}-filterbar',
-  FILTERS: '{namespace}-filterbar-filters',
-  SORT: '{namespace}-filterbar-sort',
-  REVERSE: '{namespace}-filterbar-reverse',
-  REVERSEMIN: '{namespace}-filterbar-reverse-min',
+  TOOLBAR: '{namespace}-toolbar',
+  // FILTERBAR: '{namespace}-filterbar',
+  FILTERS: '{namespace}-filters',
+  FILTER: '{namespace}-filter',
+  SORT: '{namespace}-sort',
+  SORTINNER: '{namespace}-sort-inner',
+  REVERSE: '{namespace}-reverse',
+  REVERSEMIN: '{namespace}-reverse-min',
   CHUNK: '{namespace}-chunk',
   CHUNKINNER: '{namespace}-chunk-inner',
   CHUNKACTIVE: '{namespace}-chunk-active',
@@ -65,8 +68,9 @@ export const defaults = {
   delay: 60, // chunk animating delay for each of list. unit: ms.
   duration: 800, // The animation duration. unit: ms.
   direction: 'topLeft', // the chunks arrangement origin. ["topLeft", "topRight","bottomLeft","bottomRight"]
+  filtertheme: 'group',
   filters: [],
-  filterbar: {
+  toolbar: {
     filters: false,
     sort: false,
     reverse: false
@@ -80,6 +84,24 @@ export const defaults = {
     color: '#000000',
     size: 'lg'
   }, // false, options
+  templates: {
+    toolbar() {
+      return `<div class="{classes.TOOLBAR}">
+                {filters}
+                {sort}
+                {reverse}
+              </div>`
+    },
+    filters() {
+      return '<div class="{classes.FILTERS}"></div>'
+    },
+    sort() {
+      return '<div class="{classes.SORT}"><button class="{classes.SORTINNER} pj-btn"></button></div>'
+    },
+    reverse() {
+      return '<div class="{classes.REVERSE}"><button class="pj-btn pj-btn-icon"><i class="pj-icon pj-icon-angle-down"></i></button></div>'
+    }
+  },
   sort(key, chunks) {
     if (!key) {
       return chunks

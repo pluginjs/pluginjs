@@ -2,7 +2,7 @@
 
 // Vars
 // =====================
-$grids: "pj-grids";
+$grids: "pj-grids" !default;
 
 // Core
 // =====================
@@ -56,8 +56,4 @@ $grids: "pj-grids";
   &-drag {
     cursor: grab;
   }
-
-  // &-mask {
-  //   opacity: 0 !important;
-  // }
 }
