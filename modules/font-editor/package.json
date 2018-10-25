@@ -44,12 +44,16 @@
     "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/font-picker": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pop-dialog": "*",
     "@pluginjs/range": "*",
     "@pluginjs/select": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/tooltip": "*",
+    "@pluginjs/units-range": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

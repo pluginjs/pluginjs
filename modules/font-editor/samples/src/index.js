@@ -4,6 +4,6 @@ import '@pluginjs/styles/inputs.scss'
 import '@pluginjs/styles/buttons.scss'
 // import sections
 import './sections/default/index.js'
-import './sections/attribute/index.js'
+import './sections/value/index.js'
 import './sections/locale/index.js'
 import './sections/disabled/index.js'

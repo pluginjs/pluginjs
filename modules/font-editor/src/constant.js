@@ -76,14 +76,7 @@ export const defaults = {
   localeFallbacks: true,
   disabled: false,
   fontFamily: {
-    value: { source: 'system', font: 'Arial' },
-    values: {
-      Arial: 'Arial',
-      Bpreplay: 'Bpreplay',
-      Cambira: 'Cambira',
-      Gabriola: 'Gabriola',
-      inherit: 'inherit'
-    },
+    value: '',
     template() {
       return (
         '<div class="{field}">' +

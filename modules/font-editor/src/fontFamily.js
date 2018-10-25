@@ -24,13 +24,14 @@ export default class FontFamily {
     this.$content = query(`.${this.instance.classes.FIELDCONTENT}`, this.$wrap)
     this.element = query(`.${this.instance.classes.FONTPICKER}`, this.$content)
 
+    const options = {}
+
+    if (this.instance.options.fontFamily.source) {
+      options.source = this.instance.options.fontFamily.source
+    }
+
     this.FONTPICKER = FontPicker.of(this.element, {
-      source: resolve => {
-        resolve(this.instance.options.source)
-      },
-      manage: resolve => {
-        resolve(this.instance.options.source[0])
-      },
+      ...options,
       value: JSON.stringify(this.instance.value.fontFamily),
       keyboard: true,
       onChange: value => {

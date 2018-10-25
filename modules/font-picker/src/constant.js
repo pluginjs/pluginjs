@@ -63,7 +63,73 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  source: null,
+  source: [
+    {
+      name: 'system',
+      title: 'System',
+      icon: 'pj-icon pj-icon-desktop',
+      fonts: {
+        'Sans Serif': [
+          'Arial',
+          'Calibri',
+          'Century',
+          'Tahoma',
+          'Trebuchet',
+          'Verdana',
+          'System Sans'
+        ],
+        Serif: ['Georgia', 'Palatino', 'Times'],
+        Monospaced: ['Courier'],
+        Chinese: ['简宋', '繁宋', '简黑', '繁黑', '简楷', '繁楷', '仿宋']
+      },
+      load($item, fontFamily) {
+        const fonts = {
+          Arial:
+            '"Arial", "Helvetica Neue", "Helvetica", "Nimbus Sans L", "Liberation Sans", "Arimo", "sans-serif"',
+          Calibri:
+            '"Calibri", "Candara", "Gill Sans", "Gill Sans MT", "DejaVu Sans", "Verdana", "Geneva", "sans-serif"',
+          Century:
+            '"Century Gothic", "Apple Gothic", "AppleGothic", "URW Gothic L", "Avantgarde", "DejaVu Sans", "Tahoma", "sans-serif"',
+          Tahoma:
+            '"Tahoma", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Verdana", "Geneva", "sans-serif"',
+          Trebuchet:
+            '"Trebuchet MS", "Futura", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Tahoma", "sans-serif"',
+          Verdana: '"Verdana", "Geneva", "DejaVu Sans", "sans-serif"',
+          'System Sans':
+            '"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", "sans-serif"',
+          // Serif
+          Georgia:
+            '"Georgia", "Palatino", "Palatino Linotype", "Palatino LT STD", "URW Palladio L", "Book Antiqua", "DejaVu Serif", "serif"',
+          Palatino:
+            '"Palatino", "Palatino Linotype", "Palatino LT STD", "URW Palladio L", "Book Antiqua", "DejaVu Serif", "Georgia", "serif"',
+          Times:
+            '"Times New Roman", "TimesNewRoman", "DejaVu Serif", "Liberation Serif", "Tinos", "Times", "serif"',
+          // Monospaced
+          Courier:
+            '"Courier New", "Courier", "Courier 10 Pitch", "Liberation Mono", "Nimbus Mono L", "Cousine", "monospace"',
+          // 宋体 serif
+          简宋:
+            '"Songti SC", "STSong", "华文宋体", "宋体", "SimSun", "新宋体", "NSimSun", "AR PL New Sung", "AR PL SungtiL GB", "serif"',
+          繁宋:
+            '"LiSong Pro", "Apple LiSung", "新細明體", "PMingLiU", "MingLiU", "AR PL Mingti2L", "TW-Sung", "serif"',
+          // 黑体 sans-serif
+          简黑:
+            '"Heiti SC", "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "SimHei", "黑体", "STHeiti Light", "STXihei", "华文细黑", "STHeiti", "华文黑体", "WenQuanYi Zen Hei", "sans-serif"',
+          繁黑: '"Heiti TC", "Microsoft JhengHei", "微軟正黑體", "sans-serif"',
+          // 楷体
+          简楷:
+            '"Kaiti SC", "KaiTi", "楷体", "STKaiti", "华文楷体", "Kai", "AR PL UKai CN", "serif"',
+          繁楷:
+            '"BiauKai", "DFKai-SB", "AR PL KaitiM", "AR PL KaitiM GB", "AR PL UKai HK", "AR PL UKai TW", "TW-Kai", "serif"',
+          // 仿宋
+          仿宋:
+            '"FangSong", "Fang Song", "仿宋", "STFangSong", "华文仿宋", "serif"'
+        }
+
+        $item.style.fontFamily = fonts[fontFamily]
+      }
+    }
+  ],
   value: null,
   placeholder: true,
   clearable: true,
