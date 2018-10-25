@@ -1,10 +1,12 @@
-import Base from './base'
 import { queryAll } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
 
-class Stack extends Base {
+class Stack {
   constructor(instance) {
-    super(instance)
+    this.instance = instance
+    this.options = this.instance.options
+    this.$sections = this.instance.$sections
+    this.second = this.options.duration / 1000
     this.init()
   }
 
@@ -45,13 +47,7 @@ class Stack extends Base {
       }
       i++
     })
-
-    super.changePage()
   }
-
-  //
-  // destroy() {
-  // }
 
   initSection() {
     let i = 0

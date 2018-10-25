@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import Hammer from 'hammerjs'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { append, queryAll, query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -20,6 +20,7 @@ import {
   namespace as NAMESPACE
 } from './constant'
 import Dots from './dots'
+import History from './history'
 import SCROLL from './type/scroll'
 import STACK from './type/stack'
 
@@ -48,11 +49,14 @@ class SectionScroll extends Component {
     this.$sections = queryAll(this.options.itemSelector, this.element)
     this.currIndex = 1
     this.initStyle()
-    this.Dots = new Dots(this)
+    if (this.options.dots !== false) {
+      this.Dots = new Dots(this)
+    }
     this.Animation = ANIMATION[this.options.animation]
       ? new ANIMATION[this.options.animation](this)
       : new ANIMATION.SCROLL(this)
 
+    this.history = new History(this)
     this.bind()
 
     const id = window.location.hash
@@ -109,6 +113,8 @@ class SectionScroll extends Component {
           this.previous()
         } else if (event.keyCode === 40) {
           this.next()
+        } else if (event.keyCode === 32) {
+          this.next()
         }
       },
       document.body
@@ -145,10 +151,10 @@ class SectionScroll extends Component {
   initStyle() {
     addClass(this.classes.OPEN, document.body)
 
-    append(
-      '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">',
-      query('head')
-    )
+    // append(
+    //   '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">',
+    //   query('head')
+    // )
     addClass(this.classes.CONTAINER, this.element)
 
     addClass(this.classes.SECTION, this.element)
@@ -174,24 +180,41 @@ class SectionScroll extends Component {
   }
 
   previous() {
-    if (this.currIndex <= 1) {
+    if (this.currIndex <= 1 && this.options.loop === false) {
       return
+    }
+
+    if (this.options.loop) {
+      if (this.currIndex <= 1) {
+        this.currIndex = this.$sections.length + 1
+      }
     }
 
     if (!this.is('moveing')) {
       this.currIndex--
-      this.Animation.changePage()
+      // this.Animation.changePage()
+      this.history.changePage()
     }
   }
 
   next() {
-    if (this.currIndex >= this.$sections.length) {
+    if (
+      this.currIndex >= this.$sections.length &&
+      this.options.loop === false
+    ) {
       return
+    }
+
+    if (this.options.loop) {
+      if (this.currIndex >= this.$sections.length) {
+        this.currIndex = 0
+      }
     }
 
     if (!this.is('moveing')) {
       this.currIndex++
-      this.Animation.changePage()
+      // this.Animation.changePage()
+      this.history.changePage()
     }
   }
 
@@ -203,16 +226,19 @@ class SectionScroll extends Component {
       (this.currIndex !== index || !this.is('initialized'))
     ) {
       this.currIndex = index
-      this.Animation.changePage()
+      // this.Animation.changePage()
+      this.history.changePage()
     }
   }
 
   scrollTo(id) {
     const index = this.getIndexById(id)
+    console.log('a')
     if (index > 0 < this.$sections.length && this.currIndex !== index) {
       if (!this.is('moveing')) {
         this.currIndex = index
-        this.Animation.changePage()
+        // this.Animation.changePage()
+        this.history.changePage()
       }
     }
   }

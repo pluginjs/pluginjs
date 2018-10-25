@@ -23,6 +23,7 @@ class Dots {
         : this.options.appendTo
 
     append(this.dots, appendToElement)
+
     this.api = PJDots.of(dot, {
       ...this.options.dots,
       items: this.items,

@@ -10,8 +10,8 @@ const API = sectionScroll.of(element, {
   itemSelector: '.section',
   titleSelector: '.section-title',
   skin: null,
-  duration: 1000,
-  easing: '',
+  // dots: false,
+  loop: true,
   onChange(val) {
     $sections.forEach(section => {
       removeClass('active', section)

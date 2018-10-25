@@ -1,16 +1,18 @@
-import Base from './base'
 import { events as EVENTS } from '../constant'
 import ScrollSpy from '@pluginjs/scroll-spy'
-import scroll from '@pluginjs/scroll'
 
-class Scroll extends Base {
+class Scroll {
   constructor(instance) {
-    super(instance)
+    this.instance = instance
+    this.options = this.instance.options
+    this.$sections = this.instance.$sections
     this.init()
   }
 
   init() {
-    this.bind()
+    if (this.options.dots !== false) {
+      this.bind()
+    }
   }
 
   bind() {
@@ -23,38 +25,10 @@ class Scroll extends Base {
           this.instance.trigger(EVENTS.CHANGE, id)
           this.instance.Dots.setActive(id)
           this.instance.currIndex = this.instance.getIndexById(id)
-          this.changeHash()
+          this.instance.history.changeHash()
         }
       }
     })
-  }
-
-  changePage() {
-    const index = this.instance.currIndex - 1
-    const top = this.getOffset(this.$sections[index])
-    const duration = this.options.duration
-    const easing = this.options.easing
-    scroll.to({
-      y: top,
-      duration,
-      easing
-    })
-
-    super.changePage()
-  }
-
-  getOffset(node, offsetTop) {
-    if (!offsetTop) {
-      offsetTop = 0
-    }
-
-    if (node === document.body || node === null) {
-      return offsetTop
-    }
-
-    offsetTop += node.offsetTop
-
-    return this.getOffset(node.parentNode, offsetTop)
   }
 }
 
