@@ -58,10 +58,6 @@ $multiSelect-chip-unselect-font: $pj-icon-font-family !default;
         content: icon-content($multiSelect-chip-unselect-icon);
       }
     }
-
-    & + .#{$select}-filter {
-      display: none !important;
-    }
   }
 
   &.#{$select}-reach-max {

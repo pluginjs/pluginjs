@@ -21,7 +21,14 @@ import templateEngine from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { arrayEqual, arrayDiff } from '@pluginjs/utils'
-import { append, detach, insertBefore, parseHTML, parent } from '@pluginjs/dom'
+import {
+  append,
+  detach,
+  insertBefore,
+  parseHTML,
+  parent,
+  query
+} from '@pluginjs/dom'
 import { isArray } from '@pluginjs/is'
 const isSelect = el => el.tagName === 'SELECT'
 const isInput = el => el.tagName === 'INPUT'
@@ -44,6 +51,7 @@ class MultiSelect extends Select {
   initialize() {
     this.value = []
     this.selected = []
+    this.$input = query('.pj-select-filter')
     this.options.dropdown = Object.assign(
       {
         trigger: 'custom',
@@ -69,7 +77,7 @@ class MultiSelect extends Select {
         }
 
         if (this.DROPDOWN) {
-          this.DROPDOWN.toggle()
+          this.DROPDOWN.show()
         }
       },
       this.$trigger

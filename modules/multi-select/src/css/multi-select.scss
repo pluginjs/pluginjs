@@ -17,6 +17,8 @@ $multiSelect-chip-line-height: 22px !default;
 $multiSelect-chip-padding-x: 8px !default;
 $multiSelect-chip-padding-y: 0 !default;
 
+$multiSelect-filter-padding: 5.5px 10px;
+
 $multiSelect-chip-unselect-color: $gray !default;
 $multiSelect-chip-unselect-hover-color: $text-color;
 $multiSelect-chip-unselect-padding-x: $multiSelect-chip-padding-x/2 !default;
@@ -68,6 +70,12 @@ $multiSelect-reach-max-text-color: $gray-darker;
       &:hover {
         color: $multiSelect-chip-unselect-hover-color;
       }
+    }
+
+    & + .#{$select}-filter {
+      box-sizing: border-box;
+      height: 32px;
+      padding: $multiSelect-filter-padding;
     }
   }
 

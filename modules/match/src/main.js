@@ -14,6 +14,7 @@ export const rankings = {
   WORD_MATCH: 4,
   WORD_STARTS_WITH: 3,
   CONTAINS: 2,
+  WORD_INITIAL: 11,
   NO_MATCH: 0
 }
 
@@ -31,8 +32,14 @@ export default function match(items, query, options = {}) {
   const { keys } = options
   const matchedItems = items.reduce((matches, item, index) => {
     const { rank, keyIndex } = getHighestRanking(query, item, keys, options)
+    const matchedSubstrings = getMatchString(query, item, rank)
+
     if (rank > rankings.NO_MATCH) {
-      matches.push({ item, rank, index, keyIndex })
+      if (keyIndex === 0) {
+        matches.push({ item, rank, index, keyIndex, matchedSubstrings })
+      } else {
+        matches.push({ item, rank, index, keyIndex })
+      }
     }
     return matches
   }, [])
@@ -59,7 +66,7 @@ function getHighestRanking(query, item, keys, options) {
 
   return valuesToRank.reduce(
     ({ rank, keyIndex }, { value }, i) => {
-      const newRank = getMatchRanking(query, value, options)
+      const newRank = getMatchRanking(query, value, options, keyIndex)
       if (newRank > rank) {
         rank = newRank
         keyIndex = i
@@ -73,7 +80,7 @@ function getHighestRanking(query, item, keys, options) {
 /**
  * Gives a rankings score based on how well the two strings match.
  */
-function getMatchRanking(query, value, options = {}) {
+function getMatchRanking(query, value, options = {}, keyIndex) {
   options = Object.assign(
     {
       diacritics: false,
@@ -92,6 +99,19 @@ function getMatchRanking(query, value, options = {}) {
   query = `${query}`
   value = `${value}`
 
+  if (keyIndex === -1) {
+    const valueArr = value.split(' ')
+    let newValue = ''
+    valueArr.forEach(item => {
+      const initial = `${item.slice(0, 1)}`
+      newValue += initial
+    })
+
+    if (newValue.includes(query)) {
+      return rankings.WORD_INITIAL
+    }
+  }
+
   if (!options.diacritics) {
     query = normalize(query)
     value = normalize(value)
@@ -104,7 +124,6 @@ function getMatchRanking(query, value, options = {}) {
   if (!options.punctuation) {
     query = punctuationize(query)
     value = punctuationize(value)
-
     if (query === value) {
       return rankings.IGNORE_PUNCTUATION_EQUAL
     }
@@ -146,6 +165,28 @@ function getMatchRanking(query, value, options = {}) {
   }
 
   return rankings.NO_MATCH
+}
+
+function getMatchString(query, value, rank) {
+  const matchArr = []
+  const matchArrItem = {}
+
+  if (rank === 11) {
+    query = query.split('')
+    query.forEach(item => {
+      const matchArrItem = {}
+      matchArrItem.offset = ''
+      matchArrItem.length = 1
+      matchArrItem.offset = value.name.search(item)
+      matchArr.push(matchArrItem)
+    })
+  } else {
+    query = punctuationize(normalize(query.trim().toLowerCase()))
+    matchArrItem.length = query.length
+    matchArrItem.offset = value.name.search(query)
+    matchArr.push(matchArrItem)
+  }
+  return matchArr
 }
 
 /**
