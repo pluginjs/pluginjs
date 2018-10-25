@@ -6,6 +6,38 @@ A flexible modern match js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/match/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/match
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/match
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/match/dist/match.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/match/dist/match.min.js"></script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

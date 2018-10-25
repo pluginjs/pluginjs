@@ -22,8 +22,6 @@ yarn add @pluginjs/scrollbar
 npm i @pluginjs/scrollbar
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on scrollbar instances through the scrollbar options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"handleSelector"` | Set handleSelector | `null`
 `"handleTemplate"` | Set handleTemplate | `<div class="{handle}"></div>`
@@ -121,7 +115,7 @@ Events are called on scrollbar instances through the scrollbar events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"hover"` | Gets fired when plugin has hover
 `"hovered"` | Gets fired when plugin has hovered
@@ -138,7 +132,7 @@ Methods are called on scrollbar instances through the scrollbar method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -148,7 +142,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-scrollbar`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
 `"VERTICAL"` | Declare plugin vertical | `{namespace}-vertical`
@@ -158,7 +152,6 @@ Name | Description | Default
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"DRAGGING"` | Declare plugin dragging | `{namespace}-dragging`
 `"HOVERING"` | Announce plugin is hoverd | `{namespace}-hovering`
----
 
 ## Browser support
 

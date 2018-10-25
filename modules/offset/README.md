@@ -22,8 +22,6 @@ yarn add @pluginjs/offset
 npm i @pluginjs/offset
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on offset instances through the offset options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"locale"` | Set locale environment | `en`
 `"template"` | Set default template | `function() {...}`
 `"defaultUnit"` | Set defaultUnit | `px`
@@ -106,7 +100,7 @@ Events are called on offset instances through the offset events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -119,7 +113,7 @@ Methods are called on offset instances through the offset method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"get"` | Get value by key
 `"set"` | Set value by key
 `"val"` | Set or get value by key
@@ -132,7 +126,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-offset`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
@@ -156,10 +150,9 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"brokenLink"` | Broken Link | 解开链接
 `"keepLink"` | Keep Them Constant | 保持链接
----
 
 ## Browser support
 

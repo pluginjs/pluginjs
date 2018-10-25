@@ -22,8 +22,6 @@ yarn add @pluginjs/pop-dialog
 npm i @pluginjs/pop-dialog
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on popDialog instances through the popDialog options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"hideOutClick"` | Set hideOutClick | `true`
 `"placement"` | Set placement | `left`
 `"template"` | Set default template | `function() {...}`
@@ -103,7 +97,7 @@ Events are called on popDialog instances through the popDialog events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -120,7 +114,7 @@ Methods are called on popDialog instances through the popDialog method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"do"` | Set do function
 `"show"` | Show plugin if it is hiden
 `"hide"` | Hide plugin
@@ -132,7 +126,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-popover`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"POPDIALOG"` | Declare plugin dialog | `{namespace}-dialog`
@@ -146,7 +140,6 @@ Name | Description | Default
 `"BUTTONCOLOR"` | Announce plugin is color | `{namespace}-button-{color}`
 `"BUTTONS"` | Announce plugin is buttons | `{namespace}-buttons`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

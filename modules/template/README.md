@@ -4,7 +4,37 @@
 
 `template` is a utility JavaScript library for html template parse.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/template
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/template
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/template/dist/template.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/template/dist/template.min.js"></script>
+```
 
 ## API
 
@@ -13,14 +43,14 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | string | `String` | |
 | args | `templateOptions[]` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | parsedResult | `String` | |
 
 ### compile
@@ -28,13 +58,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | str | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | compileFunction | `(args: templateOptions[]) => parsedResult` | |
 
 ### parse
@@ -42,13 +72,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | str | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | parsedResult | `String` | |
 
 ## Browser support

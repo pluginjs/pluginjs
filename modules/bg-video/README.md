@@ -22,8 +22,6 @@ yarn add @pluginjs/bg-video
 npm i @pluginjs/bg-video
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on bgVideo instances through the bgVideo options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"template"` | Main structure template | `function() {...}`
 `"type"` | Different video sources, such as HTML5 Youtube Vimeo | ``
 `"video"` | Video configuration | `{"id":"","url":"","mute":true,"repeat":true,"autoplay":true,"mobileImage":""}`
@@ -101,7 +95,7 @@ Events are called on bgVideo instances through the bgVideo events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
 `"play"` | Gets fired when video is play
@@ -114,7 +108,7 @@ Methods are called on bgVideo instances through the bgVideo method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"destroy"` | Destroy plugin
 `"play"` | Play video
 `"pause"` | Pause  video
@@ -125,11 +119,10 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-bgVideo`
 `"OVERLAY"` | Declare plugin overlay | `{namespace}-overlay`
 `"POINTEREVENTNONE"` | Event penetration effect | `pointer-events-none`
----
 
 ## Browser support
 

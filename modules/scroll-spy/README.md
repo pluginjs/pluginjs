@@ -22,8 +22,6 @@ yarn add @pluginjs/scroll-spy
 npm i @pluginjs/scroll-spy
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -45,9 +43,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -77,8 +73,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -87,7 +81,7 @@ Options are called on scrollSpy instances through the scrollSpy options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"itemSelector"` | You must include the href data | `a`
 `"activeClass"` | Current anchor avtiveItem | `active`
 `"threshold"` | Offset of anchor | `0`
@@ -103,7 +97,7 @@ Events are called on scrollSpy instances through the scrollSpy events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
 `"change"` | Gets fired when plugin is changed
@@ -116,12 +110,11 @@ Methods are called on scrollSpy instances through the scrollSpy method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"destroy"` | Destroy plugin
 `"getCurrHref"` | get the current item Id
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
----
 
 ## Browser support
 

@@ -22,8 +22,6 @@ yarn add @pluginjs/headroom
 npm i @pluginjs/headroom
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on headroom instances through the headroom options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"tolerance"` | normalize Tolerance, Mainly used in pinned mode | `{"down":10,"up":20}`
 `"offset"` | Anchor offset, Mainly used for pinned mode and stick mode | `0`
 `"scroller"` | Scroll element | `window`
@@ -103,7 +97,7 @@ Events are called on headroom instances through the headroom events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
 `"enable"` | Gets fired when plugin is enabled
@@ -115,7 +109,7 @@ Methods are called on headroom instances through the headroom method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"destroy"` | Destroy plugin
 `"disable"` | Disable plugin
 `"enable"` | Enabled plugin if plugin is disabled
@@ -123,7 +117,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-headroom`
 `"PINNED"` | Announce plugin is pinned | `{namespace}-pinned`
 `"UNPINNED"` | Announce plugin is unpinned | `{namespace}-unpinned`
@@ -131,7 +125,6 @@ Name | Description | Default
 `"NOTTOP"` | Announce plugin is notTop | `{namespace}-notTop`
 `"STICK"` | Announce plugin is stick | `{namespace}-stick`
 `"UNSTICK"` | Announce plugin is unstick | `{namespace}-unstick`
----
 
 ## Browser support
 

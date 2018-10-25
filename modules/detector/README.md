@@ -4,7 +4,37 @@
 
 `detector` is a utility JavaScript library for detector.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/detector
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/detector
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/detector/dist/detector.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/detector/dist/detector.min.js"></script>
+```
 
 ## Browser support
 

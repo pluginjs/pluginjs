@@ -6,6 +6,75 @@ A flexible modern place-complete js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/placeComplete/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/place-complete
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/place-complete
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/place-complete/dist/place-complete.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/place-complete/dist/place-complete.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/place-complete/dist/place-complete.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/place-complete/dist/place-complete.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import PlaceComplete from "@pluginjs/place-complete"
+import "@pluginjs/place-complete/dist/place-complete.css"
+
+PlaceComplete.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/place-complete/dist/place-complete.css")
+const PlaceComplete = require("@pluginjs/place-complete")
+
+PlaceComplete.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/place-complete/dist/place-complete.css">
+<script src="https://unpkg.com/@pluginjs/place-complete/dist/place-complete.js"></script>
+<script>
+  Pj.placeComplete('.element', options)
+</script>
+```
 ## Browser support
 
 Tested on all major browsers.

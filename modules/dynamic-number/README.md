@@ -22,8 +22,6 @@ yarn add @pluginjs/dynamic-number
 npm i @pluginjs/dynamic-number
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on dynamicNumber instances through the dynamicNumber options 
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"from"` | Set smallest number | `0`
 `"to"` | Set the largest number | `100`
 `"duration"` | Set duration | `1000`
@@ -106,7 +100,7 @@ Events are called on dynamicNumber instances through the dynamicNumber events it
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"start"` | Gets fired when plugin is started
 `"stop"` | Gets fired when plugin is stop
@@ -120,14 +114,13 @@ Methods are called on dynamicNumber instances through the dynamicNumber method i
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"start"` | Start plugin
 `"stop"` | Stop plugin
 `"finish"` | Finish plugin
 `"reset"` | Reset plugin
 `"destroy"` | Destroy plugin
 `"go"` | Move the number to the specified value
----
 
 ## Browser support
 

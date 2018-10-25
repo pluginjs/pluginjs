@@ -22,8 +22,6 @@ yarn add @pluginjs/countdown
 npm i @pluginjs/countdown
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on countdown instances through the countdown options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"mode"` | Add plugin mode option | `ordinary`
 `"modes"` | Set modes | `{"ordinary":{},"flip":{},"progress":{size: 100,barcolor:'#ccc',barsize:4,trackcolor:'#55a4f2'}}`
 `"format"` | Add plugin format option | `d,h,m,s`
@@ -105,7 +99,7 @@ Events are called on countdown instances through the countdown events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enable
 `"disable"` | Gets fired when plugin is disable
@@ -117,7 +111,7 @@ Methods are called on coundown instances through the coundown method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -126,14 +120,13 @@ Name | Description
 
 ### Classes
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-countdown`
 `"DISABLED"` | Declare plugin is disabled | `{namespace}-disabled`
 `"MODE"` | Declare plugin is mode | `{namespace}-{mode}`
 `"TIME"` | Declare plugin is time | `${namespace}-time`
 `"NUMBER"` | Declare plugin is number | `${namespace}-number`
 `"LABEL"` | Declare plugin is label | `${namespace}-label`
----
 
 ## Browser support
 

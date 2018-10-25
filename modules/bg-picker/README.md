@@ -22,8 +22,6 @@ yarn add @pluginjs/bg-picker
 npm i @pluginjs/bg-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on bgPicker instances through the bgPicker options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"image"` | Set plugin image option | ``
 `"thumbnail"` | Set plugin thumbnail option | ``
@@ -113,7 +107,7 @@ Events are called on bgPicker instances through the bgPicker events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -126,7 +120,7 @@ Methods are called on bgPicker instances through the bgPicker method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"val"` | Set or get value by key
 `"get"` | Get value by key
 `"set"` | Set value by key
@@ -143,7 +137,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-bgPicker`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"INPUT"` | Declare plugin input | `{namespace}-input`
@@ -169,7 +163,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"placeholder"` | Add Image | 添加图片
 `"change"` | change | 更换图片
 `"bgRepeat"` | Repeat | 重复
@@ -178,7 +172,6 @@ Name | EN | ZH
 `"bgSize"` | Scalling | 比例
 `"cancel"` | cancel | 取消
 `"save"` | save | 保存
----
 
 ## Browser support
 

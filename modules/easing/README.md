@@ -4,7 +4,37 @@
 
 `easing` is a utility JavaScript library for animation effect.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/easing
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/easing
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/easing/dist/easing.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/easing/dist/easing.min.js"></script>
+```
 
 ## API
 
@@ -13,7 +43,7 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | name | `String` | easings name |
 
 ### bezier
@@ -21,7 +51,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | mX1 | Number | bezier |
 | mY1 | Number | bezier |
 | mX2 | Number | bezier |
@@ -30,7 +60,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | BezierEasing | `String` | Bezier easing |
 
 ### register
@@ -38,7 +68,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | name | `String` | easings name |
 | mX1 | Number | bezier |
 | mY1 | Number | bezier |

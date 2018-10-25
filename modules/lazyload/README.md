@@ -22,8 +22,6 @@ yarn add @pluginjs/lazyload
 npm i @pluginjs/lazyload
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on lazyload instances through the lazyload options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"threshold"` | Set threshold | `0`
 `"src"` | Set src | `null`
 `"retina"` | Set retina | `false`
@@ -104,7 +98,7 @@ Events are called on lazyload instances through the lazyload events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -117,7 +111,7 @@ Methods are called on lazyload instances through the lazyload method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"value"` | Get vaule
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -129,7 +123,6 @@ Name | Description
 `"load"` | Set value of load
 `"isLoad"` | Set value of isLoad
 `"setDelay"` | Set value of delay
----
 
 ## Browser support
 

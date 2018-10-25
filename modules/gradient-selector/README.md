@@ -22,8 +22,6 @@ yarn add @pluginjs/gradient-selector
 npm i @pluginjs/gradient-selector
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on gradientSelector instances through the gradientSelector op
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"data"` | Set plugin data option | `null`
@@ -105,7 +99,7 @@ Events are called on gradientSelector instances through the gradientSelector eve
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -117,7 +111,7 @@ Methods are called on gradientSelector instances through the gradientSelector me
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -129,7 +123,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-gradientSelector`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
@@ -156,7 +150,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"chooseGradient"` | Choose Gradient | 选择渐变
 `"customColor"` | Custom Color | 自定义颜色
 `"opacity"` | Opacity | 透明度
@@ -170,7 +164,6 @@ Name | EN | ZH
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"cancel"` | Cancel | 取消
 `"delete"` | Delete | 删除
----
 
 ## Browser support
 

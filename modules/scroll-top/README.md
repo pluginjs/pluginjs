@@ -22,8 +22,6 @@ yarn add @pluginjs/scroll-top
 npm i @pluginjs/scroll-top
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on scrollTop instances through the scrollTop options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"trigger"` | Set trigger | `null`
 `"target"` | Set target | `null`
 `"distance"` | Set distance | `200`
@@ -110,7 +104,7 @@ Events are called on scrollTop instances through the scrollTop events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -126,7 +120,7 @@ Methods are called on scrollTop instances through the scrollTop method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"jump"` | Get value of jump
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -137,7 +131,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-scrollTop`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"TRIGGER"` | Declare plugin trigger | `{namespace}`
@@ -149,9 +143,8 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"label"` | Scroll To Top | 置顶
----
 
 ## Browser support
 

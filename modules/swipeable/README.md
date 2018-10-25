@@ -22,8 +22,6 @@ yarn add @pluginjs/swipeable
 npm i @pluginjs/swipeable
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on swipeable instances through the swipeable options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"container"` | Container selector | `null`
 `"rebound"` | Support rebound | `false`
 `"reboundPos"` | Set rebound position | `100`
@@ -106,7 +100,7 @@ Events are called on swipeable instances through the swipeable events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
@@ -124,7 +118,7 @@ Methods are called on swipeable instances through the swipeable method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"disable"` | Disable plugin
 `"enable"` | Enabled plugin if plugin is disabled
 `"destroy"` | Destroy plugin
@@ -132,12 +126,11 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-swipeable`
 `"VERTICAL"` | Declare plugin vertical | `{namespace}-vertical`
 `"CONTAINER"` | Declare container node | `{namespace}-container`
 `"DISABLED"` | Declare plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

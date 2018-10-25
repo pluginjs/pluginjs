@@ -6,6 +6,76 @@ A flexible modern thumbnails js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/thumbnails/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/thumbnails
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/thumbnails
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/thumbnails/dist/thumbnails.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/thumbnails/dist/thumbnails.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/thumbnails/dist/thumbnails.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/thumbnails/dist/thumbnails.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import Thumbnails from "@pluginjs/thumbnails"
+import "@pluginjs/thumbnails/dist/thumbnails.css"
+
+Thumbnails.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/thumbnails/dist/thumbnails.css")
+const Thumbnails = require("@pluginjs/thumbnails")
+
+Thumbnails.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/thumbnails/dist/thumbnails.css">
+<script src="https://unpkg.com/@pluginjs/thumbnails/dist/thumbnails.js"></script>
+<script>
+  Pj.thumbnails('.element', options)
+</script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

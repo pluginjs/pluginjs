@@ -4,7 +4,77 @@
 
 A flexible modern color-picker js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/colorPicker/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/color-picker/samples)**
+
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/color-picker
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/color-picker
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import ColorPicker from "@pluginjs/color-picker"
+import "@pluginjs/color-picker/dist/color-picker.css"
+
+ColorPicker.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/color-picker/dist/color-picker.css")
+const ColorPicker = require("@pluginjs/color-picker")
+
+ColorPicker.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.css">
+<script src="https://unpkg.com/@pluginjs/color-picker/dist/color-picker.js"></script>
+<script>
+  Pj.colorPicker('.element', options)
+</script>
+```
 
 ## Browser support
 

@@ -22,8 +22,6 @@ yarn add @pluginjs/toast
 npm i @pluginjs/toast
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on toast instances through the toast options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"template"` | Set default template | `function() {...}`
 `"templates"` | Set default templates | `{}`
@@ -116,7 +110,7 @@ Events are called on toast instances through the toast events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"show"` | Gets fired when plugin has show
 `"hide"` | Gets fired when plugin has hidden
 `"destroy"` | Gets fired when plugin has destroy
@@ -125,7 +119,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-toast`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"CONTENT"` | Declare plugin content | `{namespace}-content`
@@ -140,7 +134,6 @@ Name | Description | Default
 `"BUTTONS"` | Declare buttons node | `{namespace}-buttons`
 `"LOADER"` | Declare loader node | `{namespace}-loader`
 `"STRIPED"` | Declare striped node | `{namespace}-loader-striped`
----
 
 ## Browser support
 

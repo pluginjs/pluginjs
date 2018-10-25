@@ -4,7 +4,37 @@
 
 `keyboard` is a utility JavaScript library for keyboard event.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/keyboard
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/keyboard
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/keyboard/dist/keyboard.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/keyboard/dist/keyboard.min.js"></script>
+```
 
 ## API
 
@@ -17,7 +47,7 @@ mount `keydown` `keyup` event listener on `this.element`.
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | e | `Event` | |
 
 ### on
@@ -25,7 +55,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | action | `String` | |
 | key | `String` | |
 | func | `Function` | |
@@ -33,7 +63,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | instance | `Object` | this |
 
 ### off
@@ -41,7 +71,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | action | `String` | |
 | key | `String` | |
 | func | `Function` | |
@@ -49,7 +79,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | instance | `Object` | this |
 
 ### dispatch
@@ -57,7 +87,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | toggle | `Boolean` | |
 | action | `String` | |
 | key | `String` | |
@@ -66,7 +96,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | instance | `Object` | this |
 
 ### parseKeys
@@ -74,13 +104,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | keys | `String[]` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | newKeys | `String[]` | |
 
 ### processKey
@@ -88,13 +118,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | key | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | newKeys | `String[]` | |
 
 ### processModifiers
@@ -102,13 +132,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | key | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | modifiers | `Function[]` | |
 
 ### distribute
@@ -116,7 +146,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | action | `String` | |
 | key | `String` | |
 | func | `Function` | |
@@ -124,7 +154,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | instance | `Object` | this |
 
 ### getKeyName
@@ -132,13 +162,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | keyCode | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | keyName | `String` | |
 
 ### getKeyCode
@@ -146,13 +176,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | keyName | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | keyCode | `String` | |
 
 ### up
@@ -160,14 +190,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | key | `String` | |
 | func | `Function` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | instance | `Object` | this |
 
 ### down
@@ -175,14 +205,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | key | `String` | |
 | func | `Function` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | instance | `Object` | this |
 
 ## Browser support

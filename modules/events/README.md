@@ -4,7 +4,37 @@
 
 `events` is a utility JavaScript library for dom event interface.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/events
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/events
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/events/dist/events.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/events/dist/events.min.js"></script>
+```
 
 ## API
 
@@ -13,7 +43,7 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | `String or CustomEvent` | evnetName or customEvent |
 | [ extraParams ] | `String or PlainObject` | one or more or null |
 | element | `HTMLElement` | |
@@ -23,7 +53,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | events | `String` | One or more space-separated event types and optional namespaces |
 | [ selector ] | `String` | |
 | callback | `Function` | |
@@ -32,7 +62,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### removeEvent
@@ -40,7 +70,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | events | `String` | One or more space-separated event types and optional namespaces |
 | [ selector ] | `String` | |
 | callback | `Function` | |
@@ -49,7 +79,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### bindEventOnce
@@ -57,7 +87,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | events | `String` | One or more space-separated event types and optional namespaces |
 | [ selector ] | `String` | |
 | callback | `Function` | |
@@ -66,7 +96,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### getEventEmitter
@@ -74,13 +104,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | eventEmitter | `EventEmitter` | |
 
 ## Browser support

@@ -22,8 +22,6 @@ yarn add @pluginjs/spinner
 npm i @pluginjs/spinner
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on spinner instances through the spinner options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"disabled"` | Disabled plugin | `false`
 `"min"` | Set plugin min option | `0`
@@ -113,7 +107,7 @@ Events are called on spinner instances through the spinner events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -127,7 +121,7 @@ Methods are called on spinner instances through the spinner method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"get"` | Get value by key
 `"set"` | Set value by key
 `"val"` | Set or get value by key
@@ -141,7 +135,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-spinner`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
@@ -151,7 +145,6 @@ Name | Description | Default
 `"UP"` | Declare plugin up | `{namespace}-up`
 `"WRAP"` | Declare plugin wrap | `{namespace}`
 `"CONTROLRIGHT"` | Declare plugin control right | `{namespace}-control-right`
----
 
 ## Browser support
 

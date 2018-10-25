@@ -4,7 +4,37 @@
 
 `keyframes` is a utility JavaScript library for animation effect.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/keyframes
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/keyframes
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/keyframes/dist/keyframes.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/keyframes/dist/keyframes.min.js"></script>
+```
 
 ## API
 

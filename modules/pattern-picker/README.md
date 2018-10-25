@@ -22,8 +22,6 @@ yarn add @pluginjs/pattern-picker
 npm i @pluginjs/pattern-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on patternPicker instances through the patternPicker options 
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"data"` | Set data | `null`
@@ -107,7 +101,7 @@ Events are called on patternPicker instances through the patternPicker events it
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -119,7 +113,7 @@ Methods are called on patternPicker instances through the patternPicker method i
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -131,7 +125,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-patternPicker`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
@@ -155,7 +149,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"delete"` | Delete | 删除
 `"choosePattern"` | Choose Pattern | 选择图片
@@ -167,7 +161,6 @@ Name | EN | ZH
 `"useIt"` | Use It | 使用
 `"selectorTitle"` | Preset Background Library | 预设背景库
 `"selectorContent"` | Choose a PatternPicker | 选择一个模式
----
 
 ## Browser support
 

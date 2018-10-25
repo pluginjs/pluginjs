@@ -22,8 +22,6 @@ yarn add @pluginjs/section-scroll
 npm i @pluginjs/section-scroll
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on sectionScroll instances through the sectionScroll options 
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"itemSelector"` | Set itemSelector | ``
 `"titleSelector"` | Set titleSelector | ``
 `"animation"` | Set animation | `scroll`
@@ -108,7 +102,7 @@ Events are called on sectionScroll instances through the sectionScroll events it
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"destroy"` | Gets fired when plugin has destroy
 `"change"` | Gets fired when plugin has changed
 `"ready"` | Gets fired when plugin has ready
@@ -121,7 +115,7 @@ Methods are called on sectionScroll instances through the sectionScroll method i
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"destroy"` | Destroy plugin
 `"next"` | Set next function
 `"previous"` | Set previous function
@@ -134,14 +128,13 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-sectionScroll`
 `"DOTS"` | Declare plugin dots | `{namespace}-dots`
 `"SECTION"` | Declare plugin section | `{namespace}-section`
 `"CONTAINER"` | Declare plugin range | `{namespace}-container`
 `"OPEN"` | Declare plugin open | `{namespace}-open`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

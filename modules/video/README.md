@@ -22,8 +22,6 @@ yarn add @pluginjs/video
 npm i @pluginjs/video
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on video instances through the video options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"template"` | Main structure template | `function() {...}`
 `"templates"` | Template blocks | `{}`
 `"url"` | Video url | ``
@@ -107,7 +101,7 @@ Events are called on video instances through the video events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
 `"load"` | Gets fired when video is loading
@@ -124,7 +118,7 @@ Methods are called on video instances through the video method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -137,11 +131,10 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-video`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"POSTER"` | Declare plugin poster | `{namespace}-poster`
----
 
 ## Browser support
 

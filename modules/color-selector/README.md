@@ -22,8 +22,6 @@ yarn add @pluginjs/color-selector
 npm i @pluginjs/color-selector
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on colorSelector instances through the colorSelector options 
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"placeholder"` | Set input box prompt information | `choose color`
@@ -112,7 +106,7 @@ Events are called on colorSelector instances through the colorSelector events it
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -128,7 +122,7 @@ Methods are called on colorSelector instances through the colorSelector method i
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"get"` | Get value by key
@@ -138,7 +132,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-colorSelector`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"ELEMENT"` | Declare plugin element | `{namespace}`
@@ -203,7 +197,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"ok"` | ok | 保存
 `"cancel"` | Cancel | 取消
 `"manage"` | Manage | 管理
@@ -212,7 +206,6 @@ Name | EN | ZH
 `"gradient"` | Gradient | 渐变
 `"colorInScheme"` | COLORS IN SCHEME | 颜色格式
 `"myColors"` | MY COLORS | 我的颜色
----
 
 ## Browser support
 

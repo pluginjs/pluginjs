@@ -4,7 +4,37 @@
 
 `scroll` is a utility JavaScript library for scroll interface.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/scroll
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/scroll
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/scroll/dist/scroll.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/scroll/dist/scroll.min.js"></script>
+```
 
 ## API
 
@@ -13,7 +43,7 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | options | `ScrollToOptions` | |
 
 ScrollToOptions
@@ -30,7 +60,7 @@ ScrollToOptions
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | x | `Number` | |
 | easing | `String` | |
 | duration | `Number` | |
@@ -41,7 +71,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | y | `Number` | |
 | easing | `String` | |
 | duration | `Number` | |
@@ -52,7 +82,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | options | `ScrollByOptions` | |
 
 ScrollToOptions
@@ -69,7 +99,7 @@ ScrollToOptions
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | x | `Number` | |
 | easing | `String` | |
 | duration | `Number` | |
@@ -80,7 +110,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | y | `Number` | |
 | easing | `String` | |
 | duration | `Number` | |
@@ -91,7 +121,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | options | `ScrollIntoViewOptions` | |
 
 ScrollIntoViewOptions
@@ -107,7 +137,7 @@ ScrollIntoViewOptions
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | options | `ScrollTopOptions` | |
 
 ScrollTopOptions

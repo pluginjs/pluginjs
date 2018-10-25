@@ -22,8 +22,6 @@ yarn add @pluginjs/time-picker
 npm i @pluginjs/time-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on time-picker instances through the time-picker options itse
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"trigger"` | Set trigger | `click`
 `"offset"` | Set offset | `[0,0]`
@@ -115,7 +109,7 @@ Events are called on time-picker instances through the time-picker events itself
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -136,7 +130,7 @@ Methods are called on time-picker instances through the time-picker method itsel
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"get"` | Get value by key
 `"set"` | Set value by key
 `"val"` | Set or get value by key
@@ -150,7 +144,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-time-picker`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
 `"MULTIPLE"` | Declare plugin multiple | `{namespace}-multiple`
@@ -176,7 +170,6 @@ Name | Description | Default
 `"LOADING"` | Declare plugin loading | `{namespace}-loading`
 `"ERROR"` | Declare plugin error | `{namespace}-error`
 `"HIDEICON"` | Declare plugin hideicon | `{namespace}-hideIcon`
----
 
 ## Browser support
 

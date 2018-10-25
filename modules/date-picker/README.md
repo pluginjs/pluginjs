@@ -22,8 +22,6 @@ yarn add @pluginjs/date-picker
 npm i @pluginjs/date-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on datePicker instances through the datePicker options itself
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"firstDayOfWeek"` | Set plugin first day of week option | `0`
 `"mode"` | Set mode | `single`
@@ -131,7 +125,7 @@ Events are called on datePicker instances through the datePicker events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"change"` | Gets fired when plugin has changed
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -148,7 +142,7 @@ Methods are called on datePicker instances through the datePicker method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -167,7 +161,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-datePicker`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"INPUT"` | Declare plugin input | `{namespace}-input`
@@ -204,13 +198,12 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"days"` | Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday | 周日,周一,周二,周三,周四,周五,周六
 `"daysShort"` | Su,Mo,Tu,We,Th,Fr,Sa,Su | 日,一,二,三,四,五,六,日
 `"months"` | January,February,March,April,May,June,July,August,September,October,November,December | 一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月
 `"monthsShort"` | Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec | 1,2,3,4,5,6,7,8,9,10,11,12
 `"buttons"` | Cancel,Save | 取消,保存
----
 
 ## Browser support
 

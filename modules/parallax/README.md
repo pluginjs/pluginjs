@@ -22,8 +22,6 @@ yarn add @pluginjs/parallax
 npm i @pluginjs/parallax
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on parallax instances through the parallax options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"container"` | Set container | `null`
 `"direction"` | Set direction ['vertical', 'horizontal'] | `vertical`
@@ -107,7 +101,7 @@ Events are called on parallax instances through the parallax events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -121,21 +115,19 @@ Methods are called on parallax instances through the parallax method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 `"setSpeed"` | Set value of setSpeed
 `"getSpeed"` | Get value of getSpeed
----
 
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-parallax`
 `"CONTAINER"` | Declare plugin container node | `{namespace}-container`
----
 
 ## Browser support
 

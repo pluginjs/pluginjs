@@ -1,10 +1,10 @@
-# Select
+# FontPicker
 
-[![npm package](https://img.shields.io/npm/v/@pluginjs/select.svg)](https://www.npmjs.com/package/@pluginjs/select)
+[![npm package](https://img.shields.io/npm/v/@pluginjs/font-picker.svg)](https://www.npmjs.com/package/@pluginjs/font-picker)
 
-A flexible modern select js plugin.
+A flexible modern font-picker js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/select/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/font-picker/samples)**
 
 ## Introduction
 
@@ -13,16 +13,14 @@ A flexible modern select js plugin.
 #### Yarn
 
 ```javascript
-yarn add @pluginjs/select
+yarn add @pluginjs/font-picker
 ```
 
 #### NPM
 
 ```javascript
-npm i @pluginjs/select
+npm i @pluginjs/font-picker
 ```
-
----
 
 ## Getting Started
 
@@ -31,15 +29,15 @@ npm i @pluginjs/select
 Development:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
+<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
 ```
 
 Production:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/select/dist/select.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.min.css">
+<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.min.css">
 ```
 
 ### Initialize
@@ -47,25 +45,23 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
 
 ```javascript
-import Select from "@pluginjs/select"
-import "@pluginjs/select/dist/select.css"
+import FontPicker from "@pluginjs/font-picker"
+import "@pluginjs/font-picker/dist/font-picker.css"
 
-Select.of(document.querySelector('.element'), options)
+FontPicker.of(document.querySelector('.element'), options)
 ```
 
 CommonJS:
 
 ```javascript
-require("@pluginjs/select/dist/select.css")
-const Select = require("@pluginjs/select")
+require("@pluginjs/font-picker/dist/font-picker.css")
+const Select = require("@pluginjs/font-picker")
 
 Select.of(document.querySelector('.element'), options)
 ```
@@ -73,24 +69,22 @@ Select.of(document.querySelector('.element'), options)
 Browser:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/select/dist/select.css">
-<script src="https://unpkg.com/@pluginjs/select/dist/select.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.css">
+<script src="https://unpkg.com/@pluginjs/font-picker/dist/font-picker.js"></script>
 <script>
-  Pj.select('.element', options)
+  Pj.fontPicker('.element', options)
 </script>
 ```
-
----
 
 ## API
 
 ### Options
 
-Options are called on select instances through the select options itself.
+Options are called on fontPicker instances through the fontPicker options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"trigger"` | Set trigger | `click`
 `"offset"` | Set offset | `[0,0]`
@@ -111,11 +105,11 @@ Name | Description | Default
 
 ### Events
 
-Events are called on select instances through the select events itself.
+Events are called on fontPicker instances through the fontPicker events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -132,11 +126,11 @@ Name | Description
 
 ### Methods
 
-Methods are called on select instances through the select method itself.
+Methods are called on fontPicker instances through the fontPicker method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"get"` | Get value by key
 `"set"` | Set value by key
 `"val"` | Set or get value by key
@@ -150,7 +144,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-select`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
 `"MULTIPLE"` | Declare plugin multiple | `{namespace}-multiple`
@@ -176,7 +170,6 @@ Name | Description | Default
 `"LOADING"` | Declare plugin loading | `{namespace}-loading`
 `"ERROR"` | Declare plugin error | `{namespace}-error`
 `"HIDEICON"` | Declare plugin hideicon | `{namespace}-hideFont`
----
 
 ## Browser support
 
@@ -188,9 +181,9 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/select is Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs/fontPicker is Licensed under [the GPL-v3 license](LICENSE).
 
-If you want to use @pluginjs/select project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+If you want to use @pluginjs/fontPicker project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
 For purchase an Commercial License, contact us purchase@thecreation.co.
 

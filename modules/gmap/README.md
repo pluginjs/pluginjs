@@ -22,8 +22,6 @@ yarn add @pluginjs/gmap
 npm i @pluginjs/gmap
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on gmap instances through the gmap options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"apiKey"` | Set apiKey | ``
 `"mapType"` | Set mapType | `ROADMAP`
@@ -127,7 +121,7 @@ Events are called on gmap instances through the gmap events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -139,7 +133,7 @@ Methods are called on gmap instances through the gmap method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -151,12 +145,11 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `as-gmap`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"ELEMENT"` | Declare plugin element | `{namespace}`
 `"CONTENT"` | Declare plugin content | `{namespace}-content`
----
 
 ## Browser support
 

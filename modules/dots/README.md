@@ -22,8 +22,6 @@ yarn add @pluginjs/dots
 npm i @pluginjs/dots
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on dots instances through the dots options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"items"` | Add extend item with plugin | `null`
 `"default"` | Set default status with plugin | `null`
@@ -104,7 +98,7 @@ Events are called on dots instances through the dots events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"change"` | Gets fired when plugin is changed
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
@@ -121,7 +115,7 @@ Methods are called on dots instances through the dots method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -140,7 +134,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-dot`
 `"CONTAINER"` | Declare plugin range | `{namespace}s`
 `"THEME"` | Declare plugin theme | `{namespace}s--{theme}`
@@ -150,7 +144,6 @@ Name | Description | Default
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"HIDDEN"` | Annouce plugin is hidden | `{namespace}-hidden`
----
 
 ## Browser support
 

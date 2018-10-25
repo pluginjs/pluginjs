@@ -4,7 +4,37 @@
 
 `color` is a utility for control color's value or status.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/color
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/color
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/color/dist/color.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/color/dist/color.min.js"></script>
+```
 
 ## API
 
@@ -13,13 +43,13 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### matchString
@@ -27,13 +57,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | string | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isString | `Boolean` | |
 
 ### setDefaults
@@ -41,7 +71,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | options | `Options` | |
 
 ## Browser support

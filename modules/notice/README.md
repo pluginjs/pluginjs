@@ -22,8 +22,6 @@ yarn add @pluginjs/notice
 npm i @pluginjs/notice
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on notice instances through the notice options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"template"` | Add template | `function() {...}`
 `"templates"` | Add templates | `{}`
@@ -116,7 +110,7 @@ Events are called on notice instances through the notice events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"show"` | Gets fired when plugin is show
 `"hide"` | Gets fired when plugin is hidden
 `"destroy"` | Gets fired when plugin is destroy
@@ -125,7 +119,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-notice`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"CONTENT"` | Declare plugin content | `{namespace}-content`
@@ -137,7 +131,6 @@ Name | Description | Default
 `"BUTTONS"` | Declare plugin buttons | `{namespace}-buttons`
 `"POSITION"` | Declare plugin position | `{namespace}-position`
 `"BACKGROUND"` | Declare plugin background | `{namespace}-with-bg`
----
 
 ## Browser support
 

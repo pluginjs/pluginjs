@@ -4,7 +4,37 @@
 
 `styled` is a utility JavaScript library for control dom inline-style.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/styled
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/styled
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/styled/dist/styled.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/styled/dist/styled.min.js"></script>
+```
 
 ## API
 
@@ -13,14 +43,14 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | style | `StyleSheet` | |
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### outerHeight
@@ -28,13 +58,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | outerHeight | `Number` | |
 
 ### outerHeightWithMargin
@@ -42,13 +72,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | outerHeightWithMargin | `Number` | |
 
 ### outerWidth
@@ -56,13 +86,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | outerWidth | `Number` | |
 
 ### outerWidthWithMargin
@@ -70,13 +100,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | outerWidthWithMargin | `Number` | |
 
 ### getStyle
@@ -84,14 +114,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | attribute | `String` | |
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | style | `String` | |
 
 ### innerHeight
@@ -99,13 +129,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | innerHeight | `Number` | |
 
 ### innerWidth
@@ -113,13 +143,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | innerWidth | `Number` | |
 
 ### getWidth
@@ -127,13 +157,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | getWidth | `Number` | |
 
 ### getHeight
@@ -141,13 +171,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | getWidth | `Number` | |
 
 ### offset
@@ -155,13 +185,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | offset | `{ top: String, left: String }` | |
 
 ### css
@@ -169,14 +199,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 | style | `StyleSheet` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | styleValue | `String` | |
 
 ### hideElement
@@ -184,13 +214,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### showElement
@@ -198,13 +228,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ## Browser support

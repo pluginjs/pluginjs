@@ -22,8 +22,6 @@ yarn add @pluginjs/adapt-text
 npm i @pluginjs/adapt-text
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on adaptText instances through the adaptText options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"ratio"` | AdaptText ratio value | `10`
 `"max"` | Max value | `Infinity`
 `"min"` | Min value | `-Infinity`
@@ -105,7 +99,7 @@ Events are called on adaptText instances through the adaptText events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
@@ -117,12 +111,11 @@ Methods are called on adaptText instances through the adaptText method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
 `"resize"` | Resize handle
----
 
 ## Browser support
 

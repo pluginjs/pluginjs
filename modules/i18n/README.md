@@ -4,7 +4,37 @@
 
 `i18n` is a utility JavaScript library for globalization.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/i18n
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/i18n
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/i18n/dist/i18n.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/i18n/dist/i18n.min.js"></script>
+```
 
 ## API
 
@@ -13,13 +43,13 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | locale | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isExistsInTranslations | `Boolean` | |
 
 ### addTranslation
@@ -27,7 +57,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | locale | `String` | |
 | translation | `{ locale: String : {} }` | |
 
@@ -36,13 +66,13 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | locale | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | translations | `Object` | |
 
 ### instance
@@ -50,13 +80,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | options | `Object` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | interfaces | `{ translate: (key, args, locale) => message, setLocale: (locale: String) => {}), getLocale: () => _locale: Object }` | |
 
 ### setTranslations
@@ -64,7 +94,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | translations | `{ locale: String: {} }` | |
 
 ## Browser support

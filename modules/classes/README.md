@@ -4,7 +4,37 @@
 
 `classes` is a utility JavaScript library for control class interfaces.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/classes
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/classes
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/classes/dist/classes.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/classes/dist/classes.min.js"></script>
+```
 
 ## API
 
@@ -15,13 +45,13 @@ Add specified class values. If these classes already exist in attribute of the e
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | className | `String[]` | function rest parameter |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### removeClass
@@ -31,13 +61,13 @@ Remove specified class values.
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | className | `String[]` | function rest parameter |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### indexOfClass
@@ -47,14 +77,14 @@ Return class value by index in collection.
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | className | `String` | |
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | index | `Number` | index of class |
 
 ### hasClass
@@ -64,14 +94,14 @@ Checks if specified class value exists in class attribute of the element.
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | className | `String` | |
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | hasClass | `Boolean` | |
 
 ### toggleClass
@@ -81,14 +111,14 @@ Toggle class value; i.e., if class exists then remove it and return false, if no
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | className | `String` | |
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ## Browser support

@@ -4,7 +4,37 @@
 
 `global-component` is a utility JavaScript library for global pluginjs library.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/global-component
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/global-component
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/global-component/dist/global-component.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/global-component/dist/global-component.min.js"></script>
+```
 
 ## Browser support
 

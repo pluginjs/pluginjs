@@ -4,7 +4,37 @@
 
 `pluginjs` is a utility JavaScript library for pluginjs.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/pluginjs
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/pluginjs
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/pluginjs/dist/pluginjs.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/pluginjs/dist/pluginjs.min.js"></script>
+```
 
 ## Browser support
 

@@ -22,8 +22,6 @@ yarn add @pluginjs/table-sort
 npm i @pluginjs/table-sort
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on tableSort instances through the tableSort options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"icons"` | Set table icon | `{"sort":"pj-icon pj-icon-sort","asc":"pj-icon pj-icon-sort-ascending","desc":"pj-icon pj-icon-sort-descending"}`
 
 ### Events
@@ -99,7 +93,7 @@ Events are called on tableSort instances through the tableSort events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin is destroy
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
@@ -112,7 +106,7 @@ Methods are called on tableSort instances through the tableSort method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"init"` | Initial plugin
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -124,9 +118,8 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-tableSort`
----
 
 ## Browser support
 

@@ -4,18 +4,36 @@
 
 `viewport` is a utility JavaScript library to control viewport.
 
----
+## Introduction
 
-## Usage
+### Installation
 
-```Javascript
-import viewport from '@pluginjs/viewport'
+#### Yarn
 
-const observer = viewport(el, options)
+```javascript
+yarn add @pluginjs/viewport
+```
 
-// eventName: String = enter | exit
-observer.on(eventName, handler, this)
-observer.off(eventName, handler)
+#### NPM
+
+```javascript
+npm i @pluginjs/viewport
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/viewport/dist/viewport.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/viewport/dist/viewport.min.js"></script>
 ```
 
 ## API
@@ -25,7 +43,7 @@ observer.off(eventName, handler)
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | eventName | `String` | |
 | func | `Function` | handler |
 | instance | `Object` | instance |
@@ -35,7 +53,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | eventName | `String` | |
 | func | `Function` | handler |
 
@@ -44,7 +62,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | eventName | `String` | |
 | func | `Function` | handler |
 
@@ -53,23 +71,8 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isIntersecting | `Boolean` | |
-
-## Tip
-
-JSDom do not support Intersection Observer, please require the [polyfill](https://github.com/w3c/IntersectionObserver/tree/master/polyfill).
-
-Usage
-
-```sh
-yarn workspace xxx add intersection-observer -D
-```
-
-```javascript
-// in xxx.spec.js
-import 'intersection-observer'
-```
 
 ## Browser support
 

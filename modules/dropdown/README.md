@@ -22,8 +22,6 @@ yarn add @pluginjs/dropdown
 npm i @pluginjs/dropdown
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on dropdown instances through the dropdown options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"panel"` | Add panel to plugin | `+`
 `"trigger"` | Add trigger action | `click`
@@ -117,7 +111,7 @@ Events are called on dropdown instances through the dropdown events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
@@ -134,7 +128,7 @@ Methods are called on dropdown instances through the dropdown method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -150,7 +144,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-dropdown`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"INPUTMODE"` | Declare input mode | `{namespace}-input`
@@ -168,7 +162,6 @@ Name | Description | Default
 `"FOCUS"` | Declare focus status | `{namespace}-focus`
 `"ACITVE"` | Declare active status | `{namespace}-active`
 `"HOVER"` | Declare hover status | `{namespace}-hover`
----
 
 ## Browser support
 

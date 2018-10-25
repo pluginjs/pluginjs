@@ -6,6 +6,76 @@ A flexible modern gallery js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/gallery/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/gallery
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/gallery
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/gallery/dist/gallery.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gallery/dist/gallery.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/gallery/dist/gallery.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gallery/dist/gallery.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import Gallery from "@pluginjs/gallery"
+import "@pluginjs/gallery/dist/gallery.css"
+
+Gallery.of(document.querygalleryor('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/gallery/dist/gallery.css")
+const Gallery = require("@pluginjs/gallery")
+
+Gallery.of(document.querygalleryor('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gallery/dist/gallery.css">
+<script src="https://unpkg.com/@pluginjs/gallery/dist/gallery.js"></script>
+<script>
+  Pj.gallery('.element', options)
+</script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

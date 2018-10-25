@@ -22,8 +22,6 @@ yarn add @pluginjs/swipe
 npm i @pluginjs/swipe
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on swipe instances through the swipe options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"locale"` | Set locale | `en`
 `"wrapperSelector"` | Wrapper selector | `null`
@@ -120,7 +114,7 @@ Events are called on swipe instances through the swipe events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin is update
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
@@ -140,7 +134,7 @@ Methods are called on swipe instances through the swipe method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"disable"` | Disable plugin
 `"enable"` | Enabled plugin if plugin is disabled
 `"destroy"` | Destroy plugin
@@ -148,7 +142,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-swipe`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"WRAPPER"` | Declare wrapper node | `{namespace}-wrapper`
@@ -157,7 +151,6 @@ Name | Description | Default
 `"PAGINATION"` | Declare pagination node | `{namespace}-pagination`
 `"PAGINATIONITEM"` | Declare pagination item node | `{namespace}-pagination-item`
 `"ACTIVE"` | Declare active status | `{namespace}-active`
----
 
 ## Browser support
 

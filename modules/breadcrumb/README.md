@@ -22,8 +22,6 @@ yarn add @pluginjs/breadcrumb
 npm i @pluginjs/breadcrumb
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on breadcrumb instances through the breadcrumb options itself
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"responsive"` | Add responsive callback | `true`
 `"overflow"` | Add direction of overflow | `left`
@@ -106,7 +100,7 @@ Events are called on breadcrumb instances through the breadcrumb events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin is destroy
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
@@ -119,7 +113,7 @@ Methods are called on breadcrumb instances through the breadcrumb method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -127,7 +121,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-breadcrumb`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"OVERFLOW"` | Declare overflow direction | `{namespace}-{overflow}`
@@ -141,7 +135,6 @@ Name | Description | Default
 `"DROPDOWNITEMDISABLE"` | Declare dropdown has disabled | `disabled`
 `"ELLIPSIS"` | Declare is Ellipsis element | `{namespace}-ellipsis`
 `"HIDDEN"` | Declare plugin has hidden | `{namespace}-hidden`
----
 
 ## Browser support
 

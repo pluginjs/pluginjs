@@ -1,8 +1,8 @@
-# ImageLoader
+# ImagesLoader
 
-[![npm package](https://img.shields.io/npm/v/@pluginjs/image-loader.svg)](https://www.npmjs.com/package/@pluginjs/image-loader)
+[![npm package](https://img.shields.io/npm/v/@pluginjs/images-loader.svg)](https://www.npmjs.com/package/@pluginjs/images-loader)
 
-A flexible modern image-loader js plugin.
+A flexible modern images-loader js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/imageLoader/samples)**
 
@@ -13,16 +13,14 @@ A flexible modern image-loader js plugin.
 #### Yarn
 
 ```javascript
-yarn add @pluginjs/image-loader
+yarn add @pluginjs/images-loader
 ```
 
 #### NPM
 
 ```javascript
-npm i @pluginjs/image-loader
+npm i @pluginjs/images-loader
 ```
-
----
 
 ## Getting Started
 
@@ -31,15 +29,15 @@ npm i @pluginjs/image-loader
 Development:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.css">
+<script src="https://unpkg.com/@pluginjs/images-loader/dist/images-loader.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/images-loader/dist/images-loader.css">
 ```
 
 Production:
 
 ```html
-<script src="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.min.css">
+<script src="https://unpkg.com/@pluginjs/images-loader/dist/images-loader.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/images-loader/dist/images-loader.min.css">
 ```
 
 ### Initialize
@@ -47,40 +45,36 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
 
 ```javascript
-import ImageLoader from "@pluginjs/image-loader"
-import "@pluginjs/image-loader/dist/image-loader.css"
+import ImagesLoader from "@pluginjs/images-loader"
+import "@pluginjs/images-loader/dist/images-loader.css"
 
-ImageLoader.of(document.querySelector('.element'), options)
+ImagesLoader.of(document.querySelector('.element'), options)
 ```
 
 CommonJS:
 
 ```javascript
-require("@pluginjs/image-loader/dist/image-loader.css")
-const ImageLoader = require("@pluginjs/image-loader")
+require("@pluginjs/images-loader/dist/images-loader.css")
+const ImagesLoader = require("@pluginjs/images-loader")
 
-ImageLoader.of(document.querySelector('.element'), options)
+ImagesLoader.of(document.querySelector('.element'), options)
 ```
 
 Browser:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.css">
-<script src="https://unpkg.com/@pluginjs/image-loader/dist/image-loader.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/images-loader/dist/images-loader.css">
+<script src="https://unpkg.com/@pluginjs/images-loader/dist/images-loader.js"></script>
 <script>
-  Pj.imageLoader('.element', options)
+  Pj.imagesLoader('.element', options)
 </script>
 ```
-
----
 
 ## API
 
@@ -90,7 +84,7 @@ Options are called on imageLoader instances through the imageLoader options itse
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
@@ -102,7 +96,7 @@ Events are called on imageLoader instances through the imageLoader events itself
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -114,7 +108,7 @@ Methods are called on imageLoader instances through the imageLoader method itsel
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"load"` | Load image file
 `"onComplete"` | Get whether image was loaded
 `"finally"` | Get is finally
@@ -128,10 +122,9 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-imageLoader`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
----
 
 ## Browser support
 
@@ -143,9 +136,9 @@ Tested on all major browsers.
 
 ## License
 
-@pluginjs/image-loader is Licensed under [the GPL-v3 license](LICENSE).
+@pluginjs/images-loader is Licensed under [the GPL-v3 license](LICENSE).
 
-If you want to use @pluginjs/image-loader project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
+If you want to use @pluginjs/images-loader project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary.
 
 For purchase an Commercial License, contact us purchase@thecreation.co.
 

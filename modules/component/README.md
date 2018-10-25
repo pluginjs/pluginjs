@@ -22,8 +22,6 @@ yarn add @pluginjs/component
 npm i @pluginjs/component
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -45,9 +43,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -74,8 +70,6 @@ Browser:
   Pj.component('.element', options)
 </script>
 ```
-
----
 
 ## API
 

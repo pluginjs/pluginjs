@@ -22,8 +22,6 @@ yarn add @pluginjs/scroll-to
 npm i @pluginjs/scroll-to
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on scrollTo instances through the scrollTo options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"selector"` | Set selector | `[data-scrollto]`
 `"href"` | Set href | `data-scrollto`
 `"duration"` | Set duretion | `500`
@@ -104,7 +98,7 @@ Events are called on scrollTo instances through the scrollTo events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -118,7 +112,7 @@ Methods are called on scrollTo instances through the scrollTo method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"jump"` | Set jump function
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -127,11 +121,10 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-scrollTo`
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"ANIMATING"` | Declare plugin animating | `{namespace}-animating`
----
 
 ## Browser support
 

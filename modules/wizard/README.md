@@ -22,8 +22,6 @@ yarn add @pluginjs/wizard
 npm i @pluginjs/wizard
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on wizard instances through the wizard options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"step"` | Set step value | `.pj-wizard-steps > li`
 `"getPane"` | Set getPane callback | `function() {...}`
@@ -110,7 +104,7 @@ Events are called on wizard instances through the wizard events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -129,7 +123,7 @@ Methods are called on wizard instances through the wizard method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -138,7 +132,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-wizard`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"SUCCESS"` | Announce plugin is loading success | `{namespace}-success`
@@ -151,11 +145,10 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"back"` | Back | 返回
 `"next"` | Next | 前进
 `"finish"` | Finish | 完成
----
 
 ## Browser support
 

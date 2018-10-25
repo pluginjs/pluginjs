@@ -22,8 +22,6 @@ yarn add @pluginjs/svg-progress
 npm i @pluginjs/svg-progress
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on svgProgress instances through the svgProgress options itse
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"min"` | Set min value | `0`
 `"max"` | Set max value | `100`
@@ -111,7 +105,7 @@ Events are called on svgProgress instances through the svgProgress events itself
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin is destroy
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
@@ -129,7 +123,7 @@ Methods are called on svgProgress instances through the svgProgress method itsel
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"get"` | Get value by key
 `"start"` | Start to progress
 `"finish"` | Finish progress
@@ -143,7 +137,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-svgProgress`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"SVG"` | Declare svg node | `{namespace}-svg`
@@ -152,7 +146,6 @@ Name | Description | Default
 `"CONTENT"` | Declare content | `{namespace}-content`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"INFOS"` | Declare info | `{namespace}-infos`
----
 
 ## Browser support
 

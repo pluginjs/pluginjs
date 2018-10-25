@@ -22,8 +22,6 @@ yarn add @pluginjs/scrollable
 npm i @pluginjs/scrollable
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on scrollable instances through the scrollable options itself
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"contentSelector"` | Set contentSelector | `null`
 `"containerSelector"` | Set containerSelector | `null`
@@ -109,7 +103,7 @@ Events are called on scrollable instances through the scrollable events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -127,7 +121,7 @@ Methods are called on scrollable instances through the scrollable method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"scrollTo"` | scroll to the specified value
 `"scrollBy"` | scroll by current value to the specified value
 `"enable"` | Enabled plugin if plugin is disabled
@@ -138,7 +132,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-scrollable`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"WARP"` | Declare plugin wrap | `{namespace}`
@@ -153,7 +147,6 @@ Name | Description | Default
 `"DRAGGING"` | Declare plugin dragging | `{namespace}-dragging`
 `"HOVERING"` | Announce plugin is hoverd | `{namespace}-hovering`
 `"SCROLLING"` | Declare plugin scrolling | `{namespace}-scrolling`
----
 
 ## Browser support
 

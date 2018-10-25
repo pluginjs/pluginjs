@@ -4,20 +4,66 @@
 
 `breakpoints` is a utility JavaScript library for breakpoints.
 
----
+**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/breakpoints/samples)**
 
-## Usage
+## Introduction
 
-Before you try anything, you need to include breakpoints.js in your page.
+### Installation
 
-```html
-<script src="breakpoints.min.js"></script>
+#### Yarn
+
+```javascript
+yarn add @pluginjs/breakpoints
 ```
 
-Then you can init the script easily by code 
+#### NPM
+
 ```javascript
-<script type="text/javascript">
-    Breakpoints();
+npm i @pluginjs/breakpoints
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/breakpoints/dist/breakpoints.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/breakpoints/dist/breakpoints.min.js"></script>
+```
+
+### Initialize
+
+HTML:
+
+ECMAScript Module:
+
+```javascript
+import Breakpoints from "@pluginjs/breakpoints"
+
+Breakpoints();
+```
+
+CommonJS:
+
+```javascript
+const Breakpoints = require("@pluginjs/breakpoints")
+
+Breakpoints();
+```
+
+Browser:
+
+```html
+<script src="https://unpkg.com/@pluginjs/breakpoints/dist/breakpoints.js"></script>
+<script>
+  Breakpoints();
 </script>
 ```
 

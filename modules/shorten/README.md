@@ -22,8 +22,6 @@ yarn add @pluginjs/shorten
 npm i @pluginjs/shorten
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on shorten instances through the shorten options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"chars"` | Set chars | `100`
 `"ellipses"` | Set ellipses text | `...`
@@ -103,7 +97,7 @@ Events are called on shorten instances through the shorten events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
 `"expand"` | Gets fired when plugin is expand
@@ -115,7 +109,7 @@ Methods are called on shorten instances through the shorten method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"collapse"` | Setup plugin into collapse status
 `"expand"` | Setup plugin into expand status
 `"destroy"` | Destroy plugin
@@ -123,14 +117,13 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-shorten`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"EXPAND"` | Delcare plugin is at expend status | `{namespace}-expand`
 `"DETAIL"` | Declare detail node | `{namespace}-detail`
 `"ELLIPSES"` | Declare ellipses node | `{namespace}-ellipses`
 `"TOGGLE"` | Declare toggle node | `{namespace}-toggle`
----
 
 ## Browser support
 

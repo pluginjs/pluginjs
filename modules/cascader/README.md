@@ -6,6 +6,76 @@ A flexible modern cascader js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/cascader/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/cascader
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/cascader
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/cascader/dist/cascader.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/cascader/dist/cascader.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/cascader/dist/cascader.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/cascader/dist/cascader.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import Cascader from "@pluginjs/cascader"
+import "@pluginjs/cascader/dist/cascader.css"
+
+Cascader.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/cascader/dist/cascader.css")
+const Cascader = require("@pluginjs/cascader")
+
+Cascader.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/cascader/dist/cascader.css">
+<script src="https://unpkg.com/@pluginjs/cascader/dist/cascader.js"></script>
+<script>
+  Pj.Cascader('.element', options)
+</script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

@@ -22,8 +22,6 @@ yarn add @pluginjs/animate-text
 npm i @pluginjs/animate-text
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on animateText instances through the animateText options itse
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"mode"` | Set mode options | `fadeDown`
 `"loop"` | Set loop options | `true`
 `"delay"` | Set delay options | `0`
@@ -102,7 +96,7 @@ Events are called on animateText instances through the animateText events itself
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -114,7 +108,7 @@ Methods are called on animateText instances through the animateText method itsel
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"value"` | Get value
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -124,10 +118,9 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `as-animateText`
 `"CONTAINER"` | Declare plugin range | `{namespace}-multiple `
----
 
 ## Browser support
 

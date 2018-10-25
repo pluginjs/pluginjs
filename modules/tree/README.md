@@ -22,8 +22,6 @@ yarn add @pluginjs/tree
 npm i @pluginjs/tree
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on tree instances through the tree options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"autoOpen"` | Set autoOpenSet aytoOpenSet | `[1,2]`
 `"keyboard"` | Set keyboard | `true`
@@ -107,7 +101,7 @@ Events are called on tree instances through the tree events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -123,7 +117,7 @@ Methods are called on tree instances through the tree method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"open"` | Set value of open
 `"close"` | close element
 `"before"` | Set value of before element
@@ -140,7 +134,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-tree`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"TREE"` | Declare plugin tree | `{namespace}`
@@ -149,7 +143,6 @@ Name | Description | Default
 `"OPEN"` | Declare plugin open | `{namespace}-open`
 `"SELECTED"` | Declare plugin selected | `{namespace}-selected`
 `"CHILDRENSELECTED"` | Declare selected child | `{namespace}-childrenSelected`
----
 
 ## Browser support
 

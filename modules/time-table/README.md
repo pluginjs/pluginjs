@@ -22,8 +22,6 @@ yarn add @pluginjs/time-table
 npm i @pluginjs/time-table
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on timeTable instances through the timeTable options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"locale"` | Set locale environment | `en`
 `"data"` | Set data | `null`
 `"view"` | Set view | `monthly`
@@ -105,7 +99,7 @@ Events are called on timeTable instances through the timeTable events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Gets fired when plugin has enabled
 `"editable"` | Gets fired when plugin has editable
 `"click"` | Gets fired when plugin has click
@@ -117,7 +111,7 @@ Methods are called on timeTable instances through the timeTable method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"get"` | Get value by key
 `"set"` | Set value by key
 `"val"` | Set or get value by key
@@ -128,7 +122,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-timeTable`
 `"INIT"` | Declare plugin init | `{namespace}-init`
 `"DETAIL"` | Declare plugin month-detail | `{namespace}-month-detail`
@@ -186,7 +180,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"weekday"` | Sun,Mon,Tue,Wed,Thu,Fri,Sat | 周日,周一,周二,周三,周四,周五,周六
 `"month"` | Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec | 一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月
 `"fullWeek"` | Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday | 星期一,星期二,星期三,星期四,星期五,星期六,星期日
@@ -195,7 +189,6 @@ Name | EN | ZH
 `"today"` | today | 今日
 `"add"` | ADD EVENT | 添加事项
 `"all"` | All Classes | 全部
----
 
 ## Browser support
 

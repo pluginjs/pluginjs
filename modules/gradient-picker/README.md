@@ -6,6 +6,76 @@ A flexible modern gradient-picker js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/gradientPicker/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/gradient-picker
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/gradient-picker
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import GradientPicker from "@pluginjs/gradient-picker"
+import "@pluginjs/gradient-picker/dist/gradient-picker.css"
+
+GradientPicker.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/gradient-picker/dist/gradient-picker.css")
+const GradientPicker = require("@pluginjs/gradient-picker")
+
+GradientPicker.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.css">
+<script src="https://unpkg.com/@pluginjs/gradient-picker/dist/gradient-picker.js"></script>
+<script>
+  Pj.gradientPicker('.element', options)
+</script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

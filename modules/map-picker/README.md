@@ -22,8 +22,6 @@ yarn add @pluginjs/map-picker
 npm i @pluginjs/map-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on mapPicker instances through the mapPicker options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
@@ -111,7 +105,7 @@ Events are called on mapPicker instances through the mapPicker events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -123,7 +117,7 @@ Methods are called on mapPicker instances through the mapPicker method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"set"` | Set value by key
 `"get"` | Get value by key
 `"val"` | Set or get value by key
@@ -134,7 +128,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-mapPicker`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"MAP"` | Declare plugin map | `{namespace}-map`
@@ -169,7 +163,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"cancel"` | Cancel | 取消
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"delete"` | Delete | 删除
@@ -178,7 +172,6 @@ Name | EN | ZH
 `"place"` | Places | 地址
 `"latitude"` | Latitude | 纬度
 `"longitude"` | Longitude | 经度
----
 
 ## Browser support
 

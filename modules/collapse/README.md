@@ -22,8 +22,6 @@ yarn add @pluginjs/collapse
 npm i @pluginjs/collapse
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on collapse instances through the collapse options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"instructions"` | Add plugin instructions option | `false`
 `"collapsed"` | Set plugin is collapsed or not | `false`
@@ -101,7 +95,7 @@ Events are called on collapse instances through the collapse events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin is destroy
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
@@ -118,7 +112,7 @@ Methods are called on collapse instances through the collapse method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -129,7 +123,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-collapse`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"CONTAINER"` | Declare plugin range | `{namespace}`
@@ -141,7 +135,6 @@ Name | Description | Default
 `"CONTENT"` | Declare content node | `{namespace}-content`
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

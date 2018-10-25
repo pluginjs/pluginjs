@@ -22,8 +22,6 @@ yarn add @pluginjs/scroll-dir
 npm i @pluginjs/scroll-dir
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,7 +45,7 @@ Production:
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | listener | `Function` | handler |
 | context | `Object` | |
 | priority | `Number` | |
@@ -57,7 +55,7 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | listener | `Function` | handler |
 
 ## Browser support

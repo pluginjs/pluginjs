@@ -22,8 +22,6 @@ yarn add @pluginjs/arrows
 npm i @pluginjs/arrows
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on arrows instances through the arrows options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"prev"` | Add value of prev button | `{"href":"#","text":"Previous"}`
 `"next"` | Add value of next button | `{"href":"#","text":"Next"}`
@@ -104,7 +98,7 @@ Events are called on arrows instances through the arrows events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
@@ -120,7 +114,7 @@ Methods are called on arrows instances through the arrows method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -134,7 +128,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-arrow`
 `"CONTAINER"` | Declare plugin range | `{namespace}s`
 `"THEME"` | Declare plugin theme | `{namespace}s--{theme}`
@@ -145,7 +139,6 @@ Name | Description | Default
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"HIDDEN"` | Announce plugin is hidden | `{namespace}-hidden`
----
 
 ## Browser support
 

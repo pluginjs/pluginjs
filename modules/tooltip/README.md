@@ -22,8 +22,6 @@ yarn add @pluginjs/tooltip
 npm i @pluginjs/tooltip
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -89,8 +83,7 @@ Browser:
 Options are called on tooltip instances through the tooltip options itself.
 You can also save the instances to variable for further use.
 
-Name | Description | Default
------|--------------|-----
+Name | Description | Default--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"animation"` | Set plugin animation | `true`
 `"template"` | Set default template | `function() {...}`
@@ -108,8 +101,7 @@ Name | Description | Default
 Events are called on tooltip instances through the tooltip events itself.
 You can also save the instances to variable for further use.
 
-Name | Description
------|-----
+Name | Description--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -125,8 +117,7 @@ Name | Description
 Methods are called on tooltip instances through the tooltip method itself.
 You can also save the instances to variable for further use.
 
-Name | Description
------|-----
+Name | Description--|--
 `"show"` | Show this plugin
 `"hide"` | Hidden this plugin
 `"toggle"` | Active event by event name
@@ -136,8 +127,7 @@ Name | Description
 
 ### Classes
 
-Name | Description | Default
------|------|------
+Name | Description | Default--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-tooltip`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"TOOLTIP"` | Declare tooltip node | `{namespace}`
@@ -145,7 +135,6 @@ Name | Description | Default
 `"SHOW"` | Announce plugin is in show status | `{namespace}-show`
 `"FADE"` | Announce plugin is in fade animation mode | `{namespace}-fade`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

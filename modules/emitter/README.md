@@ -4,7 +4,37 @@
 
 `emitter` is a utility JavaScript library for event emitter.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/emitter
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/emitter
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/emitter/dist/emitter.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/emitter/dist/emitter.min.js"></script>
+```
 
 ## API
 
@@ -13,14 +43,14 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 | args | Any[] | args for handler |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | Ok | `Boolean` | |
 
 ### on
@@ -28,7 +58,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 | listener | Function | handler |
 | context | Object | this |
@@ -37,7 +67,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### once
@@ -45,7 +75,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 | listener | Function | handler |
 | context | Object | this |
@@ -54,7 +84,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### off
@@ -62,14 +92,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 | listener | Function | handler |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### addListener
@@ -77,7 +107,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 | listener | Function | handler |
 | context | Object | this |
@@ -86,7 +116,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### addListenerOnce
@@ -94,7 +124,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 | listener | Function | handler |
 | context | Object | this |
@@ -103,7 +133,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### removeListener
@@ -111,14 +141,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 | listener | Function | handler |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### removeAllListeners
@@ -128,13 +158,13 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### ensureListener
@@ -142,13 +172,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | listener | Function | handler |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### hasListeners
@@ -156,13 +186,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | this | `Object` | Instance |
 
 ### getListeners
@@ -170,13 +200,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | event | String | event name |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | listeners | `Array` | |
 
 ## Browser support

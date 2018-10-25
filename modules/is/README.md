@@ -4,7 +4,37 @@
 
 `is` is a utility JavaScript library for type check.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/is
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/is
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/is/dist/is.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/is/dist/is.min.js"></script>
+```
 
 ## API
 
@@ -13,13 +43,13 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isArguments | `Boolean` | |
 
 ### isArray
@@ -27,13 +57,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isArray | `Boolean` | |
 
 ### isBoolean
@@ -41,13 +71,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isBoolean | `Boolean` | |
 
 ### isChar
@@ -55,13 +85,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isChar | `Boolean` | |
 
 ### isDate
@@ -69,13 +99,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isDate | `Boolean` | |
 
 ### isDomNode
@@ -83,13 +113,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isDomNode | `Boolean` | |
 
 ### isError
@@ -97,13 +127,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isError | `Boolean` | |
 
 ### isFunction
@@ -111,13 +141,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isFunction | `Boolean` | |
 
 ### isJson
@@ -125,13 +155,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isJson | `Boolean` | |
 
 ### isNaN
@@ -139,13 +169,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isNaN | `Boolean` | |
 
 ### isNull
@@ -153,13 +183,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isNull | `Boolean` | |
 
 ### isNumber
@@ -167,13 +197,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isNumber | `Boolean` | |
 
 ### isObject
@@ -181,13 +211,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isObject | `Boolean` | |
 
 ### isPlainObject
@@ -195,13 +225,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isPlainObject | `Boolean` | |
 
 ### isEmptyObject
@@ -209,13 +239,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isEmptyObject | `Boolean` | |
 
 ### isRegexp
@@ -223,13 +253,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isRegexp | `Boolean` | |
 
 ### isString
@@ -237,13 +267,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isString | `Boolean` | |
 
 ### isUndefined
@@ -251,13 +281,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isUndefined | `Boolean` | |
 
 ### isNumeric
@@ -265,13 +295,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isNumeric | `Boolean` | |
 
 ### isPercentage
@@ -279,13 +309,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isPercentage | `Boolean` | |
 
 ### isDecimal
@@ -293,13 +323,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isDecimal | `Boolean` | |
 
 ### isFinite
@@ -307,13 +337,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isFinite | `Boolean` | |
 
 ### isInfinite
@@ -321,13 +351,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isInfinite | `Boolean` | |
 
 ### isInteger
@@ -335,13 +365,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isInteger | `Boolean` | |
 
 ### isNegative
@@ -349,13 +379,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isNegative | `Boolean` | |
 
 ### isPositive
@@ -363,13 +393,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | value | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isPositive | `Boolean` | |
 
 ## Browser support

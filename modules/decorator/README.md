@@ -4,7 +4,37 @@
 
 `decorator` is a class decorator library for extend component class.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/decorator
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/decorator
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/decorator/dist/decorator.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/decorator/dist/decorator.min.js"></script>
+```
 
 ## API
 

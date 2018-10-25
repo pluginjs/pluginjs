@@ -4,7 +4,37 @@
 
 `utils` is a utility JavaScript library.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/utils
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/utils
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/utils/dist/utils.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/utils/dist/utils.min.js"></script>
+```
 
 ## API
 
@@ -13,13 +43,13 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | obj | `Object` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | obj | `Object` | |
 
 ### nub
@@ -27,13 +57,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | arr | `Array` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | arr | `Array` | |
 
 ### isPlainObject
@@ -41,13 +71,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | data | `Object` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isPlainObject | `Boolean` | |
 
 ### deepMerge
@@ -55,14 +85,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | x | `Object` | |
 | y | `Object` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | result | `Object` | |
 
 ### curry
@@ -70,13 +100,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | fn | `Function` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | fn | `Function` | |
 
 ### compose
@@ -84,13 +114,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | fn | `Function[]` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | callback | `Function` | |
 
 ### getUID
@@ -98,13 +128,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | prefix | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | uid | `String` | |
 
 ### range
@@ -112,13 +142,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | v | `Number` | length |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | result | `Array` | |
 
 ### reflow
@@ -126,13 +156,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | offsetHeight | `Number` | |
 
 ### arrayEqual
@@ -140,14 +170,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | a | `Array` | |
 | b | `Array` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isEqual | `Boolean` | |
 
 ### arrayDiff
@@ -155,14 +185,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | a | `Array` | |
 | b | `Array` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | diff | `Array` | |
 
 ### arrayIntersect
@@ -170,14 +200,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | a | `Array` | |
 | b | `Array` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | intersect | `Array` | |
 
 ### convertPercentageToFloat
@@ -185,13 +215,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | percentage | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | float | `Float` | |
 
 ### convertFloatToPercentage
@@ -199,13 +229,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | float | `Float` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | percentage | `String` | |
 
 ### convertMatrixToArray
@@ -213,13 +243,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | matrix | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | array | `Array` | |
 
 ### getTime
@@ -227,7 +257,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | dateNow | `Number` | |
 
 ### camelize
@@ -235,14 +265,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | word | `String` | |
 | first | `Boolean` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | word | `String` | |
 
 ### getValueByPath
@@ -250,14 +280,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | obj | `Object` | |
 | path | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | obj | `Object` | |
 
 ### throttle
@@ -265,14 +295,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | func | `Function` | |
 | delay | `Number` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | handler | `Function` | |
 
 ### debounce
@@ -280,14 +310,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | func | `Function` | |
 | delay | `Number` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | handler | `Function` | |
 
 ### fromPairs
@@ -295,13 +325,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | arr | `Array` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | obj | `Object` | |
 
 ## Browser support

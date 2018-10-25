@@ -22,8 +22,6 @@ yarn add @pluginjs/reveal
 npm i @pluginjs/reveal
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on reveal instances through the reveal options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"animation"` | Animation name | `fadeIn`
 `"duration"` | Animation duration | `400`
 `"easing"` | Animation easing | `ease`
@@ -107,7 +101,7 @@ Events are called on reveal instances through the reveal events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
 `"enter"` | Gets fired when element in view
@@ -122,7 +116,7 @@ Methods are called on reveal instances through the reveal method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"destroy"` | Destroy plugin
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -131,10 +125,9 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-reveal`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

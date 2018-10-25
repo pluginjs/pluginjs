@@ -6,6 +6,76 @@ A flexible modern infinite js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/infinite/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/infinite
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/infinite
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/infinite/dist/infinite.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/infinite/dist/infinite.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/infinite/dist/infinite.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/infinite/dist/infinite.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import Infinite from "@pluginjs/infinite"
+import "@pluginjs/infinite/dist/infinite.css"
+
+Infinite.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/infinite/dist/infinite.css")
+const Infinite = require("@pluginjs/infinite")
+
+Infinite.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/infinite/dist/infinite.css">
+<script src="https://unpkg.com/@pluginjs/infinite/dist/infinite.js"></script>
+<script>
+  Pj.infinite('.element', options)
+</script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

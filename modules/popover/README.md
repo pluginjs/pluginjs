@@ -22,8 +22,6 @@ yarn add @pluginjs/popover
 npm i @pluginjs/popover
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on popover instances through the popover options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"template"` | Set default template | `function() {...}`
 `"templates"` | Set default templates | `{}`
 `"content"` | Set content | ``
@@ -106,7 +100,7 @@ Events are called on popover instances through the popover events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -123,7 +117,7 @@ Methods are called on popover instances through the popover method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"show"` | Show plugin if it is hiden
 `"hide"` | Hide plugin
 `"toggle"` | Toggle plugin
@@ -134,7 +128,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-popover`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"POPOVER"` | Declare plugin popover | `{namespace}`
@@ -144,7 +138,6 @@ Name | Description | Default
 `"SHOW"` | Declare plugin show | `{namespace}-show`
 `"FADE"` | Declare plugin fade | `{namespace}-fade`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

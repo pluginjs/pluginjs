@@ -22,8 +22,6 @@ yarn add @pluginjs/paginator
 npm i @pluginjs/paginator
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on paginator instances through the paginator options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"totalItems"` | Set totalItem | `100`
 `"currentPage"` | Set currentPage | `1`
 `"itemsPerPage"` | Set itemsPerPage | `10`
@@ -107,7 +101,7 @@ Events are called on paginator instances through the paginator events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -121,7 +115,7 @@ Methods are called on paginator instances through the paginator method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -135,7 +129,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-paginator`
 `"ELEMENT"` | Declare plugin element | `{namespace}`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
@@ -144,7 +138,6 @@ Name | Description | Default
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"JUMPER"` | Declare plugin jumper | `{namespace}-jumper`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

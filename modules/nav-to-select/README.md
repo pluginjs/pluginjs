@@ -22,8 +22,6 @@ yarn add @pluginjs/nav-to-select
 npm i @pluginjs/nav-to-select
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on navToSelect instances through the navToSelect options itse
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"maxLevel"` | Set max of plugin level | `4`
 `"prependTo"` | Set prepento | `null`
 `"activeClass"` | Set active class | `active`
@@ -110,7 +104,7 @@ Events are called on navToSelect instances through the navToSelect events itself
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin is destroy
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
@@ -123,7 +117,7 @@ Methods are called on navToSelect instances through the navToSelect method itsel
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -136,11 +130,10 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-navToSelect`
 `"SELECT"` | Declare plugin select | `{namespace}`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
----
 
 ## Browser support
 

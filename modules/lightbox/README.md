@@ -22,8 +22,6 @@ yarn add @pluginjs/lightbox
 npm i @pluginjs/lightbox
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on lightbox instances through the lightbox options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"delegate"` | Picture element selector | `null`
 `"clickBgClose"` | Click the background to turn off the lightbox, true or false | `true`
@@ -105,7 +99,7 @@ Events are called on lightbox instances through the lightbox events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin is destroy
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
@@ -118,7 +112,7 @@ Methods are called on lightbox instances through the lightbox method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -126,7 +120,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-lightbox`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"CONTAINER"` | Declare plugin range | `{namespace}-container`
@@ -179,11 +173,10 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"hello"` | Hello world | 世界你好
 `"greeting"` | Hello {name}! | {name} 你好!
 `"plurals"` | {count} product,{count} products,no product | {count} 个产品
----
 
 ## Browser support
 

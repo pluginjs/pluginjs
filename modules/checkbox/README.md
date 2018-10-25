@@ -22,8 +22,6 @@ yarn add @pluginjs/checkbox
 npm i @pluginjs/checkbox
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on checkbox instances through the checkbox options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"classes"` | Set classes | `{"button":"{namespace}-default"}`
 `"disabled"` | Disabled plugin | `false`
@@ -106,7 +100,7 @@ Events are called on checkbox instances through the checkbox events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -121,7 +115,7 @@ Methods are called on checkbox instances through the checkbox method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -134,14 +128,13 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-checkbox`
 `"WRAP"` | Declare plugin wrap | `{namespace}`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
 `"ICON"` | Declare plugin icon | ``
 `"CHECKED"` | Announce plugin is checked | `{namespace}-checked`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

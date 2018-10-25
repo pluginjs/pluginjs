@@ -22,8 +22,6 @@ yarn add @pluginjs/gradient
 npm i @pluginjs/gradient
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -45,9 +43,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -75,8 +71,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -85,7 +79,7 @@ Options are called on gradient instances through the gradient options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"prefixes"` | Set prefixes | `["-webkit-","-moz-","-ms-","-o-"]`
 `"forceStandard"` | Set forceStandard | `true`
 `"angleUseKeyword"` | Set angleUseKeyword | `true`
@@ -93,7 +87,6 @@ Name | Description | Default
 `"degradationFormat"` | Set degradationFormat | `false`
 `"cleanPosition"` | Set cleanPosition | `true`
 `"color"` | Set color | `{"format":false,"hexUseName":false,"reduceAlpha":true,"shortenHex":true,"zeroAlphaAsTransparent":false,"invalidValue":{"r":0,"g":0,"b":0,"a":1}}`
----
 
 ## Browser support
 

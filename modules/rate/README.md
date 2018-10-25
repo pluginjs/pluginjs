@@ -22,8 +22,6 @@ yarn add @pluginjs/rate
 npm i @pluginjs/rate
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on rate instances through the rate options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"template"` | Set plugin default template | `function() {...}`
 `"templates"` | Set plugin default template | `{}`
 `"iconClass"` | Set icon class | `pj-icon pj-icon-star`
@@ -110,7 +104,7 @@ Events are called on rate instances through the rate events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
 `"changeHoverScore"` | Gets fired when hover score has be change
@@ -124,7 +118,7 @@ Methods are called on rate instances through the rate method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"destroy"` | Destroy plugin
 `"getScore"` | Get current score
 `"getHoverScore"` | Get current hover score
@@ -137,7 +131,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-rate`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"STAR"` | Declare star node | `{namespace}-star`
@@ -147,7 +141,6 @@ Name | Description | Default
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"CLEARCOLOR"` | Announce color has be clear | `{namespace}-clear-color`
 `"DEFAULTCOLOR"` | Announce default color | `{namespace}-default-color`
----
 
 ## Browser support
 

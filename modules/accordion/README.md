@@ -22,8 +22,6 @@ yarn add @pluginjs/accordion
 npm i @pluginjs/accordion
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on accordion instances through the accordion options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `default`
 `"panelSelector"` | Add panel selector to plugin | `null`
 `"initialIndex"` | Set index of this plugin | `0`
@@ -111,7 +105,7 @@ Events are called on accordion instances through the accordion events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"open"` | Gets fired when plugin is open
 `"close"` | Gets fired when plugin is close
@@ -123,14 +117,14 @@ Methods are called on accordion instances through the accordion method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"open"` | Open plugin
 `"close"` | Close plugin
 
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-accordion`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"ACTIVE"` | Declare plugin is actived | `{namespace}-active`
@@ -145,7 +139,6 @@ Name | Description | Default
 `"PANEHEADER"` | Declare plugin pane header node | `{namespace}-pane-header`
 `"PANECONTENT"` | Declare plugin pane content node | `{namespace}-pane-content`
 `"PANECONTENTINNER"` | Declare plugin pane contentinner node | `{namespace}-pane-content-inner`
----
 
 ## Browser support
 

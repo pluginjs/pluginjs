@@ -22,8 +22,6 @@ yarn add @pluginjs/modal
 npm i @pluginjs/modal
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on modal instances through the modal options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"template"` | The main element templates | `function() {...}`
 `"templates"` | Element templates | `{}`
@@ -121,7 +115,7 @@ Events are called on modal instances through the modal events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"open"` | Gets fired when plugin is destroy
 `"close"` | Gets fired when plugin is close
 `"destroy"` | Gets fired when plugin is destroy
@@ -134,13 +128,13 @@ Methods are called on modal instances through the modal method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"destroy"` | Destroy plugin
 
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-modal`
 `"ELEMENT"` | Declare plugin | `{namespace}`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
@@ -162,10 +156,9 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"Cancel"` | Cancel | 取消
 `"Yes"` | Yes | 确定
----
 
 ## Browser support
 

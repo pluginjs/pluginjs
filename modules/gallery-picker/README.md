@@ -22,8 +22,6 @@ yarn add @pluginjs/gallery-picker
 npm i @pluginjs/gallery-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on galleryPicker instances through the galleryPicker options 
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
@@ -109,7 +103,7 @@ Events are called on galleryPicker instances through the galleryPicker events it
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -122,7 +116,7 @@ Methods are called on galleryPicker instances through the galleryPicker method i
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"val"` | Set or get value by key
 `"get"` | Get value by key
 `"set"` | Set value by key
@@ -137,7 +131,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-galleryPicker`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
@@ -161,7 +155,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"placeholder"` | Choose images | 点击添加
 `"count"` | zero | 零
 `"expand"` | expand | 展开
@@ -171,7 +165,6 @@ Name | EN | ZH
 `"delete"` | Delete | 删除
 `"add"` | Add | 添加
 `"save"` | Save | 保存
----
 
 ## Browser support
 

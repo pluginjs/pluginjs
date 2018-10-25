@@ -4,7 +4,37 @@
 
 `tween` is a utility JavaScript library for tween.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/tween
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/tween
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/tween/dist/tween.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/tween/dist/tween.min.js"></script>
+```
 
 ## API
 

@@ -4,7 +4,37 @@
 
 `polyfills` is a utility JavaScript library for polyfills the browser.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/polyfills
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/polyfills
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/polyfills/dist/polyfills.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/polyfills/dist/polyfills.min.js"></script>
+```
 
 ## Browser support
 

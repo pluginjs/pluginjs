@@ -22,8 +22,6 @@ yarn add @pluginjs/grids
 npm i @pluginjs/grids
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on grids instances through the grids options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"wrapSelector"` | Set wrapSelector | `null`
 `"itemSelector"` | Set itemSelector | `null`
@@ -119,7 +113,7 @@ Events are called on grids instances through the grids events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -136,7 +130,7 @@ Methods are called on grids instances through the grids method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"value"` | Get value
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -148,7 +142,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `as-grids`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
@@ -169,7 +163,6 @@ Name | Description | Default
 `"CAROUSELNEXT"` | Declare plugin carousel next | `{namespace}-carousel-next`
 `"CAROUSELDOTS"` | Declare plugin carousel dots | `{namespace}-carousel-dots`
 `"DRAG"` | Declare plugin drag | `{namespace}-drag`
----
 
 ## Browser support
 

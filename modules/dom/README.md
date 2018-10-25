@@ -4,7 +4,37 @@
 
 `dom` is a utility JavaScript library for control dom interfaces.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/dom
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/dom
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/dom/dist/dom.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/dom/dist/dom.min.js"></script>
+```
 
 ## API
 
@@ -15,14 +45,14 @@ Alias: parentNode.querySelector
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | selector | `String` | CSS selectors |
 | parent | `HTMLElement` | Default: `document` |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | An Element object representing the first element in the document that matches the specified set of CSS selectors, or null is returned if there are no matches. |
 
 ### queryAll
@@ -32,14 +62,14 @@ Alias: parentNode.querySelectorAll
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | selector | `String` | CSS selectors |
 | parent | `HTMLElement` | Default: `document` |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | elements | `Array<HTMLElement>` | A non-live Array containing one Element object for each element that matches at least one of the specified selectors or an empty Array in case of no matches. |
 
 ### find
@@ -55,7 +85,7 @@ Just like queryAll, but it is Curried.
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### html
@@ -63,14 +93,14 @@ Parameters
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | content | `String` | html string |
 | element | `HTMLElement` | container |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | container |
 
 ### children
@@ -78,14 +108,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | selector | `String` | CSS selectors |
 | parent | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | elements | `Array<HTMLElement>` | a Array which contains all of the child elements that matches the specified set of CSS selectors .  |
 
 ### siblings
@@ -93,13 +123,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### parent
@@ -107,13 +137,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | parentNode |
 
 ### parseHTML
@@ -123,13 +153,13 @@ Support tagged template.
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | htmlString | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### setData
@@ -137,7 +167,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | key | `String` | |
 | value | `Any` | |
 | el | `HTMLElement` | |
@@ -145,7 +175,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### getData
@@ -153,14 +183,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | key | `String` | |
 | el | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### clone
@@ -168,13 +198,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### empty
@@ -182,13 +212,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### prev
@@ -198,13 +228,13 @@ Alias: node.previousElementSibling
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### next
@@ -214,13 +244,13 @@ Alias: node.nextElementSibling
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### attr
@@ -228,13 +258,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | args | `String | Object` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### removeAttr
@@ -242,13 +272,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | key | `String` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### data
@@ -256,13 +286,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | args | `String | Object` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### text
@@ -270,14 +300,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | content | `String` | textContent |
 | element | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | element | `HTMLElement` | |
 
 ### append
@@ -285,14 +315,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | child | `HTMLElement` | childNode |
 | el | `HTMLElement` | parentNode |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | parentNode |
 
 ### prepend
@@ -300,14 +330,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | child | `HTMLElement` | childNode |
 | el | `HTMLElement` | parentNode |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | parentNode |
 
 ### insertBefore
@@ -315,14 +345,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | newElement | `HTMLElement` | new element |
 | el | `HTMLElement` | parentNode |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | parentNode |
 
 ### insertAfter
@@ -330,14 +360,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | newElement | `HTMLElement` | new element |
 | el | `HTMLElement` | parentNode |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | parentNode |
 
 ### wrap
@@ -345,14 +375,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | wrapElement | `HTMLElement` | wrapper |
 | el | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | wrapElement | `HTMLElement` | wrapper |
 
 ### wrapInner
@@ -360,14 +390,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | newElement | `HTMLElement` | new element |
 | wrap | `HTMLElement` | wrapper |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | wrap | `HTMLElement` | wrapper |
 
 ### wrapAll
@@ -375,14 +405,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | wrapElement | `HTMLElement` | wrapper |
 | elementList | `Array<HTMLElement>` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | wrapElement | `HTMLElement` | wrapper |
 
 ### unwrap
@@ -390,13 +420,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | |
 
 ### parentWith
@@ -404,14 +434,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | fn | `HTMLElement => Boolean` | |
 | el | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | parentNode |
 
 ### clearData
@@ -419,13 +449,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | |
 
 ### contains
@@ -433,14 +463,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | el | `HTMLElement` | |
 | parent | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | bool | `Boolean` | |
 
 ### closest
@@ -448,14 +478,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | selector | `String` | |
 | el | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | parentElement | `HTMLElement` | |
 
 ### nextWith
@@ -463,14 +493,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | fn | `HTMLElement => Boolean` | |
 | el | `HTMLElement` | |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | nextElement | `HTMLElement` | |
 
 ### fade
@@ -478,7 +508,7 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | type | `String` | |
 | Options | `{ duration: Number, callback: Function }` | |
 | element | `HTMLElement` |
@@ -486,7 +516,7 @@ Parameters
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | nextElement | `HTMLElement` | |
 
 ### fadeOut
@@ -494,14 +524,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | Options | `{ duration: Number, callback: Function }` | |
 | element | `HTMLElement` |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | nextElement | `HTMLElement` | |
 
 ### fadeIn
@@ -509,14 +539,14 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | Options | `{ duration: Number, callback: Function }` | |
 | element | `HTMLElement` |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | nextElement | `HTMLElement` | |
 
 ## Browser support

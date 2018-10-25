@@ -22,8 +22,6 @@ yarn add @pluginjs/video-picker
 npm i @pluginjs/video-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on videoPicker instances through the videoPicker options itse
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"sources"` | Set sources | `["YouTube","Vimeo","Local File"]`
@@ -107,7 +101,7 @@ Events are called on videoPicker instances through the videoPicker events itself
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -121,7 +115,7 @@ Methods are called on videoPicker instances through the videoPicker method itsel
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"set"` | Set value by key
 `"get"` | Get value by key
 `"val"` | Set or get value by key
@@ -132,7 +126,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-videoPicker`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
@@ -174,7 +168,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"inputPlaceholder"` | Add Video | 添加视频
 `"videoSource"` | Video Source | 视频类型
 `"videoURL"` | Video URL | 视频URL
@@ -191,7 +185,6 @@ Name | EN | ZH
 `"delete"` | Delete | 删除
 `"useIt"` | Use It | 使用
 `"inputURL"` | Please input URL | 请输入URL
----
 
 ## Browser support
 

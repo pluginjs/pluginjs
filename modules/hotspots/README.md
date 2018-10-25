@@ -22,8 +22,6 @@ yarn add @pluginjs/hotspots
 npm i @pluginjs/hotspots
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on hotspots instances through the hotspots options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"data"` | Set data | `[]`
 `"popover"` | Set popover | `{"theme":"hotspot","placement":"top","trigger":"hover focus","hideOutClick":true,"delay":0,"close":false,"html":true}`
@@ -104,7 +98,7 @@ Events are called on hotspots instances through the hotspots events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -125,7 +119,7 @@ Methods are called on hotspots instances through the hotspots method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"value"` | Get value
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -134,7 +128,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-hotspot`
 `"CONTAINER"` | Declare plugin range | `{namespace}s`
 `"HOVERING"` | Announce plugin is hoverd | `{namespace}s-hovering`
@@ -147,7 +141,6 @@ Name | Description | Default
 `"TEXT"` | Declare plugin text | `{namespace}-text`
 `"HOTSPOTHOVERING"` | Declare plugin hotspothovering | `{namespace}-hovering`
 `"HOTSPOTACTIVE"` | Declare plugin hotspotactive | `{namespace}-active`
----
 
 ## Browser support
 

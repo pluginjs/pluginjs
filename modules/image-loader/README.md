@@ -22,8 +22,6 @@ yarn add @pluginjs/image-loader
 npm i @pluginjs/image-loader
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -45,9 +43,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:

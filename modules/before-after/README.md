@@ -22,8 +22,6 @@ yarn add @pluginjs/before-after
 npm i @pluginjs/before-after
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on beforeAfter instances through the beforeAfter options itse
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"labelTheme"` | Set labelTheme | `null`
 `"direction"` | Set is horizontal or vertical | `horizontal`
@@ -112,7 +106,7 @@ Events are called on beforeAfter instances through the beforeAfter events itself
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"hover"` | Gets fired when plugin has hover
 `"hovered"` | Gets fired when plugin has hovered
@@ -129,7 +123,7 @@ Methods are called on beforeAfter instances through the beforeAfter method itsel
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"moveBy"` | Get value of moveBy
 `"moveTo"` | Get value of moveTo
 `"enable"` | Enabled plugin if plugin is disabled
@@ -139,7 +133,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `as-beforeAfter`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"DIRECTION"` | Declare plugin direction | `{namespace}-{direction}`
@@ -158,7 +152,6 @@ Name | Description | Default
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"DRAGGING"` | Announce plugin is dragging | `{namespace}-dragging`
 `"HOVERING"` | Announce plugin is hoverd | `{namespace}-hovering`
----
 
 ## Browser support
 

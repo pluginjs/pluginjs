@@ -4,7 +4,37 @@
 
 `feature` is a utility JavaScript library for special helper.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/feature
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/feature
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/feature/dist/feature.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/feature/dist/feature.min.js"></script>
+```
 
 ## API
 
@@ -13,13 +43,13 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | property | String | CSS property |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | prefixResult | `String` | |
 
 ### transitionProperty
@@ -27,7 +57,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | prefixResult | `String` | |
 
 ### transformProperty
@@ -35,7 +65,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | prefixResult | `String` | |
 
 ### animationProperty
@@ -43,7 +73,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | prefixResult | `String` | |
 
 ### transform3D
@@ -51,7 +81,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | perspectiveTest | `Boolean` | |
 
 ### transform
@@ -59,7 +89,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | transformOriginTest | `Boolean` | |
 
 ### transition
@@ -67,7 +97,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | transitionTest | `Boolean` | |
 
 ### sticky
@@ -75,7 +105,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | canSticky | `Boolean` | |
 
 ### svg
@@ -83,7 +113,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isSupportedSVG | `Boolean` | |
 
 ### touch
@@ -91,7 +121,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isSupportedTouchEvent | `Boolean` | |
 
 ### pointer
@@ -99,7 +129,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isSupportedPointerEvent | `Boolean` | |
 
 ### pointerEvent
@@ -107,13 +137,13 @@ Returns
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | pointerEvent | String | event name |
 
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isSupportedPointerEvent | `Boolean` | |
 
 ## Browser support

@@ -6,6 +6,76 @@ A flexible modern zoom js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/zoom/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/zoom
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/zoom
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/zoom/dist/zoom.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/zoom/dist/zoom.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/zoom/dist/zoom.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/zoom/dist/zoom.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import Zoom from "@pluginjs/zoom"
+import "@pluginjs/zoom/dist/zoom.css"
+
+Zoom.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/zoom/dist/zoom.css")
+const Zoom = require("@pluginjs/zoom")
+
+Zoom.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/zoom/dist/zoom.css">
+<script src="https://unpkg.com/@pluginjs/zoom/dist/zoom.js"></script>
+<script>
+  Pj.zoom('.element', options)
+</script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

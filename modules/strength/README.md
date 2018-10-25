@@ -22,8 +22,6 @@ yarn add @pluginjs/strength
 npm i @pluginjs/strength
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on strength instances through the strength options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"showMeter"` | rendering meter | `true`
 `"showToggle"` | rendering toggle | `true`
@@ -110,7 +104,7 @@ Events are called on strength instances through the strength events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -126,7 +120,7 @@ Methods are called on strength instances through the strength method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"getScore"` | Get score
 `"getStatus"` | Get status
 `"enable"` | Enabled plugin if plugin is disabled
@@ -136,7 +130,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-strength`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
 `"CONTAINER"` | Declare plugin range | `{namespace}-container`
@@ -150,14 +144,13 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"Empty"` | Empty | 空
 `"Invalid"` | Invalid | 无效
 `"Weak"` | Weak | 弱
 `"Good"` | Good | 中
 `"Strong"` | Strong | 强
 `"toggle"` | Show/Hide Password | 显示/隐藏 密码
----
 
 ## Browser support
 

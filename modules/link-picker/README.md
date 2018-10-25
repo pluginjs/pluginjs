@@ -22,8 +22,6 @@ yarn add @pluginjs/link-picker
 npm i @pluginjs/link-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on linkPicker instances through the linkPicker options itself
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"title"` | Add plugin title | `Click to Add Link`
 `"placeholder"` | Set input box prompt information | `Title`
 `"locale"` | Set locale environment | `en`
@@ -106,7 +100,7 @@ Events are called on linkPicker instances through the linkPicker events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -118,7 +112,7 @@ Methods are called on linkPicker instances through the linkPicker method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"val"` | Set or get value by key
 `"set"` | Set value by key
 `"enable"` | Enabled plugin if plugin is disabled
@@ -130,7 +124,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-linkPicker`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"CONTAINER"` | Declare plugin range | `{namespace}-container`
@@ -165,7 +159,7 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"type"` | Type | 类型
 `"contentType"` | Content Type | 内容样式
 `"content"` | Content | 内容
@@ -187,7 +181,6 @@ Name | EN | ZH
 `"tag archive"` | tag archive | 标签档案
 `"same window"` | same window | 同一窗口
 `"new window"` | new window | 新窗口
----
 
 ## Browser support
 

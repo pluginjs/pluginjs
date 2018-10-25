@@ -22,8 +22,6 @@ yarn add @pluginjs/draggable
 npm i @pluginjs/draggable
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on draggable instances through the draggable options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"container"` | Contains movement to the bounds of the element | `null`
 `"grid"` | Snaps the element to a grid | `[0, 0]`
 `"axis"` | Constrains movement to horizontal or vertical axis | `null`
@@ -101,7 +95,7 @@ Events are called on draggable instances through the draggable events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
@@ -117,7 +111,7 @@ Methods are called on draggable instances through the draggable method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"setPosition"` | Set dragPosition by key
 `"disable"` | Disable plugin
 `"enable"` | Enabled plugin if plugin is disabled
@@ -126,13 +120,12 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-draggable`
 `"VERTICAL"` | Declare plugin vertical | `{namespace}-vertical`
 `"HORIZONTAL"` | Declare plugin horizontal | `{namespace}-horizontal`
 `"GRID"` | Declare plugin grid node | `{namespace}-grid`
 `"DISABLED"` | Declare plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

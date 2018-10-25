@@ -6,6 +6,76 @@ A flexible modern units-range js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/unitsRange/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/units-range
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/units-range
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/units-range/dist/units-range.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/units-range/dist/units-range.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/units-range/dist/units-range.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/units-range/dist/units-range.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import UnitsRange from "@pluginjs/units-range"
+import "@pluginjs/units-range/dist/units-range.css"
+
+UnitsRange.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/units-range/dist/units-range.css")
+const UnitsRange = require("@pluginjs/units-range")
+
+UnitsRange.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/units-range/dist/units-range.css">
+<script src="https://unpkg.com/@pluginjs/units-range/dist/units-range.js"></script>
+<script>
+  Pj.unitsRange('.element', options)
+</script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

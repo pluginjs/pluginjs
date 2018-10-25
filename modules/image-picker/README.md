@@ -22,8 +22,6 @@ yarn add @pluginjs/image-picker
 npm i @pluginjs/image-picker
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on imagePicker instances through the imagePicker options itse
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"disabled"` | Disabled plugin | `false`
 `"locale"` | Set locale environment | `en`
@@ -108,7 +102,7 @@ Events are called on imagePicker instances through the imagePicker events itself
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -121,7 +115,7 @@ Methods are called on imagePicker instances through the imagePicker method itsel
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"get"` | Get value by key
 `"set"` | Set value by key
 `"clear"` | Clear plugin
@@ -133,7 +127,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-imagePicker`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"EMPTY"` | Declare plugin empty | `{namespace}-empty`
@@ -150,12 +144,11 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"placeholder"` | Click to upload | 点击上传
 `"deleteTitle"` | Are you sure you want to delete? | 你确定要删除？
 `"cancel"` | Cancel | 取消
 `"delete"` | Delete | 删除
----
 
 ## Browser support
 

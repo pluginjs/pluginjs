@@ -22,8 +22,6 @@ yarn add @pluginjs/toggle
 npm i @pluginjs/toggle
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on toggle instances through the toggle options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"dragable"` | Set plugin is dragable or not | `true`
 `"clickable"` | Set plugin is clickable or not | `true`
@@ -109,7 +103,7 @@ Events are called on toggle instances through the toggle events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -123,7 +117,7 @@ Methods are called on toggle instances through the toggle method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"check"` | set check
 `"uncheck"` | Set uncheck
 `"set"` | Set value by key
@@ -135,7 +129,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-toggle`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"SIZE"` | Declare plugin size | `{namespace}-{size}`
@@ -149,10 +143,9 @@ Name | Description | Default
 ### Translations
 
 Name | EN | ZH
------|------|-------
+--||-
 `"on"` | ON | 开
 `"off"` | OFF | 关
----
 
 ## Browser support
 

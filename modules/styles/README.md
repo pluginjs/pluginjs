@@ -4,8 +4,6 @@
 
 `styles` is a css library for common style generated.
 
----
-
 ## Browser support
 
 Tested on all major browsers.

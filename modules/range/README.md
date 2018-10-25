@@ -22,8 +22,6 @@ yarn add @pluginjs/range
 npm i @pluginjs/range
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on range instances through the range options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"max"` | Set plugin max option | `100`
 `"min"` | Set plugin min option | `0`
@@ -113,7 +107,7 @@ Events are called on range instances through the range events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -128,7 +122,7 @@ Methods are called on range instances through the range method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"val"` | Set or get value by key
 `"get"` | Get value by key
 `"set"` | Set value by key
@@ -140,7 +134,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-range`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"WRAP"` | Declare plugin wrap | `{namespace}`
@@ -158,7 +152,6 @@ Name | Description | Default
 `"TIP"` | Declare plugin tip | `{namespace}-tip`
 `"SHOW"` | Declare plugin show | `{namespace}-tip-show`
 `"UNIT"` | Declare plugin unit | `{namespace}-unit`
----
 
 ## Browser support
 

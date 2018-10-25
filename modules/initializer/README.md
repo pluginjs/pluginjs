@@ -4,6 +4,38 @@
 
 `initializer` is a utility JavaScript library for initialize plugins.
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/initializer
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/initializer
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/initializer/dist/initializer.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/initializer/dist/initializer.min.js"></script>
+```
+
 ## API
 
 - of

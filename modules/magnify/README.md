@@ -6,6 +6,75 @@ A flexible modern magnify js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/magnify/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/magnify
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/magnify
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/magnify/dist/magnify.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/magnify/dist/magnify.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/magnify/dist/magnify.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/magnify/dist/magnify.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import Magnify from "@pluginjs/magnify"
+import "@pluginjs/magnify/dist/magnify.css"
+
+Magnify.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/magnify/dist/magnify.css")
+const Magnify = require("@pluginjs/magnify")
+
+Magnify.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/magnify/dist/magnify.css">
+<script src="https://unpkg.com/@pluginjs/magnify/dist/magnify.js"></script>
+<script>
+  Pj.magnify('.element', options)
+</script>
+```
 ## Browser support
 
 Tested on all major browsers.

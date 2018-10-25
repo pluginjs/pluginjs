@@ -6,6 +6,76 @@ A flexible modern slider js plugin.
 
 **[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/slider/samples)**
 
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/slider
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/slider
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/slider/dist/slider.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/slider/dist/slider.css">
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/slider/dist/slider.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/slider/dist/slider.min.css">
+```
+
+### Initialize
+
+HTML:
+
+```html
+<div class="element"></div>
+```
+
+ECMAScript Module:
+
+```javascript
+import Slider from "@pluginjs/slider"
+import "@pluginjs/slider/dist/slider.css"
+
+Slider.of(document.querySelector('.element'), options)
+```
+
+CommonJS:
+
+```javascript
+require("@pluginjs/slider/dist/slider.css")
+const Slider = require("@pluginjs/slider")
+
+Slider.of(document.querySelector('.element'), options)
+```
+
+Browser:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@pluginjs/slider/dist/slider.css">
+<script src="https://unpkg.com/@pluginjs/slider/dist/slider.js"></script>
+<script>
+  Pj.slider('.element', options)
+</script>
+```
+
 ## Browser support
 
 Tested on all major browsers.

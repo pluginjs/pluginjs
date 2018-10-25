@@ -22,8 +22,6 @@ yarn add @pluginjs/progress
 npm i @pluginjs/progress
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on progress instances through the progress options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"bootstrap"` | Enable bootstrap or not | `false`
 `"min"` | Set min value | `0`
@@ -108,7 +102,7 @@ Events are called on progress instances through the progress events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin is destroy
 `"ready"` | Gets fired when plugin is ready
 `"destroy"` | Gets fired when plugin is destroy
@@ -125,7 +119,7 @@ Methods are called on progress instances through the progress method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"get"` | Get value by key
 `"start"` | Start plugin
 `"stop"` | Stop plugin
@@ -139,7 +133,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-progress`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"ELEMENT"` | Declare plugin element | `{namespace}`
@@ -148,7 +142,6 @@ Name | Description | Default
 `"BAR"` | Declare plugin bar | `{namespace}-bar`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"VERTICAL"` | Declare plugin direction is vertical | `{namespace}-vertical`
----
 
 ## Browser support
 

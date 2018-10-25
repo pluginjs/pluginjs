@@ -4,7 +4,37 @@
 
 `fullscreen` is a utility JavaScript library for fullscreen.
 
----
+## Introduction
+
+### Installation
+
+#### Yarn
+
+```javascript
+yarn add @pluginjs/fullscreen
+```
+
+#### NPM
+
+```javascript
+npm i @pluginjs/fullscreen
+```
+
+## Getting Started
+
+**CDN:**
+
+Development:
+
+```html
+<script src="https://unpkg.com/@pluginjs/fullscreen/dist/fullscreen.js"></script>
+```
+
+Production:
+
+```html
+<script src="https://unpkg.com/@pluginjs/fullscreen/dist/fullscreen.min.js"></script>
+```
 
 ## API
 
@@ -13,7 +43,7 @@
 Parameters
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | args | Any[] | |
 
 ### exit
@@ -29,7 +59,7 @@ Open full screen or exit full screen
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isFullscreen | `Boolean` | |
 
 ### enabled
@@ -37,7 +67,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | isEnabled | `Boolean` | |
 
 ### element
@@ -45,7 +75,7 @@ Returns
 Returns
 
 | Name | Type | Description |
-|------|------|-------------|
+|||-|
 | fullscreenElement | `HTMLElement[]` | |
 
 ## Browser support

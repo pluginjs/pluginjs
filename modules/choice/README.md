@@ -22,8 +22,6 @@ yarn add @pluginjs/choice
 npm i @pluginjs/choice
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on choice instances through the choice options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"multiple"` | Set multiple | `false`
 `"value"` | Set vakue | ``
@@ -106,7 +100,7 @@ Events are called on choice instances through the choice events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
 `"disable"` | Gets fired when plugin has disabled
@@ -121,7 +115,7 @@ Methods are called on choice instances through the choice method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -134,7 +128,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-choice`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"WRAP"` | Declare plugin wrap | `{namespace}`
@@ -144,7 +138,6 @@ Name | Description | Default
 `"TOGGLE"` | Declare plugin toggle | `{namespace}-toggle`
 `"SELECTED"` | Declare plugin selected | `{namespace}-selected`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

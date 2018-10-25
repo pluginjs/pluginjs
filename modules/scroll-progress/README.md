@@ -22,8 +22,6 @@ yarn add @pluginjs/scroll-progress
 npm i @pluginjs/scroll-progress
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on scrollProgress instances through the scrollProgress option
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"size"` | Define the size of Progress bar | `5`
 `"color"` | Define the color of Progress bar | `#50bcb6`
 `"opacity"` | Define the opacity of Progress bar, value must be between 0 and 1 | `1`
@@ -105,7 +99,7 @@ Events are called on scrollProgress instances through the scrollProgress events 
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin is ready
 `"enable"` | Gets fired when plugin is enabled
 `"disable"` | Gets fired when plugin is disabled
@@ -118,7 +112,7 @@ Methods are called on scrollProgress instances through the scrollProgress method
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -127,11 +121,10 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-scrollProgress`
 `"BAR"` | Declare bar | `{namespace}-bar`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
----
 
 ## Browser support
 

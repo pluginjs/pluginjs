@@ -22,8 +22,6 @@ yarn add @pluginjs/tabs
 npm i @pluginjs/tabs
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on tabs instances through the tabs options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Add plugin theme option | `null`
 `"navSelector"` | Set nav dom selector | `null`
 `"contentSelector"` | Set content dom selector | `+`
@@ -120,7 +114,7 @@ Events are called on tabs instances through the tabs events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"active"` | Get fired when plugin has actived
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
@@ -135,7 +129,7 @@ Methods are called on tabs instances through the tabs method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Refresh plugin by new options
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
@@ -155,7 +149,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-tabs`
 `"THEME"` | Declare plugin theme | `{namespace}-{theme}`
 `"ELEMENT"` | Declare tabs element | `{namespace}`
@@ -168,7 +162,6 @@ Name | Description | Default
 `"NAV"` | Declare nav dom node | `{namespace}-nav`
 `"CONTENT"` | Declare content node | `{namespace}-content`
 `"LOADING"` | Announce plugin is loading | `{namespace}-loading`
----
 
 ## Browser support
 

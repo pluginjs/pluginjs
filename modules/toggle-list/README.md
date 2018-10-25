@@ -22,8 +22,6 @@ yarn add @pluginjs/toggle-list
 npm i @pluginjs/toggle-list
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on toggleList instances through the toggleList options itself
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"locale"` | Set locale environment | `en`
 `"localeFallbacks"` | Set the plugin is localeFallbacks or not | `true`
@@ -105,7 +99,7 @@ Events are called on toggleList instances through the toggleList events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"ready"` | Gets fired when plugin has ready
 `"check"` | Gets fired when plugin has check
 `"uncheck"` | Gets fired when plugin has uncheck
@@ -117,7 +111,7 @@ Methods are called on toggleList instances through the toggleList method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"set"` | Set value by key
 `"get"` | Get value by key
 `"val"` | Set or get value by key
@@ -126,13 +120,12 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-toggleList`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"SWITCH"` | Declare plugin switch | `{namespace}-toggle`
 `"UNCHECKED"` | Declare plugin unchecked | `{namespace}-unchecked`
 `"CHECKED"` | Declare plugin checked | `{namespace}-checked`
----
 
 ## Browser support
 

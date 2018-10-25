@@ -22,8 +22,6 @@ yarn add @pluginjs/units
 npm i @pluginjs/units
 ```
 
----
-
 ## Getting Started
 
 **CDN:**
@@ -47,9 +45,7 @@ Production:
 HTML:
 
 ```html
-<body>
-  <div class="element"></div>
-</body>
+<div class="element"></div>
 ```
 
 ECMAScript Module:
@@ -80,8 +76,6 @@ Browser:
 </script>
 ```
 
----
-
 ## API
 
 ### Options
@@ -90,7 +84,7 @@ Options are called on units instances through the units options itself.
 You can also save the instances to variable for further use.
 
 Name | Description | Default
------|--------------|-----
+--|--|--
 `"theme"` | Set plugin theme option | `null`
 `"disabled"` | Disabled plugin | `false`
 `"width"` | Set plugin width | `null`
@@ -108,7 +102,7 @@ Events are called on units instances through the units events itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"update"` | Gets fired when plugin has destroy
 `"ready"` | Gets fired when plugin has ready
 `"enable"` | Gets fired when plugin has enabled
@@ -125,7 +119,7 @@ Methods are called on units instances through the units method itself.
 You can also save the instances to variable for further use.
 
 Name | Description
------|-----
+--|--
 `"enable"` | Enabled plugin if plugin is disabled
 `"disable"` | Disable plugin
 `"destroy"` | Destroy plugin
@@ -139,7 +133,7 @@ Name | Description
 ### Classes
 
 Name | Description | Default
------|------|------
+--||
 `"NAMESPACE"` | Declare plugin namespace | `pj-units`
 `"THEME"` | Declare plugin theme | `{namespace}--{theme}`
 `"WRAP"` | Declare plugin wrap | `{namespace}-wrap`
@@ -149,7 +143,6 @@ Name | Description | Default
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"ONLY"` | Declare plugin only | `{namespace}-only`
 `"INPUT"` | Declare plugin input | `{namespace}-input`
----
 
 ## Browser support
 
