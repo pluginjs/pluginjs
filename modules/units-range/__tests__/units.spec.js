@@ -330,7 +330,7 @@ describe('UnitsRange', () => {
 
       expect(api.val()).toBe('10px')
       expect(api.get()).toEqual({
-        input: '10',
+        input: 10,
         unit: 'px'
       })
     })
@@ -340,7 +340,7 @@ describe('UnitsRange', () => {
 
       expect(api.val()).toBe('10px')
       expect(api.get()).toEqual({
-        input: '10',
+        input: 10,
         unit: 'px'
       })
     })

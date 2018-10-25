@@ -354,7 +354,7 @@ class FontEditor extends Component {
   enable() {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
-      this.CLEARPOP.enable()
+      this.TRIGGER.CLEARPOP.enable()
       this.element.disabled = false
       this.leave('disabled')
     }

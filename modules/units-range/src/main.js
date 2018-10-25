@@ -41,12 +41,10 @@ class UnitsRange extends Units {
       `<div class="${this.classes.CONTAINER}"></div>`,
       this.$wrap
     )
-
     this.$range = prependTo(
       `<input type="text" value="${this.value.input}"/>`,
       this.$container
     )
-
     this.RANGE = Range.of(
       this.$range,
       deepMerge(this.getRangeOption(this.value.unit), {
