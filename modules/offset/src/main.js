@@ -64,7 +64,7 @@ class Offset extends Component {
         if (this.is('disabled')) {
           return
         }
-        this.update()
+        this.update(false)
       }
     })
     let val = this.element.value
@@ -73,7 +73,7 @@ class Offset extends Component {
       if (!this.options.parse.call(this, val).unit) {
         val = val.replace('}', ',"unit":"px"}')
       }
-      this.val(val)
+      this.val(val, false)
     }
     setStyle('display', 'none', this.element)
 
@@ -191,21 +191,13 @@ class Offset extends Component {
 
   update(trigger = true) {
     const value = this.val()
-    console.log(value)
     this.element.value = value
-    this.trigger(EVENTS.CHANGE, value)
     if (trigger) {
-      this.trigger(EVENTS.CHANGE, this.value)
+      this.trigger(EVENTS.CHANGE, value)
     }
   }
 
-  clear(update = true) {
-    if (update !== false) {
-      this.set(this.value)
-    }
-  }
-
-  set(value) {
+  set(value, trigger = true) {
     if (!value || typeof value === 'undefined') {
       return
     }
@@ -215,7 +207,7 @@ class Offset extends Component {
     this.$left.value = value.left
     this.$unit.value = value.unit
     this.SELECT.select(value.unit)
-    this.update()
+    this.update(trigger)
   }
 
   get() {
@@ -228,18 +220,18 @@ class Offset extends Component {
     }
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-    return this.set(this.options.parse.call(this, value))
+
+    return this.set(this.options.parse.call(this, value), trigger)
   }
 
   enable() {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = false
-      this.enableTooltip()
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)

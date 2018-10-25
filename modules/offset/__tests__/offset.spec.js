@@ -2,9 +2,8 @@ import Offset from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-const value =
-  '{"margin-top": "20px","margin-right": "20px","margin-bottom": "20px","margin-left": "20px"}'
-
+const value = '{"top":"20","right":"20","bottom":"20","left":"20","unit":"%"}'
+const valueObj = { top: '20', right: '20', bottom: '20', left: '20', unit: '%' }
 describe('Offset', () => {
   describe('Offset()', () => {
     test('should have Offset', () => {
@@ -40,17 +39,6 @@ describe('Offset', () => {
       const offset = Offset.of(generateHTMLSample())
 
       expect(offset.options).toBeObject()
-    })
-  })
-
-  describe('jquery constructor', () => {
-    test('should works with jquery fn', () => {
-      const $element = generateHTMLSample()
-      const api = Offset.of($element)
-
-      expect(api).toEqual(api)
-      expect(api).toBeObject()
-      expect(api.options).toBeObject()
     })
   })
 
@@ -114,14 +102,14 @@ describe('Offset', () => {
     let api
 
     it('should not fired when initialize', () => {
-      // let called = false
-      // $element = generateHTMLSample(value)
-      // api = Offset.of($element, {
-      //   onChange() {
-      //     called = true
-      //   }
-      // })
-      // expect(called).toBeFalse()
+      let called = false
+      $element = generateHTMLSample(value)
+      api = Offset.of($element, {
+        onChange() {
+          called = true
+        }
+      })
+      expect(called).toBeFalse()
     })
 
     it('should fired when change the value', () => {
@@ -131,13 +119,11 @@ describe('Offset', () => {
         onChange(value) {
           called = true
 
-          expect(value).toBeObject()
+          expect(value).toBeString()
         }
       })
 
-      api.val(
-        '{"margin-top": "30px","margin-right": "30px","margin-bottom": "30px","margin-left": "30px"}'
-      )
+      api.val(value)
 
       expect(called).toBeTrue()
     })
@@ -149,20 +135,11 @@ describe('Offset', () => {
         onChange(value) {
           called = true
 
-          expect(value).toBeObject()
+          expect(value).toBeString()
         }
       })
 
-      api.set({
-        'margin-bottom': 'px',
-        'margin-left': 'px',
-        'margin-right': 'px',
-        'margin-top': 'px',
-        'padding-bottom': 'px',
-        'padding-left': 'px',
-        'padding-right': 'px',
-        'padding-top': 'px'
-      })
+      api.set(valueObj)
 
       expect(called).toBeTrue()
     })
@@ -173,35 +150,17 @@ describe('Offset', () => {
     let api
 
     test('should get the value with value', () => {
-      $element = generateHTMLSample(value)
+      $element = generateHTMLSample()
 
       api = Offset.of($element)
-      expect(api.get()).toEqual({
-        'margin-bottom': '20px',
-        'margin-left': '20px',
-        'margin-right': '20px',
-        'margin-top': '20px',
-        'padding-bottom': 'px',
-        'padding-left': 'px',
-        'padding-right': 'px',
-        'padding-top': 'px'
-      })
+      expect(api.get()).toBeObject()
     })
 
     test('should get the value', () => {
-      $element = generateHTMLSample()
+      $element = generateHTMLSample(value)
       api = Offset.of($element)
 
-      expect(api.get()).toEqual({
-        'margin-bottom': 'px',
-        'margin-left': 'px',
-        'margin-right': 'px',
-        'margin-top': 'px',
-        'padding-bottom': 'px',
-        'padding-left': 'px',
-        'padding-right': 'px',
-        'padding-top': 'px'
-      })
+      expect(api.get()).toEqual(valueObj)
     })
   })
 
@@ -220,26 +179,8 @@ describe('Offset', () => {
 
       expect(api.get()).toBeObject()
 
-      api.set({
-        'margin-bottom': 'px',
-        'margin-left': 'px',
-        'margin-right': 'px',
-        'margin-top': 'px',
-        'padding-bottom': 'px',
-        'padding-left': 'px',
-        'padding-right': 'px',
-        'padding-top': 'px'
-      })
-      expect(api.get()).toEqual({
-        'margin-bottom': 'px',
-        'margin-left': 'px',
-        'margin-right': 'px',
-        'margin-top': 'px',
-        'padding-bottom': 'px',
-        'padding-left': 'px',
-        'padding-right': 'px',
-        'padding-top': 'px'
-      })
+      api.set(valueObj)
+      expect(api.get()).toEqual(valueObj)
     })
   })
 
@@ -256,9 +197,7 @@ describe('Offset', () => {
       $element = generateHTMLSample(value)
       api = Offset.of($element)
 
-      expect(api.val()).toBe(
-        '{"margin-top":"20px","margin-right":"20px","margin-bottom":"20px","margin-left":"20px","padding-top":"px","padding-right":"px","padding-bottom":"px","padding-left":"px"}'
-      )
+      expect(api.val()).toEqual(value)
     })
 
     test('should set the value', () => {
@@ -267,45 +206,19 @@ describe('Offset', () => {
 
       api.val(value)
 
-      expect(api.get()).toEqual({
-        'margin-bottom': '20px',
-        'margin-left': '20px',
-        'margin-right': '20px',
-        'margin-top': '20px',
-        'padding-bottom': 'px',
-        'padding-left': 'px',
-        'padding-right': 'px',
-        'padding-top': 'px'
-      })
-      expect(api.val()).toEqual(
-        '{"margin-top":"20px","margin-right":"20px","margin-bottom":"20px","margin-left":"20px","padding-top":"px","padding-right":"px","padding-bottom":"px","padding-left":"px"}'
-      )
+      expect(api.get()).toEqual(valueObj)
+      expect(api.val()).toEqual(value)
     })
 
     test('should set the value with value', () => {
       $element = generateHTMLSample(value)
       api = Offset.of($element)
-      expect(api.val()).toBe(
-        '{"margin-top":"20px","margin-right":"20px","margin-bottom":"20px","margin-left":"20px","padding-top":"px","padding-right":"px","padding-bottom":"px","padding-left":"px"}'
-      )
+      expect(api.val()).toBe(value)
 
-      api.val(
-        '{"margin-top": "30px","margin-right": "30px","margin-bottom": "30px","margin-left": "30px"}'
-      )
+      api.val(value)
 
-      expect(api.get()).toEqual({
-        'margin-bottom': '30px',
-        'margin-left': '30px',
-        'margin-right': '30px',
-        'margin-top': '30px',
-        'padding-bottom': 'px',
-        'padding-left': 'px',
-        'padding-right': 'px',
-        'padding-top': 'px'
-      })
-      expect(api.val()).toEqual(
-        '{"margin-top":"30px","margin-right":"30px","margin-bottom":"30px","margin-left":"30px","padding-top":"px","padding-right":"px","padding-bottom":"px","padding-left":"px"}'
-      )
+      expect(api.get()).toEqual(valueObj)
+      expect(api.val()).toEqual(value)
     })
   })
 
