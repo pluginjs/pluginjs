@@ -31,7 +31,8 @@
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/emitter": "*",
-    "@pluginjs/factory": "*"
+    "@pluginjs/factory": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

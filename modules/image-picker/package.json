@@ -45,7 +45,8 @@
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pop-dialog": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

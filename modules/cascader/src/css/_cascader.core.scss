@@ -64,7 +64,7 @@ $cascader-clear-right: 11px !default;
       }
     }
   }
-  
+
   &-dropdown {
     display: flex;
     flex-direction: row;
@@ -80,7 +80,7 @@ $cascader-clear-right: 11px !default;
     min-width: $cascader-min-width;
     max-height: $cascader-max-height;
     overflow: auto;
-    
+
     &:not(:last-child) {
       border-right: 1px solid $cascader-border-color;
     }

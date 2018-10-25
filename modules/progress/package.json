@@ -44,7 +44,8 @@
     "@pluginjs/easing": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/tween": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

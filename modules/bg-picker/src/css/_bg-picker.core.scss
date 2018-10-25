@@ -85,7 +85,7 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    
+
     &-title {
       float: left;
     }
@@ -114,14 +114,14 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
     .#{$bgPicker}-image-change,
     .#{$bgPicker}-image-remove {
       display: none;
-    } 
+    }
 
     .#{$bgPicker}-image-selected {
 
       .#{$bgPicker}-image-select {
         display: none;
       }
-    
+
        .#{$bgPicker}-image-change,
        .#{$bgPicker}-image-remove {
         display: inline-block;

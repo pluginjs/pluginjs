@@ -26,6 +26,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/breakpoints": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
@@ -35,6 +36,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/loader": "*",
     "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
     "hammerjs": "*"
   },
   "devDependencies": {

@@ -28,7 +28,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/is": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/simple-emitter": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

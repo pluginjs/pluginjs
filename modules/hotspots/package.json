@@ -47,7 +47,8 @@
     "@pluginjs/is": "*",
     "@pluginjs/popover": "*",
     "@pluginjs/template": "*",
-    "@pluginjs/tooltip": "*"
+    "@pluginjs/tooltip": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

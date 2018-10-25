@@ -3,7 +3,6 @@
 // Vars
 // =====================
 $headroom: "pj-headroom" !default;
-$headroom-font-family: $font-family-base !default;
 
 // Core
 // =====================
@@ -12,7 +11,6 @@ $headroom-font-family: $font-family-base !default;
   top: 0;
   left: 0;
   width: 100%;
-  // transition: transform 0.3s ease;
 }
 
 .#{$headroom}-pinned {
@@ -20,13 +18,5 @@ $headroom-font-family: $font-family-base !default;
 }
 
 .#{$headroom}-unpinned {
-  transform: translateY(-100%);
-}
-
-.#{$headroom}-top {
-  transform: translateY(0);
-}
-
-.#{$headroom}-notTop {
   transform: translateY(-100%);
 }

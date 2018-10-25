@@ -48,6 +48,7 @@
     "@pluginjs/polyfills": "*",
     "@pluginjs/scroll": "*",
     "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {

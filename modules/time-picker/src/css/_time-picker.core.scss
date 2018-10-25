@@ -3,15 +3,15 @@
 
 // Vars
 // =====================
-$time-picker: "pj-timePicker";
-$time-picker-max-height: 300px;
+$time-picker: "pj-timePicker" !default;
+$time-picker-max-height: 300px !default;
 
-$time-picker-clear-icon: $pj-icon-close;
-$time-picker-clear-font: $pj-icon-font-family;
-$time-picker-clear-right: 40px;
+$time-picker-clear-icon: $pj-icon-close !default;
+$time-picker-clear-font: $pj-icon-font-family !default;
+$time-picker-clear-right: 40px !default;
 
-$time-picker-trigger-icon: $pj-icon-time;
-$time-picker-trigger-font: $pj-icon-font-family;
+$time-picker-trigger-icon: $pj-icon-time !default;
+$time-picker-trigger-font: $pj-icon-font-family !default;
 
 // Core
 // =====================

@@ -31,8 +31,13 @@
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/select": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

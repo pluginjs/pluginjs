@@ -25,8 +25,8 @@ $iconPicker-icon-height: 16px !default;
 $iconPicker-manage-icon: $pj-icon-setting !default;
 $iconPicker-manage-font: $pj-icon-font-family !default;
 
-$iconPicker-search-height: 40px;
-$iconPicker-search-left: 12px;
+$iconPicker-search-height: 40px !default;
+$iconPicker-search-left: 12px !default;
 $iconPicker-search-icon: $pj-icon-search !default;
 
 .#{$iconPicker} {

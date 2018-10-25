@@ -28,8 +28,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/color": "*",
     "@pluginjs/factory": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

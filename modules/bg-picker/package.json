@@ -45,10 +45,13 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
+    "@pluginjs/pop-dialog": "*",
     "@pluginjs/select": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/tooltip": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

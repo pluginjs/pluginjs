@@ -85,7 +85,7 @@ $videoPicker-icon: $pj-icon-play-circle !default;
       height: 100%;
     }
   }
-  
+
   &-preview {
     position: relative;
     box-sizing: border-box;
@@ -151,11 +151,11 @@ $videoPicker-icon: $pj-icon-play-circle !default;
 
     &-url {
       position: relative;
-  
+
       > input {
         width: 100%;
       }
-  
+
       > i {
         position: absolute;
         top: 50%;
@@ -163,7 +163,7 @@ $videoPicker-icon: $pj-icon-play-circle !default;
         display: none;
         transform: translateY(-50%);
       }
-  
+
       &:hover {
         > i {
           display: block;
@@ -220,7 +220,7 @@ $videoPicker-icon: $pj-icon-play-circle !default;
   &-btn-action {
     text-align: right;
   }
-  
+
   &-input {
     display: none;
   }

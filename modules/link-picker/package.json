@@ -37,6 +37,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/cascader": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
@@ -49,7 +50,8 @@
     "@pluginjs/radio": "*",
     "@pluginjs/select": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

@@ -41,6 +41,7 @@
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",

@@ -41,14 +41,15 @@
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
-    "hammerjs": "*",
-    "popper.js": "*"
+    "@pluginjs/utils": "*",
+    "hammerjs": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

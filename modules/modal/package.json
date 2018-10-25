@@ -43,9 +43,11 @@
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/global-component": "*",
     "@pluginjs/is": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

@@ -72,7 +72,6 @@ export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']
 export const defaults = {
   theme: null,
   locale: 'en',
-  // pluginName: null, // if has value, The NAMESPACE will be replaced.
   sources: ['YouTube', 'Vimeo', 'Local File'],
   disabled: false,
   date: null,

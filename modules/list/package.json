@@ -46,6 +46,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/pop-dialog": "*",
     "@pluginjs/template": "*",
+    "@pluginjs/utils": "*",
     "sortablejs": "*"
   },
   "devDependencies": {

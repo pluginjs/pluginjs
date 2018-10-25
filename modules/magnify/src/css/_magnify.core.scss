@@ -4,9 +4,9 @@ $magnify: "pj-magnify" !default;
 $magnify-target-zindex: $zindex-magnify !default;
 $magnify-lens-zindex: $magnify-target-zindex + 1 !default;
 
-$magnify-inside-lens-width: 180px;
-$magnify-inside-lens-height: 180px;
-$magnify-inside-lens-border-radius: 100%;
+$magnify-inside-lens-width: 180px !default;
+$magnify-inside-lens-height: 180px !default;
+$magnify-inside-lens-border-radius: 100% !default;
 
 .#{$magnify} {
   position: relative;

@@ -4,18 +4,31 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "version": "0.0.1",
-  "category": "utils",
+  "repository": {
+    "url": "git@github.com:pluginjs/plugin.js.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/plugin.js/issues"
+  },
+  "version": "0.2.23",
+  "category": "ui",
   "main": "dist/match.umd.js",
   "module": "dist/match.esm.js",
   "cjs": "dist/match.cjs.js",
   "source": "src/main.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "plugin build",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
-    "lint": "npm run lint:js",
+    "build:scss": "plugin script build-scss",
+    "lint": "npm run lint:js & npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
     "test": "jest"
   },
   "dependencies": {
@@ -34,12 +47,19 @@
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
-    "verbose": false,
+    "verbose": true,
     "testURL": "http://localhost",
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
 }

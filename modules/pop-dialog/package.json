@@ -46,6 +46,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/popover": "*",
     "@pluginjs/template": "*",
+    "@pluginjs/utils": "*",
     "tether": "*"
   },
   "devDependencies": {

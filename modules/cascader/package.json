@@ -30,9 +30,11 @@
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
     "@pluginjs/match": "*",
+    "@pluginjs/template": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {

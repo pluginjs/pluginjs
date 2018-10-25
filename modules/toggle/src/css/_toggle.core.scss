@@ -9,9 +9,9 @@ $toggle-height: 24px !default;
 $toggle-border-width: 3px !default;
 $toggle-handle-width: $toggle-height - $toggle-border-width * 2 !default;
 
-$toggle-on-icon: $pj-icon-in;
-$toggle-off-icon: $pj-icon-off;
-$toggle-on-font: $pj-icon-font-family;
+$toggle-on-icon: $pj-icon-in !default;
+$toggle-off-icon: $pj-icon-off !default;
+$toggle-on-font: $pj-icon-font-family !default;
 // Core
 // ======================
 .#{$toggle} {

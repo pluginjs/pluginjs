@@ -44,6 +44,7 @@
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
     "@pluginjs/styled": "*",
+    "@pluginjs/utils": "*",
     "@pluginjs/video": "*"
   },
   "devDependencies": {

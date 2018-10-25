@@ -38,10 +38,12 @@
   },
   "dependencies": {
     "@pluginjs/classes": "*",
+    "@pluginjs/color-picker": "*",
     "@pluginjs/color-selector": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/is": "*",
@@ -49,7 +51,9 @@
     "@pluginjs/range": "*",
     "@pluginjs/scrollable": "*",
     "@pluginjs/styled": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/tooltip": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

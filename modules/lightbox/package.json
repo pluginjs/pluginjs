@@ -44,9 +44,14 @@
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/fullscreen": "*",
     "@pluginjs/is": "*",
+    "@pluginjs/keyboard": "*",
+    "@pluginjs/slider": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
+    "@pluginjs/thumbnails": "*",
+    "@pluginjs/utils": "*",
     "@pluginjs/video": "*"
   },
   "devDependencies": {

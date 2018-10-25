@@ -1,8 +1,8 @@
 @import "@pluginjs/styles/variables.scss";
 
-$infinite: "pj-infinite";
-$infinite-loader-size: 50px;
-$infinite-sentinels-size: 10px;
+$infinite: "pj-infinite" !default;
+$infinite-loader-size: 50px !default;
+$infinite-sentinels-size: 10px !default;
 
 .#{$infinite} {
   &-loader {

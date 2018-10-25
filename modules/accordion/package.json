@@ -37,6 +37,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pluginjs/breakpoints": "*",
     "@pluginjs/classes": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",

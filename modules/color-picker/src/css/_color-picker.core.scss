@@ -114,7 +114,7 @@ $colorPicker-mask-zindex: $colorPicker-panel-zindex - 1 !default;
     cursor: row-resize;
     transform-origin: 50% 50%;
   }
-  
+
   &-saturation {
     .#{$colorPicker}-pointer {
       cursor: pointer;
@@ -128,7 +128,7 @@ $colorPicker-mask-zindex: $colorPicker-panel-zindex - 1 !default;
     &-mode {
       width: 100%;
     }
-    
+
     .#{$select} {
       width: 100%;
 

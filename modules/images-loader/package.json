@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "@pluginjs/image-loader": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/is": "*",
+    "@pluginjs/simple-emitter": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

@@ -41,10 +41,13 @@
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/easing": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/feature": "*",
-    "@pluginjs/styled": "*"
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

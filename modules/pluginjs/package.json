@@ -42,6 +42,7 @@
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
     "@pluginjs/polyfills": "*",
+    "@pluginjs/simple-emitter": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
     "@pluginjs/utils": "*",

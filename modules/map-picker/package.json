@@ -41,12 +41,14 @@
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/gmap": "*",
     "@pluginjs/is": "*",
     "@pluginjs/pop-dialog": "*",
-    "@pluginjs/template": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

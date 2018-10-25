@@ -33,9 +33,12 @@
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/image-loader": "*",
     "@pluginjs/is": "*",
+    "@pluginjs/loader": "*",
     "@pluginjs/styled": "*",
     "@pluginjs/styles": "*",
+    "@pluginjs/swipeable": "*",
     "@pluginjs/template": "*",
     "@pluginjs/utils": "*",
     "animejs": "*"

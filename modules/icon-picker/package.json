@@ -34,6 +34,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
     "@pluginjs/match": "*",
+    "@pluginjs/template": "*",
     "@pluginjs/tooltip": "*",
     "@pluginjs/utils": "*"
   },

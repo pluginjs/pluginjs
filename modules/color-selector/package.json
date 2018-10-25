@@ -39,6 +39,7 @@
   "dependencies": {
     "@pluginjs/classes": "*",
     "@pluginjs/color": "*",
+    "@pluginjs/color-picker": "*",
     "@pluginjs/component": "*",
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
@@ -46,6 +47,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/gradient": "*",
+    "@pluginjs/gradient-picker": "*",
     "@pluginjs/is": "*",
     "@pluginjs/keyboard": "*",
     "@pluginjs/scrollable": "*",
@@ -53,8 +55,7 @@
     "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
     "@pluginjs/tooltip": "*",
-    "@pluginjs/utils": "*",
-    "popper.js": "*"
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

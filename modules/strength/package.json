@@ -43,6 +43,7 @@
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/is": "*",
     "@pluginjs/template": "*"
   },
   "devDependencies": {

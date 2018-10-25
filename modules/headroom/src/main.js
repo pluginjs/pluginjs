@@ -43,7 +43,7 @@ class Headroom extends Component {
     if (typeof this.options.offset === 'number') {
       this.offset = this.options.offset
     } else if (typeof this.options.offset === 'string') {
-      this.offset = this.setScrollOffset()
+      this.offset = this.getScrollOffset()
     } else {
       return
     }
@@ -113,7 +113,7 @@ class Headroom extends Component {
       : { down: tolerance, up: tolerance }
   }
 
-  setScrollOffset() {
+  getScrollOffset() {
     if (typeof this.options.offset === 'string') {
       return this.getElementY(
         document.querySelector(this.options.offset),

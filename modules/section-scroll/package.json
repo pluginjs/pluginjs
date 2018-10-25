@@ -44,6 +44,9 @@
     "@pluginjs/dots": "*",
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
+    "@pluginjs/scroll": "*",
+    "@pluginjs/scroll-spy": "*",
+    "@pluginjs/styled": "*",
     "@pluginjs/template": "*",
     "hammerjs": "*"
   },

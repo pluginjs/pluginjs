@@ -33,6 +33,8 @@
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
     "@pluginjs/loader": "*",
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
     "whatwg-fetch": "*"
   },
   "devDependencies": {

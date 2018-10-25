@@ -34,7 +34,9 @@
     "@pluginjs/events": "*",
     "@pluginjs/is": "*",
     "@pluginjs/match": "*",
-    "@pluginjs/styled": "*"
+    "@pluginjs/styled": "*",
+    "@pluginjs/template": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

@@ -20,7 +20,7 @@ export const defaults = {
     down: 10,
     up: 10
   },
-  offsetSide: 'top', // the side of element offset from
+  offsetSide: 'top', // top, bottom, the side of element offset from
   offset: 300,
   duration: 0.3,
   easing: 'ease'

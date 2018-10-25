@@ -44,6 +44,7 @@
     "@pluginjs/events": "*",
     "@pluginjs/factory": "*",
     "@pluginjs/feature": "*",
+    "@pluginjs/styled": "*",
     "@pluginjs/utils": "*"
   },
   "devDependencies": {
