@@ -52,9 +52,9 @@ class SectionScroll extends Component {
     if (this.options.dots !== false) {
       this.Dots = new Dots(this)
     }
-    this.Animation = ANIMATION[this.options.animation]
-      ? new ANIMATION[this.options.animation](this)
-      : new ANIMATION.SCROLL(this)
+    // this.Animation = ANIMATION[this.options.animation]
+    //   ? new ANIMATION[this.options.animation](this)
+    //   : new ANIMATION.SCROLL(this)
 
     this.history = new History(this)
     this.bind()
@@ -233,7 +233,6 @@ class SectionScroll extends Component {
 
   scrollTo(id) {
     const index = this.getIndexById(id)
-    console.log('a')
     if (index > 0 < this.$sections.length && this.currIndex !== index) {
       if (!this.is('moveing')) {
         this.currIndex = index

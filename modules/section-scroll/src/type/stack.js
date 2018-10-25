@@ -24,29 +24,7 @@ class Stack {
       setStyle('overflow', 'hidden', ele)
     })
 
-    this.get3DPosition()
     this.initSection()
-  }
-
-  changePage() {
-    const index = this.instance.currIndex - 1
-    let i = 0
-    const that = this
-
-    this.$sections.forEach(section => {
-      if (index > i) {
-        const translate3d = `translate3d(${that.position[0].x}, ${
-          that.position[0].y
-        }, 0px)`
-        setStyle('transform', translate3d, section)
-      } else {
-        const translate3d = `translate3d(${that.position[1].x}, ${
-          that.position[1].y
-        }, 0px)`
-        setStyle('transform', translate3d, section)
-      }
-      i++
-    })
   }
 
   initSection() {
@@ -58,21 +36,6 @@ class Stack {
       section.style.zIndex = index
       i++
     })
-  }
-
-  get3DPosition() {
-    const stack = [
-      {
-        x: '0px',
-        y: '-100vh'
-      },
-      {
-        x: '0px',
-        y: '0px'
-      }
-    ]
-
-    this.position = stack
   }
 }
 

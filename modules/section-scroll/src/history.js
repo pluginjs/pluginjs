@@ -1,4 +1,5 @@
 import { events as EVENTS } from './constant'
+import { setStyle } from '@pluginjs/styled'
 import scroll from '@pluginjs/scroll'
 
 export default class History {
@@ -36,6 +37,37 @@ export default class History {
 
     this.setNavActive()
     this.changeHash()
+
+    if (this.options.animation === 'stack') {
+      const index = this.instance.currIndex - 1
+      let i = 0
+      const stack = [
+        {
+          x: '0px',
+          y: '-100vh'
+        },
+        {
+          x: '0px',
+          y: '0px'
+        }
+      ]
+      this.position = stack
+
+      this.$sections.forEach(section => {
+        if (index > i) {
+          const translate3d = `translate3d(${this.position[0].x}, ${
+            this.position[0].y
+          }, 0px)`
+          setStyle('transform', translate3d, section)
+        } else {
+          const translate3d = `translate3d(${this.position[1].x}, ${
+            this.position[1].y
+          }, 0px)`
+          setStyle('transform', translate3d, section)
+        }
+        i++
+      })
+    }
   }
 
   getOffset(node, offsetTop) {
@@ -68,5 +100,9 @@ export default class History {
       window.location.hash = id
       window.scrollTo(0, st)
     }
+  }
+
+  scrollTop() {
+    return window.pageYOffset || document.documentElement.scrollTop
   }
 }

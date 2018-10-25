@@ -9,6 +9,7 @@ const API = sectionScroll.of(element, {
   /** options **/
   itemSelector: '.section',
   titleSelector: '.section-title',
+  animation: 'stack',
   skin: null,
   // dots: false,
   loop: true,
