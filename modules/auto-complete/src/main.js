@@ -414,6 +414,7 @@ class AutoComplete extends Component {
       })
     } else {
       items.forEach(item => {
+        console.log(item)
         $fragment.appendChild(this.buildItem(item))
       })
     }
@@ -438,19 +439,43 @@ class AutoComplete extends Component {
     return $group
   }
 
+  setMatchItem(item) {
+    if (item.matchedSubstrings) {
+      const start = item.matchedSubstrings[0].offset
+      const length = item.matchedSubstrings[0].length
+      const matchWord = item.name.substr(start, length)
+      const newValue = item.name.replace(
+        new RegExp(`(${matchWord})`),
+        `<span class="pj-autoComplete-match">${matchWord}</span>`
+      )
+      return newValue
+    } else if (isString(item)) {
+      const start = item.toUpperCase().search(this.element.value.toUpperCase())
+      const length = this.element.value.length
+      const matchWord = item.substr(start, length)
+      const newValue = item.replace(
+        new RegExp(`(${matchWord})`),
+        `<span class="pj-autoComplete-match">${matchWord}</span>`
+      )
+      return newValue
+    }
+    return item.label ? item.label : item.name
+  }
+
   buildItem(item) {
     if (!this.itemTemplate) {
       this.itemTemplate = templateEngine.compile(
         this.options.templates.item.call(this)
       )
     }
+    const nvalue = this.setMatchItem(item)
 
     const $item = parseHTML(
       this.itemTemplate({
         classes: this.classes,
         item,
         value: this.getItemValue(item),
-        label: this.getItemLabel(item)
+        label: nvalue
       })
     )
 

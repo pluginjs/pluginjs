@@ -20,6 +20,7 @@ $autoComplete-group-label-space-y: 8px;
 $autoComplete-clear-disabled-color: $disabled-color;
 $autoComplete-hint-disabled-color: transparent;
 
+$autoComplete-match-font-weight: $font-weight-bold;
 .#{$autoComplete} {
   outline: none;
 
@@ -41,6 +42,10 @@ $autoComplete-hint-disabled-color: transparent;
     padding: $autoComplete-group-label-space-y $autoComplete-group-label-space-x;
     font-size: $autoComplete-group-label-font-size;
     color: $autoComplete-group-label-color;
+  }
+
+  &-match {
+    font-weight: $autoComplete-match-font-weight;
   }
 }
 

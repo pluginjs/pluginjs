@@ -105,7 +105,10 @@ describe('match()', () => {
       { keys: ['name'] }
     )
 
-    expect(result).toEqual([{ name: 'baz' }, { name: 'bat' }])
+    expect(result).toEqual([
+      { name: 'baz', matchedSubstrings: [{ length: 2, offset: 0 }] },
+      { name: 'bat', matchedSubstrings: [{ length: 2, offset: 0 }] }
+    ])
   })
 
   it('should can handle multiple keys specified', () => {
