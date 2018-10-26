@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $offset: "pj-offset" !default;
+$select: "pj-select" !default;
 $offset-sizer: $sizer !default;
 
 $offset-input-width: 5.0 * $offset-sizer !default; //50px
@@ -97,15 +98,17 @@ $connect-active-bg: $gray-lightest !default;
 /* stylelint-disable */
 .#{$offset}-disabled {
 
-  .#{$offset}-allreverse {
+  .#{$offset}-allsize {
     cursor: not-allowed;
   }
 
   .#{$offset}-lock {
+    color: $gray-light;
     cursor: not-allowed;
   }
 
   .#{$offset}-input {
+    color: $gray-light;
     pointer-events: none;
   }
   .#{$offset}-unit {
@@ -114,8 +117,14 @@ $connect-active-bg: $gray-lightest !default;
 
   .pj-input {
     pointer-events: none;
+    
   }
-
+  .#{$select}-trigger {
+    color: $gray-light !important;
+    &::after {
+      color: $gray-light !important;
+    }
+  }
 }
 
 .pj-select {
