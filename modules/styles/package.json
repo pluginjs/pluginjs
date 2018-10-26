@@ -13,6 +13,18 @@
   },
   "version": "0.5.3",
   "category": "css",
+  "css": {
+    "source": "index.scss",
+    "main": "dist/styles.css",
+    "min": "dist/styles.min.css",
+    "buttons": "buttons.scss",
+    "inputs": "inputs.scss",
+    "variables": "variables.scss"
+  },
+  "scripts": {
+    "build": "plugin script build-scss",
+    "lint": "stylelint ./*.scss --fix"
+  },
   "devDependencies": {
     "sass": "^1.14.1"
   },
@@ -22,8 +34,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "buttons": "buttons.scss",
-  "inputs": "inputs.scss",
-  "variables": "variables.scss"
+  ]
 }

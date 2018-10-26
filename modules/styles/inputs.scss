@@ -1,4 +1,5 @@
-@import "variables.scss";
+@import "./variables.scss";
+
 // Vars
 // =====================
 $input: pj-input !default;
@@ -23,7 +24,7 @@ $input: pj-input !default;
     color: $input-placeholder-color;
   }
 
-  
+
   &::-ms-reveal{
     display:none;
   }
