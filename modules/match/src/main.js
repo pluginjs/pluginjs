@@ -32,13 +32,10 @@ export default function match(items, query, options = {}) {
   const matchedItems = items.reduce((matches, item, index) => {
     const { rank, keyIndex } = getHighestRanking(query, item, keys, options)
     if (rank > rankings.NO_MATCH) {
-<<<<<<< HEAD
-=======
       if (keyIndex === 0 && keys.indexOf('name') !== -1) {
         const matchedSubstrings = getMatchString(query, item, keys)
         item.matchedSubstrings = matchedSubstrings
       }
->>>>>>> refactor(auto-complete): add match highlight
       matches.push({ item, rank, index, keyIndex })
     }
     return matches
@@ -155,8 +152,6 @@ function getMatchRanking(query, value, options = {}) {
   return rankings.NO_MATCH
 }
 
-<<<<<<< HEAD
-=======
 function getMatchString(query, value) {
   const matchArr = []
   query = punctuationize(normalize(query.trim().toLowerCase()))
@@ -168,7 +163,6 @@ function getMatchString(query, value) {
   return matchArr
 }
 
->>>>>>> refactor(auto-complete): add match highlight
 /**
  * Sorts items that have a rank, index, and keyIndex
  */
