@@ -1,0 +1,59 @@
+{
+  "name": "@pluginjs/timeline",
+  "description": "A flexible modern timeline js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://github.com/pluginjs/plugin.js",
+  "version": "0.0.1",
+  "category": "",
+  "main": "dist/timeline.umd.js",
+  "module": "dist/timeline.esm.js",
+  "cjs": "dist/timeline.cjs.js",
+  "source": "src/main.js",
+  "css": {
+    "source": "src/css/main.scss",
+    "main": "dist/timeline.css",
+    "min": "dist/timeline.min.css"
+  },
+  "scripts": {
+    "build": "plugin build",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "npm run lint:js & npm run lint:scss",
+    "lint:js": "eslint ./src/**/*.js --fix",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/classes": "*",
+    "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/events": "*",
+    "@pluginjs/is": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@pluginjs/browserslist-config": "*",
+    "@pluginjs/cli": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testURL": "http://localhost",
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
+}

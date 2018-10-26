@@ -11,32 +11,18 @@ export default class History {
   }
 
   changePage() {
-    const index = this.instance.currIndex - 1
-    const top = this.getOffset(this.$sections[index])
-    const duration = this.options.duration
-    const easing = this.options.easing
+    if (this.options.animation === 'scroll') {
+      const index = this.instance.currIndex - 1
+      const top = this.getOffset(this.$sections[index])
+      const duration = this.options.duration
+      const easing = this.options.easing
 
-    scroll.to({
-      y: top,
-      duration,
-      easing
-    })
-
-    if (this.instance.is('moveing')) {
-      clearTimeout(this.setTimeout)
+      scroll.to({
+        y: top,
+        duration,
+        easing
+      })
     }
-
-    this.instance.enter('moveing')
-
-    this.setTimeout = setTimeout(() => {
-      this.instance.leave('moveing')
-    }, this.options.duration)
-
-    const id = this.instance.getIdByIndex(this.instance.currIndex)
-    this.instance.trigger(EVENTS.CHANGE, id)
-
-    this.setNavActive()
-    this.changeHash()
 
     if (this.options.animation === 'stack') {
       const index = this.instance.currIndex - 1
@@ -68,20 +54,22 @@ export default class History {
         i++
       })
     }
-  }
 
-  getOffset(node, offsetTop) {
-    if (!offsetTop) {
-      offsetTop = 0
+    if (this.instance.is('moveing')) {
+      clearTimeout(this.setTimeout)
     }
 
-    if (node === document.body || node === null) {
-      return offsetTop
-    }
+    this.instance.enter('moveing')
 
-    offsetTop += node.offsetTop
+    this.setTimeout = setTimeout(() => {
+      this.instance.leave('moveing')
+    }, this.options.duration)
 
-    return this.getOffset(node.parentNode, offsetTop)
+    const id = this.instance.getIdByIndex(this.instance.currIndex)
+    this.instance.trigger(EVENTS.CHANGE, id)
+
+    this.setNavActive()
+    this.changeHash()
   }
 
   setNavActive() {
@@ -104,5 +92,19 @@ export default class History {
 
   scrollTop() {
     return window.pageYOffset || document.documentElement.scrollTop
+  }
+
+  getOffset(node, offsetTop) {
+    if (!offsetTop) {
+      offsetTop = 0
+    }
+
+    if (node === document.body || node === null) {
+      return offsetTop
+    }
+
+    offsetTop += node.offsetTop
+
+    return this.getOffset(node.parentNode, offsetTop)
   }
 }

@@ -31,9 +31,6 @@ class Dots {
         this.sectionScroll.goTo(val)
       }
     })
-    if (this.options.dots === false) {
-      this.dots.style.display = 'none'
-    }
   }
 
   setActive(id) {

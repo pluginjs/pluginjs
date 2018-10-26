@@ -52,9 +52,9 @@ class SectionScroll extends Component {
     if (this.options.dots !== false) {
       this.Dots = new Dots(this)
     }
-    // this.Animation = ANIMATION[this.options.animation]
-    //   ? new ANIMATION[this.options.animation](this)
-    //   : new ANIMATION.SCROLL(this)
+    this.Animation = ANIMATION[this.options.animation]
+      ? new ANIMATION[this.options.animation](this)
+      : new ANIMATION.SCROLL(this)
 
     this.history = new History(this)
     this.bind()
@@ -151,10 +151,6 @@ class SectionScroll extends Component {
   initStyle() {
     addClass(this.classes.OPEN, document.body)
 
-    // append(
-    //   '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">',
-    //   query('head')
-    // )
     addClass(this.classes.CONTAINER, this.element)
 
     addClass(this.classes.SECTION, this.element)
@@ -192,7 +188,6 @@ class SectionScroll extends Component {
 
     if (!this.is('moveing')) {
       this.currIndex--
-      // this.Animation.changePage()
       this.history.changePage()
     }
   }
@@ -213,7 +208,6 @@ class SectionScroll extends Component {
 
     if (!this.is('moveing')) {
       this.currIndex++
-      // this.Animation.changePage()
       this.history.changePage()
     }
   }
@@ -226,7 +220,6 @@ class SectionScroll extends Component {
       (this.currIndex !== index || !this.is('initialized'))
     ) {
       this.currIndex = index
-      // this.Animation.changePage()
       this.history.changePage()
     }
   }
@@ -236,7 +229,6 @@ class SectionScroll extends Component {
     if (index > 0 < this.$sections.length && this.currIndex !== index) {
       if (!this.is('moveing')) {
         this.currIndex = index
-        // this.Animation.changePage()
         this.history.changePage()
       }
     }

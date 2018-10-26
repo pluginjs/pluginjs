@@ -2,6 +2,9 @@
 @import "@pluginjs/scroll-to/src/css/scroll-to.scss";
 // import tabs css
 @import "@pluginjs/section-scroll/src/css/section-scroll.scss";
+$sectionScroll-header-zindex: $zindex-fixed !default;
+
+$sectionScroll-nav-box-shadow: $box-shadow-3 !default;
 
 ul,
 li {

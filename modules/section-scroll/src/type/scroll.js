@@ -5,7 +5,6 @@ class Scroll {
   constructor(instance) {
     this.instance = instance
     this.options = this.instance.options
-    this.$sections = this.instance.$sections
     this.init()
   }
 
