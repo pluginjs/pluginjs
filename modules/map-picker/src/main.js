@@ -1,14 +1,6 @@
 import Component from '@pluginjs/component'
 import { compose, deepMerge } from '@pluginjs/utils'
-import {
-  parseHTML,
-  query,
-  queryAll,
-  // clearData,
-  wrap,
-  // children,
-  unwrap
-} from '@pluginjs/dom'
+import { parseHTML, query, queryAll, wrap, unwrap } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { isString, isNumber, isEmptyObject } from '@pluginjs/is'
@@ -23,8 +15,8 @@ import {
   translateable,
   optionable
 } from '@pluginjs/decorator'
-// import PopDialog from '@pluginjs/pop-dialog'
 import Gmap from '@pluginjs/gmap'
+import PlaceComplete from '@pluginjs/place-complete'
 import Trigger from './trigger'
 import {
   classes as CLASSES,
@@ -258,20 +250,15 @@ class MapPicker extends Component {
 
   initAutoComplete() {
     const $place = query(`.${this.classes.PLACE}`, this.$dropdown)
-    const config = {}
-    this.autoComplete = new google.maps.places.Autocomplete($place, config) /* eslint-disable-line */
-    // autoComplete event
-    this.autoComplete.addListener('place_changed', () => {
-      const place = this.autoComplete.getPlace()
 
-      if (place.geometry) {
-        this.data.place = place.formatted_address
-        const location = place.geometry.location
-        const lat = location.lat()
-        const lng = location.lng()
+    const that = this
+    this.PlaceComplete = new PlaceComplete($place, {
+      onPlaceChange(place) {
+        const lat = place.latitude
+        const lng = place.longitude
 
-        this.createMarker({ lat, lng })
-        // map.setZoom(15);
+        that.data.place = place.address
+        that.createMarker({ lat, lng })
       }
     })
   }
@@ -427,6 +414,7 @@ class MapPicker extends Component {
   }
 
   update(trigger = true) {
+    console.log(this.data.place)
     this.TRIGGER.$fillName.textContent = this.data.place
     if (this.hasLatlng()) {
       const latitude = `${this.translate('latitude')}:${this.data.lat.toFixed(

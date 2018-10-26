@@ -74,6 +74,15 @@ $mapPicker: "pj-mapPicker" !default;
     text-align: right;
   }
 
+
+  .pj-autoComplete {
+    width: 100%;
+
+    .pj-autoComplete-clear {
+      top: 5px;
+    }
+  }
+
   &-remove-animate {
     animation: fade-out 0.5s;
     animation-fill-mode: forwards;
