@@ -17,17 +17,17 @@ export const classes = {
   WRAP: '{namespace}-wrap',
   INPUT: '{namespace}-input',
   HAHA: '{namespace}-haha',
-  ALLREVERSE: '{namespace}-allreverse',
+  ALLSIZE: '{namespace}-allsize',
   TOP: '{namespace}-top',
   RIGHT: '{namespace}-right',
   BOTTOM: '{namespace}-bottom',
   LEFT: '{namespace}-left',
   LOCK: '{namespace}-lock',
   LOCKACTIVE: '{namespace}-lock-active',
-  SELECT: '{namespace}-select',
-  SELECTTRIGGER: '{namespace}-select-trigger',
-  REVERSELABEL: '{namespace}-reverse-label',
-  REVERSE: '{namespace}-reverse'
+  UNIT: '{namespace}-unit',
+  SELECTUNIT: '{namespace}-unit-trigger',
+  SIZELABEL: '{namespace}-size-label',
+  SIZE: '{namespace}-size'
 }
 
 export const methods = [
@@ -65,39 +65,26 @@ export const defaults = {
       label: '%'
     }
   ],
-  template() {
-    return `<div class="{classes.WRAP}">         
-                <div class="{classes.ALLREVERSE}">
-                   <div class="{classes.REVERSE} ">
-                    <input id="top" class="{classes.TOP} {classes.INPUT}" type="number" value="">
-                    <div class="{classes.REVERSELABEL}" >TOP</div>
-                   </div>
-                   <div class="{classes.REVERSE}">
-                    <input id="right" class="{classes.RIGHT} {classes.INPUT}" type="number" value="">
-                    <div class="{classes.REVERSELABEL}" >RIGHT</div>
-                   </div>
-                   <div class="{classes.REVERSE}">
-                    <input id="bottom" class="{classes.BOTTOM} {classes.INPUT}" type="number" value="">
-                    <div class="{classes.REVERSELABEL}" >BOTTOM</div>
-                   </div>
-                   <div class="{classes.REVERSE}">
-                    <input id="left" class="{classes.LEFT} {classes.INPUT}" type="number" value="">
-                    <div class="{classes.REVERSELABEL}">LEFT</div>
-                   </div>
-                </div>
-                <div class="{classes.LOCK}">
-                <i class='{classes.CONNECTLINK} pj-icon pj-icon-lock'></i>
-                <i class="{classes.CONNECTUNLINK} pj-icon pj-icon-unlock"></i>
-                </div>
-                <div class="{classes.SELECT}">
-                <input type="text" class="{classes.SELECTTRIGGER}"/>
-                </div>
-          </div>`
+  templates: {
+    wrap() {
+      return '<div class="{classes.WRAP}"></div>'
+    },
+    allsize() {
+      return '<div class="{classes.ALLSIZE}"></div>'
+    },
+    size() {
+      return `<div class="{classes.SIZE}">
+      <input id="right" class="{field} {classes.INPUT}" type="number" value="">
+      <div class="{classes.SIZELABEL}" >{reverse}</div>
+      </div>`
+    },
+    lock() {
+      return '<div class="{classes.LOCK}"><i class="{classes.CONNECTLINK} pj-icon pj-icon-lock"></i><i class="{classes.CONNECTUNLINK} pj-icon pj-icon-unlock"></i></div>'
+    },
+    unit() {
+      return '<div class="{classes.UNIT}"><input type="text" class="{classes.SELECTUNIT}"/></div>'
+    }
   },
-  defaultUnit: 'auto',
-  data: null, // default data
-  min: -1000,
-  max: 1000,
 
   process(value) {
     if (value && typeof value !== 'undefined') {

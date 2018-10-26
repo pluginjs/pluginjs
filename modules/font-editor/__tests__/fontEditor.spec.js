@@ -959,10 +959,10 @@ describe('FontEditor', () => {
     })
 
     test('should have options', () => {
-      const api = FontEditor.of(generateHTMLSample())
+      const api = FontEditor.of(generateHTMLSample(), { source })
 
       expect(api.options).toBeObject()
-      expect(api.options).toEqual(DEFAULTS)
+      expect(api.options).toEqual({ ...DEFAULTS, source })
     })
   })
 
@@ -1118,13 +1118,7 @@ describe('FontEditor', () => {
       api = FontEditor.of($element, { source })
       api.val(value)
 
-      expect(api.get()).toEqual({
-        fontSize: 'inherit',
-        fontStyle: 'normal',
-        fontWeight: 'inherit',
-        lineHeight: 'inherit',
-        textAlign: 'left'
-      })
+      expect(api.get()).toEqual(valueObj)
     })
   })
 

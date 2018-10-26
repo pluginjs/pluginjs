@@ -13,13 +13,13 @@ $offset-lock-width: 5.0 * $offset-sizer !default; //50px
 $offset-lock-height: 3.2 * $offset-sizer !default; //3.2px
 $offset-lock-border: 1px solid rgba(230,230,230,1);
 
-$offset-select-width: 6.4 * $offset-sizer !default; //64px
-$offset-select-height: 3.2 * $offset-sizer !default; //32px
-$offset-select-margin-left: 1.0 * $offset-sizer !default; //10px
+$offset-unit-width: 6.4 * $offset-sizer !default; //64px
+$offset-unit-height: 3.2 * $offset-sizer !default; //32px
+$offset-unit-margin-left: 1.0 * $offset-sizer !default; //10px
 
-$offset-reverse-label-height: 1.2 * $offset-sizer !default; //64px
-$offset-reverse-label-color: rgba(179,179,179,1);
-$offset-reverse-label-margin-top: 1.2 * $offset-sizer !default; //10px;
+$offset-size-label-height: 1.2 * $offset-sizer !default; //64px
+$offset-size-label-color: rgba(179,179,179,1);
+$offset-size-label-margin-top: 1.2 * $offset-sizer !default; //10px;
 // connect
 $connect-width: 2.5 * $offset-sizer !default; //25px
 $connect-height: $connect-width !default;
@@ -45,7 +45,7 @@ $connect-active-bg: $gray-lightest !default;
     }
   }
 
-  &-allreverse {
+  &-allsize {
     position: relative;
     display: flex;
   }
@@ -67,11 +67,11 @@ $connect-active-bg: $gray-lightest !default;
     border: $offset-lock-border;
   }
 
-  &-select {
+  &-unit {
     box-sizing: border-box;
-    width: $offset-select-width;
-    height: $offset-select-height;
-    margin-left: $offset-select-margin-left;
+    width: $offset-unit-width;
+    height: $offset-unit-height;
+    margin-left: $offset-unit-margin-left;
   }
 
 
@@ -85,12 +85,12 @@ $connect-active-bg: $gray-lightest !default;
     }
   }
 
-  &-reverse-label {
-    height: $offset-reverse-label-height;
+  &-size-label {
+    height: $offset-size-label-height;
     margin-top: 10px;
     font-size: 10px;
-    line-height: $offset-reverse-label-height;
-    color: $offset-reverse-label-color;
+    line-height: $offset-size-label-height;
+    color: $offset-size-label-color;
     text-align: center;
   }
 }
@@ -108,7 +108,7 @@ $connect-active-bg: $gray-lightest !default;
   .#{$offset}-input {
     pointer-events: none;
   }
-  .#{$offset}-select {
+  .#{$offset}-unit {
     cursor: not-allowed;
   }
 

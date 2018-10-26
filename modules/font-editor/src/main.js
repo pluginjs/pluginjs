@@ -108,7 +108,7 @@ class FontEditor extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-    this.set(this.value, true)
+    this.set(this.value, true, false)
     this.enter('initialized')
 
     this.trigger(EVENTS.READY)
@@ -207,11 +207,13 @@ class FontEditor extends Component {
     removeEvent(this.eventName(), this.element)
   }
 
-  update() {
+  update(trigger = true) {
     const value = this.val()
     this.element.value = value
     this.TRIGGER.update()
-    this.trigger(EVENTS.CHANGE, value)
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, value)
+    }
   }
 
   val(value) {
@@ -229,7 +231,7 @@ class FontEditor extends Component {
     return null
   }
 
-  set(value, update = true) {
+  set(value, update = true, trigger = true) {
     if (update !== false) {
       if (typeof value.textAlign !== 'undefined') {
         this.textAlign.set(value.textAlign)
@@ -260,7 +262,7 @@ class FontEditor extends Component {
       if (typeof value.fontFamily !== 'undefined') {
         this.fontFamily.set(value.fontFamily)
       }
-      this.update()
+      this.update(trigger)
     }
   }
 

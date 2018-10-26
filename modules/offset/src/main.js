@@ -3,7 +3,13 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled' // getStyle
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { parseHTML, queryAll, query, insertAfter, closest } from '@pluginjs/dom'
+import {
+  parseHTML,
+  queryAll,
+  query,
+  insertAfter,
+  appendTo
+} from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -23,7 +29,8 @@ import {
   translations as TRANSLATIONS
 } from './constant'
 
-import Select from '@pluginjs/select'
+import Lock from './lock'
+import Unit from './unit'
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -51,28 +58,16 @@ class Offset extends Component {
 
   initialize() {
     this.create()
-
     addClass(this.classes.NAMESPACE, this.element)
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
-    this.SELECT = Select.of(this.$selecttrigger, {
-      value: this.options.source[0].value,
-      source: this.options.source,
-      keyboard: true,
-      onChange: () => {
-        if (this.is('disabled')) {
-          return
-        }
-        this.update(false)
-      }
-    })
-    let val = this.element.value
+    this.lock = new Lock(this)
+    this.unit = new Unit(this)
+
+    const val = this.element.value
 
     if (val) {
-      if (!this.options.parse.call(this, val).unit) {
-        val = val.replace('}', ',"unit":"px"}')
-      }
       this.val(val, false)
     }
     setStyle('display', 'none', this.element)
@@ -86,78 +81,14 @@ class Offset extends Component {
   }
 
   bind() {
-    const that = this
-
     bindEvent(
-      this.eventName('click'),
-      `.${this.classes.LOCK}`,
+      this.eventName('change'),
+      `.${this.classes.INPUT}`,
       e => {
-        if (that.is('disabled')) {
-          return
-        }
-        const $this = closest(`.${this.classes.LOCK}`, e.target)
-
-        if (that.is('lock')) {
-          removeClass(that.classes.LOCKACTIVE, $this)
-          that.leave('lock')
-          return
-        }
-
-        addClass(that.classes.LOCKACTIVE, $this)
-        that.enter('lock')
-      },
-      this.$wrap
-    )
-    bindEvent(
-      this.eventName('change'),
-      `.${this.classes.TOP}`,
-      () => {
         if (query(`.${this.classes.LOCKACTIVE}`, this.$wrap)) {
           const all = queryAll(`.${this.classes.INPUT}`, this.$wrap)
           for (let i = 0; i < all.length; i++) {
-            all[i].value = this.$top.value
-          }
-        }
-        this.update()
-      },
-      this.$wrap
-    )
-    bindEvent(
-      this.eventName('change'),
-      `.${this.classes.RIGHT}`,
-      () => {
-        if (query(`.${this.classes.LOCKACTIVE}`, this.$wrap)) {
-          const all = queryAll(`.${this.classes.INPUT}`, this.$wrap)
-          for (let i = 0; i < all.length; i++) {
-            all[i].value = this.$right.value
-          }
-        }
-        this.update()
-      },
-      this.$wrap
-    )
-    bindEvent(
-      this.eventName('change'),
-      `.${this.classes.BOTTOM}`,
-      () => {
-        if (query(`.${this.classes.LOCKACTIVE}`, this.$wrap)) {
-          const all = queryAll(`.${this.classes.INPUT}`, this.$wrap)
-          for (let i = 0; i < all.length; i++) {
-            all[i].value = this.$bottom.value
-          }
-        }
-        this.update()
-      },
-      this.$wrap
-    )
-    bindEvent(
-      this.eventName('change'),
-      `.${this.classes.LEFT}`,
-      () => {
-        if (query(`.${this.classes.LOCKACTIVE}`, this.$wrap)) {
-          const all = queryAll(`.${this.classes.INPUT}`, this.$wrap)
-          for (let i = 0; i < all.length; i++) {
-            all[i].value = this.$left.value
+            all[i].value = e.target.value
           }
         }
         this.update()
@@ -172,21 +103,46 @@ class Offset extends Component {
   }
 
   create() {
-    this.$wrap = parseHTML(
-      template.compile(this.options.template())({
-        classes: this.classes
-      })
-    )
+    this.$wrap = this.createEl('wrap', { classes: this.classes })
+    this.$allsize = this.createEl('allsize', { classes: this.classes })
+    const top = this.createEl('size', {
+      classes: this.classes,
+      field: this.classes.TOP,
+      reverse: 'TOP'
+    })
+    const right = this.createEl('size', {
+      classes: this.classes,
+      field: this.classes.RIGHT,
+      reverse: 'RIGHT'
+    })
+    const bottom = this.createEl('size', {
+      classes: this.classes,
+      field: this.classes.BOTTOM,
+      reverse: 'BOTTOM'
+    })
+    const left = this.createEl('size', {
+      classes: this.classes,
+      field: this.classes.LEFT,
+      reverse: 'LEFT'
+    })
 
+    appendTo(top, this.$allsize)
+    appendTo(right, this.$allsize)
+    appendTo(bottom, this.$allsize)
+    appendTo(left, this.$allsize)
     insertAfter(this.$wrap, this.element)
+    appendTo(this.$allsize, this.$wrap)
 
-    this.$select = query(`.${this.classes.SELECT}`, this.$wrap)
-    this.$selecttrigger = query(`.${this.classes.SELECTTRIGGER}`, this.$wrap)
     this.$top = query(`.${this.classes.TOP}`, this.$wrap)
     this.$right = query(`.${this.classes.RIGHT}`, this.$wrap)
     this.$bottom = query(`.${this.classes.BOTTOM}`, this.$wrap)
     this.$left = query(`.${this.classes.LEFT}`, this.$wrap)
-    this.$unit = query(`.${this.classes.SELECTTRIGGER}`, this.$wrap)
+  }
+
+  createEl(tempName, options) {
+    return parseHTML(
+      template.compile(this.options.templates[tempName]())(options)
+    )
   }
 
   update(trigger = true) {
@@ -205,8 +161,9 @@ class Offset extends Component {
     this.$right.value = value.right
     this.$bottom.value = value.bottom
     this.$left.value = value.left
-    this.$unit.value = value.unit
-    this.SELECT.select(value.unit)
+    if (typeof value.unit !== 'undefined') {
+      this.unit.set(value.unit)
+    }
     this.update(trigger)
   }
 
@@ -224,7 +181,6 @@ class Offset extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-
     return this.set(this.options.parse.call(this, value), trigger)
   }
 
@@ -240,9 +196,7 @@ class Offset extends Component {
   disable() {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
-      this.SELECT.disable()
       this.element.disabled = true
-      // this.disableTooltip()
       this.enter('disabled')
     }
 
