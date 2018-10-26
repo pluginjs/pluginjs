@@ -34,6 +34,7 @@ export default class FontFamily {
       ...options,
       value: JSON.stringify(this.instance.value.fontFamily),
       keyboard: true,
+      clearable: false,
       onChange: value => {
         if (this.instance.is('disabled')) {
           return
