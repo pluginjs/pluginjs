@@ -253,10 +253,10 @@ class GalleryPicker extends Component {
                 }
               }
             },
-            onShow: () => {
+            onShown: () => {
               this.enter('holdHover')
             },
-            onHide: () => {
+            onHidden: () => {
               removeClass(this.classes.HOVER, $item)
               this.leave('holdHover')
             }

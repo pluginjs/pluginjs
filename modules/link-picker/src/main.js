@@ -185,8 +185,8 @@ class LinkPicker extends Component {
             }
           }
         },
-        onShow: () => this.enter('holdHover'),
-        onHide: () => {
+        onShown: () => this.enter('holdHover'),
+        onHidden: () => {
           removeClass(this.classes.HOVER, this.$action)
           this.leave('holdHover')
         }

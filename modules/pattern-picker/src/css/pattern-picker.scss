@@ -21,7 +21,7 @@ $patternPicker-custom-padding-bottom: 24px;
 
 $patternPicker-collection-scrollwrap-padding: 0 24px;
 $patternPicker-collection-padding: 16px 0 24px;
-$patternPicker-collection-item-margin-right: 15px;
+$patternPicker-collection-item-margin-right: 20px;
 $patternPicker-collection-item-margin-bottom: 15px;
 
 $patternPicker-field-spacer: 20px;
@@ -49,6 +49,10 @@ $patternPicker-empty-hover-color: $gray-darkest;
     }
   }
 
+  &-selected {
+    color: $color-primary-active !important;
+  }
+
   &-panel{
     background-color: $patternPicker-panel-bg-color;
     border: $patternPicker-border;
@@ -56,6 +60,10 @@ $patternPicker-empty-hover-color: $gray-darkest;
 
     &-swicher {
       border-bottom: $patternPicker-border;
+
+      > i {
+        color: $gray;
+      }
     }
 
     &-container {
@@ -78,7 +86,7 @@ $patternPicker-empty-hover-color: $gray-darkest;
       background-size: 100% 100% !important;
       border-radius: $patternPicker-border-radius;
 
-      &:nth-of-type(6n) {
+      &:nth-of-type(5n) {
         margin-right: 0;
       }
     }

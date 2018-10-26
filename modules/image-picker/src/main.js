@@ -180,10 +180,10 @@ class ImagePicker extends Component {
           }
         }
       },
-      onShow() {
+      onShown: () => {
         this.enter('holdHover')
       },
-      onHide() {
+      onHidden: () => {
         removeClass(this.classes.HOVER, this.$wrap)
         this.leave('holdHover')
       }

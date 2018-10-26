@@ -267,7 +267,6 @@ class PatternPicker extends Component {
     this.FORECOLOR = ColorPicker.of(this.$elForeColor, {
       theme: 'default',
       module: {
-        alpha: false,
         hex: false
       },
       onChange: val => {
@@ -286,7 +285,6 @@ class PatternPicker extends Component {
     this.BGCOLOR = ColorPicker.of(this.$elBgColor, {
       theme: 'default',
       module: {
-        alpha: false,
         hex: false
       },
       onChange: val => {

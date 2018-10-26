@@ -148,6 +148,7 @@ class GradientSelector extends Component {
         this.$selecting = $this
         this.actived = true
 
+        addClass(this.classes.SHOW, this.$wrap)
         this.switchModule('gradient')
         this.setPlugins()
         this.updateColor()
@@ -203,7 +204,6 @@ class GradientSelector extends Component {
           )
           setData('info', data, this.TRIGGER.$fill)
         }
-        addClass(this.classes.SHOW, this.$wrap)
 
         this.switchModule(this.module)
         this.GRADIENTPICKER.COLORPICKER.HISTORY.updateHistory()

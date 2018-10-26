@@ -114,10 +114,10 @@ export default class Trigger {
           }
         }
       },
-      onShow: () => {
+      onShown: () => {
         that.instance.enter('holdHover')
       },
-      onHide: () => {
+      onHidden: () => {
         removeClass(that.classes.HOVER, this.$trigger)
         that.instance.leave('holdHover')
       }
