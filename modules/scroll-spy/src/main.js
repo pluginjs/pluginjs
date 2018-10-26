@@ -56,7 +56,7 @@ class ScrollSpy extends Component {
     } else {
       this.menuHeight = this.element.offsetHeight + this.options.threshold
     }
-    this.menuItems = queryAll(this.options.itemSelector, this.element)
+    this.menuItems = queryAll(this.options.selector, this.element)
   }
 
   cacheItems() {

@@ -3,7 +3,7 @@ import ScrollSpy from '@pluginjs/scroll-spy'
 
 const element = query('#navbar')
 ScrollSpy.of(element, {
-  itemSelector: 'a',
+  selector: 'a',
   activeClass: 'active',
   onReady() {
     console.info('ready')

@@ -11,10 +11,10 @@ export const events = {
 export const methods = ['destroy', 'getCurrHref', 'enable', 'disable']
 
 export const defaults = {
-  itemSelector: 'a',
+  selector: 'a',
   activeClass: 'active',
   threshold: 0, //  to be considered upon calculation
-  hrefFrom: 'data-href',
+  hrefFrom: 'href',
   cloestActive: '',
   reference: 'top' // ["top"|"bottom"] Which side to use as base when calculation element position.
 }

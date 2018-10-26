@@ -5,7 +5,7 @@
     "Namespace": "ScrollSpy",
     "options": [
       {
-        "name": "itemSelector",
+        "name": "selector",
         "desc": "You must include the href data",
         "defaultValue": "a"
       },
@@ -45,7 +45,7 @@
         "defaultValue": "top"
       }
     ],
-    "option": "itemSelector",
+    "option": "selector",
     "events": [
       {
         "name": "ready",

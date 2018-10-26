@@ -82,7 +82,7 @@ You can also save the instances to variable for further use.
 
 Name | Description | Default
 --|--|--
-`"itemSelector"` | You must include the href data | `a`
+`"selector"` | You must include the href data | `a`
 `"activeClass"` | Current anchor avtiveItem | `active`
 `"threshold"` | Offset of anchor | `0`
 `"hashTimeout"` | Delay change hash | `600`
