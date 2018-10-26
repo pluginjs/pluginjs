@@ -1,15 +1,28 @@
 @import "@pluginjs/styles/variables.scss";
 
-/* core */
+// Vars
+// =====================
+$animateText: "pj-animateText" !default;
 
-.pj-animateText-multiple {
-  position: relative;
-  display: inline-flex;
-  flex-direction: column;
-  overflow: hidden;
-  vertical-align: top;
+// Core
+// =====================
 
-  > * {
-    white-space: nowrap;
-  }
+.#{$animateText} {
+	&,
+	&-word,
+	&-char {
+		display: inline-block;
+	}
+
+	&-multiple {
+		position: relative;
+	  display: inline-flex;
+	  flex-direction: column;
+	  overflow: hidden;
+	  vertical-align: top;
+
+	  > * {
+	    white-space: nowrap;
+	  }
+	}
 }

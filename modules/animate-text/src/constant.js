@@ -9,7 +9,10 @@ export const events = {
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
-  CONTAINER: '{namespace}-multiple'
+  CONTAINER: '{namespace}-multiple',
+  WORD: '{namespace}-word',
+  CHAR: '{namespace}-char',
+  SPACE: '{namespace}-space'
 }
 
 export const methods = ['enable', 'disable', 'destroy']
