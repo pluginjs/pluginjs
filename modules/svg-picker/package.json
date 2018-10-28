@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "version": "0.0.1",
+  "version": "0.6.0",
   "category": "form",
   "main": "dist/svg-picker.umd.js",
   "module": "dist/svg-picker.esm.js",

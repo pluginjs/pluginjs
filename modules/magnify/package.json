@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/plugin.js",
-  "version": "0.0.1",
+  "version": "0.6.0",
   "category": "ui",
   "main": "dist/magnify.umd.js",
   "module": "dist/magnify.esm.js",

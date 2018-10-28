@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.19",
+  "version": "0.6.0",
   "category": "scroll",
   "main": "dist/scroll.umd.js",
   "module": "dist/scroll.esm.js",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@pluginjs/easing": "*",
     "@pluginjs/is": "*",
-    "@pluginjs/styles": "^0.5.3"
+    "@pluginjs/styles": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

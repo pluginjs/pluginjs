@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.19",
+  "version": "0.6.0",
   "category": "core",
   "main": "dist/simple-emitter.umd.js",
   "module": "dist/simple-emitter.esm.js",
@@ -27,7 +27,6 @@
     "build:md": "plugin script build-md",
     "test": "jest"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "*",

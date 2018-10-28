@@ -7,7 +7,8 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.5.1",
+  "version": "0.6.0",
+  "category": "css",
   "scripts": {
     "build": "./scripts/generate",
     "build:md": "plugin script build-md"
@@ -15,6 +16,5 @@
   "devDependencies": {
     "glob-expand": "^0.2.1",
     "webfont": "^8.1.4"
-  },
-  "category": "css"
+  }
 }

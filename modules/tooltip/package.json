@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.2.25",
+  "version": "0.6.0",
   "category": "ui",
   "main": "dist/tooltip.umd.js",
   "module": "dist/tooltip.esm.js",

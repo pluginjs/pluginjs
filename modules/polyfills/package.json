@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/plugin.js/issues"
   },
-  "version": "0.0.15",
+  "version": "0.6.0",
   "category": "core",
   "main": "dist/polyfills.umd.js",
   "module": "dist/polyfills.esm.js",
