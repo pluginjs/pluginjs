@@ -4,7 +4,7 @@
 
 A flexible modern table-sort js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tableSort/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/tableSort/samples)**
 
 ## Introduction
 

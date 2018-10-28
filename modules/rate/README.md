@@ -4,7 +4,7 @@
 
 A flexible modern rate js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/rate/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/rate/samples)**
 
 ## Introduction
 

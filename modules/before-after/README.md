@@ -4,7 +4,7 @@
 
 A flexible modern before-after js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/beforeAfter/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/beforeAfter/samples)**
 
 ## Introduction
 

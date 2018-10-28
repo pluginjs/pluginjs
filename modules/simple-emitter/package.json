@@ -3,13 +3,13 @@
   "description": "A workflow for modern frontend development.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/plugin.js",
+  "homepage": "https://github.com/pluginjs/pluginjs",
   "repository": {
-    "url": "git@github.com:pluginjs/plugin.js.git",
+    "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/pluginjs/plugin.js/issues"
+    "url": "https://github.com/pluginjs/pluginjs/issues"
   },
   "version": "0.6.0",
   "category": "core",
@@ -22,9 +22,11 @@
     "src"
   ],
   "scripts": {
-    "build": "plugin build",
+    "build": "npm run build:js",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint ./src/**/*.js --fix",
     "test": "jest"
   },
   "devDependencies": {

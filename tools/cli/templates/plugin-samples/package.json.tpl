@@ -1,6 +1,7 @@
 {
   "name": "{{moduleName}}-samples",
   "version": "1.0.0",
+  "private": true,
   "description": "Simple {{moduleName}} example",
   "license": "GPL-3.0",
   "main": "index.html",

@@ -4,7 +4,7 @@
 
 A flexible modern choice js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/choice/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/choice/samples)**
 
 ## Introduction
 

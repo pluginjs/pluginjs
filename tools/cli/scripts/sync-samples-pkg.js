@@ -13,13 +13,14 @@ function syncSamplesPkg(ctx) {
   const pkgConfig = {
     dependencies: {
       [`@pluginjs/${pkgName}`]: `^${version}`,
-      '@pluginjs/dom': '^0.0.15'
+      '@pluginjs/dom': '*'
     },
     devDependencies: {
-      'babel-core': '^6.26.3',
-      'babel-preset-env': '1.7.0',
-      'babel-plugin-transform-html-import-to-string': '^0.0.1',
-      'parcel-bundler': '^1.6.1'
+      '@babel/core': '^7.1.2',
+      '@babel/preset-env': '^7.1.0',
+      '@pluginjs/browserslist-config': '*',
+      'parcel-bundler': '^1.10.3',
+      'posthtml-include': '*'
     }
   }
   const samplePkg = fetchPkg(findModule(`${pkgName}/samples`))

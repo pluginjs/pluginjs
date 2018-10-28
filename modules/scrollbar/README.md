@@ -4,7 +4,7 @@
 
 A flexible modern scrollbar js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/scrollbar/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/scrollbar/samples)**
 
 ## Introduction
 

@@ -4,7 +4,7 @@
 
 A flexible modern auto-complete js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/auto-complete/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/auto-complete/samples)**
 
 ## Introduction
 

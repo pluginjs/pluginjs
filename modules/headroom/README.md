@@ -4,7 +4,7 @@
 
 A flexible modern headroom js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/headroom/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/headroom/samples)**
 
 ## Introduction
 

@@ -4,7 +4,7 @@
 
 A flexible modern gmap js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/gmap/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/gmap/samples)**
 
 ## Introduction
 

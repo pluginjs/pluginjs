@@ -4,7 +4,7 @@
 
 A flexible modern tabs js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tabs/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/tabs/samples)**
 
 ## Introduction
 

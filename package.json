@@ -2,7 +2,6 @@
   "private": true,
   "workspaces": [
     "modules/*",
-    "modules/*/samples",
     "tools/*"
   ],
   "scripts": {

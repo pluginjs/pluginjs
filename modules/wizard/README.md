@@ -4,7 +4,7 @@
 
 A flexible modern wizard js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/wizard/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/wizard/samples)**
 
 ## Introduction
 

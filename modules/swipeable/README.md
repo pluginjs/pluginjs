@@ -4,7 +4,7 @@
 
 A flexible modern swipeable js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/swipeable/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/swipeable/samples)**
 
 ## Introduction
 

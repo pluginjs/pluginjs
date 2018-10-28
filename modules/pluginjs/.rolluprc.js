@@ -40,7 +40,7 @@ export default [
   },
   {
     input: pkg.source,
-    //external,
+    external,
     output: [
       { file: pkg.cjs, format: 'cjs' },
       { file: pkg.module, format: 'es' }

@@ -4,7 +4,7 @@
 
 A flexible modern progress js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/progress/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/progress/samples)**
 
 ## Introduction
 

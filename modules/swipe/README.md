@@ -4,7 +4,7 @@
 
 A flexible modern swipe js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/swipe/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/swipe/samples)**
 
 ## Introduction
 

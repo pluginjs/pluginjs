@@ -4,7 +4,7 @@
 
 A flexible modern animate-text js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/animateText/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/animateText/samples)**
 
 ## Introduction
 

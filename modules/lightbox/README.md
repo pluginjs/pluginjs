@@ -4,7 +4,7 @@
 
 A flexible modern lightbox js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/lightbox/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/lightbox/samples)**
 
 ## Introduction
 

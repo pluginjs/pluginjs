@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "color-picker-samples",
   "description": "Simple color-picker example",
   "license": "GPL-3.0",

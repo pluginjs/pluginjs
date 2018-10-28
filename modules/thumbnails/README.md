@@ -4,7 +4,7 @@
 
 A flexible modern thumbnails js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/thumbnails/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/thumbnails/samples)**
 
 ## Introduction
 

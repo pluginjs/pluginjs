@@ -4,7 +4,7 @@
 
 A flexible modern dropdown js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/dropdown/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/dropdown/samples)**
 
 ## Introduction
 

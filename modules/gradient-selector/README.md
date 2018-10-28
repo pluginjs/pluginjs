@@ -4,7 +4,7 @@
 
 A flexible modern gradient-selector js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/gradientSelector/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/gradientSelector/samples)**
 
 ## Introduction
 

@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "dynamic-number-samples",
   "description": "Simple dynamic-number example",
   "license": "GPL-3.0",

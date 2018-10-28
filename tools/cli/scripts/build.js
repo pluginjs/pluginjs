@@ -1,7 +1,4 @@
 const { execSync } = require('child_process')
-const buildJs = require('./build-js')
-const buildScss = require('./build-scss')
-const fs = require('fs')
 
 function build(ctx) {
   if (ctx.moduleName) {
@@ -19,9 +16,6 @@ function build(ctx) {
       stdio: 'inherit'
     })
   }
-  return buildJs(ctx).then(
-    ctx => fs.existsSync('./.sassrc.js') && buildScss(ctx)
-  )
 }
 
 module.exports = build

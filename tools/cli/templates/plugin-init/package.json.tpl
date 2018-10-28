@@ -3,7 +3,7 @@
   "description": "A flexible modern {{moduleName}} js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/plugin.js",
+  "homepage": "https://github.com/pluginjs/pluginjs",
   "version": "0.0.1",
   "main": "dist/{{moduleName}}.umd.js",
   "module": "dist/{{moduleName}}.esm.js",
@@ -15,7 +15,7 @@
     "min": "dist/{{moduleName}}.min.css"
   },
   "scripts": {
-    "build": "plugin build",
+    "build": "npm run build:js & npm run build:scss",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",

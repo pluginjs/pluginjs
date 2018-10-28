@@ -4,7 +4,7 @@
 
 A flexible modern pop-dialog js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/popDialog/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/popDialog/samples)**
 
 ## Introduction
 

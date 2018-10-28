@@ -4,7 +4,7 @@
 
 A flexible modern bg-video js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/bgVideo/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/bgVideo/samples)**
 
 ## Introduction
 

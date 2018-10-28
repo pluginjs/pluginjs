@@ -4,7 +4,7 @@
 
 A flexible modern units js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/units/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/units/samples)**
 
 ## Introduction
 

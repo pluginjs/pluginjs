@@ -4,7 +4,7 @@
 
 A flexible modern tree js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tree/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/tree/samples)**
 
 ## Introduction
 

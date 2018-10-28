@@ -4,7 +4,7 @@
 
 A flexible modern svg-progress js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/svgProgress/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/svgProgress/samples)**
 
 ## Introduction
 

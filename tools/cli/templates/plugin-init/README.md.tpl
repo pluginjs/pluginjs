@@ -1,10 +1,11 @@
+
 # {{Namespace}}
 
 [![npm package](https://img.shields.io/npm/v/@pluginjs/{{moduleName}}.svg)](https://www.npmjs.com/package/@pluginjs/{{moduleName}})
 
 A flexible modern {{moduleName}} js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/{{namespace}}/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/{{namespace}}/samples)**
 
 ## Browser support
 

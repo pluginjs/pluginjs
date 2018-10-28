@@ -4,7 +4,7 @@
 
 A flexible modern breadcrumb js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/breadcrumb/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/breadcrumb/samples)**
 
 ## Introduction
 

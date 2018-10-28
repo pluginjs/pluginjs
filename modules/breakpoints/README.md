@@ -4,7 +4,7 @@
 
 `breakpoints` is a utility JavaScript library for breakpoints.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/breakpoints/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/breakpoints/samples)**
 
 ## Introduction
 

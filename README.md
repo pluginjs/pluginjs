@@ -9,7 +9,7 @@
 If you do not have yarn installed, follow https://yarnpkg.com/en/docs/install.
 
 ```sh
-git clone https://github.com/pluginjs/plugin.js.git && cd plugin.js
+git clone https://github.com/pluginjs/pluginjs.git && cd plugin.js
 yarn
 ```
 

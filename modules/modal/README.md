@@ -4,7 +4,7 @@
 
 A flexible modern modal js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/modal/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/modal/samples)**
 
 ## Introduction
 

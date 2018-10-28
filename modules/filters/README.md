@@ -4,7 +4,7 @@
 
 A flexible modern filters js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/filters/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/filters/samples)**
 
 ## Introduction
 

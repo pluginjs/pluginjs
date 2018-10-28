@@ -4,7 +4,7 @@
 
 A flexible modern iconPicker js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/icon-picker/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/icon-picker/samples)**
 
 ## Introduction
 

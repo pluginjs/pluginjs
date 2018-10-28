@@ -3,21 +3,23 @@
   "description": "A utility JavaScript library for initialize plugins.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/plugin.js",
+  "homepage": "https://github.com/pluginjs/pluginjs",
   "version": "0.6.0",
   "category": "core",
   "main": "dist/initializer.umd.js",
   "module": "dist/initializer.esm.js",
   "cjs": "dist/initializer.cjs.js",
   "source": "src/main.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "build": "plugin build",
+    "build": "npm run build:js",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
-    "build:scss": "plugin script build-scss",
-    "lint": "npm run lint:js & npm run lint:scss",
+    "lint": "npm run lint:js",
     "lint:js": "eslint ./src/**/*.js --fix",
-    "lint:scss": "stylelint ./src/**/*.scss --fix",
     "test": "jest"
   },
   "dependencies": {
@@ -43,5 +45,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
 }

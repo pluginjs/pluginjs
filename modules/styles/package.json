@@ -3,13 +3,13 @@
   "description": "A flexible modern style js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/plugin.js",
+  "homepage": "https://github.com/pluginjs/pluginjs",
   "repository": {
-    "url": "git@github.com:pluginjs/plugin.js.git",
+    "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/pluginjs/plugin.js/issues"
+    "url": "https://github.com/pluginjs/pluginjs/issues"
   },
   "version": "0.6.0",
   "category": "css",

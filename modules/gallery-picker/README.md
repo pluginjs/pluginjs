@@ -4,7 +4,7 @@
 
 A flexible modern gallery-picker js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/galleryPicker/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/galleryPicker/samples)**
 
 ## Introduction
 

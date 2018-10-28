@@ -4,7 +4,7 @@
 
 A flexible modern dynamic-number js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/dynamicNumber/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/dynamicNumber/samples)**
 
 ## Introduction
 

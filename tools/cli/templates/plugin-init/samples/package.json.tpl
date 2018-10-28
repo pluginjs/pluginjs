@@ -3,6 +3,7 @@
   "description": "Simple {{moduleName}} example",
   "license": "GPL-3.0",
   "version": "1.0.0",
+  "private": true,
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",

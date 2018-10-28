@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "scrollbar-samples",
   "description": "Simple scrollbar example",
   "license": "GPL-3.0",

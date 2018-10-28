@@ -4,7 +4,7 @@
 
 A flexible modern timeline js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/timeline/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/timeline/samples)**
 
 ## Browser support
 

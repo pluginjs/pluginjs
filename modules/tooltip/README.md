@@ -4,7 +4,7 @@
 
 A flexible modern tooltip js plugin.
 
-**[Samples](https://codesandbox.io/s/github/pluginjs/plugin.js/tree/master/modules/tooltip/samples)**
+**[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/tooltip/samples)**
 
 ## Introduction
 
