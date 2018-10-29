@@ -15,7 +15,6 @@
   "category": "media",
   "main": "dist/images-loader.umd.js",
   "module": "dist/images-loader.esm.js",
-  "cjs": "dist/images-loader.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

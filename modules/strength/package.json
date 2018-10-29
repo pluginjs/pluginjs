@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/strength.umd.js",
   "module": "dist/strength.esm.js",
-  "cjs": "dist/strength.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/strength.scss",

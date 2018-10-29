@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/simple-emitter.umd.js",
   "module": "dist/simple-emitter.esm.js",
-  "cjs": "dist/simple-emitter.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

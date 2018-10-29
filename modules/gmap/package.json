@@ -15,7 +15,6 @@
   "category": "media",
   "main": "dist/gmap.umd.js",
   "module": "dist/gmap.esm.js",
-  "cjs": "dist/gmap.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/gmap.scss",

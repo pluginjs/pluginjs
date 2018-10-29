@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/i18n.umd.js",
   "module": "dist/i18n.esm.js",
-  "cjs": "dist/i18n.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

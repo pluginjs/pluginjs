@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/breadcrumb.umd.js",
   "module": "dist/breadcrumb.esm.js",
-  "cjs": "dist/breadcrumb.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/breadcrumb.scss",

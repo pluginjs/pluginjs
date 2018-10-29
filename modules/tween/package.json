@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/tween.umd.js",
   "module": "dist/tween.esm.js",
-  "cjs": "dist/tween.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

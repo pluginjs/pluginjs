@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/events.umd.js",
   "module": "dist/events.esm.js",
-  "cjs": "dist/events.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

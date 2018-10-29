@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/filters.umd.js",
   "module": "dist/filters.esm.js",
-  "cjs": "dist/filters.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/filters.scss",

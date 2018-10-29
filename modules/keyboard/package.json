@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/keyboard.umd.js",
   "module": "dist/keyboard.esm.js",
-  "cjs": "dist/keyboard.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

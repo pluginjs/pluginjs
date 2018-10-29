@@ -15,7 +15,6 @@
   "category": "media",
   "main": "dist/hotspots.umd.js",
   "module": "dist/hotspots.esm.js",
-  "cjs": "dist/hotspots.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/hotspots.scss",

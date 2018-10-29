@@ -8,7 +8,6 @@
   "category": "ui",
   "main": "dist/slider.umd.js",
   "module": "dist/slider.esm.js",
-  "cjs": "dist/slider.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/slider.scss",

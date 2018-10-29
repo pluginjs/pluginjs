@@ -40,10 +40,10 @@ export default [
   {
     input: 'src/main.js',
     external,
-    output: [
-      { file: pkg.cjs, format: 'cjs' },
-      { file: pkg.module, format: 'es' }
-    ],
+    output: {
+      file: pkg.module,
+      format: 'es'
+    },
     plugins: [babelCallback({ esmodules: true }), commonjs()]
   }
 ]

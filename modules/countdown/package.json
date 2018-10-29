@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/countdown.umd.js",
   "module": "dist/countdown.esm.js",
-  "cjs": "dist/countdown.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/countdown.scss",

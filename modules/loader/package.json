@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/loader.umd.js",
   "module": "dist/loader.esm.js",
-  "cjs": "dist/loader.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/loader.scss",

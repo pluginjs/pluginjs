@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/list.umd.js",
   "module": "dist/list.esm.js",
-  "cjs": "dist/list.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/list.scss",

@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/feature.umd.js",
   "module": "dist/feature.esm.js",
-  "cjs": "dist/feature.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

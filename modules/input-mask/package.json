@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/input-mask.umd.js",
   "module": "dist/input-mask.esm.js",
-  "cjs": "dist/input-mask.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/input-mask.scss",

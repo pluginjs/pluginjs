@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/classes.umd.js",
   "module": "dist/classes.esm.js",
-  "cjs": "dist/classes.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/table-sort.umd.js",
   "module": "dist/table-sort.esm.js",
-  "cjs": "dist/table-sort.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/table-sort.scss",

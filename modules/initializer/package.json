@@ -4,11 +4,17 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/pluginjs",
+  "repository": {
+    "url": "git@github.com:pluginjs/pluginjs.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/pluginjs/issues"
+  },
   "version": "0.6.0",
   "category": "core",
   "main": "dist/initializer.umd.js",
   "module": "dist/initializer.esm.js",
-  "cjs": "dist/initializer.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

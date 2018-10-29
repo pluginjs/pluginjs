@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/animate-text.umd.js",
   "module": "dist/animate-text.esm.js",
-  "cjs": "dist/animate-text.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/animate-text.scss",

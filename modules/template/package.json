@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/template.umd.js",
   "module": "dist/template.esm.js",
-  "cjs": "dist/template.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

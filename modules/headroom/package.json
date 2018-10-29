@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/headroom.umd.js",
   "module": "dist/headroom.esm.js",
-  "cjs": "dist/headroom.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/headroom.scss",

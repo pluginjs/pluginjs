@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/collapse.umd.js",
   "module": "dist/collapse.esm.js",
-  "cjs": "dist/collapse.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/collapse.scss",

@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/dynamic-number.umd.js",
   "module": "dist/dynamic-number.esm.js",
-  "cjs": "dist/dynamic-number.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/dynamic-number.scss",

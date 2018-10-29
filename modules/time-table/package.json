@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/time-table.umd.js",
   "module": "dist/time-table.esm.js",
-  "cjs": "dist/time-table.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/time-table.scss",

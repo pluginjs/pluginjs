@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/offset.umd.js",
   "module": "dist/offset.esm.js",
-  "cjs": "dist/offset.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/offset.scss",

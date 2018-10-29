@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/spinner.umd.js",
   "module": "dist/spinner.esm.js",
-  "cjs": "dist/spinner.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/spinner.scss",

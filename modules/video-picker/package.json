@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/video-picker.umd.js",
   "module": "dist/video-picker.esm.js",
-  "cjs": "dist/video-picker.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/video-picker.scss",

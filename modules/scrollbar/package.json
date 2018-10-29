@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/scrollbar.umd.js",
   "module": "dist/scrollbar.esm.js",
-  "cjs": "dist/scrollbar.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/scrollbar.scss",

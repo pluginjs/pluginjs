@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/tooltip.umd.js",
   "module": "dist/tooltip.esm.js",
-  "cjs": "dist/tooltip.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/tooltip.scss",

@@ -15,7 +15,6 @@
   "category": "media",
   "main": "dist/bg-video.umd.js",
   "module": "dist/bg-video.esm.js",
-  "cjs": "dist/bg-video.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/bg-video.scss",

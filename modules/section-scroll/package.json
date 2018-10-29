@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/section-scroll.umd.js",
   "module": "dist/section-scroll.esm.js",
-  "cjs": "dist/section-scroll.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/section-scroll.scss",

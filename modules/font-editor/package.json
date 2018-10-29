@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/font-editor.umd.js",
   "module": "dist/font-editor.esm.js",
-  "cjs": "dist/font-editor.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/font-editor.scss",

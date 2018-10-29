@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/polyfills.umd.js",
   "module": "dist/polyfills.esm.js",
-  "cjs": "dist/polyfills.cjs.js",
   "source": "index.js",
   "files": [
     "dist",

@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/factory.umd.js",
   "module": "dist/factory.esm.js",
-  "cjs": "dist/factory.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

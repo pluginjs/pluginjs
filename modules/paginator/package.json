@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/paginator.umd.js",
   "module": "dist/paginator.esm.js",
-  "cjs": "dist/paginator.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/paginator.scss",

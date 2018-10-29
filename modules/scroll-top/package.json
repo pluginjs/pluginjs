@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/scroll-top.umd.js",
   "module": "dist/scroll-top.esm.js",
-  "cjs": "dist/scroll-top.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/scroll-top.scss",

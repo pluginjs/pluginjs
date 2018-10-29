@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/bg-picker.umd.js",
   "module": "dist/bg-picker.esm.js",
-  "cjs": "dist/bg-picker.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/bg-picker.scss",

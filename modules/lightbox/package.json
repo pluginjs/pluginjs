@@ -15,7 +15,6 @@
   "category": "media",
   "main": "dist/lightbox.umd.js",
   "module": "dist/lightbox.esm.js",
-  "cjs": "dist/lightbox.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/lightbox.scss",

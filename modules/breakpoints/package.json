@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/breakpoints.umd.js",
   "module": "dist/breakpoints.esm.js",
-  "cjs": "dist/breakpoints.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/scrollable.umd.js",
   "module": "dist/scrollable.esm.js",
-  "cjs": "dist/scrollable.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/scrollable.scss",

@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/choice.umd.js",
   "module": "dist/choice.esm.js",
-  "cjs": "dist/choice.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/choice.scss",

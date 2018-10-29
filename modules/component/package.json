@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/component.umd.js",
   "module": "dist/component.esm.js",
-  "cjs": "dist/component.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

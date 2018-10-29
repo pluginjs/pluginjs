@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/notice.umd.js",
   "module": "dist/notice.esm.js",
-  "cjs": "dist/notice.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/notice.scss",

@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/pluginjs.umd.js",
   "module": "dist/pluginjs.esm.js",
-  "cjs": "dist/pluginjs.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

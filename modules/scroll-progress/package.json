@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/scroll-progress.umd.js",
   "module": "dist/scroll-progress.esm.js",
-  "cjs": "dist/scroll-progress.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/scroll-progress.scss",

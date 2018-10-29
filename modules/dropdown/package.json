@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/dropdown.umd.js",
   "module": "dist/dropdown.esm.js",
-  "cjs": "dist/dropdown.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/dropdown.scss",

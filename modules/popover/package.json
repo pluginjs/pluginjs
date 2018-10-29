@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/popover.umd.js",
   "module": "dist/popover.esm.js",
-  "cjs": "dist/popover.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/popover.scss",

@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/is.umd.js",
   "module": "dist/is.esm.js",
-  "cjs": "dist/is.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

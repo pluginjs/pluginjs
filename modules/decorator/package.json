@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/decorator.umd.js",
   "module": "dist/decorator.esm.js",
-  "cjs": "dist/decorator.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

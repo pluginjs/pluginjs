@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/swipe.umd.js",
   "module": "dist/swipe.esm.js",
-  "cjs": "dist/swipe.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/swipe.scss",

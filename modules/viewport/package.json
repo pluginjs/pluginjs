@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/viewport.umd.js",
   "module": "dist/viewport.esm.js",
-  "cjs": "dist/viewport.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

@@ -15,7 +15,6 @@
   "category": "core",
   "main": "dist/emitter.umd.js",
   "module": "dist/emitter.esm.js",
-  "cjs": "dist/emitter.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

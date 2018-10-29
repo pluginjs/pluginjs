@@ -27,7 +27,7 @@ const babelCallback = (options = {}) => {
 
 export default [
   {
-    input: 'src/main.js',
+    input: pkg.source,
     external,
     output: {
       name: pkg.name,
@@ -38,12 +38,12 @@ export default [
     plugins: [babelCallback(), commonjs()]
   },
   {
-    input: 'src/main.js',
+    input: pkg.source,
     external,
-    output: [
-      { file: pkg.cjs, format: 'cjs' },
-      { file: pkg.module, format: 'es' }
-    ],
+    output: {
+      file: pkg.module,
+      format: 'es'
+    },
     plugins: [babelCallback({ esmodules: true }), commonjs()]
   }
 ]

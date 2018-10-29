@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/fullscreen.umd.js",
   "module": "dist/fullscreen.esm.js",
-  "cjs": "dist/fullscreen.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

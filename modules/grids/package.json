@@ -15,7 +15,6 @@
   "category": "media",
   "main": "dist/grids.umd.js",
   "module": "dist/grids.esm.js",
-  "cjs": "dist/grids.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/grids.scss",

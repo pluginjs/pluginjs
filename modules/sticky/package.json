@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/sticky.umd.js",
   "module": "dist/sticky.esm.js",
-  "cjs": "dist/sticky.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/sticky.scss",

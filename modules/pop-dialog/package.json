@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/pop-dialog.umd.js",
   "module": "dist/pop-dialog.esm.js",
-  "cjs": "dist/pop-dialog.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/pop-dialog.scss",

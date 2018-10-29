@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/pattern-picker.umd.js",
   "module": "dist/pattern-picker.esm.js",
-  "cjs": "dist/pattern-picker.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/pattern-picker.scss",

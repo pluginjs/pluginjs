@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/link-picker.umd.js",
   "module": "dist/link-picker.esm.js",
-  "cjs": "dist/link-picker.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/link-picker.scss",

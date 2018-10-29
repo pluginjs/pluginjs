@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/rate.umd.js",
   "module": "dist/rate.esm.js",
-  "cjs": "dist/rate.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/rate.scss",

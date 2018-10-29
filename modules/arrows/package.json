@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/arrows.umd.js",
   "module": "dist/arrows.esm.js",
-  "cjs": "dist/arrows.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/arrows.scss",

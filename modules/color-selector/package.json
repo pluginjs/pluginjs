@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/color-selector.umd.js",
   "module": "dist/color-selector.esm.js",
-  "cjs": "dist/color-selector.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/color-selector.scss",

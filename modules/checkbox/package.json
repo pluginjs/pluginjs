@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/checkbox.umd.js",
   "module": "dist/checkbox.esm.js",
-  "cjs": "dist/checkbox.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/checkbox.scss",

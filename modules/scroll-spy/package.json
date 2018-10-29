@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/scroll-spy.umd.js",
   "module": "dist/scroll-spy.esm.js",
-  "cjs": "dist/scroll-spy.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

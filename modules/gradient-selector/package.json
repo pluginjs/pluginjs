@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/gradient-selector.umd.js",
   "module": "dist/gradient-selector.esm.js",
-  "cjs": "dist/gradient-selector.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/gradient-selector.scss",

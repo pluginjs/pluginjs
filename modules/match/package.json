@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/match.umd.js",
   "module": "dist/match.esm.js",
-  "cjs": "dist/match.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

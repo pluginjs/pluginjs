@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/parallax.umd.js",
   "module": "dist/parallax.esm.js",
-  "cjs": "dist/parallax.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/parallax.scss",

@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/keyframes.umd.js",
   "module": "dist/keyframes.esm.js",
-  "cjs": "dist/keyframes.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

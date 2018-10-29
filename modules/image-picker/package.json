@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/image-picker.umd.js",
   "module": "dist/image-picker.esm.js",
-  "cjs": "dist/image-picker.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/image-picker.scss",

@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/toggle-list.umd.js",
   "module": "dist/toggle-list.esm.js",
-  "cjs": "dist/toggle-list.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/toggle-list.scss",

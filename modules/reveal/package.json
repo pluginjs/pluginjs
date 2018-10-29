@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/reveal.umd.js",
   "module": "dist/reveal.esm.js",
-  "cjs": "dist/reveal.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/reveal.scss",

@@ -15,7 +15,6 @@
   "category": "media",
   "main": "dist/before-after.umd.js",
   "module": "dist/before-after.esm.js",
-  "cjs": "dist/before-after.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/before-after.scss",

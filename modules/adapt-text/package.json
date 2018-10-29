@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/adapt-text.umd.js",
   "module": "dist/adapt-text.esm.js",
-  "cjs": "dist/adapt-text.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

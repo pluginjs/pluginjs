@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/detector.umd.js",
   "module": "dist/detector.esm.js",
-  "cjs": "dist/detector.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

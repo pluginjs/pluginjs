@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/dots.umd.js",
   "module": "dist/dots.esm.js",
-  "cjs": "dist/dots.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/dots.scss",

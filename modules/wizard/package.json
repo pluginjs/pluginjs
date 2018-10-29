@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/wizard.umd.js",
   "module": "dist/wizard.esm.js",
-  "cjs": "dist/wizard.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/wizard.scss",

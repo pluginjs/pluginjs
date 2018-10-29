@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/tag-list.umd.js",
   "module": "dist/tag-list.esm.js",
-  "cjs": "dist/tag-list.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/tag-list.scss",

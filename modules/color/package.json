@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/color.umd.js",
   "module": "dist/color.esm.js",
-  "cjs": "dist/color.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

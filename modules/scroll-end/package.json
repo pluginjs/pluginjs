@@ -15,7 +15,6 @@
   "category": "scroll",
   "main": "dist/scroll-end.umd.js",
   "module": "dist/scroll-end.esm.js",
-  "cjs": "dist/scroll-end.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

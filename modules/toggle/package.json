@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/toggle.umd.js",
   "module": "dist/toggle.esm.js",
-  "cjs": "dist/toggle.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/toggle.scss",

@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/radio.umd.js",
   "module": "dist/radio.esm.js",
-  "cjs": "dist/radio.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/radio.scss",

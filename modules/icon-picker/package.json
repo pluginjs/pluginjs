@@ -4,11 +4,17 @@
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/pluginjs",
+  "repository": {
+    "url": "git@github.com:pluginjs/pluginjs.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/pluginjs/issues"
+  },
   "version": "0.6.0",
   "category": "form",
   "main": "dist/icon-picker.umd.js",
   "module": "dist/icon-picker.esm.js",
-  "cjs": "dist/icon-picker.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/icon-picker.scss",

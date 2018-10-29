@@ -15,7 +15,6 @@
   "category": "utils",
   "main": "dist/styled.umd.js",
   "module": "dist/styled.esm.js",
-  "cjs": "dist/styled.cjs.js",
   "source": "src/main.js",
   "files": [
     "dist",

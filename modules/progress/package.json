@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/progress.umd.js",
   "module": "dist/progress.esm.js",
-  "cjs": "dist/progress.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/progress.scss",

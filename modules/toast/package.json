@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/toast.umd.js",
   "module": "dist/toast.esm.js",
-  "cjs": "dist/toast.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/toast.scss",

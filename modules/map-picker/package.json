@@ -15,7 +15,6 @@
   "category": "form",
   "main": "dist/map-picker.umd.js",
   "module": "dist/map-picker.esm.js",
-  "cjs": "dist/map-picker.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/map-picker.scss",

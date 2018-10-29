@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/nav-to-select.umd.js",
   "module": "dist/nav-to-select.esm.js",
-  "cjs": "dist/nav-to-select.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/nav-to-select.scss",

@@ -15,7 +15,6 @@
   "category": "ui",
   "main": "dist/shorten.umd.js",
   "module": "dist/shorten.esm.js",
-  "cjs": "dist/shorten.cjs.js",
   "source": "src/main.js",
   "css": {
     "source": "src/css/shorten.scss",
