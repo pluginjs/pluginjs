@@ -1,5 +1,5 @@
 import anime from 'animejs'
-import { text, queryAll } from '@pluginjs/dom'
+import { text } from '@pluginjs/dom'
 
 class Fade {
   constructor(instance) {
@@ -18,7 +18,7 @@ class Fade {
 
   setupAnime(translate) {
     const options = {
-      targets: queryAll(`.${this.instance.classes.CHAR}`, this.element),
+      targets: this.element,
       ...translate,
       opacity: [0, 1],
       duration: this.options.duration || 1000,

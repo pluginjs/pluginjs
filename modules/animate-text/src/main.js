@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { addClass } from '@pluginjs/classes'
 import { text, append } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-// import anime from 'animejs'
+import { isArray } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -18,7 +18,6 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-// import match from './effect'
 
 import fade from './effects/fade'
 import fadeDown from './effects/fadeDown'
@@ -28,6 +27,11 @@ import fadeRight from './effects/fadeRight'
 import zoom from './effects/zoom'
 import bounce from './effects/bounce'
 import swing from './effects/swing'
+import typewrite from './effects/typewrite'
+import switchSlider from './effects/switchSlider'
+import switchFade from './effects/switchFade'
+import switchRotate from './effects/switchRotate'
+import switchPush from './effects/switchPush'
 
 const EFFECTS = {}
 
@@ -62,47 +66,11 @@ class AnimateText extends Component {
       this.effect = new EFFECTS[this.mode](this)
     }
 
+    this.bind()
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
-
-  // initialize() {
-  //   addClass(this.classes.NAMESPACE, this.element)
-  //   this.bind()
-  //   this.initWord()
-  //   const options = ['mode', 'loop', 'delay', 'duration'].reduce(
-  //     (newOptions, key) => ({
-  //       ...newOptions,
-  //       [key]: this.options[key]
-  //     }),
-  //     { target: this.element }
-  //   )
-  //   const getAnimeConfigByOptions = options => {
-  //     const { mode, ...animeOptions } = options
-  //     if (mode === 'custom') {
-  //       return this.options.scripts
-  //     }
-  //     // const isMultiple = Boolean(this.element.children.length)
-  //     // if (isMultiple) {
-  //     //   addClass(this.classes.CONTAINER, this.element)
-  //     // }
-  //     // const animeGateWay = match(isMultiple, mode)
-  //     const animeGateWay = match(false, mode)
-  //     return animeGateWay(animeOptions)
-  //   }
-  //   const animeConfig = getAnimeConfigByOptions(options)
-  //   // if (animeConfig.childrens) {
-  //   //   anime(animeConfig.container)
-  //   //   animeConfig.childrens.forEach((children, index) =>
-  //   //     setTimeout(() => anime(children), index * 1000)
-  //   //   )
-  //   // } else {
-  //   //   anime(animeConfig)
-  //   // }
-  //   anime(animeConfig)
-  //   this.enter('initialized')
-  //   this.trigger(EVENTS.READY)
-  // }
 
   splitWord(str, splitChar = true) {
     const words = str.split(' ')
@@ -128,6 +96,26 @@ class AnimateText extends Component {
         text(' ', space)
         append(space, this.element)
       }
+    })
+  }
+
+  switchWord() {
+    addClass(this.classes.SWITCH, this.element)
+    const content = document.createElement('span')
+    addClass(this.classes.WORD, content)
+    text(text(this.element), content)
+    text('', this.element)
+    append(content, this.element)
+
+    this.alt = isArray(this.options.alt)
+      ? this.options.alt
+      : [].push(this.options.alt)
+
+    this.alt.forEach(alt => {
+      const span = document.createElement('span')
+      addClass(this.classes.WORD, span)
+      text(alt, span)
+      append(span, this.element)
     })
   }
 
@@ -183,5 +171,10 @@ AnimateText.registerEffect('fadeRight', fadeRight)
 AnimateText.registerEffect('zoom', zoom)
 AnimateText.registerEffect('bounce', bounce)
 AnimateText.registerEffect('swing', swing)
+AnimateText.registerEffect('typewrite', typewrite)
+AnimateText.registerEffect('switchSlider', switchSlider)
+AnimateText.registerEffect('switchFade', switchFade)
+AnimateText.registerEffect('switchRotate', switchRotate)
+AnimateText.registerEffect('switchPush', switchPush)
 
 export default AnimateText

@@ -1,5 +1,5 @@
 import anime from 'animejs'
-import { text, queryAll } from '@pluginjs/dom'
+import { text } from '@pluginjs/dom'
 
 class Bounce {
   constructor(instance) {
@@ -17,21 +17,8 @@ class Bounce {
   }
 
   setupAnime() {
-    let target = null
-    if (this.options.type === 'all') {
-      target = this.element
-    }
-
-    if (this.options.type === 'word') {
-      target = queryAll(`.${this.instance.classes.WORD}`, this.element)
-    }
-
-    if (this.options.type === 'char') {
-      target = queryAll(`.${this.instance.classes.CHAR}`, this.element)
-    }
-
     const options = {
-      targets: target,
+      targets: this.element,
       scale: [0.5, 1.2, 0.8, 1.2, 1],
       duration: this.options.duration || 1000,
       easing: 'easeInOutSine',

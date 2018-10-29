@@ -1,6 +1,6 @@
 import anime from 'animejs'
 import { setStyle } from '@pluginjs/styled'
-import { text, queryAll } from '@pluginjs/dom'
+import { text } from '@pluginjs/dom'
 
 class Swing {
   constructor(instance) {
@@ -15,15 +15,12 @@ class Swing {
     this.text = text(this.element)
     text('', this.element)
     this.instance.splitWord(this.text)
-    const words = queryAll(`.${this.instance.classes.WORD}`, this.element)
-    words.forEach(word => {
-      setStyle('transform-origin', 'top center', word)
-    })
+    setStyle('transform-origin', 'top center', this.element)
   }
 
   setupAnime() {
     const options = {
-      targets: queryAll(`.${this.instance.classes.WORD}`, this.element),
+      targets: this.element,
       rotateZ: [-5, 5, -10, 10, 0],
       duration: this.options.duration || 1000,
       easing: 'easeInOutSine',

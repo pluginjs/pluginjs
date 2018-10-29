@@ -14,15 +14,31 @@ $animateText: "pj-animateText" !default;
 		display: inline-block;
 	}
 
-	&-multiple {
+	&-cursor {
+		animation: blink 0.8s infinite;
+	}
+
+	&-switch {
 		position: relative;
-	  display: inline-flex;
-	  flex-direction: column;
 	  overflow: hidden;
 	  vertical-align: top;
 
 	  > * {
 	    white-space: nowrap;
 	  }
+	}
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
 	}
 }

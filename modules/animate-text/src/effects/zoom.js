@@ -1,5 +1,5 @@
 import anime from 'animejs'
-import { text, queryAll } from '@pluginjs/dom'
+import { text } from '@pluginjs/dom'
 
 class Zoom {
   constructor(instance) {
@@ -18,7 +18,7 @@ class Zoom {
 
   setupAnime() {
     const options = {
-      targets: queryAll(`.${this.instance.classes.WORD}`, this.element),
+      targets: this.element,
       scale: [0, 1],
       opacity: [0, 1],
       duration: this.options.duration || 1000,
