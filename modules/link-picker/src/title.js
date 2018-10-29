@@ -1,22 +1,22 @@
 import template from '@pluginjs/template'
 import { parseHTML, query } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
-export default class LinkTitle {
+export default class Title {
   constructor(instance) {
     this.instance = instance
-    this.value = instance.value.linkTitle
-    this.defaultValue = instance.options.linkTitle.value
+    this.value = instance.value.title
+    this.defaultValue = instance.options.title.value
     this.initialize()
   }
 
   initialize() {
-    const html = template.compile(this.instance.options.linkTitle.template())({
+    const html = template.compile(this.instance.options.title.template())({
       classes: this.instance.classes,
       field: this.instance.getClassName(
         this.instance.classes.NAMESPACE,
-        'linkTitle'
+        'title'
       ),
-      linkTitle: this.instance.translate('linkTitle')
+      title: this.instance.translate('title')
     })
     this.$wrap = parseHTML(html)
     this.$content = query('.pj-input', this.$wrap)

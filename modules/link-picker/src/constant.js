@@ -34,7 +34,7 @@ export const classes = {
   ITEM: '{namespace}-item',
   ITEMTITLE: '{namespace}-item-title',
   ITEMBODY: '{namespace}-item-body',
-  LINKTITLE: '{namespace}-link-title',
+  TITLE: '{namespace}-title',
   DROPDOWNPANEL: '{namespace}-dropdown-panel',
   SHOW: '{namespace}-show',
   WRITE: '{namespace}-write',
@@ -56,8 +56,7 @@ export const classes = {
 export const methods = ['val', 'set', 'enable', 'disable', 'destroy', 'get']
 
 export const defaults = {
-  title: 'Click to Add Link',
-  placeholder: 'Title',
+  placeholder: 'Click to Add Link',
   locale: 'en',
   disabled: false,
   type: {
@@ -86,12 +85,12 @@ export const defaults = {
       )
     }
   },
-  linkTitle: {
+  title: {
     value: '',
     template() {
       return (
         '<div class="{field}">' +
-        '<span class="{classes.FIELDTITLE}">{linkTitle}</span>' +
+        '<span class="{classes.FIELDTITLE}">{title}</span>' +
         '<input type="text" class="pj-input"  />' +
         '</div>'
       )
@@ -131,7 +130,7 @@ export const defaults = {
     empty() {
       return `<div class='{classes.EMPTY}'>
         <i class='pj-icon pj-icon-link-url'></i>
-        {title}
+        {placeholder}
       </div>`
     },
     action() {
@@ -153,7 +152,7 @@ export const defaults = {
       </div>`
     },
     item() {
-      return `<div class='{class}' data-value='{name}'><div class='{titleClass}'>{title}: </div><div class='{body}' data-connect="{parent}"></div>
+      return `<div class='{class}' data-value='{name}'><div class='{titleClass}'>{placeholder}: </div><div class='{body}' data-connect="{parent}"></div>
       </div>`
     },
     dropdownAction() {
@@ -187,51 +186,21 @@ export const translations = {
     internal: 'Internal',
     external: 'External',
     openMode: 'Open Mode',
-    linkTitle: 'Link Title',
+    title: 'Link Title',
     save: 'Save',
     cancel: 'Cancel',
     deleteTitle: 'Are you sure you want to delete?',
-    delete: 'Delete',
-    typeData: [
-      { label: 'site content' },
-      { label: 'site archive' },
-      { label: 'external url' },
-      { label: 'submit form' },
-      { label: 'scroll to target' }
-    ],
-    contentData: [
-      { label: 'page' },
-      { label: 'post' },
-      { label: 'portfolio' },
-      { label: 'categogry archive' },
-      { label: 'tag archive' }
-    ],
-    openModeData: [{ label: 'same window' }, { label: 'new window' }]
+    delete: 'Delete'
   },
   zh: {
     type: '类型',
     internal: '内部',
     external: '外部',
     openMode: '打开模式',
-    linkTitle: '链接标题',
+    title: '链接标题',
     save: '保存',
     cancel: '取消',
     deleteTitle: '你确定要删除？',
-    delete: '删除',
-    typeData: [
-      { label: '网站内容' },
-      { label: '网站存档' },
-      { label: '外部网址' },
-      { label: '提交表单' },
-      { label: '滚动到目标' }
-    ],
-    contentData: [
-      { label: '页面' },
-      { label: '推送' },
-      { label: '组合' },
-      { label: '类别档案' },
-      { label: '标签档案' }
-    ],
-    openModeData: [{ label: '同一窗口' }, { label: '新窗口' }]
+    delete: '删除'
   }
 }

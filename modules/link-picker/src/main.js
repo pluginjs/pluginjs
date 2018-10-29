@@ -33,7 +33,7 @@ import {
 } from './constant'
 
 import Type from './type'
-import LinkTitle from './linkTitle'
+import Title from './title'
 import Internal from './internal'
 import Target from './target'
 import External from './external'
@@ -74,7 +74,7 @@ class LinkPicker extends Component {
       this.options.parse(this.element.value.replace(/'/g, '"'))
     )
     // init
-    this.linkTitle = new LinkTitle(this)
+    this.title = new Title(this)
     this.internal = new Internal(this)
     this.target = new Target(this)
     this.external = new External(this)
@@ -95,7 +95,6 @@ class LinkPicker extends Component {
 
     this.enter('initialized')
 
-    // this.set(this.value, true)
     this.trigger(EVENTS.READY)
   }
 
@@ -111,7 +110,7 @@ class LinkPicker extends Component {
     this.$empty = parseHTML(
       this.parseTemp('empty', {
         classes: this.classes,
-        title: this.options.title
+        placeholder: this.options.placeholder
       })
     )
     this.$fill = parseHTML(
@@ -144,7 +143,7 @@ class LinkPicker extends Component {
     insertAfter(this.internal.$wrap, this.type.$wrap)
     insertAfter(this.target.$wrap, this.internal.$wrap)
     insertAfter(this.external.$wrap, this.internal.$wrap)
-    insertAfter(this.linkTitle.$wrap, this.target.$wrap)
+    insertAfter(this.title.$wrap, this.target.$wrap)
     this.$trigger.append(this.$empty, this.$fill)
     this.$wrap.append(this.$trigger, this.$dropdown)
     if (this.value.type === 'internal') {
@@ -199,7 +198,6 @@ class LinkPicker extends Component {
     this.DROPDOWN = Dropdown.of(this.$empty, {
       reference: this.$trigger,
       target: this.$dropdown,
-      placement: 'bottom-left',
       hideOutClick: false,
       hideOnSelect: false,
       templates: this.options.templates
@@ -298,7 +296,7 @@ class LinkPicker extends Component {
       this.internal.clear()
       this.external.clear()
       this.target.clear()
-      this.linkTitle.clear()
+      this.title.clear()
       this.update()
       this.element.value = ''
     }
@@ -326,7 +324,7 @@ class LinkPicker extends Component {
       }
 
       if (typeof value.title !== 'undefined') {
-        this.linkTitle.set(value.title)
+        this.title.set(value.title)
       }
       this.update()
     }
@@ -336,8 +334,9 @@ class LinkPicker extends Component {
     return {
       type: this.options.type.value,
       internal: this.options.internal.value,
+      external: this.options.external.value,
       target: this.options.target.value,
-      title: this.options.linkTitle.value
+      title: this.options.title.value
     }
   }
 
@@ -367,17 +366,21 @@ class LinkPicker extends Component {
 
   updatePreview() {
     const data = this.get()
+    console.log(data)
+    if (data.internal === '' || data.external === '') {
+      this.element.value = ''
+      removeClass(this.classes.WRITE, this.$wrap)
+    }
+    // if( data.external === '') {
+    //   this.element.value = ''
+    // }
     const content = query('.pj-cascader-label', this.$wrap).innerHTML
-    if (data.type === 'internal') {
+    if (data.type === 'internal' && data.internal !== '') {
       addClass(this.classes.WRITE, this.$wrap)
       query(`.${this.classes.LINK}`, this.$fill).textContent = content
-    } else {
+    } else if (data.type === 'external' && data.external !== '') {
       addClass(this.classes.WRITE, this.$wrap)
-      if (!data.external) {
-        query(`.${this.classes.LINK}`, this.$fill).textContent = 'Please write'
-      } else {
-        query(`.${this.classes.LINK}`, this.$fill).textContent = data.external
-      }
+      query(`.${this.classes.LINK}`, this.$fill).textContent = data.external
     }
   }
 
