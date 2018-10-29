@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+
+const fs = require('fs-extra')
+const path = require('path')
+const concat = require('concat');
+const logger = require('@pluginjs/helper/logger')('script/generate')
+const pkg =  require('../package.json')
+
+const files = [
+  '@pluginjs/polyfills',
+  '@pluginjs/utils',
+  '@pluginjs/emitter',
+  '@pluginjs/factory',
+  '@pluginjs/component',
+  '@pluginjs/global-component',
+  '@pluginjs/i18n',
+  '@pluginjs/decorator',
+  '@pluginjs/easing',
+  '@pluginjs/is',
+  '@pluginjs/feature',
+  '@pluginjs/template',
+  '@pluginjs/keyboard',
+  '@pluginjs/viewport',
+  '@pluginjs/classes',
+  '@pluginjs/dom',
+  '@pluginjs/events',
+  '@pluginjs/styled'
+].map(file => path.join(file, 'package.json')).map(file => {
+  const pkg =  require(file)
+  return path.join('../../node_modules',path.dirname(file), pkg.main)
+})
+
+concat(files).then(result => {
+  fs.ensureFileSync(pkg.main)
+  fs.writeFileSync(pkg.main, result)
+  logger.success(
+    `pluginjs generated → ${pkg.main}`
+  )
+})

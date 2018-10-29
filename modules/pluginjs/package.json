@@ -14,18 +14,12 @@
   "version": "0.6.0",
   "category": "core",
   "main": "dist/pluginjs.umd.js",
-  "module": "dist/pluginjs.esm.js",
-  "source": "src/main.js",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "npm run build:js",
-    "build:js": "plugin script build-js",
-    "build:md": "plugin script build-md",
-    "lint": "npm run lint:js",
-    "lint:js": "eslint ./src/**/*.js --fix",
+    "build": "./scripts/generate",
     "test": "jest"
   },
   "dependencies": {
@@ -54,6 +48,7 @@
     "@pluginjs/browserslist-config": "*",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
+    "concat": "^1.0.3",
     "jest": "*",
     "jest-extended": "*",
     "rollup": "*",
