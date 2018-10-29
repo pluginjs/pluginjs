@@ -10,7 +10,7 @@ import {
   getHeight
 } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events' // , bindEventOnce
-import { parseHTML, query, closest, wrap, prev } from '@pluginjs/dom'
+import { parseHTML, query, closest, wrap } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
 import Select from '@pluginjs/select'
@@ -121,12 +121,12 @@ class VideoPicker extends Component {
       { label: '16:9', value: '16:9' }
     ]
 
-    const localeDelete = this.translate('delete')
+    // const localeDelete = this.translate('delete')
     // const localeSave = this.translate('save');
     const localeAddVideo = this.translate('addVideo')
     const localePddPoster = this.translate('addPoster')
     // const localeChangeVideo = this.translate('changeVideo')
-    const localeChangePoster = this.translate('changePoster')
+    // const localeChangePoster = this.translate('changePoster')
 
     // create priview
     this.$preview = parseHTML(`<div class='${this.classes.PREVIEW}'></div>`)
@@ -183,9 +183,9 @@ class VideoPicker extends Component {
         this.classes.POSTERADD
       }'>${localePddPoster}</span><span class='${
         this.classes.POSTERCHANGE
-      }'>${localeChangePoster}</span><span class='${
+      }'></span><span class='${
         this.classes.POSTERDELETE
-      }'>${localeDelete}</span></div></div>`
+      } pj-icon pj-icon-close'></span></div></div>`
     )
     this.$poster = query(`.${this.classes.POSTER}`, this.$posterContent)
     this.$btnAction = parseHTML(
@@ -275,6 +275,7 @@ class VideoPicker extends Component {
     this.$urlInput = query('input', this.$videoUrl)
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$preview)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$preview)
+    this.$posterChange = query(`.${this.classes.POSTERCHANGE}`, this.$poster)
   }
 
   bind() {
@@ -339,34 +340,21 @@ class VideoPicker extends Component {
       bindEvent(
         this.eventName('click'),
         `.${this.classes.LOCALURLDELETE}`,
-        e => {
+        () => {
           if (this.is('loaded')) {
             removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
-            removeClass(this.classes.CHANGEDISABLE, prev(e.target))
             this.removeVideo()
           }
           this.leave('urlChange')
         }
       )
-      // bindEvent(
-      //   this.eventName('click'),
-      //   `.${this.classes.LOCALURLCHANGE}`,
-      //   e => {
-      //     if (!this.is('urlChange')) {
-      //       this.data.url =
-      //         'https://ak5.picdn.net/shutterstock/videos/3377915/preview/stock-footage-beijing-central-business-district-skyline-sunset-time-lapse.webm'
-      //       this.changeVideo()
-      //       addClass(this.classes.CHANGEDISABLE, e.target)
-      //     }
-      //     this.enter('urlChange')
-      //   }
-      // )
     )(this.$wrap)
 
     // change poster
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.POSTERADD}`, () => {
         this.addPoster(this.options.selectCover.call(this))
+        this.$posterChange.innerHTML = this.data.poster
       }),
       bindEvent(this.eventName('click'), `.${this.classes.POSTERCHANGE}`, e => {
         if (!this.is('posterChange')) {
@@ -375,11 +363,15 @@ class VideoPicker extends Component {
         }
         this.enter('posterChange')
       }),
-      bindEvent(this.eventName('click'), `.${this.classes.POSTERDELETE}`, e => {
-        removeClass(this.classes.CHANGEDISABLE, prev(e.target))
-        this.deletePoster()
-        this.leave('posterChange')
-      })
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.POSTERDELETE}`,
+        () => {
+          removeClass(this.classes.CHANGEDISABLE, this.$poster)
+          this.deletePoster()
+          this.leave('posterChange')
+        }
+      )
     )(this.$wrap)
 
     compose(
@@ -431,8 +423,7 @@ class VideoPicker extends Component {
     if (hasClass(this.classes.BIGSIZE, this.$preview)) {
       removeClass(this.classes.BIGSIZE, this.$preview)
     }
-    if (value === 'auto') {
-      console.log(value)
+    if (value === 'auto') { /* eslint-disable-line */
     } else if (value === '3:2') {
       addClass(this.classes.SMALLSIZE, this.$preview)
     } else if (value === '4:3') {
@@ -609,7 +600,6 @@ class VideoPicker extends Component {
     if (!this.data.url || typeof this.data.url === 'undefined') {
       return null
     }
-
     return this.data
   }
 
@@ -624,7 +614,6 @@ class VideoPicker extends Component {
 
   enable() {
     if (this.is('disabled')) {
-      // this.element.enable()
       this.element.disabled = false
       this.leave('disabled')
       removeClass(this.classes.DISABLED, this.$wrap)

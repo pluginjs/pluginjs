@@ -43,6 +43,8 @@ $videoPicker-border-radius: $border-radius-base;
 $videoPicker-color: $gray-dark;
 $videoPicker-active-color: $color-primary;
 
+$videoPicker-poster-with: 190px;
+
 // Core
 // =====================
 .#{$videoPicker} {
@@ -163,17 +165,21 @@ $videoPicker-active-color: $color-primary;
     }
   }
 
-  // &-local-url,
   &-poster {
+     position: relative;
     > span {
-      margin-right: $videoPicker-poster-margin-right;
       color: $videoPicker-active-color;
       cursor: pointer;
-      border-bottom: 1px solid transparent;
+    }
+    .pj-icon {
+      display: none
+    }
 
-      &:hover {
-        border-bottom-color: $videoPicker-active-color;
-      }
+    &-change {
+      width: $videoPicker-poster-with;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; 
     }
 
     &-selected {

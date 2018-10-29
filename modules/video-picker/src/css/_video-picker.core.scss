@@ -7,8 +7,10 @@ $videoPicker: "pj-videoPicker" !default;
 $videoPicker-width: 160px !default;
 $videoPicker-height: 90px !default;
 
-$videoPicker-local-url-content-width: 200px !default;
+$videoPicker-local-url-content-width: 190px !default;
 $videoPicker-preview-width: 223px !default;
+
+$videoPicker-poster-delete-right: 5px !default;
 
 $videoPicker-bg-color: $color-white !default;
 
@@ -185,12 +187,16 @@ $videoPicker-icon: $pj-icon-play-circle !default;
       .#{$videoPicker}-poster-add {
         display: none;
       }
+      .#{$videoPicker}-poster-delete {
+        position: absolute;
+        right: $videoPicker-poster-delete-right;
+      }
 
       .#{$videoPicker}-local-url-content,
       .#{$videoPicker}-local-url-delete,
       .#{$videoPicker}-poster-change,
       .#{$videoPicker}-poster-delete {
-        display: inline-block;
+        display: inline-block !important;
       }
       .#{$videoPicker}-local-url-content {
         width: $videoPicker-local-url-content-width;
