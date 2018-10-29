@@ -24,6 +24,7 @@ $imageSelector-loading-padding: 11px 8px;
 $imageSelector-loading-color: $gray-darker;
 
 $imageSelector-option-label-font-size: $font-size-xs;
+$imageSelector-option-margin-bottom: 12px;
 $imageSelector-option-hover-border-color: $gray-light;
 $imageSelector-option-active-border-color: $color-primary;
 $imageSelector-option-margin-left: 24px;
@@ -48,6 +49,7 @@ $imageSelector-option-padding: 12px 0;
 
   &-option {
     padding: $imageSelector-option-padding;
+    margin-bottom: $imageSelector-option-margin-bottom;
     border: 1px solid transparent;
 
     &:hover {
@@ -60,6 +62,11 @@ $imageSelector-option-padding: 12px 0;
 
     &-label {
       font-size: $imageSelector-option-label-font-size;
+    }
+
+    &:nth-last-child(1),
+    &:nth-last-child(2) {
+      margin-bottom: 0;
     }
 
     &:nth-of-type(2n) {

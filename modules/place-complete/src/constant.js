@@ -34,7 +34,7 @@ export const defaults = deepMerge(AutoComplete.defaults, {
   templates: {
     item() {
       return `<div class="{classes.ITEM}" data-value="{value}">
-  <span class="{classes.ITEMQUERY}">{item.structured_formatting.main_text}</span>
+  <span class="{classes.ITEMQUERY}">{label}</span>
   <span class="{classes.ITEMSECONDARY}">{item.structured_formatting.secondary_text}</span>
 </div>`
     }

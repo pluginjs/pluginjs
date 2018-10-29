@@ -414,7 +414,6 @@ class AutoComplete extends Component {
       })
     } else {
       items.forEach(item => {
-        console.log(item)
         $fragment.appendChild(this.buildItem(item))
       })
     }
@@ -449,6 +448,15 @@ class AutoComplete extends Component {
         `<span class="pj-autoComplete-match">${matchWord}</span>`
       )
       return newValue
+    } else if (item.matched_substrings) {
+      const start = item.matched_substrings[0].offset
+      const length = item.matched_substrings[0].length
+      const matchWord = item.description.substr(start, length)
+      const newValue = item.structured_formatting.main_text.replace(
+        new RegExp(`(${matchWord})`),
+        `<span class="pj-autoComplete-match">${matchWord}</span>`
+      )
+      return newValue
     } else if (isString(item)) {
       const start = item.toUpperCase().search(this.element.value.toUpperCase())
       const length = this.element.value.length
@@ -469,7 +477,6 @@ class AutoComplete extends Component {
       )
     }
     const nvalue = this.setMatchItem(item)
-
     const $item = parseHTML(
       this.itemTemplate({
         classes: this.classes,

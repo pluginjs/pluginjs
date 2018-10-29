@@ -14,12 +14,6 @@ query('.api').addEventListener('click', event => {
     case 'init':
       api = ImageSelector.of(element)
       break
-    case 'image-selector':
-      api.selected(2)
-      break
-    case 'unimage-selector':
-      api.unselect(2)
-      break
     case 'get':
       console.info(api.get())
       break
@@ -30,10 +24,7 @@ query('.api').addEventListener('click', event => {
       console.info(api.val())
       break
     case 'val_set':
-      console.info(api.val(4))
-      break
-    case 'clear':
-      api.clear()
+      api.val(4)
       break
     case 'disable':
       api.disable()
