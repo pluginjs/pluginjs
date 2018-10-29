@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.0",
+  "version": "0.6.1",
   "category": "scroll",
   "main": "dist/scroll-top.umd.js",
   "module": "dist/scroll-top.esm.js",
@@ -36,24 +36,24 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/dom": "*",
-    "@pluginjs/events": "*",
-    "@pluginjs/factory": "*",
-    "@pluginjs/feature": "*",
-    "@pluginjs/global-component": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/polyfills": "*",
-    "@pluginjs/scroll": "*",
-    "@pluginjs/styled": "*",
-    "@pluginjs/template": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/classes": "^0.6.1",
+    "@pluginjs/decorator": "^0.6.1",
+    "@pluginjs/dom": "^0.6.1",
+    "@pluginjs/events": "^0.6.1",
+    "@pluginjs/factory": "^0.6.1",
+    "@pluginjs/feature": "^0.6.1",
+    "@pluginjs/global-component": "^0.6.1",
+    "@pluginjs/is": "^0.6.1",
+    "@pluginjs/polyfills": "^0.6.1",
+    "@pluginjs/scroll": "^0.6.1",
+    "@pluginjs/styled": "^0.6.1",
+    "@pluginjs/template": "^0.6.1",
+    "@pluginjs/utils": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@pluginjs/browserslist-config": "*",
-    "@pluginjs/cli": "*",
+    "@pluginjs/browserslist-config": "^1.1.1",
+    "@pluginjs/cli": "^0.6.1",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

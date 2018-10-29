@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.0",
+  "version": "0.6.1",
   "category": "media",
   "main": "dist/images-loader.umd.js",
   "module": "dist/images-loader.esm.js",
@@ -29,14 +29,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/image-loader": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/simple-emitter": "*"
+    "@pluginjs/image-loader": "^0.6.1",
+    "@pluginjs/is": "^0.6.1",
+    "@pluginjs/simple-emitter": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@pluginjs/browserslist-config": "*",
-    "@pluginjs/cli": "*",
+    "@pluginjs/browserslist-config": "^1.1.1",
+    "@pluginjs/cli": "^0.6.1",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.0",
+  "version": "0.6.1",
   "category": "core",
   "main": "dist/factory.umd.js",
   "module": "dist/factory.esm.js",
@@ -29,13 +29,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/emitter": "^0.6.1",
+    "@pluginjs/utils": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@pluginjs/browserslist-config": "*",
-    "@pluginjs/cli": "*",
+    "@pluginjs/browserslist-config": "^1.1.1",
+    "@pluginjs/cli": "^0.6.1",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

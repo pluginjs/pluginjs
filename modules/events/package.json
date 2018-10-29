@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.0",
+  "version": "0.6.1",
   "category": "utils",
   "main": "dist/events.umd.js",
   "module": "dist/events.esm.js",
@@ -29,14 +29,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/emitter": "^0.6.1",
+    "@pluginjs/is": "^0.6.1",
+    "@pluginjs/utils": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@pluginjs/browserslist-config": "*",
-    "@pluginjs/cli": "*",
+    "@pluginjs/browserslist-config": "^1.1.1",
+    "@pluginjs/cli": "^0.6.1",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

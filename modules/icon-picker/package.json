@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.0",
+  "version": "0.6.1",
   "category": "form",
   "main": "dist/icon-picker.umd.js",
   "module": "dist/icon-picker.esm.js",
@@ -32,22 +32,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "*",
-    "@pluginjs/component": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/dom": "*",
-    "@pluginjs/dropdown": "*",
-    "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/match": "*",
-    "@pluginjs/template": "*",
-    "@pluginjs/tooltip": "*",
-    "@pluginjs/utils": "*"
+    "@pluginjs/classes": "^0.6.1",
+    "@pluginjs/component": "^0.6.1",
+    "@pluginjs/decorator": "^0.6.1",
+    "@pluginjs/dom": "^0.6.1",
+    "@pluginjs/dropdown": "^0.6.1",
+    "@pluginjs/events": "^0.6.1",
+    "@pluginjs/is": "^0.6.1",
+    "@pluginjs/match": "^0.6.1",
+    "@pluginjs/template": "^0.6.1",
+    "@pluginjs/tooltip": "^0.6.1",
+    "@pluginjs/utils": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@pluginjs/browserslist-config": "*",
-    "@pluginjs/cli": "*",
+    "@pluginjs/browserslist-config": "^1.1.1",
+    "@pluginjs/cli": "^0.6.1",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

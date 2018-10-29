@@ -7,7 +7,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.0",
+  "version": "0.6.1",
   "category": "css",
   "scripts": {
     "build": "./scripts/generate",

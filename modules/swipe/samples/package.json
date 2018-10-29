@@ -3,20 +3,20 @@
   "name": "swipe-samples",
   "description": "Simple swipe example",
   "license": "GPL-3.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "*",
-    "@pluginjs/swipe": "*"
+    "@pluginjs/dom": "^0.6.1",
+    "@pluginjs/swipe": "^0.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
-    "@pluginjs/browserslist-config": "*",
+    "@pluginjs/browserslist-config": "^1.1.1",
     "parcel-bundler": "^1.10.3",
     "posthtml-include": "*"
   },
