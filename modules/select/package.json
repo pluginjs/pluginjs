@@ -16,11 +16,11 @@
     "min": "dist/select.min.css"
   },
   "scripts": {
-    "build": "npm run build:js & npm run build:scss",
+    "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "lint": "npm run lint:js & npm run lint:scss",
+    "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
     "test": "jest"
