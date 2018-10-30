@@ -1,94 +1,32 @@
 @import "@pluginjs/styles/variables.scss";
+@import "./timeline.core.scss";
 
 // Variables
 // ========================================================================
-$timeline-name: "timeline";
-$timeline-fontsize-base: 1rem !default;
+$timeline-name: "pj-timeline";
+$timeline-arrow: "pj-arrow";
 
-$timeline-item-gutter: 5 * $timeline-fontsize-base !default;
-$timeline-item-padding-x: 2.5 * $timeline-fontsize-base !default;
+$timeline-item-gutter: 50px;
 
-$timeline-line-width: 2px !default;
-$timeline-line-color: #f00 !default;
-$timeline-extend-length: 2rem !default;
+$timeline-line-color: $color-primary;
 
-$timeline-content-margin-x: 2.5 * $timeline-fontsize-base !default;
-// $timeline-content-padding-y: 2.5 * $timeline-fontsize-base !default;
-// $timeline-content-padding-x: 2.5 * $timeline-fontsize-base !default;
+$timeline-content-margin-x: 25px;
 
-$timeline-meta-color: #ababab !default;
-
-$timeline-mark-size: 0.75rem !default;
-$timeline-mark-bg: $timeline-line-color !default;
-$timeline-mark-hover-bg: #008000 !default;
-// $timeline-badge-hover-color: #fff !default;
-
-// $timeline-horizontal-padding-x: 6 * $timeline-fontsize-base !default;
-$timeline-horizontal-content-spacing: $timeline-content-margin-x !default;
-$timeline-horizontal-list-height: 500px !default;
+$timeline-mark-bg: $timeline-line-color;
+$timeline-mark-hover-bg: $gray-darkest;
 
 .#{$timeline-name} {
-  position: relative;
-  // width: 920px;
-  overflow: hidden;
-
-  // partial
-  // ===========
-  //
-
   // list
   &-list {
-    position: relative;
-    padding: $timeline-extend-length 0;
-
     &::before {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      display: block;
-      width: $timeline-line-width;
-      content: "";
       background-color: $timeline-line-color;
-
-      transform: translateX(-50%);
     }
-  }
-  // list: ul
-  ul.#{$timeline-name}-list {
-    padding: $timeline-extend-length 0;
-    margin: 0;
-    list-style: none;
   }
 
   // item
   &-item {
-    position: relative;
-    display: flex;
-    flex-direction: row-reverse;
-    // width: 50%;
-    text-align: right;
-
     & + & {
       margin-top: $timeline-item-gutter;
-    }
-
-    &.#{$timeline-name}-item-inverse,
-    &:nth-child(even) {
-      flex-direction: row;
-      margin-left: 50%;
-      text-align: left;
-
-      .#{$timeline-name}-content {
-        margin-right: 0;
-        margin-left: $timeline-content-margin-x;
-      }
-
-      .#{$timeline-name}-mark {
-        right: 100%;
-        left: auto;
-        transform: translateX(50%);
-      }
     }
   }
 
@@ -100,28 +38,10 @@ $timeline-horizontal-list-height: 500px !default;
       margin-bottom: 0;
     }
   }
-
-  // // title 
-  // &-title {
-
-  // }
-
-  // meta
-  &-meta {
-    // color: $timeline-meta-color;
-  }
-
   // time mark/badge
   &-mark {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: $timeline-mark-size;
-    height: $timeline-mark-size;
     background-color: $timeline-mark-bg;
     border-radius: 50%;
-
-    transform: translateX(-50%);
 
     &:hover {
       cursor: pointer;
@@ -129,270 +49,18 @@ $timeline-horizontal-list-height: 500px !default;
     }
   }
 
-  // type: (vertical)left&right(fixed)
-  // =================================
-  //
-  &-left,
-  &-right {
-    .#{$timeline-name}-item {
-      width: 100%;
-      margin-right: 0;
-      margin-left: 0;
-    }
-  }
-
-  // left
-  &-left {
-    padding-left: $timeline-mark-size;
-
-    .#{$timeline-name}-list {
-      &::before {
-        left: 0;
-      }
-    }
-
-    .#{$timeline-name}-mark {
-      right: 100%;
-      left: auto;
-      transform: translateX(50%);
-    }
-
-    .#{$timeline-name}-content {
-      margin-left: $timeline-content-margin-x;
-    }
-
-    .#{$timeline-name}-item {
-      flex-direction: row;
-      margin-left: 0;
-      text-align: left;
-    }
-  }
-
-  // right
-  &-right {
-    padding-right: $timeline-mark-size;
-
-    .#{$timeline-name}-list {
-      &::before {
-        left: 100%;
-      }
-    }
-
-    .#{$timeline-name}-mark {
-      right: auto;
-      left: 100%;
-      transform: translateX(-50%);
-    }
-
-    .#{$timeline-name}-content {
-      margin-right: $timeline-content-margin-x;
-    }
-
-    .#{$timeline-name}-item {
-      flex-direction: row-reverse;
-      text-align: right;
-
-      &.#{$timeline-name}-item-inverse,
-      &:nth-child(even) {
-        .#{$timeline-name}-content {
-          margin-right: $timeline-content-margin-x;
-          margin-left: 0;
-        }
-
-        .#{$timeline-name}-mark {
-          right: auto;
-          left: 100%;
-          transform: translateX(-50%);
-        }
-      }
-    }
-  }
-
   &.pj-#{$timeline-name}-horizontal {
-    // overflow-x: hidden;
-    // height: auto;
-
-    .#{$timeline-name}-list {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: no-wrap;
-      align-content: stretch;
-      height: $timeline-horizontal-list-height;
-      padding: 0 $timeline-extend-length;
-
-      &,
-      &::before,
-      &::after,
-      & *,
-      & *::before,
-      & *::after {
-        box-sizing: border-box;
-      }
-
-      &::before {
-        top: 50%;
-        right: 0;
-        bottom: auto;
-        left: 0;
-        width: 100%;
-        height: $timeline-line-width;
-        transform: translateY(-50%);
-      }
-    }
-
-    ul.#{$timeline-name}-list {
-      padding: 0 $timeline-extend-length;
-    }
-
-    .#{$timeline-name}-mark {
-      top: auto;
-      right: auto;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%) translateY(50%);
-    }
-
-    .#{$timeline-name}-content {
-      flex: 0 0 auto;
-      margin: 0;
-    }
-
     .#{$timeline-name}-item {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      align-self: flex-start;
-      justify-content: flex-end;
-
-
-      width: auto;
-      height: 50%;
-      padding-bottom: $timeline-horizontal-content-spacing;
-      margin: 0;
       text-align: left;
       
       &.#{$timeline-name}-item-inverse,
       &:nth-child(even) {
-        align-self: flex-end;
-        justify-content: flex-start;
-
-        padding-top: $timeline-horizontal-content-spacing;
-        padding-bottom: 0;
-
         text-align: left;
 
         .#{$timeline-name}-content {
           margin: 0;
         }
-
-        .#{$timeline-name}-mark {
-          top: 0;
-          right: auto;
-          left: 50%;
-          transform: translateX(-50%) translateY(-50%);
-        }
       }
     }
   }
-
-  // Responsive
-  // ==========================
-  // @media screen and (max-width: 768px) {
-  //   // left
-  //   padding-left: $timeline-mark-size;
-
-  //   .#{$timeline-name}-list {
-  //     &::before {
-  //       left: 0;
-  //     }
-  //   }
-
-  //   .#{$timeline-name}-mark {
-  //     right: 100%;
-  //     left: auto;
-  //     transform: translateX(50%);
-  //   }
-
-  //   .#{$timeline-name}-content {
-  //     margin-left: $timeline-content-margin-x;
-  //   }
-
-  //   .#{$timeline-name}-item {
-  //     width: 100%;
-  //     margin-left: 0;
-  //     text-align: left;
-  //   }
-  // }
-
-  // @media screen and (max-width: 992px) {
-  //   &-horizontal {
-  //     // overflow-x: hidden;
-  //     // height: auto;
-      
-  //     .#{$timeline-name}-list {
-  //       display: block;
-  //       height: auto;
-  //       padding: $timeline-extend-length 0;
-
-  //       &::before {
-  //         right: auto;
-  //         bottom: 0;
-  //         top: 0;
-  //         left: 0;
-  //         width: $timeline-line-width;
-  //         height: 100%;
-  //         transform: translateX(-50%);
-  //       }
-  //     }
-
-  //     ul.#{$timeline-name}-list {
-  //       padding: $timeline-extend-length 0;
-  //     }
-
-  //     .#{$timeline-name}-mark {
-  //       right: auto;
-  //       bottom: auto;
-  //       left: auto;
-  //       transform: translateX(-50%);
-  //     }
-
-  //     .#{$timeline-name}-content {
-  //       margin-left: $timeline-horizontal-content-spacing;
-  //     }
-
-  //     .#{$timeline-name}-item {
-  //       display: block;
-  //       width: 100%;
-  //       min-height: auto;
-  //       padding: 0;
-  //       margin: 0;
-  //       // margin-left: 0;
-  //       text-align: left;
-        
-  //       &.#{$timeline-name}-item-inverse,
-  //       &:nth-child(even) {
-  //         align-self: center;
-  //         justify-content: center;
-  //         padding: 0;
-  //         margin-left: 0;
-  //         text-align: left;
-
-  //         .#{$timeline-name}-content {
-  //           margin-right: 0;
-  //           margin-left: $timeline-horizontal-content-spacing;
-  //         }
-
-  //         .#{$timeline-name}-mark {
-  //           right: 100%;
-  //           left: auto;
-  //           transform: translateX(50%);
-  //         }
-  //       }
-  //     }
-
-  //     .#{$timeline-name}-item + .#{$timeline-name}-item {
-  //       margin-top: $timeline-item-gutter;
-  //     }
-  //   }
-  // }
 }

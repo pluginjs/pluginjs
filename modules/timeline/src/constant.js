@@ -25,6 +25,10 @@ export const methods = ['enable', 'disable', 'destroy']
 export const defaults = {
   theme: null,
   visibleItems: 4,
+  loop: false,
+  arrows: {
+    type: 'outline circle'
+  },
   breakpoint: 'md' // xs, sm, md, lg, xl
 }
 

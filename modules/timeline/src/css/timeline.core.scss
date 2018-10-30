@@ -1,0 +1,206 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Variables
+// ========================================================================
+$timeline-name: "pj-timeline" !default;
+$timeline-arrow: "pj-arrow" !default;
+
+$timeline-item-padding: 48px !default;
+
+$timeline-line-width: 2px !default;
+
+$timeline-content-margin-x: 40px !default;
+
+$timeline-mark-size: 16px !default;
+
+$timeline-horizontal-content-spacing: $timeline-content-margin-x !default;
+$timeline-horizontal-list-height: 600px !default;
+
+$timeline-arrow-gatter: 8px !default;
+$timeline-arrow-top: 280px !default;
+
+.#{$timeline-name} {
+  position: relative;
+  box-sizing: content-box;
+  padding: 0 $timeline-item-padding;
+  overflow: hidden;
+
+  &-wrap {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  // list
+  &-list {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      display: block;
+      width: $timeline-line-width;
+      content: "";
+      transform: translateX(-50%);
+    }
+  }
+  // list: ul
+  ul.#{$timeline-name}-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  // item
+  &-item {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 50%;
+    text-align: right;
+
+    &.#{$timeline-name}-item-inverse,
+    &:nth-child(even) {
+      flex-direction: row;
+      margin-left: 50%;
+      text-align: left;
+
+      .#{$timeline-name}-content {
+        margin-right: 0;
+        margin-left: $timeline-content-margin-x;
+      }
+
+      .#{$timeline-name}-mark {
+        right: 100%;
+        left: auto;
+        transform: translateX(50%);
+      }
+    }
+  }
+
+  // content
+  &-content {
+    margin-right: $timeline-content-margin-x;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .#{$timeline-arrow}-prev,
+  .#{$timeline-arrow}-next {
+    display: none;
+  }
+
+  // time mark/badge
+  &-mark {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: $timeline-mark-size;
+    height: $timeline-mark-size;
+    transform: translateX(-50%);
+  }
+
+  &.#{$timeline-name}-horizontal {
+    position: relative;
+    height: auto;
+    overflow-x: hidden;
+
+    .#{$timeline-arrow}-next,
+    .#{$timeline-arrow}-prev {
+      position: absolute;
+      display: block;
+    }
+
+    .#{$timeline-arrow}-prev {
+      top: $timeline-arrow-top;
+      left: $timeline-arrow-gatter;
+    }
+
+    .#{$timeline-arrow}-next {
+      top: $timeline-arrow-top;
+      right: $timeline-arrow-gatter;
+    }
+
+    .#{$timeline-name}-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: no-wrap;
+      align-content: stretch;
+      transition: transform 0.8s;
+      will-change: transform;
+
+      &,
+      &::before,
+      &::after,
+      & *,
+      & *::before,
+      & *::after {
+        box-sizing: border-box;
+      }
+
+      &::before {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: 0;
+        width: 100%;
+        height: $timeline-line-width;
+        transform: translateY(-50%);
+      }
+    }
+
+    ul.#{$timeline-name}-list {
+      box-sizing: border-box;
+      height: $timeline-horizontal-list-height;
+    }
+
+    .#{$timeline-name}-mark {
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(50%);
+    }
+
+    .#{$timeline-name}-content {
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    .#{$timeline-name}-item {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-self: flex-start;
+      justify-content: flex-end;
+
+
+      width: auto;
+      height: 50%;
+      padding-bottom: $timeline-horizontal-content-spacing;
+      margin: 0;
+      
+      &.#{$timeline-name}-item-inverse,
+      &:nth-child(even) {
+        align-self: flex-end;
+        justify-content: flex-start;
+
+        padding-top: $timeline-horizontal-content-spacing;
+        padding-bottom: 0;
+
+        .#{$timeline-name}-mark {
+          top: 0;
+          right: auto;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+        }
+      }
+    }
+  }
+}
