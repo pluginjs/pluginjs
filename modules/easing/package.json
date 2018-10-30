@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.3",
+  "version": "0.6.4",
   "category": "utils",
   "main": "dist/easing.umd.js",
   "module": "dist/easing.esm.js",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.3",
+    "@pluginjs/cli": "^0.6.4",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

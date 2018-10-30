@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.3",
+  "version": "0.6.4",
   "category": "media",
   "main": "dist/gmap.umd.js",
   "module": "dist/gmap.esm.js",
@@ -36,17 +36,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.6.3",
-    "@pluginjs/component": "^0.6.3",
-    "@pluginjs/decorator": "^0.6.3",
-    "@pluginjs/dom": "^0.6.3",
-    "@pluginjs/factory": "^0.6.3",
-    "@pluginjs/is": "^0.6.3"
+    "@pluginjs/classes": "^0.6.4",
+    "@pluginjs/component": "^0.6.4",
+    "@pluginjs/decorator": "^0.6.4",
+    "@pluginjs/dom": "^0.6.4",
+    "@pluginjs/factory": "^0.6.4",
+    "@pluginjs/is": "^0.6.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.3",
+    "@pluginjs/cli": "^0.6.4",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

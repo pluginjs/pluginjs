@@ -2,7 +2,7 @@
   "name": "@pluginjs/cli",
   "description": "",
   "license": "GPL-3.0",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "main": "index.js",
   "bin": {
     "plugin": "index.js"

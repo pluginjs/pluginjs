@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.3",
+  "version": "0.6.4",
   "category": "core",
   "main": "dist/tween.umd.js",
   "module": "dist/tween.esm.js",
@@ -29,15 +29,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/easing": "^0.6.3",
-    "@pluginjs/is": "^0.6.3",
-    "@pluginjs/simple-emitter": "^0.6.3",
-    "@pluginjs/utils": "^0.6.3"
+    "@pluginjs/easing": "^0.6.4",
+    "@pluginjs/is": "^0.6.4",
+    "@pluginjs/simple-emitter": "^0.6.4",
+    "@pluginjs/utils": "^0.6.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.3",
+    "@pluginjs/cli": "^0.6.4",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
