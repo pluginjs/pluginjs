@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.2",
+  "version": "0.6.3",
   "category": "utils",
   "main": "dist/breakpoints.umd.js",
   "module": "dist/breakpoints.esm.js",
@@ -29,16 +29,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "^0.6.2",
-    "@pluginjs/factory": "^0.6.2",
-    "@pluginjs/is": "^0.6.2",
-    "@pluginjs/simple-emitter": "^0.6.2",
-    "@pluginjs/utils": "^0.6.2"
+    "@pluginjs/emitter": "^0.6.3",
+    "@pluginjs/factory": "^0.6.3",
+    "@pluginjs/is": "^0.6.3",
+    "@pluginjs/simple-emitter": "^0.6.3",
+    "@pluginjs/utils": "^0.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.2",
+    "@pluginjs/cli": "^0.6.3",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

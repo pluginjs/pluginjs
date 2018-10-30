@@ -3,15 +3,15 @@
   "name": "list-samples",
   "description": "Simple list example",
   "license": "GPL-3.0",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.6.2",
-    "@pluginjs/list": "^0.6.2"
+    "@pluginjs/dom": "^0.6.3",
+    "@pluginjs/list": "^0.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

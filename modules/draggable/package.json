@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.2",
+  "version": "0.6.3",
   "category": "ui",
   "main": "dist/draggable.umd.js",
   "module": "dist/draggable.esm.js",
@@ -32,17 +32,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.6.2",
-    "@pluginjs/component": "^0.6.2",
-    "@pluginjs/decorator": "^0.6.2",
-    "@pluginjs/events": "^0.6.2",
-    "@pluginjs/styled": "^0.6.2",
+    "@pluginjs/classes": "^0.6.3",
+    "@pluginjs/component": "^0.6.3",
+    "@pluginjs/decorator": "^0.6.3",
+    "@pluginjs/events": "^0.6.3",
+    "@pluginjs/styled": "^0.6.3",
     "hammerjs": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.2",
+    "@pluginjs/cli": "^0.6.3",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

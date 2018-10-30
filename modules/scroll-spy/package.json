@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.2",
+  "version": "0.6.3",
   "category": "scroll",
   "main": "dist/scroll-spy.umd.js",
   "module": "dist/scroll-spy.esm.js",
@@ -29,17 +29,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.6.2",
-    "@pluginjs/component": "^0.6.2",
-    "@pluginjs/decorator": "^0.6.2",
-    "@pluginjs/dom": "^0.6.2",
-    "@pluginjs/factory": "^0.6.2",
-    "@pluginjs/polyfills": "^0.6.2"
+    "@pluginjs/classes": "^0.6.3",
+    "@pluginjs/component": "^0.6.3",
+    "@pluginjs/decorator": "^0.6.3",
+    "@pluginjs/dom": "^0.6.3",
+    "@pluginjs/factory": "^0.6.3",
+    "@pluginjs/polyfills": "^0.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.2",
+    "@pluginjs/cli": "^0.6.3",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
