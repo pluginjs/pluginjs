@@ -209,6 +209,7 @@ $videoPicker-poster-with: 190px;
     position: relative;
     .#{$videoPicker}-local-url-add {
       color: $videoPicker-active-color;
+      cursor: pointer;
     }
     .#{$videoPicker}-local-url-delete {
       color: $videoPicker-poster-delete-color;
@@ -219,11 +220,7 @@ $videoPicker-poster-with: 190px;
      right: 5px;
      display: none !important;
     }
-    // .#{$videoPicker}-local-url-change-disabled,
-    // .#{$videoPicker}-local-url-delete-disabled  {
-    //   color: $gray-dark;
-    //   cursor: not-allowed;
-    // }
+
 
   }
   &-local-url-selected {
