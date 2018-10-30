@@ -131,13 +131,11 @@ export default class Trigger {
   }
 
   setState() {
-    // const that = this;
     this.$fillCount.textContent = this.instance.count
     if (this.instance.count > 0) {
-      // const $removeBtn = this.$triggerAction.find(`.${this.classes.FILLREMOVE}`);
       setStyle(
         'background-image',
-        `url(${this.instance.getImageByIndex(this.instance.count - 1)})`,
+        `url(${this.instance.getImageByIndex(0)})`,
         this.$fillImage
       )
       removeClass(this.classes.WRITE, this.instance.$wrap)

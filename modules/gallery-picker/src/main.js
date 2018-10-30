@@ -6,8 +6,6 @@ import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
-  setData,
-  getData,
   query,
   queryAll,
   find,
@@ -199,23 +197,6 @@ class GalleryPicker extends Component {
     }
   }
 
-  setState() {
-    // const that = this;
-    this.$fillCount.textContent = this.count
-    if (this.count > 0) {
-      // const $removeBtn = this.$triggerAction.find(`.${this.classes.FILLREMOVE}`);
-      setStyle(
-        'background-image',
-        `url(${this.getImageByIndex(this.count - 1)})`,
-        this.$fillImage
-      )
-      removeClass(this.classes.WRITE, this.$wrap)
-    } else {
-      setStyle('background-image', 'none', this.$fillImage)
-      addClass(this.classes.WRITE, this.$wrap)
-    }
-  }
-
   getImageByIndex(index) {
     if (index < this.value.length) {
       const item = this.value[index]
@@ -229,11 +210,10 @@ class GalleryPicker extends Component {
     const length = children(this.$items).length
 
     if (this.count >= length) {
-      // const indexOfParent = el => children(el).indexOf(el)
       for (let i = length; i <= this.count; i++) {
         const $item = this.addImage(this.value[i - 1])
-        insertAfter($item, this.$Add)
-        setData('index', this.count - i + 1, $item)
+        insertAfter($item, this.$items.children[i - 1])
+        $item.dataset.index = i
         PopDialog.of(
           query(
             `.${this.classes.ITEM}-change .${this.classes.ITEMREMOVE}`,
@@ -248,7 +228,7 @@ class GalleryPicker extends Component {
                 label: this.translate('delete'),
                 color: 'danger',
                 fn(resolve) {
-                  that.remove(getData('index', $item))
+                  that.remove($item.dataset.index)
                   resolve()
                 }
               }
@@ -386,7 +366,7 @@ class GalleryPicker extends Component {
   }
 
   remove(index) {
-    this.value.splice(index, 1)
+    this.value.splice(index - 1, 1)
     this.count -= 1
     const eq = curry((index, arr) => arr[index])
     compose(
@@ -394,6 +374,12 @@ class GalleryPicker extends Component {
       children,
       find(`.${this.classes.ITEMS}`)
     )(this.$panel).remove()
+
+    if (this.$items.children.length > 1) {
+      for (let i = 1; i <= this.value.length; i++) {
+        this.$items.children[i].dataset.index = i
+      }
+    }
     this.TRIGGER.setState()
   }
 
