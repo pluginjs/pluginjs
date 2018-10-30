@@ -7,7 +7,6 @@ A flexible modern date-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/datePicker/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

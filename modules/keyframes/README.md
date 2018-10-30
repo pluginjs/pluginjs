@@ -5,7 +5,6 @@
 `keyframes` is a utility JavaScript library for animation effect.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

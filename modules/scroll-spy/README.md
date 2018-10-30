@@ -7,7 +7,6 @@ A flexible modern scroll-spy js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/scrollSpy/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

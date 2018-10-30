@@ -5,7 +5,6 @@
 `color` is a utility for control color's value or status.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

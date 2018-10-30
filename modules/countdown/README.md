@@ -7,7 +7,6 @@ A flexible modern countdown js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/countdown/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

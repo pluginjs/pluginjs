@@ -7,7 +7,6 @@ A flexible modern units js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/units/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

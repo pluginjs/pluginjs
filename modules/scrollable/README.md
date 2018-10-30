@@ -7,7 +7,6 @@ A flexible modern scrollable js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/scrollable/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

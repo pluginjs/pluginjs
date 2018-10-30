@@ -7,7 +7,6 @@ A flexible modern range js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/range/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

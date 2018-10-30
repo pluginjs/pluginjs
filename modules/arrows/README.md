@@ -7,7 +7,6 @@ A flexible modern arrows js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/arrows/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

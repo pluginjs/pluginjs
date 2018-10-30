@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.1",
+  "version": "0.6.2",
   "category": "ui",
   "main": "dist/timeline.umd.js",
   "module": "dist/timeline.esm.js",
@@ -32,21 +32,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/arrows": "*",
-    "@pluginjs/breakpoints": "*",
-    "@pluginjs/classes": "*",
-    "@pluginjs/component": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/dom": "*",
-    "@pluginjs/events": "*",
-    "@pluginjs/is": "*",
-    "@pluginjs/styled": "*",
+    "@pluginjs/arrows": "^0.6.2",
+    "@pluginjs/breakpoints": "^0.6.2",
+    "@pluginjs/classes": "^0.6.2",
+    "@pluginjs/component": "^0.6.2",
+    "@pluginjs/decorator": "^0.6.2",
+    "@pluginjs/dom": "^0.6.2",
+    "@pluginjs/events": "^0.6.2",
+    "@pluginjs/is": "^0.6.2",
+    "@pluginjs/styled": "^0.6.2",
     "animejs": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.1",
+    "@pluginjs/cli": "^0.6.2",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

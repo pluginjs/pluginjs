@@ -5,7 +5,6 @@
 `events` is a utility JavaScript library for dom event interface.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

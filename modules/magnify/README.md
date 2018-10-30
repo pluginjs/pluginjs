@@ -7,7 +7,6 @@ A flexible modern magnify js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/magnify/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

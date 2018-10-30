@@ -7,7 +7,6 @@ A flexible modern swipe js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/swipe/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern bg-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/bgPicker/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

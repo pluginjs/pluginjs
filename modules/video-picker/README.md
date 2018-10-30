@@ -7,7 +7,6 @@ A flexible modern video-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/videoPicker/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

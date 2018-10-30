@@ -7,7 +7,6 @@ A flexible modern tabs js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/tabs/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

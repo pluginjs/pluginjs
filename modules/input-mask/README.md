@@ -7,7 +7,6 @@ A flexible modern input-mask js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/inputMask/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

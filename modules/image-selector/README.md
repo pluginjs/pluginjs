@@ -7,7 +7,6 @@ A flexible modern image-selector js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/image-selector/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

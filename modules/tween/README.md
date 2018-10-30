@@ -5,7 +5,6 @@
 `tween` is a utility JavaScript library for tween.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

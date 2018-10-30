@@ -7,7 +7,6 @@ A flexible modern slider js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/slider/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

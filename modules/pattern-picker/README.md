@@ -7,7 +7,6 @@ A flexible modern pattern-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/patternPicker/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

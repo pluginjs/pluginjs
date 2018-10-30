@@ -7,7 +7,6 @@ A flexible modern reveal js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/reveal/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern toggle js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/toggle/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

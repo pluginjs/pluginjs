@@ -7,7 +7,6 @@ A flexible modern cascader js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/cascader/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

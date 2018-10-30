@@ -7,7 +7,6 @@ A flexible modern svg-progress js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/svgProgress/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -5,7 +5,6 @@
 `simple-emitter` is a utility JavaScript library for event emitter.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

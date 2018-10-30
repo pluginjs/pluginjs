@@ -7,7 +7,6 @@ A flexible modern notice js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/notice/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

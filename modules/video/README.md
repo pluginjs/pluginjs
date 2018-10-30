@@ -7,7 +7,6 @@ A flexible modern video js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/video/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/breakpoints/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

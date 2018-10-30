@@ -5,7 +5,6 @@
 `dom` is a utility JavaScript library for control dom interfaces.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

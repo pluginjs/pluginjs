@@ -7,7 +7,6 @@ A flexible modern component js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/component/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

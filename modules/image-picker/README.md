@@ -7,7 +7,6 @@ A flexible modern image-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/imagePicker/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

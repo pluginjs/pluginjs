@@ -5,7 +5,6 @@
 `initializer` is a utility JavaScript library for initialize plugins.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

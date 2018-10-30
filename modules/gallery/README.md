@@ -7,7 +7,6 @@ A flexible modern gallery js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/gallery/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

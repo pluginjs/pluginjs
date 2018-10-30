@@ -5,7 +5,6 @@
 `fullscreen` is a utility JavaScript library for fullscreen.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

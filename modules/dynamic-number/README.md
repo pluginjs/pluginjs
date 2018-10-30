@@ -7,7 +7,6 @@ A flexible modern dynamic-number js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/dynamicNumber/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

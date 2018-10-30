@@ -7,7 +7,6 @@ A flexible modern item-list js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/itemList/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern adapt-text js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/adaptText/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

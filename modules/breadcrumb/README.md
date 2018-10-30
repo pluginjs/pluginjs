@@ -7,7 +7,6 @@ A flexible modern breadcrumb js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/breadcrumb/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

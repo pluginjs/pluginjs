@@ -7,7 +7,6 @@ A flexible modern dots js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/dots/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern nav-to-select js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/navToSelect/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

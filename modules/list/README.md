@@ -7,7 +7,6 @@ A flexible modern list js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/list/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

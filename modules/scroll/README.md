@@ -5,7 +5,6 @@
 `scroll` is a utility JavaScript library for scroll interface.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

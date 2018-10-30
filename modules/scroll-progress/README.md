@@ -7,7 +7,6 @@ A flexible modern scroll-progress js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/scrollProgress/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

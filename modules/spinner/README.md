@@ -7,7 +7,6 @@ A flexible modern spinner js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/spinner/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

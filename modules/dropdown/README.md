@@ -7,7 +7,6 @@ A flexible modern dropdown js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/dropdown/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -5,7 +5,6 @@
 `styled` is a utility JavaScript library for control dom inline-style.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern grids js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/grids/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

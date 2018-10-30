@@ -7,7 +7,6 @@ A flexible modern collapse js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/collapse/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

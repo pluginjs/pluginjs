@@ -7,7 +7,6 @@ A flexible modern pop-dialog js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/popDialog/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

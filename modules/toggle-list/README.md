@@ -7,7 +7,6 @@ A flexible modern toggle-list js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/toggleList/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

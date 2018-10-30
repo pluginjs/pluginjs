@@ -7,7 +7,6 @@ A flexible modern tag-list js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/tagList/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

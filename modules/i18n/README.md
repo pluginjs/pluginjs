@@ -5,7 +5,6 @@
 `i18n` is a utility JavaScript library for globalization.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern image-loader js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/imageLoader/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern toast js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/toast/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

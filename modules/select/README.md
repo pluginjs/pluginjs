@@ -7,7 +7,6 @@ A flexible modern select js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/select/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern gradient js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/gradient/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

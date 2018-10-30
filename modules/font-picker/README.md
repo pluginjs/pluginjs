@@ -7,7 +7,6 @@ A flexible modern font-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/font-picker/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

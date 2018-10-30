@@ -7,7 +7,6 @@ A flexible modern offset js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/offset/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

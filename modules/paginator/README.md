@@ -7,7 +7,6 @@ A flexible modern paginator js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/paginator/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

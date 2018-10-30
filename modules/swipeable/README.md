@@ -7,7 +7,6 @@ A flexible modern swipeable js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/swipeable/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -5,7 +5,6 @@
 `viewport` is a utility JavaScript library to control viewport.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

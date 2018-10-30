@@ -5,7 +5,6 @@
 `polyfills` is a utility JavaScript library for polyfills the browser.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

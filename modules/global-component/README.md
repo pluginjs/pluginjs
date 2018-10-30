@@ -5,7 +5,6 @@
 `global-component` is a utility JavaScript library for global pluginjs library.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

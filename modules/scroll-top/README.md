@@ -7,7 +7,6 @@ A flexible modern scroll-top js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/scrollTop/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

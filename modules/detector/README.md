@@ -5,7 +5,6 @@
 `detector` is a utility JavaScript library for detector.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

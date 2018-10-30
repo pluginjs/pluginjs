@@ -5,7 +5,6 @@
 `pluginjs` is a utility JavaScript library for pluginjs.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

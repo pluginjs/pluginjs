@@ -5,7 +5,6 @@
 `template` is a utility JavaScript library for html template parse.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

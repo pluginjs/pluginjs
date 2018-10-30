@@ -5,7 +5,6 @@
 `classes` is a utility JavaScript library for control class interfaces.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

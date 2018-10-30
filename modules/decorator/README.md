@@ -5,7 +5,6 @@
 `decorator` is a class decorator library for extend component class.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

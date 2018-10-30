@@ -7,7 +7,6 @@ A flexible modern wizard js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/wizard/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

@@ -7,7 +7,6 @@ A flexible modern gmap js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/gmap/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

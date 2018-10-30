@@ -7,7 +7,6 @@ A flexible modern parallax js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/parallax/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

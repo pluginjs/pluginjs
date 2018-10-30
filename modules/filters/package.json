@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.1",
+  "version": "0.6.2",
   "category": "ui",
   "main": "dist/filters.umd.js",
   "module": "dist/filters.esm.js",
@@ -36,22 +36,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.6.1",
-    "@pluginjs/component": "^0.6.1",
-    "@pluginjs/decorator": "^0.6.1",
-    "@pluginjs/dom": "^0.6.1",
-    "@pluginjs/dropdown": "^0.6.1",
-    "@pluginjs/events": "^0.6.1",
-    "@pluginjs/factory": "^0.6.1",
-    "@pluginjs/is": "^0.6.1",
-    "@pluginjs/styled": "^0.6.1",
-    "@pluginjs/template": "^0.6.1"
+    "@pluginjs/classes": "^0.6.2",
+    "@pluginjs/component": "^0.6.2",
+    "@pluginjs/decorator": "^0.6.2",
+    "@pluginjs/dom": "^0.6.2",
+    "@pluginjs/dropdown": "^0.6.2",
+    "@pluginjs/events": "^0.6.2",
+    "@pluginjs/factory": "^0.6.2",
+    "@pluginjs/is": "^0.6.2",
+    "@pluginjs/styled": "^0.6.2",
+    "@pluginjs/template": "^0.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.1.2",
-    "@pluginjs/cli": "^0.6.1",
+    "@pluginjs/cli": "^0.6.2",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

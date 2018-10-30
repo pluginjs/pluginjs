@@ -7,7 +7,6 @@ A flexible modern infinite js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/infinite/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

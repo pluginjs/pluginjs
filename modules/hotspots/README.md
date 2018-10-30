@@ -7,7 +7,6 @@ A flexible modern hotspots js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/hotspots/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

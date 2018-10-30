@@ -7,7 +7,6 @@ A flexible modern loader js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/loader/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

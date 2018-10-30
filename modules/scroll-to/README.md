@@ -7,7 +7,6 @@ A flexible modern scroll-to js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/scrollTo/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

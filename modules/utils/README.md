@@ -5,7 +5,6 @@
 `utils` is a utility JavaScript library.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

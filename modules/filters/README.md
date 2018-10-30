@@ -7,7 +7,6 @@ A flexible modern filters js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/filters/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

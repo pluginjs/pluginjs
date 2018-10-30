@@ -7,7 +7,6 @@ A flexible modern strength js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/strength/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

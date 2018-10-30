@@ -7,7 +7,6 @@ A flexible modern scroll-dir js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/scrolldir/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

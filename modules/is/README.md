@@ -5,7 +5,6 @@
 `is` is a utility JavaScript library for type check.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

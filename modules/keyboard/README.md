@@ -5,7 +5,6 @@
 `keyboard` is a utility JavaScript library for keyboard event.
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

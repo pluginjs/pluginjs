@@ -7,7 +7,6 @@ A flexible modern color-selector js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/colorSelector/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

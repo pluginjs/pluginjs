@@ -7,7 +7,6 @@ A flexible modern link-picker js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/linkPicker/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn

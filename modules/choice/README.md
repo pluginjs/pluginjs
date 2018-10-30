@@ -7,7 +7,6 @@ A flexible modern choice js plugin.
 **[Samples](https://codesandbox.io/s/github/pluginjs/pluginjs/tree/master/modules/choice/samples)**
 
 ## Introduction
-
 ### Installation
 
 #### Yarn
