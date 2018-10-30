@@ -6,8 +6,8 @@ import resolve from 'rollup-plugin-node-resolve'
 const external = pkg.dependencies ? Object.keys(pkg.dependencies) : []
 const globals = Object.assign(
   {},
-  pkg.globals,
-  external.reduce((r, i) => Object.assign(r, { [i]: i }), {})
+  external.reduce((r, i) => Object.assign(r, { [i]: i }), {}),
+  pkg.globals
 )
 const babelCallback = (options = {}) => {
   const presetEnvOptions = Object.assign(

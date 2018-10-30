@@ -42,8 +42,7 @@
     "@pluginjs/is": "^0.6.3",
     "@pluginjs/loader": "^0.6.3",
     "@pluginjs/styled": "^0.6.3",
-    "@pluginjs/template": "^0.6.3",
-    "hammerjs": "*"
+    "@pluginjs/template": "^0.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

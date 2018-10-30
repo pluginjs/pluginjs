@@ -82,8 +82,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "globals": {
-    "popper.js": "Popper"
-  }
+  ]
 }

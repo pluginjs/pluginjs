@@ -14,7 +14,6 @@
     "**/.babelrc",
     "**/.markdownrc",
     "**/.npmignore",
-    "**/.rolluprc.js",
     "**/.sassrc.js"
   ]
 }

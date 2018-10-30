@@ -8,24 +8,24 @@ const pkg =  require('../package.json')
 
 const files = [
   '@pluginjs/polyfills',
+  '@pluginjs/is',
   '@pluginjs/utils',
   '@pluginjs/simple-emitter',
   '@pluginjs/emitter',
   '@pluginjs/factory',
   '@pluginjs/component',
   '@pluginjs/global-component',
-  '@pluginjs/is',
   '@pluginjs/i18n',
+  '@pluginjs/dom',
+  '@pluginjs/events',
   '@pluginjs/decorator',
   '@pluginjs/easing',
   '@pluginjs/feature',
   '@pluginjs/template',
   '@pluginjs/keyboard',
-  '@pluginjs/viewport',
   '@pluginjs/classes',
-  '@pluginjs/dom',
-  '@pluginjs/events',
-  '@pluginjs/styled'
+  '@pluginjs/styled',
+  '@pluginjs/viewport'
 ].map(file => path.join(file, 'package.json')).map(file => {
   const pkg =  require(file)
   return path.join('../../node_modules',path.dirname(file), pkg.main)

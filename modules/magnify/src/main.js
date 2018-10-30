@@ -1,7 +1,6 @@
 import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
 import Breakpoints from '@pluginjs/breakpoints'
-// import Hammer from 'hammerjs'
 import {
   eventable,
   register,
