@@ -269,11 +269,6 @@ class Cascader extends Component {
       selected = this.selected
     }
 
-    // if (this.filter === true) {
-    //   selected = this.selected[0].value
-    //   return selected
-    // }
-
     return selected.map(item => item.value)
   }
 
@@ -391,6 +386,7 @@ class Cascader extends Component {
   }
 
   set(value, trigger = true, update = true) {
+    console.log(value)
     value = this.purifyValue(value)
     if (!arrayEqual(value, this.value)) {
       if (update) {

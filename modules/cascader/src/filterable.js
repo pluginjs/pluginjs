@@ -68,6 +68,7 @@ export default class Filterable {
       instance.selfEventName(EVENTS.SHOW),
       () => {
         const dataLabel = this.instance.value[0]
+        console.log(dataLabel)
         if (isArray(dataLabel)) {
           this.instance.set(this.instance.value[0])
         } else {
@@ -141,14 +142,16 @@ export default class Filterable {
     if (option.children) {
       option.children.forEach(item => {
         this.childArr = [].concat(this.filterValue)
-        this.filterData.label = `${label} / ${item.label}`
+        this.filterItem.label = `${label} / ${item.label}`
+        this.filterValue.push(item.value)
         this.childArr.push(item.value)
         this.hasChild(item, this.filterValue)
       })
     } else {
-      this.filterData.value = [].concat(this.childArr)
-      this.filterArr.push(this.filterData)
-      this.filterData = {}
+      console.log(this.childArr)
+      this.filterItem.value = [].concat(this.childArr)
+      this.filterArr.push(this.filterItem)
+      this.filterItem = {}
       return
     }
   }
@@ -158,18 +161,18 @@ export default class Filterable {
     let found = 0
     this.filterArr = []
     this.instance.data.forEach(option => {
-      this.filterData = {}
+      this.filterItem = {}
       this.filterValue = []
       if (filter(option, search)) {
         this.filterValue.push(option.value)
-        this.filterData.label = option.label
-        this.hasChild(option, this.filterData.label)
+        this.filterItem.label = option.label
+        this.hasChild(option, this.filterItem.label)
         found++
       } else if (option.children) {
         option.children.forEach(item => {
-          this.filterData.label = `${option.label} / ${item.label}`
+          this.filterItem.label = `${option.label} / ${item.label}`
           if (filter(item, search)) {
-            this.hasChild(item, this.filterData.label)
+            this.hasChild(item, this.filterItem.label)
             found++
           } else {
             this.showNotFound()
@@ -180,6 +183,7 @@ export default class Filterable {
       }
     })
     if (found) {
+      console.log(this.filterArr)
       this.hideNotFound()
     } else {
       this.showNotFound()
