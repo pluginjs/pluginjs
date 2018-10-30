@@ -112,6 +112,7 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
     width: 100%;
     height: 100%;
     .#{$bgPicker}-image-change,
+    .#{$bgPicker}-image-name,
     .#{$bgPicker}-image-remove {
       display: none;
     }
@@ -122,12 +123,27 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
         display: none;
       }
 
-       .#{$bgPicker}-image-change,
+       .#{$bgPicker}-image-name,
        .#{$bgPicker}-image-remove {
         display: inline-block;
         cursor: pointer;
       }
     }
+
+    .#{$bgPicker}-image-enter-change {
+      .#{$bgPicker}-image-change {
+        display: block;
+      }
+      .#{$bgPicker}-image-name {
+        display: none;
+      }
+    }
+    .#{$bgPicker}-image-changed-disabled {
+      .#{$bgPicker}-image-name {
+        pointer-events: none;
+      }
+    }
+
   }
 
   &-position,

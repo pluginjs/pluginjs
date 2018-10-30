@@ -58,6 +58,9 @@ $bgPicker-repeat-title-color: $gray-darkest;
 $bgPicker-repeat-content-color: $gray-lighter;
 
 $bgPicker-image-margin: 5.5px;
+$bgPicker-image-remove-right: 10px;
+$bgPicker-image-name-with: 198px;
+
 // Style
 // =====================
 .#{$bgPicker} {
@@ -127,23 +130,35 @@ $bgPicker-image-margin: 5.5px;
   &-image {
     .#{$bgPicker}-field-content {
       padding-left: $bgPicker-image-margin;
-      border: 0;
-    }
+     }
 
     .#{$bgPicker}-image-select {
+      color: $color-primary;
       cursor: pointer;
-    }
+     }
 
     .#{$bgPicker}-image-selected {
       .#{$bgPicker}-image-change {
         color: $color-primary;
-      }
+        cursor: pointer;
+        
+     }
 
       .#{$bgPicker}-image-remove {
-        margin-left: $bgPicker-image-margin;
+        position: absolute;
+        right: $bgPicker-image-remove-right;
         color: $color-danger-dark;
-      }
-    }
+     }
+
+      .#{$bgPicker}-image-name {
+        width: $bgPicker-image-name-with;
+        overflow: hidden;
+        color: $color-black !important;
+        text-overflow: ellipsis;
+        white-space: nowrap; 
+
+     }
+   }
     
     .#{$bgPicker}-selected-disabled {
       color: $gray-light !important;

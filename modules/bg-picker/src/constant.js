@@ -63,9 +63,12 @@ export const classes = {
   TRIGGER: '{namespace}-trigger',
   // image
   SELECTEDDISABLE: '{namespace}-selected-disabled',
+  IMAGECHANGEDDISABLE: '{namespace}-image-changed-disabled',
   IMAGESELECTED: '{namespace}-image-selected',
   IMAGESELECT: '{namespace}-image-select',
   IMAGECHANGE: '{namespace}-image-change',
+  IMAGENAME: '{namespace}-image-name',
+  IMAGEENTERCHANGE: '{namespace}-image-enter-change',
   IMAGEREMOVE: '{namespace}-image-remove'
 }
 
@@ -125,7 +128,8 @@ export const defaults = {
         '<div class="{classes.FIELDCONTENT} pj-input">' +
         '<span class="{classes.IMAGESELECT}">{selectImage}</span>' +
         '<span class="{classes.IMAGECHANGE}">{changeImage}</span>' +
-        '<span class="{classes.IMAGEREMOVE}">{removeImage}</span>' +
+        '<span class="{classes.IMAGENAME}"></span>' +
+        '<span class="{classes.IMAGEREMOVE} pj-icon pj-icon-close"></span>' +
         '</div>' +
         '</div>'
       )
@@ -241,7 +245,6 @@ export const translations = {
   en: {
     selectImage: 'Select Image',
     changeImage: 'Change Image',
-    removeImage: 'Remove Image',
     noRepeat: 'no repeat',
     repeat: 'repeat',
     repeatX: 'repeat-x',
@@ -268,7 +271,6 @@ export const translations = {
   zh: {
     selectImage: '选择图片',
     changeImage: '改变图片',
-    removeImage: '移除图片',
     noRepeat: '不重复',
     repeat: '重复',
     repeatX: 'x轴重复',

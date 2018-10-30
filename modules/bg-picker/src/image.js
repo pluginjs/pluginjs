@@ -20,8 +20,7 @@ export default class Image {
         ),
         image: this.instance.translate('image'),
         changeImage: this.instance.translate('changeImage'),
-        selectImage: this.instance.translate('selectImage'),
-        removeImage: this.instance.translate('removeImage')
+        selectImage: this.instance.translate('selectImage')
       }
     )
     this.$wrap = parseHTML(html)
@@ -42,20 +41,33 @@ export default class Image {
             this.instance.classes.SELECTEDDISABLE,
             query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
           )
+          this.instance.$imageName = query(
+            `.${this.instance.classes.IMAGENAME}`,
+            this.image
+          )
           this.instance.options.value.image = this.instance.options.image
+          this.instance.$imageName.innerHTML = this.instance.options.image
           this.instance.set(this.instance.options.value)
         }
       ),
       bindEvent(
         this.instance.eventName('click'),
+        `.${this.instance.classes.IMAGENAME}`,
+        () => {
+          addClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
+        }
+      ),
+      bindEvent(
+        this.instance.eventName('click'),
         `.${this.instance.classes.IMAGECHANGE}`,
-        e => {
+        () => {
           if (!this.instance.is('imageChange')) {
+            removeClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
             this.instance.options.onSelectImage.call(
               this.instance,
               this.instance.changeImage.bind(this.instance)
             )
-            addClass(this.instance.classes.SELECTEDDISABLE, e.target)
+            addClass(this.instance.classes.IMAGECHANGEDDISABLE, this.image)
             this.instance.set(this.instance.options.value)
           }
           this.instance.enter('imageChange')
@@ -65,6 +77,8 @@ export default class Image {
         this.instance.eventName('click'),
         `.${this.instance.classes.IMAGEREMOVE}`,
         () => {
+          removeClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
+          removeClass(this.instance.classes.IMAGECHANGEDDISABLE, this.image)
           this.removeImage()
           this.instance.leave('imageChange')
         }

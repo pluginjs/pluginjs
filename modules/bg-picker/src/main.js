@@ -179,17 +179,6 @@ class BgPicker extends Component {
       },
       this.$save
     )
-
-    // bindEvent(
-    //   this.eventName('click'),
-    //   () => {
-    //     if (this.is('disabled')) {
-    //       return
-    //     }
-    //     this.options.select.apply(this)
-    //   },
-    //   this.$image
-    // )
   }
 
   unbind() {
@@ -213,12 +202,11 @@ class BgPicker extends Component {
     this.$control = query(`.${this.classes.CONTROL}`, this.$dropdown)
     this.$cancel = query(`.${this.classes.CANCEL}`, this.$control)
     this.$save = query(`.${this.classes.SAVE}`, this.$control)
-    // this.$preview = query(`.${this.classes.PREVIEW}`, this.$dropdown)
-    // this.$image = query(`.${this.classes.IMAGE}`, this.$dropdown)
   }
 
   changeImage(url) {
     this.value.image = url
+    this.$imageName.innerHTML = this.value.image
   }
 
   update() {
