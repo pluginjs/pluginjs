@@ -8,7 +8,7 @@ module.exports = {
     'node_modules'
   ],
   output: [
-    { outputStyle: 'nested', file: pkg.css.min },
-    { outputStyle: 'compressed', file: pkg.css.main }
+    { outputStyle: 'nested', file: pkg.css.main },
+    { outputStyle: 'compressed', file: pkg.css.min }
   ]
 }

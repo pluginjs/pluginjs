@@ -5,5 +5,16 @@
   "useWorkspaces": true,
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "ignoreChanges": [
+  	"**/__mocks__/**",
+    "**/__tests__/**",
+    "**/node_modules/**",
+    "**/samples/**",
+    "**/.babelrc",
+    "**/.markdownrc",
+    "**/.npmignore",
+    "**/.rolluprc.js",
+    "**/.sassrc.js"
+  ]
 }
