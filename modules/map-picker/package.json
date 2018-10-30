@@ -45,6 +45,7 @@
     "@pluginjs/factory": "^0.6.4",
     "@pluginjs/gmap": "^0.6.4",
     "@pluginjs/is": "^0.6.4",
+    "@pluginjs/place-complete": "*",
     "@pluginjs/pop-dialog": "^0.6.4",
     "@pluginjs/template": "^0.6.4",
     "@pluginjs/utils": "^0.6.4"
@@ -75,5 +76,6 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8"
 }

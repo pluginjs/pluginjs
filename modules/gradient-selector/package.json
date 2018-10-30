@@ -41,13 +41,17 @@
     "@pluginjs/component": "^0.6.4",
     "@pluginjs/decorator": "^0.6.4",
     "@pluginjs/dom": "^0.6.4",
+    "@pluginjs/dropdown": "*",
     "@pluginjs/events": "^0.6.4",
     "@pluginjs/factory": "^0.6.4",
+    "@pluginjs/gradient-picker": "*",
     "@pluginjs/pop-dialog": "^0.6.4",
     "@pluginjs/range": "^0.6.4",
     "@pluginjs/scrollable": "^0.6.4",
     "@pluginjs/styled": "^0.6.4",
-    "@pluginjs/template": "^0.6.4"
+    "@pluginjs/template": "^0.6.4",
+    "@pluginjs/tooltip": "*",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -75,5 +79,6 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8"
 }

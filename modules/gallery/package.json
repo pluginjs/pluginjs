@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "media",
   "main": "dist/gallery.umd.js",
   "module": "dist/gallery.esm.js",
@@ -66,6 +66,7 @@
       "fixtures"
     ]
   },
+  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8",
   "globals": {
     "animejs": "anime"
   }
