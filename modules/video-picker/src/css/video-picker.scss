@@ -1,6 +1,5 @@
 @import "@pluginjs/styles/variables.scss";
 @import "@pluginjs/icons/variables.scss";
-@import "loadding";
 @import "video-picker.core";
 // Vars
 // =====================
@@ -175,15 +174,15 @@ $videoPicker-poster-with: 190px;
       display: none
     }
 
-    &-change {
+    &-name {
       width: $videoPicker-poster-with;
       overflow: hidden;
+      color: $color-black !important;
       text-overflow: ellipsis;
-      white-space: nowrap; 
+      white-space: nowrap;
     }
 
     &-selected {
-      // .#{$videoPicker}-local-url-delete,
       .#{$videoPicker}-poster-delete {
         color: $videoPicker-poster-delete-color;
 
@@ -192,7 +191,6 @@ $videoPicker-poster-with: 190px;
         }
       }
 
-      // .#{$videoPicker}-local-url-change,
       .#{$videoPicker}-local-url-delete,
       .#{$videoPicker}-poster-change,
       .#{$videoPicker}-poster-delete {
@@ -209,11 +207,9 @@ $videoPicker-poster-with: 190px;
   }
   &-local-url {
     position: relative;
-
-    // .#{$videoPicker}-local-url-change {
-    //   color: $color-primary;
-    // }
-
+    .#{$videoPicker}-local-url-add {
+      color: $videoPicker-active-color;
+    }
     .#{$videoPicker}-local-url-delete {
       color: $videoPicker-poster-delete-color;
     }
@@ -223,11 +219,11 @@ $videoPicker-poster-with: 190px;
      right: 5px;
      display: none !important;
     }
-    .#{$videoPicker}-local-url-change-disabled,
-    .#{$videoPicker}-local-url-delete-disabled  {
-      color: $gray-dark;
-      cursor: not-allowed;
-    }
+    // .#{$videoPicker}-local-url-change-disabled,
+    // .#{$videoPicker}-local-url-delete-disabled  {
+    //   color: $gray-dark;
+    //   cursor: not-allowed;
+    // }
 
   }
   &-local-url-selected {

@@ -46,6 +46,9 @@ export const classes = {
   POSTERSELECTED: '{namespace}-poster-selected',
   POSTERADD: '{namespace}-poster-add',
   POSTERCHANGE: '{namespace}-poster-change',
+  POSTERENTERCHANGE: '{namespace}-poster-enter-change',
+  POSTERCHANGEDISABLED: '{namespace}-poster-change-disabled',
+  POSTERNAME: '{namespace}-poster-name',
   POSTERDELETE: '{namespace}-poster-delete',
   WARNING: '{namespace}-warning',
   DROPDOWN: '{namespace}-dropdown',
@@ -63,8 +66,7 @@ export const classes = {
   MEDIUMSIZE: '{namespace}-preview-4-3',
   SMALLSIZE: '{namespace}-preview-3-2',
   SELECTTRIGGER: '{namespace}-select-trigger',
-  CHANGEDISABLE: '{namespace}-local-url-change-disabled',
-  DELDISABLE: '{namespace}-local-url-delete-disabled'
+  CHANGEDISABLE: '{namespace}-local-url-change-disabled'
 }
 
 export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']
@@ -104,7 +106,7 @@ export const defaults = {
       return `<div class='{classes.VIDEOACTION}'>
       <i class='pj-icon pj-icon-play-circle {classes.VIDEOBTN}'></i>
       <div class='{classes.VIDEOPOSTER}'></div>
-      <div class="{classes.VIDEOANIMATE} cp-spinner cp-round"></div></div>
+      <div class="{classes.VIDEOANIMATE}"></div></div>
      `
     },
     videoPreview() {

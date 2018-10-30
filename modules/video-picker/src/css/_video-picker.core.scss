@@ -177,6 +177,7 @@ $videoPicker-icon: $pj-icon-play-circle !default;
   &-local-url,
   &-poster {
     &-change,
+    &-name,
     &-content,
     &-delete {
       display: none;
@@ -194,7 +195,7 @@ $videoPicker-icon: $pj-icon-play-circle !default;
 
       .#{$videoPicker}-local-url-content,
       .#{$videoPicker}-local-url-delete,
-      .#{$videoPicker}-poster-change,
+      .#{$videoPicker}-poster-name,
       .#{$videoPicker}-poster-delete {
         display: inline-block !important;
       }
@@ -205,6 +206,22 @@ $videoPicker-icon: $pj-icon-play-circle !default;
         white-space: nowrap;
       }
     }
+   
+    &-enter-change {
+      .#{$videoPicker}-poster-change {
+        display: inline-block;
+      }
+      .#{$videoPicker}-poster-name {
+        display: none !important;
+      }
+    }
+
+    &-change-disabled {
+      .#{$videoPicker}-poster-name {
+        pointer-events: none
+      }
+    }
+
   }
 
   &-field {

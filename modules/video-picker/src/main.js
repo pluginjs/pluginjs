@@ -126,7 +126,7 @@ class VideoPicker extends Component {
     const localeAddVideo = this.translate('addVideo')
     const localePddPoster = this.translate('addPoster')
     // const localeChangeVideo = this.translate('changeVideo')
-    // const localeChangePoster = this.translate('changePoster')
+    const localeChangePoster = this.translate('changePoster')
 
     // create priview
     this.$preview = parseHTML(`<div class='${this.classes.PREVIEW}'></div>`)
@@ -183,6 +183,8 @@ class VideoPicker extends Component {
         this.classes.POSTERADD
       }'>${localePddPoster}</span><span class='${
         this.classes.POSTERCHANGE
+      }'>${localeChangePoster}</span><span class='${
+        this.classes.POSTERNAME
       }'></span><span class='${
         this.classes.POSTERDELETE
       } pj-icon pj-icon-close'></span></div></div>`
@@ -276,6 +278,7 @@ class VideoPicker extends Component {
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$preview)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$preview)
     this.$posterChange = query(`.${this.classes.POSTERCHANGE}`, this.$poster)
+    this.$posterName = query(`.${this.classes.POSTERNAME}`, this.$poster)
   }
 
   bind() {
@@ -284,10 +287,6 @@ class VideoPicker extends Component {
       bindEvent(this.eventName('click'), `.${this.classes.VIDEOACTION}`, () => {
         if (!this.is('loaded')) {
           this.loadVideo()
-          removeClass(
-            this.classes.DELDISABLE,
-            query(`.${this.classes.LOCALURLDELETE}`, this.$localUrl)
-          )
           return
         }
 
@@ -314,7 +313,6 @@ class VideoPicker extends Component {
             'placeholder',
             ''
           )
-
           this.data.url = this.$urlInput.value
           this.changeVideo()
           return false
@@ -326,12 +324,8 @@ class VideoPicker extends Component {
 
       // local video
       bindEvent(this.eventName('click'), `.${this.classes.LOCALURLADD}`, () => {
-        this.data.url = this.options.selectLocalVideo.call(this)
+        // this.data.url = this.options.selectLocalVideo.call(this)
         addClass(this.classes.LOCALURLSELECTED, this.$localUrl)
-        addClass(
-          this.classes.DELDISABLE,
-          query(`.${this.classes.LOCALURLDELETE}`, this.$localUrl)
-        )
         this.options.onSelectLocalVideo.call(
           this,
           this.selectLocalVideo.bind(this)
@@ -341,11 +335,8 @@ class VideoPicker extends Component {
         this.eventName('click'),
         `.${this.classes.LOCALURLDELETE}`,
         () => {
-          if (this.is('loaded')) {
-            removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
-            this.removeVideo()
-          }
-          this.leave('urlChange')
+          removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
+          this.removeVideo()
         }
       )
     )(this.$wrap)
@@ -354,20 +345,27 @@ class VideoPicker extends Component {
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.POSTERADD}`, () => {
         this.addPoster(this.options.selectCover.call(this))
-        this.$posterChange.innerHTML = this.data.poster
       }),
-      bindEvent(this.eventName('click'), `.${this.classes.POSTERCHANGE}`, e => {
-        if (!this.is('posterChange')) {
-          this.addPoster('https://picsum.photos/200/300?image=1015')
-          addClass(this.classes.CHANGEDISABLE, e.target)
+      bindEvent(this.eventName('click'), `.${this.classes.POSTERNAME}`, () => {
+        addClass(this.classes.POSTERENTERCHANGE, this.$poster)
+      }),
+      bindEvent(
+        this.eventName('click'),
+        `.${this.classes.POSTERCHANGE}`,
+        () => {
+          if (!this.is('posterChange')) {
+            removeClass(this.classes.POSTERENTERCHANGE, this.$poster)
+            this.addPoster('https://picsum.photos/200/300?image=1015')
+            addClass(this.classes.POSTERCHANGEDISABLED, this.$poster)
+          }
+          this.enter('posterChange')
         }
-        this.enter('posterChange')
-      }),
+      ),
       bindEvent(
         this.eventName('click'),
         `.${this.classes.POSTERDELETE}`,
         () => {
-          removeClass(this.classes.CHANGEDISABLE, this.$poster)
+          removeClass(this.classes.POSTERCHANGEDISABLED, this.$poster)
           this.deletePoster()
           this.leave('posterChange')
         }
@@ -394,6 +392,7 @@ class VideoPicker extends Component {
 
   addPoster(url) {
     this.data.poster = url
+    this.$posterName.innerHTML = this.data.poster
     addClass(this.classes.POSTERSELECTED, this.$poster)
 
     if (this.$videoPoster) {
@@ -410,6 +409,7 @@ class VideoPicker extends Component {
   deletePoster() {
     this.data.poster = ''
     removeClass(this.classes.POSTERSELECTED, this.$poster)
+    removeClass(this.classes.POSTERENTERCHANGE, this.$poster)
     setStyle('backgroundImage', 'none', this.$videoPoster)
   }
 
@@ -461,12 +461,12 @@ class VideoPicker extends Component {
   removeVideo() {
     this.data.poster = ''
     this.data.url = ''
-
     this.element.value = ''
     this.$urlInput.value = ''
-
     if (this.videoApi) {
-      this.videoApi.destroy()
+      if (this.videoApi.element) {
+        this.videoApi.destroy()
+      }
     }
 
     setStyle(
