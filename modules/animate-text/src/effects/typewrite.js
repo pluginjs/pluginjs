@@ -19,7 +19,15 @@ export default class Typewrite {
     this.chunk = Array(this.textArr.length + 1)
       .fill(1)
       .map((v, k) => k)
-    this.indexList = this.chunk.concat(this.chunk.slice().reverse())
+
+    const pauseArr = []
+    const maxLen = this.options.duration / 100
+
+    for (let i = 0; i < maxLen; i++) {
+      pauseArr.push(this.chunk[this.chunk.length - 1])
+    }
+
+    this.indexList = this.chunk.concat(pauseArr, this.chunk.slice().reverse())
   }
 
   build() {

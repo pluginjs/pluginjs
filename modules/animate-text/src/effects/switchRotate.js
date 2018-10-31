@@ -17,8 +17,7 @@ export default class SwitchRotate extends Switch {
       duration: this.totalDuration,
       easing: 'easeInOutQuart',
       begin: this.joinSyncAnimationGroup,
-      loop: this.options.loop || false,
-      delay: this.options.delay
+      loop: this.options.loop || false
     }
 
     const childrens = this.childrens.map(el => {
@@ -39,7 +38,6 @@ export default class SwitchRotate extends Switch {
         duration: this.childrensDuration,
         begin: this.joinSyncAnimationGroup,
         loop: this.options.loop || false,
-        delay: this.options.delay,
         complete: () => {
           this.childrens.forEach((el, index) => {
             Object.assign(el.style, this.childrensOriginStyle[index])
