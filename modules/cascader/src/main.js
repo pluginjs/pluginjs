@@ -386,7 +386,6 @@ class Cascader extends Component {
   }
 
   set(value, trigger = true, update = true) {
-    console.log(value)
     value = this.purifyValue(value)
     if (!arrayEqual(value, this.value)) {
       if (update) {
@@ -406,6 +405,9 @@ class Cascader extends Component {
       }
 
       this.value = value
+      if (this.filter) {
+        this.selected = this.selected.slice(0, 1)
+      }
       if (this.value.length > 0) {
         const labels = this.selected.map(option => {
           return this.options.optionLabel(option)

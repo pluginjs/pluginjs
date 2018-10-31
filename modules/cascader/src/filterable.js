@@ -23,31 +23,7 @@ export default class Filterable {
         if (!value) {
           this.showNotFound()
         } else {
-          this.filter(instance.$label.value)
-          if (!this.$result) {
-            this.$result = parseHTML(
-              instance.menuTemplate({
-                classes: this.instance.classes,
-                level: 0
-              })
-            )
-
-            DROPDOWN.$dropdown.appendChild(this.$result)
-          }
-          children(this.$result).map(item => item.remove())
-          this.filterArr.forEach(option => {
-            this.$resultOption = parseHTML(
-              instance.optionTemplate({
-                classes: this.instance.classes,
-                option
-              })
-            )
-            this.$resultOption.__option = option
-
-            option.__dom = this.$resultOption
-            this.$result.appendChild(this.$resultOption)
-            addClass('pj-cascader-result', this.$result)
-          })
+          this.buildRsult()
         }
 
         if (isNull(DROPDOWN.getHighlightedItem())) {
@@ -68,7 +44,6 @@ export default class Filterable {
       instance.selfEventName(EVENTS.SHOW),
       () => {
         const dataLabel = this.instance.value[0]
-        console.log(dataLabel)
         if (isArray(dataLabel)) {
           this.instance.set(this.instance.value[0])
         } else {
@@ -122,7 +97,7 @@ export default class Filterable {
       )
     }
     append(this.$notFound, this.instance.$dropdown)
-
+    addClass('pj-cascader-notfound', this.instance.$dropdown)
     this.notfound = true
   }
 
@@ -134,8 +109,36 @@ export default class Filterable {
     if (this.$notFound) {
       detach(this.$notFound)
     }
-
+    removeClass('pj-cascader-notfound', this.instance.$dropdown)
     this.notfound = false
+  }
+
+  buildRsult() {
+    this.filter(this.instance.$label.value)
+    if (!this.$result) {
+      this.$result = parseHTML(
+        this.instance.menuTemplate({
+          classes: this.instance.classes,
+          level: 0
+        })
+      )
+
+      this.instance.DROPDOWN.$dropdown.appendChild(this.$result)
+    }
+    children(this.$result).map(item => item.remove())
+    this.filterArr.forEach(option => {
+      this.$resultOption = parseHTML(
+        this.instance.optionTemplate({
+          classes: this.instance.classes,
+          option
+        })
+      )
+      this.$resultOption.__option = option
+
+      option.__dom = this.$resultOption
+      this.$result.appendChild(this.$resultOption)
+      addClass('pj-cascader-result', this.$result)
+    })
   }
 
   hasChild(option, label) {
@@ -143,14 +146,13 @@ export default class Filterable {
       option.children.forEach(item => {
         this.childArr = [].concat(this.filterValue)
         this.filterItem.label = `${label} / ${item.label}`
-        this.filterValue.push(item.value)
         this.childArr.push(item.value)
         this.hasChild(item, this.filterValue)
       })
     } else {
-      console.log(this.childArr)
-      this.filterItem.value = [].concat(this.childArr)
+      this.filterItem.value = this.childArr
       this.filterArr.push(this.filterItem)
+      this.childArr = []
       this.filterItem = {}
       return
     }
@@ -162,16 +164,17 @@ export default class Filterable {
     this.filterArr = []
     this.instance.data.forEach(option => {
       this.filterItem = {}
-      this.filterValue = []
+      this.filterValue = [option.value]
       if (filter(option, search)) {
-        this.filterValue.push(option.value)
         this.filterItem.label = option.label
         this.hasChild(option, this.filterItem.label)
         found++
       } else if (option.children) {
         option.children.forEach(item => {
           this.filterItem.label = `${option.label} / ${item.label}`
+          this.childArr = [].concat(this.filterValue)
           if (filter(item, search)) {
+            this.childArr.push(item.value)
             this.hasChild(item, this.filterItem.label)
             found++
           } else {
@@ -183,7 +186,7 @@ export default class Filterable {
       }
     })
     if (found) {
-      console.log(this.filterArr)
+      console.log(this.filterItem)
       this.hideNotFound()
     } else {
       this.showNotFound()

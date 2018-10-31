@@ -51,17 +51,23 @@ $cascader-clear-right: 11px !default;
     }
   }
 
-  &-result {
+  .#{$cascader}-result {
     display: none;
   }
 
   &-input {
     .#{$cascader}-menu {
       display: none;
+    }
 
-      &:last-child {
-        display: block;
-      }
+    .#{$cascader}-result {
+      display: block;
+    }
+  }
+
+  &-notfound {
+    .#{$cascader}-result {
+      display: none;
     }
   }
 
