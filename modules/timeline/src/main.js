@@ -211,6 +211,7 @@ class Timeline extends Component {
 
   enable() {
     if (this.is('disabled')) {
+      removeClass(this.classes.DISABLED, this.element)
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -218,6 +219,7 @@ class Timeline extends Component {
 
   disable() {
     if (!this.is('disabled')) {
+      addClass(this.classes.DISABLED, this.element)
       this.enter('disabled')
     }
 
@@ -226,11 +228,7 @@ class Timeline extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      this.unbind()
-
-      if (this.options.theme) {
-        removeClass(this.getThemeClass(), this.element)
-      }
+      this.$arrows.destroy()
       this.leave('initialized')
     }
 

@@ -17,7 +17,8 @@ export const classes = {
   CONTENT: '{namespace}-content',
   BUTTON: '{namespace}-button',
   PREV: '{namespace}-button-prev',
-  NEXT: '{namespace}-button-next'
+  NEXT: '{namespace}-button-next',
+  DISABLED: '{namespace}-disabled'
 }
 
 export const methods = ['enable', 'disable', 'destroy']

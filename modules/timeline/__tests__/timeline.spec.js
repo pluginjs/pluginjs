@@ -57,4 +57,84 @@ describe('Timeline', () => {
       expect(instance.is('initialized')).toBeTrue()
     })
   })
+
+  describe('destroy()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Timeline.of($element)
+    })
+
+    test('should trigger destroy event', () => {
+      let called = 0
+
+      $element.addEventListener('timeline:destroy', () => {
+        expect(api.is('initialized')).toBeFalse()
+        called++
+      })
+
+      api.destroy()
+
+      expect(called).toEqual(1)
+    })
+  })
+
+  describe('enable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Timeline.of($element)
+    })
+
+    test('should enable the plugin', () => {
+      api.disable()
+      api.enable()
+
+      expect(api.is('disabled')).toBeFalse()
+    })
+
+    test('should trigger enable event', () => {
+      let called = 0
+
+      $element.addEventListener('timeline:enable', () => {
+        expect(api.is('disabled')).toBeFalse()
+        called++
+      })
+
+      api.enable()
+      expect(called).toEqual(1)
+    })
+  })
+
+  describe('disable()', () => {
+    let $element
+    let api
+
+    beforeEach(() => {
+      $element = generateHTMLSample()
+      api = Timeline.of($element)
+    })
+
+    test('should disable the plugin', () => {
+      api.disable()
+
+      expect(api.is('disabled')).toBeTrue()
+    })
+
+    test('should trigger disable event', () => {
+      let called = 0
+
+      $element.addEventListener('timeline:disable', () => {
+        expect(api.is('disabled')).toBeTrue()
+        called++
+      })
+
+      api.disable()
+      expect(called).toEqual(1)
+    })
+  })
 })
