@@ -51,7 +51,7 @@ function initializePlugin(name, element, options = {}) {
 }
 
 export default {
-  of(selector, attrKey = 'data-plugin') {
+  of(selector, attrKey = 'data-plugin', options = {}) {
     let elements = []
 
     if (typeof selector === 'string') {
@@ -68,7 +68,7 @@ export default {
     }
 
     if (elements.length > 0) {
-      elements.map(el => initializePlugin(attr(attrKey, el), el))
+      elements.map(el => initializePlugin(attr(attrKey, el), el, options))
     }
   },
 
