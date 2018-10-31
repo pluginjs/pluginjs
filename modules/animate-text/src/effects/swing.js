@@ -2,7 +2,7 @@ import anime from 'animejs'
 import { setStyle } from '@pluginjs/styled'
 import { text } from '@pluginjs/dom'
 
-class Swing {
+export default class Swing {
   constructor(instance) {
     this.instance = instance
     this.options = this.instance.options
@@ -35,5 +35,3 @@ class Swing {
       .add({})
   }
 }
-
-export default Swing

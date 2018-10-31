@@ -1,7 +1,7 @@
 import anime from 'animejs'
 import { text } from '@pluginjs/dom'
 
-class Zoom {
+export default class Zoom {
   constructor(instance) {
     this.instance = instance
     this.options = this.instance.options
@@ -34,5 +34,3 @@ class Zoom {
       .add({})
   }
 }
-
-export default Zoom

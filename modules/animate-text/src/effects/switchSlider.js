@@ -1,8 +1,7 @@
 import Switch from './switch'
-
 import anime from 'animejs'
 
-class SwitchSlider extends Switch {
+export default class SwitchSlider extends Switch {
   constructor(instance) {
     super(instance)
     this.setupAnime()
@@ -53,5 +52,3 @@ class SwitchSlider extends Switch {
     })
   }
 }
-
-export default SwitchSlider

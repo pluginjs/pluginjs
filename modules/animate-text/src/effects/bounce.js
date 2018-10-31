@@ -1,7 +1,7 @@
 import anime from 'animejs'
 import { text } from '@pluginjs/dom'
 
-class Bounce {
+export default class Bounce {
   constructor(instance) {
     this.instance = instance
     this.options = this.instance.options
@@ -33,5 +33,3 @@ class Bounce {
       .add({})
   }
 }
-
-export default Bounce

@@ -1,7 +1,7 @@
 import { setStyle } from '@pluginjs/styled'
-import SyncAnimation from './sync-animation'
+import SyncAnimation from './syncAnimation'
 
-class Switch {
+export default class Switch {
   constructor(instance) {
     this.instance = instance
     this.options = this.instance.options
@@ -56,5 +56,3 @@ class Switch {
     })
   }
 }
-
-export default Switch

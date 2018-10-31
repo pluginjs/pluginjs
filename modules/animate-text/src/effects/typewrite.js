@@ -2,7 +2,7 @@ import anime from 'animejs'
 import { text, append } from '@pluginjs/dom'
 import { addClass } from '@pluginjs/classes'
 
-class Typewrite {
+export default class Typewrite {
   constructor(instance) {
     this.instance = instance
     this.options = this.instance.options
@@ -62,5 +62,3 @@ class Typewrite {
       .add({})
   }
 }
-
-export default Typewrite

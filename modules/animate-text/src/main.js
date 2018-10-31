@@ -19,19 +19,7 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
-import fade from './effects/fade'
-import fadeDown from './effects/fadeDown'
-import fadeUp from './effects/fadeUp'
-import fadeLeft from './effects/fadeLeft'
-import fadeRight from './effects/fadeRight'
-import zoom from './effects/zoom'
-import bounce from './effects/bounce'
-import swing from './effects/swing'
-import typewrite from './effects/typewrite'
-import switchSlider from './effects/switchSlider'
-import switchFade from './effects/switchFade'
-import switchRotate from './effects/switchRotate'
-import switchPush from './effects/switchPush'
+import effects from './effects/index'
 
 const EFFECTS = {}
 
@@ -72,23 +60,23 @@ class AnimateText extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  splitWord(str, splitChar = true) {
+  splitWord(str, splitChar = false) {
     const words = str.split(' ')
     words.forEach((word, index, array) => {
-      const chars = word.split('')
-      const newWord = document.createElement('span')
-      addClass(this.classes.WORD, newWord)
-
-      if (splitChar) {
+      if (!splitChar) {
+        const newWord = document.createElement('span')
+        text(word, newWord)
+        addClass(this.classes.WORD, newWord)
+        append(newWord, this.element)
+      } else {
+        const chars = word.split('')
         chars.forEach(char => {
           const newChar = document.createElement('span')
           text(char, newChar)
           addClass(this.classes.CHAR, newChar)
-          append(newChar, newWord)
+          append(newChar, this.element)
         })
       }
-
-      append(newWord, this.element)
 
       if (index < array.length - 1) {
         const space = document.createElement('span')
@@ -117,11 +105,6 @@ class AnimateText extends Component {
       text(alt, span)
       append(span, this.element)
     })
-  }
-
-  render(dom) {
-    this.element.textContent = ''
-    this.element.append(dom)
   }
 
   bind() {
@@ -163,18 +146,8 @@ class AnimateText extends Component {
   }
 }
 
-AnimateText.registerEffect('fade', fade)
-AnimateText.registerEffect('fadeDown', fadeDown)
-AnimateText.registerEffect('fadeUp', fadeUp)
-AnimateText.registerEffect('fadeLeft', fadeLeft)
-AnimateText.registerEffect('fadeRight', fadeRight)
-AnimateText.registerEffect('zoom', zoom)
-AnimateText.registerEffect('bounce', bounce)
-AnimateText.registerEffect('swing', swing)
-AnimateText.registerEffect('typewrite', typewrite)
-AnimateText.registerEffect('switchSlider', switchSlider)
-AnimateText.registerEffect('switchFade', switchFade)
-AnimateText.registerEffect('switchRotate', switchRotate)
-AnimateText.registerEffect('switchPush', switchPush)
+Object.keys(effects).forEach(effect => {
+  AnimateText.registerEffect(effect, effects[effect])
+})
 
 export default AnimateText

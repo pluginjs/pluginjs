@@ -1,7 +1,7 @@
 import anime from 'animejs'
 import { text } from '@pluginjs/dom'
 
-class Fade {
+export default class Fade {
   constructor(instance) {
     this.instance = instance
     this.options = this.instance.options
@@ -34,5 +34,3 @@ class Fade {
       .add({})
   }
 }
-
-export default Fade
