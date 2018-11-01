@@ -44,7 +44,6 @@ export default class Position {
       })
     }
     this.values.forEach((value, key) => {
-      // this.$items[key].dataset.position = value
       setData('position', value, this.$items[key])
     })
 
@@ -90,7 +89,6 @@ export default class Position {
         }
         const value = getData('position', el)
         this.set(value)
-        // that.instance.update();
         return false
       },
       this.$wrap

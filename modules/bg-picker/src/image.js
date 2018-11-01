@@ -45,9 +45,11 @@ export default class Image {
             `.${this.instance.classes.IMAGENAME}`,
             this.image
           )
-          this.instance.options.value.image = this.instance.options.image
-          this.instance.$imageName.innerHTML = this.instance.options.image
-          this.instance.set(this.instance.options.value)
+          this.instance.options.onSelectImage.call(
+            this.instance,
+            this.instance.changeImage.bind(this.instance)
+          )
+          this.instance.set(this.instance.value)
         }
       ),
       bindEvent(
@@ -63,12 +65,12 @@ export default class Image {
         () => {
           if (!this.instance.is('imageChange')) {
             removeClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
-            this.instance.options.onSelectImage.call(
+            this.instance.options.onChangeImage.call(
               this.instance,
               this.instance.changeImage.bind(this.instance)
             )
             addClass(this.instance.classes.IMAGECHANGEDDISABLE, this.image)
-            this.instance.set(this.instance.options.value)
+            this.instance.set(this.instance.value)
           }
           this.instance.enter('imageChange')
         }
@@ -89,8 +91,8 @@ export default class Image {
     const disabled = query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
     removeClass(this.instance.classes.SELECTEDDISABLE, disabled)
     removeClass(this.instance.classes.IMAGESELECTED, this.image)
-    this.instance.options.value.image = ''
+    this.instance.value.image = ''
     this.instance.element.value = ''
-    this.instance.set(this.instance.options.value)
+    this.instance.set(this.instance.value)
   }
 }

@@ -1,4 +1,3 @@
-import { query } from '@pluginjs/dom'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { showElement, setStyle } from '@pluginjs/styled'
 
@@ -7,13 +6,6 @@ export default class Preview {
     this.instance = instance
     this.classes = this.instance.classes
     this.value = instance.options.value
-
-    this.initialize()
-  }
-
-  initialize() {
-    this.$image = query(`.${this.classes.IMAGE}`, this.instance.$dropdown)
-    this.set(this.value.image)
   }
 
   set(image) {

@@ -3,13 +3,10 @@ import BgPicker from '@pluginjs/bg-picker'
 
 const element = query('#format .example-format')
 BgPicker.of(element, {
-  // process() {
-  //   return ''
-  // },
-  // parse() {
-  //   return {}
-  // }
-  onSelectImage: resolve => {
-    resolve('https://picsum.photos/200/300')
+  onChangeImage: selectImage => {
+    selectImage('https://picsum.photos/200/300?image=1068')
+  },
+  onSelectImage: selectImage => {
+    selectImage('https://picsum.photos/200/300')
   }
 })

@@ -46,7 +46,12 @@ class BgPicker extends Component {
 
     this.setupOptions(options)
     this.setupClasses()
-
+    this.value = {}
+    this.value.repeat = ''
+    this.value.position = ''
+    this.value.attachment = ''
+    this.value.image = ''
+    this.value.thumbnail = ''
     addClass(this.classes.INPUT, this.element)
     this.setupI18n()
     this.setupStates()
@@ -60,20 +65,19 @@ class BgPicker extends Component {
       addClass(this.getThemeClass(), this.$wrap)
     }
 
-    this.value = this.options.value
-    this.set(this.value, false)
-
-    // init
-    if (!this.value.image) {
-      addClass(this.classes.WRITE, this.$wrap)
-    }
-
     this.SIZE = new Size(this)
     this.ATTACHMENT = new Attachment(this)
     this.POSITION = new Position(this)
     this.REPEAT = new Repeat(this)
     this.PREVIEW = new Preview(this)
     this.IMAGE = new Image(this)
+
+    this.value = this.element.value
+    this.val(this.value, false)
+    // init
+    if (!this.value.image) {
+      addClass(this.classes.WRITE, this.$wrap)
+    }
 
     addClass(this.classes.EXIST, this.$wrap)
 
@@ -165,7 +169,6 @@ class BgPicker extends Component {
         if (this.is('disbaled')) {
           return null
         }
-
         this.update()
         if (hasClass(this.classes.SHOW, this.$wrap)) {
           removeClass(
@@ -175,6 +178,7 @@ class BgPicker extends Component {
         }
         this.DROPDOWN.hide()
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
+        removeClass(this.classes.WRITE, this.$wrap)
         return false
       },
       this.$save
@@ -212,16 +216,15 @@ class BgPicker extends Component {
   update() {
     const value = this.val()
     this.element.value = value
-    this.trigger(EVENTS.CHANGE, value)
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.value)
     }
     const valueObj = this.options.parse.call(this, value)
     if (valueObj) {
-      this.set(valueObj)
+      this.set(valueObj, true, trigger)
     } else {
       this.clear()
     }
@@ -229,7 +232,7 @@ class BgPicker extends Component {
     return null
   }
 
-  set(value, update) {
+  set(value, update, trigger = true) {
     this.value = value
     if (update !== false) {
       if (typeof value.image !== 'undefined') {
@@ -257,8 +260,10 @@ class BgPicker extends Component {
       } else {
         this.ATTACHMENT.clear()
       }
-
       this.update()
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, value)
+      }
     }
   }
 
@@ -267,6 +272,7 @@ class BgPicker extends Component {
     this.$imageSelected = query(`.${this.classes.IMAGESELECTED}`, this.$wrap)
     removeClass(this.classes.EXIST, this.$wrap)
     removeClass(this.classes.IMAGESELECTED, this.$imageSelected)
+    removeClass(this.classes.IMAGECHANGEDDISABLE, this.$imageSelected)
     if (update !== false) {
       const image = ''
       this.PREVIEW.set(image)
