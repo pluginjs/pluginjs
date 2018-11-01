@@ -1,6 +1,6 @@
 # Styles
 
-[![npm package](https://img.shields.io/npm/v/@pluginjs/styled.svg)](https://www.npmjs.com/package/@pluginjs/styled)
+[![npm package](https://img.shields.io/npm/v/@pluginjs/styles.svg)](https://www.npmjs.com/package/@pluginjs/styles)
 
 `styles` is a css library for common style generated.
 

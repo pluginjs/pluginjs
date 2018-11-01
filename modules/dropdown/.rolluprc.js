@@ -8,8 +8,6 @@ const globals = Object.assign(
   external.reduce((r, i) => Object.assign(r, { [i]: i }), {}),
   pkg.globals
 )
-console.info(external)
-console.info(globals)
 const babelCallback = (options = {}) => {
   const presetEnvOptions = Object.assign(
     { modules: false },
