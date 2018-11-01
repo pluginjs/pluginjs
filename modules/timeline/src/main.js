@@ -79,13 +79,8 @@ class Timeline extends Component {
         this.$list
       )
       this.$itemAll.forEach(item => {
-        setStyle(
-          'width',
-          `${this.width / Number(this.options.visibleItems)}px`,
-          item
-        )
+        setStyle('width', `${this.itemWidth}px`, item)
       })
-      this.buildArrows()
     } else {
       setStyle(
         {
@@ -99,6 +94,8 @@ class Timeline extends Component {
         setStyle('width', '50%', item)
       })
     }
+
+    this.buildArrows()
   }
 
   buildArrows() {
@@ -177,12 +174,21 @@ class Timeline extends Component {
   move() {
     const distance = this.itemWidth * this.currentIndex
 
-    setStyle(
-      {
-        transform: `translate3d(-${distance}px, 0px, 0px)`
-      },
-      this.$list
-    )
+    if (hasClass(this.classes.HORIZONTAL, this.element)) {
+      setStyle(
+        {
+          transform: `translate3d(-${distance}px, 0px, 0px)`
+        },
+        this.$list
+      )
+    } else {
+      setStyle(
+        {
+          transform: 'none'
+        },
+        this.$list
+      )
+    }
 
     if (!this.options.loop) {
       if (this.currentIndex === 0) {
@@ -206,7 +212,45 @@ class Timeline extends Component {
     this.height = getHeight(this.element)
     this.itemWidth = this.width / Number(this.options.visibleItems)
 
-    this.init()
+    if (hasClass(this.classes.HORIZONTAL, this.element)) {
+      setStyle(
+        {
+          width: `${this.itemWidth * this.$itemAll.length}px`,
+          height: `${this.height}px`
+        },
+        this.$list
+      )
+      this.$itemAll.forEach(item => {
+        setStyle('width', `${this.itemWidth}px`, item)
+      })
+      setStyle(
+        {
+          top: `${(this.height - this.$arrows.$next.clientHeight) / 2}px`,
+          position: 'absolute'
+        },
+        this.$arrows.$next
+      )
+      setStyle(
+        {
+          top: `${(this.height - this.$arrows.$prev.clientHeight) / 2}px`,
+          position: 'absolute'
+        },
+        this.$arrows.$prev
+      )
+    } else {
+      setStyle(
+        {
+          width: 'auto',
+          height: 'auto',
+          transform: 'none'
+        },
+        this.$list
+      )
+      this.$itemAll.forEach(item => {
+        setStyle('width', '50%', item)
+      })
+    }
+    this.move()
   }
 
   enable() {

@@ -79,7 +79,7 @@ class Loader extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      this.unbind()
+      // this.unbind()
 
       if (this.options.text) {
         this.$text.remove()

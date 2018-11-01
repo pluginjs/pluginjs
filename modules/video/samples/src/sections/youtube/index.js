@@ -11,7 +11,7 @@ let instance = Video.of(element, {
 let trigger = true
 const instances = {
   load() {
-    if (!instance.plugin) {
+    if (!instance.element) {
       instance = Video.of(element, {
         type: 'youtube',
         id: 'YE7VzlLtp-4'
@@ -32,8 +32,8 @@ const instances = {
     console.log('volume:', val)
     instance.volume(val)
   },
-  swichVideo() {
-    instance.swichVideo('V55ZtRHAXRM')
+  switchVideo() {
+    instance.switchVideo('V55ZtRHAXRM')
   },
   currentTime() {
     console.log('currentTime:', instance.currentTime())

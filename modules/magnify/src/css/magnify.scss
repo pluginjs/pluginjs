@@ -112,4 +112,10 @@ $magnify-outside-lens-border-radius: $magnify-border-radius;
   &-toggle:not(.#{$magnify}-has-lens).#{$magnify}-show .#{$magnify}-zoom {
     cursor: zoom-out;
   }
+
+  &-disabled {
+    .#{$magnify}-target {
+      display: none;
+    }
+  }
 }

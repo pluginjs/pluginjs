@@ -12,7 +12,7 @@ let instance = Video.of(element, {
 let trigger = true
 const instances = {
   load() {
-    if (!instance.plugin) {
+    if (!instance.element) {
       instance = Video.of(element, {
         type: 'html5',
         url: 'http://vjs.zencdn.net/v/oceans.mp4'
@@ -33,8 +33,8 @@ const instances = {
     console.log('volume:', val)
     instance.volume(val)
   },
-  swichVideo() {
-    instance.swichVideo(
+  switchVideo() {
+    instance.switchVideo(
       'http://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4'
     )
   },

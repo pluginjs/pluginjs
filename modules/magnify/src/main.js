@@ -364,7 +364,7 @@ class Magnify extends Component {
     this.large = large
     this.initDimension()
     this.zoom = this.options.zoom
-    this.$targetImage.remove()
+    // this.$targetImage.remove()
     this.$targetImage = null
     if (this.$lensImage) {
       this.$lensImage.remove()
