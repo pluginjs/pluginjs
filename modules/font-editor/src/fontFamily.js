@@ -32,7 +32,6 @@ export default class FontFamily {
 
     this.FONTPICKER = FontPicker.of(this.element, {
       ...options,
-      value: JSON.stringify(this.instance.value.fontFamily),
       keyboard: true,
       clearable: false,
       onChange: value => {

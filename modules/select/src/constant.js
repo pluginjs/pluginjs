@@ -55,7 +55,6 @@ export const methods = [
 export const defaults = {
   theme: null,
   source: null,
-  value: null,
   placeholder: true,
   filterable: false,
   filter(option, query) {

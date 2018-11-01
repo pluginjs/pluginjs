@@ -26,8 +26,10 @@ export default class Target {
       `.${this.instance.classes.SELECTTRIGGER}`,
       this.$content
     )
+
+    this.element.value = this.instance.value.target
     this.SELECT = Select.of(this.element, {
-      value: this.instance.value.target,
+      // value: this.instance.value.target,
       source: this.instance.options.targetValue,
       keyboard: true,
       onChange: value => {

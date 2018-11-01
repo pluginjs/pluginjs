@@ -52,14 +52,17 @@ class Hex {
          <div class="${this.classes.HEXUNIT}">%</div>
        </div>`
     )
+    console.log(this.classify)
     const $selector = parseHTML(
-      `<div class='${this.classes.HEXMODE}'><input type="text" /></div>`
+      `<div class='${this.classes.HEXMODE}'><input type="text" value="${
+        this.data[0].value
+      }" /></div>`
     )
     this.element.append($selector, this.$opac)
 
     this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
     this.SELECT = Select.of(this.$el, {
-      value: this.classify,
+      // value: this.classify,
       source: this.data,
       classes: {
         TRIGGER: '{namespace}-trigger pj-input pj-input-sm'
@@ -76,7 +79,7 @@ class Hex {
       (e, el, color) => {
         this.color = color
         query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
-        this.updateColor(this.SELECT.options.value, color)
+        this.updateColor(this.SELECT.element.value, color)
       },
       this.instance.element
     )
@@ -101,6 +104,7 @@ class Hex {
   }
 
   updateColor(val, color) {
+    console.log(val, color)
     if (val.indexOf('HSL') > -1) {
       this.mode = color.toHSL().toUpperCase()
     } else if (val.indexOf('RGB') > -1) {

@@ -130,7 +130,6 @@ export const defaults = {
       }
     }
   ],
-  value: null,
   placeholder: true,
   clearable: true,
   manage: null,

@@ -89,13 +89,6 @@ describe('Cascader', () => {
     })
   })
 
-  describe('api call', () => {
-    test('should not call bind', () => {
-      const $element = Cascader.of(generateHTMLSample())
-      expect($element.bind()).toBeNil()
-    })
-  })
-
   describe('initialized()', () => {
     let $element
 

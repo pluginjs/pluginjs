@@ -80,18 +80,19 @@ class MapPicker extends Component {
     const inputVal = this.element.value.trim()
     if (inputVal !== '') {
       this.data = this.options.parse(inputVal)
-    } else {
-      if (this.options.latlng.lat && this.options.latlng.lng) {
-        this.data = {
-          lat: parseFloat(this.options.latlng.lat),
-          lng: parseFloat(this.options.latlng.lng)
-        }
-      }
-
-      if (this.options.place) {
-        this.data.place = this.options.place
-      }
     }
+    // else {
+    //   if (this.options.latlng.lat && this.options.latlng.lng) {
+    //     this.data = {
+    //       lat: parseFloat(this.options.latlng.lat),
+    //       lng: parseFloat(this.options.latlng.lng)
+    //     }
+    //   }
+
+    //   if (this.options.place) {
+    //     this.data.place = this.options.place
+    //   }
+    // }
   }
 
   build() {
@@ -129,6 +130,7 @@ class MapPicker extends Component {
         if (!this.DROPDOWN.is('builded')) {
           this.buildDropdown()
         }
+        this.DROPDOWN.update()
       },
       onHide: () => {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
@@ -414,7 +416,6 @@ class MapPicker extends Component {
   }
 
   update(trigger = true) {
-    console.log(this.data.place)
     this.TRIGGER.$fillName.textContent = this.data.place
     if (this.hasLatlng()) {
       const latitude = `${this.translate('latitude')}:${this.data.lat.toFixed(

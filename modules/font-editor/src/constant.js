@@ -76,7 +76,7 @@ export const defaults = {
   localeFallbacks: true,
   disabled: false,
   fontFamily: {
-    value: '',
+    value: { source: 'system', font: 'Arial' },
     template() {
       return (
         '<div class="{field}">' +

@@ -68,7 +68,11 @@ class Gradient {
       `<i class='pj-icon pj-icon-trash ${this.classes.GRADIENTREMOVE}'></i>`
     )
     const $selector = parseHTML(
-      `<div class='${this.classes.GRADIENTMODE}'><div><span></span><div/></div>`
+      `<div class='${
+        this.classes.GRADIENTMODE
+      }'><div><input type='text' value='${this.mode.replace(/^.?/g, match =>
+        match.toUpperCase()
+      )}' />><div/></div>`
     )
 
     this.element.append(
@@ -85,7 +89,7 @@ class Gradient {
       this.element
     )
     this.SELECT = Select.of(this.$selector, {
-      value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
+      // value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
       width: parent(this.$selector),
       source: [
         { label: 'Linear', value: 'Linear' },

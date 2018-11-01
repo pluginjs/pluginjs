@@ -57,7 +57,6 @@ export const methods = [
 export const defaults = {
   theme: null,
   source: null,
-  value: null,
   placeholder: true,
   clearable: true,
   manage: null,

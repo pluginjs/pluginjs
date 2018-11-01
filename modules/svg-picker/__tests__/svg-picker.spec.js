@@ -177,7 +177,7 @@ describe('SvgPicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeNil()
 
       api.set(data)
       expect(api.get()).toEqual(data)

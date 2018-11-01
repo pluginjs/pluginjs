@@ -15,11 +15,6 @@ import {
   wrap
 } from '@pluginjs/dom'
 import { setStyle, hideElement } from '@pluginjs/styled' // , getStyle
-// import { Color } from '@pluginjs/color'
-// import Scrollable from '@pluginjs/scrollable'
-// import Range from '@pluginjs/range'
-// import ColorSelector from '@pluginjs/color-selector'
-
 import GradientPicker from '@pluginjs/gradient-picker'
 import Dropdown from '@pluginjs/dropdown'
 import Trigger from './trigger'

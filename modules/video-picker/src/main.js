@@ -137,8 +137,8 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('videoSource')}</span><div class='${
         this.classes.SOURCE
-      }'><input type='text' class='${
-        this.classes.SELECTTRIGGER
+      }'><input type='text' class='${this.classes.SELECTTRIGGER}' value='${
+        sourceData[0].label
       }' /></div></div>`
     )
     this.$sourceTrigger = query(`.${this.classes.SELECTTRIGGER}`, this.$source)
@@ -170,7 +170,9 @@ class VideoPicker extends Component {
         this.classes.FIELDTITLE
       }'>${this.translate('aspectRatio')}</span><div class="${
         this.classes.RATIO
-      }"><input type='text' class='${this.classes.SELECTTRIGGER}'></div></div>`
+      }"><input type='text' class='${this.classes.SELECTTRIGGER}' value='${
+        ratioData[0].label
+      }'></div></div>`
     )
     this.$ratio = query(`.${this.classes.RATIO}`, this.$ratioContent)
     this.$ratioTrigger = query(`.${this.classes.SELECTTRIGGER}`, this.$ratio)
@@ -240,7 +242,6 @@ class VideoPicker extends Component {
     this.$sourceSelect = Select.of(this.$sourceTrigger, {
       source: sourceData,
       keyboard: true,
-      value: sourceData[0].label,
       onChange: value => {
         this.data.source = value
         if (value === 'Local File') {
@@ -265,7 +266,6 @@ class VideoPicker extends Component {
     this.$ratioSelect = Select.of(this.$ratioTrigger, {
       source: ratioData,
       keyboard: true,
-      value: ratioData[0].label,
       onChange: value => {
         this.data.ratio = value
         this.changeRatio(value)

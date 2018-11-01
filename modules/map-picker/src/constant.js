@@ -50,8 +50,8 @@ export const defaults = {
   localeFallbacks: true,
   icon: 'pj-icon pj-icon-map-pin',
   disabled: false,
-  place: null, // set place, priority the coord
-  latlng: {}, // {lat: xxx, lng: xxx}
+  // place: null, // set place, priority the coord
+  // latlng: {}, // {lat: xxx, lng: xxx}
   showLatlng: true,
   gmapOptions: {
     // gmap plugin options

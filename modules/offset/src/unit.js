@@ -15,8 +15,9 @@ class Unit {
       `.${this.instance.classes.SELECTUNIT}`,
       this.instance.$wrap
     )
+
+    this.instance.$unit.value = this.instance.options.source[0].value
     this.SELECT = Select.of(this.instance.$unit, {
-      value: this.instance.options.source[0].value,
       source: this.instance.options.source,
       keyboard: true,
       onChange: () => {

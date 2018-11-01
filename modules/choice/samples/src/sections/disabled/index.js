@@ -3,7 +3,6 @@ import Choice from '@pluginjs/choice'
 
 const element = query('#disabled .blank')
 Choice.of(element, {
-  value: 'default',
   data: {
     on: {
       label: 'on'

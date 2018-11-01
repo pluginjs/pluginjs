@@ -16,7 +16,7 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import { isNull, isUndefined } from '@pluginjs/is'
+import { isNull } from '@pluginjs/is'
 import Clearable from './clearable'
 import Filterable from './filterable'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -72,10 +72,7 @@ class TimePicker extends Component {
 
     this.value = null
 
-    let value = this.element.value
-    if (value === '' || isUndefined(value)) {
-      value = this.options.value
-    }
+    const value = this.element.value
     if (value) {
       this.select(value, false)
     }

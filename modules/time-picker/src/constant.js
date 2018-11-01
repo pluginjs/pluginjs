@@ -43,7 +43,6 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  value: null,
   placeholder: 'Select Time',
   keyboard: true,
   clearable: false,

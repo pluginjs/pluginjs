@@ -415,8 +415,11 @@ class GradientPicker extends Component {
     this.$view = query(`.${this.classes.BARVIEW}`, this.$handle)
     this.$selector = query(`.${this.classes.MODE}>input`, this.$handle)
 
+    this.$selector.value = this.mode.replace(/^.?/g, match =>
+      match.toUpperCase()
+    )
     this.SELECT = Select.of(this.$selector, {
-      value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
+      // value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
       classes: {
         TRIGGER: '{namespace}-trigger pj-input pj-input-sm'
       },

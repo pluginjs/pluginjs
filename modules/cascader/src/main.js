@@ -215,10 +215,6 @@ class Cascader extends Component {
     let value = this.getValueFromElement()
     if (isEmpty(value)) {
       value = this.getValueFromData()
-
-      if (isEmpty(value)) {
-        value = this.options.value
-      }
     }
 
     if (!isEmpty(value)) {

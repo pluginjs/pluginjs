@@ -61,7 +61,6 @@ export const defaults = {
   minChars: 0,
   limit: 20,
   source: null,
-  value: null,
   placeholder: null,
   keyboard: true,
   clearable: true,

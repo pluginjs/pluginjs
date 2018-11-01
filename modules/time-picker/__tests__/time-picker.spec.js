@@ -223,7 +223,7 @@ describe('TimePicker', () => {
         }
       })
 
-      expect(called).toBeTrue()
+      expect(called).toBeFalse()
     })
 
     it('should fired when change the value', () => {
@@ -269,7 +269,7 @@ describe('TimePicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.get()).toBeString()
+      expect(api.get()).toBeNil()
     })
   })
 
@@ -283,7 +283,7 @@ describe('TimePicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeString()
+      expect(api.get()).toBeNil()
 
       api.set('00:00')
       expect(api.get()).toBeString('00:00')
@@ -300,7 +300,7 @@ describe('TimePicker', () => {
     })
 
     test('should get the value', () => {
-      expect(api.val()).toBeString()
+      expect(api.val()).toBeNil()
     })
 
     test('should set the value', () => {

@@ -3,7 +3,6 @@ import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
 const options = {
-  value: 'default',
   data: {
     on: {
       label: 'on'

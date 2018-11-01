@@ -65,10 +65,6 @@ class AutoComplete extends Component {
     this.data = []
     this.items = []
 
-    if (this.element.value === '' && this.options.value) {
-      this.element.value = this.options.value
-    }
-
     attr(
       {
         autocomplete: 'off',
@@ -96,7 +92,9 @@ class AutoComplete extends Component {
       addClass(this.getThemeClass(), this.$wrap)
     }
 
-    this.set(this.element.value, false)
+    if (this.element.value !== '') {
+      this.set(this.element.value, false)
+    }
 
     this.initData()
 

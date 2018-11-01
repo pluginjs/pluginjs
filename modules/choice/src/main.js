@@ -92,7 +92,7 @@ class Choice extends Component {
     this.options = deepMerge(DEFAULTS, options, override)
     this.setupClasses()
     this.data = this.options.data
-    this.value = this.options.value
+    this.value = getData('value', this.$element) || this.options.value
     this.setupStates()
     this.initialize()
   }

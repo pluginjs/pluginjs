@@ -218,7 +218,7 @@ class FontPicker extends Component {
       return
     }
 
-    const value = this.element.value || this.options.value
+    const value = this.element.value
 
     if (!isEmpty(value)) {
       this.set(this.options.parse.call(this, value), false)

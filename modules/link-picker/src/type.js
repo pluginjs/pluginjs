@@ -26,8 +26,9 @@ export default class Type {
       `.${this.instance.classes.SELECTTRIGGER}`,
       this.$content
     )
+
+    this.element.value = this.instance.value.type
     this.SELECT = Select.of(this.element, {
-      value: this.instance.value.type,
       source: this.instance.options.source,
       keyboard: true,
       onChange: value => {

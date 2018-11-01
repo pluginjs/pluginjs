@@ -32,6 +32,7 @@ export default class FontWeight {
   }
 
   initSelect() {
+    this.element.value = this.instance.value.fontWeight
     this.SELECT = Select.of(this.element, {
       keyboard: true,
       source: resolve => {
@@ -41,7 +42,7 @@ export default class FontWeight {
         })
         resolve(data)
       },
-      value: this.instance.value.fontWeight,
+      // value: this.instance.value.fontWeight,
       onChange: value => {
         if (this.instance.is('disabled')) {
           return
