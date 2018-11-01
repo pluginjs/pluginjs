@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "scroll",
   "main": "dist/scroll-top.umd.js",
   "module": "dist/scroll-top.esm.js",
@@ -45,7 +45,7 @@
     "@pluginjs/global-component": "^0.6.4",
     "@pluginjs/is": "^0.6.4",
     "@pluginjs/polyfills": "^0.6.4",
-    "@pluginjs/scroll": "^0.6.4",
+    "@pluginjs/scroll": "^0.6.5",
     "@pluginjs/styled": "^0.6.4",
     "@pluginjs/template": "^0.6.4",
     "@pluginjs/utils": "^0.6.4"

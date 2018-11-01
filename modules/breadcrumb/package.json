@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "ui",
   "main": "dist/breadcrumb.umd.js",
   "module": "dist/breadcrumb.esm.js",
@@ -40,7 +40,7 @@
     "@pluginjs/component": "^0.6.4",
     "@pluginjs/decorator": "^0.6.4",
     "@pluginjs/dom": "^0.6.4",
-    "@pluginjs/dropdown": "^0.6.4",
+    "@pluginjs/dropdown": "^0.6.5",
     "@pluginjs/factory": "^0.6.4",
     "@pluginjs/styled": "^0.6.4",
     "@pluginjs/template": "^0.6.4",

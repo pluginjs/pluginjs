@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "scroll",
   "main": "dist/headroom.umd.js",
   "module": "dist/headroom.esm.js",
@@ -41,7 +41,7 @@
     "@pluginjs/decorator": "^0.6.4",
     "@pluginjs/dom": "^0.6.4",
     "@pluginjs/factory": "^0.6.4",
-    "@pluginjs/scroll-dir": "^0.6.4"
+    "@pluginjs/scroll-dir": "^0.6.5"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

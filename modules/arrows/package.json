@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "ui",
   "main": "dist/arrows.umd.js",
   "module": "dist/arrows.esm.js",
@@ -43,7 +43,7 @@
     "@pluginjs/events": "^0.6.4",
     "@pluginjs/factory": "^0.6.4",
     "@pluginjs/is": "^0.6.4",
-    "@pluginjs/styles": "^0.6.3",
+    "@pluginjs/styles": "^0.6.4",
     "@pluginjs/template": "^0.6.4",
     "@pluginjs/utils": "^0.6.4"
   },

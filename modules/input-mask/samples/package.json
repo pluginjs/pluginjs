@@ -3,7 +3,7 @@
   "name": "input-mask-samples",
   "description": "Simple input-mask example",
   "license": "GPL-3.0",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -13,7 +13,7 @@
     "@pluginjs/dom": "^0.6.4",
     "@pluginjs/icons": "^0.6.3",
     "@pluginjs/input-mask": "^0.6.4",
-    "@pluginjs/styles": "^0.6.3"
+    "@pluginjs/styles": "^0.6.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

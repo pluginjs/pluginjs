@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "form",
   "main": "dist/gradient-picker.umd.js",
   "module": "dist/gradient-picker.esm.js",
@@ -33,16 +33,16 @@
   },
   "dependencies": {
     "@pluginjs/classes": "^0.6.4",
-    "@pluginjs/color-picker": "^0.6.4",
+    "@pluginjs/color-picker": "^0.6.5",
     "@pluginjs/component": "^0.6.4",
     "@pluginjs/decorator": "^0.6.4",
     "@pluginjs/dom": "^0.6.4",
-    "@pluginjs/dropdown": "^0.6.4",
+    "@pluginjs/dropdown": "^0.6.5",
     "@pluginjs/events": "^0.6.4",
     "@pluginjs/gradient": "^0.6.4",
     "@pluginjs/is": "^0.6.4",
     "@pluginjs/keyboard": "^0.6.4",
-    "@pluginjs/select": "^0.6.4",
+    "@pluginjs/select": "^0.6.5",
     "@pluginjs/styled": "^0.6.4",
     "@pluginjs/template": "^0.6.4",
     "@pluginjs/utils": "^0.6.4"

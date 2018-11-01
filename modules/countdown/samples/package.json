@@ -3,14 +3,14 @@
   "name": "countdown-samples",
   "description": "Simple countdown example",
   "license": "GPL-3.0",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/countdown": "^0.6.4",
+    "@pluginjs/countdown": "^0.6.5",
     "@pluginjs/dom": "^0.6.4"
   },
   "devDependencies": {

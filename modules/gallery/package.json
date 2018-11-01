@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.6",
+  "version": "0.6.7",
   "category": "media",
   "main": "dist/gallery.umd.js",
   "module": "dist/gallery.esm.js",
@@ -40,9 +40,9 @@
     "@pluginjs/factory": "^0.6.4",
     "@pluginjs/slider": "^4.1.1",
     "@pluginjs/styled": "^0.6.4",
-    "@pluginjs/styles": "^0.6.3",
+    "@pluginjs/styles": "^0.6.4",
     "@pluginjs/template": "^0.6.4",
-    "@pluginjs/thumbnails": "^0.6.4",
+    "@pluginjs/thumbnails": "^0.6.5",
     "@pluginjs/utils": "^0.6.4",
     "animejs": "*"
   },

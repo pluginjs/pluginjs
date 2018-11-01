@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "ui",
   "main": "dist/dropdown.umd.js",
   "module": "dist/dropdown.esm.js",

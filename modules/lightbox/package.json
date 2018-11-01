@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "media",
   "main": "dist/lightbox.umd.js",
   "module": "dist/lightbox.esm.js",
@@ -49,7 +49,7 @@
     "@pluginjs/slider": "^4.1.1",
     "@pluginjs/styled": "^0.6.4",
     "@pluginjs/template": "^0.6.4",
-    "@pluginjs/thumbnails": "^0.6.4",
+    "@pluginjs/thumbnails": "^0.6.5",
     "@pluginjs/utils": "^0.6.4",
     "@pluginjs/video": "^0.6.4"
   },

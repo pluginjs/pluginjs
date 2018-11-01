@@ -3,7 +3,7 @@
   "name": "timeline-samples",
   "description": "Simple timeline example",
   "license": "GPL-3.0",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.6.4",
-    "@pluginjs/timeline": "^0.6.5"
+    "@pluginjs/timeline": "^0.6.6"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
