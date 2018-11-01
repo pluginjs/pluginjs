@@ -59,8 +59,7 @@ class ImagePicker extends Component {
     this.bind()
 
     // set initialed value
-    this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
-
+    this.value = this.options.parse(this.element.value)
     this.setState('write')
     this.set(this.value, false)
 
@@ -73,7 +72,6 @@ class ImagePicker extends Component {
   }
 
   bind() {
-    // this.$empty.on(this.eventName('click'), (e) => {
     bindEvent(
       this.eventName('click'),
       () => {
@@ -81,7 +79,7 @@ class ImagePicker extends Component {
           return null
         }
         const $fill = this.$empty.nextElementSibling
-        const val = this.options.select.call(this)
+        const val = this.options.select.call(this, this.set.bind(this))
         if (!val) {
           return false
         }
@@ -101,7 +99,7 @@ class ImagePicker extends Component {
         if (this.is('disabled')) {
           return null
         }
-        this.options.select.call(this)
+        this.options.select.call(this, this.set.bind(this))
         return false
       },
       this.$reselect
@@ -171,11 +169,6 @@ class ImagePicker extends Component {
               removeClass(`${that.classes.FADEOUT}`, $fill)
               that.clear()
             }, 300)
-            // that.$remove.closest(`.${that.classes.FILL}`).fadeOut(100, () => {
-            //   that.clear();
-            //   that.$remove.fadeIn();
-            // });
-
             resolve()
           }
         }
@@ -230,9 +223,8 @@ class ImagePicker extends Component {
       return
     }
     this.value = value
-    this.$image.setAttribute('src', value.image)
+    this.$image.setAttribute('src', value)
     this.setState('exist')
-
     if (update !== false) {
       this.update()
     }

@@ -2,18 +2,16 @@ import ImagePicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-const data = {
-  locale: 'en',
-  select() {
-    this.set({
-      image: '../../plugins/image-picker/images/nvnv.png'
-    })
-  }
-}
-const string = '{"image":"https://picsum.photos/200/300?image=1041"}'
-const array = {
-  image: 'https://picsum.photos/200/300?image=1041'
-}
+// const data = {
+//   locale: 'en',
+//   select() {
+//     this.set({
+//       image: '../../plugins/image-picker/images/nvnv.png'
+//     })
+//   }
+// }
+const string = 'https://picsum.photos/200/300?image=1041'
+
 describe('ImagePicker', () => {
   describe('ImagePicker()', () => {
     test('should have ImagePicker', () => {
@@ -39,14 +37,14 @@ describe('ImagePicker', () => {
 
   describe('constructor()', () => {
     test('should work with element', () => {
-      const imagePicker = ImagePicker.of(generateHTMLSample(), data)
+      const imagePicker = ImagePicker.of(generateHTMLSample())
 
       expect(imagePicker).toBeObject()
       // expect(imagePicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {
-      const imagePicker = ImagePicker.of(generateHTMLSample(), data)
+      const imagePicker = ImagePicker.of(generateHTMLSample())
 
       expect(imagePicker.options).toBeObject()
     })
@@ -55,7 +53,7 @@ describe('ImagePicker', () => {
   describe('jquery constructor', () => {
     test('should works with jquery fn', () => {
       const $element = generateHTMLSample()
-      const api = ImagePicker.of($element, data)
+      const api = ImagePicker.of($element)
 
       expect(api).toEqual(api)
       expect(api).toBeObject()
@@ -65,12 +63,12 @@ describe('ImagePicker', () => {
 
   describe('api call', () => {
     test('should not call bind', () => {
-      const $element = ImagePicker.of(generateHTMLSample(), data)
+      const $element = ImagePicker.of(generateHTMLSample())
       expect($element.bind()).toBeNil()
     })
 
     test('should call destroy', () => {
-      const $element = ImagePicker.of(generateHTMLSample(), data)
+      const $element = ImagePicker.of(generateHTMLSample())
       $element.destroy()
     })
   })
@@ -89,7 +87,7 @@ describe('ImagePicker', () => {
         called++
       })
 
-      const api = ImagePicker.of($element, data)
+      const api = ImagePicker.of($element)
       expect(called).toEqual(1)
       expect(api.is('initialized')).toBeTrue()
     })
@@ -101,7 +99,7 @@ describe('ImagePicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImagePicker.of($element, data)
+      api = ImagePicker.of($element)
     })
 
     test('should trigger destroy event', () => {
@@ -137,7 +135,7 @@ describe('ImagePicker', () => {
       api = ImagePicker.of($element, {
         onChange(value) {
           called = true
-          expect(value).toBeObject()
+          expect(value).toBeString()
         }
       })
       api.val(string)
@@ -149,10 +147,10 @@ describe('ImagePicker', () => {
       api = ImagePicker.of($element, {
         onChange(value) {
           called = true
-          expect(value).toBeObject()
+          expect(value).toBeString()
         }
       })
-      api.set(array)
+      api.set(string)
       expect(called).toBeTrue()
     })
   })
@@ -165,13 +163,13 @@ describe('ImagePicker', () => {
       $element = generateHTMLSample()
       api = ImagePicker.of($element)
 
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
     })
 
     test('should get the value with string', () => {
       $element = generateHTMLSample(string)
       api = ImagePicker.of($element)
-      expect(api.get()).toEqual(array)
+      expect(api.get()).toEqual(string)
     })
   })
 
@@ -185,10 +183,10 @@ describe('ImagePicker', () => {
     })
 
     test('should set the value', () => {
-      expect(api.get()).toBeObject()
+      expect(api.get()).toBeString()
 
-      api.set(array)
-      expect(api.get()).toBeObject(array)
+      api.set(string)
+      expect(api.get()).toEqual(string)
     })
   })
 
@@ -205,14 +203,14 @@ describe('ImagePicker', () => {
       $element = generateHTMLSample(string)
       api = ImagePicker.of($element)
 
-      expect(api.val()).toBeString(string)
+      expect(api.val()).toEqual(string)
     })
 
     it('should set the value with string', () => {
       api.val(string)
 
       expect(api.val()).toBe(string)
-      expect(api.get()).toEqual(array)
+      expect(api.get()).toEqual(string)
     })
   })
 
@@ -222,7 +220,7 @@ describe('ImagePicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImagePicker.of($element, data)
+      api = ImagePicker.of($element)
     })
 
     test('should enable the plugin', () => {
@@ -251,7 +249,7 @@ describe('ImagePicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImagePicker.of($element, data)
+      api = ImagePicker.of($element)
     })
 
     test('should disable the plugin', () => {
@@ -279,7 +277,7 @@ describe('ImagePicker', () => {
 
     beforeEach(() => {
       $element = generateHTMLSample()
-      api = ImagePicker.of($element, data)
+      api = ImagePicker.of($element)
     })
 
     test('should have I18N', () => {

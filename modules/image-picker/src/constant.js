@@ -1,5 +1,3 @@
-import { isString } from '@pluginjs/is'
-
 export const namespace = 'imagePicker'
 
 export const events = {
@@ -60,20 +58,10 @@ export const defaults = {
     )
   },
   process(value) {
-    if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value)
-    }
-    return ''
+    return value
   },
   parse(value) {
-    if (value && isString(value)) {
-      try {
-        return JSON.parse(value)
-      } catch (e) {
-        return null
-      }
-    }
-    return null
+    return value
   },
   onChange() {}, // eslint-disable-line no-empty-function
   select() {
