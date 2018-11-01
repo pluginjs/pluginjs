@@ -13,6 +13,7 @@ export const methods = ['destroy', 'getCurrHref', 'enable', 'disable']
 export const defaults = {
   selector: 'a',
   activeClass: 'active',
+  container: null,
   threshold: 0, //  to be considered upon calculation
   hrefFrom: 'href',
   cloestActive: '',

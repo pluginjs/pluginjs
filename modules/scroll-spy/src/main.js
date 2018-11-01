@@ -39,6 +39,7 @@ class ScrollSpy extends Component {
         })
       },
       {
+        root: query(this.options.container),
         rootMargin: `-${this.menuHeight}px 0px -${this.scrollItems[0]
           .offsetHeight - this.menuHeight}px 0px`
       }
@@ -89,6 +90,8 @@ class ScrollSpy extends Component {
 
       if (attr(this.options.hrefFrom, item) === `#${id}`) {
         addClass(activeClass, activeElement)
+        this.activeElement = activeElement
+        this.activeTarget = query(`#${id}`)
         this.trigger(EVENTS.CHANGE, `#${id}`)
       }
     })
@@ -114,6 +117,13 @@ class ScrollSpy extends Component {
 
   getCurrHref() {
     return this.lastId
+  }
+
+  getActive() {
+    return {
+      nav: this.activeElement,
+      target: this.activeTarget
+    }
   }
 
   enable() {
