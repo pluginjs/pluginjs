@@ -6,7 +6,7 @@ import hyperform from 'hyperform'
 const element = query('#validator .example')
 const wizard = Wizard.of(element, {
   onInit() {
-    hyperform(window)
+    hyperform(query('#validator #validation'))
     hyperform.addValidator(query('[name="username"]'), element => {
       let message
       let valid
@@ -32,7 +32,7 @@ const wizard = Wizard.of(element, {
   },
   validator() {
     const isValid = hyperform.ValidityState(
-      query('.pj-input', wizard.current().pane)
+      query('#validator .pj-input', wizard.current().pane)
     ).valid
     if (isValid === false) {
       return false
