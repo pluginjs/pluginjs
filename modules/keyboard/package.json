@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.4",
+  "version": "0.6.5",
   "category": "core",
   "main": "dist/keyboard.common.js",
   "module": "dist/keyboard.esm.js",
@@ -29,14 +29,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.6.4",
-    "@pluginjs/simple-emitter": "^0.6.4",
-    "@pluginjs/utils": "^0.6.4"
+    "@pluginjs/dom": "^0.6.5",
+    "@pluginjs/simple-emitter": "^0.6.5",
+    "@pluginjs/utils": "^0.6.5"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.4",
+    "@pluginjs/cli": "^0.6.5",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

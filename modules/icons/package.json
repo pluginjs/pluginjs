@@ -7,7 +7,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.3",
+  "version": "0.6.4",
   "category": "css",
   "main": "dist/plugin-icons.css",
   "scripts": {

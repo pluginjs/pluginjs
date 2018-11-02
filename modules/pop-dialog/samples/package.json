@@ -3,15 +3,15 @@
   "name": "pop-dialog-samples",
   "description": "Simple pop-dialog example",
   "license": "GPL-3.0",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.6.4",
-    "@pluginjs/pop-dialog": "^0.6.4"
+    "@pluginjs/dom": "^0.6.5",
+    "@pluginjs/pop-dialog": "^0.6.5"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
