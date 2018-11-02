@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.5",
+  "version": "0.6.6",
   "category": "form",
   "main": "dist/cascader.umd.js",
   "module": "dist/cascader.esm.js",

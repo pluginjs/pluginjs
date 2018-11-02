@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.5",
+  "version": "0.6.6",
   "category": "form",
   "main": "dist/link-picker.umd.js",
   "module": "dist/link-picker.esm.js",
@@ -36,7 +36,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/cascader": "^0.6.5",
+    "@pluginjs/cascader": "^0.6.6",
     "@pluginjs/classes": "^0.6.4",
     "@pluginjs/component": "^0.6.4",
     "@pluginjs/decorator": "^0.6.4",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.5",
+  "version": "0.6.6",
   "category": "form",
   "main": "dist/place-complete.umd.js",
   "module": "dist/place-complete.esm.js",
@@ -32,7 +32,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/auto-complete": "^0.6.5",
+    "@pluginjs/auto-complete": "^0.6.6",
     "@pluginjs/decorator": "^0.6.4",
     "@pluginjs/dom": "^0.6.4",
     "@pluginjs/events": "^0.6.4",

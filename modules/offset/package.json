@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.5",
+  "version": "0.6.6",
   "category": "form",
   "main": "dist/offset.umd.js",
   "module": "dist/offset.esm.js",
@@ -48,7 +48,7 @@
     "@pluginjs/styled": "^0.6.4",
     "@pluginjs/template": "^0.6.4",
     "@pluginjs/tooltip": "^0.6.4",
-    "@pluginjs/units": "^0.6.5"
+    "@pluginjs/units": "^0.6.6"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
