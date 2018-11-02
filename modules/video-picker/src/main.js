@@ -324,9 +324,8 @@ class VideoPicker extends Component {
 
       // local video
       bindEvent(this.eventName('click'), `.${this.classes.LOCALURLADD}`, () => {
-        // this.data.url = this.options.selectLocalVideo.call(this)
         addClass(this.classes.LOCALURLSELECTED, this.$localUrl)
-        this.options.onSelectLocalVideo.call(
+        this.options.selectLocalVideo.call(
           this,
           this.selectLocalVideo.bind(this)
         )
@@ -344,7 +343,7 @@ class VideoPicker extends Component {
     // change poster
     compose(
       bindEvent(this.eventName('click'), `.${this.classes.POSTERADD}`, () => {
-        this.addPoster(this.options.selectCover.call(this))
+        this.options.addPoster.call(this, this.selectPoster.bind(this))
       }),
       bindEvent(this.eventName('click'), `.${this.classes.POSTERNAME}`, () => {
         addClass(this.classes.POSTERENTERCHANGE, this.$poster)
@@ -355,7 +354,7 @@ class VideoPicker extends Component {
         () => {
           if (!this.is('posterChange')) {
             removeClass(this.classes.POSTERENTERCHANGE, this.$poster)
-            this.addPoster('https://picsum.photos/200/300?image=1015')
+            this.options.changePoster.call(this, this.selectPoster.bind(this))
             addClass(this.classes.POSTERCHANGEDISABLED, this.$poster)
           }
           this.enter('posterChange')
@@ -390,7 +389,7 @@ class VideoPicker extends Component {
     )(this.$btnAction)
   }
 
-  addPoster(url) {
+  selectPoster(url) {
     this.data.poster = url
     this.$posterName.innerHTML = this.data.poster
     addClass(this.classes.POSTERSELECTED, this.$poster)
@@ -566,7 +565,7 @@ class VideoPicker extends Component {
           break
         case 'poster':
           if (value) {
-            this.addPoster(value)
+            this.selectPoster(value)
           }
           break
         default:

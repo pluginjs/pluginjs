@@ -302,7 +302,6 @@ class GalleryPicker extends Component {
   }
 
   clearImages() {
-    console.log(44)
     const images = queryAll(`.${this.classes.ITEM}`, this.$panel)
     if (images.length) {
       images.map(el => el.remove())
@@ -327,15 +326,12 @@ class GalleryPicker extends Component {
 
   set(value, trigger = true) {
     if (isArray(value)) {
-      console.log(22)
       this.value = value
-      console.log(this.value)
     } else if (isString(value)) {
       this.value = [value]
     } else {
       this.value = []
     }
-    console.log(111)
     this.clearImages()
     this.count = this.value.length
     this.TRIGGER.setState()

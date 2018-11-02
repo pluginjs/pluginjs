@@ -123,9 +123,9 @@ export const defaults = {
     return `https://picsum.photos/200/300?image=990
     `
   },
-  selectLocalVideo() {
-    return 'http://vjs.zencdn.net/v/oceans.mp4'
-  },
+  // selectLocalVideo() {
+  //   return 'http://vjs.zencdn.net/v/oceans.mp4'
+  // },
   process(value) {
     if (value && typeof value !== 'undefined') {
       return JSON.stringify(value)
