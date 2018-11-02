@@ -262,7 +262,11 @@ class Cascader extends Component {
 
   getValueFromSelected(selected) {
     if (!selected) {
-      selected = this.selected
+      if (this.filter) {
+        selected = this.selected.slice(0, 1)
+      } else {
+        selected = this.selected
+      }
     }
 
     return selected.map(item => item.value)

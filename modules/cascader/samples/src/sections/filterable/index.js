@@ -20,6 +20,29 @@ const getChildren = index => {
   ].map(item => {
     return {
       value: `${item.toLowerCase()}-${index}`,
+      label: `${item} ${index}`,
+      children: getChildren1(3)
+    }
+  })
+}
+
+const getChildren1 = index => {
+  return [
+    'Foo',
+    'Bar',
+    'Baz',
+    'Qux',
+    'Quux',
+    'Quuz',
+    'Corge',
+    'Grault',
+    'Garply',
+    'Waldo',
+    'Fred',
+    'Plugh'
+  ].map(item => {
+    return {
+      value: `${item.toLowerCase()}-${index}`,
       label: `${item} ${index}`
     }
   })

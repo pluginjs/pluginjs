@@ -45,7 +45,7 @@ export default class Filterable {
       () => {
         const dataLabel = this.instance.value[0]
         if (isArray(dataLabel)) {
-          this.instance.set(this.instance.value[0])
+          this.instance.set(dataLabel)
         } else {
           this.instance.set(this.instance.value)
         }
@@ -141,13 +141,13 @@ export default class Filterable {
     })
   }
 
-  hasChild(option, label) {
+  hasChild(option, label, value) {
     if (option.children) {
       option.children.forEach(item => {
-        this.childArr = [].concat(this.filterValue)
+        this.childArr = [].concat(value)
         this.filterItem.label = `${label} / ${item.label}`
         this.childArr.push(item.value)
-        this.hasChild(item, this.filterValue)
+        this.hasChild(item, this.filterItem.label, this.childArr)
       })
     } else {
       this.filterItem.value = this.childArr
@@ -167,7 +167,7 @@ export default class Filterable {
       this.filterValue = [option.value]
       if (filter(option, search)) {
         this.filterItem.label = option.label
-        this.hasChild(option, this.filterItem.label)
+        this.hasChild(option, this.filterItem.label, this.filterValue)
         found++
       } else if (option.children) {
         option.children.forEach(item => {
@@ -175,8 +175,21 @@ export default class Filterable {
           this.childArr = [].concat(this.filterValue)
           if (filter(item, search)) {
             this.childArr.push(item.value)
-            this.hasChild(item, this.filterItem.label)
+            this.hasChild(item, this.filterItem.label, this.filterValue)
             found++
+          } else if (item.children) {
+            item.children.forEach(item => {
+              if (filter(item, search)) {
+                this.filterItem.label = `${this.filterItem.label} / ${
+                  item.label
+                }`
+                this.childArr.push(item.value)
+                this.hasChild(item, this.filterItem.label, this.childArr)
+                found++
+              } else {
+                this.showNotFound()
+              }
+            })
           } else {
             this.showNotFound()
           }
@@ -186,7 +199,6 @@ export default class Filterable {
       }
     })
     if (found) {
-      console.log(this.filterItem)
       this.hideNotFound()
     } else {
       this.showNotFound()
