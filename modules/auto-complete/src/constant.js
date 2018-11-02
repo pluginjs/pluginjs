@@ -75,14 +75,12 @@ export const defaults = {
     return group
   },
   itemLabel(item) {
-    console.log(item)
     if (isObject(item)) {
       return item.label
     }
     return item
   },
   itemValue(item) {
-    console.log(item)
     if (isObject(item)) {
       return item.value
     }

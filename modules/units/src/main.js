@@ -138,7 +138,7 @@ class Units extends Component {
       },
       trigger: 'click',
       reference: this.$trigger,
-      placement: 'bottom-end',
+      placement: this.options.placement,
       data: this.getUnits().map(i => {
         return { value: i, label: i }
       }),
