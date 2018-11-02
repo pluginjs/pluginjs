@@ -21,9 +21,12 @@ $spinner-layout-right-control-width: 20px !default;
   outline: none;
 
   input {
+    width: 100%;
     padding: $spinner-height + $spinner-padding;
     padding-top: $spinner-padding - $spinner-border-width;
     padding-bottom: $spinner-padding - $spinner-border-width;
+    margin: 0;
+    font-size: $font-size-base;
     text-align: center;
   }
 

@@ -103,11 +103,11 @@ class Select extends Component {
       this.FILTERABLE = new Filterable(this)
     }
 
+    this.setupDropdown(this.options.dropdown)
+
     this.initData()
 
     this.bind()
-
-    this.setupDropdown(this.options.dropdown)
 
     this.LOADING = new Loading(this)
 
@@ -207,6 +207,7 @@ class Select extends Component {
       value = this.getValueFromData()
     }
     if (!isEmpty(value)) {
+      console.log(123)
       this.set(value, false)
     }
 
@@ -311,6 +312,7 @@ class Select extends Component {
   }
 
   set(value, trigger = true) {
+    console.log(123)
     value = this.purifyValue(value)
     if (value !== this.value) {
       this.value = value
