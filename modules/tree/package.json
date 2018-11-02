@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/tree.umd.js",
+  "main": "dist/tree.common.js",
   "module": "dist/tree.esm.js",
   "source": "src/main.js",
   "css": {
@@ -70,5 +70,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/tree.js",
+  "umd": "dist/tree.js",
+  "unpkg": "dist/tree.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.7",
   "category": "media",
-  "main": "dist/gallery.umd.js",
+  "main": "dist/gallery.common.js",
   "module": "dist/gallery.esm.js",
   "source": "src/main.js",
   "css": {
@@ -69,5 +69,8 @@
   "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8",
   "globals": {
     "animejs": "anime"
-  }
+  },
+  "jsdelivr": "dist/gallery.js",
+  "umd": "dist/gallery.js",
+  "unpkg": "dist/gallery.js"
 }

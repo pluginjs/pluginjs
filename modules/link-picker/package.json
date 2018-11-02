@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "form",
-  "main": "dist/link-picker.umd.js",
+  "main": "dist/link-picker.common.js",
   "module": "dist/link-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -78,5 +78,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/link-picker.js",
+  "umd": "dist/link-picker.js",
+  "unpkg": "dist/link-picker.js"
 }

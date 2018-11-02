@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "form",
-  "main": "dist/list.umd.js",
+  "main": "dist/list.common.js",
   "module": "dist/list.esm.js",
   "source": "src/main.js",
   "css": {
@@ -77,5 +77,8 @@
   ],
   "globals": {
     "sortablejs": "Sortable"
-  }
+  },
+  "jsdelivr": "dist/list.js",
+  "umd": "dist/list.js",
+  "unpkg": "dist/list.js"
 }

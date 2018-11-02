@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/notice.umd.js",
+  "main": "dist/notice.common.js",
   "module": "dist/notice.esm.js",
   "source": "src/main.js",
   "css": {
@@ -74,5 +74,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/notice.js",
+  "umd": "dist/notice.js",
+  "unpkg": "dist/notice.js"
 }

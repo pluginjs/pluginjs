@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/multi-select.umd.js",
+  "main": "dist/multi-select.common.js",
   "module": "dist/multi-select.esm.js",
   "source": "src/main.js",
   "css": {
@@ -62,5 +62,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/multi-select.js",
+  "umd": "dist/multi-select.js",
+  "unpkg": "dist/multi-select.js"
 }

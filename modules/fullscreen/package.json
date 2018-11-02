@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/fullscreen.umd.js",
+  "main": "dist/fullscreen.common.js",
   "module": "dist/fullscreen.esm.js",
   "source": "src/main.js",
   "files": [
@@ -58,5 +58,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/fullscreen.js",
+  "umd": "dist/fullscreen.js",
+  "unpkg": "dist/fullscreen.js"
 }

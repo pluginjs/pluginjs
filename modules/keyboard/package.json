@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "core",
-  "main": "dist/keyboard.umd.js",
+  "main": "dist/keyboard.common.js",
   "module": "dist/keyboard.esm.js",
   "source": "src/main.js",
   "files": [
@@ -60,5 +60,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/keyboard.js",
+  "title": "Plugin",
+  "umd": "dist/keyboard.js",
+  "unpkg": "dist/keyboard.js"
 }

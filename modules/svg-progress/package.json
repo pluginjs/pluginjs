@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/svg-progress.umd.js",
+  "main": "dist/svg-progress.common.js",
   "module": "dist/svg-progress.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/svg-progress.js",
+  "umd": "dist/svg-progress.js",
+  "unpkg": "dist/svg-progress.js"
 }

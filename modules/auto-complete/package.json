@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "form",
-  "main": "dist/auto-complete.umd.js",
+  "main": "dist/auto-complete.common.js",
   "module": "dist/auto-complete.esm.js",
   "source": "src/main.js",
   "css": {
@@ -63,5 +63,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/auto-complete.js",
+  "umd": "dist/auto-complete.js",
+  "unpkg": "dist/auto-complete.js"
 }

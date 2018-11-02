@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "form",
-  "main": "dist/gradient-selector.umd.js",
+  "main": "dist/gradient-selector.common.js",
   "module": "dist/gradient-selector.esm.js",
   "source": "src/main.js",
   "css": {
@@ -80,5 +80,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8"
+  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8",
+  "jsdelivr": "dist/gradient-selector.js",
+  "umd": "dist/gradient-selector.js",
+  "unpkg": "dist/gradient-selector.js"
 }

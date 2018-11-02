@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/table-sort.umd.js",
+  "main": "dist/table-sort.common.js",
   "module": "dist/table-sort.esm.js",
   "source": "src/main.js",
   "css": {
@@ -70,5 +70,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/table-sort.js",
+  "umd": "dist/table-sort.js",
+  "unpkg": "dist/table-sort.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "media",
-  "main": "dist/hotspots.umd.js",
+  "main": "dist/hotspots.common.js",
   "module": "dist/hotspots.esm.js",
   "source": "src/main.js",
   "css": {
@@ -75,5 +75,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/hotspots.js",
+  "umd": "dist/hotspots.js",
+  "unpkg": "dist/hotspots.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "scroll",
-  "main": "dist/scroll-to.umd.js",
+  "main": "dist/scroll-to.common.js",
   "module": "dist/scroll-to.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/scroll-to.js",
+  "umd": "dist/scroll-to.js",
+  "unpkg": "dist/scroll-to.js"
 }

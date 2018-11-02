@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/magnify.umd.js",
+  "main": "dist/magnify.common.js",
   "module": "dist/magnify.esm.js",
   "source": "src/main.js",
   "css": {
@@ -63,5 +63,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/magnify.js",
+  "umd": "dist/magnify.js",
+  "unpkg": "dist/magnify.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/detector.umd.js",
+  "main": "dist/detector.common.js",
   "module": "dist/detector.esm.js",
   "source": "src/main.js",
   "files": [
@@ -58,5 +58,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/detector.js",
+  "umd": "dist/detector.js",
+  "unpkg": "dist/detector.js"
 }

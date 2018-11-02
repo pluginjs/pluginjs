@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "core",
-  "main": "dist/pluginjs.umd.js",
+  "main": "dist/pluginjs.js",
   "files": [
     "dist",
     "src"
@@ -70,5 +70,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/pluginjs.js",
+  "umd": "dist/pluginjs.js",
+  "unpkg": "dist/pluginjs.js"
 }

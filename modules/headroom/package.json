@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "scroll",
-  "main": "dist/headroom.umd.js",
+  "main": "dist/headroom.common.js",
   "module": "dist/headroom.esm.js",
   "source": "src/main.js",
   "css": {
@@ -69,5 +69,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/headroom.js",
+  "umd": "dist/headroom.js",
+  "unpkg": "dist/headroom.js"
 }

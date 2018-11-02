@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "core",
-  "main": "dist/tween.umd.js",
+  "main": "dist/tween.common.js",
   "module": "dist/tween.esm.js",
   "source": "src/main.js",
   "files": [
@@ -61,5 +61,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/tween.js",
+  "title": "Plugin",
+  "umd": "dist/tween.js",
+  "unpkg": "dist/tween.js"
 }

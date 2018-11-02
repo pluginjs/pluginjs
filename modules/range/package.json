@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "form",
-  "main": "dist/range.umd.js",
+  "main": "dist/range.common.js",
   "module": "dist/range.esm.js",
   "source": "src/main.js",
   "css": {
@@ -73,5 +73,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/range.js",
+  "umd": "dist/range.js",
+  "unpkg": "dist/range.js"
 }

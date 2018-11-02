@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/match.umd.js",
+  "main": "dist/match.common.js",
   "module": "dist/match.esm.js",
   "source": "src/main.js",
   "files": [
@@ -58,5 +58,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/match.js",
+  "umd": "dist/match.js",
+  "unpkg": "dist/match.js"
 }

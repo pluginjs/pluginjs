@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/choice.umd.js",
+  "main": "dist/choice.common.js",
   "module": "dist/choice.esm.js",
   "source": "src/main.js",
   "css": {
@@ -77,5 +77,8 @@
   ],
   "globals": {
     "popper.js": "Popper"
-  }
+  },
+  "jsdelivr": "dist/choice.js",
+  "umd": "dist/choice.js",
+  "unpkg": "dist/choice.js"
 }

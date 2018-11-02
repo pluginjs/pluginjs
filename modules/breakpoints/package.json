@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/breakpoints.umd.js",
+  "main": "dist/breakpoints.common.js",
   "module": "dist/breakpoints.esm.js",
   "source": "src/main.js",
   "files": [
@@ -61,5 +61,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/breakpoints.js",
+  "umd": "dist/breakpoints.js",
+  "unpkg": "dist/breakpoints.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/date-picker.umd.js",
+  "main": "dist/date-picker.common.js",
   "module": "dist/date-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -79,5 +79,8 @@
   ],
   "globals": {
     "hammerjs": "Hammer"
-  }
+  },
+  "jsdelivr": "dist/date-picker.js",
+  "umd": "dist/date-picker.js",
+  "unpkg": "dist/date-picker.js"
 }

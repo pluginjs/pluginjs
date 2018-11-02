@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/dropdown.umd.js",
+  "main": "dist/dropdown.common.js",
   "module": "dist/dropdown.esm.js",
   "source": "src/main.js",
   "css": {
@@ -77,5 +77,8 @@
   ],
   "globals": {
     "popper.js": "Popper"
-  }
+  },
+  "jsdelivr": "dist/dropdown.js",
+  "umd": "dist/dropdown.js",
+  "unpkg": "dist/dropdown.js"
 }

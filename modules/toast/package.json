@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/toast.umd.js",
+  "main": "dist/toast.common.js",
   "module": "dist/toast.esm.js",
   "source": "src/main.js",
   "css": {
@@ -73,5 +73,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/toast.js",
+  "umd": "dist/toast.js",
+  "unpkg": "dist/toast.js"
 }

@@ -13,6 +13,7 @@
   },
   "version": "0.6.4",
   "category": "css",
+  "main": "dist/styles.css",
   "css": {
     "source": "index.scss",
     "main": "dist/styles.css",

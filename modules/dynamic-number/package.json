@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/dynamic-number.umd.js",
+  "main": "dist/dynamic-number.common.js",
   "module": "dist/dynamic-number.esm.js",
   "source": "src/main.js",
   "css": {
@@ -68,5 +68,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/dynamic-number.js",
+  "umd": "dist/dynamic-number.js",
+  "unpkg": "dist/dynamic-number.js"
 }

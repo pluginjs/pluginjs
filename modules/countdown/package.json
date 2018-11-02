@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/countdown.umd.js",
+  "main": "dist/countdown.common.js",
   "module": "dist/countdown.esm.js",
   "source": "src/main.js",
   "css": {
@@ -63,5 +63,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/countdown.js",
+  "umd": "dist/countdown.js",
+  "unpkg": "dist/countdown.js"
 }

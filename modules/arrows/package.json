@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/arrows.umd.js",
+  "main": "dist/arrows.common.js",
   "module": "dist/arrows.esm.js",
   "source": "src/main.js",
   "css": {
@@ -73,5 +73,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/arrows.js",
+  "umd": "dist/arrows.js",
+  "unpkg": "dist/arrows.js"
 }

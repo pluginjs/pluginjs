@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/gradient.umd.js",
+  "main": "dist/gradient.common.js",
   "module": "dist/gradient.esm.js",
   "source": "src/main.js",
   "files": [
@@ -60,5 +60,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/gradient.js",
+  "umd": "dist/gradient.js",
+  "unpkg": "dist/gradient.js"
 }

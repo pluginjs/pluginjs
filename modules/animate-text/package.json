@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "ui",
-  "main": "dist/animate-text.umd.js",
+  "main": "dist/animate-text.common.js",
   "module": "dist/animate-text.esm.js",
   "source": "src/main.js",
   "css": {
@@ -74,5 +74,8 @@
   ],
   "globals": {
     "animejs": "anime"
-  }
+  },
+  "jsdelivr": "dist/animate-text.js",
+  "umd": "dist/animate-text.js",
+  "unpkg": "dist/animate-text.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "media",
-  "main": "dist/lazyload.umd.js",
+  "main": "dist/lazyload.common.js",
   "module": "dist/lazyload.esm.js",
   "source": "src/main.js",
   "css": {
@@ -70,5 +70,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/lazyload.js",
+  "umd": "dist/lazyload.js",
+  "unpkg": "dist/lazyload.js"
 }

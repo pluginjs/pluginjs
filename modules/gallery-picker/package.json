@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "form",
-  "main": "dist/gallery-picker.umd.js",
+  "main": "dist/gallery-picker.common.js",
   "module": "dist/gallery-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -76,5 +76,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/gallery-picker.js",
+  "umd": "dist/gallery-picker.js",
+  "unpkg": "dist/gallery-picker.js"
 }

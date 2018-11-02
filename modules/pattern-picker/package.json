@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/pattern-picker.umd.js",
+  "main": "dist/pattern-picker.common.js",
   "module": "dist/pattern-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -80,5 +80,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/pattern-picker.js",
+  "umd": "dist/pattern-picker.js",
+  "unpkg": "dist/pattern-picker.js"
 }

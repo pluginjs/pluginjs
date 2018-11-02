@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/paginator.umd.js",
+  "main": "dist/paginator.common.js",
   "module": "dist/paginator.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/paginator.js",
+  "umd": "dist/paginator.js",
+  "unpkg": "dist/paginator.js"
 }

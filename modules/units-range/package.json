@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "form",
-  "main": "dist/units-range.umd.js",
+  "main": "dist/units-range.common.js",
   "module": "dist/units-range.esm.js",
   "source": "src/main.js",
   "css": {
@@ -60,5 +60,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/units-range.js",
+  "umd": "dist/units-range.js",
+  "unpkg": "dist/units-range.js"
 }

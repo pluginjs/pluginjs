@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/breadcrumb.umd.js",
+  "main": "dist/breadcrumb.common.js",
   "module": "dist/breadcrumb.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/breadcrumb.js",
+  "umd": "dist/breadcrumb.js",
+  "unpkg": "dist/breadcrumb.js"
 }

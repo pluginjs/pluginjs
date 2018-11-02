@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/thumbnails.umd.js",
+  "main": "dist/thumbnails.common.js",
   "module": "dist/thumbnails.esm.js",
   "source": "src/main.js",
   "css": {
@@ -71,5 +71,8 @@
   },
   "globals": {
     "animejs": "anime"
-  }
+  },
+  "jsdelivr": "dist/thumbnails.js",
+  "umd": "dist/thumbnails.js",
+  "unpkg": "dist/thumbnails.js"
 }

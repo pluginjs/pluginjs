@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "form",
-  "main": "dist/bg-picker.umd.js",
+  "main": "dist/bg-picker.common.js",
   "module": "dist/bg-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -79,5 +79,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "style": "src/css/bg-picker.scss"
+  "jsdelivr": "dist/bg-picker.js",
+  "style": "src/css/bg-picker.scss",
+  "umd": "dist/bg-picker.js",
+  "unpkg": "dist/bg-picker.js"
 }

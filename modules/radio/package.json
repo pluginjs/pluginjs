@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "form",
-  "main": "dist/radio.umd.js",
+  "main": "dist/radio.common.js",
   "module": "dist/radio.esm.js",
   "source": "src/main.js",
   "css": {
@@ -71,5 +71,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/radio.js",
+  "umd": "dist/radio.js",
+  "unpkg": "dist/radio.js"
 }

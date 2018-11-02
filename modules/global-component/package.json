@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "core",
-  "main": "dist/global-plugin.umd.js",
+  "main": "dist/global-plugin.common.js",
   "module": "dist/global-plugin.esm.js",
   "source": "src/main.js",
   "files": [
@@ -58,5 +58,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/global-plugin.js",
+  "title": "Plugin",
+  "umd": "dist/global-plugin.js",
+  "unpkg": "dist/global-plugin.js"
 }

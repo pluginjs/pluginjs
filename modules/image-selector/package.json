@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/image-selector.umd.js",
+  "main": "dist/image-selector.common.js",
   "module": "dist/image-selector.esm.js",
   "source": "src/main.js",
   "css": {
@@ -62,5 +62,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/image-selector.js",
+  "umd": "dist/image-selector.js",
+  "unpkg": "dist/image-selector.js"
 }

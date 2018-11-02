@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "media",
-  "main": "dist/images-loader.umd.js",
+  "main": "dist/images-loader.common.js",
   "module": "dist/images-loader.esm.js",
   "source": "src/main.js",
   "files": [
@@ -62,5 +62,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/images-loader.js",
+  "umd": "dist/images-loader.js",
+  "unpkg": "dist/images-loader.js"
 }

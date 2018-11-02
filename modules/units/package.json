@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "form",
-  "main": "dist/units.umd.js",
+  "main": "dist/units.common.js",
   "module": "dist/units.esm.js",
   "source": "src/main.js",
   "css": {
@@ -71,5 +71,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/units.js",
+  "umd": "dist/units.js",
+  "unpkg": "dist/units.js"
 }

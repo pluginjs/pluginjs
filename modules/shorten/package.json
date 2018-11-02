@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/shorten.umd.js",
+  "main": "dist/shorten.common.js",
   "module": "dist/shorten.esm.js",
   "source": "src/main.js",
   "css": {
@@ -70,5 +70,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/shorten.js",
+  "umd": "dist/shorten.js",
+  "unpkg": "dist/shorten.js"
 }

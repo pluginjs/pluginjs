@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/tabs.umd.js",
+  "main": "dist/tabs.common.js",
   "module": "dist/tabs.esm.js",
   "source": "src/main.js",
   "css": {
@@ -82,5 +82,8 @@
   "globals": {
     "animejs": "anime",
     "hammerjs": "Hammer"
-  }
+  },
+  "jsdelivr": "dist/tabs.js",
+  "umd": "dist/tabs.js",
+  "unpkg": "dist/tabs.js"
 }

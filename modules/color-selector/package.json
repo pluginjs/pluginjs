@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/color-selector.umd.js",
+  "main": "dist/color-selector.common.js",
   "module": "dist/color-selector.esm.js",
   "source": "src/main.js",
   "css": {
@@ -82,5 +82,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/color-selector.js",
+  "umd": "dist/color-selector.js",
+  "unpkg": "dist/color-selector.js"
 }

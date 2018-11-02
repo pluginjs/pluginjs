@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/modal.umd.js",
+  "main": "dist/modal.common.js",
   "module": "dist/modal.esm.js",
   "source": "src/main.js",
   "css": {
@@ -74,5 +74,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/modal.js",
+  "umd": "dist/modal.js",
+  "unpkg": "dist/modal.js"
 }

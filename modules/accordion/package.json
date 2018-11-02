@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/accordion.umd.js",
+  "main": "dist/accordion.common.js",
   "module": "dist/accordion.esm.js",
   "source": "src/main.js",
   "css": {
@@ -81,5 +81,8 @@
     "animejs": "anime",
     "hammerjs": "Hammer"
   },
-  "sassrc": ".sassrc.js"
+  "jsdelivr": "dist/accordion.js",
+  "sassrc": ".sassrc.js",
+  "umd": "dist/accordion.js",
+  "unpkg": "dist/accordion.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.7",
   "category": "form",
-  "main": "dist/map-picker.umd.js",
+  "main": "dist/map-picker.common.js",
   "module": "dist/map-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -77,5 +77,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8"
+  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8",
+  "jsdelivr": "dist/map-picker.js",
+  "umd": "dist/map-picker.js",
+  "unpkg": "dist/map-picker.js"
 }

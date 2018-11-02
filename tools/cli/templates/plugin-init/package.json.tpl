@@ -5,15 +5,21 @@
   "author": "Creation Studio Limited",
   "homepage": "https://github.com/pluginjs/pluginjs",
   "version": "0.0.1",
-  "main": "dist/{{moduleName}}.umd.js",
+  "main": "dist/{{moduleName}}.common.js",
   "module": "dist/{{moduleName}}.esm.js",
-  "cjs": "dist/{{moduleName}}.cjs.js",
+  "umd": "dist/{{moduleName}}.js",
+  "unpkg": "dist/{{moduleName}}.js",
+  "jsdelivr": "dist/{{moduleName}}.js",
   "source": "src/main.js",
   "css": {
-    "source": "src/css/main.scss",
+    "source": "src/css/{{moduleName}}.scss",
     "main": "dist/{{moduleName}}.css",
     "min": "dist/{{moduleName}}.min.css"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:js & npm run build:scss",
     "build:js": "plugin script build-js",

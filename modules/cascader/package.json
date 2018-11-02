@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "form",
-  "main": "dist/cascader.umd.js",
+  "main": "dist/cascader.common.js",
   "module": "dist/cascader.esm.js",
   "source": "src/main.js",
   "css": {
@@ -62,5 +62,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/cascader.js",
+  "umd": "dist/cascader.js",
+  "unpkg": "dist/cascader.js"
 }

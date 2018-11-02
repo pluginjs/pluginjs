@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/icon-picker.umd.js",
+  "main": "dist/icon-picker.common.js",
   "module": "dist/icon-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -63,5 +63,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/icon-picker.js",
+  "umd": "dist/icon-picker.js",
+  "unpkg": "dist/icon-picker.js"
 }

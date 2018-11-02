@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/keyframes.umd.js",
+  "main": "dist/keyframes.common.js",
   "module": "dist/keyframes.esm.js",
   "source": "src/main.js",
   "files": [
@@ -55,5 +55,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/keyframes.js",
+  "title": "Plugin",
+  "umd": "dist/keyframes.js",
+  "unpkg": "dist/keyframes.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "form",
-  "main": "dist/strength.umd.js",
+  "main": "dist/strength.common.js",
   "module": "dist/strength.esm.js",
   "source": "src/main.js",
   "css": {
@@ -71,5 +71,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/strength.js",
+  "umd": "dist/strength.js",
+  "unpkg": "dist/strength.js"
 }

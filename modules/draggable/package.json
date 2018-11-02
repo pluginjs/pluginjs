@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/draggable.umd.js",
+  "main": "dist/draggable.common.js",
   "module": "dist/draggable.esm.js",
   "source": "src/main.js",
   "css": {
@@ -61,5 +61,8 @@
   },
   "globals": {
     "hammerjs": "Hammer"
-  }
+  },
+  "jsdelivr": "dist/draggable.js",
+  "umd": "dist/draggable.js",
+  "unpkg": "dist/draggable.js"
 }

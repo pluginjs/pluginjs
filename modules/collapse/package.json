@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/collapse.umd.js",
+  "main": "dist/collapse.common.js",
   "module": "dist/collapse.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/collapse.js",
+  "umd": "dist/collapse.js",
+  "unpkg": "dist/collapse.js"
 }

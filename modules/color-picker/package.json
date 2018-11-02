@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/color-picker.umd.js",
+  "main": "dist/color-picker.common.js",
   "module": "dist/color-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -64,5 +64,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/color-picker.js",
+  "umd": "dist/color-picker.js",
+  "unpkg": "dist/color-picker.js"
 }

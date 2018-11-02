@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/font-picker.umd.js",
+  "main": "dist/font-picker.common.js",
   "module": "dist/font-picker.esm.js",
   "source": "src/main.js",
   "css": {
@@ -63,5 +63,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/font-picker.js",
+  "umd": "dist/font-picker.js",
+  "unpkg": "dist/font-picker.js"
 }

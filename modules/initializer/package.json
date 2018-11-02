@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "core",
-  "main": "dist/initializer.umd.js",
+  "main": "dist/initializer.common.js",
   "module": "dist/initializer.esm.js",
   "source": "src/main.js",
   "files": [
@@ -54,5 +54,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/initializer.js",
+  "umd": "dist/initializer.js",
+  "unpkg": "dist/initializer.js"
 }

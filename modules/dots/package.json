@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/dots.umd.js",
+  "main": "dist/dots.common.js",
   "module": "dist/dots.esm.js",
   "source": "src/main.js",
   "css": {
@@ -73,5 +73,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/dots.js",
+  "umd": "dist/dots.js",
+  "unpkg": "dist/dots.js"
 }

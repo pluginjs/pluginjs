@@ -31,7 +31,7 @@ export default [
     external,
     output: {
       name: pkg.name,
-      file: pkg.main,
+      file: pkg.umd,
       format: 'umd',
       globals
     },
@@ -40,10 +40,10 @@ export default [
   {
     input: 'src/main.js',
     external,
-    output: {
-      file: pkg.module,
-      format: 'es'
-    },
+    output: [
+      { file: pkg.main, format: 'cjs' },
+      { file: pkg.module, format: 'es' }
+    ],
     plugins: [babelCallback({ esmodules: true }), commonjs()]
   }
 ]

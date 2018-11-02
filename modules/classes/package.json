@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/classes.umd.js",
+  "main": "dist/classes.common.js",
   "module": "dist/classes.esm.js",
   "source": "src/main.js",
   "files": [
@@ -58,5 +58,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/classes.js",
+  "umd": "dist/classes.js",
+  "unpkg": "dist/classes.js"
 }

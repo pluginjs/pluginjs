@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "core",
-  "main": "dist/polyfills.umd.js",
+  "main": "dist/polyfills.common.js",
   "module": "dist/polyfills.esm.js",
   "source": "index.js",
   "files": [
@@ -58,5 +58,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/polyfills.js",
+  "umd": "dist/polyfills.js",
+  "unpkg": "dist/polyfills.js"
 }

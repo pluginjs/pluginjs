@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/time-table.umd.js",
+  "main": "dist/time-table.common.js",
   "module": "dist/time-table.esm.js",
   "source": "src/main.js",
   "css": {
@@ -77,5 +77,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "globals": {}
+  "globals": {},
+  "jsdelivr": "dist/time-table.js",
+  "umd": "dist/time-table.js",
+  "unpkg": "dist/time-table.js"
 }

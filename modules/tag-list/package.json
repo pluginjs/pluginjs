@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "form",
-  "main": "dist/tag-list.umd.js",
+  "main": "dist/tag-list.common.js",
   "module": "dist/tag-list.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/tag-list.js",
+  "umd": "dist/tag-list.js",
+  "unpkg": "dist/tag-list.js"
 }

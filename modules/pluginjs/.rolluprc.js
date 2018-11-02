@@ -32,7 +32,7 @@ export default [
     //external,
     output: {
       name: pkg.name,
-      file: pkg.main,
+      file: pkg.umd,
       format: 'umd',
       globals
     },
@@ -41,10 +41,10 @@ export default [
   {
     input: pkg.source,
     //external,
-    output: {
-      file: pkg.module,
-      format: 'es'
-    },
+    output: [
+      { file: pkg.main, format: 'cjs' },
+      { file: pkg.module, format: 'es' }
+    ],
     plugins: [babelCallback({ esmodules: true }), commonjs(), resolve()]
   }
 ]

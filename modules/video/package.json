@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "media",
-  "main": "dist/video.umd.js",
+  "main": "dist/video.common.js",
   "module": "dist/video.esm.js",
   "source": "src/main.js",
   "css": {
@@ -71,5 +71,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/video.js",
+  "umd": "dist/video.js",
+  "unpkg": "dist/video.js"
 }

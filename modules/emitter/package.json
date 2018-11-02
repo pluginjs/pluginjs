@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "core",
-  "main": "dist/emitter.umd.js",
+  "main": "dist/emitter.common.js",
   "module": "dist/emitter.esm.js",
   "source": "src/main.js",
   "files": [
@@ -58,5 +58,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/emitter.js",
+  "title": "Plugin",
+  "umd": "dist/emitter.js",
+  "unpkg": "dist/emitter.js"
 }

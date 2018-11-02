@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/easing.umd.js",
+  "main": "dist/easing.common.js",
   "module": "dist/easing.esm.js",
   "source": "src/main.js",
   "files": [
@@ -55,5 +55,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/easing.js",
+  "title": "Plugin",
+  "umd": "dist/easing.js",
+  "unpkg": "dist/easing.js"
 }

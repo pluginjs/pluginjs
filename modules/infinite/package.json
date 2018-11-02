@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/infinite.umd.js",
+  "main": "dist/infinite.common.js",
   "module": "dist/infinite.esm.js",
   "source": "src/main.js",
   "css": {
@@ -62,5 +62,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/infinite.js",
+  "umd": "dist/infinite.js",
+  "unpkg": "dist/infinite.js"
 }

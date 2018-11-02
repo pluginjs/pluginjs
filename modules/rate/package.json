@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/rate.umd.js",
+  "main": "dist/rate.common.js",
   "module": "dist/rate.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/rate.js",
+  "umd": "dist/rate.js",
+  "unpkg": "dist/rate.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "form",
-  "main": "dist/swipe.umd.js",
+  "main": "dist/swipe.common.js",
   "module": "dist/swipe.esm.js",
   "source": "src/main.js",
   "css": {
@@ -80,5 +80,8 @@
   ],
   "globals": {
     "animejs": "anime"
-  }
+  },
+  "jsdelivr": "dist/swipe.js",
+  "umd": "dist/swipe.js",
+  "unpkg": "dist/swipe.js"
 }

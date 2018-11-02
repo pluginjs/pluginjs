@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/viewport.umd.js",
+  "main": "dist/viewport.common.js",
   "module": "dist/viewport.esm.js",
   "source": "src/main.js",
   "files": [
@@ -63,5 +63,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/viewport.js",
+  "title": "Plugin",
+  "umd": "dist/viewport.js",
+  "unpkg": "dist/viewport.js"
 }

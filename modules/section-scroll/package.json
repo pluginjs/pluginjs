@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "scroll",
-  "main": "dist/section-scroll.umd.js",
+  "main": "dist/section-scroll.common.js",
   "module": "dist/section-scroll.esm.js",
   "source": "src/main.js",
   "css": {
@@ -78,5 +78,8 @@
   ],
   "globals": {
     "hammerjs": "Hammer"
-  }
+  },
+  "jsdelivr": "dist/section-scroll.js",
+  "umd": "dist/section-scroll.js",
+  "unpkg": "dist/section-scroll.js"
 }

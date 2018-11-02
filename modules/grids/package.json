@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "media",
-  "main": "dist/grids.umd.js",
+  "main": "dist/grids.common.js",
   "module": "dist/grids.esm.js",
   "source": "src/main.js",
   "css": {
@@ -80,5 +80,8 @@
   ],
   "globals": {
     "animejs": "anime"
-  }
+  },
+  "jsdelivr": "dist/grids.js",
+  "umd": "dist/grids.js",
+  "unpkg": "dist/grids.js"
 }

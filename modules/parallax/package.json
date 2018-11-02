@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "scroll",
-  "main": "dist/parallax.umd.js",
+  "main": "dist/parallax.common.js",
   "module": "dist/parallax.esm.js",
   "source": "src/main.js",
   "css": {
@@ -77,5 +77,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/parallax.js",
+  "umd": "dist/parallax.js",
+  "unpkg": "dist/parallax.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "form",
-  "main": "dist/toggle-list.umd.js",
+  "main": "dist/toggle-list.common.js",
   "module": "dist/toggle-list.esm.js",
   "source": "src/main.js",
   "css": {
@@ -71,5 +71,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/toggle-list.js",
+  "umd": "dist/toggle-list.js",
+  "unpkg": "dist/toggle-list.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "form",
-  "main": "dist/input-mask.umd.js",
+  "main": "dist/input-mask.common.js",
   "module": "dist/input-mask.esm.js",
   "source": "src/main.js",
   "css": {
@@ -68,5 +68,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/input-mask.js",
+  "umd": "dist/input-mask.js",
+  "unpkg": "dist/input-mask.js"
 }

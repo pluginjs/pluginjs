@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/events.umd.js",
+  "main": "dist/events.common.js",
   "module": "dist/events.esm.js",
   "source": "src/main.js",
   "files": [
@@ -59,5 +59,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/events.js",
+  "umd": "dist/events.js",
+  "unpkg": "dist/events.js"
 }

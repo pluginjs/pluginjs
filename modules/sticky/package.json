@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "scroll",
-  "main": "dist/sticky.umd.js",
+  "main": "dist/sticky.common.js",
   "module": "dist/sticky.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/sticky.js",
+  "umd": "dist/sticky.js",
+  "unpkg": "dist/sticky.js"
 }

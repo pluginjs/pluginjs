@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "utils",
-  "main": "dist/is.umd.js",
+  "main": "dist/is.common.js",
   "module": "dist/is.esm.js",
   "source": "src/main.js",
   "files": [
@@ -55,5 +55,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/is.js",
+  "title": "Plugin",
+  "umd": "dist/is.js",
+  "unpkg": "dist/is.js"
 }

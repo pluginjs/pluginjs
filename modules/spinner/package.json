@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "form",
-  "main": "dist/spinner.umd.js",
+  "main": "dist/spinner.common.js",
   "module": "dist/spinner.esm.js",
   "source": "src/main.js",
   "css": {
@@ -72,5 +72,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "globals": {}
+  "globals": {},
+  "jsdelivr": "dist/spinner.js",
+  "umd": "dist/spinner.js",
+  "unpkg": "dist/spinner.js"
 }

@@ -13,7 +13,7 @@
   },
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/loader.umd.js",
+  "main": "dist/loader.common.js",
   "module": "dist/loader.esm.js",
   "source": "src/main.js",
   "css": {
@@ -74,5 +74,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/loader.js",
+  "umd": "dist/loader.js",
+  "unpkg": "dist/loader.js"
 }

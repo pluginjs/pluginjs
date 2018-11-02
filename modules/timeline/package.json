@@ -13,7 +13,7 @@
   },
   "version": "0.6.6",
   "category": "ui",
-  "main": "dist/timeline.umd.js",
+  "main": "dist/timeline.common.js",
   "module": "dist/timeline.esm.js",
   "source": "src/main.js",
   "css": {
@@ -65,5 +65,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/timeline.js",
+  "umd": "dist/timeline.js",
+  "unpkg": "dist/timeline.js"
 }

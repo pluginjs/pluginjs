@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "scroll",
-  "main": "dist/scroll-progress.umd.js",
+  "main": "dist/scroll-progress.common.js",
   "module": "dist/scroll-progress.esm.js",
   "source": "src/main.js",
   "css": {
@@ -71,5 +71,8 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "jsdelivr": "dist/scroll-progress.js",
+  "umd": "dist/scroll-progress.js",
+  "unpkg": "dist/scroll-progress.js"
 }

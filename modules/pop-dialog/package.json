@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/pop-dialog.umd.js",
+  "main": "dist/pop-dialog.common.js",
   "module": "dist/pop-dialog.esm.js",
   "source": "src/main.js",
   "css": {
@@ -77,5 +77,8 @@
   ],
   "globals": {
     "tether": "Tether"
-  }
+  },
+  "jsdelivr": "dist/pop-dialog.js",
+  "umd": "dist/pop-dialog.js",
+  "unpkg": "dist/pop-dialog.js"
 }

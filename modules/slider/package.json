@@ -6,7 +6,7 @@
   "homepage": "https://github.com/pluginjs/pluginjs",
   "version": "0.6.5",
   "category": "ui",
-  "main": "dist/slider.umd.js",
+  "main": "dist/slider.common.js",
   "module": "dist/slider.esm.js",
   "source": "src/main.js",
   "css": {
@@ -64,5 +64,8 @@
   },
   "globals": {
     "animejs": "anime"
-  }
+  },
+  "jsdelivr": "dist/slider.js",
+  "umd": "dist/slider.js",
+  "unpkg": "dist/slider.js"
 }

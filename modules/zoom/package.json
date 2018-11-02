@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "ui",
-  "main": "dist/zoom.umd.js",
+  "main": "dist/zoom.common.js",
   "module": "dist/zoom.esm.js",
   "source": "src/main.js",
   "css": {
@@ -64,5 +64,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "jsdelivr": "dist/zoom.js",
+  "umd": "dist/zoom.js",
+  "unpkg": "dist/zoom.js"
 }

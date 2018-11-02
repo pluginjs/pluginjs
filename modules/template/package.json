@@ -13,7 +13,7 @@
   },
   "version": "0.6.4",
   "category": "core",
-  "main": "dist/template.umd.js",
+  "main": "dist/template.common.js",
   "module": "dist/template.esm.js",
   "source": "src/main.js",
   "files": [
@@ -58,5 +58,8 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "title": "Plugin"
+  "jsdelivr": "dist/template.js",
+  "title": "Plugin",
+  "umd": "dist/template.js",
+  "unpkg": "dist/template.js"
 }
