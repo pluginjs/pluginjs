@@ -29,10 +29,10 @@ export default class Attachment {
 
     const data = this.values.map(val => ({ label: val, value: val }))
     const that = this
+    this.$select.value = 'inherit'
     setData(
       'select',
       Select.of(this.$select, {
-        value: 'inherit',
         source: data,
         keyboard: true,
         onChange(value) {  /* eslint-disable-line */

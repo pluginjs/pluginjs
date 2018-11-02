@@ -2,14 +2,6 @@ import ImagePicker from '../src/main'
 import { defaults as DEFAULTS } from '../src/constant'
 import generateHTMLSample from './fixtures/sample'
 
-// const data = {
-//   locale: 'en',
-//   select() {
-//     this.set({
-//       image: '../../plugins/image-picker/images/nvnv.png'
-//     })
-//   }
-// }
 const string = 'https://picsum.photos/200/300?image=1041'
 
 describe('ImagePicker', () => {
@@ -40,7 +32,6 @@ describe('ImagePicker', () => {
       const imagePicker = ImagePicker.of(generateHTMLSample())
 
       expect(imagePicker).toBeObject()
-      // expect(imagePicker.options).toEqual(DEFAULTS)
     })
 
     test('should have options', () => {

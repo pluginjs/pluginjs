@@ -109,8 +109,7 @@ class GalleryPicker extends Component {
         if (this.is('disabled')) {
           return false
         }
-
-        const url = this.options.change()
+        this.options.change.call(this, this.changeImage.bind(this))
         const getElementIndex = el => {
           const parentElement = parent(el)
           return children(parentElement).indexOf(el)
@@ -118,7 +117,7 @@ class GalleryPicker extends Component {
         const index = getElementIndex(
           parentWith(hasClass(this.classes.ITEM), e.target)
         )
-        this.change(index, url)
+        this.change(index, this.url)
         return null
       }),
       // save
@@ -140,8 +139,7 @@ class GalleryPicker extends Component {
           if (this.is('disabled')) {
             return false
           }
-          const val = this.options.add.call(this)
-          this.add(val)
+          this.options.add.call(this, this.add.bind(this))
           return null
         }
       ),
@@ -299,7 +297,12 @@ class GalleryPicker extends Component {
     }
   }
 
+  changeImage(url) {
+    this.url = url
+  }
+
   clearImages() {
+    console.log(44)
     const images = queryAll(`.${this.classes.ITEM}`, this.$panel)
     if (images.length) {
       images.map(el => el.remove())
@@ -324,13 +327,15 @@ class GalleryPicker extends Component {
 
   set(value, trigger = true) {
     if (isArray(value)) {
+      console.log(22)
       this.value = value
+      console.log(this.value)
     } else if (isString(value)) {
       this.value = [value]
     } else {
       this.value = []
     }
-
+    console.log(111)
     this.clearImages()
     this.count = this.value.length
     this.TRIGGER.setState()
@@ -351,7 +356,7 @@ class GalleryPicker extends Component {
   }
 
   change(index, value) {
-    this.value[index] = value
+    this.value[index - 1] = value
     const eq = curry((index, arr) => arr[index])
     compose(
       css({

@@ -27,9 +27,9 @@ export default class Size {
     this.$trigger = query(`.${this.instance.classes.SELECTTRIGGER}`, this.$wrap)
     const data = this.values.map(val => ({ label: val, value: val }))
     const that = this
+    this.$trigger.value = this.defaultValue
     this.$sizeSelect = Select.of(this.$trigger, {
       source: data,
-      value: this.defaultValue,
       keyboard: true,
       onChange: val => {
         if (that.instance.disabled) {

@@ -4,11 +4,11 @@ import GalleryPicker from '@pluginjs/gallery-picker'
 const element = query('#disabled .example-locale')
 GalleryPicker.of(element, {
   locale: 'zh',
-  add() {
-    return ['https://picsum.photos/200/300?image=921']
+  add(resolve) {
+    resolve(['https://picsum.photos/200/300?image=929'])
   },
-  change() {
-    return 'https://picsum.photos/200/300?image=916'
+  change(resolve) {
+    resolve('https://picsum.photos/200/300?image=916')
   },
   disabled: true
 })

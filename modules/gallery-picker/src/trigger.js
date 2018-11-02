@@ -67,9 +67,10 @@ export default class Trigger {
         if (that.instance.is('disabled')) {
           return false
         }
-
-        const val = this.instance.options.add.call(this)
-        this.instance.set(val)
+        this.instance.options.add.call(
+          this.instance,
+          this.instance.set.bind(this.instance)
+        )
         return null
       },
       this.$empty
@@ -83,9 +84,10 @@ export default class Trigger {
           if (that.instance.is('disabled')) {
             return false
           }
-
-          const val = this.instance.options.add.call(this)
-          this.instance.add(val)
+          this.instance.options.add.call(
+            this.instance,
+            this.instance.add.bind(this.instance)
+          )
           return null
         },
         this.$fillAdd
