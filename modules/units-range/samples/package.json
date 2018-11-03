@@ -3,21 +3,21 @@
   "name": "units-range-samples",
   "description": "Simple units-range example",
   "license": "GPL-3.0",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.6.5",
-    "@pluginjs/units-range": "^0.6.7",
-    "@pluginjs/utils": "^0.6.5"
+    "@pluginjs/dom": "^0.7.0",
+    "@pluginjs/units-range": "^0.7.0",
+    "@pluginjs/utils": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
-    "@pluginjs/browserslist-config": "^1.1.1",
+    "@pluginjs/browserslist-config": "^1.2.0",
     "parcel-bundler": "^1.10.3",
     "posthtml-include": "*"
   },

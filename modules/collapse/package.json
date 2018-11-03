@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.6.5",
+  "version": "0.7.0",
   "category": "ui",
   "main": "dist/collapse.common.js",
   "module": "dist/collapse.esm.js",
@@ -37,20 +37,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.6.5",
-    "@pluginjs/component": "^0.6.5",
-    "@pluginjs/decorator": "^0.6.5",
-    "@pluginjs/dom": "^0.6.5",
-    "@pluginjs/events": "^0.6.5",
-    "@pluginjs/factory": "^0.6.5",
-    "@pluginjs/feature": "^0.6.5",
-    "@pluginjs/styled": "^0.6.5",
-    "@pluginjs/utils": "^0.6.5"
+    "@pluginjs/classes": "^0.7.0",
+    "@pluginjs/component": "^0.7.0",
+    "@pluginjs/decorator": "^0.7.0",
+    "@pluginjs/dom": "^0.7.0",
+    "@pluginjs/events": "^0.7.0",
+    "@pluginjs/factory": "^0.7.0",
+    "@pluginjs/feature": "^0.7.0",
+    "@pluginjs/styled": "^0.7.0",
+    "@pluginjs/utils": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@pluginjs/browserslist-config": "^1.1.1",
-    "@pluginjs/cli": "^0.6.5",
+    "@pluginjs/browserslist-config": "^1.2.0",
+    "@pluginjs/cli": "^0.7.0",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
