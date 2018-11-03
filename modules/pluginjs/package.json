@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "build": "./scripts/generate",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "test": "jest"
   },
   "dependencies": {

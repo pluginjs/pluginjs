@@ -28,7 +28,7 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "generate": "./scripts/generate",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "test": "jest"
   },
   "dependencies": {

@@ -29,7 +29,7 @@
     "build:md": "plugin script build-md",
     "lint": "npm run lint:js",
     "lint:js": "eslint ./src/**/*.js --fix",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "test": "jest"
   },
   "devDependencies": {
