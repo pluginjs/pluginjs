@@ -3,7 +3,7 @@
   "description": "A workflow for modern frontend development.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,6 +15,9 @@
   "category": "core",
   "main": "dist/i18n.common.js",
   "module": "dist/i18n.esm.js",
+  "umd": "dist/i18n.js",
+  "unpkg": "dist/i18n.js",
+  "jsdelivr": "dist/i18n.js",
   "source": "src/main.js",
   "files": [
     "dist",
@@ -26,6 +29,7 @@
     "build:md": "plugin script build-md",
     "lint": "npm run lint:js",
     "lint:js": "eslint ./src/**/*.js --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -39,10 +43,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -59,8 +65,5 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "jsdelivr": "dist/i18n.js",
-  "title": "Plugin",
-  "umd": "dist/i18n.js",
-  "unpkg": "dist/i18n.js"
+  "title": "Plugin"
 }

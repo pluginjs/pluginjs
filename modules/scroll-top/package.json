@@ -3,7 +3,7 @@
   "description": "A flexible modern scroll-top js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "scroll",
   "main": "dist/scroll-top.common.js",
   "module": "dist/scroll-top.esm.js",
+  "umd": "dist/scroll-top.js",
+  "unpkg": "dist/scroll-top.js",
+  "jsdelivr": "dist/scroll-top.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/scroll-top.scss",
-    "main": "dist/scroll-top.css",
-    "min": "dist/scroll-top.min.css"
-  },
+  "style": "dist/scroll-top.css",
+  "sass": "src/css/scroll-top.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -57,10 +58,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -76,8 +79,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/scroll-top.js",
-  "umd": "dist/scroll-top.js",
-  "unpkg": "dist/scroll-top.js"
+  ]
 }

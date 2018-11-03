@@ -3,7 +3,7 @@
   "description": "A flexible modern swipeable js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,16 @@
   "category": "ui",
   "main": "dist/swipeable.common.js",
   "module": "dist/swipeable.esm.js",
+  "umd": "dist/swipeable.js",
+  "unpkg": "dist/swipeable.js",
+  "jsdelivr": "dist/swipeable.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/swipeable.scss",
-    "main": "dist/swipeable.css",
-    "min": "dist/swipeable.min.css"
-  },
+  "style": "dist/swipeable.css",
+  "sass": "src/css/swipeable.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
@@ -29,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -47,10 +52,16 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "animejs": "anime",
+    "hammerjs": "Hammer"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -59,12 +70,5 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "globals": {
-    "animejs": "anime",
-    "hammerjs": "Hammer"
-  },
-  "jsdelivr": "dist/swipeable.js",
-  "umd": "dist/swipeable.js",
-  "unpkg": "dist/swipeable.js"
+  }
 }

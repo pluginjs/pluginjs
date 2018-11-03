@@ -3,7 +3,7 @@
   "description": "A flexible modern lazyload js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "media",
   "main": "dist/lazyload.common.js",
   "module": "dist/lazyload.esm.js",
+  "umd": "dist/lazyload.js",
+  "unpkg": "dist/lazyload.js",
+  "jsdelivr": "dist/lazyload.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/lazyload.scss",
-    "main": "dist/lazyload.css",
-    "min": "dist/lazyload.min.css"
-  },
+  "style": "dist/lazyload.css",
+  "sass": "src/css/lazyload.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -51,10 +52,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -70,8 +73,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/lazyload.js",
-  "umd": "dist/lazyload.js",
-  "unpkg": "dist/lazyload.js"
+  ]
 }

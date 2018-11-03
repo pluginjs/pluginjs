@@ -3,7 +3,7 @@
   "description": "A flexible modern collapse js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "ui",
   "main": "dist/collapse.common.js",
   "module": "dist/collapse.esm.js",
+  "umd": "dist/collapse.js",
+  "unpkg": "dist/collapse.js",
+  "jsdelivr": "dist/collapse.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/collapse.scss",
-    "main": "dist/collapse.css",
-    "min": "dist/collapse.min.css"
-  },
+  "style": "dist/collapse.css",
+  "sass": "src/css/collapse.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -53,10 +54,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -72,8 +75,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/collapse.js",
-  "umd": "dist/collapse.js",
-  "unpkg": "dist/collapse.js"
+  ]
 }

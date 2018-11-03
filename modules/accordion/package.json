@@ -3,7 +3,7 @@
   "description": "A flexible modern accordion js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "ui",
   "main": "dist/accordion.common.js",
   "module": "dist/accordion.esm.js",
+  "umd": "dist/accordion.js",
+  "unpkg": "dist/accordion.js",
+  "jsdelivr": "dist/accordion.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/accordion.scss",
-    "main": "dist/accordion.css",
-    "min": "dist/accordion.min.css"
-  },
+  "style": "dist/accordion.css",
+  "sass": "src/css/accordion.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -57,10 +58,16 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "animejs": "anime",
+    "hammerjs": "Hammer"
   },
   "engines": {
     "node": ">= 8",
@@ -77,12 +84,5 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "globals": {
-    "animejs": "anime",
-    "hammerjs": "Hammer"
-  },
-  "jsdelivr": "dist/accordion.js",
-  "sassrc": ".sassrc.js",
-  "umd": "dist/accordion.js",
-  "unpkg": "dist/accordion.js"
+  "sassrc": ".sassrc.js"
 }

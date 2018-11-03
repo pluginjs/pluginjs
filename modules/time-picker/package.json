@@ -3,7 +3,7 @@
   "description": "A flexible modern time-picker js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,16 @@
   "category": "form",
   "main": "dist/time-picker.common.js",
   "module": "dist/time-picker.esm.js",
+  "umd": "dist/time-picker.js",
+  "unpkg": "dist/time-picker.js",
+  "jsdelivr": "dist/time-picker.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/time-picker.scss",
-    "main": "dist/time-picker.css",
-    "min": "dist/time-picker.min.css"
-  },
+  "style": "dist/time-picker.css",
+  "sass": "src/css/time-picker.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
@@ -29,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -50,10 +55,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -62,8 +69,5 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "jsdelivr": "dist/time-picker.js",
-  "umd": "dist/time-picker.js",
-  "unpkg": "dist/time-picker.js"
+  }
 }

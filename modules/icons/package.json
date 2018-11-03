@@ -3,16 +3,22 @@
   "description": "TODO: fill in this description later",
   "license": "MIT",
   "author": "Creation Studio Limited",
-  "repository": "https://github.com/pluginjs/pluginjs/tree/master/tools/sample-icons",
+  "homepage": "https://pluginjs.com",
+  "repository": {
+    "url": "git@github.com:pluginjs/pluginjs.git",
+    "type": "git"
+  },
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
   "version": "0.6.4",
   "category": "css",
   "main": "dist/plugin-icons.css",
+  "style": "dist/plugin-icons.css",
   "scripts": {
     "build": "./scripts/generate",
-    "build:md": "plugin script build-md"
+    "build:md": "plugin script build-md",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "glob-expand": "^0.2.1",

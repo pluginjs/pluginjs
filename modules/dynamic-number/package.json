@@ -3,7 +3,7 @@
   "description": "A flexible modern dynamic-number js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "ui",
   "main": "dist/dynamic-number.common.js",
   "module": "dist/dynamic-number.esm.js",
+  "umd": "dist/dynamic-number.js",
+  "unpkg": "dist/dynamic-number.js",
+  "jsdelivr": "dist/dynamic-number.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/dynamic-number.scss",
-    "main": "dist/dynamic-number.css",
-    "min": "dist/dynamic-number.min.css"
-  },
+  "style": "dist/dynamic-number.css",
+  "sass": "src/css/dynamic-number.scss",
   "files": [
     "dist",
     "src"
@@ -31,6 +31,7 @@
     "build:md": "plugin script build-md",
     "lint": "npm run lint:js",
     "lint:js": "eslint ./src/**/*.js --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -52,7 +53,8 @@
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -68,8 +70,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/dynamic-number.js",
-  "umd": "dist/dynamic-number.js",
-  "unpkg": "dist/dynamic-number.js"
+  ]
 }

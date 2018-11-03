@@ -3,7 +3,7 @@
   "description": "A flexible modern gmap js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "media",
   "main": "dist/gmap.common.js",
   "module": "dist/gmap.esm.js",
+  "umd": "dist/gmap.js",
+  "unpkg": "dist/gmap.js",
+  "jsdelivr": "dist/gmap.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/gmap.scss",
-    "main": "dist/gmap.css",
-    "min": "dist/gmap.min.css"
-  },
+  "style": "dist/gmap.css",
+  "sass": "src/css/gmap.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -50,10 +51,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -69,8 +72,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/gmap.js",
-  "umd": "dist/gmap.js",
-  "unpkg": "dist/gmap.js"
+  ]
 }

@@ -3,7 +3,7 @@
   "description": "A flexible modern scrollable js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "scroll",
   "main": "dist/scrollable.common.js",
   "module": "dist/scrollable.esm.js",
+  "umd": "dist/scrollable.js",
+  "unpkg": "dist/scrollable.js",
+  "jsdelivr": "dist/scrollable.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/scrollable.scss",
-    "main": "dist/scrollable.css",
-    "min": "dist/scrollable.min.css"
-  },
+  "style": "dist/scrollable.css",
+  "sass": "src/css/scrollable.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -56,6 +57,7 @@
     "holderjs": "^2.9.4",
     "jest": "^23.3.0",
     "jest-extended": "^0.7.2",
+    "rename": "^1.0.4",
     "rollup": "^0.62.0",
     "rollup-plugin-babel": "^4.0.0-beta.4",
     "rollup-plugin-commonjs": "^9.1.3",
@@ -75,8 +77,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/scrollable.js",
-  "umd": "dist/scrollable.js",
-  "unpkg": "dist/scrollable.js"
+  ]
 }

@@ -3,7 +3,7 @@
   "description": "A flexible modern gradient-picker js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,16 @@
   "category": "form",
   "main": "dist/gradient-picker.common.js",
   "module": "dist/gradient-picker.esm.js",
+  "umd": "dist/gradient-picker.js",
+  "unpkg": "dist/gradient-picker.js",
+  "jsdelivr": "dist/gradient-picker.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/gradient-picker.scss",
-    "main": "dist/gradient-picker.css",
-    "min": "dist/gradient-picker.min.css"
-  },
+  "style": "dist/gradient-picker.css",
+  "sass": "src/css/gradient-picker.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
@@ -29,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -54,10 +59,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -66,8 +73,5 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "jsdelivr": "dist/gradient-picker.js",
-  "umd": "dist/gradient-picker.js",
-  "unpkg": "dist/gradient-picker.js"
+  }
 }

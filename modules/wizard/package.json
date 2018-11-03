@@ -3,7 +3,7 @@
   "description": "A flexible modern wizard js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "ui",
   "main": "dist/wizard.common.js",
   "module": "dist/wizard.esm.js",
+  "umd": "dist/wizard.js",
+  "unpkg": "dist/wizard.js",
+  "jsdelivr": "dist/wizard.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/wizard.scss",
-    "main": "dist/wizard.css",
-    "min": "dist/wizard.min.css"
-  },
+  "style": "dist/wizard.css",
+  "sass": "src/css/wizard.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -55,11 +56,14 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
+  "globals": {},
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
@@ -74,9 +78,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "globals": {},
-  "jsdelivr": "dist/wizard.js",
-  "umd": "dist/wizard.js",
-  "unpkg": "dist/wizard.js"
+  ]
 }

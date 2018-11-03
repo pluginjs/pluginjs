@@ -3,7 +3,7 @@
   "description": "A flexible modern breakpoints js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,6 +15,9 @@
   "category": "utils",
   "main": "dist/breakpoints.common.js",
   "module": "dist/breakpoints.esm.js",
+  "umd": "dist/breakpoints.js",
+  "unpkg": "dist/breakpoints.js",
+  "jsdelivr": "dist/breakpoints.js",
   "source": "src/main.js",
   "files": [
     "dist",
@@ -26,6 +29,7 @@
     "build:md": "plugin script build-md",
     "lint": "npm run lint:js",
     "lint:js": "eslint ./src/**/*.js --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -42,10 +46,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -61,8 +67,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/breakpoints.js",
-  "umd": "dist/breakpoints.js",
-  "unpkg": "dist/breakpoints.js"
+  ]
 }

@@ -3,7 +3,7 @@
   "description": "A utility JavaScript library for polyfills the browser.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,6 +15,9 @@
   "category": "core",
   "main": "dist/polyfills.common.js",
   "module": "dist/polyfills.esm.js",
+  "umd": "dist/polyfills.js",
+  "unpkg": "dist/polyfills.js",
+  "jsdelivr": "dist/polyfills.js",
   "source": "index.js",
   "files": [
     "dist",
@@ -25,6 +28,7 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "generate": "./scripts/generate",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -39,10 +43,12 @@
     "fs-extra": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -58,8 +64,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/polyfills.js",
-  "umd": "dist/polyfills.js",
-  "unpkg": "dist/polyfills.js"
+  ]
 }

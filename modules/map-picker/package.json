@@ -3,7 +3,7 @@
   "description": "A flexible modern map-picker js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "form",
   "main": "dist/map-picker.common.js",
   "module": "dist/map-picker.esm.js",
+  "umd": "dist/map-picker.js",
+  "unpkg": "dist/map-picker.js",
+  "jsdelivr": "dist/map-picker.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/map-picker.scss",
-    "main": "dist/map-picker.css",
-    "min": "dist/map-picker.min.css"
-  },
+  "style": "dist/map-picker.css",
+  "sass": "src/css/map-picker.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -57,10 +58,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -77,8 +80,5 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8",
-  "jsdelivr": "dist/map-picker.js",
-  "umd": "dist/map-picker.js",
-  "unpkg": "dist/map-picker.js"
+  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8"
 }

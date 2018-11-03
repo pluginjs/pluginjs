@@ -3,7 +3,7 @@
   "description": "A flexible modern place-complete js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,16 @@
   "category": "form",
   "main": "dist/place-complete.common.js",
   "module": "dist/place-complete.esm.js",
+  "umd": "dist/place-complete.js",
+  "unpkg": "dist/place-complete.js",
+  "jsdelivr": "dist/place-complete.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/place-complete.scss",
-    "main": "dist/place-complete.css",
-    "min": "dist/place-complete.min.css"
-  },
+  "style": "dist/place-complete.css",
+  "sass": "src/css/place-complete.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
@@ -29,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -46,10 +51,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -58,8 +65,5 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "jsdelivr": "dist/place-complete.js",
-  "umd": "dist/place-complete.js",
-  "unpkg": "dist/place-complete.js"
+  }
 }

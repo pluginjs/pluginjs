@@ -3,7 +3,7 @@
   "description": "A workflow for modern frontend development.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -14,12 +14,16 @@
   "version": "0.6.6",
   "category": "core",
   "main": "dist/pluginjs.js",
+  "umd": "dist/pluginjs.js",
+  "unpkg": "dist/pluginjs.js",
+  "jsdelivr": "dist/pluginjs.js",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
     "build": "./scripts/generate",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -51,10 +55,12 @@
     "concat": "^1.0.3",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -70,8 +76,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/pluginjs.js",
-  "umd": "dist/pluginjs.js",
-  "unpkg": "dist/pluginjs.js"
+  ]
 }

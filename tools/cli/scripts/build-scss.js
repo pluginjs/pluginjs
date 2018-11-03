@@ -5,6 +5,7 @@ const logger = require('@pluginjs/helper/logger')('scripts/build-scss')
 const path = require('path')
 const requireRc = require('./utils/require-rc-file')
 const { writeFileSync } = require('fs')
+const getBanner = require('./utils/banner')
 
 async function buildScss(ctx) {
   if (ctx.moduleName) {
@@ -18,6 +19,7 @@ async function buildScss(ctx) {
   if (!fs.existsSync(path.resolve('./dist'))) {
     fs.mkdirSync(path.resolve('./dist'))
   }
+  const banner = getBanner()
   const sassrc = await requireRc(path.resolve('./.sassrc.js'))
   await sassrc.process(config => {
     const {
@@ -31,7 +33,7 @@ async function buildScss(ctx) {
       ...othersOutputOptions
     })
     logger.success(`Created css(${othersOutputOptions.outputStyle}) → ${file}`)
-    return writeFileSync(file, css)
+    return writeFileSync(file, `${banner}\n${css}`)
   })
   return ctx
 }

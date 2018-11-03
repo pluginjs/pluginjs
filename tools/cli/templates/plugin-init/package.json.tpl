@@ -3,19 +3,24 @@
   "description": "A flexible modern {{moduleName}} js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
+  "repository": {
+    "url": "git@github.com:pluginjs/pluginjs.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/pluginjs/issues"
+  },
   "version": "0.0.1",
+  "category": "ui",
   "main": "dist/{{moduleName}}.common.js",
   "module": "dist/{{moduleName}}.esm.js",
   "umd": "dist/{{moduleName}}.js",
   "unpkg": "dist/{{moduleName}}.js",
   "jsdelivr": "dist/{{moduleName}}.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/{{moduleName}}.scss",
-    "main": "dist/{{moduleName}}.css",
-    "min": "dist/{{moduleName}}.min.css"
-  },
+  "style": "dist/{{moduleName}}.css",
+  "sass": "src/css/{{moduleName}}.scss",
   "files": [
     "dist",
     "src"
@@ -47,6 +52,7 @@
     "jest-extended": "*",
     "rollup": "*",
     "rollup-plugin-babel": "*",
+    "rollup-plugin-uglify": "*",
     "rollup-plugin-commonjs": "*",
     "rollup-plugin-node-resolve": "*"
   },

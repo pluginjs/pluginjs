@@ -3,7 +3,7 @@
   "description": "A flexible modern icon picker js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,16 @@
   "category": "form",
   "main": "dist/icon-picker.common.js",
   "module": "dist/icon-picker.esm.js",
+  "umd": "dist/icon-picker.js",
+  "unpkg": "dist/icon-picker.js",
+  "jsdelivr": "dist/icon-picker.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/icon-picker.scss",
-    "main": "dist/icon-picker.css",
-    "min": "dist/icon-picker.min.css"
-  },
+  "style": "dist/icon-picker.css",
+  "sass": "src/css/icon-picker.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
@@ -29,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -51,10 +56,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -63,8 +70,5 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "jsdelivr": "dist/icon-picker.js",
-  "umd": "dist/icon-picker.js",
-  "unpkg": "dist/icon-picker.js"
+  }
 }

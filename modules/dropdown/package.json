@@ -3,7 +3,7 @@
   "description": "A flexible modern dropdown js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "ui",
   "main": "dist/dropdown.common.js",
   "module": "dist/dropdown.esm.js",
+  "umd": "dist/dropdown.js",
+  "unpkg": "dist/dropdown.js",
+  "jsdelivr": "dist/dropdown.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/dropdown.scss",
-    "main": "dist/dropdown.css",
-    "min": "dist/dropdown.min.css"
-  },
+  "style": "dist/dropdown.css",
+  "sass": "src/css/dropdown.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -55,10 +56,15 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "popper.js": "Popper"
   },
   "engines": {
     "node": ">= 8",
@@ -74,11 +80,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "globals": {
-    "popper.js": "Popper"
-  },
-  "jsdelivr": "dist/dropdown.js",
-  "umd": "dist/dropdown.js",
-  "unpkg": "dist/dropdown.js"
+  ]
 }

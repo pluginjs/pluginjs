@@ -3,7 +3,7 @@
   "description": "A flexible modern shorten js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "ui",
   "main": "dist/shorten.common.js",
   "module": "dist/shorten.esm.js",
+  "umd": "dist/shorten.js",
+  "unpkg": "dist/shorten.js",
+  "jsdelivr": "dist/shorten.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/shorten.scss",
-    "main": "dist/shorten.css",
-    "min": "dist/shorten.min.css"
-  },
+  "style": "dist/shorten.css",
+  "sass": "src/css/shorten.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -51,10 +52,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -70,8 +73,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/shorten.js",
-  "umd": "dist/shorten.js",
-  "unpkg": "dist/shorten.js"
+  ]
 }

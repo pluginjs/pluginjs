@@ -3,7 +3,7 @@
   "description": "A flexible modern animate-text js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "ui",
   "main": "dist/animate-text.common.js",
   "module": "dist/animate-text.esm.js",
+  "umd": "dist/animate-text.js",
+  "unpkg": "dist/animate-text.js",
+  "jsdelivr": "dist/animate-text.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/animate-text.scss",
-    "main": "dist/animate-text.css",
-    "min": "dist/animate-text.min.css"
-  },
+  "style": "dist/animate-text.css",
+  "sass": "src/css/animate-text.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -52,10 +53,15 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "animejs": "anime"
   },
   "engines": {
     "node": ">= 8",
@@ -71,11 +77,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "globals": {
-    "animejs": "anime"
-  },
-  "jsdelivr": "dist/animate-text.js",
-  "umd": "dist/animate-text.js",
-  "unpkg": "dist/animate-text.js"
+  ]
 }

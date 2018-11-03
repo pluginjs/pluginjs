@@ -3,7 +3,7 @@
   "description": "A flexible modern hotspots js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "media",
   "main": "dist/hotspots.common.js",
   "module": "dist/hotspots.esm.js",
+  "umd": "dist/hotspots.js",
+  "unpkg": "dist/hotspots.js",
+  "jsdelivr": "dist/hotspots.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/hotspots.scss",
-    "main": "dist/hotspots.css",
-    "min": "dist/hotspots.min.css"
-  },
+  "style": "dist/hotspots.css",
+  "sass": "src/css/hotspots.scss",
   "files": [
     "dist",
     "src"
@@ -56,10 +56,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -75,8 +77,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/hotspots.js",
-  "umd": "dist/hotspots.js",
-  "unpkg": "dist/hotspots.js"
+  ]
 }

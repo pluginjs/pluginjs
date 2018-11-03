@@ -3,7 +3,7 @@
   "description": "A flexible modern draggable js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,16 @@
   "category": "ui",
   "main": "dist/draggable.common.js",
   "module": "dist/draggable.esm.js",
+  "umd": "dist/draggable.js",
+  "unpkg": "dist/draggable.js",
+  "jsdelivr": "dist/draggable.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/draggable.scss",
-    "main": "dist/draggable.css",
-    "min": "dist/draggable.min.css"
-  },
+  "style": "dist/draggable.css",
+  "sass": "src/css/draggable.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
@@ -29,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -46,10 +51,15 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "hammerjs": "Hammer"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -58,11 +68,5 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  },
-  "globals": {
-    "hammerjs": "Hammer"
-  },
-  "jsdelivr": "dist/draggable.js",
-  "umd": "dist/draggable.js",
-  "unpkg": "dist/draggable.js"
+  }
 }

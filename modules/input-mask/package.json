@@ -3,7 +3,7 @@
   "description": "A flexible modern input-mask js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "form",
   "main": "dist/input-mask.common.js",
   "module": "dist/input-mask.esm.js",
+  "umd": "dist/input-mask.js",
+  "unpkg": "dist/input-mask.js",
+  "jsdelivr": "dist/input-mask.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/input-mask.scss",
-    "main": "dist/input-mask.css",
-    "min": "dist/input-mask.min.css"
-  },
+  "style": "dist/input-mask.css",
+  "sass": "src/css/input-mask.scss",
   "files": [
     "dist",
     "src"
@@ -31,6 +31,7 @@
     "build:md": "plugin script build-md",
     "lint": "npm run lint:js",
     "lint:js": "eslint ./src/**/*.js --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -49,10 +50,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -68,8 +71,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/input-mask.js",
-  "umd": "dist/input-mask.js",
-  "unpkg": "dist/input-mask.js"
+  ]
 }

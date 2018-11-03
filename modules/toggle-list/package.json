@@ -3,7 +3,7 @@
   "description": "A flexible modern toggle-list js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "form",
   "main": "dist/toggle-list.common.js",
   "module": "dist/toggle-list.esm.js",
+  "umd": "dist/toggle-list.js",
+  "unpkg": "dist/toggle-list.js",
+  "jsdelivr": "dist/toggle-list.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/toggle-list.scss",
-    "main": "dist/toggle-list.css",
-    "min": "dist/toggle-list.min.css"
-  },
+  "style": "dist/toggle-list.css",
+  "sass": "src/css/toggle-list.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -52,10 +53,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -71,8 +74,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/toggle-list.js",
-  "umd": "dist/toggle-list.js",
-  "unpkg": "dist/toggle-list.js"
+  ]
 }

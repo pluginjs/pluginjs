@@ -3,7 +3,7 @@
   "description": "A flexible modern gallery js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,16 @@
   "category": "media",
   "main": "dist/gallery.common.js",
   "module": "dist/gallery.esm.js",
+  "umd": "dist/gallery.js",
+  "unpkg": "dist/gallery.js",
+  "jsdelivr": "dist/gallery.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/gallery.scss",
-    "main": "dist/gallery.css",
-    "min": "dist/gallery.min.css"
-  },
+  "style": "dist/gallery.css",
+  "sass": "src/css/gallery.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
@@ -29,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -53,10 +58,15 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "animejs": "anime"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
@@ -66,11 +76,5 @@
       "fixtures"
     ]
   },
-  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8",
-  "globals": {
-    "animejs": "anime"
-  },
-  "jsdelivr": "dist/gallery.js",
-  "umd": "dist/gallery.js",
-  "unpkg": "dist/gallery.js"
+  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8"
 }

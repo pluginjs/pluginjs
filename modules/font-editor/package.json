@@ -3,7 +3,7 @@
   "description": "A flexible modern font-editor js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "form",
   "main": "dist/font-editor.common.js",
   "module": "dist/font-editor.esm.js",
+  "umd": "dist/font-editor.js",
+  "unpkg": "dist/font-editor.js",
+  "jsdelivr": "dist/font-editor.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/font-editor.scss",
-    "main": "dist/font-editor.css",
-    "min": "dist/font-editor.min.css"
-  },
+  "style": "dist/font-editor.css",
+  "sass": "src/css/font-editor.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -61,10 +62,12 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
   "engines": {
     "node": ">= 8",
@@ -80,8 +83,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "jsdelivr": "dist/font-editor.js",
-  "umd": "dist/font-editor.js",
-  "unpkg": "dist/font-editor.js"
+  ]
 }

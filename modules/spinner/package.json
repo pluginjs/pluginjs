@@ -3,7 +3,7 @@
   "description": "A flexible modern spinner js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "form",
   "main": "dist/spinner.common.js",
   "module": "dist/spinner.esm.js",
+  "umd": "dist/spinner.js",
+  "unpkg": "dist/spinner.js",
+  "jsdelivr": "dist/spinner.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/spinner.scss",
-    "main": "dist/spinner.css",
-    "min": "dist/spinner.min.css"
-  },
+  "style": "dist/spinner.css",
+  "sass": "src/css/spinner.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -52,11 +53,14 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
+  "globals": {},
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
@@ -71,9 +75,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "globals": {},
-  "jsdelivr": "dist/spinner.js",
-  "umd": "dist/spinner.js",
-  "unpkg": "dist/spinner.js"
+  ]
 }

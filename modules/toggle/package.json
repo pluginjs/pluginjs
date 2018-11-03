@@ -3,7 +3,7 @@
   "description": "A flexible modern toggle js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "form",
   "main": "dist/toggle.common.js",
   "module": "dist/toggle.esm.js",
+  "umd": "dist/toggle.js",
+  "unpkg": "dist/toggle.js",
+  "jsdelivr": "dist/toggle.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/toggle.scss",
-    "main": "dist/toggle.css",
-    "min": "dist/toggle.min.css"
-  },
+  "style": "dist/toggle.css",
+  "sass": "src/css/toggle.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -52,10 +53,15 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "hammerjs": "Hammer"
   },
   "engines": {
     "node": ">= 8",
@@ -71,11 +77,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "globals": {
-    "hammerjs": "Hammer"
-  },
-  "jsdelivr": "dist/toggle.js",
-  "umd": "dist/toggle.js",
-  "unpkg": "dist/toggle.js"
+  ]
 }

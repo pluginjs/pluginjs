@@ -54,8 +54,8 @@ export const defaults = {
     href: 'javascript:void(0);' /* eslint-disable-line no-script-url */,
     text: 'Next'
   },
-  vertical: false, // vertical
-  valueFrom: 'href', // text, data-attr or ['a', 'href']
+  vertical: false,
+  valueFrom: 'href',
   templates: {
     prev() {
       return '<a class="{classes.NAMESPACE} {classes.PREV}" href="{href}" alt="{text}"><i class="{classes.ICON} {icon}"></i></a>'

@@ -3,7 +3,7 @@
   "description": "A flexible modern style js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -14,20 +14,16 @@
   "version": "0.6.5",
   "category": "css",
   "main": "dist/styles.css",
-  "css": {
-    "source": "index.scss",
-    "main": "dist/styles.css",
-    "min": "dist/styles.min.css",
-    "buttons": "buttons.scss",
-    "inputs": "inputs.scss",
-    "variables": "variables.scss"
-  },
+  "source": "index.scss",
+  "style": "dist/styles.css",
   "scripts": {
     "build": "plugin script build-scss",
-    "lint": "stylelint ./*.scss --fix"
+    "lint": "stylelint ./*.scss --fix",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
-    "sass": "^1.14.1"
+    "rename": "^1.0.4",
+    "sass": "^1.14.3"
   },
   "engines": {
     "node": ">= 8",

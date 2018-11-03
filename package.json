@@ -68,7 +68,7 @@
       "git add"
     ],
     "**/package.json": [
-      "prettier-package-json --key-order private,name,description,license,author,maintainers,contributors,homepage,repository,bugs,version,workspaces,category,main,module,cjs,source,css,browser,man,preferGlobal,bin,files,directories,scripts,config,optionalDependencies,dependencies,bundleDependencies,bundledDependencies,peerDependencies,devDependencies,keywords,engines,jest --write",
+      "prettier-package-json --key-order private,name,description,license,author,maintainers,contributors,homepage,repository,bugs,version,workspaces,category,main,module,umd,unpkg,jsdelivr,source,style,sass,browser,man,preferGlobal,bin,files,directories,scripts,config,optionalDependencies,dependencies,bundleDependencies,bundledDependencies,peerDependencies,devDependencies,globals,keywords,engines,jest --write",
       "git add"
     ]
   },

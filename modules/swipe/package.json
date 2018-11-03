@@ -3,7 +3,7 @@
   "description": "A flexible modern swipe js plugin.",
   "license": "GPL-3.0",
   "author": "Creation Studio Limited",
-  "homepage": "https://github.com/pluginjs/pluginjs",
+  "homepage": "https://pluginjs.com",
   "repository": {
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
@@ -15,12 +15,12 @@
   "category": "form",
   "main": "dist/swipe.common.js",
   "module": "dist/swipe.esm.js",
+  "umd": "dist/swipe.js",
+  "unpkg": "dist/swipe.js",
+  "jsdelivr": "dist/swipe.js",
   "source": "src/main.js",
-  "css": {
-    "source": "src/css/swipe.scss",
-    "main": "dist/swipe.css",
-    "min": "dist/swipe.min.css"
-  },
+  "style": "dist/swipe.css",
+  "sass": "src/css/swipe.scss",
   "files": [
     "dist",
     "src"
@@ -33,6 +33,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
     "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublish": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -58,10 +59,15 @@
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "animejs": "anime"
   },
   "engines": {
     "node": ">= 8",
@@ -77,11 +83,5 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ],
-  "globals": {
-    "animejs": "anime"
-  },
-  "jsdelivr": "dist/swipe.js",
-  "umd": "dist/swipe.js",
-  "unpkg": "dist/swipe.js"
+  ]
 }
