@@ -1,7 +1,7 @@
 {
   "name": "@pluginjs/helper",
   "description": "",
-  "license": "GPL-v3",
+  "license": "GPL-3.0",
   "version": "0.2.0",
   "main": "index.js"
 }
