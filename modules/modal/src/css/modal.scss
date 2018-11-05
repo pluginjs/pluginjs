@@ -3,6 +3,7 @@
 
 // Vars
 // =====================
+$icon: "pj-icon" !default;
 $modal-font-family: $font-family-base;
 $modal-font-size: $font-size-sm;
 
@@ -103,9 +104,16 @@ $modal-prompt-close-hover-color: $color-white;
     margin-right: $modal-title-icon-gutter;
     font-size: $modal-title-icon-font-size;
 
-    .#{$modal}-title-center & {
-      margin-right: 0;
-      margin-bottom: $modal-title-icon-gutter;
+    &.#{$icon}-check-circle {
+      color: #215fdb;
+    }
+
+    &.#{$icon}-info-circle {
+      color: #f4b066;
+    }
+
+    &.#{$icon}-close-circle {
+      color: #f96868;
     }
   }
 

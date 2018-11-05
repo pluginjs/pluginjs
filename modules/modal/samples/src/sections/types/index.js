@@ -20,11 +20,13 @@ query('.alert-title', root).addEventListener('click', () => {
 query('.confirm', root).addEventListener('click', () => {
   Modal.confirm(
     'Confirm please?',
-    () => {
+    resolve => {
       console.info('yes')
+      resolve()
     },
-    () => {
+    resolve => {
       console.info('no')
+      resolve()
     }
   )
 })
@@ -33,11 +35,31 @@ query('.confirm-title', root).addEventListener('click', () => {
   Modal.confirm(
     'Title Confirm',
     'Confirm please?',
-    () => {
+    resolve => {
       console.info('yes')
+      resolve()
     },
-    () => {
+    resolve => {
       console.info('no')
+      resolve()
+    }
+  )
+})
+
+query('.confirm-locale', root).addEventListener('click', () => {
+  Modal.confirm(
+    'Title Confirm',
+    'Confirm please?',
+    resolve => {
+      console.info('yes')
+      resolve()
+    },
+    resolve => {
+      console.info('no')
+      resolve()
+    },
+    {
+      locale: 'zh'
     }
   )
 })

@@ -8,15 +8,17 @@ query('.locale', root).addEventListener('click', () => {
     content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
     title: 'New Modal',
     theme: 'dialog',
-    buttons: {
-      cancel: {
+    buttons: [
+      {
+        action: 'cancel',
         label: 'Cancel',
         classes: 'pj-btn'
       },
-      yes: {
+      {
+        action: 'yes',
         label: 'Yes',
         classes: 'pj-btn'
       }
-    }
+    ]
   })
 })

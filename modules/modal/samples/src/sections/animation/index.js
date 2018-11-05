@@ -13,12 +13,14 @@ const basicModal = {
          <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar.</p>
          <p>Caerphilly swiss fromage frais. Brie cheese and wine fromage frais chalk and cheese danish fontina smelly cheese who moved my cheese cow.</p>`,
   title: 'Modal title',
-  buttons: {
-    cancel: {
+  buttons: [
+    {
+      action: 'cancel',
       label: 'Cancel',
       classes: 'pj-btn pj-btn-outline'
     },
-    active: {
+    {
+      action: 'active',
       label: 'Share',
       classes: 'pj-btn pj-btn-primary',
       fn: resolve => {
@@ -26,7 +28,7 @@ const basicModal = {
         resolve()
       }
     }
-  }
+  ]
 }
 const element = query('#animation .modal')
 element.addEventListener('click', event => {

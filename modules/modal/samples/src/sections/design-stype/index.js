@@ -8,12 +8,12 @@ query('.prompt', root).addEventListener('click', () => {
     content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
     title: 'New Modal',
     theme: 'prompt',
-    buttons: {
-      btn1: {
-        label: 'Save changes',
-        classes: 'pj-btn pj-btn-outline'
+    buttons: [
+      {
+        action: 'active',
+        label: 'Save changes'
       }
-    }
+    ]
   })
 })
 
@@ -22,12 +22,12 @@ query('.prompt-wide', root).addEventListener('click', () => {
     content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
     title: 'New Modal',
     theme: 'prompt lg',
-    buttons: {
-      btn1: {
-        label: 'Save changes',
-        classes: 'pj-btn pj-btn-outline'
+    buttons: [
+      {
+        action: 'active',
+        label: 'Save changes'
       }
-    }
+    ]
   })
 })
 
@@ -36,11 +36,12 @@ query('.prompt-light', root).addEventListener('click', () => {
     content: 'Duis aute irure dolor in reprehenderit in voluptate velit esse',
     title: 'New Modal',
     theme: 'prompt-light',
-    buttons: {
-      btn1: {
+    buttons: [
+      {
+        action: 'active',
         label: 'Save changes',
-        classes: 'pj-btn pj-btn-outline'
+        classes: 'pj-btn'
       }
-    }
+    ]
   })
 })

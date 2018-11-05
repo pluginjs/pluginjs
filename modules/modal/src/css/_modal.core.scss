@@ -49,20 +49,12 @@ $modal-duration: 0.3s !default;
 
   &-title {
     flex-shrink: 0;
-
-    &-center {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    &-right {
-      text-align: right;
-    }
   }
 
   &-title-icon {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   &-close {
@@ -79,19 +71,12 @@ $modal-duration: 0.3s !default;
   &-content {
     position: relative;
     overflow-y: auto;
-
-    &-center {
-      text-align: center;
-    }
-
-    &-right {
-      text-align: right;
-    }
   }
 
   &-buttons {
     display: flex;
     flex-shrink: 0;
+    justify-content: flex-end;
   }
 
   &-destory {

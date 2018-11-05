@@ -15,9 +15,7 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   CLOSE: '{namespace}-close',
   CONTENT: '{namespace}-content',
-  CONTENTLOCATION: '{namespace}-content-{contentLocation}',
   TITLE: '{namespace}-title',
-  TITLELOCATION: '{namespace}-title-{location}',
   DISABLED: '{namespace}-disabled',
   CONTAINER: '{namespace}-container',
   HEADER: '{namespace}-header',
@@ -67,11 +65,10 @@ export const defaults = {
       return '<button class="{classes.BUTTON} {custom}" data-action={action} type="button">{label}</button>'
     }
   },
-  autoDestroy: true, // not used in static method
   title: '',
   content: '',
   html: true,
-  close: true,
+  closeable: true,
   locale: 'en',
   localeFallbacks: true,
   buttons: null,
@@ -79,18 +76,13 @@ export const defaults = {
   overlayCloseOnClick: true,
   appendTo: 'body',
   effect: 'fadeScale',
-  contentAlignment: '',
-  buttonAlignment: '',
-  titleAlignment: '',
   defaultButtonClass: 'pj-btn pj-btn-primary',
-  icon: '',
+  icon: null,
   icons: {
-    success: ['pj-icon pj-icon-check-circle', '#215fdb'],
-    info: ['pj-icon pj-icon-info-circle', '#f4b066'],
-    error: ['pj-icon pj-icon-close-circle', '#f96868']
-  },
-  iconColor: '',
-  iconClass: ''
+    success: 'pj-icon pj-icon-check-circle',
+    info: 'pj-icon pj-icon-info-circle',
+    error: 'pj-icon pj-icon-close-circle'
+  }
 }
 
 export const translations = {

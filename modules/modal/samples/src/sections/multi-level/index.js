@@ -6,8 +6,9 @@ const prompt = {
   content:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   title: 'Modal title',
-  buttons: {
-    active: {
+  buttons: [
+    {
+      action: 'active',
       label: 'Open Modal',
       classes: 'pj-btn',
       fn: resolve => {
@@ -15,13 +16,13 @@ const prompt = {
         Modal.open(pop)
       }
     }
-  }
+  ]
 }
 const pop = {
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  contentAlignment: '',
-  buttons: {
-    active: {
+  buttons: [
+    {
+      action: 'active',
       label: 'Open Modal',
       classes: 'pj-btn',
       fn: resolve => {
@@ -29,11 +30,10 @@ const pop = {
         Modal.open(alert)
       }
     }
-  }
+  ]
 }
 
 const alert = {
-  contentAlignment: '',
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 }
 

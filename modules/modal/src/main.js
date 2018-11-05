@@ -1,8 +1,8 @@
 import templateEngine from '@pluginjs/template'
-import { deepMerge, compose } from '@pluginjs/utils'
-import { isObject, isFunction } from '@pluginjs/is'
+import { deepMerge } from '@pluginjs/utils'
+import { isObject, isFunction, isString } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
+import { bindEvent, bindEventOnce } from '@pluginjs/events'
 import { append, parseHTML, query, data, remove } from '@pluginjs/dom'
 import {
   eventable,
@@ -40,27 +40,20 @@ class Modal extends GlobalComponent {
 
     this.setupStates()
     this.setupI18n()
-
     this.initialize()
     this.bind()
   }
 
   validate() {
     if (this.options.buttons) {
-      const buttons = this.options.buttons
-      for (const id in this.options.buttons) {
-        if (Object.prototype.hasOwnProperty.call(this.options.buttons, id)) {
-          if (!buttons[id].class) {
-            buttons[id].class = this.options.defaultButtonClass
-          }
-          if (!buttons[id].title) {
-            buttons[id].title = 'OK'
-          }
-          if (buttons[id].close === false) {
-            buttons[id].close = true
-          }
+      this.options.buttons.forEach(button => {
+        if (!button.classes) {
+          button.classes = this.options.defaultButtonClass
         }
-      }
+        if (!button.label) {
+          button.label = 'Yes'
+        }
+      })
     }
 
     return true
@@ -73,15 +66,7 @@ class Modal extends GlobalComponent {
 
     addClass(`${this.classes.OPEN}`, query('body'))
 
-    if (this.options.autoDestroy === true) {
-      append(this.$element, query(this.options.appendTo))
-    } else {
-      if (this.firstAppend) {
-        append(this.$element, query(this.options.appendTo))
-        this.firstAppend = false
-      }
-      this.$element.style.display = ''
-    }
+    append(this.$element, query(this.options.appendTo))
 
     if (this.options.overlay) {
       addClass(`${this.classes.NAMESPACE}-fadeIn`, this.$overlay)
@@ -104,7 +89,7 @@ class Modal extends GlobalComponent {
   }
 
   bind() {
-    if (this.options.close) {
+    if (this.options.closeable) {
       bindEvent(
         this.eventName('click'),
         () => {
@@ -118,22 +103,24 @@ class Modal extends GlobalComponent {
       bindEvent(
         this.eventName('click'),
         event => {
-          if (!event.target.classList.contains(this.classes.BUTTON)) {
+          if (
+            !event.target.classList.contains(this.classes.BUTTON) ||
+            !data('action', event.target)
+          ) {
             return false
           }
 
           const action = data('action', event.target)
 
-          if (!action || typeof this.options.buttons[action] === 'undefined') {
-            return false
-          }
-
-          const button = this.options.buttons[action]
-
-          if (isFunction(button.fn)) {
-            button.fn(this.close.bind(this))
-          } else {
-            this.close()
+          for (let i = 0; i < this.options.buttons.length; i++) {
+            if (action === this.options.buttons[i].action) {
+              const button = this.options.buttons[i]
+              if (isFunction(button.fn)) {
+                button.fn(this.close.bind(this))
+              } else {
+                this.close()
+              }
+            }
           }
 
           return false
@@ -176,17 +163,8 @@ class Modal extends GlobalComponent {
     )
 
     const animationendCallback = () => {
-      if (!this.options.autoDestroy) {
-        compose(
-          removeEvent(this.eventName('animationend')),
-          addClass('pj-modal-destory')
-        )(this.$element)
-        this.enter('show')
-        this.removeOverflow()
-      } else {
-        this.removeOverflow()
-        this.destroy()
-      }
+      this.removeOverflow()
+      this.destroy()
     }
 
     bindEventOnce(
@@ -233,9 +211,8 @@ class Modal extends GlobalComponent {
 
   initialize() {
     // Validate data
-    if (this.validate() === false) {
-      return
-    }
+    this.validate()
+
     this.$content = query(`.${this.classes.CONTENT}`, this.$element)
     this.$title = query(`.${this.classes.TITLE}`, this.$element)
     this.$closeBtn = query(`.${this.classes.CLOSE}`, this.$element)
@@ -251,61 +228,19 @@ class Modal extends GlobalComponent {
     // set
     if (this.options.title !== '') {
       this.setTitle(this.options.title)
-      this.setTitleloction(this.options.titleAlignment)
     }
 
     if (this.options.content !== '') {
       this.setContent(this.options.content)
-      this.setContentloction(this.options.contentAlignment)
     }
 
     if (this.options.buttons) {
       this.setButtons(this.options.buttons)
-      this.setBtnLocation(this.options.buttonAlignment)
     }
 
     // trigger ready
-    this.firstAppend = true
     this.trigger(EVENTS.READY)
     this.enter('initialized')
-  }
-
-  setTitleloction(location) {
-    if (location) {
-      addClass(
-        this.getClass(
-          this.classes.TITLELOCATION,
-          'location',
-          this.options.titleAlignment
-        ),
-        this.$title
-      )
-    }
-  }
-
-  setContentloction(contentLocation) {
-    if (contentLocation) {
-      addClass(
-        this.getClass(
-          this.classes.CONTENTLOCATION,
-          'contentLocation',
-          this.options.contentAlignment
-        ),
-        this.$content
-      )
-    }
-  }
-
-  setBtnLocation(btnLocation) {
-    if (btnLocation === 'right') {
-      this.$buttons.style['justify-content'] = 'flex-end'
-    } else if (btnLocation === 'left') {
-      this.$buttons.style['justify-content'] = 'flex-start'
-    } else if (btnLocation === 'center') {
-      this.$buttons.style['justify-content'] = 'center'
-    } else {
-      this.$buttons.style['justify-content'] = 'flex-end'
-    }
   }
 
   createHtml() {
@@ -316,7 +251,7 @@ class Modal extends GlobalComponent {
     let content = ''
     let icon = ''
 
-    if (this.options.close) {
+    if (this.options.closeable) {
       close = templateEngine.render(this.options.templates.close.call(this), {
         classes: this.classes
       })
@@ -349,15 +284,14 @@ class Modal extends GlobalComponent {
       )
     }
 
-    if (this.options.icon || this.options.iconClass) {
+    if (this.options.icon) {
       icon = templateEngine.render(this.options.templates.icon.call(this), {
         classes: this.classes,
         iconClass: this.getIconClass()
       })
       this.$icon = parseHTML(icon)
-      const color = this.getIconColor()
-      this.$icon.style.color = color
     }
+
     const html = templateEngine.render(this.options.template.call(this), {
       classes: this.classes,
       overlay,
@@ -368,19 +302,17 @@ class Modal extends GlobalComponent {
     })
     return html
   }
-  getIconClass() {
-    if (this.options.iconClass) {
-      return this.options.iconColor
-    }
-    this.options.icon = this.options.icon || 'success'
-    return this.options.icons[this.options.icon][0]
-  }
 
-  getIconColor() {
-    if (this.options.iconClass) {
-      return this.options.iconClass
+  getIconClass() {
+    if (this.options.icons[this.options.icon]) {
+      return this.options.icons[this.options.icon]
     }
-    return this.options.icons[this.options.icon][1]
+
+    if (isString(this.options.icon)) {
+      return this.options.icon
+    }
+
+    return this.options.icons.success
   }
 
   setTitle(title) {
@@ -401,43 +333,39 @@ class Modal extends GlobalComponent {
     }
   }
 
-  _creatBtn(buttons, action, length) {
-    let btn = ''
-    let label = ''
-    const classes = buttons[action].classes
-    const local = ['Yes', 'Cancel']
-    if (local.includes(buttons[action].label)) {
-      label = this.translate(buttons[action].label)
-    } else {
-      label = buttons[action].label
-    }
-    if (this.options.theme && length < 3) {
-      btn = templateEngine.render(this.options.templates.button.call(this), {
-        classes: this.classes,
-        custom: classes,
-        label,
-        action
-      })
-    } else {
-      btn = templateEngine.render(this.options.templates.button.call(this), {
-        classes: this.classes,
-        custom: classes,
-        label,
-        action
-      })
-    }
-    return parseHTML(btn)
-  }
-
   setButtons(buttons) {
-    const length = Object.keys(buttons).length
     this.$buttons.innerHTML = ''
-    for (const key in buttons) {
-      if (Object.prototype.hasOwnProperty.call(buttons, key)) {
-        const btn = this._creatBtn(buttons, key, length)
+    for (const button in buttons) {
+      if (buttons[button].action) {
+        const btn = this.createBtn(buttons[button])
         append(btn, this.$buttons)
       }
     }
+  }
+
+  createBtn(button) {
+    const classes = button.classes
+    const action = button.action
+
+    let label = ''
+    const local = ['Yes', 'Cancel']
+    if (local.includes(button.label)) {
+      label = this.translate(button.label)
+    } else {
+      label = button.label
+    }
+
+    const btn = templateEngine.render(
+      this.options.templates.button.call(this),
+      {
+        classes: this.classes,
+        custom: classes,
+        label,
+        action
+      }
+    )
+
+    return parseHTML(btn)
   }
 
   destroy() {
@@ -457,7 +385,7 @@ class Modal extends GlobalComponent {
   }
 
   static init(options = {}) {
-    const o = deepMerge(options, { autoDestroy: false })
+    const o = deepMerge(options)
     const instance = new Modal(o)
     instance.enter('hide')
     return instance
@@ -473,78 +401,110 @@ class Modal extends GlobalComponent {
   }
 
   static confirm(...args) {
-    // const opt = deepMerge(window.Pj.modal.defaults, {
-    const opt = deepMerge(DEFAULTS, {
+    if (!isString(args[0])) {
+      return false
+    }
+
+    let opt = deepMerge(DEFAULTS, {
       title: '',
       content: '',
-      contentAlignment: '',
-      close: true,
-      buttonAlignment: 'right',
-      buttons: {
-        cancel: {
+      closeable: true,
+      buttons: [
+        {
+          action: 'cancel',
           label: 'Cancel',
           classes: 'pj-btn pj-btn-outline',
           fn: ''
         },
-        active: {
+        {
+          action: 'yes',
           label: 'Yes',
           classes: 'pj-btn pj-btn-primary',
           fn: ''
         }
-      }
+      ]
     })
-    const length = args.length
+
     const str = []
     const func = []
-    // get value
-    for (let i = 0; i < length; i++) {
+
+    for (let i = 0; i < args.length; i++) {
       if (typeof args[i] === 'string') {
         str.push(args[i])
       } else if (isObject(args[i]) && !isFunction(args[i])) {
-        opt.buttons.active.label = args[i].buttons.active.label
-        opt.buttons.active.classes = args[i].buttons.active.classes
-        opt.buttons.cancel.label = args[i].buttons.cancel.label
-        opt.buttons.cancel.classes = args[i].buttons.cancel.classes
+        if (args[i].buttons) {
+          for (let j = 0; j < args[i].buttons.length; j++) {
+            for (let k = 0; k < opt.buttons.length; k++) {
+              if (args[i].buttons[j].action === opt.buttons[k].action) {
+                opt.buttons[k].label = args[i].buttons[j].label
+                opt.buttons[k].classes = args[i].buttons[j].classes
+              }
+            }
+          }
+
+          delete args[i].buttons
+        }
+        opt = deepMerge(opt, args[i])
       } else if (isFunction(args[i])) {
         func.push(args[i])
       }
     }
-    // set title & content
+
     if (str.length === 1) {
       opt.content = str[0]
-    } else if (str.length === 2) {
+    } else if (str.length > 1) {
       opt.title = str[0]
       opt.content = str[1]
     }
-    // set buttons fn
+
     if (func.length === 1) {
-      opt.buttons.active.fn = func[0]
+      opt.buttons.forEach(button => {
+        if (button.action === 'yes') {
+          button.fn = func[0]
+        }
+      })
     } else if (func.length >= 2) {
-      opt.buttons.active.fn = func[0]
-      opt.buttons.cancel.fn = func[1]
+      opt.buttons.forEach(button => {
+        if (button.action === 'yes') {
+          button.fn = func[0]
+        }
+
+        if (button.action === 'cancel') {
+          button.fn = func[1]
+        }
+      })
     }
+
     const instance = new Modal(opt)
     instance.open()
     return instance
   }
 
   static alert(...args) {
-    const opt = deepMerge(DEFAULTS, {
-      title: '',
-      content: '',
-      contentAlignment: 'left',
-      close: true
-    })
-    const length = args.length
-    if (length === 1) {
-      opt.content = args[0]
-      opt.contentAlignment = 'center'
-    } else if (length === 2) {
-      opt.title = args[0]
-      opt.content = args[1]
-    } else {
+    if (!isString(args[0])) {
       return false
     }
+
+    let opt = deepMerge(DEFAULTS, {
+      title: '',
+      content: '',
+      closeable: true
+    })
+
+    if (isObject(args[1]) && args.length === 2) {
+      opt = deepMerge(opt, args[1])
+    }
+
+    if (isObject(args[2])) {
+      opt = deepMerge(opt, args[2])
+    }
+
+    opt.content = args[0]
+
+    if (isString(args[1])) {
+      opt.title = args[1]
+    }
+
     const instance = new Modal(opt)
     instance.open()
     return instance
