@@ -5,6 +5,11 @@ const path = require('path')
 const concat = require('concat');
 const logger = require('@pluginjs/helper/logger')('script/generate')
 const pkg =  require('../package.json')
+const Terser = require('terser')
+const rename = require('rename')
+const getBanner = require('@pluginjs/cli/scripts/utils/banner')
+
+const banner = getBanner()
 
 const files = [
   '@pluginjs/polyfills',
@@ -28,13 +33,20 @@ const files = [
   '@pluginjs/viewport'
 ].map(file => path.join(file, 'package.json')).map(file => {
   const pkg =  require(file)
-  return path.join('../../node_modules',path.dirname(file), pkg.main)
+  return path.join('../../node_modules',path.dirname(file), pkg.umd)
 })
 
-concat(files).then(result => {
-  fs.ensureFileSync(pkg.main)
-  fs.writeFileSync(pkg.main, result)
+concat(files).then(code => {
+  fs.ensureFileSync(pkg.umd)
+  fs.writeFileSync(pkg.umd, `${banner}\n${code}`)
+
+  let min = rename(pkg.umd, {suffix: '.min'})
+  let result = Terser.minify(code)
+
+  fs.ensureFileSync(min)
+  fs.writeFileSync(min, `${banner}\n${result.code}`)
+
   logger.success(
-    `pluginjs generated → ${pkg.main}`
+    `pluginjs generated → ${pkg.umd}`
   )
 })
