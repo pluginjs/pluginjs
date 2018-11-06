@@ -41,6 +41,7 @@ class Checkbox extends Component {
     super(element)
     this.setupOptions(options)
     this.$group = this.options.getGroup.call(this)
+    console.log(this.$group)
     if (
       this.$group.length > 1 ||
       (this.element.name &&

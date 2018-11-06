@@ -81,11 +81,12 @@ $datePicker-body-font-size: $font-size-xs;
     border-color: $datePicker-border-color;
     border-style: $datePicker-border-style;
     border-width: $datePicker-border-width;
+    outline: none;
   }
 
   &-input,
   &-mobile-trigger {
-    width: $datePicker-input-width;
+    width: $datePicker-input-width !important;
   }
 
   &-mobile-trigger {

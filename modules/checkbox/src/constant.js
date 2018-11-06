@@ -53,10 +53,7 @@ export const defaults = {
     return query('i:first-child', this.$label)
   },
   getGroup() {
-    return queryAll(
-      `input[name="${this.element.getAttribute('name')}"]`,
-      parentWith(hasClass('example'), this.element)
-    )
+    return queryAll(`input[name="${this.element.getAttribute('name')}"]`)
   },
   templates: {
     wrap() {

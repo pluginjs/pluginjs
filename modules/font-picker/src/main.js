@@ -106,9 +106,9 @@ class FontPicker extends Component {
 
     this.bind()
 
-    this.initData()
-
     this.setupDropdown(this.options.dropdown)
+
+    this.initData()
 
     if (this.options.clearable) {
       this.CLEARABLE = new Clearable(this)
