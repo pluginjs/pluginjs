@@ -33,4 +33,4 @@ export const defaults = {
   breakpoint: 'md' // xs, sm, md, lg, xl
 }
 
-export const dependencies = []
+export const dependencies = ['animejs', 'arrows']

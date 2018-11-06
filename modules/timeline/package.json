@@ -44,7 +44,6 @@
     "@pluginjs/decorator": "^0.7.1",
     "@pluginjs/dom": "^0.7.1",
     "@pluginjs/events": "^0.7.1",
-    "@pluginjs/is": "^0.7.1",
     "@pluginjs/styled": "^0.7.1",
     "animejs": "*"
   },

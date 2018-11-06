@@ -17,10 +17,10 @@ import {
 } from './constant'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import Breakpoints from '@pluginjs/breakpoints'
-import { isString } from '@pluginjs/is'
 import { getWidth, getHeight, setStyle } from '@pluginjs/styled'
 import { query, queryAll } from '@pluginjs/dom'
 import Arrows from '@pluginjs/arrows'
+import Anime from 'animejs'
 
 @themeable()
 @styleable(CLASSES)
@@ -48,7 +48,6 @@ class Timeline extends Component {
 
     addClass(this.classes.HORIZONTAL, this.element)
     this.$list = query(`.${this.classes.LIST}`, this.element)
-    this.$item = query(`.${this.classes.ITEM}`, this.element)
     this.$itemAll = queryAll(`.${this.classes.ITEM}`, this.element)
 
     this.width = getWidth(this.element)
@@ -121,7 +120,7 @@ class Timeline extends Component {
 
   initBreakpoints() {
     Breakpoints.init()
-    if (isString(this.options.breakpoint) && this.ensureBreakpoint()) {
+    if (Breakpoints.all().includes(this.options.breakpoint)) {
       const breakpoint = this.options.breakpoint
       const that = this
       if (Breakpoints.is(`${breakpoint}-`)) {
@@ -136,14 +135,6 @@ class Timeline extends Component {
         }
       })
     }
-  }
-
-  ensureBreakpoint() {
-    if (Breakpoints.all().includes(this.options.breakpoint)) {
-      return true
-    }
-
-    return false
   }
 
   bind() {
@@ -175,12 +166,16 @@ class Timeline extends Component {
     const distance = this.itemWidth * this.currentIndex
 
     if (hasClass(this.classes.HORIZONTAL, this.element)) {
-      setStyle(
-        {
-          transform: `translate3d(-${distance}px, 0px, 0px)`
-        },
-        this.$list
-      )
+      if (this.$anime) {
+        this.$anime.pause()
+      }
+      this.$anime = Anime({
+        targets: this.$list,
+        translateX: -distance,
+        translateZ: 0,
+        easing: 'easeOutSine',
+        duration: 700
+      })
     } else {
       setStyle(
         {
@@ -216,7 +211,8 @@ class Timeline extends Component {
       setStyle(
         {
           width: `${this.itemWidth * this.$itemAll.length}px`,
-          height: `${this.height}px`
+          height: `${this.height}px`,
+          transform: `translateX(-${this.itemWidth * this.currentIndex}px)`
         },
         this.$list
       )
@@ -250,7 +246,6 @@ class Timeline extends Component {
         setStyle('width', '50%', item)
       })
     }
-    this.move()
   }
 
   enable() {
