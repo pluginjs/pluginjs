@@ -20,7 +20,8 @@ export const classes = deepMerge(Select.classes, {
   REACHMAXTEXT: '{namespace}-reach-max-text',
   SELECTED: '{namespace}-selected',
   HIDESELECTED: '{namespace}-hide-selected',
-  ALLSELECTED: '{namespace}-all-selected'
+  ALLSELECTED: '{namespace}-all-selected',
+  FILTER: '{namespace}-filter'
 })
 
 export const methods = deepMerge(Select.methods, [])

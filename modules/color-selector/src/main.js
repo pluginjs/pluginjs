@@ -72,7 +72,7 @@ class ColorSelector extends Component {
     // init global vars
     this.$body = query('body')
 
-    this.data = DATA
+    this.data = DATA || this.options.data
     this.oldColor = {}
     this.color = ''
     // init

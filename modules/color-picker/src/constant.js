@@ -110,7 +110,6 @@ export const defaults = {
     history: true
   },
   defaultColor: '#000',
-  data: null, // colors in the scheme and your favorite colors.  example: {scheme:{'Primary':'#55a4f2','fontColor':'#ccc','bgColor':'#f2a654','borderColor':'#f1f1f1'},favorite:['red':'red','brown':'brown','lightblue':'lightblue','green':'green']}
   color: {
     format: false,
     alphaConvert: {
