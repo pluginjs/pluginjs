@@ -427,24 +427,29 @@ class Modal extends GlobalComponent {
 
     const str = []
     const func = []
+    let length = args.length
 
-    for (let i = 0; i < args.length; i++) {
+    if (length && isObject(args[length - 1])) {
+      if (args[length - 1].buttons) {
+        args[length - 1].buttons.forEach(button => {
+          opt.buttons.forEach(btn => {
+            if (button.action === btn.action) {
+              btn.label = button.label
+              btn.classes = button.classes
+            }
+          })
+        })
+
+        delete args[length - 1].buttons
+      }
+
+      opt = deepMerge(opt, args[length - 1])
+      length -= 1
+    }
+
+    for (let i = 0; i < length; i++) {
       if (typeof args[i] === 'string') {
         str.push(args[i])
-      } else if (isObject(args[i]) && !isFunction(args[i])) {
-        if (args[i].buttons) {
-          for (let j = 0; j < args[i].buttons.length; j++) {
-            for (let k = 0; k < opt.buttons.length; k++) {
-              if (args[i].buttons[j].action === opt.buttons[k].action) {
-                opt.buttons[k].label = args[i].buttons[j].label
-                opt.buttons[k].classes = args[i].buttons[j].classes
-              }
-            }
-          }
-
-          delete args[i].buttons
-        }
-        opt = deepMerge(opt, args[i])
       } else if (isFunction(args[i])) {
         func.push(args[i])
       }
@@ -463,7 +468,7 @@ class Modal extends GlobalComponent {
           button.fn = func[0]
         }
       })
-    } else if (func.length >= 2) {
+    } else if (func.length > 1) {
       opt.buttons.forEach(button => {
         if (button.action === 'yes') {
           button.fn = func[0]
@@ -491,18 +496,18 @@ class Modal extends GlobalComponent {
       closeable: true
     })
 
-    if (isObject(args[1]) && args.length === 2) {
-      opt = deepMerge(opt, args[1])
+    let length = args.length
+
+    if (length && isObject(args[length - 1])) {
+      opt = deepMerge(opt, args[length - 1])
+      length -= 1
     }
 
-    if (isObject(args[2])) {
-      opt = deepMerge(opt, args[2])
-    }
-
-    opt.content = args[0]
-
-    if (isString(args[1])) {
-      opt.title = args[1]
+    if (length === 1) {
+      opt.content = args[0]
+    } else if (length === 2) {
+      opt.title = args[0]
+      opt.content = args[1]
     }
 
     const instance = new Modal(opt)

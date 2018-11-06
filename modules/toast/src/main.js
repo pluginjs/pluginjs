@@ -3,7 +3,7 @@ import { isNumber, isObject, isFunction } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { bindEvent, bindEventOnce } from '@pluginjs/events'
-import { append, parseHTML, query, remove } from '@pluginjs/dom'
+import { append, parseHTML, query, remove, data } from '@pluginjs/dom'
 import GlobalComponent from '@pluginjs/global-component'
 import {
   eventable,
@@ -133,9 +133,6 @@ class Toast extends GlobalComponent {
         instances.slice(0, _extToastCount).forEach(instance => {
           remove(instance.$element)
         })
-        // instances.slice(0, _extToastCount).forEach(instance => {
-        //   remove(instance)
-        // })
       }
     }
 
@@ -284,22 +281,24 @@ class Toast extends GlobalComponent {
       bindEvent(
         this.eventName('click'),
         event => {
-          if (!event.target.classList.contains(this.classes.BUTTON)) {
+          if (
+            !event.target.classList.contains(this.classes.BUTTON) ||
+            !data('action', event.target)
+          ) {
             return false
           }
 
-          const action = event.target.dataset.action
+          const action = data('action', event.target)
 
-          if (!action || typeof this.options.buttons[action] === 'undefined') {
-            return false
-          }
-
-          const button = this.options.buttons[action]
-
-          if (isFunction(button.fn)) {
-            button.fn(this.hide.bind(this))
-          } else {
-            this.hide()
+          for (let i = 0; i < this.options.buttons.length; i++) {
+            if (action === this.options.buttons[i].action) {
+              const button = this.options.buttons[i]
+              if (isFunction(button.fn)) {
+                button.fn(this.hide.bind(this))
+              } else {
+                this.hide()
+              }
+            }
           }
 
           return false
@@ -415,9 +414,9 @@ class Toast extends GlobalComponent {
     const buttons = this.options.buttons
     let result = ''
 
-    for (const type in buttons) {
-      if (Object.prototype.hasOwnProperty.call(buttons, type)) {
-        result += this.creatBtn(type, buttons[type])
+    for (const button in buttons) {
+      if (buttons[button].action) {
+        result += this.creatBtn(buttons[button].action, buttons[button])
       }
     }
 
@@ -443,7 +442,6 @@ class Toast extends GlobalComponent {
 
     this.trigger(EVENTS.DESTROY)
     remove(this.$element)
-    // remove(this.$wrap)
     super.destroy()
   }
 

@@ -1,6 +1,6 @@
 import Pj from '@pluginjs/factory'
 import templateEngine from '@pluginjs/template'
-import { isNumber, isString, isFunction } from '@pluginjs/is'
+import { isNumber, isFunction } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import { reflow } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -115,13 +115,13 @@ class Notice extends GlobalComponent {
         this.$element
       )
     }
-    if (this.options.withClose) {
-      addClass(this.classes.WITHCLOSE, this.$element)
+    if (this.options.closeable) {
+      addClass(this.classes.CLOSEABLE, this.$element)
     }
   }
 
   bind() {
-    if (this.options.withClose) {
+    if (this.options.closeable) {
       bindEvent(
         this.eventName('click'),
         () => {
@@ -135,21 +135,24 @@ class Notice extends GlobalComponent {
       bindEvent(
         this.eventName('click'),
         event => {
-          if (!event.target.classList.contains(this.classes.BUTTON)) {
+          if (
+            !event.target.classList.contains(this.classes.BUTTON) ||
+            !data('action', event.target)
+          ) {
             return false
           }
+
           const action = data('action', event.target)
 
-          if (!action || typeof this.options.buttons[action] === 'undefined') {
-            return false
-          }
-
-          const button = this.options.buttons[action]
-
-          if (isFunction(button.fn)) {
-            button.fn(this.hide.bind(this))
-          } else {
-            this.hide()
+          for (let i = 0; i < this.options.buttons.length; i++) {
+            if (action === this.options.buttons[i].action) {
+              const button = this.options.buttons[i]
+              if (isFunction(button.fn)) {
+                button.fn(this.hide.bind(this))
+              } else {
+                this.hide()
+              }
+            }
           }
 
           return false
@@ -236,7 +239,7 @@ class Notice extends GlobalComponent {
 
   initBreakpoints() {
     Breakpoints.init()
-    if (isString(this.options.breakpoint) && this.ensureBreakpoint()) {
+    if (Breakpoints.all().includes(this.options.breakpoint)) {
       const breakpoint = this.options.breakpoint
       const that = this
       if (Breakpoints.is(`${breakpoint}-`)) {
@@ -251,14 +254,6 @@ class Notice extends GlobalComponent {
         }
       })
     }
-  }
-
-  ensureBreakpoint() {
-    if (Breakpoints.all().includes(this.options.breakpoint)) {
-      return true
-    }
-
-    return false
   }
 
   setContent(content) {
@@ -297,7 +292,7 @@ class Notice extends GlobalComponent {
     let content = ''
     let buttons = ''
 
-    if (this.options.withClose) {
+    if (this.options.closeable) {
       close = templateEngine.render(this.options.templates.close.call(this), {
         classes: this.classes
       })
@@ -341,9 +336,9 @@ class Notice extends GlobalComponent {
   createBtns() {
     const buttons = this.options.buttons
     let result = ''
-    for (const key in buttons) {
-      if (Object.prototype.hasOwnProperty.call(buttons, key)) {
-        result += this.creatBtn(key, buttons[key])
+    for (const button in buttons) {
+      if (buttons[button].action) {
+        result += this.creatBtn(buttons[button].action, buttons[button])
       }
     }
     return result

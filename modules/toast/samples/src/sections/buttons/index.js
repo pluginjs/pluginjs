@@ -7,8 +7,9 @@ const btn2 = query('#buttons .example-buttons2')
 btn1.addEventListener('click', () => {
   Toast.open({
     duration: 'false',
-    buttons: {
-      undo: {
+    buttons: [
+      {
+        action: 'undo',
         label: 'Undo',
         classes: 'pj-btn pj-btn-primary',
         fn: resolve => {
@@ -16,18 +17,19 @@ btn1.addEventListener('click', () => {
           resolve()
         }
       }
-    },
+    ],
     content: 'My name is Inigo Montoya. You killed my father, prepare to die!'
   })
 })
 
 btn2.addEventListener('click', () => {
   Toast.open({
-    buttons: {
-      undo: {
+    buttons: [
+      {
+        action: 'undo',
         label: 'Undo',
         classes: 'pj-btn pj-btn-outline'
       }
-    }
+    ]
   })
 })

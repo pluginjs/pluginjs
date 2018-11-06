@@ -24,7 +24,7 @@ export const methods = deepMerge(List.methods, ['toggle'])
 export const defaults = deepMerge(List.defaults, {
   actions: [
     {
-      name: 'toggle',
+      action: 'toggle',
       init(instance, item, $item) {
         const api = Toggle.of(this, {
           classes: {
@@ -50,10 +50,10 @@ export const defaults = deepMerge(List.defaults, {
   ],
   templates: {
     action() {
-      if (this.name === 'toggle') {
-        return '<input type="checkbox" data-action="{action.name}">'
+      if (this.action === 'toggle') {
+        return '<input type="checkbox" data-action="{action.action}">'
       }
-      return '<i class="{classes.ACTION} {action.class}" data-action="{action.name}" title="{action.title}"></i>'
+      return '<i class="{classes.ACTION} {action.classes}" data-action="{action.action}" title="{action.label}"></i>'
     }
   }
 })

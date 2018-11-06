@@ -222,7 +222,7 @@ class List extends Component {
 
   initActions(item, $item) {
     each(this.options.actions, action => {
-      const $action = query(`[data-action="${action.name}"]`, $item)
+      const $action = query(`[data-action="${action.action}"]`, $item)
 
       action.init.apply($action, [this, item, $item])
     })
@@ -381,7 +381,6 @@ class List extends Component {
         removeClass(this.getThemeClass(), this.$wrapper)
       }
       unwrap(this.element)
-      // removeClass(this.classes.INPUT, this.element)
 
       this.leave('initialized')
     }

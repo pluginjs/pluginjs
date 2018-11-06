@@ -19,7 +19,7 @@ export const classes = {
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
   CLOSE: '{namespace}-close',
-  WITHCLOSE: '{namespace}-with-close',
+  CLOSEABLE: '{namespace}-closeable',
   CONTAINER: '{namespace}-container',
   BUTTON: '{namespace}-btn',
   BUTTONS: '{namespace}-buttons',
@@ -63,16 +63,17 @@ export const defaults = {
   localeFallbacks: true,
   content: '',
   contentAlignment: 'center',
-  withClose: false,
+  closeable: false,
   textColor: null,
   backgroundColor: null,
   backgroundImage: null,
-  buttons: {
-    ok: {
+  buttons: [
+    {
+      action: 'ok',
       label: 'OK',
       classes: 'pj-btn pj-btn-primary'
     }
-  },
+  ],
   actionsAlign: 'center',
   duration: false, // notice duration(ms)
   fixedWidth: false,

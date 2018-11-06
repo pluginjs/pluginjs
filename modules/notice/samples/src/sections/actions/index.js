@@ -11,12 +11,13 @@ buttons.addEventListener('click', () => {
     <p class="pj-notice-mobile">Design faster and better together</p>
     `,
     closeBottonColor: '#b3b3b3',
-    buttons: {
-      cancel: {
+    buttons: [
+      {
+        action: 'cancel',
         label: 'CANCEL',
         classes: 'pj-btn pj-btn-outline'
       }
-    }
+    ]
   })
 })
 

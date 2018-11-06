@@ -13,13 +13,7 @@ primary.addEventListener('click', () => {
     <p class="pj-notice-desktop">Creation uses cookies to store you information. By using our site, you agree to our terms of service</p>
     <p class="pj-notice-mobile">Design faster and better together</p>
     `,
-    type: 'primary',
-    buttons: {
-      ok: {
-        label: 'OK',
-        classes: 'pj-btn pj-btn-outline'
-      }
-    }
+    type: 'primary'
   })
 })
 
@@ -29,13 +23,7 @@ success.addEventListener('click', () => {
     <p class="pj-notice-desktop">Creation uses cookies to store you information. By using our site, you agree to our terms of service</p>
     <p class="pj-notice-mobile">Design faster and better together</p>
     `,
-    type: 'success',
-    buttons: {
-      ok: {
-        label: 'OK',
-        classes: 'pj-btn pj-btn-success'
-      }
-    }
+    type: 'success'
   })
 })
 

@@ -71,15 +71,19 @@ class PopDialog extends Popover {
   }
 
   do(action) {
-    if (!action || typeof this.options.buttons[action] === 'undefined') {
+    if (!action) {
       return false
     }
-    const button = this.options.buttons[action]
 
-    if (isFunction(button.fn)) {
-      button.fn(this.hide.bind(this))
-    } else {
-      this.hide()
+    for (let i = 0; i < this.options.buttons.length; i++) {
+      if (action === this.options.buttons[i].action) {
+        const button = this.options.buttons[i]
+        if (isFunction(button.fn)) {
+          button.fn(this.hide.bind(this))
+        } else {
+          this.hide()
+        }
+      }
     }
 
     return null
@@ -132,17 +136,21 @@ class PopDialog extends Popover {
     )
 
     let buttons = ''
-    Object.entries(this.options.buttons).forEach(
-      ([action, { label, color, classes }]) => {
+    this.options.buttons.forEach(button => {
+      if (button.action) {
         buttons += buttonTemplate({
-          action,
-          label,
+          action: button.action,
+          label: button.label,
           classes: this.classes,
-          colorClass: this.getClass(this.classes.BUTTONCOLOR, 'color', color),
-          custom: classes
+          colorClass: this.getClass(
+            this.classes.BUTTONCOLOR,
+            'color',
+            button.color
+          ),
+          custom: button.classes
         })
       }
-    )
+    })
 
     return buttons
   }

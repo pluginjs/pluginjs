@@ -31,7 +31,7 @@ export const classes = {
   HANDLE: '{namespace}-item-handle',
   ELEMENT: '{namespace}-origin',
   NEW: '{namespace}-new',
-  POPVER: '{namespace}-popver',
+  POPOVER: '{namespace}-popover',
   CLONEANIMATE: '{namespace}-item-clone-animate'
 }
 
@@ -64,9 +64,9 @@ export const defaults = {
   },
   actions: [
     {
-      title: 'Delete',
-      name: 'delete',
-      class: 'pj-icon pj-icon-trash',
+      label: 'Delete',
+      action: 'delete',
+      classes: 'pj-icon pj-icon-trash',
       init(instance, item, $item) {
         PopDialog.of(this, {
           classes: {
@@ -74,9 +74,13 @@ export const defaults = {
           },
           placement: 'bottom',
           content: instance.translate('deleteAction'),
-          buttons: {
-            cancel: { label: instance.translate('cancel') },
-            delete: {
+          buttons: [
+            {
+              action: 'cancel',
+              label: instance.translate('cancel')
+            },
+            {
+              action: 'delete',
               label: instance.translate('delete'),
               color: 'danger',
               fn(resolve) {
@@ -85,7 +89,7 @@ export const defaults = {
                 resolve()
               }
             }
-          }
+          ]
         })
       }
     }
@@ -102,7 +106,7 @@ export const defaults = {
 </li>`
     },
     action() {
-      return '<i class="{classes.ACTION} {action.class}" data-action="{action.name}" title="{action.title}"></i>'
+      return '<i class="{classes.ACTION} {action.classes}" data-action="{action.action}" title="{action.label}"></i>'
     }
   },
   parse(data) {

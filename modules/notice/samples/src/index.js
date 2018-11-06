@@ -2,7 +2,7 @@
 import '@pluginjs/icons/dist/plugin-icons.css'
 // import sections
 import './sections/default/index.js'
-import './sections/with-close/index.js'
+import './sections/closeable/index.js'
 // import './sections/background-color/index.js'
 import './sections/content-align/index.js'
 // import './sections/font-color/index.js'

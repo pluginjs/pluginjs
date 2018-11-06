@@ -65,7 +65,7 @@ $notice-state-backgrounds: (
       width: $notice-container-width;
     }
 
-    .#{$notice}-with-close & {
+    .#{$notice}-closeable & {
       padding-right: $notice-close-width;
     }
   }

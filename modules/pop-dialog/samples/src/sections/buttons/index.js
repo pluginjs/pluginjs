@@ -3,11 +3,13 @@ import popDialog from '@pluginjs/pop-dialog'
 
 const element = query('#buttons [data-toggle="default-button"]')
 popDialog.of(element, {
-  buttons: {
-    cancel: {
+  buttons: [
+    {
+      action: 'cancel',
       label: 'Dismiss'
     },
-    ok: {
+    {
+      action: 'ok',
       label: 'OK',
       classes: 'pj-btn-primary',
       fn: resolve => {
@@ -15,5 +17,5 @@ popDialog.of(element, {
         resolve()
       }
     }
-  }
+  ]
 })

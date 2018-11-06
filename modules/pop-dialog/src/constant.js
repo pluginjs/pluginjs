@@ -69,9 +69,12 @@ export const defaults = deepMerge(Popover.defaults, {
       return '<div class="{classes.BUTTONS}">{buttons}</div>'
     }
   },
-  buttons: {
-    cancel: { label: 'Dismiss' }
-  }
+  buttons: [
+    {
+      action: 'cancel',
+      label: 'Dismiss'
+    }
+  ]
 })
 
 export const dependencies = ['popover', 'tooltip']
