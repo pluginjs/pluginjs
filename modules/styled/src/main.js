@@ -270,10 +270,9 @@ export const getHeight = el => {
   height = height - parseInt(paddingTop, 10) - parseInt(paddingBottom, 10)
 
   if (getStyle('boxSizing', el) === 'border-box') {
-    const { borderTopHeight, borderBottomHeight } = getStyle(
-      ['borderTopHeight', 'borderBottomHeight'],
-      el
-    )
+    const borderStyles = getStyle(['borderTopHeight', 'borderBottomHeight'], el)
+    const borderTopHeight = borderStyles.borderTopHeight || 0
+    const borderBottomHeight = borderStyles.borderBottomHeight || 0
     height =
       height - parseInt(borderTopHeight, 10) - parseInt(borderBottomHeight, 10)
   }
