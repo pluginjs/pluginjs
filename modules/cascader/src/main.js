@@ -476,8 +476,8 @@ class Cascader extends Component {
   buildDropdown() {
     if (this.data) {
       const $menu = this.buildMenu(this.data, 0)
-      if (query('.pj-cascader-menu', this.$dropdown)) {
-        insertBefore($menu, query('.pj-cascader-menu', this.$dropdown))
+      if (query(this.classes.MENU, this.$dropdown)) {
+        insertBefore($menu, query(this.classes.MENU, this.$dropdown))
       } else {
         this.$dropdown.appendChild($menu)
       }
