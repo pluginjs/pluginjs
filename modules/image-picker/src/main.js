@@ -39,7 +39,8 @@ class ImagePicker extends Component {
 
     this.setupOptions(options)
     this.setupClasses()
-
+    this.value = {}
+    this.value.image = ''
     addClass(`${this.classes.INPUT}`, this.element)
 
     this.setupI18n()
@@ -59,7 +60,7 @@ class ImagePicker extends Component {
     this.bind()
 
     // set initialed value
-    this.value = this.options.parse(this.element.value)
+    this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
     this.setState('write')
     this.set(this.value, false)
 
@@ -196,7 +197,6 @@ class ImagePicker extends Component {
       )(this.$wrap)
     }
   }
-
   update() {
     this.element.value = this.val()
     this.trigger(EVENTS.CHANGE, this.value)
@@ -223,7 +223,8 @@ class ImagePicker extends Component {
       return
     }
     this.value = value
-    this.$image.setAttribute('src', value)
+    this.$image.setAttribute('src', value.image)
+
     this.setState('exist')
     if (update !== false) {
       this.update()

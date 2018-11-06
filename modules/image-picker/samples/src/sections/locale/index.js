@@ -5,6 +5,6 @@ const element = query('#locale .example-locale')
 ImagePicker.of(element, {
   locale: 'zh',
   select(resolve) {
-    resolve('https://picsum.photos/200/300?image=1067')
+    resolve({ image: 'https://picsum.photos/200/300?image=1067' })
   }
 })
