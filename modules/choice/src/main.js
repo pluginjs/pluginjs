@@ -68,6 +68,7 @@ class Choice extends Component {
     super(element)
     this.$element = this.element
     this.$options = queryAll('option', this.$element)
+    console.log(this.$element.multiple)
     const override = {}
     if (this.$options.length !== 0) {
       override.data = {}

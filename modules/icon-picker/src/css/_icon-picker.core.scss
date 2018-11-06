@@ -218,7 +218,7 @@ $iconPicker-search-icon: $pj-icon-search !default;
 
     input {
       box-sizing: border-box;
-      width: 100%;
+      width: 100% !important;
       height: 100%;
       line-height: 100%;
       border: none;

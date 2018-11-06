@@ -47,7 +47,7 @@ $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
   }
 
   &-input {
-    width: 100%;
+    width: 100% !important;
   }
 
   &-clear {

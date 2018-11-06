@@ -21,7 +21,7 @@ $spinner-layout-right-control-width: 20px !default;
   outline: none;
 
   input {
-    width: 100%;
+    width: 100% !important;
     padding: $spinner-height + $spinner-padding;
     padding-top: $spinner-padding - $spinner-border-width;
     padding-bottom: $spinner-padding - $spinner-border-width;

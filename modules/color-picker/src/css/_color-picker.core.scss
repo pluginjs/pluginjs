@@ -35,7 +35,7 @@ $colorPicker-mask-zindex: $colorPicker-panel-zindex - 1 !default;
   }
 
   &-input {
-    width: 100%;
+    width: 100% !important;
   }
 
   &-clear {
@@ -126,7 +126,7 @@ $colorPicker-mask-zindex: $colorPicker-panel-zindex - 1 !default;
     justify-content: space-between;
 
     &-mode {
-      width: 100%;
+      width: 100% !important;
     }
 
     .#{$select} {

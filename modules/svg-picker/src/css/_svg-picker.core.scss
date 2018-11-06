@@ -182,7 +182,7 @@ $svgPicker-item-padding-y: ($svgPicker-item-height - $svgPicker-svg-height)/2 - 
   &-filter {
     input {
       box-sizing: border-box;
-      width: 100%;
+      width: 100% !important;
       height: 100%;
       line-height: 100%;
       border: none;

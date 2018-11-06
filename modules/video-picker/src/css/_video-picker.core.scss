@@ -155,7 +155,7 @@ $videoPicker-icon: $pj-icon-play-circle !default;
       position: relative;
 
       > input {
-        width: 100%;
+        width: 100% !important;
       }
 
       > i {

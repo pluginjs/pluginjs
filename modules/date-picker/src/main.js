@@ -1536,7 +1536,7 @@ class DatePicker extends Component {
           this.$element.focus()
         }
     }
-    e.preventDefault()
+    // e.preventDefault()
   }
   /* eslint-enable */
   changeValue(target, i) {

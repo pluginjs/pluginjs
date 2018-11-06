@@ -24,7 +24,7 @@ $strength-check-border-radius: $border-radius-base !default;
 
 .#{$strength} {
   box-sizing: border-box;
-  width: $strength-width;
+  width: $strength-width !important;
   height: $strength-height;
 
   &-has-icon {
@@ -58,7 +58,7 @@ $strength-check-border-radius: $border-radius-base !default;
   }
 
   &-input {
-    width: 100%;
+    width: 100% !important;
   }
 
   &-toggle {

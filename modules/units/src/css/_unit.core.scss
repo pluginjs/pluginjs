@@ -8,7 +8,7 @@ $units: "pj-units" !default;
   position: relative;
 
   &-input {
-    width: 100%;
+    width: 100% !important;
   }
 
   &-trigger {

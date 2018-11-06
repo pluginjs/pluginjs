@@ -53,7 +53,7 @@ $connect-active-bg: $gray-lightest !default;
 
   &-input {
     box-sizing: border-box;
-    width: $offset-input-width;
+    width: $offset-input-width !important;
     height: $offset-input-height;
     border: $offset-input-border;
     border-right: none;
