@@ -3,21 +3,21 @@
   "name": "auto-complete-samples",
   "description": "Simple auto-complete example",
   "license": "GPL-3.0",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/auto-complete": "^0.7.0",
-    "@pluginjs/dom": "^0.7.0",
+    "@pluginjs/auto-complete": "^0.7.1",
+    "@pluginjs/dom": "^0.7.1",
     "countries-list": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
-    "@pluginjs/browserslist-config": "^1.2.0",
+    "@pluginjs/browserslist-config": "^1.2.1",
     "parcel-bundler": "^1.10.3",
     "posthtml-include": "*"
   },
