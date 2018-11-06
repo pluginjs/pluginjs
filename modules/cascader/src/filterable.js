@@ -19,7 +19,7 @@ export default class Filterable {
       () => {
         const value = instance.$label.value
         const DROPDOWN = instance.DROPDOWN
-        addClass('pj-cascader-input', instance.$wrap)
+        addClass(instance.classes.INPUT, instance.$wrap)
         if (!value) {
           this.showNotFound()
         } else {
@@ -57,7 +57,7 @@ export default class Filterable {
       instance.selfEventName(EVENTS.HIDE),
       () => {
         this.hideNotFound()
-        removeClass('pj-cascader-input', instance.$wrap)
+        removeClass(instance.classes.INPUT, instance.$wrap)
         this.instance.filter = false
       },
       instance.element
@@ -92,12 +92,12 @@ export default class Filterable {
     if (!this.$notFound) {
       this.$notFound = parseHTML(
         `<div class="${
-          this.instance.classes.NOTFOUND
+          this.instance.classes.NOTFOUNDMENU
         }">${this.instance.translate('notFoundText')}</div>`
       )
     }
     append(this.$notFound, this.instance.$dropdown)
-    addClass('pj-cascader-notfound', this.instance.$dropdown)
+    addClass(this.instance.classes.NOTFOUND, this.instance.$dropdown)
     this.notfound = true
   }
 
@@ -109,7 +109,7 @@ export default class Filterable {
     if (this.$notFound) {
       detach(this.$notFound)
     }
-    removeClass('pj-cascader-notfound', this.instance.$dropdown)
+    removeClass(this.instance.classes.NOTFOUND, this.instance.$dropdown)
     this.notfound = false
   }
 
@@ -137,7 +137,7 @@ export default class Filterable {
 
       option.__dom = this.$resultOption
       this.$result.appendChild(this.$resultOption)
-      addClass('pj-cascader-result', this.$result)
+      addClass(this.instance.classes.RESULT, this.$result)
     })
   }
 

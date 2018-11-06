@@ -26,6 +26,7 @@ export const classes = {
   LABEL: '{namespace}-label',
   WRAP: '{namespace}',
   SHOW: '{namespace}-show',
+  INPUT: '{namespace}-input',
   DROPDOWN: '{namespace}-dropdown',
   OPTION: '{namespace}-option pj-dropdown-item',
   OPTIONEXTENSIBLE: '{namespace}-option-extensible',
@@ -36,8 +37,10 @@ export const classes = {
   CLEAR: '{namespace}-clear',
   FILTERABLE: '{namespace}-filterable',
   FILTER: '{namespace}-filter',
-  NOTFOUND: '{namespace}-not-found',
+  NOTFOUND: '{namespace}-notfound',
+  NOTFOUNDMENU: '{namespace}-notfound-menu',
   MENU: '{namespace}-menu',
+  RESULT: '{namespace}-result',
   LOADING: '{namespace}-loading'
 }
 

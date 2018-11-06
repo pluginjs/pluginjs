@@ -20,8 +20,8 @@ $cascader-extensible-color: $gray;
 $cascader-clear-color: $gray;
 $cascader-clear-hover-color: $text-color;
 
-$cascader-not-found-padding: 11px 8px;
-$cascader-not-found-color: $gray-darker;
+$cascader-notfound-menu-padding: 11px 8px;
+$cascader-notfound-menu-color: $gray-darker;
 
 $cascader-loading-padding: 11px 8px;
 $cascader-loading-color: $gray-darker;
@@ -58,9 +58,9 @@ $cascader-loading-color: $gray-darker;
     }
   }
 
-  &-not-found {
-    padding: $cascader-not-found-padding;
-    color: $cascader-not-found-color;
+  &-notfound-menu {
+    padding: $cascader-notfound-menu-padding;
+    color: $cascader-notfound-menu-color;
     text-align: center;
   }
 
