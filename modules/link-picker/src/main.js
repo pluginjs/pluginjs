@@ -173,9 +173,13 @@ class LinkPicker extends Component {
       {
         content: 'Are you sure you want to delete?',
         placement: 'bottom',
-        buttons: {
-          cancel: { label: 'Cancel' },
-          delete: {
+        buttons: [
+          {
+            action: 'cancel',
+            label: 'Cancel'
+          },
+          {
+            action: 'delete',
             label: 'Delete',
             color: 'danger',
             fn(resolve) {
@@ -183,7 +187,7 @@ class LinkPicker extends Component {
               resolve()
             }
           }
-        },
+        ],
         onShown: () => this.enter('holdHover'),
         onHidden: () => {
           removeClass(this.classes.HOVER, this.$action)

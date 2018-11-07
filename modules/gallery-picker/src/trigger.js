@@ -36,9 +36,13 @@ export default class Trigger {
     this.DELETEPOP = PopDialog.of(this.$remove, {
       placement: 'bottom',
       content: that.instance.translate('deleteTitle'),
-      buttons: {
-        cancel: { label: that.instance.translate('cancel') },
-        delete: {
+      buttons: [
+        {
+          action: 'cancel',
+          label: that.instance.translate('cancel')
+        },
+        {
+          action: 'delete',
           label: that.instance.translate('delete'),
           color: 'danger',
           fn(resolve) {
@@ -47,7 +51,7 @@ export default class Trigger {
             resolve()
           }
         }
-      },
+      ],
       onShown: () => {
         that.instance.enter('holdHover')
       },

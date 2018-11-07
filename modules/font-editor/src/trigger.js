@@ -40,9 +40,13 @@ export default class Trigger {
     this.CLEARPOP = PopDialog.of(this.$removeAction, {
       content: 'Are you sure you want to delete?',
       placement: 'bottom',
-      buttons: {
-        cancel: { label: 'Cancel' },
-        delete: {
+      buttons: [
+        {
+          action: 'cancel',
+          label: 'Cancel'
+        },
+        {
+          action: 'delete',
           label: 'Delete',
           color: 'danger',
           fn(resolve) {
@@ -54,7 +58,7 @@ export default class Trigger {
             resolve()
           }
         }
-      },
+      ],
       onShown: () => {
         that.instance.enter('holdHover')
       },

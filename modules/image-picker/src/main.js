@@ -156,9 +156,13 @@ class ImagePicker extends Component {
     this.pop = PopDialog.of(this.$remove, {
       placement: 'bottom',
       content: this.translate('deleteTitle'),
-      buttons: {
-        cancel: { label: this.translate('cancel') },
-        delete: {
+      buttons: [
+        {
+          action: 'cancel',
+          label: this.translate('cancel')
+        },
+        {
+          action: 'delete',
           label: this.translate('delete'),
           color: 'danger',
           fn(resolve) {
@@ -173,7 +177,7 @@ class ImagePicker extends Component {
             resolve()
           }
         }
-      },
+      ],
       onShown: () => {
         this.enter('holdHover')
       },
