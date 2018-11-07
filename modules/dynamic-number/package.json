@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.1",
+  "version": "0.7.2",
   "category": "ui",
   "main": "dist/dynamic-number.common.js",
   "module": "dist/dynamic-number.esm.js",
@@ -35,18 +35,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/component": "^0.7.1",
-    "@pluginjs/decorator": "^0.7.1",
-    "@pluginjs/dom": "^0.7.1",
-    "@pluginjs/factory": "^0.7.1",
-    "@pluginjs/tween": "^0.7.1",
-    "@pluginjs/utils": "^0.7.1"
+    "@pluginjs/component": "^0.7.2",
+    "@pluginjs/decorator": "^0.7.2",
+    "@pluginjs/dom": "^0.7.2",
+    "@pluginjs/factory": "^0.7.2",
+    "@pluginjs/tween": "^0.7.2",
+    "@pluginjs/utils": "^0.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.1.2",
-    "@pluginjs/cli": "^0.7.1",
+    "@pluginjs/cli": "^0.7.2",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

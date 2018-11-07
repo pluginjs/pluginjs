@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.1",
+  "version": "0.7.2",
   "category": "scroll",
   "main": "dist/reveal.common.js",
   "module": "dist/reveal.esm.js",
@@ -37,20 +37,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/breakpoints": "^0.7.1",
-    "@pluginjs/classes": "^0.7.1",
-    "@pluginjs/component": "^0.7.1",
-    "@pluginjs/decorator": "^0.7.1",
-    "@pluginjs/dom": "^0.7.1",
-    "@pluginjs/events": "^0.7.1",
-    "@pluginjs/factory": "^0.7.1",
-    "@pluginjs/styled": "^0.7.1",
-    "@pluginjs/viewport": "^0.7.1"
+    "@pluginjs/breakpoints": "^0.7.2",
+    "@pluginjs/classes": "^0.7.2",
+    "@pluginjs/component": "^0.7.2",
+    "@pluginjs/decorator": "^0.7.2",
+    "@pluginjs/dom": "^0.7.2",
+    "@pluginjs/events": "^0.7.2",
+    "@pluginjs/factory": "^0.7.2",
+    "@pluginjs/styled": "^0.7.2",
+    "@pluginjs/viewport": "^0.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
-    "@pluginjs/browserslist-config": "^1.2.1",
-    "@pluginjs/cli": "^0.7.1",
+    "@pluginjs/browserslist-config": "^1.2.2",
+    "@pluginjs/cli": "^0.7.2",
     "babel-jest": "*",
     "intersection-observer": "^0.5.0",
     "jest": "*",
