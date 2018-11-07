@@ -8,7 +8,6 @@ import {
   setData
 } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
-import Scrollable from '@pluginjs/scrollable'
 
 class Collection {
   constructor(instance, element) {
@@ -42,6 +41,7 @@ class Collection {
         this.classes.COLLECTIONSCROLLWRAP
       }'><div><div></div></div></div>`
     )
+    console.log($scorllWrap)
     prepend($scorllWrap, this.element)
     const scrollWrapChildren = children($scorllWrap)
       .filter(el => el.tagName === 'DIV')
@@ -51,11 +51,6 @@ class Collection {
           .reduce((a, b) => a.concat(b))
       )
     scrollWrapChildren.map(append(this.$selectorList))
-
-    this.scrollable = Scrollable.of($scorllWrap, {
-      contentSelector: '>',
-      containerSelector: '>'
-    })
 
     return null
   }

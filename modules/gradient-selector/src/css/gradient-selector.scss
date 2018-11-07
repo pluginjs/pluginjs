@@ -33,6 +33,8 @@ $gradientSelector-collection-padding: 2 * $gradientSelector-sizer 2.4 * $gradien
 $gradientSelector-collection-height: 28 * $gradientSelector-sizer !default; //28px
 // collection scrollwrap
 $gradientSelector-collection-scrollwrap-padding: 0 2 * $gradientSelector-sizer !default; //20px
+$gradientSelector-collection-scrollwrap-width: 26 * $gradientSelector-sizer !default; //260px
+$gradientSelector-collection-scrollwrap-height: 25 * $gradientSelector-sizer !default; //250px
 // collection item
 $gradientSelector-collection-item-width: 3.2 * $gradientSelector-sizer !default; //32px
 $gradientSelector-collection-item-height: $gradientSelector-collection-item-width !default;
@@ -249,14 +251,10 @@ $editPanel-component-color: $color-red !default;
 
   &-collection {
     &-scrollwrap {
-      // width: 100%;
-      height: 100%;
-
-      .pj-scrollable-container,
-      .pj-scrollable-content {
-        width: 100% !important;
-        height: 100% !important;
-      }
+      width: $gradientSelector-collection-scrollwrap-width;
+      height: $gradientSelector-collection-scrollwrap-height;
+      overflow: hidden;
+      overflow-y: auto;
     }
 
     &-item {
@@ -271,6 +269,7 @@ $editPanel-component-color: $color-red !default;
       border-radius: 2px;
 
       &:nth-of-type(5n) {
+        width: $gradientSelector-collection-item-width - 1;
         margin-right: 0;
       }
     }
