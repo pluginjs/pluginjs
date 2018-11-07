@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "@pluginjs/browserslist-config": "*",
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
     "parcel-bundler": "^1.10.3",
     "posthtml-include": "*"
   }
