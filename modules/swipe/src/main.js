@@ -589,6 +589,16 @@ class Swipe extends Component {
       }
     }
 
+    if (!this.options.group) {
+      this.itemInstances.forEach((item, index) => {
+        const $item = item.el
+        removeClass(this.classes.ACTIVE, $item)
+        if (index === this.active) {
+          addClass(this.classes.ACTIVE, $item)
+        }
+      })
+    }
+
     setTimeout(() => {
       if (callback) {
         callback()
@@ -628,16 +638,6 @@ class Swipe extends Component {
 
     if (this.options.pagination) {
       this.pagination.set(`${this.active}`)
-    }
-
-    if (!this.options.group) {
-      this.itemInstances.forEach((item, index) => {
-        const $item = item.$el
-        removeClass(this.classes.ACTIVE, $item)
-        if (index === this.active) {
-          addClass(this.classes.ACTIVE, $item)
-        }
-      })
     }
 
     this.move(distance, {
