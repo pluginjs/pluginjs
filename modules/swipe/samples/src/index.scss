@@ -1,18 +1,5 @@
+@import "@pluginjs/arrows/src/css/arrows.scss";
+@import "@pluginjs/dots/src/css/dots.scss";
+@import "@pluginjs/loader/src/css/loader.scss";
 // import swipe css
 @import "@pluginjs/swipe/src/css/swipe.scss";
-
-$swipe: "swipe";
-
-.#{$swipe}-center {
-  .pj-#{$swipe}-loaded img {
-    opacity: 0.6;
-    transition: all 0.3s;
-    transform: scale(0.8);
-  }
-
-  .pj-#{$swipe}-active img {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
