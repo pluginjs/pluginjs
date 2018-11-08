@@ -12,13 +12,13 @@
     }
   },
   "ignoreChanges": [
-    "**/__mocks__/**",
-    "**/__tests__/**",
-    "**/node_modules/**",
-    "**/samples/**",
-    "**/.babelrc",
-    "**/.markdownrc",
-    "**/.npmignore",
-    "**/.sassrc.js"
+    "__mocks__/**",
+    "__tests__/**",
+    "node_modules/**",
+    "samples/**",
+    ".babelrc",
+    ".markdownrc",
+    ".npmignore",
+    ".sassrc.js"
   ]
 }
