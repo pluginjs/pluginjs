@@ -294,6 +294,9 @@ class Units extends Component {
       if (this.value.input) {
         this.element.value = this.val()
         this.trigger(EVENTS.CHANGE, this.element.value)
+      } else {
+        this.element.value = ''
+        this.trigger(EVENTS.CHANGE, this.element.value)
       }
     }
   }
