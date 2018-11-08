@@ -188,14 +188,19 @@ export const defaults = {
       return color
     }
     if (type === 'opacity') {
-      return (
-        parseFloat(
-          value['background-image']
-            .match(/fill-opacity=('|")(.*?)('|")/g)
-            .toString()
-            .match(/\d\.\d*|\d/g)[0]
-        ) * 100
-      )
+      if (value['background-image'].match(/fill-opacity=('|")(.*?)('|")/g)) {
+        console.log(
+          value['background-image'].match(/fill-opacity=('|")(.*?)('|")/g)
+        )
+        return (
+          parseFloat(
+            value['background-image']
+              .match(/fill-opacity=('|")(.*?)('|")/g)
+              .toString()
+              .match(/\d\.\d*|\d/g)[0]
+          ) * 100
+        )
+      }
     }
     if (type === 'background-color') {
       return value['background-color']
