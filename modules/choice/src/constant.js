@@ -1,5 +1,5 @@
 export const namespace = 'choice'
-
+import { isString, isArray } from '@pluginjs/is'
 export const events = {
   READY: 'ready',
   ENABLE: 'enable',
@@ -54,6 +54,22 @@ export const defaults = {
     dropdown() {
       return '<div class="{classes.DROPDOWN}"></div>'
     }
+  },
+  parse(value) {
+    if (isString(value)) {
+      try {
+        return JSON.parse(value)
+      } catch (e) {
+        return []
+      }
+    }
+    return []
+  },
+  process(value) {
+    if (value && isArray(value) && value.length !== 0) {
+      return JSON.stringify(value)
+    }
+    return ''
   }
 }
 

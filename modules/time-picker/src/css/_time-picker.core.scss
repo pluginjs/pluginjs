@@ -5,6 +5,7 @@
 // =====================
 $time-picker: "pj-timePicker" !default;
 $time-picker-max-height: 300px !default;
+$time-picker-width: 165px !default;
 
 $time-picker-clear-icon: $pj-icon-close !default;
 $time-picker-clear-font: $pj-icon-font-family !default;
@@ -18,17 +19,18 @@ $time-picker-trigger-font: $pj-icon-font-family !default;
 .#{$time-picker} {
   position: relative;
 
-  & &-dropdown {
+  &-input {
+    width: $time-picker-width !important; 
+  }
+
+  &-dropdown {
     width: 100%;
+    max-height: $time-picker-max-height;
+    overflow: auto;
   }
 
   &-group {
     height: 100%;
-  }
-
-  &-dropdown {
-    max-height: $time-picker-max-height;
-    overflow: auto;
   }
 
   &-clear {

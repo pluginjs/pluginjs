@@ -100,7 +100,6 @@ describe('PatternPicker', () => {
     test('should call destroy', () => {
       const $element = PatternPicker.of(generateHTMLSample())
       $element.destroy()
-      // expect().toEqual($element);
       expect($element).toEqual($element)
     })
   })

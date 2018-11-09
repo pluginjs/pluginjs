@@ -55,7 +55,6 @@ export const classes = {
   ENDDAY: '{namespace}-endDay',
   LASTMONTH: '{namespace}-select-last-in-month',
   FIRSTMONTH: '{namespace}-select-first-in-month',
-  MOBILETRIGGER: '{namespace}-mobile-trigger',
   CLEARABLE: '{namespace}-clearable',
   CLEAR: '{namespace}-clear',
   SELECTED: '{namespace}-selected'

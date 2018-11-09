@@ -24,17 +24,15 @@ $datePicker-clear-right: 35px !default;
 .#{$datePicker} {
   display: inline-flex;
 
-  &-input,
-  &-mobile-trigger {
+  &-input {
     z-index: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
 
-  &-mobile-trigger {
-    box-sizing: border-box;
-    line-height: 1.5;
+    &[disabled] {
+      cursor: not-allowed;
+    }
   }
 
   &-content {
@@ -334,11 +332,6 @@ $datePicker-clear-right: 35px !default;
   &-selected {
     .#{$datePicker}-clear {
       display: inline-block !important;
-    }
-  }
-  &-input {
-    &[disabled] {
-      cursor: not-allowed;
     }
   }
 }

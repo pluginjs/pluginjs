@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { bindEvent } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, hideElement } from '@pluginjs/styled' // , getStyle
 import {
   query,
@@ -164,6 +164,10 @@ class PatternPicker extends Component {
       },
       this.$control
     )
+  }
+
+  unbind() {
+    removeEvent(this.eventName())
   }
 
   create() {

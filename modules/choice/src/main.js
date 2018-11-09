@@ -67,9 +67,7 @@ class Choice extends Component {
   constructor(element, options = {}) {
     super(element)
     this.$element = this.element
-    console.log(this.$element)
     this.$options = queryAll('option', this.$element)
-    console.log(this.$options)
     const override = {}
     if (this.$options.length !== 0) {
       override.data = {}
@@ -77,7 +75,6 @@ class Choice extends Component {
         ? Array.from(this.$element.selectedOptions).map(el => el.value)
         : this.$element.value
       override.multiple = this.$element.multiple
-
       this.$options.forEach($item => {
         const value = $item.getAttribute('value')
         const data = $item.dataset
@@ -91,10 +88,23 @@ class Choice extends Component {
         override.data[value] = data
       })
     }
+
     this.options = deepMerge(DEFAULTS, options, override)
     this.setupClasses()
     this.data = this.options.data
-    this.value = getData('value', this.$element) || this.options.value
+    this.value = this.$element.value
+
+    if (this.options.multiple) {
+      if (this.$options.length !== 0) {
+        this.value = override.value
+      } else {
+        this.value = this.$element.value
+        this.value = this.value.split(',')
+      }
+    }
+    if (this.$element.value) {
+      this.val(this.value)
+    }
     this.setupStates()
     this.initialize()
   }
@@ -108,7 +118,6 @@ class Choice extends Component {
     if (this.options.overflow === true) {
       this.createToggle()
       this.createDropdown()
-      // this.setupPopper()
       this.updateOverflow()
     }
 
@@ -145,7 +154,6 @@ class Choice extends Component {
           value
         })
       )
-
       if (this.isSelected(value)) {
         addClass(this.classes.SELECTED, $item)
       }
@@ -160,7 +168,6 @@ class Choice extends Component {
     })
 
     this.$items = queryAll('[data-value]', this.$wrap)
-
     insertAfter(this.$wrap, this.$element)
   }
 
@@ -314,14 +321,6 @@ class Choice extends Component {
         $doc
       )
     }
-
-    bindEvent(
-      this.eventName('change'),
-      () => {
-        this.set(this.$element.value)
-      },
-      this.$element
-    )
   }
 
   unbind() {
@@ -378,11 +377,19 @@ class Choice extends Component {
       this.value === value ||
       (isArray(value) && arrayEqual(this.value, value))
     ) {
+      if (this.$options.length !== 0) {
+        return
+      }
+      if (this.options.multiple) {
+        this.$element.value = this.options.process.call(this, this.value)
+      } else {
+        this.$element.value = this.value
+      }
       return
     }
 
     this.value = value
-    this.$element.value = this.value
+    // this.$element.value = this.value
 
     this.$items.forEach($item => {
       const value = getData('value', $item)
@@ -443,12 +450,23 @@ class Choice extends Component {
 
     if (update === true) {
       if (this.options.multiple) {
-        this.value.push(value)
+        if (this.$options.length !== 0) {
+          this.value.push(value)
+          this.$options.forEach(item => {
+            this.value.forEach(v => {
+              if (v === item.value) {
+                item.selected = 'selected'
+              }
+            })
+          })
+        } else {
+          this.value.push(value)
+          this.$element.value = this.options.process.call(this, this.value)
+        }
       } else {
         this.value = value
+        this.$element.value = this.value
       }
-
-      this.$element.value = this.value
       this.trigger(EVENTS.CHANGE, this.value)
     }
 
@@ -486,11 +504,28 @@ class Choice extends Component {
       if (this.options.multiple) {
         const index = this.value.indexOf(value)
         this.value.splice(index, 1)
+        if (this.$options.length !== 0) {
+          this.$options.forEach(item => {
+            if (this.value.length === 0) {
+              item.selected = ''
+            } else {
+              this.value.forEach(v => {
+                if (v === item.value) {
+                  item.selected = 'selected'
+                } else {
+                  item.selected = ''
+                }
+              })
+            }
+          })
+        } else {
+          this.$element.value = this.options.process.call(this, this.value)
+        }
       } else if (this.value === value) {
         this.value = ''
+        this.$element.value = this.value
       }
 
-      this.$element.value = this.value
       this.trigger(EVENTS.CHANGE, this.value)
     }
 

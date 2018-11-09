@@ -17,9 +17,6 @@ $datePicker-hover-bg-color: $gray-lighter;
 
 $datePicker-color: $gray-darker;
 
-$datePicker-mobile-trigger-padding: 5.5px 12px;
-$datePicker-mobile-trigger-bg-color: $color-white;
-
 $datePicker-divider-hover-color: $gray-light;
 
 $datePicker-active-color: $color-white;
@@ -77,23 +74,15 @@ $datePicker-body-font-size: $font-size-xs;
 
   &-input,
   &-icon,
-  &-mobile-trigger {
+  {
     border-color: $datePicker-border-color;
     border-style: $datePicker-border-style;
     border-width: $datePicker-border-width;
     outline: none;
   }
 
-  &-input,
-  &-mobile-trigger {
+  &-input {
     width: $datePicker-input-width !important;
-  }
-
-  &-mobile-trigger {
-    padding: $datePicker-mobile-trigger-padding;
-    font-size: $datePicker-font-size;
-    color: $datePicker-input-color;
-    background-color: $datePicker-mobile-trigger-bg-color;
   }
 
   &.#{$datePicker}-active {

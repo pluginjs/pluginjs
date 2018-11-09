@@ -189,9 +189,6 @@ export const defaults = {
     }
     if (type === 'opacity') {
       if (value['background-image'].match(/fill-opacity=('|")(.*?)('|")/g)) {
-        console.log(
-          value['background-image'].match(/fill-opacity=('|")(.*?)('|")/g)
-        )
         return (
           parseFloat(
             value['background-image']

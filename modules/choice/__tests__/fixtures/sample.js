@@ -1,5 +1,8 @@
 import { parseHTML } from '@pluginjs/dom'
 
-export default () => parseHTML`
-    <div class="blank" data-value="default"></div>
-`
+export default value => {
+  if (typeof value !== 'undefined') {
+    return parseHTML`<input type="text" class="blank example" value='${value}'>`
+  }
+  return parseHTML`<input type="text" class="blank example">`
+}

@@ -112,6 +112,7 @@ class MultiSelect extends Select {
 
   setValueForElement(value) {
     if (isSelect(this.element)) {
+      console.log(this.element.options)
       Array.from(this.element.options).forEach(option => {
         if (value.includes(option.value)) {
           option.selected = true
@@ -129,7 +130,6 @@ class MultiSelect extends Select {
     if (!arrayEqual(value, this.value)) {
       const unselected = arrayDiff(this.value, value)
       const selected = arrayDiff(value, this.value)
-
       this.value = value
       selected.forEach(v => this.select(v, trigger, false))
       unselected.forEach(v => this.unselect(v, trigger, false))

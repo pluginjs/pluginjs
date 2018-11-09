@@ -207,7 +207,6 @@ class Select extends Component {
       value = this.getValueFromData()
     }
     if (!isEmpty(value)) {
-      console.log(123)
       this.set(value, false)
     }
 
@@ -270,7 +269,6 @@ class Select extends Component {
     }
     if (value !== this.selected) {
       const option = this.getOptionByValue(value)
-
       this.setLabel(this.getOptionLabel(option))
 
       this.selected = value
@@ -312,11 +310,9 @@ class Select extends Component {
   }
 
   set(value, trigger = true) {
-    console.log(123)
     value = this.purifyValue(value)
     if (value !== this.value) {
       this.value = value
-
       if (isNull(value)) {
         this.unselect(this.selected, trigger, false)
         removeClass(this.classes.SELECTED, this.$wrap)
