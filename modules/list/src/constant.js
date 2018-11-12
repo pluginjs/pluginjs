@@ -14,7 +14,9 @@ export const events = {
   CHANGE: 'change',
   CLICKITEM: 'clickItem',
   SORT: 'sort',
-  CLEAR: 'clear'
+  CLEAR: 'clear',
+  CHECK: 'check',
+  UNCHECK: 'uncheck'
 }
 
 export const classes = {

@@ -1,16 +1,6 @@
-// import alpha from './alpha'
 import { bindEvent } from '@pluginjs/events'
-import {
-  query,
-  // getData,
-  // setData,
-  // find,
-  parseHTML
-  // parent
-  // queryAll
-} from '@pluginjs/dom'
+import { query, parseHTML } from '@pluginjs/dom'
 import { Color } from '@pluginjs/color'
-// import Dropdown from '@pluginjs/dropdown'
 import Select from '@pluginjs/select'
 class Hex {
   constructor(instance, element) {
@@ -33,8 +23,6 @@ class Hex {
       { label: this.HSL, value: 'HSL' },
       { label: this.RGB, value: 'RGB' }
     ]
-    // this.bind()
-
     this.init()
   }
 
@@ -52,17 +40,14 @@ class Hex {
          <div class="${this.classes.HEXUNIT}">%</div>
        </div>`
     )
-    console.log(this.classify)
     const $selector = parseHTML(
       `<div class='${this.classes.HEXMODE}'><input type="text" value="${
         this.data[0].value
       }" /></div>`
     )
     this.element.append($selector, this.$opac)
-
     this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
     this.SELECT = Select.of(this.$el, {
-      // value: this.classify,
       source: this.data,
       classes: {
         TRIGGER: '{namespace}-trigger pj-input pj-input-sm'
@@ -104,7 +89,6 @@ class Hex {
   }
 
   updateColor(val, color) {
-    console.log(val, color)
     if (val.indexOf('HSL') > -1) {
       this.mode = color.toHSL().toUpperCase()
     } else if (val.indexOf('RGB') > -1) {
@@ -118,7 +102,6 @@ class Hex {
       this.color.toHSL().toUpperCase(),
       this.color.toRGB().toUpperCase()
     ]
-    // query().innerText = this.mode
     this.SELECT.$label.innerText = this.mode
     this.SELECT.options.value = this.mode
     this.SELECT.options.source = this.data
@@ -126,7 +109,6 @@ class Hex {
     this.element
       .querySelectorAll('.pj-dropdown-item')
       .forEach((value, index) => {
-        // value.setAttribute('data-value', this.data[index])
         value.innerText = this.data[index]
       })
   }

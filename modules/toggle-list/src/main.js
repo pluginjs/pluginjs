@@ -72,7 +72,6 @@ class ToggleList extends List {
       addClass(this.classes.CHECKED, $item)
 
       this.data[index].checked = true
-
       this.trigger(EVENTS.CHECK, index, this.data[index])
       this.sort(index, $checkeds.length, true)
     }
@@ -88,7 +87,6 @@ class ToggleList extends List {
       addClass(this.classes.UNCHECKED, $item)
 
       this.data[index].checked = false
-
       this.trigger(EVENTS.UNCHECK, index, this.data[index])
       this.sort(index, $checkeds.length - 1, true)
     }

@@ -135,7 +135,9 @@ class List extends Component {
         EVENTS.ADD,
         EVENTS.EDIT,
         EVENTS.SORT,
-        EVENTS.CLEAR
+        EVENTS.CLEAR,
+        EVENTS.CHECK,
+        EVENTS.UNCHECK
       ]),
       () => {
         const value = this.val()

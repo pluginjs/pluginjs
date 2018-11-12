@@ -43,7 +43,6 @@ export const defaults = deepMerge(List.defaults, {
             }
           }
         })
-
         setData('toggle', api, $item)
       }
     }
