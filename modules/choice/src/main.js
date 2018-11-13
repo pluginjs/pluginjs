@@ -93,13 +93,16 @@ class Choice extends Component {
     this.setupClasses()
     this.data = this.options.data
     this.value = this.$element.value
-
     if (this.options.multiple) {
       if (this.$options.length !== 0) {
         this.value = override.value
       } else {
         this.value = this.$element.value
-        this.value = this.value.split(',')
+        if (this.value === '') {
+          this.value = []
+        } else {
+          this.value = this.value.split(',')
+        }
       }
     }
     if (this.$element.value) {

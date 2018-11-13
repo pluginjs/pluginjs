@@ -73,7 +73,7 @@ query('.api').addEventListener('click', event => {
       console.info(api.get())
       break
     case 'set':
-      api.set([2019, 2, 8])
+      api.set([2019, '2', 8])
       break
     case 'val':
       console.info(api.val())

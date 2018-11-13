@@ -3,7 +3,6 @@ import Choice from '@pluginjs/choice'
 
 const element = query('#custom .blank-custom')
 Choice.of(element, {
-  value: ['ship', 'plane'],
   overflow: true,
   data: {
     car: {

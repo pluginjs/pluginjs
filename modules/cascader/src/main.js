@@ -113,9 +113,8 @@ class Cascader extends Component {
       this.FILTERABLE = new Filterable(this)
     }
 
-    this.initData()
-
     this.setupDropdown()
+    this.initData()
 
     this.LOADING = new Loading(this)
 
@@ -211,14 +210,12 @@ class Cascader extends Component {
 
   resolveData(data) {
     this.data = deepClone(data)
-
     let value = this.getValueFromElement()
     if (isEmpty(value)) {
       value = this.getValueFromData()
     }
-
     if (!isEmpty(value)) {
-      this.set(value, false)
+      this.set(value, true)
     }
 
     if (this.is('loading')) {
@@ -298,7 +295,7 @@ class Cascader extends Component {
     ) {
       items = this.selected[level - 1].children
     }
-
+    console.log(items)
     return items
   }
 
@@ -319,6 +316,7 @@ class Cascader extends Component {
       value !== this.selected[level].value
     ) {
       const option = this.getOptionByValue(level, value)
+      console.log(option)
       if (this.selected.length > level) {
         this.unselect(level, this.selected[level].value, trigger, false)
       }
@@ -329,6 +327,7 @@ class Cascader extends Component {
       }
 
       if (trigger) {
+        console.log(1122)
         this.trigger(EVENTS.SELECT, option)
       }
       if (this.DROPDOWN && option.__dom) {
@@ -398,7 +397,8 @@ class Cascader extends Component {
         } else {
           let level = 0
           value.forEach(v => {
-            this.select(level, v, trigger, false)
+            console.log(v)
+            this.select(level, v, trigger, true)
             level++
           })
         }
@@ -476,8 +476,9 @@ class Cascader extends Component {
   buildDropdown() {
     if (this.data) {
       const $menu = this.buildMenu(this.data, 0)
-      if (query(this.classes.MENU, this.$dropdown)) {
-        insertBefore($menu, query(this.classes.MENU, this.$dropdown))
+      if (query('.pj-cascader-menu', this.$dropdown)) {
+        this.$dropdown.appendChild($menu)
+        insertBefore($menu, query('.pj-cascader-menu', this.$dropdown))
       } else {
         this.$dropdown.appendChild($menu)
       }
@@ -500,7 +501,6 @@ class Cascader extends Component {
         level
       })
     )
-
     options.forEach(o => {
       $menu.appendChild(this.buildOption(o))
     })

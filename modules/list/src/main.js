@@ -12,7 +12,8 @@ import {
   replace,
   empty,
   insertAfter,
-  insertBefore
+  insertBefore,
+  getData
 } from '@pluginjs/dom'
 import { arrayEqual, each } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -66,7 +67,7 @@ class List extends Component {
     if (this.element.value) {
       this.data = this.options.parse.call(this, this.element.value)
     } else if (this.options.data) {
-      this.data = this.options.data
+      this.data = this.options.data || getData('data', this.element)
     } else {
       this.data = []
     }
