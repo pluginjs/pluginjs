@@ -25,7 +25,7 @@ function getPlugin(name) {
     const Plugin = window.Pj.get(name)
 
     return function(element, options) {
-      Plugin.of(element, options)
+      return Plugin.of(element, options)
     }
   }
 
@@ -68,8 +68,14 @@ export default {
     }
 
     if (elements.length > 0) {
-      elements.map(el => initializePlugin(attr(attrKey, el), el, options))
+      const instance = elements.map(el =>
+        initializePlugin(attr(attrKey, el), el, options)
+      )
+
+      return instance.length === 1 ? instance[0] : instance
     }
+
+    return null
   },
 
   register(plugin, callback, defaults = null) {
