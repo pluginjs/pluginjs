@@ -295,7 +295,6 @@ class Cascader extends Component {
     ) {
       items = this.selected[level - 1].children
     }
-    console.log(items)
     return items
   }
 
@@ -316,7 +315,6 @@ class Cascader extends Component {
       value !== this.selected[level].value
     ) {
       const option = this.getOptionByValue(level, value)
-      console.log(option)
       if (this.selected.length > level) {
         this.unselect(level, this.selected[level].value, trigger, false)
       }
@@ -327,7 +325,6 @@ class Cascader extends Component {
       }
 
       if (trigger) {
-        console.log(1122)
         this.trigger(EVENTS.SELECT, option)
       }
       if (this.DROPDOWN && option.__dom) {
@@ -397,7 +394,6 @@ class Cascader extends Component {
         } else {
           let level = 0
           value.forEach(v => {
-            console.log(v)
             this.select(level, v, trigger, true)
             level++
           })

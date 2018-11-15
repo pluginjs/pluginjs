@@ -17,7 +17,7 @@ export const classes = deepMerge(AutoComplete.classes, {
 export const methods = deepMerge(AutoComplete.methods, [])
 
 export const defaults = deepMerge(AutoComplete.defaults, {
-  apiKey: '',
+  apiKey: 'AIzaSyDSx-q31rWQKqLwUahg6TrZ3R_5NT0LhFE',
   minChars: 2,
   searchOptions: {},
   country: null, // []

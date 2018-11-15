@@ -156,7 +156,6 @@ class TimePicker extends Component {
       this.eventName('focus'),
       () => {
         this.enter('focus')
-        console.log(111)
         addClass(this.classes.FOCUS, this.$wrap)
       },
       this.element
@@ -166,7 +165,6 @@ class TimePicker extends Component {
       this.eventName('blur'),
       () => {
         this.leave('focus')
-        console.log(222)
         removeClass(this.classes.FOCUS, this.$wrap)
       },
       this.element
@@ -175,7 +173,6 @@ class TimePicker extends Component {
     bindEvent(
       this.eventName('input'),
       () => {
-        console.log(444)
         if (this.element.value !== '') {
           addClass(this.classes.SELECTED, this.$wrap)
         } else {

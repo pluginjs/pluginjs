@@ -193,8 +193,6 @@ export default {
 
   parseStop(string) {
     let matched
-    // console.log(RegExpStrings.STOP.exec(string))
-    // console.log(RegExpStrings.STOPS.exec(string))
     if ((matched = RegExpStrings.STOP.exec(string)) !== null) {
       const position = this.parsePosition(matched[2])
 

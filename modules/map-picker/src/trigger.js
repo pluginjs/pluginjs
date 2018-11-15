@@ -58,9 +58,13 @@ export default class Trigger {
       {
         placement: 'bottom',
         content: this.instance.translate('deleteTitle'),
-        buttons: {
-          cancel: { label: this.instance.translate('cancel') },
-          delete: {
+        buttons: [
+          {
+            action: 'cancel',
+            label: this.instance.translate('cancel')
+          },
+          {
+            action: 'delete',
             label: this.instance.translate('delete'),
             color: 'danger',
             fn(resolve) {
@@ -72,7 +76,7 @@ export default class Trigger {
               resolve()
             }
           }
-        },
+        ],
         onShown: () => that.instance.enter('holdHover'),
         onHidden: () => {
           removeClass(this.classes.HOVER, this.$trigger)

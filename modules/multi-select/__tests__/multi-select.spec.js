@@ -126,7 +126,6 @@ describe('MultiSelect', () => {
       $element = generateHTMLSample()
       api = MultiSelect.of($element, {
         onChange(value) {
-          console.log(111)
           called = true
           expect(value).toEqual(['4'])
         }

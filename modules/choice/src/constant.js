@@ -35,7 +35,7 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  multiple: false,
+  multiple: true,
   overflow: false,
   disabled: false,
   toggleTrigger: 'hover', // click

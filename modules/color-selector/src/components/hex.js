@@ -72,7 +72,6 @@ class Hex {
       (e, el, color) => {
         this.color = color
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
-        // console.log(this.SELECT.options.value, color)
         this.updateColor(this.SELECT.options.value, color)
       },
       this.instance.element
