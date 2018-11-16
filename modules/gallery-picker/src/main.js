@@ -128,7 +128,7 @@ class GalleryPicker extends Component {
         }
         this.update()
         this.close()
-        return null
+        return false
       }),
       // expand add
       bindEvent(
@@ -220,9 +220,13 @@ class GalleryPicker extends Component {
           {
             placement: 'bottom',
             content: this.translate('deleteTitle'),
-            buttons: {
-              cancel: { label: this.translate('cancel') },
-              delete: {
+            buttons: [
+              {
+                action: 'cancel',
+                label: this.translate('cancel')
+              },
+              {
+                action: 'delete',
                 label: this.translate('delete'),
                 color: 'danger',
                 fn(resolve) {
@@ -230,7 +234,7 @@ class GalleryPicker extends Component {
                   resolve()
                 }
               }
-            },
+            ],
             onShown: () => {
               this.enter('holdHover')
             },

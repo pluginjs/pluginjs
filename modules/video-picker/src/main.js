@@ -385,6 +385,7 @@ class VideoPicker extends Component {
         }
         this.element.value = this.val()
         addClass(this.classes.SHOW, this.$wrap)
+        return false
       })
     )(this.$btnAction)
   }
