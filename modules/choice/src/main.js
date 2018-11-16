@@ -91,7 +91,7 @@ class Choice extends Component {
 
     this.options = deepMerge(DEFAULTS, options, override)
     this.setupClasses()
-    this.data = this.options.data
+    this.data = this.options.data || getData('data', this.$element)
     this.value = this.$element.value
     if (this.options.multiple) {
       if (this.$options.length !== 0) {
