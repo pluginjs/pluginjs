@@ -125,7 +125,6 @@ class BgPicker extends Component {
           return
         }
         if (this.DROPDOWN.is('shown')) {
-          this.val(this.oldValue)
           if (this.is('status')) {
             removeClass(
               this.classes.SHOW,
@@ -169,6 +168,7 @@ class BgPicker extends Component {
         if (this.is('disbaled')) {
           return null
         }
+        this.set(this.value)
         this.update()
         if (hasClass(this.classes.SHOW, this.$wrap)) {
           removeClass(

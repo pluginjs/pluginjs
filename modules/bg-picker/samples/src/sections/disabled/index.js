@@ -3,11 +3,16 @@ import BgPicker from '@pluginjs/bg-picker'
 
 const element = query('#disabled   .example-disabled')
 BgPicker.of(element, {
-  disabled: true,
-  onChangeImage: selectImage => {
-    selectImage('https://picsum.photos/200/300?image=1068')
+  selectPicture(resolve) {
+    resolve({
+      image: 'https://picsum.photos/200/300?image=1068',
+      id: 123456
+    })
   },
-  onSelectImage: selectImage => {
-    selectImage('https://picsum.photos/200/300')
+  changePicture(resolve) {
+    resolve({
+      image: 'https://picsum.photos/200/300',
+      id: 321645
+    })
   }
 })

@@ -227,7 +227,6 @@ class ImagePicker extends Component {
       return
     }
     this.value = value
-    console.log(this.value)
     this.$image.setAttribute('src', value.image)
 
     this.setState('exist')

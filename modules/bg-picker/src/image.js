@@ -45,11 +45,10 @@ export default class Image {
             `.${this.instance.classes.IMAGENAME}`,
             this.image
           )
-          this.instance.options.onSelectImage.call(
+          this.instance.options.selectPicture.call(
             this.instance,
             this.instance.changeImage.bind(this.instance)
           )
-          this.instance.set(this.instance.value)
         }
       ),
       bindEvent(
@@ -65,12 +64,11 @@ export default class Image {
         () => {
           if (!this.instance.is('imageChange')) {
             removeClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
-            this.instance.options.onChangeImage.call(
+            this.instance.options.changePicture.call(
               this.instance,
               this.instance.changeImage.bind(this.instance)
             )
             addClass(this.instance.classes.IMAGECHANGEDDISABLE, this.image)
-            this.instance.set(this.instance.value)
           }
           this.instance.enter('imageChange')
         }

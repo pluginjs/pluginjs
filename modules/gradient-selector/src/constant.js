@@ -79,6 +79,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   data: null, // [json]images data
+  manage() {},  /* eslint-disable-line */
   disabled: false,
   templates: {
     trigger() {

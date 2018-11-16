@@ -3,14 +3,14 @@ import BgPicker from '@pluginjs/bg-picker'
 
 const element = query('#default .example-default')
 BgPicker.of(element, {
-  onChangeImage: selectImage => {
-    selectImage({
+  selectPicture(resolve) {
+    resolve({
       image: 'https://picsum.photos/200/300?image=1068',
       id: 123456
     })
   },
-  onSelectImage: selectImage => {
-    selectImage({
+  changePicture(resolve) {
+    resolve({
       image: 'https://picsum.photos/200/300',
       id: 321645
     })
