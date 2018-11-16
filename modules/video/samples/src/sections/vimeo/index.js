@@ -5,8 +5,7 @@ const root = query('#vimeo')
 const element = query('.video', root)
 let instance = Video.of(element, {
   type: 'vimeo',
-  id: '119287310',
-  poster: 'https://picsum.photos/600?blur'
+  id: '300361948'
 })
 let trigger = true
 const instances = {
@@ -14,7 +13,7 @@ const instances = {
     if (!instance.element) {
       instance = Video.of(element, {
         type: 'vimeo',
-        id: '119287310'
+        id: '300361948'
       })
     }
   },
@@ -33,7 +32,7 @@ const instances = {
     instance.volume(val)
   },
   switchVideo() {
-    instance.switchVideo('202284096')
+    instance.switchVideo('298947269')
   },
   currentTime() {
     console.log('currentTime:', instance.currentTime())
@@ -54,12 +53,11 @@ const instances = {
     instance.setCurrentTime('30')
   },
   setSize() {
-    const size = '400'
     if (trigger) {
-      instance.setSize(size, size)
+      instance.setSize('688', '288')
       trigger = false
     } else {
-      instance.setSize(size * 2, size)
+      instance.setSize('928', '388')
       trigger = true
     }
   }

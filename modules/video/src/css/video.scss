@@ -18,12 +18,6 @@ $video: "pj-video" !default;
     border: 0;
     object-fit: cover;
   }
-
-  // video {
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  // }
 }
 
 .#{$video}-poster {

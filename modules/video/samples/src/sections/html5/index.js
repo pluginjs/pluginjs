@@ -7,7 +7,7 @@ const element = query('.video', root)
 let instance = Video.of(element, {
   type: 'html5',
   url: 'http://vjs.zencdn.net/v/oceans.mp4',
-  poster: 'https://picsum.photos/600?blur'
+  autoplay: true
 })
 let trigger = true
 const instances = {
@@ -15,7 +15,8 @@ const instances = {
     if (!instance.element) {
       instance = Video.of(element, {
         type: 'html5',
-        url: 'http://vjs.zencdn.net/v/oceans.mp4'
+        url: 'http://vjs.zencdn.net/v/oceans.mp4',
+        autoplay: true
       })
     }
   },
@@ -57,12 +58,11 @@ const instances = {
     instance.setCurrentTime('30')
   },
   setSize() {
-    const size = '400'
     if (trigger) {
-      instance.setSize(size, size)
+      instance.setSize('688', '288')
       trigger = false
     } else {
-      instance.setSize(size * 2, size)
+      instance.setSize('928', '388')
       trigger = true
     }
   }

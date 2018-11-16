@@ -44,7 +44,7 @@ export const defaults = {
   url: '',
   id: '',
   type: '',
-  autoplay: true,
+  autoplay: false,
   loop: true,
   controls: false,
   poster: ''

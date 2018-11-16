@@ -144,6 +144,13 @@ class Vimeo {
         width,
         height
       },
+      this.element
+    )
+    setStyle(
+      {
+        width,
+        height
+      },
       this.$player
     )
   }

@@ -5,8 +5,7 @@ const root = query('#youtube')
 const element = query('#youtube .video')
 let instance = Video.of(element, {
   type: 'youtube',
-  id: 'YE7VzlLtp-4',
-  poster: 'https://picsum.photos/600?blur'
+  id: 'mN0zPOpADL4'
 })
 let trigger = true
 const instances = {
@@ -14,7 +13,7 @@ const instances = {
     if (!instance.element) {
       instance = Video.of(element, {
         type: 'youtube',
-        id: 'YE7VzlLtp-4'
+        id: 'mN0zPOpADL4'
       })
     }
   },
@@ -33,7 +32,7 @@ const instances = {
     instance.volume(val)
   },
   switchVideo() {
-    instance.switchVideo('V55ZtRHAXRM')
+    instance.switchVideo('07d2dXHYb94')
   },
   currentTime() {
     console.log('currentTime:', instance.currentTime())
@@ -54,12 +53,11 @@ const instances = {
     instance.setCurrentTime('30')
   },
   setSize() {
-    const size = '400'
     if (trigger) {
-      instance.setSize(size, size)
+      instance.setSize('688', '288')
       trigger = false
     } else {
-      instance.setSize(size * 2, size)
+      instance.setSize('928', '388')
       trigger = true
     }
   }

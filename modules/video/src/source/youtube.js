@@ -123,6 +123,13 @@ class Youtube {
       },
       this.element
     )
+    setStyle(
+      {
+        width,
+        height
+      },
+      this.element
+    )
   }
 
   swichVideo(id) {

@@ -100,6 +100,13 @@ class Html5 {
         width,
         height
       },
+      this.element
+    )
+    setStyle(
+      {
+        width,
+        height
+      },
       this.$player
     )
   }
