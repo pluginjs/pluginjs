@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.3",
+  "version": "0.7.4",
   "category": "media",
   "main": "dist/lightbox.common.js",
   "module": "dist/lightbox.esm.js",
@@ -52,7 +52,7 @@
     "@pluginjs/template": "^0.7.3",
     "@pluginjs/thumbnails": "^0.7.3",
     "@pluginjs/utils": "^0.7.3",
-    "@pluginjs/video": "^0.7.3"
+    "@pluginjs/video": "^0.7.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",

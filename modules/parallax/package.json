@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.3",
+  "version": "0.7.4",
   "category": "scroll",
   "main": "dist/parallax.common.js",
   "module": "dist/parallax.esm.js",
@@ -37,7 +37,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/bg-video": "^0.7.3",
+    "@pluginjs/bg-video": "^0.7.4",
     "@pluginjs/breakpoints": "^0.7.3",
     "@pluginjs/classes": "^0.7.3",
     "@pluginjs/component": "^0.7.3",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.3",
+  "version": "0.7.4",
   "category": "utils",
   "main": "dist/gradient.common.js",
   "module": "dist/gradient.esm.js",
