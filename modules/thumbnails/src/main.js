@@ -383,6 +383,10 @@ class Thumbnails extends Component {
     const dif = this.wrapDistance - this.innerDistance
     let pos = 0
 
+    if (dif > 0) {
+      return
+    }
+
     if (this.dif === null) {
       this.dif = dif
     }
