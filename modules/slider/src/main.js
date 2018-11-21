@@ -2,7 +2,6 @@ import Anime from 'animejs'
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { compose } from '@pluginjs/utils'
-import { isObject } from '@pluginjs/is'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -148,20 +147,7 @@ class Slider extends Component {
   }
 
   initArrows() {
-    let options = {
-      type: this.options.arrowType,
-      vertical: this.options.vertical,
-      prev: {
-        icon: this.options.prevIcon
-      },
-      next: {
-        icon: this.options.nextIcon
-      }
-    }
-    if (isObject(this.options.arrows)) {
-      options = Object.assign({}, this.options.arrows, options)
-    }
-    this.arrows = Arrows.of(this.element, options)
+    this.arrows = Arrows.of(this.element, this.options.arrows)
   }
 
   initSwipeable() {

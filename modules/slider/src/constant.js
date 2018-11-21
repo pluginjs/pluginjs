@@ -41,16 +41,22 @@ const defaults = {
   theme: null,
   data: null,
   height: null, // width 100% default, height percentage default(number)
-  arrows: true,
-  arrowType: 'solid',
+  arrows: {
+    type: 'solid',
+    vertical: false,
+    prev: {
+      icon: 'pj-icon pj-icon-angle-left'
+    },
+    next: {
+      icon: 'pj-icon pj-icon-angle-right'
+    }
+  },
   loop: true,
   vertical: false,
   current: 0,
   duration: 300,
   autoplay: false,
   playCycle: 4000,
-  prevIcon: 'pj-icon pj-icon-angle-left',
-  nextIcon: 'pj-icon pj-icon-angle-right',
   loader: {
     theme: 'ring',
     color: '#000000',

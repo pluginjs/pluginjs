@@ -118,7 +118,7 @@ const defaults = {
   actions: ['play', 'fullScreen', 'download', 'close'], // ['play', 'fullScreen', 'download', 'share', 'close']
   overlayClose: true,
   counter: true,
-  arrows: true,
+  arrows: {},
   swipe: true,
   caption: true,
   thumbs: true,
