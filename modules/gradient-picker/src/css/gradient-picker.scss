@@ -128,7 +128,7 @@ $gradientPicker-font-weight: $font-weight-medium;
     }
 
     &-angle {
-      width: $gradientPicker-wheel-angle-width;
+      width: $gradientPicker-wheel-angle-width !important;
     }
   }
 
