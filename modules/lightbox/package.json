@@ -47,7 +47,7 @@
     "@pluginjs/fullscreen": "^0.7.3",
     "@pluginjs/is": "^0.7.3",
     "@pluginjs/keyboard": "^0.7.3",
-    "@pluginjs/slider": "^4.1.1",
+    "@pluginjs/slider": "^0.7.5",
     "@pluginjs/styled": "^0.7.3",
     "@pluginjs/template": "^0.7.3",
     "@pluginjs/thumbnails": "^0.7.4",
