@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.4",
+  "version": "0.7.5",
   "category": "form",
   "main": "dist/gradient-picker.common.js",
   "module": "dist/gradient-picker.esm.js",
