@@ -8,7 +8,6 @@ function check(ctx) {
   const relationship = relationshipGeneration(name)
   const onion = generateOnionMap(relationship)
   const dependentList = onion.reduce((a, b) => a.concat(b)).map(m => m.name)
-  console.log(dependentList)
   return dependentList
 }
 

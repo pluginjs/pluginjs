@@ -19,7 +19,6 @@ const API = sectionScroll.of(element, {
     })
     $sections.forEach(section => {
       const href = getData('href', section)
-      // console.log(href)
       if (href === val) {
         addClass('active', section)
       }

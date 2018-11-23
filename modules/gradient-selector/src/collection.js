@@ -41,7 +41,6 @@ class Collection {
         this.classes.COLLECTIONSCROLLWRAP
       }'><div><div></div></div></div>`
     )
-    console.log($scorllWrap)
     prepend($scorllWrap, this.element)
     const scrollWrapChildren = children($scorllWrap)
       .filter(el => el.tagName === 'DIV')

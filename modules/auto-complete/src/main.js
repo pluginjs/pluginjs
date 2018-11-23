@@ -156,7 +156,6 @@ class AutoComplete extends Component {
       },
       onSelect: ($item, value) => {
         const item = this.getItemByValue(value)
-        console.log(item)
         this.trigger(EVENTS.SELECT, item)
       },
       onChange: value => {

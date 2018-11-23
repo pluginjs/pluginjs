@@ -37,7 +37,6 @@ class Marker {
     bindEvent(
       this.instance.selfEventName('change'),
       (e, el, color) => {
-        console.log(200)
         if (this.instance.is('noSelectedMarker')) {
           return false
         }

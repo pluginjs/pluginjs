@@ -370,7 +370,6 @@ class LinkPicker extends Component {
 
   updatePreview() {
     const data = this.get()
-    console.log(data)
     if (data.internal === '' || data.external === '') {
       this.element.value = ''
       removeClass(this.classes.WRITE, this.$wrap)

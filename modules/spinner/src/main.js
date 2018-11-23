@@ -279,7 +279,6 @@ class Spinner extends Component {
       return
     }
     this.value = this.options.parse(value)
-    console.log(this.value)
     this.element.value = this.options.process(this.value)
 
     if (trigger) {

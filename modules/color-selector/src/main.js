@@ -153,7 +153,6 @@ class ColorSelector extends Component {
           new Color().matchString(e.target.value) ||
           new Gradient().matchString(e.target.value)
         ) {
-          console.log(this.options.parse.call(this, e.target.value))
           this.set(this.options.parse.call(this, e.target.value))
         }
       },
