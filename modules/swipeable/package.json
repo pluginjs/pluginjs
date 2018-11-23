@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.3",
+  "version": "0.7.4",
   "category": "ui",
   "main": "dist/swipeable.common.js",
   "module": "dist/swipeable.esm.js",
@@ -37,18 +37,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.3",
-    "@pluginjs/component": "^0.7.3",
-    "@pluginjs/decorator": "^0.7.3",
-    "@pluginjs/dom": "^0.7.3",
-    "@pluginjs/styled": "^0.7.3",
+    "@pluginjs/classes": "^0.7.4",
+    "@pluginjs/component": "^0.7.4",
+    "@pluginjs/decorator": "^0.7.4",
+    "@pluginjs/dom": "^0.7.4",
+    "@pluginjs/styled": "^0.7.4",
     "animejs": "*",
     "hammerjs": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
     "@pluginjs/browserslist-config": "^1.2.2",
-    "@pluginjs/cli": "^0.7.3",
+    "@pluginjs/cli": "^0.7.4",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

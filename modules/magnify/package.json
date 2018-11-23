@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.3",
+  "version": "0.7.4",
   "category": "ui",
   "main": "dist/magnify.common.js",
   "module": "dist/magnify.esm.js",
@@ -37,22 +37,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/breakpoints": "^0.7.3",
-    "@pluginjs/classes": "^0.7.3",
-    "@pluginjs/component": "^0.7.3",
-    "@pluginjs/decorator": "^0.7.3",
-    "@pluginjs/dom": "^0.7.3",
-    "@pluginjs/events": "^0.7.3",
-    "@pluginjs/image-loader": "^0.7.3",
-    "@pluginjs/is": "^0.7.3",
-    "@pluginjs/loader": "^0.7.3",
-    "@pluginjs/styled": "^0.7.3",
-    "@pluginjs/template": "^0.7.3"
+    "@pluginjs/breakpoints": "^0.7.4",
+    "@pluginjs/classes": "^0.7.4",
+    "@pluginjs/component": "^0.7.4",
+    "@pluginjs/decorator": "^0.7.4",
+    "@pluginjs/dom": "^0.7.4",
+    "@pluginjs/events": "^0.7.4",
+    "@pluginjs/image-loader": "^0.7.4",
+    "@pluginjs/is": "^0.7.4",
+    "@pluginjs/loader": "^0.7.4",
+    "@pluginjs/styled": "^0.7.4",
+    "@pluginjs/template": "^0.7.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
     "@pluginjs/browserslist-config": "^1.2.2",
-    "@pluginjs/cli": "^0.7.3",
+    "@pluginjs/cli": "^0.7.4",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

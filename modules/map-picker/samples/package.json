@@ -3,16 +3,16 @@
   "name": "map-picker-samples",
   "description": "Simple map-picker example",
   "license": "GPL-3.0",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.3",
+    "@pluginjs/dom": "^0.7.4",
     "@pluginjs/icons": "^0.7.1",
-    "@pluginjs/map-picker": "^0.7.4",
+    "@pluginjs/map-picker": "^0.7.5",
     "@pluginjs/styles": "^0.7.1"
   },
   "devDependencies": {

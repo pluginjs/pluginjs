@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.4",
+  "version": "0.7.5",
   "category": "utils",
   "main": "dist/gradient.common.js",
   "module": "dist/gradient.esm.js",
@@ -33,15 +33,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/color": "^0.7.3",
-    "@pluginjs/factory": "^0.7.3",
-    "@pluginjs/is": "^0.7.3",
-    "@pluginjs/utils": "^0.7.3"
+    "@pluginjs/color": "^0.7.4",
+    "@pluginjs/factory": "^0.7.4",
+    "@pluginjs/is": "^0.7.4",
+    "@pluginjs/utils": "^0.7.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
     "@pluginjs/browserslist-config": "^1.2.2",
-    "@pluginjs/cli": "^0.7.3",
+    "@pluginjs/cli": "^0.7.4",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

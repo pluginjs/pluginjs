@@ -3,15 +3,15 @@
   "name": "gallery-samples",
   "description": "Simple gallery example",
   "license": "GPL-3.0",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.3",
-    "@pluginjs/gallery": "^0.7.4"
+    "@pluginjs/dom": "^0.7.4",
+    "@pluginjs/gallery": "^0.7.5"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",

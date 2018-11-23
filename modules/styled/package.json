@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.3",
+  "version": "0.7.4",
   "category": "utils",
   "main": "dist/styled.common.js",
   "module": "dist/styled.esm.js",
@@ -33,14 +33,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.3",
-    "@pluginjs/is": "^0.7.3",
-    "@pluginjs/utils": "^0.7.3"
+    "@pluginjs/dom": "^0.7.4",
+    "@pluginjs/is": "^0.7.4",
+    "@pluginjs/utils": "^0.7.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
     "@pluginjs/browserslist-config": "^1.2.2",
-    "@pluginjs/cli": "^0.7.3",
+    "@pluginjs/cli": "^0.7.4",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
