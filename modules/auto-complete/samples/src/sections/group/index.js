@@ -17,9 +17,15 @@ AutoComplete.of(element, {
     return group in continents ? continents[group] : 'Unknown'
   },
   itemLabel(item) {
-    return item.name
+    if (item.name) {
+      return item.name
+    }
+    return item
   },
   itemValue(item) {
-    return item.name
+    if (item.name) {
+      return item.name
+    }
+    return item
   }
 })

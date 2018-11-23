@@ -51,7 +51,6 @@ class Spinner extends Component {
     }
 
     this.spinTimeout = null
-
     this.setupStates()
     this.initialize()
   }
@@ -107,6 +106,20 @@ class Spinner extends Component {
   }
 
   bind() {
+    bindEvent(
+      this.eventName('focus'),
+      () => {
+        bindEventOnce(
+          this.eventName('change'),
+          () => {
+            this.set(this.element.value)
+          },
+          document
+        )
+      },
+      this.element
+    )
+
     bindEvent(
       this.eventName('focus'),
       () => {
@@ -265,8 +278,8 @@ class Spinner extends Component {
     if (this.value === value) {
       return
     }
-
     this.value = this.options.parse(value)
+    console.log(this.value)
     this.element.value = this.options.process(this.value)
 
     if (trigger) {

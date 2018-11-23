@@ -54,7 +54,6 @@ import match from '@pluginjs/match'
 class AutoComplete extends Component {
   constructor(element, options = {}) {
     super(element)
-
     this.setupOptions(options)
     this.setupClasses()
     this.setupStates()
@@ -157,6 +156,7 @@ class AutoComplete extends Component {
       },
       onSelect: ($item, value) => {
         const item = this.getItemByValue(value)
+        console.log(item)
         this.trigger(EVENTS.SELECT, item)
       },
       onChange: value => {
@@ -220,7 +220,6 @@ class AutoComplete extends Component {
     }
 
     this.query = query
-
     if (isArray(this.options.source) || isPlainObject(this.options.source)) {
       this.resolveData(this.options.source)
     } else if (isFunction(this.options.source)) {

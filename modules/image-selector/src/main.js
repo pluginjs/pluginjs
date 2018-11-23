@@ -387,12 +387,11 @@ class ImageSelector extends Component {
       })
     )
     this.$groupContent = query(`.${this.classes.GROUP}`, $group)
-    console.log(this.$groupContent)
     group.children.forEach(option => {
       this.$groupContent.appendChild(this.buildOption(option))
     })
 
-    return this.$groupContent
+    return $group
   }
 
   buildOption(option) {
