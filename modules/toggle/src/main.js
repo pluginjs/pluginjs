@@ -118,7 +118,8 @@ class Toggle extends Component {
   bind() {
     if (this.options.clickable === true) {
       this.wrapHammer = new Hammer(this.$wrap)
-      this.wrapHammer.on('tap', () => {
+      this.wrapHammer.on('tap', e => {
+        e.stopPropagation()
         if (this.is('disabled')) {
           return
         }
@@ -130,7 +131,8 @@ class Toggle extends Component {
     if (this.options.dragable === true) {
       this.handleHammer = new Hammer(this.$handle)
       this.handleHammer
-        .on('panstart', () => {
+        .on('panstart', e => {
+          e.stopPropagation()
           if (this.is('disabled')) {
             return
           }
@@ -138,6 +140,7 @@ class Toggle extends Component {
           this.dragStart = true
         })
         .on('horizontal pan', e => {
+          e.stopPropagation()
           if (this.is('disabled')) {
             return
           }
@@ -145,6 +148,7 @@ class Toggle extends Component {
           this.drag(e)
         })
         .on('panend', e => {
+          e.stopPropagation()
           if (this.is('disabled')) {
             return
           }
