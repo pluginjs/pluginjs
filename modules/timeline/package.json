@@ -61,6 +61,13 @@
     "rollup-plugin-node-resolve": "*",
     "rollup-plugin-terser": "*"
   },
+  "globals": {
+    "animejs": "anime"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
@@ -71,5 +78,6 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "sassrc": ".sassrc.js"
 }

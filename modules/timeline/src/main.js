@@ -47,11 +47,11 @@ class Timeline extends Component {
     }
 
     addClass(this.classes.HORIZONTAL, this.element)
+    this.$wrap = query(`.${this.classes.WRAP}`, this.element)
     this.$list = query(`.${this.classes.LIST}`, this.element)
     this.$itemAll = queryAll(`.${this.classes.ITEM}`, this.element)
 
     this.width = getWidth(this.element)
-    this.height = getHeight(this.element)
     this.itemWidth = this.width / Number(this.options.visibleItems)
     this.maxIndex = this.$itemAll.length - this.options.visibleItems
     this.currentIndex = 0
@@ -69,17 +69,42 @@ class Timeline extends Component {
   }
 
   init() {
+    setStyle(
+      {
+        width: `${this.width}px`
+      },
+      this.$wrap
+    )
+
     if (hasClass(this.classes.HORIZONTAL, this.element)) {
       setStyle(
         {
           width: `${this.itemWidth * this.$itemAll.length}px`,
-          height: `${this.height}px`
+          height: 'auto'
         },
         this.$list
       )
+
+      this.height = this.$itemAll
+        .map(item => getHeight(item))
+        .sort()
+        .reverse()[0]
+
       this.$itemAll.forEach(item => {
-        setStyle('width', `${this.itemWidth}px`, item)
+        setStyle(
+          {
+            width: `${this.itemWidth}px`
+          },
+          item
+        )
       })
+
+      setStyle(
+        {
+          height: `${this.height * 2}px`
+        },
+        this.$list
+      )
     } else {
       setStyle(
         {
@@ -101,14 +126,14 @@ class Timeline extends Component {
     this.$arrows = Arrows.of(this.element, this.options.arrows)
     setStyle(
       {
-        top: `${(this.height - this.$arrows.$next.clientHeight) / 2}px`,
+        top: `${(this.height * 2 - this.$arrows.$next.clientHeight) / 2}px`,
         position: 'absolute'
       },
       this.$arrows.$next
     )
     setStyle(
       {
-        top: `${(this.height - this.$arrows.$prev.clientHeight) / 2}px`,
+        top: `${(this.height * 2 - this.$arrows.$prev.clientHeight) / 2}px`,
         position: 'absolute'
       },
       this.$arrows.$prev
@@ -204,31 +229,54 @@ class Timeline extends Component {
 
   resizeInit() {
     this.width = getWidth(this.element)
-    this.height = getHeight(this.element)
     this.itemWidth = this.width / Number(this.options.visibleItems)
+
+    setStyle(
+      {
+        width: `${this.width}px`
+      },
+      this.$wrap
+    )
 
     if (hasClass(this.classes.HORIZONTAL, this.element)) {
       setStyle(
         {
           width: `${this.itemWidth * this.$itemAll.length}px`,
-          height: `${this.height}px`,
-          transform: `translateX(-${this.itemWidth * this.currentIndex}px)`
+          height: 'auto'
         },
         this.$list
       )
+
+      this.height = this.$itemAll
+        .map(item => getHeight(item))
+        .sort()
+        .reverse()[0]
+
       this.$itemAll.forEach(item => {
-        setStyle('width', `${this.itemWidth}px`, item)
+        setStyle(
+          {
+            width: `${this.itemWidth}px`
+          },
+          item
+        )
       })
       setStyle(
         {
-          top: `${(this.height - this.$arrows.$next.clientHeight) / 2}px`,
+          height: `${this.height * 2}px`
+        },
+        this.$list
+      )
+
+      setStyle(
+        {
+          top: `${(this.height * 2 - this.$arrows.$next.clientHeight) / 2}px`,
           position: 'absolute'
         },
         this.$arrows.$next
       )
       setStyle(
         {
-          top: `${(this.height - this.$arrows.$prev.clientHeight) / 2}px`,
+          top: `${(this.height * 2 - this.$arrows.$prev.clientHeight) / 2}px`,
           position: 'absolute'
         },
         this.$arrows.$prev

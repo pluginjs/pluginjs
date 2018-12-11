@@ -16,7 +16,7 @@ $timeline-mark-size: 16px !default;
 $timeline-horizontal-content-spacing: $timeline-content-margin-x !default;
 $timeline-horizontal-list-height: 600px !default;
 
-$timeline-arrow-gatter: 8px !default;
+$timeline-arrow-gatter: 0 !default;
 $timeline-arrow-top: 280px !default;
 
 .#{$timeline-name} {
@@ -156,7 +156,7 @@ $timeline-arrow-top: 280px !default;
 
     ul.#{$timeline-name}-list {
       box-sizing: border-box;
-      height: $timeline-horizontal-list-height;
+      // height: $timeline-horizontal-list-height;
     }
 
     .#{$timeline-name}-mark {
@@ -169,7 +169,11 @@ $timeline-arrow-top: 280px !default;
 
     .#{$timeline-name}-content {
       flex: 0 0 auto;
-      margin: 0;
+      padding: 20px;
+      margin-right: 0;
+      margin-bottom: 2.5rem;
+      margin-left: 0;
+      border: 1px solid;
     }
 
     .#{$timeline-name}-item {
@@ -182,16 +186,19 @@ $timeline-arrow-top: 280px !default;
 
       width: auto;
       height: 50%;
-      padding-bottom: $timeline-horizontal-content-spacing;
+      padding-left: $timeline-horizontal-content-spacing;
       margin: 0;
-      
+
       &.#{$timeline-name}-item-inverse,
       &:nth-child(even) {
         align-self: flex-end;
         justify-content: flex-start;
 
-        padding-top: $timeline-horizontal-content-spacing;
-        padding-bottom: 0;
+        .#{$timeline-name}-content {
+          margin-top: 2.5rem;
+          margin-bottom: 0;
+          margin-left: 0;
+        }
 
         .#{$timeline-name}-mark {
           top: 0;
