@@ -58,6 +58,7 @@ $timeline-arrow-top: 280px !default;
   // item
   &-item {
     position: relative;
+    box-sizing: content-box;
     display: flex;
     flex-direction: row-reverse;
     width: 50%;

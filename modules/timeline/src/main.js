@@ -90,6 +90,8 @@ class Timeline extends Component {
         .sort()
         .reverse()[0]
 
+      console.log(this.height * 2)
+
       this.$itemAll.forEach(item => {
         setStyle(
           {
