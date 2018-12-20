@@ -47,12 +47,13 @@ class Timeline extends Component {
     }
 
     addClass(this.classes.HORIZONTAL, this.element)
-    this.$wrap = query(`.${this.classes.WRAP}`, this.element)
+
     this.$list = query(`.${this.classes.LIST}`, this.element)
     this.$itemAll = queryAll(`.${this.classes.ITEM}`, this.element)
 
     this.width = getWidth(this.element)
     this.itemWidth = this.width / Number(this.options.visibleItems)
+
     this.maxIndex = this.$itemAll.length - this.options.visibleItems
     this.currentIndex = 0
 
@@ -69,18 +70,10 @@ class Timeline extends Component {
   }
 
   init() {
-    setStyle(
-      {
-        width: `${this.width}px`
-      },
-      this.$wrap
-    )
-
     if (hasClass(this.classes.HORIZONTAL, this.element)) {
       setStyle(
         {
-          width: `${this.itemWidth * this.$itemAll.length}px`,
-          height: 'auto'
+          width: `${this.itemWidth * this.$itemAll.length}px`
         },
         this.$list
       )
@@ -89,17 +82,6 @@ class Timeline extends Component {
         .map(item => getHeight(item))
         .sort()
         .reverse()[0]
-
-      console.log(this.height * 2)
-
-      this.$itemAll.forEach(item => {
-        setStyle(
-          {
-            width: `${this.itemWidth}px`
-          },
-          item
-        )
-      })
 
       setStyle(
         {
@@ -111,14 +93,10 @@ class Timeline extends Component {
       setStyle(
         {
           width: 'auto',
-          height: 'auto',
-          transform: 'none'
+          height: 'auto'
         },
         this.$list
       )
-      this.$itemAll.forEach(item => {
-        setStyle('width', '50%', item)
-      })
     }
 
     this.buildArrows()
@@ -233,13 +211,6 @@ class Timeline extends Component {
     this.width = getWidth(this.element)
     this.itemWidth = this.width / Number(this.options.visibleItems)
 
-    setStyle(
-      {
-        width: `${this.width}px`
-      },
-      this.$wrap
-    )
-
     if (hasClass(this.classes.HORIZONTAL, this.element)) {
       setStyle(
         {
@@ -254,14 +225,6 @@ class Timeline extends Component {
         .sort()
         .reverse()[0]
 
-      this.$itemAll.forEach(item => {
-        setStyle(
-          {
-            width: `${this.itemWidth}px`
-          },
-          item
-        )
-      })
       setStyle(
         {
           height: `${this.height * 2}px`
@@ -292,9 +255,6 @@ class Timeline extends Component {
         },
         this.$list
       )
-      this.$itemAll.forEach(item => {
-        setStyle('width', '50%', item)
-      })
     }
   }
 

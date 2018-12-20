@@ -13,7 +13,7 @@ $timeline-content-margin-x: 40px !default;
 
 $timeline-mark-size: 16px !default;
 
-$timeline-horizontal-content-spacing: $timeline-content-margin-x !default;
+$timeline-horizontal-content-spacing: 20px !default;
 $timeline-horizontal-list-height: 600px !default;
 
 $timeline-arrow-gatter: 0 !default;
@@ -21,22 +21,14 @@ $timeline-arrow-top: 280px !default;
 
 .#{$timeline-name} {
   position: relative;
-  box-sizing: content-box;
   padding: 0 $timeline-item-padding;
-  overflow: hidden;
 
   &-wrap {
     position: relative;
-    z-index: 2;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
   }
 
   // list
   &-list {
-    position: relative;
-
     &::before {
       position: absolute;
       top: 0;
@@ -58,13 +50,10 @@ $timeline-arrow-top: 280px !default;
   // item
   &-item {
     position: relative;
-    box-sizing: content-box;
     display: flex;
-    flex-direction: row-reverse;
     width: 50%;
     text-align: right;
 
-    &.#{$timeline-name}-item-inverse,
     &:nth-child(even) {
       flex-direction: row;
       margin-left: 50%;
@@ -76,9 +65,7 @@ $timeline-arrow-top: 280px !default;
       }
 
       .#{$timeline-name}-mark {
-        right: 100%;
         left: auto;
-        transform: translateX(50%);
       }
     }
   }
@@ -86,10 +73,6 @@ $timeline-arrow-top: 280px !default;
   // content
   &-content {
     margin-right: $timeline-content-margin-x;
-
-    > *:last-child {
-      margin-bottom: 0;
-    }
   }
 
   .#{$timeline-arrow}-prev,
@@ -104,13 +87,17 @@ $timeline-arrow-top: 280px !default;
     left: 100%;
     width: $timeline-mark-size;
     height: $timeline-mark-size;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(50%);
   }
 
   &.#{$timeline-name}-horizontal {
-    position: relative;
+    box-sizing: border-box;
     height: auto;
     overflow-x: hidden;
+
+    .#{$timeline-name}-wrap {
+      overflow: hidden;
+    }
 
     .#{$timeline-arrow}-next,
     .#{$timeline-arrow}-prev {
@@ -130,11 +117,7 @@ $timeline-arrow-top: 280px !default;
 
     .#{$timeline-name}-list {
       display: flex;
-      flex-direction: row;
-      flex-wrap: no-wrap;
-      align-content: stretch;
-      will-change: transform;
-
+      
       &,
       &::before,
       &::after,
@@ -146,8 +129,6 @@ $timeline-arrow-top: 280px !default;
 
       &::before {
         top: 50%;
-        right: 0;
-        bottom: auto;
         left: 0;
         width: 100%;
         height: $timeline-line-width;
@@ -155,56 +136,33 @@ $timeline-arrow-top: 280px !default;
       }
     }
 
-    ul.#{$timeline-name}-list {
-      box-sizing: border-box;
-      // height: $timeline-horizontal-list-height;
-    }
-
     .#{$timeline-name}-mark {
       top: auto;
-      right: auto;
-      bottom: 0;
       left: 50%;
-      transform: translateX(-50%) translateY(50%);
     }
 
     .#{$timeline-name}-content {
-      flex: 0 0 auto;
-      padding: 20px;
       margin-right: 0;
-      margin-bottom: 2.5rem;
-      margin-left: 0;
-      border: 1px solid;
+      margin-bottom: $timeline-content-margin-x;
     }
 
     .#{$timeline-name}-item {
-      display: flex;
-      flex: 1;
       flex-direction: column;
-      align-self: flex-start;
       justify-content: flex-end;
-
-
-      width: auto;
       height: 50%;
-      padding-left: $timeline-horizontal-content-spacing;
       margin: 0;
 
-      &.#{$timeline-name}-item-inverse,
       &:nth-child(even) {
         align-self: flex-end;
         justify-content: flex-start;
 
         .#{$timeline-name}-content {
-          margin-top: 2.5rem;
+          margin-top: $timeline-content-margin-x;
           margin-bottom: 0;
           margin-left: 0;
         }
 
         .#{$timeline-name}-mark {
-          top: 0;
-          right: auto;
-          left: 50%;
           transform: translateX(-50%) translateY(-50%);
         }
       }

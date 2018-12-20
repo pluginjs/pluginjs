@@ -10,6 +10,7 @@ $timeline-item-gutter: 50px;
 
 $timeline-line-color: $color-primary;
 
+$timeline-content-gatter: 20px;
 $timeline-content-margin-x: 25px;
 
 $timeline-mark-bg: $timeline-line-color;
@@ -23,16 +24,10 @@ $timeline-mark-hover-bg: $gray-darkest;
     }
   }
 
-  // item
-  &-item {
-    & + & {
-      margin-top: $timeline-item-gutter;
-    }
-  }
-
   // content
   &-content {
-    margin-right: $timeline-content-margin-x;
+    padding: $timeline-content-gatter;
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.1);
 
     > *:last-child {
       margin-bottom: 0;
@@ -53,7 +48,6 @@ $timeline-mark-hover-bg: $gray-darkest;
     .#{$timeline-name}-item {
       text-align: left;
       
-      &.#{$timeline-name}-item-inverse,
       &:nth-child(even) {
         text-align: left;
 

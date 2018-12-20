@@ -26,7 +26,7 @@ export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null,
-  visibleItems: 4,
+  visibleItems: 3,
   loop: false,
   arrows: {
     type: 'outline circle'
