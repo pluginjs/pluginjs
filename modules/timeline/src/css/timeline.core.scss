@@ -10,14 +10,11 @@ $timeline-item-padding: 48px !default;
 $timeline-line-width: 2px !default;
 
 $timeline-content-margin-x: 40px !default;
+$timeline-content-padding-y: 20px !default;
 
 $timeline-mark-size: 16px !default;
 
-$timeline-horizontal-content-spacing: 20px !default;
-$timeline-horizontal-list-height: 600px !default;
-
 $timeline-arrow-gatter: 0 !default;
-$timeline-arrow-top: 280px !default;
 
 .#{$timeline-name} {
   position: relative;
@@ -29,6 +26,10 @@ $timeline-arrow-top: 280px !default;
 
   // list
   &-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
     &::before {
       position: absolute;
       top: 0;
@@ -39,12 +40,6 @@ $timeline-arrow-top: 280px !default;
       content: "";
       transform: translateX(-50%);
     }
-  }
-  // list: ul
-  ul.#{$timeline-name}-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
   }
 
   // item
@@ -101,17 +96,14 @@ $timeline-arrow-top: 280px !default;
 
     .#{$timeline-arrow}-next,
     .#{$timeline-arrow}-prev {
-      position: absolute;
       display: block;
     }
 
     .#{$timeline-arrow}-prev {
-      top: $timeline-arrow-top;
       left: $timeline-arrow-gatter;
     }
 
     .#{$timeline-arrow}-next {
-      top: $timeline-arrow-top;
       right: $timeline-arrow-gatter;
     }
 
@@ -150,6 +142,7 @@ $timeline-arrow-top: 280px !default;
       flex-direction: column;
       justify-content: flex-end;
       height: 50%;
+      padding: 0 $timeline-content-padding-y;
       margin: 0;
 
       &:nth-child(even) {
