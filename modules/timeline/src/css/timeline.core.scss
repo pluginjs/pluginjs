@@ -34,7 +34,7 @@ $timeline-arrow-gatter: 0 !default;
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 50%;
+      left: 0;
       display: block;
       width: $timeline-line-width;
       content: "";
@@ -46,28 +46,16 @@ $timeline-arrow-gatter: 0 !default;
   &-item {
     position: relative;
     display: flex;
-    width: 50%;
-    text-align: right;
+    flex-direction: row;
+    width: 100%;
 
-    &:nth-child(even) {
-      flex-direction: row;
-      margin-left: 50%;
-      text-align: left;
-
-      .#{$timeline-name}-content {
-        margin-right: 0;
-        margin-left: $timeline-content-margin-x;
-      }
-
-      .#{$timeline-name}-mark {
-        left: auto;
-      }
+    .#{$timeline-name}-content {
+      margin-left: $timeline-content-margin-x;
     }
-  }
 
-  // content
-  &-content {
-    margin-right: $timeline-content-margin-x;
+    & + & {
+      padding-top: $timeline-item-padding;
+    }
   }
 
   .#{$timeline-arrow}-prev,
@@ -79,7 +67,7 @@ $timeline-arrow-gatter: 0 !default;
   &-mark {
     position: absolute;
     top: 0;
-    left: 100%;
+    left: auto;
     width: $timeline-mark-size;
     height: $timeline-mark-size;
     transform: translateX(-50%) translateY(50%);
