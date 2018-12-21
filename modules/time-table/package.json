@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.5",
+  "version": "0.7.6",
   "category": "ui",
   "main": "dist/time-table.common.js",
   "module": "dist/time-table.esm.js",
@@ -45,7 +45,7 @@
     "@pluginjs/dom": "^0.7.4",
     "@pluginjs/events": "^0.7.4",
     "@pluginjs/factory": "^0.7.4",
-    "@pluginjs/filters": "^0.7.4",
+    "@pluginjs/filters": "^0.7.5",
     "@pluginjs/is": "^0.7.4",
     "@pluginjs/styled": "^0.7.4",
     "@pluginjs/template": "^0.7.4",
