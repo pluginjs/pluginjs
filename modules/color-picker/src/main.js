@@ -211,8 +211,8 @@ class ColorPicker extends Component {
     }
 
     // create mask
-    this.$mask = parseHTML(`<div class="${this.classes.MASK}"></div>`)
-    append(this.$mask, this.$body)
+    // this.$mask = parseHTML(`<div class="${this.classes.MASK}"></div>`)
+    // append(this.$mask, this.$body)
   }
 
   initPreview() {
