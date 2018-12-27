@@ -1,6 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import { deepMerge } from '@pluginjs/utils'
-import { isObject, isFunction, isString } from '@pluginjs/is'
+import { isObject, isFunction, isString, isElement } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, bindEventOnce } from '@pluginjs/events'
 import { append, parseHTML, query, data, remove } from '@pluginjs/dom'
@@ -212,8 +212,8 @@ class Modal extends GlobalComponent {
   initialize() {
     // Validate data
     this.validate()
-
     this.$content = query(`.${this.classes.CONTENT}`, this.$element)
+
     this.$title = query(`.${this.classes.TITLE}`, this.$element)
     this.$closeBtn = query(`.${this.classes.CLOSE}`, this.$element)
     this.$buttons = query(`.${this.classes.BUTTONS}`, this.$element)
@@ -326,7 +326,9 @@ class Modal extends GlobalComponent {
   }
 
   setContent(content) {
-    if (this.options.html) {
+    if (isElement(content)) {
+      append(content, this.$content)
+    } else if (this.options.html) {
       this.$content.innerHTML = content
     } else {
       this.$content.textContent = content

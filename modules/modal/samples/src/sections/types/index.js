@@ -1,4 +1,4 @@
-import { query } from '@pluginjs/dom'
+import { query, parseHTML } from '@pluginjs/dom'
 import Modal from '@pluginjs/modal'
 
 const root = query('#types')
@@ -6,6 +6,13 @@ const root = query('#types')
 query('.basic-modal', root).addEventListener('click', () => {
   Modal.open({
     content: 'hello world'
+  })
+})
+
+const html = parseHTML('<div>hello world</div>')
+query('.insertDom-modal', root).addEventListener('click', () => {
+  Modal.open({
+    content: html
   })
 })
 
