@@ -23,6 +23,7 @@ $dot: "pj-dot" !default;
     height: 100%;
     padding: 0;
     margin: 0;
+    will-change: transform;
   }
 
   .#{$arrow} {

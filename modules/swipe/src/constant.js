@@ -23,6 +23,7 @@ export const classes = {
   WRAPPER: '{namespace}-wrapper',
   INNER: '{namespace}-inner',
   ITEM: '{namespace}-item',
+  CLONED: '{namespace}-cloned',
   PAGINATION: '{namespace}-pagination',
   PAGINATIONITEM: '{namespace}-pagination-item',
   IMG: '{namespace}-img',
@@ -43,6 +44,7 @@ export const defaults = {
   arrows: false, // false, options
   pagination: false, // false, options
   group: false,
+  loop: false,
   multiple: false,
   decay: false,
   center: false, // center model

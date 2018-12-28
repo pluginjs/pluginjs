@@ -2,7 +2,7 @@ import anime from 'animejs'
 import Component from '@pluginjs/component'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
-import { isPlainObject } from '@pluginjs/is'
+import { isPlainObject, isNumeric, isElement } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   append,
@@ -11,7 +11,10 @@ import {
   find,
   parent,
   parentWith,
-  queryAll
+  queryAll,
+  parseHTML,
+  appendTo,
+  prependTo
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -84,7 +87,7 @@ class Swipe extends Component {
         ? this.maxActiveCount
         : this.options.defaultActive
 
-    this.move(this.itemInstances[this.active].info.x, { trigger: false })
+    this.moveTo(this.active)
 
     if (!this.options.group) {
       addClass(
@@ -104,9 +107,26 @@ class Swipe extends Component {
 
     this.buildContainer()
 
-    this.itemInstances = this.getItemInstances(this.items)
-
-    this.computeItemLocation(this.itemInstances)
+    if (this.options.loop) {
+      this.buildClonedItems()
+      this.updateWidths()
+      this.updateCoordinates()
+      this.itemsWithCloned = this.prevItems
+        .concat(this.items)
+        .concat(this.nextItems)
+      this.instancesWithCloned = this.getItemInstances(this.itemsWithCloned)
+      this.computeItemLocation(this.instancesWithCloned)
+      this.computeInnerLocation()
+      this.itemInstances = [].concat(this.instancesWithCloned)
+      this.itemInstances.splice(0, this.clones.length / 2)
+      this.itemInstances.splice(
+        this.itemInstances.length - this.clones.length / 2,
+        this.clones.length / 2
+      )
+    } else {
+      this.itemInstances = this.getItemInstances(this.items)
+      this.computeItemLocation(this.itemInstances)
+    }
 
     this.sortedItems = this.getItemsBySort()
 
@@ -195,6 +215,112 @@ class Swipe extends Component {
     }
   }
 
+  computeInnerLocation() {
+    let width = this.itemWidth * this.itemNums * -1
+    if (this.options.multiple) {
+      width /= 2
+    }
+
+    if (this.options.center) {
+      width =
+        (this.itemWidth * this.itemNums -
+          (this.itemWidth / 2) * (this.itemNums - 1)) *
+        -1
+    }
+
+    this.setInnerPosition(width)
+  }
+
+  buildClonedItems() {
+    const clones = []
+    let repeat = this.options.multiple ? this.itemNums * 2 : this.itemNums
+    let append = ''
+    let prepend = ''
+
+    while (repeat > 0) {
+      clones.push(this.normalize(clones.length / 2, true))
+      append += this.items[clones[clones.length - 1]].outerHTML
+      clones.push(
+        this.normalize(this.items.length - 1 - (clones.length - 1) / 2, true)
+      )
+      prepend = this.items[clones[clones.length - 1]].outerHTML + prepend
+      repeat -= 1
+    }
+
+    const appendEle = parseHTML(append)
+    if (isElement(appendEle)) {
+      addClass(this.classes.CLONED, appendEle)
+      this.nextItems = [appendEle]
+    } else {
+      this.nextItems = queryAll(`.${this.classes.ITEM}`, appendEle)
+      this.nextItems.forEach(el => addClass(this.classes.CLONED, el))
+    }
+
+    appendTo(appendEle, this.inner)
+
+    const prependEle = parseHTML(prepend)
+    if (isElement(prependEle)) {
+      addClass(this.classes.CLONED, prependEle)
+      this.prevItems = [prependEle]
+    } else {
+      this.prevItems = queryAll(`.${this.classes.ITEM}`, prependEle)
+      this.prevItems.forEach(el => addClass(this.classes.CLONED, el))
+    }
+
+    prependTo(prependEle, this.inner)
+
+    this.clones = clones
+  }
+
+  updateWidths() {
+    const width = this.getItemWidth()
+    let iterator = this.items.length
+    const widths = []
+
+    while (iterator--) {
+      widths[iterator] = width
+    }
+
+    this.widths = widths
+  }
+
+  updateCoordinates() {
+    const size = this.clones.length + this.items.length
+    let iterator = 0
+    let previous = 0
+    let current = 0
+    const coordinates = []
+
+    while (++iterator < size) {
+      previous = coordinates[iterator - 2] || 0
+      current = this.widths[this.relative(iterator)] + this.options.gutter
+      const coordinate = previous + current * -1
+      coordinates.push(coordinate)
+    }
+
+    coordinates.unshift(0)
+
+    this.coordinates = coordinates
+  }
+
+  relative(position) {
+    position -= this.clones.length / 2
+    return this.normalize(position, true)
+  }
+
+  normalize(position, relative) {
+    const n = this.items.length
+    const m = relative ? 0 : this.clones.length
+
+    if (!isNumeric(position) || n < 1) {
+      position = undefined
+    } else if (position < 0 || position >= n + m) {
+      position = ((((position - m / 2) % n) + n) % n) + m / 2
+    }
+
+    return position
+  }
+
   getItemInstances(items) {
     const itemWidth = this.getItemWidth()
     const itemHeight = '100%'
@@ -276,6 +402,7 @@ class Swipe extends Component {
     width -= this.gutter
 
     this.setWidth(width)
+    this.itemWidth = this.getItemWidth() + this.gutter
   }
 
   setWidth(width) {
@@ -326,7 +453,10 @@ class Swipe extends Component {
       targetItem = item
     }
 
-    if (Math.floor(targetItem.info.x) < Math.floor(maxWidth)) {
+    if (
+      Math.floor(targetItem.info.x) < Math.floor(maxWidth) &&
+      !this.options.loop
+    ) {
       dotNum += 1
     }
 
@@ -384,35 +514,60 @@ class Swipe extends Component {
       },
       onMove() {
         let posX = this.startPosition.x + this.info.deltaX
-        const scrollMax = that.width - that.innerWidth
-        const distance =
-          (that.width - that.sortedItems[that.active].info.width) / 2
-        const scrollMaxCenter = that.width - that.innerWidth - distance
+        if (!that.options.loop) {
+          const scrollMax = that.width - that.innerWidth
+          const distance =
+            (that.width - that.sortedItems[that.active].info.width) / 2
+          const scrollMaxCenter = that.width - that.innerWidth - distance
 
-        if (that.options.center) {
-          if (posX > distance) {
-            posX = Math.round(distance + (posX - distance) / 5)
-          } else if (posX < scrollMaxCenter) {
-            posX = Math.round(scrollMaxCenter + (posX - scrollMaxCenter) / 5)
+          if (that.options.center) {
+            if (posX > distance) {
+              posX = Math.round(distance + (posX - distance) / 5)
+            } else if (posX < scrollMaxCenter) {
+              posX = Math.round(scrollMaxCenter + (posX - scrollMaxCenter) / 5)
+            }
+          } else if (posX > 0) {
+            posX = Math.round(posX / 5)
+          } else if (posX < scrollMax) {
+            posX = Math.round(scrollMax + (posX - scrollMax) / 5)
           }
-        } else if (posX > 0) {
-          posX = Math.round(posX / 5)
-        } else if (posX < scrollMax) {
-          posX = Math.round(scrollMax + (posX - scrollMax) / 5)
         }
 
-        setStyle(
-          {
-            transform: `translateX(${posX}px)`
-          },
-          this.element
-        )
+        that.setInnerPosition(posX)
         this.position = { x: posX, y: 0 }
       },
       onSnail() {
         const locationX = this.getLocation(this.element).x
-        const index = that.getIndexByDistance(locationX)
-        that.moveTo(index)
+        let index = that.getIndexByDistance(locationX)
+
+        if (that.options.loop) {
+          const itemLength = that.options.multiple
+            ? that.items.length / 2
+            : that.items.length
+          const condition = Math.abs(this.info.deltaX) > that.itemWidth / 2
+
+          if (
+            locationX > that.getDistanceByIndex(0) &&
+            condition &&
+            this.info.deltaX > 0
+          ) {
+            const distance = locationX - that.itemWidth * itemLength
+            console.log(11111, locationX, distance)
+            that.setInnerPosition(distance)
+            index = that.getIndexByDistance(distance)
+          } else if (
+            locationX < that.getDistanceByIndex(that.items.length - 1) &&
+            condition &&
+            this.info.deltaX < 0
+          ) {
+            console.log(22222)
+            const distance = locationX + that.itemWidth * itemLength
+            that.setInnerPosition(distance)
+            index = that.getIndexByDistance(distance)
+          }
+        }
+        console.log('index', index)
+        // that.moveTo(index)
         that.trigger(EVENTS.DRAGSNAIL)
       },
       onThrow() {
@@ -423,8 +578,27 @@ class Swipe extends Component {
           : locationX
         let index = that.getIndexByDistance(distance)
 
+        if (that.options.loop) {
+          const itemLength = that.options.multiple
+            ? that.items.length / 2
+            : that.items.length
+
+          if (distance > that.getDistanceByIndex(0) && this.info.deltaX > 0) {
+            const coordinate = distance - that.itemWidth * itemLength
+            that.setInnerPosition(coordinate)
+            index = that.getIndexByDistance(coordinate)
+          } else if (
+            distance < that.getDistanceByIndex(that.items.length - 1) &&
+            this.info.deltaX < 0
+          ) {
+            const coordinate = distance + that.itemWidth * itemLength
+            that.setInnerPosition(coordinate)
+            index = that.getIndexByDistance(coordinate)
+          }
+        }
+
         if (throwDistance < 0) {
-          if (that.active !== that.maxActiveCount && index <= that.active) {
+          if (that.active !== that.maxActiveCount - 1 && index <= that.active) {
             index += 1
           }
         } else if (that.active !== 0 && index >= that.active) {
@@ -442,14 +616,59 @@ class Swipe extends Component {
     })
   }
 
+  getDistanceByIndex(index) {
+    let distance = 0
+    if (this.options.group) {
+      distance =
+        Math.max(
+          0,
+          Math.min(this.sortedItems[index].info.x, this.innerWidth - this.width)
+        ) * this.options.itemNums
+    } else if (this.options.loop) {
+      distance = -this.coordinates[index + this.itemNums]
+    } else {
+      distance = this.sortedItems[index].info.x
+    }
+
+    if (
+      index === this.maxActiveCount - 1 &&
+      index !== 0 &&
+      !this.options.center &&
+      !this.options.loop
+    ) {
+      distance = this.innerWidth - this.width
+    }
+
+    if (
+      this.options.center &&
+      !this.options.group &&
+      this.options.itemNums > 1
+    ) {
+      distance -= (this.itemWidth / 2) * (this.itemNums - 1)
+    }
+
+    return -distance
+  }
+
   computeWidthResize() {
-    this.itemInstances.forEach(item => {
-      const itemWidth = this.getItemWidth()
-
-      item.setInfo({ width: itemWidth })
-    })
-
-    this.computeItemLocation(this.itemInstances)
+    if (!this.options.loop) {
+      this.itemInstances.forEach(item => {
+        const itemWidth = this.getItemWidth()
+        item.setInfo({ width: itemWidth })
+      })
+      this.computeItemLocation(this.itemInstances)
+    } else {
+      this.updateWidths()
+      this.updateCoordinates()
+      this.instancesWithCloned = this.getItemInstances(this.itemsWithCloned)
+      this.computeItemLocation(this.instancesWithCloned)
+      this.itemInstances = [].concat(this.instancesWithCloned)
+      this.itemInstances.splice(0, this.clones.length / 2)
+      this.itemInstances.splice(
+        this.itemInstances.length - this.clones.length / 2,
+        this.clones.length / 2
+      )
+    }
 
     this.width = parseFloat(getStyle('width', this.element), 10)
 
@@ -463,6 +682,8 @@ class Swipe extends Component {
             this.innerWidth - this.width
           )
         ) * this.options.itemNums
+    } else if (this.options.loop) {
+      distance = -this.coordinates[this.active + this.itemNums]
     } else {
       distance = this.sortedItems[this.active].info.x
     }
@@ -470,7 +691,8 @@ class Swipe extends Component {
     if (
       this.active === this.maxActiveCount - 1 &&
       this.active !== 0 &&
-      !this.options.center
+      !this.options.center &&
+      !this.options.loop
     ) {
       distance = this.innerWidth - this.width
     }
@@ -480,16 +702,10 @@ class Swipe extends Component {
       !this.options.group &&
       this.options.itemNums > 1
     ) {
-      const activeItemWidth = this.sortedItems[this.active].info.width
-      distance -= (this.width - activeItemWidth) / 2
+      distance -= (this.itemWidth / 2) * (this.itemNums - 1)
     }
 
-    setStyle(
-      {
-        transform: `translateX(-${distance}px)`
-      },
-      this.inner
-    )
+    this.setInnerPosition(-distance)
   }
 
   buildArrows() {
@@ -541,6 +757,15 @@ class Swipe extends Component {
     const active =
       this.active >= this.maxActiveCount - 1 ? minIndex : this.active + step
 
+    if (this.options.loop && active === 0) {
+      this.anime.pause()
+      let position = -this.coordinates[active + this.itemNums - 1]
+      if (this.options.center) {
+        position -= (this.itemWidth / 2) * (this.itemNums - 1)
+      }
+      this.setInnerPosition(-position)
+    }
+
     this.moveTo(active, () => this.trigger(EVENTS.NEXT))
   }
 
@@ -549,6 +774,15 @@ class Swipe extends Component {
     const maxIndex = this.options.loop ? this.maxActiveCount - 1 : 0
 
     const active = this.active - step >= 0 ? this.active - step : maxIndex
+
+    if (this.options.loop && active === this.maxActiveCount - 1) {
+      this.anime.pause()
+      let position = -this.coordinates[active + this.itemNums + 1]
+      if (this.options.center) {
+        position -= (this.itemWidth / 2) * (this.itemNums - 1)
+      }
+      this.setInnerPosition(-position)
+    }
 
     this.moveTo(active, () => this.trigger(EVENTS.PREV))
   }
@@ -566,8 +800,7 @@ class Swipe extends Component {
       !this.options.group &&
       this.options.itemNums > 1
     ) {
-      const activeItemWidth = this.sortedItems[this.active].info.width
-      distance -= (this.width - activeItemWidth) / 2
+      distance -= (this.itemWidth / 2) * (this.itemNums - 1)
     }
 
     this.anime = anime({
@@ -577,7 +810,7 @@ class Swipe extends Component {
       duration
     })
 
-    if (this.arrows) {
+    if (!this.options.loop && this.arrows) {
       if (this.active === 0) {
         this.arrows.disable('prev')
         this.arrows.enable('next')
@@ -617,13 +850,15 @@ class Swipe extends Component {
     }
 
     this.active = index
-
+    console.log('to', index)
     if (this.options.group) {
       distance =
         Math.max(
           0,
           Math.min(this.sortedItems[index].info.x, this.innerWidth - this.width)
         ) * this.options.itemNums
+    } else if (this.options.loop) {
+      distance = -this.coordinates[index + this.itemNums]
     } else {
       distance = this.sortedItems[index].info.x
     }
@@ -631,7 +866,8 @@ class Swipe extends Component {
     if (
       index === this.maxActiveCount - 1 &&
       index !== 0 &&
-      !this.options.center
+      !this.options.center &&
+      !this.options.loop
     ) {
       distance = this.innerWidth - this.width
     }
@@ -654,7 +890,7 @@ class Swipe extends Component {
     let add = 0
 
     if (this.options.center) {
-      add = (this.width - this.itemInstances[this.active].info.width) / 2
+      add = (this.itemWidth / 2) * (this.itemNums - 1)
 
       min += add
       max += add
@@ -680,9 +916,10 @@ class Swipe extends Component {
       return Math.max(0, Math.min(index, this.maxActiveCount))
     }
 
-    const tempArr = [].concat(this.sortedItems)
     let offsetX
     let index
+
+    const tempArr = [].concat(this.sortedItems)
 
     for (let i = 0; i < tempArr.length; i++) {
       const item = tempArr[i]
@@ -700,6 +937,10 @@ class Swipe extends Component {
     }
 
     return index
+  }
+
+  setInnerPosition(position) {
+    setStyle('transform', `translateX(${position}px)`, this.inner)
   }
 
   createEl(name, opts) {
