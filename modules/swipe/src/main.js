@@ -132,6 +132,8 @@ class Swipe extends Component {
 
     this.maxActiveCount = this.getMaxActiveCount()
 
+    this.initLoader()
+
     if (this.options.arrows) {
       this.buildArrows()
     }
@@ -165,6 +167,10 @@ class Swipe extends Component {
       })
     }
 
+    return items
+  }
+
+  initLoader() {
     const images = queryAll(
       `.${this.classes.ITEM} ${this.options.imgSelector}`,
       this.element
@@ -190,8 +196,6 @@ class Swipe extends Component {
         })
       })
     }
-
-    return items
   }
 
   buildContainer() {
@@ -217,9 +221,6 @@ class Swipe extends Component {
 
   computeInnerLocation() {
     let width = this.itemWidth * this.itemNums * -1
-    if (this.options.multiple) {
-      width /= 2
-    }
 
     if (this.options.center) {
       width =
@@ -531,6 +532,16 @@ class Swipe extends Component {
           } else if (posX < scrollMax) {
             posX = Math.round(scrollMax + (posX - scrollMax) / 5)
           }
+        } else {
+          const condition = that.options.group
+            ? that.coordinates[
+                that.maxActiveCount * that.itemNums + that.itemNums
+              ]
+            : that.coordinates[that.maxActiveCount + that.itemNums]
+
+          if (posX >= 0 || posX < condition) {
+            this.leave('paning')
+          }
         }
 
         that.setInnerPosition(posX)
@@ -542,9 +553,14 @@ class Swipe extends Component {
 
         if (that.options.loop) {
           const itemLength = that.options.multiple
-            ? that.items.length / 2
+            ? Math.ceil(that.items.length / 2)
             : that.items.length
-          const condition = Math.abs(this.info.deltaX) > that.itemWidth / 2
+
+          const condition =
+            Math.abs(this.info.deltaX) >
+            (that.options.multiple
+              ? (that.itemWidth * that.itemNums) / 2
+              : that.itemWidth / 2)
 
           if (
             locationX > that.getDistanceByIndex(0) &&
@@ -552,22 +568,19 @@ class Swipe extends Component {
             this.info.deltaX > 0
           ) {
             const distance = locationX - that.itemWidth * itemLength
-            console.log(11111, locationX, distance)
             that.setInnerPosition(distance)
             index = that.getIndexByDistance(distance)
           } else if (
-            locationX < that.getDistanceByIndex(that.items.length - 1) &&
+            locationX < that.getDistanceByIndex(that.maxActiveCount - 1) &&
             condition &&
             this.info.deltaX < 0
           ) {
-            console.log(22222)
             const distance = locationX + that.itemWidth * itemLength
             that.setInnerPosition(distance)
             index = that.getIndexByDistance(distance)
           }
         }
-        console.log('index', index)
-        // that.moveTo(index)
+        that.moveTo(index)
         that.trigger(EVENTS.DRAGSNAIL)
       },
       onThrow() {
@@ -580,7 +593,7 @@ class Swipe extends Component {
 
         if (that.options.loop) {
           const itemLength = that.options.multiple
-            ? that.items.length / 2
+            ? Math.ceil(that.items.length / 2)
             : that.items.length
 
           if (distance > that.getDistanceByIndex(0) && this.info.deltaX > 0) {
@@ -588,7 +601,7 @@ class Swipe extends Component {
             that.setInnerPosition(coordinate)
             index = that.getIndexByDistance(coordinate)
           } else if (
-            distance < that.getDistanceByIndex(that.items.length - 1) &&
+            distance < that.getDistanceByIndex(that.maxActiveCount - 1) &&
             this.info.deltaX < 0
           ) {
             const coordinate = distance + that.itemWidth * itemLength
@@ -618,14 +631,19 @@ class Swipe extends Component {
 
   getDistanceByIndex(index) {
     let distance = 0
-    if (this.options.group) {
+
+    if (this.options.loop) {
+      if (this.options.group && !this.options.center) {
+        distance = -this.coordinates[index * this.itemNums + this.itemNums]
+      } else {
+        distance = -this.coordinates[index + this.itemNums]
+      }
+    } else if (this.options.group && !this.options.center) {
       distance =
         Math.max(
           0,
           Math.min(this.sortedItems[index].info.x, this.innerWidth - this.width)
         ) * this.options.itemNums
-    } else if (this.options.loop) {
-      distance = -this.coordinates[index + this.itemNums]
     } else {
       distance = this.sortedItems[index].info.x
     }
@@ -670,10 +688,21 @@ class Swipe extends Component {
       )
     }
 
+    this.sortedItems = this.getItemsBySort()
+
     this.width = parseFloat(getStyle('width', this.element), 10)
 
     let distance = 0
-    if (this.options.group) {
+
+    if (this.options.loop) {
+      if (this.options.group && !this.options.center) {
+        distance = -this.coordinates[
+          this.active * this.itemNums + this.itemNums
+        ]
+      } else {
+        distance = -this.coordinates[this.active + this.itemNums]
+      }
+    } else if (this.options.group && !this.options.center) {
       distance =
         Math.max(
           0,
@@ -682,8 +711,6 @@ class Swipe extends Component {
             this.innerWidth - this.width
           )
         ) * this.options.itemNums
-    } else if (this.options.loop) {
-      distance = -this.coordinates[this.active + this.itemNums]
     } else {
       distance = this.sortedItems[this.active].info.x
     }
@@ -759,9 +786,12 @@ class Swipe extends Component {
 
     if (this.options.loop && active === 0) {
       this.anime.pause()
-      let position = -this.coordinates[active + this.itemNums - 1]
+      let position = -this.coordinates[this.itemNums - 1]
       if (this.options.center) {
         position -= (this.itemWidth / 2) * (this.itemNums - 1)
+      }
+      if (this.options.group && !this.options.center) {
+        position = -this.coordinates[0]
       }
       this.setInnerPosition(-position)
     }
@@ -780,6 +810,11 @@ class Swipe extends Component {
       let position = -this.coordinates[active + this.itemNums + 1]
       if (this.options.center) {
         position -= (this.itemWidth / 2) * (this.itemNums - 1)
+      }
+      if (this.options.group && !this.options.center) {
+        position = -this.coordinates[
+          Math.ceil((this.coordinates.length - this.itemNums) / 2)
+        ]
       }
       this.setInnerPosition(-position)
     }
@@ -850,15 +885,19 @@ class Swipe extends Component {
     }
 
     this.active = index
-    console.log('to', index)
-    if (this.options.group) {
+
+    if (this.options.loop) {
+      if (this.options.group && !this.options.center) {
+        distance = -this.coordinates[index * this.itemNums + this.itemNums]
+      } else {
+        distance = -this.coordinates[index + this.itemNums]
+      }
+    } else if (this.options.group && !this.options.center) {
       distance =
         Math.max(
           0,
           Math.min(this.sortedItems[index].info.x, this.innerWidth - this.width)
         ) * this.options.itemNums
-    } else if (this.options.loop) {
-      distance = -this.coordinates[index + this.itemNums]
     } else {
       distance = this.sortedItems[index].info.x
     }
@@ -907,10 +946,27 @@ class Swipe extends Component {
     if (this.options.group && !this.options.center) {
       let index = 0
       const tempWidth = this.width
-      const maybeIndex = Math.ceil(distance / this.width)
+      if (!this.options.loop) {
+        const maybeIndex = Math.ceil(distance / this.width)
+        index =
+          distance - (maybeIndex - 1) * tempWidth > tempWidth / 2
+            ? maybeIndex
+            : maybeIndex - 1
+        return Math.max(0, Math.min(index, this.maxActiveCount))
+      }
+      const tempDistance =
+        distance -
+        Math.abs(
+          this.coordinates[
+            this.options.multiple
+              ? this.prevItems.length / 2
+              : this.prevItems.length
+          ]
+        )
+      const maybeIndex = Math.ceil(tempDistance / this.width)
 
       index =
-        distance - (maybeIndex - 1) * tempWidth > tempWidth / 2
+        tempDistance - (maybeIndex - 1) * tempWidth > tempWidth / 2
           ? maybeIndex
           : maybeIndex - 1
       return Math.max(0, Math.min(index, this.maxActiveCount))

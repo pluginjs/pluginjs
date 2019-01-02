@@ -130,6 +130,9 @@ class Swipeable extends Component {
   }
 
   panMove(e) {
+    if (!this.is('paning')) {
+      return
+    }
     let posX = this.axis === 'x' ? this.startPosition.x + e.deltaX : 0
     let posY = this.axis === 'y' ? this.startPosition.y + e.deltaY : 0
 
