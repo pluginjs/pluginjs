@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.4",
+  "version": "0.7.5",
   "category": "form",
   "main": "dist/swipe.common.js",
   "module": "dist/swipe.esm.js",
@@ -48,7 +48,7 @@
     "@pluginjs/is": "^0.7.4",
     "@pluginjs/loader": "^0.7.4",
     "@pluginjs/styled": "^0.7.4",
-    "@pluginjs/swipeable": "^0.7.4",
+    "@pluginjs/swipeable": "^0.7.5",
     "@pluginjs/template": "^0.7.4",
     "animejs": "*"
   },
