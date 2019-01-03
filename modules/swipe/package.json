@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.5",
+  "version": "0.7.6",
   "category": "form",
   "main": "dist/swipe.common.js",
   "module": "dist/swipe.esm.js",
