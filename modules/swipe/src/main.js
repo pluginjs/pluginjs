@@ -742,10 +742,16 @@ class Swipe extends Component {
   resize() {
     this.computeWidthResize()
 
-    this.trigger(EVENTS.RESIZE)
+    if (!this.is('disabled')) {
+      this.trigger(EVENTS.RESIZE)
+    }
   }
 
   bind() {
+    if (!this.swipeable.is('bind')) {
+      this.swipeable.bind()
+    }
+
     if (this.options.arrows) {
       this.arrows.options.onNext = () => {
         this.next()
@@ -774,10 +780,16 @@ class Swipe extends Component {
   }
 
   unbind() {
+    this.swipeable.unbind()
+
     removeEvent(this.eventName(), this.wrapper)
   }
 
   next() {
+    if (this.is('disabled')) {
+      return
+    }
+
     const step = 1
     const minIndex = this.options.loop ? 0 : this.active
 
@@ -786,20 +798,25 @@ class Swipe extends Component {
 
     if (this.options.loop && active === 0) {
       this.anime.pause()
-      let position = -this.coordinates[this.itemNums - 1]
-      if (this.options.center) {
-        position -= (this.itemWidth / 2) * (this.itemNums - 1)
-      }
-      if (this.options.group && !this.options.center) {
-        position = -this.coordinates[0]
-      }
-      this.setInnerPosition(-position)
+      const itemLength = this.options.multiple
+        ? Math.ceil(this.items.length / 2)
+        : this.items.length
+      const currentPosition = parseInt(
+        anime.getValue(this.inner, 'translateX'),
+        10
+      )
+      const position = currentPosition + this.itemWidth * itemLength
+      this.setInnerPosition(position)
     }
 
     this.moveTo(active, () => this.trigger(EVENTS.NEXT))
   }
 
   prev() {
+    if (this.is('disabled')) {
+      return
+    }
+
     const step = 1
     const maxIndex = this.options.loop ? this.maxActiveCount - 1 : 0
 
@@ -807,16 +824,15 @@ class Swipe extends Component {
 
     if (this.options.loop && active === this.maxActiveCount - 1) {
       this.anime.pause()
-      let position = -this.coordinates[active + this.itemNums + 1]
-      if (this.options.center) {
-        position -= (this.itemWidth / 2) * (this.itemNums - 1)
-      }
-      if (this.options.group && !this.options.center) {
-        position = -this.coordinates[
-          Math.ceil((this.coordinates.length - this.itemNums) / 2)
-        ]
-      }
-      this.setInnerPosition(-position)
+      const itemLength = this.options.multiple
+        ? Math.ceil(this.items.length / 2)
+        : this.items.length
+      const currentPosition = parseInt(
+        anime.getValue(this.inner, 'translateX'),
+        10
+      )
+      const position = currentPosition - this.itemWidth * itemLength
+      this.setInnerPosition(position)
     }
 
     this.moveTo(active, () => this.trigger(EVENTS.PREV))
@@ -1055,6 +1071,7 @@ class Swipe extends Component {
 
   enable() {
     if (this.is('disabled')) {
+      this.swipeable.enable()
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -1062,6 +1079,7 @@ class Swipe extends Component {
 
   disable() {
     if (!this.is('disabled')) {
+      this.swipeable.disable()
       this.enter('disabled')
     }
 
