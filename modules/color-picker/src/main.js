@@ -3,7 +3,7 @@ import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { setStyle, hideElement, showElement } from '@pluginjs/styled'
+import { setStyle, hideElement } from '@pluginjs/styled'
 import { isString, isNull } from '@pluginjs/is'
 import {
   append,
@@ -196,7 +196,7 @@ class ColorPicker extends Component {
         hideOutClick: true,
         onShown: () => {
           this.oldColor = this.color
-          showElement(this.$mask)
+          // showElement(this.$mask)
 
           if (this.HISTORY) {
             this.HISTORY.updateHistory()
@@ -205,7 +205,7 @@ class ColorPicker extends Component {
         },
         onHided: () => {
           this.update()
-          hideElement(this.$mask)
+          // hideElement(this.$mask)
         }
       })
     }
