@@ -51,6 +51,7 @@ function initializePlugin(name, element, options = {}) {
 }
 
 export default {
+  // there are three arguments
   of(selector, attrKey = 'data-plugin', options = {}) {
     let elements = []
 
