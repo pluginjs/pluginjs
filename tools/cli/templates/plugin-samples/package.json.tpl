@@ -18,9 +18,9 @@
   },
   "devDependencies": {
     "@pluginjs/browserslist-config": "*",
-    "@babel/core": "^7.1.5",
-    "@babel/preset-env": "^7.1.5",
-    "parcel-bundler": "^1.10.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "parcel-bundler": "^1.11.0",
     "posthtml-include": "*"
   }
 }

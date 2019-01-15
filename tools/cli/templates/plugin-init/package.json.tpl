@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@pluginjs/browserslist-config": "*",
-    "@babel/core": "^7.1.5",
+    "@babel/core": "^7.2.2",
     "@pluginjs/cli": "*",
     "babel-jest": "*",
     "jest": "*",
