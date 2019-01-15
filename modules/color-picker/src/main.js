@@ -193,7 +193,7 @@ class ColorPicker extends Component {
         reference: this.element,
         target: this.$panel,
         hideOnSelect: false,
-        hideOutClick: true,
+        hideOutClick: this.options.clickWindowHide,
         onShown: () => {
           this.oldColor = this.color
           // showElement(this.$mask)

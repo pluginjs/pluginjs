@@ -102,6 +102,7 @@ export const defaults = {
   inline: false,
   showControl: false,
   clearable: false,
+  clickWindowHide: true,
   module: {
     saturation: true,
     hue: true,
