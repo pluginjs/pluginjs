@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.4",
+  "version": "0.7.5",
   "category": "media",
   "main": "dist/lazyload.common.js",
   "module": "dist/lazyload.esm.js",
@@ -37,18 +37,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.4",
-    "@pluginjs/decorator": "^0.7.4",
-    "@pluginjs/dom": "^0.7.4",
-    "@pluginjs/events": "^0.7.4",
-    "@pluginjs/image-loader": "^0.7.4",
-    "@pluginjs/styled": "^0.7.4",
-    "@pluginjs/viewport": "^0.7.4"
+    "@pluginjs/classes": "^0.7.5",
+    "@pluginjs/decorator": "^0.7.5",
+    "@pluginjs/dom": "^0.7.5",
+    "@pluginjs/events": "^0.7.5",
+    "@pluginjs/image-loader": "^0.7.5",
+    "@pluginjs/styled": "^0.7.5",
+    "@pluginjs/viewport": "^0.7.5"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@pluginjs/browserslist-config": "^1.2.2",
-    "@pluginjs/cli": "^0.7.4",
+    "@pluginjs/cli": "^0.7.5",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

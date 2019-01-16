@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.4",
+  "version": "0.7.5",
   "category": "utils",
   "main": "dist/keyframes.common.js",
   "module": "dist/keyframes.esm.js",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@pluginjs/browserslist-config": "^1.2.2",
-    "@pluginjs/cli": "^0.7.4",
+    "@pluginjs/cli": "^0.7.5",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
