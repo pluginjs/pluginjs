@@ -3,24 +3,24 @@
 // Vars
 // =====================
 $countdown: "pj-countdown";
-$countdown-progress-font-size: $font-size-sm;
-$countdown-progress-number-size: 46px;
-
-$countdown-progress-width: 160px;
+$countdown-progress-font-size: 26px;
+$countdown-progress-number-size: 2.5em;
+$countdown-progress-label-size: 0.6em;
 
 // progress
 // =====================
 
 .#{$countdown}-progress {
-  .#{$countdown} {
-    font-size: $countdown-progress-font-size;
+  font-size: $countdown-progress-font-size;
 
-    &-time {
-      width: $countdown-progress-width;
-    }
+  .#{$countdown} {
 
     &-number {
       font-size: $countdown-progress-number-size;
+    }
+
+    &-label {
+      font-size: $countdown-progress-label-size;
     }
   }
 }

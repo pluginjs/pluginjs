@@ -5,11 +5,10 @@
 // =====================
 $countdown: "pj-countdown";
 $countdown-font-family: $font-family-base;
-$countdown-font-size: $font-size-md;
+$countdown-font-size: $font-size-md; // 16px
 
 $countdown-color: $gray-darker;
 
-$countdown-number-size: 72px;
 $countdown-number-color: $gray-darkest;
 
 // style
@@ -20,10 +19,153 @@ $countdown-number-color: $gray-darkest;
   color: $countdown-color;
 
   &-number {
-    font-size: $countdown-number-size;
     color: $countdown-number-color;
   }
 }
+
+
+@media (max-width: 992px) {
+.#{$countdown}.#{$countdown}-simple {
+  font-size: 14px;
+}
+
+.#{$countdown}.#{$countdown}-progress {
+    font-size: 14px;
+  }
+
+.#{$countdown}.#{$countdown}-flip {
+  font-size: 14px;
+
+    .#{$countdown}-content {
+      width: 8em;
+      height: 8em;
+      font-size: 14px;
+    }
+
+    .#{$countdown}-number {
+      font-size: 4.8em;
+      line-height: 1.7em;
+
+      &:nth-child(even) {
+        line-height: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .#{$countdown}.#{$countdown}-simple {
+    font-size: 12px;
+    .#{$countdown} {
+      &-number {
+        font-size: 3em;
+      }
+    }
+  }
+
+  .#{$countdown}.#{$countdown}-progress {
+    font-size: 12px;
+    font-weight: 300;
+
+    .#{$countdown}-number {
+      font-size: 2em;
+    }
+  }
+
+  .#{$countdown}.#{$countdown}-flip {
+    font-size: 12px;
+  
+      .#{$countdown}-content {
+        width: 7em;
+        height: 7em;
+        font-size: 12px;
+      }
+  
+      .#{$countdown}-number {
+        font-size: 4em;
+        line-height: 1.8em;
+  
+        &:nth-child(even) {
+          line-height: 0;
+        }
+      }
+    }
+}
+
+@media (max-width: 482px) {
+  .#{$countdown}.#{$countdown}-flip {
+    font-size: 12px;
+  
+      .#{$countdown}-content {
+        width: 5em;
+        height: 5em;
+        font-size: 12px;
+      }
+  
+      .#{$countdown}-number {
+        font-size: 3em;
+        line-height: 1.7em;
+  
+        &:nth-child(even) {
+          line-height: 0;
+        }
+      }
+    }
+}
+
+
+@media (max-width: 300px) {
+  .#{$countdown}.#{$countdown}-simple {
+    font-size: 12px;
+    .#{$countdown} {
+      &-number {
+        font-size: 2em;
+      }
+
+      &-label {
+        font-size: 0;
+      }
+    }
+  }
+
+  .#{$countdown}.#{$countdown}-progress {
+    font-size: 10px;
+    font-weight: 300;
+
+    .#{$countdown}-number {
+      font-size: 2em;
+    }
+
+    .#{$countdown}-label {
+      font-size: 0;
+    }
+  }
+
+  .#{$countdown}.#{$countdown}-flip {
+    font-size: 12px;
+  
+      .#{$countdown}-content {
+        width: 3em;
+        height: 3em;
+        font-size: 12px;
+      }
+  
+      .#{$countdown}-number {
+        font-size: 1.8em;
+        line-height: 1.695em;
+  
+        &:nth-child(even) {
+          line-height: 0;
+        }
+      }
+
+      .#{$countdown}-label {
+        font-size: 0;
+      }
+    }
+}
+  
+
 
 @import "type/progress.scss";
 @import "type/flip.scss";

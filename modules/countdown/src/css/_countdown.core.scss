@@ -4,10 +4,10 @@
 // =====================
 $countdown: "pj-countdown" !default;
 
-$countdown-progress-width: 100px !default;
+$countdown-progress-width: 6.25em !default;
 
-$countdown-flip-width: 60px !default;
-$countdown-flip-height: 90px !default;
+$countdown-flip-width: 3.75em !default;
+$countdown-flip-height: 5.625em !default;
 $countdown-flip-bg: $gray-light !default;
 
 // core
@@ -25,12 +25,21 @@ $countdown-flip-bg: $gray-light !default;
   }
 }
 
+// 
+.#{$countdown}-simple {
+  .#{$countdown} {
+    &-number {
+      font-size: 4.5em;
+    }
+  }
+}
+
+// progress
 .#{$countdown}-progress {
   .#{$countdown} {
     &-time {
       position: relative;
       width: $countdown-progress-width;
-      min-width: $countdown-progress-width;
       overflow: hidden;
     }
 
@@ -67,9 +76,11 @@ $countdown-flip-bg: $gray-light !default;
   .#{$countdown} {
     &-content {
       position: relative;
-      width: $countdown-flip-width;
-      height: $countdown-flip-height;
-      perspective: 500px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-size: 20px;
+      perspective: 40em;
     }
 
     &-number {
@@ -103,13 +114,13 @@ $countdown-flip-bg: $gray-light !default;
     &-turn .#{$countdown}-number{
       &:first-child {
         z-index: 3;
-        transition: all 0.25s ease-in-out;
+        transition: transform 0.25s ease-in-out;
         transform: rotateX(-90deg);
       }
 
       &:last-child {
         z-index: 2;
-        transition: all 0.25s ease-in-out 0.25s;
+        transition: transform 0.25s ease-in-out 0.25s;
         transform: rotateX(0deg);
       }
     }

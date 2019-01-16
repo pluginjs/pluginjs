@@ -1,22 +1,22 @@
 @import "@pluginjs/styles/variables.scss";
-
 // Vars
 // =====================
 $countdown: "pj-countdown";
-$countdown-flip-font-size: $font-size-md;
+$countdown-progress-font-size: 20px;
 
-$countdown-flip-width: 160px;
-$countdown-flip-height: 160px;
+$countdown-flip-width: 10em;
+$countdown-flip-height: $countdown-flip-width;
 $countdown-flip-bg: $color-white;
 $countdown-flip-shadow: $box-shadow-4;
 
-$countdown-flip-number-size: 72px;
+$countdown-flip-number-font-size: 4.8em;
+$countdown-flip-number-line-height: 2.1em;
 $countdown-flip-number-color: $color-primary;
 
 $countdown-flip-gutter-width: 2px;
 $countdown-flip-gutter-color: rgba(0, 0, 0, 0.05);
 
-$countdown-flip-label-gutter: 20px;
+$countdown-flip-label-gutter: 1.25em;
 
 // flip
 // =====================
@@ -24,13 +24,15 @@ $countdown-flip-label-gutter: 20px;
   .#{$countdown} {
     &-content {
       width: $countdown-flip-width;
-      height: $countdown-flip-height;
+      height: $countdown-flip-width;
+      font-size: $countdown-progress-font-size;
       box-shadow: $countdown-flip-shadow;
     }
 
     &-number {
       box-sizing: border-box;
-      line-height: $countdown-flip-height;
+      font-size: $countdown-flip-number-font-size;
+      line-height: $countdown-flip-number-line-height;
       color: $countdown-flip-number-color;
       background-color: $countdown-flip-bg;
       box-shadow: inset 0 (-$countdown-flip-gutter-width/2) $countdown-flip-gutter-color;
