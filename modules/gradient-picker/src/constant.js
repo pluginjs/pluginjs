@@ -62,6 +62,7 @@ export const defaults = {
   placeholder: 'choose color',
   inline: false,
   clearable: false,
+  clickWindowHide: true,
   templates: {
     wrap() {
       return '<div class="{classes.NAMESPACE}"></div>'

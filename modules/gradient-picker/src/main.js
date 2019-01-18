@@ -351,7 +351,7 @@ class GradientPicker extends Component {
         target: this.$panel,
         reference: this.element,
         hideOnSelect: false,
-        hideOutClick: true,
+        hideOutClick: this.options.clickWindowHide,
         onShown: () => {
           this.oldColor = this.color
           this.oldMode = this.mode
