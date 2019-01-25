@@ -247,7 +247,12 @@ class Dropdown extends Component {
   }
 
   getItemByValue(value) {
-    return this.getItems().find($item => {
+    return this.getItems().filter($item => {
+      if (this.options.multiple) {
+        return value.find($v => {
+          return this.getItemValue($item) == $v // eslint-disable-line
+        })
+      }
       return this.getItemValue($item) == value // eslint-disable-line
     })
   }
@@ -255,7 +260,9 @@ class Dropdown extends Component {
   selectByValue(value, trigger = true) {
     const $selected = this.getItemByValue(value)
     if ($selected) {
-      this.selectItem($selected, trigger)
+      $selected.forEach($s => {
+        this.selectItem($s, trigger)
+      })
     }
   }
 
