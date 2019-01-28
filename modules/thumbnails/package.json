@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.7",
+  "version": "0.7.8",
   "category": "ui",
   "main": "dist/thumbnails.common.js",
   "module": "dist/thumbnails.esm.js",
@@ -44,12 +44,12 @@
     "@pluginjs/dom": "^0.7.5",
     "@pluginjs/events": "^0.7.5",
     "@pluginjs/factory": "^0.7.5",
-    "@pluginjs/image-loader": "^0.7.5",
+    "@pluginjs/image-loader": "^0.7.6",
     "@pluginjs/is": "^0.7.5",
-    "@pluginjs/loader": "^0.7.5",
+    "@pluginjs/loader": "^0.7.6",
     "@pluginjs/styled": "^0.7.5",
     "@pluginjs/styles": "^0.7.1",
-    "@pluginjs/swipeable": "^0.7.6",
+    "@pluginjs/swipeable": "^0.7.7",
     "@pluginjs/template": "^0.7.5",
     "@pluginjs/utils": "^0.7.5",
     "animejs": "*"

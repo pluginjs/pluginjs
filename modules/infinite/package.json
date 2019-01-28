@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.5",
+  "version": "0.7.6",
   "category": "ui",
   "main": "dist/infinite.common.js",
   "module": "dist/infinite.esm.js",
@@ -43,7 +43,7 @@
     "@pluginjs/dom": "^0.7.5",
     "@pluginjs/events": "^0.7.5",
     "@pluginjs/is": "^0.7.5",
-    "@pluginjs/loader": "^0.7.5",
+    "@pluginjs/loader": "^0.7.6",
     "@pluginjs/styled": "^0.7.5",
     "@pluginjs/template": "^0.7.5",
     "whatwg-fetch": "*"

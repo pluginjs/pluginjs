@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.7",
+  "version": "0.7.8",
   "category": "form",
   "main": "dist/toggle-list.common.js",
   "module": "dist/toggle-list.esm.js",
@@ -42,8 +42,8 @@
     "@pluginjs/dom": "^0.7.5",
     "@pluginjs/events": "^0.7.5",
     "@pluginjs/is": "^0.7.5",
-    "@pluginjs/list": "^0.7.5",
-    "@pluginjs/toggle": "^0.7.7",
+    "@pluginjs/list": "^0.7.6",
+    "@pluginjs/toggle": "^0.7.8",
     "@pluginjs/utils": "^0.7.5"
   },
   "devDependencies": {

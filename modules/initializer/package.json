@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.6",
+  "version": "0.7.7",
   "category": "core",
   "main": "dist/initializer.common.js",
   "module": "dist/initializer.esm.js",

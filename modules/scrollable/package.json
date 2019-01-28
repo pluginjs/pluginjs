@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.5",
+  "version": "0.7.6",
   "category": "scroll",
   "main": "dist/scrollable.common.js",
   "module": "dist/scrollable.esm.js",
@@ -45,7 +45,7 @@
     "@pluginjs/events": "^0.7.5",
     "@pluginjs/factory": "^0.7.5",
     "@pluginjs/is": "^0.7.5",
-    "@pluginjs/scrollbar": "^0.7.5",
+    "@pluginjs/scrollbar": "^0.7.6",
     "@pluginjs/styled": "^0.7.5",
     "@pluginjs/utils": "^0.7.5"
   },

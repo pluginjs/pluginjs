@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.6",
+  "version": "0.7.7",
   "category": "ui",
   "main": "dist/timeline.common.js",
   "module": "dist/timeline.esm.js",
@@ -37,7 +37,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/arrows": "^0.7.5",
+    "@pluginjs/arrows": "^0.7.6",
     "@pluginjs/breakpoints": "^0.7.5",
     "@pluginjs/classes": "^0.7.5",
     "@pluginjs/component": "^0.7.5",

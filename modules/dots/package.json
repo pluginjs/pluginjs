@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.5",
+  "version": "0.7.6",
   "category": "ui",
   "main": "dist/dots.common.js",
   "module": "dist/dots.esm.js",

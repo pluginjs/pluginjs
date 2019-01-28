@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.5",
+  "version": "0.7.6",
   "category": "ui",
   "main": "dist/magnify.common.js",
   "module": "dist/magnify.esm.js",
@@ -43,9 +43,9 @@
     "@pluginjs/decorator": "^0.7.5",
     "@pluginjs/dom": "^0.7.5",
     "@pluginjs/events": "^0.7.5",
-    "@pluginjs/image-loader": "^0.7.5",
+    "@pluginjs/image-loader": "^0.7.6",
     "@pluginjs/is": "^0.7.5",
-    "@pluginjs/loader": "^0.7.5",
+    "@pluginjs/loader": "^0.7.6",
     "@pluginjs/styled": "^0.7.5",
     "@pluginjs/template": "^0.7.5"
   },

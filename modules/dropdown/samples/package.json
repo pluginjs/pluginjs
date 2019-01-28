@@ -3,7 +3,7 @@
   "name": "dropdown-samples",
   "description": "Simple dropdown example",
   "license": "GPL-3.0",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.5",
-    "@pluginjs/dropdown": "^0.7.5",
+    "@pluginjs/dropdown": "^0.7.6",
     "@pluginjs/icons": "^0.7.1",
     "@pluginjs/styles": "^0.7.1"
   },

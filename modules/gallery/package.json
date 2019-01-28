@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.7",
+  "version": "0.7.8",
   "category": "media",
   "main": "dist/gallery.common.js",
   "module": "dist/gallery.esm.js",
@@ -47,7 +47,7 @@
     "@pluginjs/styled": "^0.7.5",
     "@pluginjs/styles": "^0.7.1",
     "@pluginjs/template": "^0.7.5",
-    "@pluginjs/thumbnails": "^0.7.7",
+    "@pluginjs/thumbnails": "^0.7.8",
     "@pluginjs/utils": "^0.7.5",
     "animejs": "*"
   },
