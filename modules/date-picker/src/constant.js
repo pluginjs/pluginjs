@@ -79,9 +79,8 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  firstDayOfWeek: 0, // 0---6 === sunday---saturday
-  mode: 'single', // single|range|multiple
-  // displayMode: 'dropdown', // dropdown|inline
+  firstDayOfWeek: 0, // 0-6 === sunday---saturday
+  mode: 'single', // single,range,multiple
   inline: false,
   calendars: 1,
   date: 'today', // today|Date (yyyy-mm-dd)
@@ -91,9 +90,6 @@ export const defaults = {
   multipleSize: 5,
   disabled: false,
   clearable: false,
-  // container: 'body',
-  // position: 'bottom', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
-  // position: 'bottom', // top|right|bottom|left|rightTop|leftTop
   alwaysShow: false, // true or false
   onceClick: false, // true or false
 
@@ -101,23 +97,16 @@ export const defaults = {
   max: null, // max: '2013-10-1',//null|'today'|days|Date with (yyyy-mm-dd)
 
   selectableDate: [], // ['2013-8-1', {from: '2013-8-5', -: '2013-8-10'}, {from: -30, -: 30}]],
-
   selectableYear: [], // [{from: 1980, -: 1985}, 1988, {from: 2000, -: 2010}, 2013],
   selectableMonth: [], // months from 0 - 11 (jan - dec) example: [0, {from: 3, -: 9}, 11],
   selectableDay: [], // days from 0 - 31,
 
   selectableDayOfWeek: [], // days of week 0-6 (su - sa) [0, {from: 2, -: 4}] , [] is default all
 
-  locale: 'en', // 'zh'
+  locale: 'en',
   localeFallbacks: true,
   views: ['days'], // ['days'], ['days', 'months', 'years']
   outputFormat: 'yyyy/mm/dd',
-
-  // mobileMode: false,
-
-  // constrainToWindow: true,
-  // constrainToScrollParent: false,
-  // constraints: [], // tether.io/#constraints
 
   templates: {
     inputWrap() {

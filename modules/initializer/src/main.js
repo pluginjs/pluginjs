@@ -1,5 +1,6 @@
 import { attr, queryAll } from '@pluginjs/dom'
 import { deepMerge } from '@pluginjs/utils'
+import Pj from '@pluginjs/factory'
 
 const PLUGINS = {}
 const DEFAULTS = {}
@@ -50,7 +51,7 @@ function initializePlugin(name, element, options = {}) {
   return Plugin(element, options)
 }
 
-export default {
+const Initializer = {
   // there are three arguments
   of(selector, attrKey = 'data-plugin', options = {}) {
     let elements = []
@@ -116,3 +117,7 @@ export default {
     return hasPlugin(plugin)
   }
 }
+
+Pj.Initializer = Initializer
+
+export default Initializer
