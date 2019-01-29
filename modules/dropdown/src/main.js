@@ -260,6 +260,9 @@ class Dropdown extends Component {
   selectByValue(value, trigger = true) {
     const $selected = this.getItemByValue(value)
     if ($selected) {
+      this.$active.forEach($a => {
+        this.unselectByValue(this.getItemValue($a), trigger)
+      })
       $selected.forEach($s => {
         this.selectItem($s, trigger)
       })
@@ -294,7 +297,6 @@ class Dropdown extends Component {
 
     if (this.$active.includes($item)) {
       removeClass(this.classes.ACITVE, $item)
-
       if (trigger) {
         this.trigger(EVENTS.UNSELECT, $item)
       }
