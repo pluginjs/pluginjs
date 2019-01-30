@@ -32,12 +32,17 @@ export const defaults = {
   to: 100,
   delay: 0,
   duration: 2000,
-  decimals: 0,
   loop: false,
   easing: x => x, // 'ease', 'linear', 'ease-in', 'ease-out'
   autoplay: false,
   direction: 'normal', // reverse, alternate
   format(value, options) {
-    return value.toFixed(options.decimals)
+    const decimal = String(options.to).split('.')[1]
+
+    if (decimal) {
+      return value.toFixed(decimal.length)
+    }
+
+    return value.toFixed(0)
   }
 }
