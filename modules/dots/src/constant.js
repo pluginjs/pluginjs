@@ -19,7 +19,6 @@ export const classes = {
   TYPE: '{namespace}s-{type}',
   ITEM: '{namespace}',
   VERTICAL: '{namespace}s-vertical',
-  HORIZONTAL: '{namespace}s-horizontal',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
   HIDDEN: '{namespace}-hidden'
@@ -46,7 +45,7 @@ export const defaults = {
   items: null,
   type: null,
   default: null,
-  direction: 'horizontal', // vertical
+  vertical: false,
   valueFrom: ['a', 'href'], // text or data-attr
   template: {
     item(css) {

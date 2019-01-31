@@ -87,7 +87,7 @@ Name | Description | Default
 `"theme"` | Add plugin theme option | `null`
 `"items"` | Add extend item with plugin | `null`
 `"default"` | Set default status with plugin | `null`
-`"direction"` | Set direction | `horizontal`
+`"vertical"` | Set vertical | `false`
 `"valueFrom"` | pass attribute or tag name set where is value from | `["a","href"]`
 `"template"` | Set dots default html template | `{}`
 
@@ -139,7 +139,6 @@ Name | Description | Default
 `"THEME"` | Declare plugin theme | `{namespace}s--{theme}`
 `"ITEM"` | Declare item element of plugin | `{namespace}`
 `"VERTICAL"` | Declare direction style | `{namespace}s-vertical`
-`"HORIZONTAL"` | Declare direction style | `{namespace}s-horizontal`
 `"ACTIVE"` | Announce plugin is actived | `{namespace}-active`
 `"DISABLED"` | Announce plugin is disabled | `{namespace}-disabled`
 `"HIDDEN"` | Annouce plugin is hidden | `{namespace}-hidden`
