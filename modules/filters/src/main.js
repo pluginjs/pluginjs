@@ -4,7 +4,14 @@ import { isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { outerWidth, innerWidth } from '@pluginjs/styled'
-import { parseHTML, children, query, getData, appendTo } from '@pluginjs/dom'
+import {
+  parseHTML,
+  children,
+  query,
+  queryAll,
+  getData,
+  appendTo
+} from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 import Pj from '@pluginjs/factory'
 import {
@@ -76,7 +83,7 @@ class Filters extends Component {
   }
 
   getFilters() {
-    return children(this.element).filter(el => el.matches(this.itemSelector))
+    return queryAll(this.itemSelector, this.element)
   }
 
   build(items) {
@@ -262,11 +269,13 @@ class Filters extends Component {
   setDropdownActive() {
     const $dropdownItems = children(this.DROPDOWN.$dropdown)
 
+    removeClass(this.classes.ACTIVE, this.$more)
     $dropdownItems.forEach($el => {
       removeClass(this.classes.ACTIVE, $el)
       removeClass('pj-dropdown-active', $el)
       if (getData('index', $el) === this.active) {
         addClass(this.classes.ACTIVE, $el)
+        addClass(this.classes.ACTIVE, this.$more)
       }
     })
   }
