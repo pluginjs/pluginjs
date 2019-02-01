@@ -3,7 +3,7 @@
   "name": "time-table-samples",
   "description": "Simple time-table example",
   "license": "GPL-3.0",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.5",
-    "@pluginjs/time-table": "^0.7.8",
+    "@pluginjs/time-table": "^0.7.9",
     "font-awesome": "^4.7.0",
     "primary.css": "^1.0.0"
   },
