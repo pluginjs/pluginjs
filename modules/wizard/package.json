@@ -46,7 +46,7 @@
     "@pluginjs/is": "^0.7.5",
     "@pluginjs/keyboard": "^0.7.5",
     "@pluginjs/utils": "^0.7.5",
-    "hyperform": "0.9.16",
+    "hyperform": "0.9.22",
     "whatwg-fetch": "*"
   },
   "devDependencies": {

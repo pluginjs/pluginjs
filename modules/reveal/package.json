@@ -52,7 +52,7 @@
     "@pluginjs/browserslist-config": "^1.2.2",
     "@pluginjs/cli": "^0.7.5",
     "babel-jest": "*",
-    "intersection-observer": "^0.5.0",
+    "intersection-observer": "^0.5.1",
     "jest": "*",
     "jest-extended": "*",
     "rename": "^1.0.4",

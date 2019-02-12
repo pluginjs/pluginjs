@@ -60,7 +60,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   localeFallbacks: true,
-  viewportSize: '330',
+  height: 330,
   disabled: false,
 
   templates: {
@@ -135,7 +135,6 @@ export const translations = {
   en: {
     placeholder: 'Add images',
     count: 'zero',
-    // add: 'Add image',
     expand: 'expand',
     change: 'change',
     deleteTitle: 'Are you sure you want to delete?',
@@ -147,7 +146,6 @@ export const translations = {
   zh: {
     placeholder: '点击添加',
     count: '零',
-    // add: '添加图片',
     expand: '展开',
     change: '更换图片',
     deleteTitle: '你确定要删除？',

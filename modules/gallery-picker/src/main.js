@@ -65,7 +65,7 @@ class GalleryPicker extends Component {
   initialize() {
     this.createHtml()
 
-    setStyle('height', this.options.viewportSize, this.$panel)
+    setStyle('height', this.options.height, this.$panel)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
