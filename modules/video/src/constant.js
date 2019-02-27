@@ -46,6 +46,7 @@ export const defaults = {
   type: '',
   autoplay: false,
   loop: true,
-  controls: false,
+  controls: true,
+  muted: false,
   poster: ''
 }
