@@ -3,21 +3,21 @@
   "name": "images-loader-samples",
   "description": "Simple images-loader example",
   "license": "GPL-3.0",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.5",
-    "@pluginjs/image-loader": "^0.7.6",
-    "@pluginjs/loader": "^0.7.6"
+    "@pluginjs/dom": "^0.7.6",
+    "@pluginjs/image-loader": "^0.7.7",
+    "@pluginjs/loader": "^0.7.7"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
-    "@pluginjs/browserslist-config": "^1.2.2",
+    "@pluginjs/browserslist-config": "^1.2.3",
     "parcel-bundler": "^1.11.0",
     "posthtml-include": "*"
   },

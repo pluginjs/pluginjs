@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.5",
+  "version": "0.7.6",
   "category": "utils",
   "main": "dist/detector.common.js",
   "module": "dist/detector.esm.js",
@@ -33,13 +33,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "^0.7.5",
-    "@pluginjs/factory": "^0.7.5"
+    "@pluginjs/emitter": "^0.7.6",
+    "@pluginjs/factory": "^0.7.6"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
-    "@pluginjs/browserslist-config": "^1.2.2",
-    "@pluginjs/cli": "^0.7.5",
+    "@pluginjs/browserslist-config": "^1.2.3",
+    "@pluginjs/cli": "^0.7.6",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
