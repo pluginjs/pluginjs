@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.8",
+  "version": "0.7.9",
   "category": "media",
   "main": "dist/video.common.js",
   "module": "dist/video.esm.js",
