@@ -65,8 +65,11 @@ class SvgProgress extends Component {
 
     this.now = this.first
     this.goal = this.options.goal
-    this.width = this.options.size
-    this.height = this.options.size
+
+    const size = String(this.options.size).split(' ')
+
+    this.width = size.length > 1 ? size[0] : this.options.size
+    this.height = size.length > 1 ? size[1] : this.options.size
 
     this.initialize()
   }
