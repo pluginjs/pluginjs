@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.8",
+  "version": "0.7.9",
   "category": "ui",
   "main": "dist/svg-progress.common.js",
   "module": "dist/svg-progress.esm.js",
