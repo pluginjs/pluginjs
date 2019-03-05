@@ -18,10 +18,7 @@ export const classes = {
 export const methods = ['jump', 'enable', 'disable', 'destroy']
 
 export const defaults = {
-  selector: {
-    type: 'tagName',
-    value: 'li'
-  },
+  selector: 'li',
   href: 'data-scrollto',
   duration: 500,
   easing: 'ease',

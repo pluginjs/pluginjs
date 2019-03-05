@@ -62,7 +62,7 @@ class ScrollTo extends Component {
   bind() {
     bindEvent(
       this.eventName('click'),
-      'li',
+      this.options.selector,
       event => {
         if (this.is('disable')) {
           return
