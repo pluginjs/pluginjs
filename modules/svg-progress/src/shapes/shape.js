@@ -3,8 +3,11 @@ import { SvgElement } from '@pluginjs/utils'
 export default class Shape {
   constructor(options) {
     this.options = options
-    this.width = this.options.size
-    this.height = this.options.size
+
+    const size = String(this.options.size).split(' ')
+
+    this.width = size.length > 1 ? size[0] : this.options.size
+    this.height = size.length > 1 ? size[1] : this.options.size
 
     this.buildSvg()
     this.buildTrack()
