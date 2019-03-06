@@ -48,6 +48,7 @@ class MultiSelect extends Select {
       {
         trigger: 'custom',
         multiple: true,
+        select: true,
         hideOnSelect: false
       },
       this.options.dropdown
@@ -112,7 +113,6 @@ class MultiSelect extends Select {
 
   setValueForElement(value) {
     if (isSelect(this.element)) {
-      console.log(this.element.options)
       Array.from(this.element.options).forEach(option => {
         if (value.includes(option.value)) {
           option.selected = true
@@ -127,10 +127,14 @@ class MultiSelect extends Select {
 
   set(value, trigger) {
     value = this.purifyValue(value)
+    console.log(value, 23948)
     if (!arrayEqual(value, this.value)) {
+      console.log(this.value, value)
       const unselected = arrayDiff(this.value, value)
       const selected = arrayDiff(value, this.value)
+      console.log(unselected, selected, 2146)
       this.value = value
+      console.log(this.value)
       selected.forEach(v => this.select(v, trigger, false))
       unselected.forEach(v => this.unselect(v, trigger, false))
 
@@ -180,11 +184,13 @@ class MultiSelect extends Select {
     if (!this.isValidValue(value)) {
       return
     }
+    console.log(this.selected, 23)
     if (!this.selected.includes(value)) {
       const option = this.getOptionByValue(value)
 
       insertBefore(this.buildChip(option), this.$label)
 
+      console.log(value, option)
       this.selected.push(value)
 
       if (trigger) {
@@ -194,8 +200,9 @@ class MultiSelect extends Select {
         this.DROPDOWN.selectByValue(value, false)
       }
     }
-
+    console.log(this.value, 1245)
     if (update && !this.value.includes(value)) {
+      console.log(this.value.concat([value]))
       this.set(this.value.concat([value]), true)
     }
   }
