@@ -3,7 +3,7 @@
   "name": "video-picker-samples",
   "description": "Simple video-picker example",
   "license": "GPL-3.0",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -13,7 +13,7 @@
     "@pluginjs/dom": "^0.7.6",
     "@pluginjs/icons": "^0.7.2",
     "@pluginjs/styles": "^0.7.2",
-    "@pluginjs/video-picker": "^0.7.10"
+    "@pluginjs/video-picker": "^0.7.11"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
