@@ -212,10 +212,6 @@ class ColorPicker extends Component {
         }
       )
     }
-
-    // create mask
-    // this.$mask = parseHTML(`<div class="${this.classes.MASK}"></div>`)
-    // append(this.$mask, this.$body)
   }
 
   initPreview() {
@@ -303,7 +299,7 @@ class ColorPicker extends Component {
       this.PREVIEW.update(color)
     }
 
-    this.trigger(EVENTS.CHANGE, color, classify)
+    this.trigger(EVENTS.CHANGECOLOR, color, classify)
   }
 
   setInput(val) {
@@ -357,16 +353,13 @@ class ColorPicker extends Component {
       this.element.value = this.color
 
       if (trigger) {
-        this.trigger(EVENTS.UPDATE, this.color)
+        this.trigger(EVENTS.CHANGE, this.color)
       }
     } else {
       this.color = this.oldColor
 
       this.setColor(this.color, true)
-      // this.element.value = this.color
     }
-    // }
-
     return null
   }
 

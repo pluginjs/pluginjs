@@ -5,8 +5,8 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  UPDATE: 'update',
   CHANGE: 'change',
+  CHANGECOLOR: 'changeColor',
   CLICK: 'click'
 }
 

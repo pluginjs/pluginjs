@@ -3,7 +3,7 @@
 export const namespace = 'colorSelector'
 
 export const events = {
-  UPDATE: 'update',
+  CHANGECOLOR: 'changeColor',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',

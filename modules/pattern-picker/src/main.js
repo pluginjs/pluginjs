@@ -273,7 +273,7 @@ class PatternPicker extends Component {
       module: {
         hex: false
       },
-      onChange: val => {
+      onChangeColor: val => {
         this.foreColor = val
 
         this.enter('foreChange')
@@ -291,7 +291,7 @@ class PatternPicker extends Component {
       module: {
         hex: false
       },
-      onChange: val => {
+      onChangeColor: val => {
         this.bgColor = val.toHEX()
         this.leave('foreChange')
         this.enter('bgChange')

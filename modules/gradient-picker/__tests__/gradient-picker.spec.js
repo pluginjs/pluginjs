@@ -104,7 +104,7 @@ describe('GradientPicker', () => {
       let called = false
       $element = generateHTMLSample(value)
       api = GradientPicker.of($element, {
-        onUpdate() {
+        onChange() {
           called = true
         }
       })
@@ -116,7 +116,7 @@ describe('GradientPicker', () => {
       let called = false
       $element = generateHTMLSample()
       api = GradientPicker.of($element, {
-        onUpdate(value) {
+        onChange(value) {
           called = true
 
           expect(value).toBe(value)
@@ -132,7 +132,7 @@ describe('GradientPicker', () => {
       let called = false
       $element = generateHTMLSample()
       api = GradientPicker.of($element, {
-        onUpdate(value) {
+        onChange(value) {
           called = true
 
           expect(value).toBe(value)

@@ -223,7 +223,7 @@ class GradientSelector extends Component {
     this.GRADIENTPICKER = new GradientPicker(this.$elGradientPicker, {
       inline: true,
       showControl: true,
-      onChange: color => {
+      onUpdate: color => {
         this.color = color
         // this.updateColor()
         this.setAttr(this.$fillImg)

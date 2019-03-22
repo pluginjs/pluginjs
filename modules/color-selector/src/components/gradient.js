@@ -136,7 +136,7 @@ class Gradient {
     )
 
     bindEvent(
-      this.instance.selfEventName('change'),
+      this.instance.selfEventName('changeColor'),
       () => {
         if (this.instance.is('gradientModule')) {
           this.update()

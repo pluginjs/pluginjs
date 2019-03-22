@@ -63,7 +63,7 @@ class Hue {
 
     // global event
     bindEvent(
-      this.instance.selfEventName('change'),
+      this.instance.selfEventName('changeColor'),
       (e, el, data) => {
         this.position(data)
       },

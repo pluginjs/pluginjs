@@ -14,7 +14,7 @@ class Preview {
 
   bind() {
     bindEvent(
-      this.instance.selfEventName('update'),
+      this.instance.selfEventName('change'),
       (e, el, color) => {
         this.update(color)
       },

@@ -282,7 +282,7 @@ class ColorSelector extends Component {
       ...this.options.colorPicker,
       inline: true,
       showControl: true,
-      onChange: (color, val) => {
+      onChangeColor: (color, val) => {
         if (this.module === 'solid') {
           this.setInput(val)
         }
@@ -301,7 +301,7 @@ class ColorSelector extends Component {
       ...this.options.gradientPicker,
       inline: true,
       showControl: true,
-      onChange: val => {
+      onUpdate: val => {
         if (this.module === 'gradient') {
           this.setInput(val)
         }
@@ -353,8 +353,7 @@ class ColorSelector extends Component {
   setInput(val) {
     this.color = val
     this.element.value = val
-
-    this.trigger(EVENTS.CHANGE, val)
+    this.trigger(EVENTS.CHANGECOLOR, val)
     return null
   }
 
@@ -377,7 +376,7 @@ class ColorSelector extends Component {
     if (this.is('save')) {
       this.setInput(this.color)
       if (trigger) {
-        this.trigger(EVENTS.UPDATE, this.color)
+        this.trigger(EVENTS.CHANGE, this.color)
       }
     } else {
       this.color = this.oldColor.color

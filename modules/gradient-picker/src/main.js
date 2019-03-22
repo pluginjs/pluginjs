@@ -451,7 +451,7 @@ class GradientPicker extends Component {
       {
         ...this.options.colorPicker,
         inline: true,
-        onChange: color => {
+        onChangeColor: color => {
           if (this.$marker) {
             this.setGradientColor(color, getData('value', this.$marker).index)
             // this.trigger(EVENTS.COLORCHANGE, color)
@@ -611,11 +611,10 @@ class GradientPicker extends Component {
       this.PREVIEW.update(this.gradientValue, true)
     }
     this.setInput(this.gradientValue)
-
-    this.trigger(EVENTS.CHANGE, this.gradientValue)
+    this.trigger(EVENTS.UPDATE, this.gradientValue)
 
     if (this.is('save') && trigger) {
-      this.trigger(EVENTS.UPDATE, this.gradientValue)
+      this.trigger(EVENTS.CHANGE, this.gradientValue)
     }
     return null
   }

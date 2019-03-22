@@ -35,7 +35,7 @@ class Marker {
 
   bind() {
     bindEvent(
-      this.instance.selfEventName('change'),
+      this.instance.selfEventName('changeColor'),
       (e, el, color) => {
         if (this.instance.is('noSelectedMarker')) {
           return false

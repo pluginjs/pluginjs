@@ -36,7 +36,7 @@ class History {
     const that = this
 
     bindEvent(
-      this.instance.selfEventName('update'),
+      this.instance.selfEventName('change'),
       (e, el, color) => {
         if (!color) {
           return false
