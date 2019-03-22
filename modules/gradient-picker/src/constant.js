@@ -63,6 +63,7 @@ export const defaults = {
   inline: false,
   clearable: false,
   clickWindowHide: true,
+  touchOff: null,
   templates: {
     wrap() {
       return '<div class="{classes.NAMESPACE}"></div>'

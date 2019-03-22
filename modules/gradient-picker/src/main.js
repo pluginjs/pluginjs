@@ -347,26 +347,29 @@ class GradientPicker extends Component {
     this.initPanel()
 
     if (!this.options.inline) {
-      this.DROPDOWN = Dropdown.of(this.PREVIEW.element, {
-        target: this.$panel,
-        reference: this.element,
-        hideOnSelect: false,
-        hideOutClick: this.options.clickWindowHide,
-        onShown: () => {
-          this.oldColor = this.color
-          this.oldMode = this.mode
-          if (this.COLORPICKER.HISTORY) {
-            this.COLORPICKER.HISTORY.updateHistory()
-          }
+      this.DROPDOWN = Dropdown.of(
+        this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
+        {
+          target: this.$panel,
+          reference: this.element,
+          hideOnSelect: false,
+          hideOutClick: this.options.clickWindowHide,
+          onShown: () => {
+            this.oldColor = this.color
+            this.oldMode = this.mode
+            if (this.COLORPICKER.HISTORY) {
+              this.COLORPICKER.HISTORY.updateHistory()
+            }
 
-          this.leave('save')
-        },
-        onHided: () => {
-          if (!this.is('save')) {
-            this.reset()
+            this.leave('save')
+          },
+          onHided: () => {
+            if (!this.is('save')) {
+              this.reset()
+            }
           }
         }
-      })
+      )
     }
     this.initColorPicker()
   }
