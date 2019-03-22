@@ -3,22 +3,22 @@
   "name": "image-picker-samples",
   "description": "Simple image-picker example",
   "license": "GPL-3.0",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.6",
+    "@pluginjs/dom": "^0.7.7",
     "@pluginjs/icons": "^0.7.2",
-    "@pluginjs/image-picker": "^0.7.8",
-    "@pluginjs/styles": "^0.7.2"
+    "@pluginjs/image-picker": "^0.7.9",
+    "@pluginjs/styles": "^0.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
-    "@pluginjs/browserslist-config": "^1.2.3",
+    "@pluginjs/browserslist-config": "^1.2.4",
     "parcel-bundler": "^1.12.3",
     "posthtml-include": "*"
   },
