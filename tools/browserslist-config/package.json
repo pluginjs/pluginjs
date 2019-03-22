@@ -11,7 +11,7 @@
   "version": "1.2.3",
   "main": "index.js",
   "devDependencies": {
-    "browserslist": "^4.4.1"
+    "browserslist": "^4.5.2"
   },
   "keywords": [
     "browserslist",

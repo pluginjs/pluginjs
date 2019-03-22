@@ -46,11 +46,11 @@
     "@pluginjs/is": "^0.7.6",
     "@pluginjs/keyboard": "^0.7.6",
     "@pluginjs/utils": "^0.7.6",
-    "hyperform": "0.9.22",
+    "hyperform": "0.9.23",
     "whatwg-fetch": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.4.0",
     "@pluginjs/browserslist-config": "^1.2.3",
     "@pluginjs/cli": "^0.7.6",
     "babel-jest": "*",

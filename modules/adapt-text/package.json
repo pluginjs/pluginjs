@@ -43,7 +43,7 @@
     "animejs": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.4.0",
     "@pluginjs/browserslist-config": "^1.2.3",
     "@pluginjs/cli": "^0.7.6",
     "babel-jest": "*",
