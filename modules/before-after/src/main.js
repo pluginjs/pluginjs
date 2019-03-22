@@ -277,7 +277,7 @@ class BeforeAfter extends Component {
       return
     }
 
-    if (this.is('dragging')) {
+    if (this.is('dragging') || this.is('animating')) {
       return
     }
 
@@ -288,7 +288,8 @@ class BeforeAfter extends Component {
     this._drag.time = new Date().getTime()
     this._drag.pointer = this.pointer(event)
 
-    const { offsetLeft, offsetTop } = this.element
+    const { offsetLeft, offsetTop } = this.getElementLeftTop()
+
     const distance = this.distance(
       {
         x: offsetLeft,
@@ -298,6 +299,19 @@ class BeforeAfter extends Component {
     )
 
     this.moveTo(this.getProportionFromDistance(distance), true)
+  }
+
+  getElementLeftTop() {
+    let actualLeft = this.element.offsetLeft
+    let actualTop = this.element.offsetTop
+    let current = this.element.offsetParent
+
+    while (current !== null) {
+      actualLeft += current.offsetLeft
+      actualTop += current.offsetTop
+      current = current.offsetParent
+    }
+    return { offsetLeft: actualLeft, offsetTop: actualTop }
   }
 
   getProportionFromDistance(distance) {
