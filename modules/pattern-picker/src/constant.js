@@ -178,7 +178,7 @@ export const defaults = {
       let color = value['background-image']
         .match(/fill=('|").*?('|")/g)
         .toString()
-        .match(/(\w){6,8}/g)
+        .match(/(\w){3,8}/g)
         .toString()
       if (color.length > 6) {
         color = `#${color.slice(2)}`

@@ -103,6 +103,7 @@ export const defaults = {
   showControl: false,
   clearable: false,
   clickWindowHide: true,
+  touchOff: null,
   module: {
     saturation: true,
     hue: true,

@@ -47,13 +47,35 @@ class Collection {
         trigger: 'hover'
       })
 
-      // set BgColor and Data val
-      setStyle('background', v, $item)
+      v = v.replace(/\"/g, "'") /* eslint-disable-line */
+      const fillValue = v.match(/fill='(\S*)'/)
+      const fillOpacity = v.match(/fill-opacity='(\S*)'/)
+      const dRule = v.match(/\sd='([\s\S]*)'/)
+      let bgValue = ''
+
+      if (!fillOpacity && !fillValue && dRule) {
+        v = v.replace(dRule[0], `${dRule[0]} fill-opacity='1' fill='#000000'`)
+      } else if (!fillOpacity && fillValue && dRule) {
+        v = v.replace(dRule[0], `${dRule[0]} fill-opacity='1'`)
+      } else if (fillOpacity && !fillValue && dRule) {
+        v = v.replace(dRule[0], `${dRule[0]} fill='#000000'`)
+      }
+
+      v = v.replace(/[\r\n]/g, '').replace(/\s+/g, ' ')
+
+      if (v.match(/encoding='UTF-8'/)) {
+        bgValue = `url(\"data:image/svg+xml,${v}\")` /* eslint-disable-line */
+      } else {
+        bgValue = `url(\"data:image/svg+xml,<?xml version='1.0' encoding='UTF-8' standalone='no'?>${v}\")` /* eslint-disable-line */
+      }
+
+      setStyle('background', bgValue, $item)
+
       const info = {
         name: i,
         'background-color': this.bgColor,
         // make '#' to '%23', fixed svg data image not working on FireFox.
-        'background-image': v.replace(/\#+/g, '%23') /* eslint-disable-line */
+        'background-image': bgValue.replace(/\#+/g, '%23') /* eslint-disable-line */
       }
       setData('info', info, $item)
       // append to group list
@@ -61,5 +83,4 @@ class Collection {
     })
   }
 }
-
 export default Collection

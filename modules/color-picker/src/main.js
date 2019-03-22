@@ -189,25 +189,28 @@ class ColorPicker extends Component {
     this.initPanel()
 
     if (!this.options.inline) {
-      this.DROPDOWN = Dropdown.of(this.PREVIEW.element, {
-        reference: this.element,
-        target: this.$panel,
-        hideOnSelect: false,
-        hideOutClick: this.options.clickWindowHide,
-        onShown: () => {
-          this.oldColor = this.color
-          // showElement(this.$mask)
+      this.DROPDOWN = Dropdown.of(
+        this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
+        {
+          reference: this.element,
+          target: this.$panel,
+          hideOnSelect: false,
+          hideOutClick: this.options.clickWindowHide,
+          onShown: () => {
+            this.oldColor = this.color
+            // showElement(this.$mask)
 
-          if (this.HISTORY) {
-            this.HISTORY.updateHistory()
+            if (this.HISTORY) {
+              this.HISTORY.updateHistory()
+            }
+            this.leave('save')
+          },
+          onHided: () => {
+            this.update()
+            // hideElement(this.$mask)
           }
-          this.leave('save')
-        },
-        onHided: () => {
-          this.update()
-          // hideElement(this.$mask)
         }
-      })
+      )
     }
 
     // create mask
