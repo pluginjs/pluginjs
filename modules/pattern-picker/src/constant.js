@@ -156,7 +156,7 @@ export const defaults = {
 
   process(value) {
     if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value).replace(/("|\\")/g, '&quot;')
+      return JSON.stringify(value).replace(/("|\\")/g, '"')
     }
     return ''
   },
