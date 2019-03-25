@@ -532,11 +532,8 @@ class PatternPicker extends Component {
 
   val(value, trigger = true) {
     if (typeof value === 'undefined') {
-      console.log(111)
-      console.log(this.get(), 111)
       return this.options.process.call(this, this.get())
     }
-    console.log(222)
     const val = this.options.parse.call(this, value)
     this.set(val, trigger)
     return null

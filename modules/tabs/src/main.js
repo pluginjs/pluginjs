@@ -174,7 +174,6 @@ class Tabs extends Component {
     let tempHeight = 0
 
     Array.from(this.$nav.children).forEach(tab => {
-      console.log(tab.offsetHeight)
       tempHeight += tab.offsetHeight
     })
 
