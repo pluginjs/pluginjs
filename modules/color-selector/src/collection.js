@@ -65,7 +65,7 @@ class Collection {
       // set tooltip
       Tooltip.of($item, {
         title: i.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
-        placement: 'right',
+        placement: 'bottom',
         trigger: 'hover'
       })
 

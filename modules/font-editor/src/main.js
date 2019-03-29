@@ -118,7 +118,7 @@ class FontEditor extends Component {
     const that = this
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       theme: 'dafault',
-      placement: 'bottom-left',
+      placement: 'bottom-start',
       reference: this.TRIGGER.$trigger,
       target: this.$Panel,
       hideOutClick: true,
