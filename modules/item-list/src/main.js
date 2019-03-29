@@ -67,7 +67,6 @@ class ItemList extends List {
         if (this.is('disabled')) {
           return
         }
-        console.log(233)
         this.trigger(EVENTS.CLICKADD)
       },
       this.$add

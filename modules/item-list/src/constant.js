@@ -40,7 +40,6 @@ defaults.actions.unshift({
     bindEvent(
       instance.eventName('click'),
       () => {
-        console.log(123)
         const index = instance.getIndex($item)
         instance.clone(index)
       },
