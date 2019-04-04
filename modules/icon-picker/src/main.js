@@ -42,7 +42,7 @@ import {
   closest,
   empty
 } from '@pluginjs/dom'
-import { deepClone, each } from '@pluginjs/utils'
+import { deepClone, each, triggerNative } from '@pluginjs/utils'
 import Tooltip from '@pluginjs/tooltip'
 
 @translateable(TRANSLATIONS)
@@ -279,6 +279,7 @@ class IconPicker extends Component {
 
         if (trigger) {
           this.trigger(EVENTS.CHANGE, value)
+          triggerNative(this.element, 'change')
         }
       }
     }

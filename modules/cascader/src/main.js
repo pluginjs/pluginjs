@@ -31,7 +31,7 @@ import Loading from './loading'
 import { removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
-import { arrayEqual, deepClone } from '@pluginjs/utils'
+import { arrayEqual, deepClone, triggerNative } from '@pluginjs/utils'
 import {
   insertAfter,
   append,
@@ -423,6 +423,7 @@ class Cascader extends Component {
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, value)
+        triggerNative(this.element, 'change')
       }
     }
   }

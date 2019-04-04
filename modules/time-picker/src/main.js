@@ -21,6 +21,7 @@ import Clearable from './clearable'
 import Filterable from './filterable'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { formatTime, splitTime, time2Minute } from './utils'
+import { triggerNative } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 import InputMask from '@pluginjs/input-mask'
@@ -194,6 +195,7 @@ class TimePicker extends Component {
 
         if (this.value !== value) {
           this.trigger(EVENTS.CHANGE, value)
+          triggerNative(this.element, 'change')
         }
       }
 

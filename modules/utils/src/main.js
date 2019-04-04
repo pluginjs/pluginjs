@@ -26,8 +26,18 @@ export const each = (obj, callback) => {
   } else {
     Object.entries(obj).map(([key, value]) => callback(key, value))
   }
-
   return obj
+}
+
+/** to createEvent */
+export function triggerNative(el, event, data) {
+  const e = document.createEvent('HTMLEvents')
+  if (typeof data !== 'undefined') {
+    e.initCustomEvent(event, true, true, data)
+  } else {
+    e.initEvent(event, true, false)
+  }
+  el.dispatchEvent(e)
 }
 
 /** Credit to https://github.com/jonschlinkert/shallow-clone MIT */

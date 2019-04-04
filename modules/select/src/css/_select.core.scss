@@ -21,7 +21,7 @@ $select-clear-right: 11px !default;
   width: $select-width;
 
   &-element {
-    display: none;
+    display: none !important;
   }
 
   & &-trigger {

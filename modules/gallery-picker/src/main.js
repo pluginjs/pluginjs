@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { deepMerge, compose, curry } from '@pluginjs/utils'
+import { deepMerge, compose, curry, triggerNative } from '@pluginjs/utils'
 import { isString, isArray } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
@@ -192,6 +192,7 @@ class GalleryPicker extends Component {
 
     if (trigger) {
       this.trigger(EVENTS.CHANGE, [this.value])
+      triggerNative(this.element, 'change')
     }
   }
 
@@ -390,11 +391,11 @@ class GalleryPicker extends Component {
 
   clear() {
     this.clearImages()
-
     this.count = 0
     this.value = []
     this.TRIGGER.setState()
     this.element.value = ''
+    triggerNative(this.element, 'change')
   }
 
   get() {

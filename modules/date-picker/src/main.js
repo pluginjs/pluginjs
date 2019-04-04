@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import Pj from '@pluginjs/factory'
-import { deepMerge, curry, compose } from '@pluginjs/utils'
+import { deepMerge, curry, compose, triggerNative } from '@pluginjs/utils'
 import { isString, isObject, isNumber } from '@pluginjs/is'
 import template from '@pluginjs/template'
 // import Hammer from 'hammerjs'
@@ -1641,6 +1641,7 @@ class DatePicker extends Component {
 
     if (trigger) {
       this.trigger(EVENTS.CHANGE, this.getDate('yyyy-mm-dd'))
+      triggerNative(this.$element, 'change')
     }
 
     this.oldValue = this.$element.value

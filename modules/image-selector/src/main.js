@@ -24,7 +24,7 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 import { insertAfter, appendTo, html, parseHTML, query } from '@pluginjs/dom'
-import { compose, deepClone } from '@pluginjs/utils'
+import { compose, deepClone, triggerNative } from '@pluginjs/utils'
 
 const isSelect = el => el.tagName === 'SELECT'
 
@@ -281,6 +281,7 @@ class ImageSelector extends Component {
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, value)
+        triggerNative(this.element, 'change')
       }
     }
   }

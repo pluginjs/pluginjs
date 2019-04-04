@@ -69,6 +69,6 @@ export default class Preview {
   }
 
   clear() {
-    this.set(this.value.image)
+    this.set('')
   }
 }

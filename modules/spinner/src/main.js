@@ -5,6 +5,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent, bindEventOnce } from '@pluginjs/events'
 import { unwrap, appendTo, wrap, query } from '@pluginjs/dom'
+import { triggerNative } from '@pluginjs/utils'
 import {
   eventable,
   register,
@@ -283,6 +284,7 @@ class Spinner extends Component {
 
     if (trigger) {
       this.trigger(EVENTS.CHANGE, this.element.value)
+      triggerNative(this.element, 'change')
     }
   }
 

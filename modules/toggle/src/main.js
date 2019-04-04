@@ -3,6 +3,7 @@ import { isString, isBoolean } from '@pluginjs/is'
 import { wrap, parseHTML, unwrap } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { getWidth, setStyle } from '@pluginjs/styled'
+import { triggerNative } from '@pluginjs/utils'
 import {
   eventable,
   register,
@@ -242,6 +243,7 @@ class Toggle extends Component {
 
     if (update) {
       this.trigger(EVENTS.CHANGE, this.checked)
+      triggerNative(this.element, 'change')
     }
     return this
   }

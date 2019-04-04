@@ -39,7 +39,7 @@ import {
   insertAfter,
   removeAttr
 } from '@pluginjs/dom'
-import { getValueByPath } from '@pluginjs/utils'
+import { getValueByPath, triggerNative } from '@pluginjs/utils'
 import match from '@pluginjs/match'
 
 @themeable()
@@ -306,6 +306,7 @@ class AutoComplete extends Component {
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, this.element.value)
+        triggerNative(this.element, 'change')
       }
     }
   }

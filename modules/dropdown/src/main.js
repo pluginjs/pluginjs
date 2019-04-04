@@ -143,6 +143,7 @@ class Dropdown extends Component {
       bindEvent(
         this.eventName(this.options.trigger),
         e => {
+          this.update()
           this.toggle()
           e.preventDefault()
         },

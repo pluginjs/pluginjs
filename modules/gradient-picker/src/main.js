@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose } from '@pluginjs/utils'
+import { compose, triggerNative } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -615,6 +615,7 @@ class GradientPicker extends Component {
 
     if (this.is('save') && trigger) {
       this.trigger(EVENTS.CHANGE, this.gradientValue)
+      triggerNative(this.element, 'change')
     }
     return null
   }

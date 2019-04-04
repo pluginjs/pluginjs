@@ -43,7 +43,7 @@ import {
   detach,
   children
 } from '@pluginjs/dom'
-import { deepClone } from '@pluginjs/utils'
+import { deepClone, triggerNative } from '@pluginjs/utils'
 import Tooltip from '@pluginjs/tooltip'
 
 @translateable(TRANSLATIONS)
@@ -300,6 +300,7 @@ class SvgPicker extends Component {
 
         if (trigger) {
           this.trigger(EVENTS.CHANGE, value)
+          triggerNative(this.element, 'change')
         }
       }
     }

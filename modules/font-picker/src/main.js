@@ -44,7 +44,7 @@ import {
   closest,
   empty
 } from '@pluginjs/dom'
-import { deepClone, each } from '@pluginjs/utils'
+import { deepClone, each, triggerNative } from '@pluginjs/utils'
 
 @translateable(TRANSLATIONS)
 @themeable()
@@ -281,6 +281,7 @@ class FontPicker extends Component {
 
         if (trigger) {
           this.trigger(EVENTS.CHANGE, value)
+          triggerNative(this.element, 'change')
         }
       }
     }

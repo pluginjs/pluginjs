@@ -1,11 +1,10 @@
 import Component from '@pluginjs/component'
-import { compose, deepMerge } from '@pluginjs/utils'
+import { compose, deepMerge, triggerNative } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { parseHTML, query, insertAfter, insertBefore } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hideElement, showElement } from '@pluginjs/styled'
-// import PopDialog from '@pluginjs/pop-dialog'
 import Dropdown from '@pluginjs/dropdown'
 import {
   eventable,
@@ -213,6 +212,7 @@ class FontEditor extends Component {
     this.TRIGGER.update()
     if (trigger) {
       this.trigger(EVENTS.CHANGE, value)
+      triggerNative(this.element, 'change')
     }
   }
 

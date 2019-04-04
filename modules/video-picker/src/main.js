@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose } from '@pluginjs/utils'
+import { compose, triggerNative } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import {
@@ -384,6 +384,7 @@ class VideoPicker extends Component {
           this.videoApi.stop()
         }
         this.element.value = this.val()
+        triggerNative(this.element, 'change')
         addClass(this.classes.SHOW, this.$wrap)
         return false
       })
@@ -462,6 +463,7 @@ class VideoPicker extends Component {
     this.data.poster = ''
     this.data.url = ''
     this.element.value = ''
+    triggerNative(this.element, 'change')
     this.$urlInput.value = ''
     if (this.videoApi) {
       if (this.videoApi.element) {
@@ -587,7 +589,6 @@ class VideoPicker extends Component {
     if (!data || typeof data === 'undefined') {
       return
     }
-
     this.data = Object.assign({}, this.data, data)
 
     if (trigger) {

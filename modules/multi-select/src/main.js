@@ -20,7 +20,7 @@ import {
 import templateEngine from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { arrayEqual, arrayDiff } from '@pluginjs/utils'
+import { arrayEqual, arrayDiff, triggerNative } from '@pluginjs/utils'
 import { append, detach, insertBefore, parseHTML, parent } from '@pluginjs/dom'
 import { isArray } from '@pluginjs/is'
 const isSelect = el => el.tagName === 'SELECT'
@@ -165,6 +165,7 @@ class MultiSelect extends Select {
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, value)
+        triggerNative(this.element, 'change')
       }
     }
   }
@@ -188,6 +189,7 @@ class MultiSelect extends Select {
 
       if (trigger) {
         this.trigger(EVENTS.SELECT, option)
+        triggerNative(this.element, 'change')
       }
       if (this.DROPDOWN) {
         this.DROPDOWN.selectByValue(value, false)

@@ -3,7 +3,7 @@ import { isString, isNumeric } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { offset as getOffset, setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { each, deepMerge } from '@pluginjs/utils'
+import { each, deepMerge, triggerNative } from '@pluginjs/utils'
 import { wrap, unwrap, prepend, append } from '@pluginjs/dom'
 import {
   eventable,
@@ -275,6 +275,7 @@ class Range extends Component {
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, this.element.value)
+        triggerNative(this.element, 'change')
       }
     }
   }

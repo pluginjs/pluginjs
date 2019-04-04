@@ -15,7 +15,7 @@ import {
   insertBefore,
   getData
 } from '@pluginjs/dom'
-import { arrayEqual, each } from '@pluginjs/utils'
+import { arrayEqual, each, triggerNative } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hasClass, addClass, removeClass } from '@pluginjs/classes'
 import { isArray } from '@pluginjs/is'
@@ -144,6 +144,7 @@ class List extends Component {
         const value = this.val()
         this.element.value = value
         this.trigger(EVENTS.CHANGE, value)
+        triggerNative(this.element, 'change')
       },
       this.element
     )

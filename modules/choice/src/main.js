@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import { isArray } from '@pluginjs/is'
 import template from '@pluginjs/template'
-import { arrayEqual, deepMerge, compose } from '@pluginjs/utils'
+import { arrayEqual, deepMerge, compose, triggerNative } from '@pluginjs/utils'
 import {
   query,
   queryAll,
@@ -471,6 +471,7 @@ class Choice extends Component {
         this.$element.value = this.value
       }
       this.trigger(EVENTS.CHANGE, this.value)
+      triggerNative(this.$element, 'change')
     }
 
     if (trigger === true) {
@@ -530,6 +531,7 @@ class Choice extends Component {
       }
 
       this.trigger(EVENTS.CHANGE, this.value)
+      triggerNative(this.$element, 'change')
     }
 
     if (trigger === true) {

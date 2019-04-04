@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose } from '@pluginjs/utils'
+import { compose, triggerNative } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -204,6 +204,7 @@ class ImagePicker extends Component {
   update() {
     this.element.value = this.val()
     this.trigger(EVENTS.CHANGE, this.value)
+    triggerNative(this.element, 'change')
   }
 
   clear(update = true) {

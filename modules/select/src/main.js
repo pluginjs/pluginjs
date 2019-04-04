@@ -32,7 +32,7 @@ import { removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
 import { insertAfter, appendTo, html, parseHTML } from '@pluginjs/dom'
-import { deepClone } from '@pluginjs/utils'
+import { deepClone, triggerNative } from '@pluginjs/utils'
 
 const isInput = el => el.tagName === 'INPUT'
 const isSelect = el => el.tagName === 'SELECT'
@@ -329,6 +329,7 @@ class Select extends Component {
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, value)
+        triggerNative(this.element, 'change')
       }
     }
   }

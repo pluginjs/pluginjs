@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose } from '@pluginjs/utils'
+import { compose, triggerNative } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -354,6 +354,7 @@ class ColorPicker extends Component {
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, this.color)
+        triggerNative(this.element, 'change')
       }
     } else {
       this.color = this.oldColor

@@ -1,6 +1,7 @@
 import Component from '@pluginjs/component'
 import { parseHTML, insertAfter, query, has, insertBefore } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
+import { triggerNative } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import Trigger from './trigger'
 import template from '@pluginjs/template'
@@ -264,6 +265,7 @@ class BgPicker extends Component {
       this.update()
       if (trigger) {
         this.trigger(EVENTS.CHANGE, value)
+        triggerNative(this.element, 'change')
       }
     }
   }
@@ -285,6 +287,7 @@ class BgPicker extends Component {
       this.update()
     }
     this.leave('status')
+    triggerNative(this.element, 'change')
   }
 
   setRepeat(repeat) {
