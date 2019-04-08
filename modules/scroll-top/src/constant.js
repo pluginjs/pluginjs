@@ -45,7 +45,7 @@ export const defaults = {
   locale: 'en',
   localeFallbacks: true,
   throttle: null,
-  icon: 'pj-icon pj-icon-arrow-slim-up',
+  icon: 'pj-scrollTop-icon pj-icon pj-icon-arrow-slim-up',
   color: null, // custom color
   background: null, // custom background
   template() {
