@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.9",
+  "version": "0.7.10",
   "category": "scroll",
   "main": "dist/scroll-top.common.js",
   "module": "dist/scroll-top.esm.js",
