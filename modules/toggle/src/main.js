@@ -99,11 +99,6 @@ class Toggle extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  update() {
-    this.distance = this.$wrap.clientWidth - getWidth(this.$handle)
-    this.set(this.checked, false)
-  }
-
   initContent() {
     const isShow = this.options.showText
     if (isShow) {
