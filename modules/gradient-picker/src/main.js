@@ -351,7 +351,9 @@ class GradientPicker extends Component {
         this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
         {
           target: this.$panel,
-          reference: this.element,
+          reference: this.options.touchOff
+            ? this.options.touchOff
+            : this.PREVIEW.element,
           hideOnSelect: false,
           hideOutClick: this.options.clickWindowHide,
           onShown: () => {
