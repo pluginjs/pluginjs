@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.8",
+  "version": "0.7.9",
   "category": "form",
   "main": "dist/range.common.js",
   "module": "dist/range.esm.js",
@@ -37,16 +37,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.7",
+    "@pluginjs/classes": "^0.7.8",
     "@pluginjs/component": "^0.7.7",
-    "@pluginjs/decorator": "^0.7.7",
-    "@pluginjs/dom": "^0.7.7",
-    "@pluginjs/events": "^0.7.7",
-    "@pluginjs/factory": "^0.7.7",
+    "@pluginjs/decorator": "^0.7.8",
+    "@pluginjs/dom": "^0.7.8",
+    "@pluginjs/events": "^0.7.8",
+    "@pluginjs/factory": "^0.7.8",
     "@pluginjs/is": "^0.7.7",
-    "@pluginjs/keyboard": "^0.7.7",
-    "@pluginjs/styled": "^0.7.7",
-    "@pluginjs/utils": "^0.7.7"
+    "@pluginjs/keyboard": "^0.7.8",
+    "@pluginjs/styled": "^0.7.8",
+    "@pluginjs/utils": "^0.7.8"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

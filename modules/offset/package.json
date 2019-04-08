@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.10",
+  "version": "0.7.11",
   "category": "form",
   "main": "dist/offset.common.js",
   "module": "dist/offset.esm.js",
@@ -37,19 +37,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.7",
+    "@pluginjs/classes": "^0.7.8",
     "@pluginjs/component": "^0.7.7",
-    "@pluginjs/decorator": "^0.7.7",
-    "@pluginjs/dom": "^0.7.7",
-    "@pluginjs/dropdown": "^0.7.10",
-    "@pluginjs/events": "^0.7.7",
-    "@pluginjs/factory": "^0.7.7",
+    "@pluginjs/decorator": "^0.7.8",
+    "@pluginjs/dom": "^0.7.8",
+    "@pluginjs/dropdown": "^0.7.11",
+    "@pluginjs/events": "^0.7.8",
+    "@pluginjs/factory": "^0.7.8",
     "@pluginjs/is": "^0.7.7",
-    "@pluginjs/select": "^0.7.10",
-    "@pluginjs/styled": "^0.7.7",
-    "@pluginjs/template": "^0.7.7",
-    "@pluginjs/tooltip": "^0.7.8",
-    "@pluginjs/units": "^0.7.10"
+    "@pluginjs/select": "^0.7.11",
+    "@pluginjs/styled": "^0.7.8",
+    "@pluginjs/template": "^0.7.8",
+    "@pluginjs/tooltip": "^0.7.9",
+    "@pluginjs/units": "^0.7.11"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

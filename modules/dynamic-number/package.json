@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.9",
+  "version": "0.7.10",
   "category": "ui",
   "main": "dist/dynamic-number.common.js",
   "module": "dist/dynamic-number.esm.js",
@@ -36,11 +36,11 @@
   },
   "dependencies": {
     "@pluginjs/component": "^0.7.7",
-    "@pluginjs/decorator": "^0.7.7",
-    "@pluginjs/dom": "^0.7.7",
-    "@pluginjs/factory": "^0.7.7",
-    "@pluginjs/tween": "^0.7.7",
-    "@pluginjs/utils": "^0.7.7"
+    "@pluginjs/decorator": "^0.7.8",
+    "@pluginjs/dom": "^0.7.8",
+    "@pluginjs/factory": "^0.7.8",
+    "@pluginjs/tween": "^0.7.8",
+    "@pluginjs/utils": "^0.7.8"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

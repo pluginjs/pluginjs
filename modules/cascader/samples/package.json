@@ -3,15 +3,15 @@
   "name": "cascader-samples",
   "description": "Simple cascader example",
   "license": "GPL-3.0",
-  "version": "1.1.11",
+  "version": "1.1.12",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/cascader": "^0.7.11",
-    "@pluginjs/dom": "^0.7.7"
+    "@pluginjs/cascader": "^0.7.12",
+    "@pluginjs/dom": "^0.7.8"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.11",
+  "version": "0.7.12",
   "category": "scroll",
   "main": "dist/parallax.common.js",
   "module": "dist/parallax.esm.js",
@@ -37,20 +37,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/bg-video": "^0.7.11",
-    "@pluginjs/breakpoints": "^0.7.7",
-    "@pluginjs/classes": "^0.7.7",
+    "@pluginjs/bg-video": "^0.7.12",
+    "@pluginjs/breakpoints": "^0.7.8",
+    "@pluginjs/classes": "^0.7.8",
     "@pluginjs/component": "^0.7.7",
-    "@pluginjs/decorator": "^0.7.7",
-    "@pluginjs/dom": "^0.7.7",
-    "@pluginjs/events": "^0.7.7",
-    "@pluginjs/factory": "^0.7.7",
+    "@pluginjs/decorator": "^0.7.8",
+    "@pluginjs/dom": "^0.7.8",
+    "@pluginjs/events": "^0.7.8",
+    "@pluginjs/factory": "^0.7.8",
     "@pluginjs/is": "^0.7.7",
-    "@pluginjs/loader": "^0.7.8",
-    "@pluginjs/styled": "^0.7.7",
-    "@pluginjs/template": "^0.7.7",
-    "@pluginjs/utils": "^0.7.7",
-    "@pluginjs/viewport": "^0.7.7"
+    "@pluginjs/loader": "^0.7.9",
+    "@pluginjs/styled": "^0.7.8",
+    "@pluginjs/template": "^0.7.8",
+    "@pluginjs/utils": "^0.7.8",
+    "@pluginjs/viewport": "^0.7.8"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
