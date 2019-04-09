@@ -164,7 +164,10 @@ class Dropdown extends Component {
         }
 
         if (!self.isItemDisabled($item)) {
-          if (self.options.multiple && self.isItemSelected($item)) {
+          if (
+            (self.options.multiple || self.options.more) &&
+            self.isItemSelected($item)
+          ) {
             self.unselectItem($item)
           } else {
             self.selectItem($item)
@@ -248,15 +251,34 @@ class Dropdown extends Component {
   }
 
   getItemByValue(value) {
-    return this.getItems().find($item => {
-      return this.getItemValue($item) === value
+    if (this.options.multiple) {
+      return this.getItems().find($item => {
+        return this.getItemValue($item) === value
+      })
+    }
+    return this.getItems().filter($item => {
+      if (this.options.more) {
+        return value.find($v => {
+            return this.getItemValue($item) == $v // eslint-disable-line
+        })
+      }
+        return this.getItemValue($item) == value // eslint-disable-line
     })
   }
 
   selectByValue(value, trigger = true) {
     const $selected = this.getItemByValue(value)
     if ($selected) {
-      this.selectItem($selected, trigger)
+      if (this.options.multiple) {
+        this.selectItem($selected, trigger)
+      } else {
+        this.$active.forEach($a => {
+          this.unselectByValue(this.getItemValue($a), trigger)
+        })
+        $selected.forEach($s => {
+          this.selectItem($s, trigger)
+        })
+      }
     }
   }
 
@@ -304,7 +326,7 @@ class Dropdown extends Component {
       return
     }
 
-    if (!this.options.multiple) {
+    if (!this.options.multiple && !this.options.more) {
       this.$active.forEach($i => this.unselectItem($i, false))
     }
 
@@ -470,7 +492,7 @@ class Dropdown extends Component {
     const $active = this.getActiveItems()
     const values = $active.map($item => this.getItemValue($item))
 
-    if (this.options.multiple) {
+    if (this.options.multiple || this.options.more) {
       return values
     }
     if (values.length > 0) {
