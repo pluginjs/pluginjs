@@ -122,16 +122,16 @@ class Paginator extends Component {
     })
   }
 
-  goTo(page) {
+  goTo(page, trigger = false) {
     page = Math.max(1, Math.min(page, this.totalPages))
 
-    if (page === this.currentPage && this.is('initialized')) {
+    if (page === this.currentPage && !trigger && this.is('initialized')) {
       return false
     }
     this.currentPage = page
 
     if (this.is('initialized')) {
-      this.trigger(EVENTS.CHANGE, page)
+      this.trigger(EVENTS.CHANGE, page, trigger)
     }
     return undefined
   }
@@ -174,8 +174,10 @@ class Paginator extends Component {
       .split(',')
       .map(key => new COMPONENTS[(key.trim())](that))
 
+    const currentPage = data.currentPage ? data.currentPage : ''
     this.createHtml()
     this.bind()
+    this.goTo(currentPage, true)
   }
 
   isOutOfBounds() {
