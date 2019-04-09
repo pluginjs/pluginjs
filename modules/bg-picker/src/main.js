@@ -75,12 +75,14 @@ class BgPicker extends Component {
 
     this.value = this.element.value
     this.val(this.value, false)
+
+    addClass(this.classes.EXIST, this.$wrap)
+
     // init
     if (!this.value.image) {
       addClass(this.classes.WRITE, this.$wrap)
+      removeClass(this.classes.EXIST, this.$wrap)
     }
-
-    addClass(this.classes.EXIST, this.$wrap)
 
     this.bind()
 
