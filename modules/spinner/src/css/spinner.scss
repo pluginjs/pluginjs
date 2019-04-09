@@ -112,6 +112,11 @@ $spinner-control-active-color: $gray-darkest;
       > .#{$spinner}-down {
         left: auto;
       }
+
+      .#{$spinner}-up::before,
+      .#{$spinner}-down::before {
+        line-height: normal;
+      }
     }
   }
 }
