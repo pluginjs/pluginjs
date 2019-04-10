@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.12",
+  "version": "0.7.13",
   "category": "form",
   "main": "dist/toggle.common.js",
   "module": "dist/toggle.esm.js",

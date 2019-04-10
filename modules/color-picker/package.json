@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.14",
+  "version": "0.7.15",
   "category": "form",
   "main": "dist/color-picker.common.js",
   "module": "dist/color-picker.esm.js",
@@ -42,10 +42,10 @@
     "@pluginjs/component": "^0.7.7",
     "@pluginjs/decorator": "^0.7.8",
     "@pluginjs/dom": "^0.7.8",
-    "@pluginjs/dropdown": "^0.7.11",
+    "@pluginjs/dropdown": "^0.7.12",
     "@pluginjs/events": "^0.7.8",
     "@pluginjs/is": "^0.7.7",
-    "@pluginjs/select": "^0.7.11",
+    "@pluginjs/select": "^0.7.12",
     "@pluginjs/styled": "^0.7.8",
     "@pluginjs/template": "^0.7.8",
     "@pluginjs/utils": "^0.7.8"

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.9",
+  "version": "0.7.10",
   "category": "form",
   "main": "dist/spinner.common.js",
   "module": "dist/spinner.esm.js",
