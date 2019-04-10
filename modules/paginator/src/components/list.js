@@ -175,8 +175,8 @@ class List {
 
     bindEvent(
       'paginator:change',
-      () => {
-        that.update()
+      (e, instance, page, trigger) => {
+        that.update(trigger)
       },
       instance.element
     )
@@ -189,11 +189,11 @@ class List {
     removeEvent('paginator:change', instance.element)
   }
 
-  update() {
+  update(trigger = false) {
     const oldPages = this.visiblePages
     const newPages = this.getVisiblePages()
     const items = this.items
-    if (this.currentPage !== this.instance.currentPage) {
+    if (this.currentPage !== this.instance.currentPage || trigger) {
       items.map(item => removeClass(this.instance.classes.ACTIVE, item))
     }
 
@@ -259,7 +259,7 @@ class List {
       this.getItems()
     }
 
-    if (this.currentPage !== this.instance.currentPage) {
+    if (this.currentPage !== this.instance.currentPage || trigger) {
       this.currentPage = this.instance.currentPage
 
       const activeitem = FilterFromData(

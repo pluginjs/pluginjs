@@ -27,8 +27,8 @@ class Prev {
 
     bindEvent(
       'paginator:change',
-      (e, instance, page) => {
-        if (page === 1) {
+      (e, instance, page, trigger) => {
+        if (page === 1 && !trigger) {
           addClass(instance.classes.DISABLED, this.prev)
         } else {
           removeClass(instance.classes.DISABLED, this.prev)

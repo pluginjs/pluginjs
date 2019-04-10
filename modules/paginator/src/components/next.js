@@ -27,8 +27,8 @@ class Next {
 
     bindEvent(
       'paginator:change',
-      (e, instance, page) => {
-        if (page === instance.totalPages) {
+      (e, instance, page, trigger) => {
+        if (page === instance.totalPages && !trigger) {
           addClass(instance.classes.DISABLED, this.next)
         } else {
           removeClass(instance.classes.DISABLED, this.next)
