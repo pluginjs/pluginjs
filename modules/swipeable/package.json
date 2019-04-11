@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.10",
+  "version": "0.7.11",
   "category": "ui",
   "main": "dist/swipeable.common.js",
   "module": "dist/swipeable.esm.js",
