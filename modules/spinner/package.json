@@ -44,7 +44,8 @@
     "@pluginjs/events": "^0.7.8",
     "@pluginjs/factory": "^0.7.8",
     "@pluginjs/is": "^0.7.7",
-    "@pluginjs/template": "^0.7.8"
+    "@pluginjs/template": "^0.7.8",
+    "@pluginjs/utils": "^0.7.8"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
