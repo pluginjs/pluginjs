@@ -284,8 +284,8 @@ class Swipeable extends Component {
   }
 
   getLocation(target) {
-    const translateX = parseInt(Anime.getValue(target, 'translateX'), 10)
-    const translateY = parseInt(Anime.getValue(target, 'translateY'), 10)
+    const translateX = parseInt(Anime.get(target, 'translateX'), 10)
+    const translateY = parseInt(Anime.get(target, 'translateY'), 10)
 
     return { x: translateX, y: translateY }
   }

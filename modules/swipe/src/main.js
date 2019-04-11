@@ -801,10 +801,7 @@ class Swipe extends Component {
       const itemLength = this.options.multiple
         ? Math.ceil(this.items.length / 2)
         : this.items.length
-      const currentPosition = parseInt(
-        anime.getValue(this.inner, 'translateX'),
-        10
-      )
+      const currentPosition = parseInt(anime.get(this.inner, 'translateX'), 10)
       const position = currentPosition + this.itemWidth * itemLength
       this.setInnerPosition(position)
     }
@@ -827,10 +824,7 @@ class Swipe extends Component {
       const itemLength = this.options.multiple
         ? Math.ceil(this.items.length / 2)
         : this.items.length
-      const currentPosition = parseInt(
-        anime.getValue(this.inner, 'translateX'),
-        10
-      )
+      const currentPosition = parseInt(anime.get(this.inner, 'translateX'), 10)
       const position = currentPosition - this.itemWidth * itemLength
       this.setInnerPosition(position)
     }
