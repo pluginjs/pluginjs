@@ -48,12 +48,12 @@ $spinner-layout-right-control-width: 20px !default;
   }
 
   &-down {
-    left: $spinner-border-width;
+    left: 2px;
     box-sizing: border-box;
   }
 
   &-up {
-    right: $spinner-border-width;
+    right: 2px;
     box-sizing: border-box;
   }
 }

@@ -36,6 +36,7 @@ defaults.actions.unshift({
   label: 'Clone',
   action: 'clone',
   classes: 'pj-icon pj-icon-copy',
+
   init(instance, item, $item) {
     bindEvent(
       instance.eventName('click'),

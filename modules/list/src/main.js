@@ -253,9 +253,7 @@ class List extends Component {
     if (isArray(data) && !arrayEqual(data, this.data)) {
       this.data = this.processData(data)
       this.buildItems()
-
       this.element.value = this.val()
-
       this.trigger(EVENTS.CHANGE, this.val())
     }
   }
@@ -339,12 +337,11 @@ class List extends Component {
 
   edit(index, item) {
     const $item = this.getItem(index)
-
     if ($item) {
       this.data[index] = item
-
-      replace(this.buildItem(item), $item)
-      this.initActions(item, $item)
+      const $newItem = this.buildItem(item)
+      replace($newItem, $item)
+      this.initActions(item, $newItem)
       this.trigger(EVENTS.EDIT, index, item)
     }
   }
