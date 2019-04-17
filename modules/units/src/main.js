@@ -35,6 +35,9 @@ class Units extends Component {
   constructor(element, options = {}) {
     super(element)
     this.setupOptions(options)
+    if (options.units) {
+      this.options.units = options.units
+    }
     this.setupClasses()
 
     if (
@@ -167,30 +170,9 @@ class Units extends Component {
 
   bind() {
     bindEvent(
-      this.selfEventName(EVENTS.CHANGEUNIT),
-      (e, instance, unit) => {
-        if (!this.only) {
-          this.DROPDOWN.set(unit)
-        } else {
-          this.$trigger.innerHTML = unit
-        }
-      },
-      this.element
-    )
-
-    bindEvent(
       this.selfEventName(EVENTS.CHANGEINPUT),
       (e, instance, input) => {
         this.$input.value = input
-      },
-      this.element
-    )
-
-    bindEvent(
-      this.selfEventName(EVENTS.CHANGESTATIC),
-      (e, instance, value) => {
-        this.$input.value = ''
-        this.DROPDOWN.set(value)
       },
       this.element
     )

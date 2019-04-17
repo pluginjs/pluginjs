@@ -18,7 +18,7 @@ export default class LineHeight {
 
   initUnitsRange() {
     const that = this
-    const unit = {}
+    const units = {}
     const value = this.value
     // create $lineHeight
     const html = template.compile(this.instance.options.lineHeight.template())({
@@ -38,10 +38,14 @@ export default class LineHeight {
 
     // create units
     this.instance.options.lineHeight.units.forEach(v => {
-      unit[v] = {
-        min: parseInt(this.instance.options.lineHeight.min, 10),
-        max: parseInt(this.instance.options.lineHeight.max, 10),
-        step: parseFloat(this.instance.options.lineHeight.step, 10)
+      if (v === 'inherit') {
+        units[v] = false
+      } else {
+        units[v] = {
+          min: parseInt(this.instance.options.fontSize.min, 10),
+          max: parseInt(this.instance.options.fontSize.max, 10),
+          step: parseFloat(this.instance.options.fontSize.step, 10)
+        }
       }
     })
 
@@ -51,7 +55,7 @@ export default class LineHeight {
       tip: false,
       // replaceFirst: 'inherit',
       value,
-      unit,
+      units,
       onChange(val) {
         that.update(val)
       },
