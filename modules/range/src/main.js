@@ -164,6 +164,16 @@ class Range extends Component {
     )
 
     bindEvent(
+      this.eventName('change'),
+      () => {
+        if (!this.options.range) {
+          this.val(this.element.value)
+        }
+      },
+      this.element
+    )
+
+    bindEvent(
       this.eventName('mousedown touchstart'),
       event => {
         if (this.is('disabled')) {
