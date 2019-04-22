@@ -48,6 +48,7 @@ function requireFromString(code) {
   const m = new Module('', parent)
   m.filename = ''
   m.paths = paths
+
   m._compile(code, '')
   return m.exports
 }
@@ -62,9 +63,15 @@ async function AssetsJS(configPath) {
       )
     }
   })
-  const { code } = await bundle.generate({
+  const { output } = await bundle.generate({
     format: 'cjs'
   })
+  let code
+  if (Array.isArray(output)) {
+    code = output[0].code
+  } else {
+    code = output.code
+  }
   return requireFromString(code)
 }
 

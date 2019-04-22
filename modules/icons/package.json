@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "glob-expand": "^0.2.1",
-    "webfont": "^8.2.1"
+    "webfont": "^9.0.0"
   }
 }
