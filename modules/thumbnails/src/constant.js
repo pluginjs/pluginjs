@@ -51,7 +51,7 @@ const defaults = {
     theme: 'ring',
     color: '#000',
     size: 'lg'
-  },// false , options
+  }, // false , options
   breakpoint: null // xs, sm, md, lg, xl
 }
 

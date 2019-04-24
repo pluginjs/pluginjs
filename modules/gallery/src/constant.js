@@ -59,15 +59,6 @@ const defaults = {
     },
     inner() {
       return '<div class="{classes.INNER}"></div>'
-    },
-    thumb() {
-      return (
-        '<div class="{classes.THUMB}">' +
-        '<div class="{classes.LOADED}">' +
-        '<img class="{classes.IMAGE}">' +
-        '</div>' +
-        '</div>'
-      )
     }
   },
   order: ['slider', 'thumbs'],
@@ -77,7 +68,12 @@ const defaults = {
   vertical: false,
   current: 2,
   mode: 'full', // full or center
-  duration: 300
+  duration: 300,
+  loader: {
+    theme: 'ring',
+    color: '#000000',
+    size: 'lg'
+  }
 }
 
 const dependencies = ['slider', 'thumbnails', 'arrows', 'anime', 'hammer']

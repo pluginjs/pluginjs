@@ -43,7 +43,7 @@
     "@pluginjs/dom": "^0.7.8",
     "@pluginjs/events": "^0.7.8",
     "@pluginjs/factory": "^0.7.8",
-    "@pluginjs/slider": "^4.1.1",
+    "@pluginjs/slider": "^0.7.15",
     "@pluginjs/styled": "^0.7.8",
     "@pluginjs/styles": "^0.7.3",
     "@pluginjs/template": "^0.7.8",

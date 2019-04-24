@@ -32,7 +32,7 @@ import Thumbnails from '@pluginjs/thumbnails'
   methods: METHODS,
   dependencies: DEPENDENCIES
 })
-class Lightbox extends Component {
+class Gallery extends Component {
   constructor(element, options = {}) {
     super(element)
 
@@ -177,4 +177,4 @@ class Lightbox extends Component {
   }
 }
 
-export default Lightbox
+export default Gallery
