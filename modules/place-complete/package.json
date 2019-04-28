@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.13",
+  "version": "0.7.14",
   "category": "form",
   "main": "dist/place-complete.common.js",
   "module": "dist/place-complete.esm.js",
@@ -37,17 +37,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/auto-complete": "^0.7.12",
-    "@pluginjs/decorator": "^0.7.8",
-    "@pluginjs/dom": "^0.7.8",
-    "@pluginjs/events": "^0.7.8",
-    "@pluginjs/is": "^0.7.7",
-    "@pluginjs/utils": "^0.7.8"
+    "@pluginjs/auto-complete": "^0.7.13",
+    "@pluginjs/decorator": "^0.7.9",
+    "@pluginjs/dom": "^0.7.9",
+    "@pluginjs/events": "^0.7.9",
+    "@pluginjs/is": "^0.7.8",
+    "@pluginjs/utils": "^0.7.9"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@pluginjs/browserslist-config": "^1.2.4",
-    "@pluginjs/cli": "^0.7.7",
+    "@pluginjs/browserslist-config": "^1.2.5",
+    "@pluginjs/cli": "^0.7.8",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.9",
+  "version": "0.7.10",
   "category": "ui",
   "main": "dist/pop-dialog.common.js",
   "module": "dist/pop-dialog.esm.js",
@@ -37,22 +37,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.8",
-    "@pluginjs/component": "^0.7.7",
-    "@pluginjs/decorator": "^0.7.8",
-    "@pluginjs/dom": "^0.7.8",
-    "@pluginjs/events": "^0.7.8",
-    "@pluginjs/factory": "^0.7.8",
-    "@pluginjs/is": "^0.7.7",
-    "@pluginjs/popover": "^0.7.9",
-    "@pluginjs/template": "^0.7.8",
-    "@pluginjs/utils": "^0.7.8",
+    "@pluginjs/classes": "^0.7.9",
+    "@pluginjs/component": "^0.7.8",
+    "@pluginjs/decorator": "^0.7.9",
+    "@pluginjs/dom": "^0.7.9",
+    "@pluginjs/events": "^0.7.9",
+    "@pluginjs/factory": "^0.7.9",
+    "@pluginjs/is": "^0.7.8",
+    "@pluginjs/popover": "^0.7.10",
+    "@pluginjs/template": "^0.7.9",
+    "@pluginjs/utils": "^0.7.9",
     "tether": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@pluginjs/browserslist-config": "^1.2.4",
-    "@pluginjs/cli": "^0.7.7",
+    "@pluginjs/browserslist-config": "^1.2.5",
+    "@pluginjs/cli": "^0.7.8",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

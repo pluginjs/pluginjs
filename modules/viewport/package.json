@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.8",
+  "version": "0.7.9",
   "category": "utils",
   "main": "dist/viewport.common.js",
   "module": "dist/viewport.esm.js",
@@ -33,16 +33,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/component": "^0.7.7",
-    "@pluginjs/decorator": "^0.7.8",
-    "@pluginjs/dom": "^0.7.8",
-    "@pluginjs/is": "^0.7.7",
-    "@pluginjs/polyfills": "^0.7.8"
+    "@pluginjs/component": "^0.7.8",
+    "@pluginjs/decorator": "^0.7.9",
+    "@pluginjs/dom": "^0.7.9",
+    "@pluginjs/is": "^0.7.8",
+    "@pluginjs/polyfills": "^0.7.9"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@pluginjs/browserslist-config": "^1.2.4",
-    "@pluginjs/cli": "^0.7.7",
+    "@pluginjs/browserslist-config": "^1.2.5",
+    "@pluginjs/cli": "^0.7.8",
     "babel-jest": "*",
     "intersection-observer": "^0.5.1",
     "jest": "*",

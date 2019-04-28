@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.10",
+  "version": "0.7.11",
   "category": "core",
   "main": "dist/initializer.common.js",
   "module": "dist/initializer.esm.js",
@@ -33,14 +33,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.8",
-    "@pluginjs/factory": "^0.7.8",
-    "@pluginjs/utils": "^0.7.8"
+    "@pluginjs/dom": "^0.7.9",
+    "@pluginjs/factory": "^0.7.9",
+    "@pluginjs/utils": "^0.7.9"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@pluginjs/browserslist-config": "^1.2.4",
-    "@pluginjs/cli": "^0.7.7",
+    "@pluginjs/browserslist-config": "^1.2.5",
+    "@pluginjs/cli": "^0.7.8",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
