@@ -14,8 +14,8 @@
     "@pluginjs/list": "^0.7.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "@pluginjs/browserslist-config": "^1.2.5",
     "parcel-bundler": "^1.12.3",
     "posthtml-include": "*"
