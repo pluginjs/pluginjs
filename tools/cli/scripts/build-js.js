@@ -23,7 +23,14 @@ async function buildJs(ctx) {
   await rolluprc.process(async config => {
     const { output, ...others } = config
     const bundle = await rollup.rollup(others)
-    const { code } = await bundle.generate(output)
+    const generated = await bundle.generate(output)
+
+    let code
+    if (Array.isArray(generated.output)) {
+      code = generated.output[0].code
+    } else {
+      code = generated.output.code
+    }
 
     logger.success(`Created js(${output.format}) → ${output.file}`)
     return fs.writeFileSync(path.resolve(output.file), `${banner}\n${code}`)
