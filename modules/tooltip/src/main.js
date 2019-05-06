@@ -76,6 +76,7 @@ class Tooltip extends Component {
         bindEvent(
           this.eventName('click'),
           event => {
+            event.stopPropagation()
             this.toggle(event)
           },
           this.element
