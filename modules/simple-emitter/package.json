@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.10",
+  "version": "0.7.11",
   "category": "core",
   "main": "dist/simple-emitter.common.js",
   "module": "dist/simple-emitter.esm.js",
@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
-    "@pluginjs/browserslist-config": "^1.2.7",
-    "@pluginjs/cli": "^0.7.10",
+    "@pluginjs/browserslist-config": "^1.2.8",
+    "@pluginjs/cli": "^0.7.11",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

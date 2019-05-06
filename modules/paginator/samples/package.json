@@ -3,20 +3,20 @@
   "name": "paginator-samples",
   "description": "Simple paginator example",
   "license": "GPL-3.0",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.11",
-    "@pluginjs/paginator": "^0.7.14"
+    "@pluginjs/dom": "^0.7.12",
+    "@pluginjs/paginator": "^0.7.15"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "@pluginjs/browserslist-config": "^1.2.7",
+    "@pluginjs/browserslist-config": "^1.2.8",
     "parcel-bundler": "^1.12.3",
     "posthtml-include": "*"
   },

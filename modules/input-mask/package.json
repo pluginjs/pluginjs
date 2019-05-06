@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.12",
+  "version": "0.7.13",
   "category": "form",
   "main": "dist/input-mask.common.js",
   "module": "dist/input-mask.esm.js",
@@ -35,18 +35,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.11",
-    "@pluginjs/component": "^0.7.10",
-    "@pluginjs/decorator": "^0.7.12",
-    "@pluginjs/dom": "^0.7.11",
-    "@pluginjs/events": "^0.7.11",
-    "@pluginjs/factory": "^0.7.11",
-    "@pluginjs/utils": "^0.7.11"
+    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/component": "^0.7.11",
+    "@pluginjs/decorator": "^0.7.13",
+    "@pluginjs/dom": "^0.7.12",
+    "@pluginjs/events": "^0.7.12",
+    "@pluginjs/factory": "^0.7.12",
+    "@pluginjs/utils": "^0.7.12"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
-    "@pluginjs/browserslist-config": "^1.2.7",
-    "@pluginjs/cli": "^0.7.10",
+    "@pluginjs/browserslist-config": "^1.2.8",
+    "@pluginjs/cli": "^0.7.11",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

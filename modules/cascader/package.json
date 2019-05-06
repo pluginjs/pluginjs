@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.16",
+  "version": "0.7.17",
   "category": "form",
   "main": "dist/cascader.common.js",
   "module": "dist/cascader.esm.js",
@@ -37,21 +37,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.11",
-    "@pluginjs/component": "^0.7.10",
-    "@pluginjs/decorator": "^0.7.12",
-    "@pluginjs/dom": "^0.7.11",
-    "@pluginjs/dropdown": "^0.7.15",
-    "@pluginjs/events": "^0.7.11",
-    "@pluginjs/is": "^0.7.10",
-    "@pluginjs/match": "^0.7.11",
-    "@pluginjs/template": "^0.7.11",
-    "@pluginjs/utils": "^0.7.11"
+    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/component": "^0.7.11",
+    "@pluginjs/decorator": "^0.7.13",
+    "@pluginjs/dom": "^0.7.12",
+    "@pluginjs/dropdown": "^0.7.16",
+    "@pluginjs/events": "^0.7.12",
+    "@pluginjs/is": "^0.7.11",
+    "@pluginjs/match": "^0.7.12",
+    "@pluginjs/template": "^0.7.12",
+    "@pluginjs/utils": "^0.7.12"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
-    "@pluginjs/browserslist-config": "^1.2.7",
-    "@pluginjs/cli": "^0.7.10",
+    "@pluginjs/browserslist-config": "^1.2.8",
+    "@pluginjs/cli": "^0.7.11",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
