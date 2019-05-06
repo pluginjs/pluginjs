@@ -79,6 +79,6 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "9ae759d6378f7bd8b952e5c1951dec91a101966e",
+  "gitHead": "4c0e0dc988111520438e7b20270b8b3b08e4901f",
   "sassrc": ".sassrc.js"
 }
