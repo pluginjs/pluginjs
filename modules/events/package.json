@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.10",
+  "version": "0.7.11",
   "category": "utils",
   "main": "dist/events.common.js",
   "module": "dist/events.esm.js",
@@ -33,14 +33,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "^0.7.10",
-    "@pluginjs/is": "^0.7.9",
-    "@pluginjs/utils": "^0.7.10"
+    "@pluginjs/emitter": "^0.7.11",
+    "@pluginjs/is": "^0.7.10",
+    "@pluginjs/utils": "^0.7.11"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
-    "@pluginjs/browserslist-config": "^1.2.6",
-    "@pluginjs/cli": "^0.7.9",
+    "@pluginjs/browserslist-config": "^1.2.7",
+    "@pluginjs/cli": "^0.7.10",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
