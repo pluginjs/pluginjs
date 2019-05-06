@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.10",
+  "version": "0.7.11",
   "category": "ui",
   "main": "dist/tooltip.common.js",
   "module": "dist/tooltip.esm.js",
@@ -37,20 +37,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.9",
-    "@pluginjs/component": "^0.7.8",
+    "@pluginjs/classes": "^0.7.10",
+    "@pluginjs/component": "^0.7.9",
     "@pluginjs/decorator": "^0.7.10",
-    "@pluginjs/dom": "^0.7.9",
-    "@pluginjs/events": "^0.7.9",
-    "@pluginjs/styled": "^0.7.9",
-    "@pluginjs/template": "^0.7.9",
-    "@pluginjs/utils": "^0.7.9",
+    "@pluginjs/dom": "^0.7.10",
+    "@pluginjs/events": "^0.7.10",
+    "@pluginjs/styled": "^0.7.10",
+    "@pluginjs/template": "^0.7.10",
+    "@pluginjs/utils": "^0.7.10",
     "popper.js": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
-    "@pluginjs/browserslist-config": "^1.2.5",
-    "@pluginjs/cli": "^0.7.8",
+    "@pluginjs/browserslist-config": "^1.2.6",
+    "@pluginjs/cli": "^0.7.9",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

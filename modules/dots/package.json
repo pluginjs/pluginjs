@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.11",
+  "version": "0.7.12",
   "category": "ui",
   "main": "dist/dots.common.js",
   "module": "dist/dots.esm.js",
@@ -37,21 +37,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.9",
-    "@pluginjs/component": "^0.7.8",
+    "@pluginjs/classes": "^0.7.10",
+    "@pluginjs/component": "^0.7.9",
     "@pluginjs/decorator": "^0.7.10",
-    "@pluginjs/dom": "^0.7.9",
-    "@pluginjs/events": "^0.7.9",
-    "@pluginjs/factory": "^0.7.9",
-    "@pluginjs/is": "^0.7.8",
-    "@pluginjs/styles": "^0.7.4",
-    "@pluginjs/template": "^0.7.9",
-    "@pluginjs/utils": "^0.7.9"
+    "@pluginjs/dom": "^0.7.10",
+    "@pluginjs/events": "^0.7.10",
+    "@pluginjs/factory": "^0.7.10",
+    "@pluginjs/is": "^0.7.9",
+    "@pluginjs/styles": "^0.7.5",
+    "@pluginjs/template": "^0.7.10",
+    "@pluginjs/utils": "^0.7.10"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
-    "@pluginjs/browserslist-config": "^1.2.5",
-    "@pluginjs/cli": "^0.7.8",
+    "@pluginjs/browserslist-config": "^1.2.6",
+    "@pluginjs/cli": "^0.7.9",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
