@@ -35,7 +35,7 @@
   "dependencies": {
     "@pluginjs/classes": "^0.7.10",
     "@pluginjs/component": "^0.7.9",
-    "@pluginjs/decorator": "^0.7.10",
+    "@pluginjs/decorator": "^0.7.11",
     "@pluginjs/dom": "^0.7.10",
     "@pluginjs/factory": "^0.7.10",
     "@pluginjs/polyfills": "^0.7.10"
@@ -68,5 +68,6 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "gitHead": "9ae759d6378f7bd8b952e5c1951dec91a101966e"
 }

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.10",
+  "version": "0.7.11",
   "category": "core",
   "main": "dist/decorator.common.js",
   "module": "dist/decorator.esm.js",
@@ -69,5 +69,6 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "gitHead": "9ae759d6378f7bd8b952e5c1951dec91a101966e"
 }

@@ -39,7 +39,7 @@
   "dependencies": {
     "@pluginjs/classes": "^0.7.10",
     "@pluginjs/component": "^0.7.9",
-    "@pluginjs/decorator": "^0.7.10",
+    "@pluginjs/decorator": "^0.7.11",
     "@pluginjs/dom": "^0.7.10",
     "@pluginjs/dropdown": "^0.7.14",
     "@pluginjs/events": "^0.7.10",
@@ -80,5 +80,5 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "080e534f46d205f2c6b20c44845cdbe5cd1dada8"
+  "gitHead": "9ae759d6378f7bd8b952e5c1951dec91a101966e"
 }
