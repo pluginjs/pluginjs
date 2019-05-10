@@ -23,7 +23,14 @@ import Loading from './loading'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
-import { insertAfter, appendTo, html, parseHTML, query } from '@pluginjs/dom'
+import {
+  insertAfter,
+  appendTo,
+  html,
+  parseHTML,
+  query,
+  queryAll
+} from '@pluginjs/dom'
 import { compose, deepClone, triggerNative } from '@pluginjs/utils'
 
 const isSelect = el => el.tagName === 'SELECT'
@@ -41,7 +48,7 @@ const isSelect = el => el.tagName === 'SELECT'
 class ImageSelector extends Component {
   constructor(element, options = {}) {
     super(element)
-
+    this.$active = []
     this.setupOptions(options)
     this.setupClasses()
     this.setupStates()
@@ -56,31 +63,33 @@ class ImageSelector extends Component {
 
     addClass(this.classes.ELEMENT, this.element)
 
-    this.$wrap = insertAfter(
-      `<div class="${this.classes.WRAP}"></div>`,
-      this.element
-    )
-
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
     }
 
-    this.$trigger = appendTo(
-      templateEngine.render(this.options.templates.trigger(), {
-        classes: this.classes
-      }),
-      this.$wrap
-    )
+    if (!this.options.inline) {
+      this.$wrap = insertAfter(
+        `<div class="${this.classes.WRAP}"></div>`,
+        this.element
+      )
 
-    this.$image = query(`.${this.classes.TRIGGERIMAGE}`, this.$trigger)
-    this.$label = query(`.${this.classes.TRIGGERLABEL}`, this.$trigger)
-    this.$change = query('.pj-image-selector-change', this.$trigger)
+      this.$trigger = appendTo(
+        templateEngine.render(this.options.templates.trigger(), {
+          classes: this.classes
+        }),
+        this.$wrap
+      )
+
+      this.$image = query(`.${this.classes.TRIGGERIMAGE}`, this.$trigger)
+      this.$label = query(`.${this.classes.TRIGGERLABEL}`, this.$trigger)
+      this.$change = query('.pj-image-selector-change', this.$trigger)
+    }
+
+    this.setupDropdown(this.options.dropdown)
 
     this.initData()
 
     this.bind()
-
-    this.setupDropdown(this.options.dropdown)
 
     this.LOADING = new Loading(this)
 
@@ -104,48 +113,62 @@ class ImageSelector extends Component {
   }
 
   setupDropdown(options) {
-    this.$dropdown = appendTo(
-      `<div class="${this.classes.DROPDOWN}"></div>`,
-      this.$wrap
-    )
+    if (!this.options.inline) {
+      this.$dropdown = appendTo(
+        `<div class="${this.classes.DROPDOWN}"></div>`,
+        this.$wrap
+      )
+      this.$content = appendTo(
+        templateEngine.render(this.options.templates.content(), {
+          classes: this.classes
+        }),
+        this.$dropdown
+      )
+    } else {
+      this.$content = insertAfter(
+        templateEngine.render(this.options.templates.inline(), {
+          classes: this.classes
+        }),
+        this.element
+      )
+    }
 
-    this.$content = appendTo(
-      templateEngine.render(this.options.templates.content(), {
-        classes: this.classes
-      }),
-      this.$dropdown
-    )
+    if (this.options.inline) {
+      this.buildDropdown()
+    }
 
-    this.DROPDOWN = Dropdown.of(this.$trigger, {
-      ...options,
-      target: this.$dropdown,
-      keyboard: this.options.keyboard,
-      classes: {
-        PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
-      },
-      onShow: () => {
-        if (!this.is('builded')) {
-          this.buildDropdown()
+    if (!this.options.inline) {
+      this.DROPDOWN = Dropdown.of(this.$trigger, {
+        ...options,
+        target: this.$dropdown,
+        keyboard: this.options.keyboard,
+        classes: {
+          PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
+        },
+        onShow: () => {
+          if (!this.is('builded')) {
+            this.buildDropdown()
+          }
+          addClass(this.classes.SHOW, this.$wrap)
+          this.trigger(EVENTS.SHOW)
+        },
+        onShown: () => {
+          this.trigger(EVENTS.SHOWN)
+          this.enter('shown')
+        },
+        onHide: () => {
+          this.trigger(EVENTS.HIDE)
+          this.leave('shown')
+        },
+        onHided: () => {
+          removeClass(this.classes.SHOW, this.$wrap)
+          this.trigger(EVENTS.HIDED)
+        },
+        onChange: value => {
+          this.set(value)
         }
-        addClass(this.classes.SHOW, this.$wrap)
-        this.trigger(EVENTS.SHOW)
-      },
-      onShown: () => {
-        this.trigger(EVENTS.SHOWN)
-        this.enter('shown')
-      },
-      onHide: () => {
-        this.trigger(EVENTS.HIDE)
-        this.leave('shown')
-      },
-      onHided: () => {
-        removeClass(this.classes.SHOW, this.$wrap)
-        this.trigger(EVENTS.HIDED)
-      },
-      onChange: value => {
-        this.set(value)
-      }
-    })
+      })
+    }
   }
 
   bind() {
@@ -154,7 +177,6 @@ class ImageSelector extends Component {
         if (this.is('disabled')) {
           return null
         }
-
         addClass(this.classes.HOVER, this.$trigger)
         return null
       }),
@@ -166,6 +188,20 @@ class ImageSelector extends Component {
         return null
       })
     )(this.$trigger)
+
+    if (this.options.inline) {
+      const self = this // eslint-disable-line
+      bindEvent(
+        this.eventName('mousedown'),
+        '.pj-image-selector-option',
+        function() {
+        const $item = this // eslint-disable-line
+          const value = $item.getAttribute(self.options.itemValueAttr)
+          self.set(value) // eslint-disable-line
+        },
+        this.$content
+      )
+    }
   }
 
   unbind() {
@@ -183,7 +219,6 @@ class ImageSelector extends Component {
       this.resolveData(this.getDataFromOptions())
     }
   }
-
   resolveData(data) {
     if (isPlainObject(data)) {
       data = Object.keys(data).map(value => {
@@ -198,8 +233,13 @@ class ImageSelector extends Component {
     this.data = deepClone(data)
     this.items = this.flatItems(this.data)
     let value = this.getValueFromElement()
+    if (this.is('builded') || this.is('shown')) {
+      this.buildDropdown()
+    }
+
     if (isEmpty(value)) {
       value = this.getValueFromData()
+
       if (isEmpty(value)) {
         value = 1
       }
@@ -214,10 +254,6 @@ class ImageSelector extends Component {
       }
 
       this.leave('loading')
-    }
-
-    if (this.is('builded') || this.is('shown')) {
-      this.buildDropdown()
     }
   }
 
@@ -260,19 +296,75 @@ class ImageSelector extends Component {
     return items
   }
 
+  setInlineValue(value, trigger = true) {
+    const $selected = this.getInlineItemByValue(value)
+
+    if ($selected) {
+      this.$active.forEach($a => {
+        this.unActiveInlineByValue(this.getItemValue($a), trigger)
+      })
+      $selected.forEach($s => {
+        this.activeInlineItem($s, trigger)
+      })
+    }
+  }
+
+  unActiveInlineByValue(value, trigger = true) {
+    const $selected = this.getInlineOption().find($item => {
+      return this.getItemValue($item) === value
+    })
+    if ($selected) {
+      this.unActiveInlineItem($selected, trigger)
+    }
+  }
+
+  unActiveInlineItem($item, trigger = true) { // eslint-disable-line
+    if (this.$active.includes($item)) {
+      removeClass(this.classes.INLINEACTIVE, $item)
+      this.$active = this.$active.filter($i => $i !== $item)
+    }
+  }
+
+  activeInlineItem($item, trigger = true) { // eslint-disable-line
+    if (!this.$active.includes($item)) {
+      addClass(this.classes.INLINEACTIVE, $item)
+      this.$active.push($item)
+    }
+  }
+
+  getItemValue($item) {
+    return $item.getAttribute(this.options.itemValueAttr)
+  }
+
+  getInlineItemByValue(value) {
+    return this.getInlineOption().filter($item => {
+      return this.getItemValue($item) == value // eslint-disable-line
+    })
+  }
+
+  getInlineOption() {
+    return queryAll('.pj-image-selector-option', this.$content)
+  }
+
   set(value, trigger = true) {
     value = this.purifyValue(value)
     if (value && value !== this.value) {
       this.value = value
       const option = this.getOptionByValue(value)
-
-      this.updateTrigger(option)
+      if (!this.options.inline) {
+        this.updateTrigger(option)
+      }
 
       if (trigger) {
         this.trigger(EVENTS.SELECT, option)
       }
+
       if (this.DROPDOWN) {
         this.DROPDOWN.selectByValue(value, false)
+      }
+
+      if (this.options.inline) {
+        this.setInlineValue(value)
       }
 
       addClass(this.classes.SELECTED, this.$wrap)
@@ -348,9 +440,7 @@ class ImageSelector extends Component {
   buildDropdown() {
     if (this.data) {
       const $options = this.buildOptions(this.data)
-
       this.$content.appendChild($options)
-
       this.selectForDropdown()
     }
 
@@ -358,7 +448,9 @@ class ImageSelector extends Component {
   }
 
   selectForDropdown() {
-    this.DROPDOWN.selectByValue(this.value, false)
+    if (!this.options.inline) {
+      this.DROPDOWN.selectByValue(this.value, false)
+    }
   }
 
   buildOptions(options) {
@@ -371,7 +463,6 @@ class ImageSelector extends Component {
         $fragment.appendChild(this.buildOption(option))
       }
     })
-
     return $fragment
   }
 

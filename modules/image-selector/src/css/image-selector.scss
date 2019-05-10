@@ -85,6 +85,20 @@ $imageSelector-option-padding: 12px 0;
     color: $imageSelector-loading-color;
     text-align: center;
   }
+
+  &-inline {
+    display: flex;
+    flex-wrap: wrap;
+
+    .#{$imageSelector}-option {
+      margin-left: 0;
+    }
+  }
+
+  &-inline-active {
+    color: inherit;
+    border-color: $imageSelector-option-active-border-color !important;
+  }
 }
 
 .#{$imageSelector}-disabled {

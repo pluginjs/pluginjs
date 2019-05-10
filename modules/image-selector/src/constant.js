@@ -22,6 +22,8 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   ELEMENT: '{namespace}-element',
   TRIGGER: '{namespace}-trigger',
+  INLINE: '{namespace}-inline',
+  INLINEACTIVE: '{namespace}-inline-active',
   HOVER: '{namespace}-trigger-hover',
   TRIGGERIMAGE: '{namespace}-trigger-image',
   TRIGGERLABEL: '{namespace}-trigger-label',
@@ -60,10 +62,12 @@ export const methods = [
 ]
 
 export const defaults = {
+  inline: false,
   theme: null,
   source: null,
   placeholder: true,
   filterable: false,
+  itemValueAttr: 'data-value',
   filter(option, query) {
     return search(query, option.label, {
       diacritics: false,
@@ -84,6 +88,9 @@ export const defaults = {
     },
     content() {
       return '<div class="{classes.CONTENT}"></div>'
+    },
+    inline() {
+      return '<div class="{classes.INLINE}"></div>'
     },
     group() {
       return '<div class="{classes.GROUPLABEL}">{group.label}</div><div class="{classes.GROUP}"></div>'

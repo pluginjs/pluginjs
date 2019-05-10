@@ -184,7 +184,6 @@ class Dropdown extends Component {
 
   appendItems(data) {
     let items = []
-
     if (isArray(data)) {
       items = data
     } else if (isObject(data)) {
@@ -491,7 +490,6 @@ class Dropdown extends Component {
   get() {
     const $active = this.getActiveItems()
     const values = $active.map($item => this.getItemValue($item))
-
     if (this.options.multiple || this.options.more) {
       return values
     }
