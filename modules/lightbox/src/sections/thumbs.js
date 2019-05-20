@@ -9,7 +9,7 @@ class Thumbs {
   }
 
   initialize() {
-    if (!this.instance.options.thumbs) {
+    if (!this.instance.options.hasThumbs) {
       return
     }
 
@@ -27,7 +27,7 @@ class Thumbs {
 
     this.plugin = THUMBS.of(
       this.element,
-      deepMerge(instance.options, {
+      deepMerge(instance.options, instance.options.thumb, {
         data: instance.processData(instance.data, 'thumb'),
         current: instance.active,
         mode: 'center',

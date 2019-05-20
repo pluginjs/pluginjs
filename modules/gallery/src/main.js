@@ -75,7 +75,7 @@ class Gallery extends Component {
 
     this.slider = Slider.of(
       sections.slider,
-      deepMerge(this.options, {
+      deepMerge(this.options, this.options.slider, {
         data: this.processData(this.data, 'orig'),
         onChange() {
           that.thumbs.go(this.current, false)
@@ -85,7 +85,7 @@ class Gallery extends Component {
 
     this.thumbs = Thumbnails.of(
       sections.thumbs,
-      deepMerge(this.options, {
+      deepMerge(this.options, this.options.thumb, {
         data: this.processData(this.data, 'thumb'),
         onChange() {
           that.slider.go(this.current, false)

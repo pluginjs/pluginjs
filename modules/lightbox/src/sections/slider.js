@@ -21,7 +21,7 @@ class Slider {
     const instance = this.instance
     this.plugin = SLIDER.of(
       this.element,
-      deepMerge(instance.options, {
+      deepMerge(instance.options, instance.options.slider, {
         data: instance.processData(instance.data, 'orig'),
         current: instance.active,
         onChange() {

@@ -73,6 +73,12 @@ const defaults = {
     theme: 'ring',
     color: '#000000',
     size: 'lg'
+  },
+  slider: {
+    // options
+  },
+  thumb: {
+    // options
   }
 }
 

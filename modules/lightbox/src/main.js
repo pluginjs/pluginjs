@@ -185,7 +185,7 @@ class Lightbox extends Component {
     this.topbar.setCounter(index)
     this.caption.setInfo(this.data[index])
 
-    if (this.options.thumbs) {
+    if (this.options.hasThumbs) {
       this.thumbs.plugin.go(index, false, false)
     }
   }

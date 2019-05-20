@@ -119,9 +119,8 @@ const defaults = {
   overlayClose: true,
   counter: true,
   arrows: {},
-  swipe: true,
   caption: true,
-  thumbs: true,
+  hasThumbs: true,
   vertical: false,
   keyboard: true,
   duration: 300,
@@ -130,6 +129,12 @@ const defaults = {
   loader: {
     theme: 'ring',
     size: 'lg'
+  },
+  slider: {
+    // options
+  },
+  thumb: {
+    // options
   }
 }
 
