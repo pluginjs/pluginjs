@@ -4,7 +4,6 @@
 // Vars
 // =====================
 $iconPicker: "pj-iconPicker" !default;
-$iconPicker-width: 200px !default;
 $iconPicker-max-height: 300px !default;
 
 $iconPicker-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
@@ -31,7 +30,6 @@ $iconPicker-search-icon: $pj-icon-search !default;
 
 .#{$iconPicker} {
   position: relative;
-  width: $iconPicker-width;
 
   &-element {
     display: none;
