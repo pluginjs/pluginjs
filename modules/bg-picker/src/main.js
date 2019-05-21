@@ -74,15 +74,8 @@ class BgPicker extends Component {
     this.IMAGE = new Image(this)
 
     this.value = this.element.value
+
     this.val(this.value, false)
-
-    addClass(this.classes.EXIST, this.$wrap)
-
-    // init
-    if (!this.value.image) {
-      addClass(this.classes.WRITE, this.$wrap)
-      removeClass(this.classes.EXIST, this.$wrap)
-    }
 
     this.bind()
 
@@ -238,6 +231,13 @@ class BgPicker extends Component {
 
   set(value, update, trigger = true) {
     this.value = value
+    addClass(this.classes.EXIST, this.$wrap)
+    // init
+    if (!this.value.image) {
+      addClass(this.classes.WRITE, this.$wrap)
+      removeClass(this.classes.EXIST, this.$wrap)
+    }
+
     if (update !== false) {
       if (typeof value.image !== 'undefined') {
         this.PREVIEW.set(value.image)
