@@ -3,7 +3,7 @@
   "name": "filters-samples",
   "description": "Simple filters example",
   "license": "GPL-3.0",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.12",
-    "@pluginjs/filters": "^0.7.19"
+    "@pluginjs/filters": "^0.7.20"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

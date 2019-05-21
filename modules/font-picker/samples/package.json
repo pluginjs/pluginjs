@@ -3,7 +3,7 @@
   "name": "font-picker-samples",
   "description": "Simple Svg Picker example",
   "license": "GPL-3.0",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.12",
-    "@pluginjs/font-picker": "^0.7.19",
+    "@pluginjs/font-picker": "^0.7.20",
     "webfontloader": "*"
   },
   "devDependencies": {

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.19",
+  "version": "0.7.20",
   "category": "form",
   "main": "dist/place-complete.common.js",
   "module": "dist/place-complete.esm.js",
@@ -37,7 +37,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/auto-complete": "^0.7.18",
+    "@pluginjs/auto-complete": "^0.7.19",
     "@pluginjs/decorator": "^0.7.13",
     "@pluginjs/dom": "^0.7.12",
     "@pluginjs/events": "^0.7.12",
