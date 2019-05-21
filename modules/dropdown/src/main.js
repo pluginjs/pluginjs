@@ -512,7 +512,7 @@ class Dropdown extends Component {
           },
 
           preventOverflow: {
-            enabled: true,
+            enabled: this.options.preventOverflow,
             boundariesElement: this.options.boundary
           },
 

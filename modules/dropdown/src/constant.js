@@ -57,6 +57,7 @@ export const defaults = {
   offset: '0,6px',
   flip: true,
   boundary: 'scrollParent', // viewport
+  preventOverflow: true, // boolean
   itemValueAttr: 'data-value',
   data: null,
   multiple: false,
