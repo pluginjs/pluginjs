@@ -139,6 +139,15 @@ class Dropdown extends Component {
         },
         this.$trigger
       )
+    } else if (this.options.trigger === 'click') {
+      bindEvent(
+        this.eventName('mousedown'),
+        () => {
+          this.show()
+          return false
+        },
+        this.$trigger
+      )
     } else if (this.options.trigger !== 'custom') {
       bindEvent(
         this.eventName(this.options.trigger),
@@ -446,7 +455,7 @@ class Dropdown extends Component {
 
       if (this.options.hideOutClick) {
         bindEvent(
-          this.eventNameWithId('click'),
+          this.eventNameWithId('mousedown'),
           e => {
             if (
               e.target === this.$dropdown ||
