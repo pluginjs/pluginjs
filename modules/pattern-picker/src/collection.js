@@ -43,7 +43,7 @@ class Collection {
       // set tooltip
       Tooltip.of($item, {
         title: i.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
-        placement: 'right',
+        placement: 'bottom',
         trigger: 'hover'
       })
 
@@ -54,11 +54,11 @@ class Collection {
       let bgValue = ''
 
       if (!fillOpacity && !fillValue && dRule) {
-        v = v.replace(dRule[0], `${dRule[0]} fill-opacity='1' fill='#000000'`)
+        v = v.replace(dRule[0], `${dRule[0]} fill-opacity='1' fill='%23000000'`)
       } else if (!fillOpacity && fillValue && dRule) {
         v = v.replace(dRule[0], `${dRule[0]} fill-opacity='1'`)
       } else if (fillOpacity && !fillValue && dRule) {
-        v = v.replace(dRule[0], `${dRule[0]} fill='#000000'`)
+        v = v.replace(dRule[0], `${dRule[0]} fill='%23000000'`)
       }
 
       v = v.replace(/[\r\n]/g, '').replace(/\s+/g, ' ')
