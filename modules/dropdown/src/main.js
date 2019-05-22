@@ -143,16 +143,15 @@ class Dropdown extends Component {
       bindEvent(
         this.eventName('mousedown'),
         () => {
-          this.show()
+          this.toggle()
           return false
         },
         this.$trigger
       )
-    } else if (this.options.trigger !== 'custom') {
+    } else {
       bindEvent(
         this.eventName(this.options.trigger),
         e => {
-          this.update()
           this.toggle()
           e.preventDefault()
         },
@@ -449,6 +448,7 @@ class Dropdown extends Component {
 
     if (!this.is('shown')) {
       this.trigger(EVENTS.SHOW)
+      this.update()
       this.setupPopper()
       addClass(this.classes.SHOW, this.$dropdown)
       this.$trigger.setAttribute('aria-expanded', 'true')
