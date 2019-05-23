@@ -120,17 +120,17 @@ class BgPicker extends Component {
         ) {
           return
         }
-        if (this.DROPDOWN.is('shown')) {
-          if (this.is('status')) {
-            removeClass(
-              this.classes.SHOW,
-              addClass(this.classes.EXIST, this.$wrap)
-            )
-          } else {
-            removeClass(this.classes.SHOW, this.$wrap)
-          }
-          removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
+        this.val(this.oldValue)
+        this.update()
+        if (this.is('status')) {
+          removeClass(
+            this.classes.SHOW,
+            addClass(this.classes.EXIST, this.$wrap)
+          )
+        } else {
+          removeClass(this.classes.SHOW, this.$wrap)
         }
+        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
       },
       window.document
     )
