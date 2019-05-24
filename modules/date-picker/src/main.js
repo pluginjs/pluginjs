@@ -253,11 +253,11 @@ class DatePicker extends Component {
         })
       )(this.$element)
 
-      bindEvent(
-        this.eventName('click.inputIcon'),
-        this.toggle.bind(this),
-        this.$inputIcon
-      )
+      // bindEvent(
+      //   this.eventName('click.inputIcon'),
+      //   this.toggle.bind(this),
+      //   this.$inputIcon
+      // )
     }
   }
 
@@ -1431,12 +1431,12 @@ class DatePicker extends Component {
   }
 
   blur() {
-    if (this.options.inline === false) {
-      if (this.is('pickerHide')) {
-        this.hide()
-        this.leave('pickerHide')
-      }
-    }
+    // if (this.options.inline === false) {
+    //   if (this.is('pickerHide')) {
+    //     this.hide()
+    //     this.leave('pickerHide')
+    //   }
+    // }
     if (this.hasKeyboard) {
       this.KEYBOARD.unbind()
     }
@@ -1672,6 +1672,7 @@ class DatePicker extends Component {
   }
 
   prev(i, isTurning) {
+    console.log(111)
     this.touchflag = false
     const date = this.privateDate.currentDate[i]
     switch (this.views[i]) {
@@ -1872,15 +1873,15 @@ class DatePicker extends Component {
     this.manageViews(i)
   }
 
-  mobilePrev(index) {
-    removeClass(this.classes.SHOW, this.$calendars[index])
-    addClass(this.classes.SHOW, this.$calendars[index - 1])
-  }
+  // mobilePrev(index) {
+  // removeClass(this.classes.SHOW, this.$calendars[index])
+  // addClass(this.classes.SHOW, this.$calendars[index - 1])
+  // }
 
-  mobileNext(index) {
-    removeClass(this.classes.SHOW, this.$calendars[index])
-    addClass(this.classes.SHOW, this.$calendars[index + 1])
-  }
+  // mobileNext(index) {
+  // removeClass(this.classes.SHOW, this.$calendars[index])
+  // addClass(this.classes.SHOW, this.$calendars[index + 1])
+  // }
 
   mobileInteDate(index) {
     if (this.mode === 'multiple') {
@@ -1901,7 +1902,7 @@ class DatePicker extends Component {
 
   mobileEnter(index) {
     if (this.mode === 'range' && index === 0) {
-      this.mobileNext(index)
+      // this.mobileNext(index)
       this.views[index] = 'days'
     } else {
       this.mobileInteDate(index)
@@ -1913,7 +1914,7 @@ class DatePicker extends Component {
 
   mobileCancel(index) {
     if (index === 1) {
-      this.mobilePrev(index)
+      // this.mobilePrev(index)
       this.views[index] = 'days'
     } else {
       this.dateTransform(this.privateDate.cache, this.privateDate)
@@ -1965,7 +1966,7 @@ class DatePicker extends Component {
     } else if (!this.is('showed')) {
       this.trigger(EVENTS.BEFORESHOW)
       addClass(this.classes.ACTIVE, this.$inputWrap)
-      addClass(this.classes.SHOW, this.$dropdown)
+      // addClass(this.classes.SHOW, this.$dropdown)
       bindEvent(
         this.eventNameWithId('click'),
         e => {
@@ -2012,7 +2013,7 @@ class DatePicker extends Component {
       this.trigger(EVENTS.BEFOREHIDE)
       this.leave('selected')
       removeClass(this.classes.ACTIVE, this.$inputWrap)
-      removeClass(this.classes.SHOW, this.$dropdown)
+      // removeClass(this.classes.SHOW, this.$dropdown)
       this.leave('showed')
       removeEvent(this.eventName('mousedown'), this.$picker)
       removeEvent(this.eventNameWithId('click'), $doc)

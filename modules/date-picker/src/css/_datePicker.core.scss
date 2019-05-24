@@ -195,8 +195,10 @@ $datePicker-clear-right: 35px !default;
 
   &-dropdown {
     z-index: $datePicker-dropdown-zindex;
-    display: none;
-    width: initial;
+  }
+  
+  .pj-dropdown {
+    width: auto;
   }
 
   &-wrap {

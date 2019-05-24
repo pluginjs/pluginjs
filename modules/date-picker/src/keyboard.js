@@ -77,9 +77,10 @@ class Keyboard {
     const hasLocked =
       this.instance.mode === 'multiple'
         ? false
-        : this.instance.calendarPrevs
-            .eq(this.instance.focused)
-            .hasClass(this.instance.classes.BLOCKED)
+        : hasClass(
+            this.instance.classes.BLOCKED,
+            this.instance.$calendarPrevs[this.instance.focused]
+          )
 
     switch (this.instance.views[i]) {
       case 'days':
@@ -135,9 +136,10 @@ class Keyboard {
     const hasLocked =
       this.instance.mode === 'multiple'
         ? false
-        : this.instance.calendarNexts
-            .eq(this.instance.focused)
-            .hasClass(this.instance.classes.BLOCKED)
+        : hasClass(
+            this.instance.classes.BLOCKED,
+            this.instance.$calendarNexts[this.instance.focused]
+          )
     switch (this.instance.views[i]) {
       case 'days':
         if (
@@ -198,9 +200,10 @@ class Keyboard {
     const hasLocked =
       this.instance.mode === 'multiple'
         ? false
-        : this.instance.calendarPrevs
-            .eq(this.instance.focused)
-            .hasClass(this.instance.classes.BLOCKED)
+        : hasClass(
+            this.instance.classes.BLOCKED,
+            this.instance.$calendarPrevs[this.instance.focused]
+          )
     switch (this.instance.views[i]) {
       case 'days':
         if (
@@ -262,9 +265,10 @@ class Keyboard {
     const hasLocked =
       this.instance.mode === 'multiple'
         ? false
-        : this.instance.calendarNexts
-            .eq(this.instance.focused)
-            .hasClass(this.instance.classes.BLOCKED)
+        : hasClass(
+            this.instance.classes.BLOCKED,
+            this.instance.$calendarNexts[this.instance.focused]
+          )
     switch (this.instance.views[i]) {
       case 'days':
         if (
@@ -320,9 +324,9 @@ class Keyboard {
     if (this.instance.mode === 'multiple') {
       this.instance.prev(this.instance.focused)
     } else if (
-      !this.instance.calendarPrevs
-        .eq(this.instance.focused)
-        .hasClass(this.instance.classes.BLOCKED)
+      !this.instance.$calendarPrevs[this.instance.focused].hasClass(
+        this.instance.classes.BLOCKED
+      )
     ) {
       this.instance.prev(this.instance.focused, true)
     }
@@ -348,7 +352,7 @@ class Keyboard {
   }
   prevCalendar() {
     if (this.instance.mode !== 'multiple') {
-      const len = this.instance.calendars.length
+      const len = this.instance.$calendars.length
       if (--this.instance.focused < 0) {
         this.instance.focused = len
       }
@@ -356,7 +360,7 @@ class Keyboard {
   }
   nextCalendar() {
     if (this.instance.mode !== 'multiple') {
-      const len = this.instance.calendars.length
+      const len = this.instance.$calendars.length
       if (++this.instance.focused >= len) {
         this.instance.focused = 0
       }
@@ -371,7 +375,7 @@ class Keyboard {
     if (
       !hasClass(
         instance.classes.UNTOUCHABLE,
-        query(`.${instance.classes.FOCUS}`, instance.calendars[i])
+        query(`.${instance.classes.FOCUS}`, instance.$calendars[i])
       )
     ) {
       switch (instance.views[i]) {
@@ -384,9 +388,9 @@ class Keyboard {
             case 'multiple': {
               const privateDate = Date.parse(new Date(date))
               if (
-                $.inArray(privateDate, instance.privateDate.selectedDate) > -1
+                $.inArray(privateDate, instance.privateDate.selectedDate) > -1 /* eslint-disable-line */
               ) {
-                $.each(instance.privateDate.selectedDate, (nr, data) => {
+                $.each(instance.privateDate.selectedDate, (nr, data) => { /* eslint-disable-line */
                   if (data === privateDate) {
                     instance.privateDate.selectedDate.splice(nr, 1)
                     return false
