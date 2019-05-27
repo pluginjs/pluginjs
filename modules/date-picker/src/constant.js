@@ -108,6 +108,8 @@ export const defaults = {
   views: ['days'], // ['days'], ['days', 'months', 'years']
   outputFormat: 'yyyy/mm/dd',
 
+  prevIcon: 'pj-icon pj-icon-arrow-left',
+  nextIcon: 'pj-icon pj-icon-arrow-right',
   templates: {
     inputWrap() {
       return '<div class="{classes.INPUTWRAP}"><div class="pj-input-group"></div></div>'
@@ -123,8 +125,8 @@ export const defaults = {
         '<div class="{classes.CONTENT}">' +
         '<div class="{classes.HEADER}">' +
         '<div class="{classes.CAPTION}"></div>' +
-        '<div class="{classes.PREV} pj-icon pj-icon-arrow-left"></div>' +
-        '<div class="{classes.NEXT} pj-icon pj-icon-arrow-right"></div>' +
+        '<div class="{classes.PREV}"></div>' +
+        '<div class="{classes.NEXT}"></div>' +
         '</div>' +
         '<div class="{classes.DATS}"></div>' +
         '<div class="{classes.MONTHS}"></div>' +

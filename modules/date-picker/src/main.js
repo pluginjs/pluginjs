@@ -128,9 +128,19 @@ class DatePicker extends Component {
       })
     )
 
-    const content = template.render(this.options.templates.content.call(this), {
-      classes: this.classes
-    })
+    const content = template
+      .render(this.options.templates.content.call(this), {
+        classes: this.classes
+      })
+      .replace(
+        `${this.classes.PREV}`,
+        `${this.classes.PREV} ${this.options.prevIcon}`
+      )
+      .replace(
+        `${this.classes.NEXT}`,
+        `${this.classes.NEXT} ${this.options.nextIcon}`
+      )
+
     this.$picker = $wrap
     // set model default property
     switch (this.mode) {
@@ -1474,10 +1484,10 @@ class DatePicker extends Component {
             this.changeView('caption', i)
             this.manageViews(i)
             break
-          case `${this.classes.PREV} pj-icon pj-icon-arrow-left`:
+          case `${this.classes.PREV} ${this.options.prevIcon}`:
             this.prev(i)
             break
-          case `${this.classes.NEXT} pj-icon pj-icon-arrow-right`:
+          case `${this.classes.NEXT} ${this.options.nextIcon}`:
             this.next(i)
             break
           default:
@@ -1672,7 +1682,6 @@ class DatePicker extends Component {
   }
 
   prev(i, isTurning) {
-    console.log(111)
     this.touchflag = false
     const date = this.privateDate.currentDate[i]
     switch (this.views[i]) {
