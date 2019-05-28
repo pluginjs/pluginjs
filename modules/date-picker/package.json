@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.21",
+  "version": "0.7.22",
   "category": "form",
   "main": "dist/date-picker.common.js",
   "module": "dist/date-picker.esm.js",
