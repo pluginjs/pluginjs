@@ -1,5 +1,5 @@
 import { curry, curryWith, camelize } from '@pluginjs/utils'
-import { isString, isElement, isEmptyObject } from '@pluginjs/is'
+import { isString, isElement, isDomNode, isEmptyObject } from '@pluginjs/is'
 
 export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
@@ -262,24 +262,31 @@ export const data = curryWith((key, value, el) => {
 // -----------
 // Attributes
 // -----------
-export const attr = curryWith((args, value, el) => {
-  if (isElement(value) && typeof el === 'undefined') {
-    el = value
-    value = undefined
-  }
-
-  if (typeof args === 'string') {
-    if (typeof value !== 'undefined') {
-      el.setAttribute(args, value)
-    } else {
-      return el.getAttribute(args)
+export const attr = curryWith(
+  (args, value, el) => {
+    if ((isElement(value) || isDomNode(value)) && typeof el === 'undefined') {
+      el = value
+      value = undefined
     }
-  } else {
-    Object.entries(args).forEach(([key, value]) => el.setAttribute(key, value))
-  }
 
-  return el
-}, isElement)
+    if (typeof args === 'string') {
+      if (typeof value !== 'undefined') {
+        el.setAttribute(args, value)
+      } else {
+        return el.getAttribute(args)
+      }
+    } else {
+      Object.entries(args).forEach(([key, value]) =>
+        el.setAttribute(key, value)
+      )
+    }
+
+    return el
+  },
+  el => {
+    return isElement(el) || isDomNode(el)
+  }
+)
 
 export const removeAttr = curry((attrs, el) => {
   attrs.split(' ').forEach(attr => {
