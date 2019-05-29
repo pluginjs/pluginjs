@@ -3,15 +3,15 @@
   "name": "scroll-top-samples",
   "description": "Simple scroll-top example",
   "license": "GPL-3.0",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.12",
-    "@pluginjs/scroll-top": "^0.7.14"
+    "@pluginjs/dom": "^0.7.13",
+    "@pluginjs/scroll-top": "^0.7.15"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

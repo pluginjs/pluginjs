@@ -3,15 +3,15 @@
   "name": "thumbnails-samples",
   "description": "Simple thumbnails example",
   "license": "GPL-3.0",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.12",
-    "@pluginjs/thumbnails": "^0.7.16"
+    "@pluginjs/dom": "^0.7.13",
+    "@pluginjs/thumbnails": "^0.7.17"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

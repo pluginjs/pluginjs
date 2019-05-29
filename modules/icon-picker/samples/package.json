@@ -3,7 +3,7 @@
   "name": "icon-picker-samples",
   "description": "Simple Svg Picker example",
   "license": "GPL-3.0",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -14,8 +14,8 @@
     "@icon/entypo": "*",
     "@icon/feather": "*",
     "@icon/font-awesome": "*",
-    "@pluginjs/dom": "^0.7.12",
-    "@pluginjs/icon-picker": "^0.7.21"
+    "@pluginjs/dom": "^0.7.13",
+    "@pluginjs/icon-picker": "^0.7.22"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

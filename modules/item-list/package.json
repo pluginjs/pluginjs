@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.13",
+  "version": "0.7.14",
   "category": "form",
   "main": "dist/item-list.common.js",
   "module": "dist/item-list.esm.js",
@@ -39,11 +39,11 @@
   "dependencies": {
     "@pluginjs/classes": "^0.7.12",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.13",
-    "@pluginjs/dom": "^0.7.12",
+    "@pluginjs/decorator": "^0.7.14",
+    "@pluginjs/dom": "^0.7.13",
     "@pluginjs/events": "^0.7.12",
     "@pluginjs/factory": "^0.7.12",
-    "@pluginjs/list": "^0.7.13",
+    "@pluginjs/list": "^0.7.14",
     "@pluginjs/template": "^0.7.12",
     "@pluginjs/utils": "^0.7.12"
   },

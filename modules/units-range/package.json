@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.20",
+  "version": "0.7.21",
   "category": "form",
   "main": "dist/units-range.common.js",
   "module": "dist/units-range.esm.js",
@@ -38,12 +38,12 @@
   },
   "dependencies": {
     "@pluginjs/classes": "^0.7.12",
-    "@pluginjs/decorator": "^0.7.13",
-    "@pluginjs/dom": "^0.7.12",
+    "@pluginjs/decorator": "^0.7.14",
+    "@pluginjs/dom": "^0.7.13",
     "@pluginjs/events": "^0.7.12",
     "@pluginjs/is": "^0.7.11",
-    "@pluginjs/range": "^0.7.13",
-    "@pluginjs/units": "^0.7.20",
+    "@pluginjs/range": "^0.7.14",
+    "@pluginjs/units": "^0.7.21",
     "@pluginjs/utils": "^0.7.12"
   },
   "devDependencies": {

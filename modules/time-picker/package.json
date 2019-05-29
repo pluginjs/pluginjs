@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.21",
+  "version": "0.7.22",
   "category": "form",
   "main": "dist/time-picker.common.js",
   "module": "dist/time-picker.esm.js",
@@ -39,11 +39,11 @@
   "dependencies": {
     "@pluginjs/classes": "^0.7.12",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.13",
-    "@pluginjs/dom": "^0.7.12",
-    "@pluginjs/dropdown": "^0.7.20",
+    "@pluginjs/decorator": "^0.7.14",
+    "@pluginjs/dom": "^0.7.13",
+    "@pluginjs/dropdown": "^0.7.21",
     "@pluginjs/events": "^0.7.12",
-    "@pluginjs/input-mask": "^0.7.13",
+    "@pluginjs/input-mask": "^0.7.14",
     "@pluginjs/is": "^0.7.11",
     "@pluginjs/template": "^0.7.12",
     "@pluginjs/utils": "^0.7.12"

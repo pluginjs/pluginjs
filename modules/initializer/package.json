@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.14",
+  "version": "0.7.15",
   "category": "core",
   "main": "dist/initializer.common.js",
   "module": "dist/initializer.esm.js",
@@ -33,7 +33,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.12",
+    "@pluginjs/dom": "^0.7.13",
     "@pluginjs/factory": "^0.7.12",
     "@pluginjs/utils": "^0.7.12"
   },
