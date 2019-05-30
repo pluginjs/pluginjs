@@ -379,12 +379,10 @@ class VideoPicker extends Component {
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
         this.DROPDOWN.hide()
-        this.$fillCover.setAttribute('src', this.data.poster)
         if (this.videoApi) {
           this.videoApi.stop()
         }
-        this.element.value = this.val()
-        triggerNative(this.element, 'change')
+        this.set(this.data)
         addClass(this.classes.SHOW, this.$wrap)
         return false
       })
@@ -601,6 +599,7 @@ class VideoPicker extends Component {
     if (!this.data.url || typeof this.data.url === 'undefined') {
       return null
     }
+
     return this.data
   }
 
@@ -609,7 +608,6 @@ class VideoPicker extends Component {
       const val = this.options.process.call(this, this.get())
       return val
     }
-
     return this.set(this.options.parse.call(this, value), trigger)
   }
 

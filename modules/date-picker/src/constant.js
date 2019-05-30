@@ -110,6 +110,7 @@ export const defaults = {
 
   prevIcon: 'pj-icon pj-icon-arrow-left',
   nextIcon: 'pj-icon pj-icon-arrow-right',
+
   templates: {
     inputWrap() {
       return '<div class="{classes.INPUTWRAP}"><div class="pj-input-group"></div></div>'
