@@ -44,7 +44,9 @@ export const isDomNode = object => {
 }
 
 // is a given object a Element?
-export const isElement = el => el instanceof Element
+export const isElement = el => {
+  return isObject(el) && el.nodeType === 1 && !isPlainObject(el);
+}
 
 // is a given value window object
 export const isWindow = val => {
