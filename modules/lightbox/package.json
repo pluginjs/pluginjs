@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.23",
+  "version": "0.7.24",
   "category": "media",
   "main": "dist/lightbox.common.js",
   "module": "dist/lightbox.esm.js",
@@ -37,22 +37,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/breakpoints": "^0.7.12",
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/breakpoints": "^0.7.13",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/events": "^0.7.12",
-    "@pluginjs/factory": "^0.7.12",
-    "@pluginjs/fullscreen": "^0.7.12",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/keyboard": "^0.7.13",
-    "@pluginjs/slider": "^0.7.20",
-    "@pluginjs/styled": "^0.7.13",
-    "@pluginjs/template": "^0.7.12",
-    "@pluginjs/thumbnails": "^0.7.17",
-    "@pluginjs/utils": "^0.7.12",
-    "@pluginjs/video": "^0.7.17"
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/factory": "^0.7.13",
+    "@pluginjs/fullscreen": "^0.7.13",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/keyboard": "^0.7.14",
+    "@pluginjs/slider": "^0.7.21",
+    "@pluginjs/styled": "^0.7.14",
+    "@pluginjs/template": "^0.7.13",
+    "@pluginjs/thumbnails": "^0.7.18",
+    "@pluginjs/utils": "^0.7.13",
+    "@pluginjs/video": "^0.7.18"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

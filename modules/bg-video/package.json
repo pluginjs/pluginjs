@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.17",
+  "version": "0.7.18",
   "category": "media",
   "main": "dist/bg-video.common.js",
   "module": "dist/bg-video.esm.js",
@@ -37,15 +37,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/factory": "^0.7.12",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/styled": "^0.7.13",
-    "@pluginjs/utils": "^0.7.12",
-    "@pluginjs/video": "^0.7.17"
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/factory": "^0.7.13",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/styled": "^0.7.14",
+    "@pluginjs/utils": "^0.7.13",
+    "@pluginjs/video": "^0.7.18"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.24",
+  "version": "0.7.25",
   "category": "form",
   "main": "dist/color-picker.common.js",
   "module": "dist/color-picker.esm.js",
@@ -37,18 +37,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.12",
-    "@pluginjs/color": "^0.7.12",
+    "@pluginjs/classes": "^0.7.13",
+    "@pluginjs/color": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/dropdown": "^0.7.21",
-    "@pluginjs/events": "^0.7.12",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/select": "^0.7.21",
-    "@pluginjs/styled": "^0.7.13",
-    "@pluginjs/template": "^0.7.12",
-    "@pluginjs/utils": "^0.7.12"
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/dropdown": "^0.7.22",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/select": "^0.7.22",
+    "@pluginjs/styled": "^0.7.14",
+    "@pluginjs/template": "^0.7.13",
+    "@pluginjs/utils": "^0.7.13"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

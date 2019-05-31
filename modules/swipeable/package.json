@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.16",
+  "version": "0.7.17",
   "category": "ui",
   "main": "dist/swipeable.common.js",
   "module": "dist/swipeable.esm.js",
@@ -37,11 +37,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/styled": "^0.7.13",
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/styled": "^0.7.14",
     "animejs": "*",
     "hammerjs": "*"
   },

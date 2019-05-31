@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.20",
+  "version": "0.7.21",
   "category": "ui",
   "main": "dist/slider.common.js",
   "module": "dist/slider.esm.js",
@@ -37,21 +37,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/arrows": "^0.7.14",
-    "@pluginjs/breakpoints": "^0.7.12",
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/arrows": "^0.7.15",
+    "@pluginjs/breakpoints": "^0.7.13",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/events": "^0.7.12",
-    "@pluginjs/factory": "^0.7.12",
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/factory": "^0.7.13",
     "@pluginjs/icons": "^0.7.3",
-    "@pluginjs/loader": "^0.7.14",
-    "@pluginjs/styled": "^0.7.13",
-    "@pluginjs/swipeable": "^0.7.16",
-    "@pluginjs/template": "^0.7.12",
-    "@pluginjs/utils": "^0.7.12",
-    "@pluginjs/video": "^0.7.17",
+    "@pluginjs/loader": "^0.7.15",
+    "@pluginjs/styled": "^0.7.14",
+    "@pluginjs/swipeable": "^0.7.17",
+    "@pluginjs/template": "^0.7.13",
+    "@pluginjs/utils": "^0.7.13",
+    "@pluginjs/video": "^0.7.18",
     "animejs": "*"
   },
   "devDependencies": {

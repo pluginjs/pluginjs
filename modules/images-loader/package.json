@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.13",
+  "version": "0.7.14",
   "category": "media",
   "main": "dist/images-loader.common.js",
   "module": "dist/images-loader.esm.js",
@@ -33,8 +33,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/image-loader": "^0.7.12",
-    "@pluginjs/is": "^0.7.11",
+    "@pluginjs/image-loader": "^0.7.13",
+    "@pluginjs/is": "^0.7.12",
     "@pluginjs/simple-emitter": "^0.7.11"
   },
   "devDependencies": {

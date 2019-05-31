@@ -3,16 +3,16 @@
   "name": "tooltip-samples",
   "description": "Simple tooltip example",
   "license": "GPL-3.0",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.13",
+    "@pluginjs/dom": "^0.7.14",
     "@pluginjs/styles": "^0.7.7",
-    "@pluginjs/tooltip": "^0.7.14"
+    "@pluginjs/tooltip": "^0.7.15"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.15",
+  "version": "0.7.16",
   "category": "ui",
   "main": "dist/timeline.common.js",
   "module": "dist/timeline.esm.js",
@@ -37,14 +37,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/arrows": "^0.7.14",
-    "@pluginjs/breakpoints": "^0.7.12",
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/arrows": "^0.7.15",
+    "@pluginjs/breakpoints": "^0.7.13",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/events": "^0.7.12",
-    "@pluginjs/styled": "^0.7.13",
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/styled": "^0.7.14",
     "animejs": "*"
   },
   "devDependencies": {

@@ -3,15 +3,15 @@
   "name": "arrows-samples",
   "description": "Simple arrows example",
   "license": "GPL-3.0",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/arrows": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13"
+    "@pluginjs/arrows": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

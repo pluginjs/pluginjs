@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.14",
+  "version": "0.7.15",
   "category": "ui",
   "main": "dist/progress.common.js",
   "module": "dist/progress.esm.js",
@@ -37,15 +37,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
     "@pluginjs/easing": "^0.7.11",
-    "@pluginjs/factory": "^0.7.12",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/template": "^0.7.12",
-    "@pluginjs/tween": "^0.7.12"
+    "@pluginjs/factory": "^0.7.13",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/template": "^0.7.13",
+    "@pluginjs/tween": "^0.7.13"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

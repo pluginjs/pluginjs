@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.13",
+  "version": "0.7.14",
   "category": "utils",
   "main": "dist/viewport.common.js",
   "module": "dist/viewport.esm.js",
@@ -34,10 +34,10 @@
   },
   "dependencies": {
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/polyfills": "^0.7.12"
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/polyfills": "^0.7.13"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

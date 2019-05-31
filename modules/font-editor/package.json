@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.22",
+  "version": "0.7.23",
   "category": "form",
   "main": "dist/font-editor.common.js",
   "module": "dist/font-editor.esm.js",
@@ -37,23 +37,23 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/dropdown": "^0.7.21",
-    "@pluginjs/events": "^0.7.12",
-    "@pluginjs/factory": "^0.7.12",
-    "@pluginjs/font-picker": "^0.7.22",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/pop-dialog": "^0.7.14",
-    "@pluginjs/range": "^0.7.14",
-    "@pluginjs/select": "^0.7.21",
-    "@pluginjs/styled": "^0.7.13",
-    "@pluginjs/template": "^0.7.12",
-    "@pluginjs/tooltip": "^0.7.14",
-    "@pluginjs/units-range": "^0.7.21",
-    "@pluginjs/utils": "^0.7.12"
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/dropdown": "^0.7.22",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/factory": "^0.7.13",
+    "@pluginjs/font-picker": "^0.7.23",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/pop-dialog": "^0.7.15",
+    "@pluginjs/range": "^0.7.15",
+    "@pluginjs/select": "^0.7.22",
+    "@pluginjs/styled": "^0.7.14",
+    "@pluginjs/template": "^0.7.13",
+    "@pluginjs/tooltip": "^0.7.15",
+    "@pluginjs/units-range": "^0.7.22",
+    "@pluginjs/utils": "^0.7.13"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

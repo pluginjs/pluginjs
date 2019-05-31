@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.14",
+  "version": "0.7.15",
   "category": "core",
   "main": "dist/pluginjs.js",
   "umd": "dist/pluginjs.js",
@@ -27,25 +27,25 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
     "@pluginjs/easing": "^0.7.11",
     "@pluginjs/emitter": "^0.7.12",
-    "@pluginjs/events": "^0.7.12",
-    "@pluginjs/factory": "^0.7.12",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/factory": "^0.7.13",
     "@pluginjs/feature": "^0.7.11",
     "@pluginjs/global-component": "^0.7.12",
-    "@pluginjs/i18n": "^0.7.12",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/keyboard": "^0.7.13",
-    "@pluginjs/polyfills": "^0.7.12",
+    "@pluginjs/i18n": "^0.7.13",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/keyboard": "^0.7.14",
+    "@pluginjs/polyfills": "^0.7.13",
     "@pluginjs/simple-emitter": "^0.7.11",
-    "@pluginjs/styled": "^0.7.13",
-    "@pluginjs/template": "^0.7.12",
-    "@pluginjs/utils": "^0.7.12",
-    "@pluginjs/viewport": "^0.7.13"
+    "@pluginjs/styled": "^0.7.14",
+    "@pluginjs/template": "^0.7.13",
+    "@pluginjs/utils": "^0.7.13",
+    "@pluginjs/viewport": "^0.7.14"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

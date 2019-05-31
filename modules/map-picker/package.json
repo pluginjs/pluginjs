@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.22",
+  "version": "0.7.23",
   "category": "form",
   "main": "dist/map-picker.common.js",
   "module": "dist/map-picker.esm.js",
@@ -37,19 +37,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.12",
+    "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.14",
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/dropdown": "^0.7.21",
-    "@pluginjs/events": "^0.7.12",
-    "@pluginjs/factory": "^0.7.12",
-    "@pluginjs/gmap": "^0.7.14",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/place-complete": "^0.7.22",
-    "@pluginjs/pop-dialog": "^0.7.14",
-    "@pluginjs/template": "^0.7.12",
-    "@pluginjs/utils": "^0.7.12"
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/dropdown": "^0.7.22",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/factory": "^0.7.13",
+    "@pluginjs/gmap": "^0.7.15",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/place-complete": "^0.7.23",
+    "@pluginjs/pop-dialog": "^0.7.15",
+    "@pluginjs/template": "^0.7.13",
+    "@pluginjs/utils": "^0.7.13"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

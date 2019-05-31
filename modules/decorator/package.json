@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.14",
+  "version": "0.7.15",
   "category": "core",
   "main": "dist/decorator.common.js",
   "module": "dist/decorator.esm.js",
@@ -33,13 +33,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.13",
-    "@pluginjs/events": "^0.7.12",
-    "@pluginjs/factory": "^0.7.12",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/factory": "^0.7.13",
     "@pluginjs/global-component": "^0.7.12",
-    "@pluginjs/i18n": "^0.7.12",
-    "@pluginjs/is": "^0.7.11",
-    "@pluginjs/utils": "^0.7.12"
+    "@pluginjs/i18n": "^0.7.13",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/utils": "^0.7.13"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
