@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.23",
+  "version": "0.7.24",
   "category": "form",
   "main": "dist/map-picker.common.js",
   "module": "dist/map-picker.esm.js",
@@ -46,7 +46,7 @@
     "@pluginjs/factory": "^0.7.13",
     "@pluginjs/gmap": "^0.7.15",
     "@pluginjs/is": "^0.7.12",
-    "@pluginjs/place-complete": "^0.7.23",
+    "@pluginjs/place-complete": "^0.7.24",
     "@pluginjs/pop-dialog": "^0.7.15",
     "@pluginjs/template": "^0.7.13",
     "@pluginjs/utils": "^0.7.13"

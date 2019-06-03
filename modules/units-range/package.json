@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.22",
+  "version": "0.7.23",
   "category": "form",
   "main": "dist/units-range.common.js",
   "module": "dist/units-range.esm.js",
@@ -42,7 +42,7 @@
     "@pluginjs/dom": "^0.7.14",
     "@pluginjs/events": "^0.7.13",
     "@pluginjs/is": "^0.7.12",
-    "@pluginjs/range": "^0.7.15",
+    "@pluginjs/range": "^0.7.16",
     "@pluginjs/units": "^0.7.22",
     "@pluginjs/utils": "^0.7.13"
   },

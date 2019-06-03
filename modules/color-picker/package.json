@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.25",
+  "version": "0.7.26",
   "category": "form",
   "main": "dist/color-picker.common.js",
   "module": "dist/color-picker.esm.js",

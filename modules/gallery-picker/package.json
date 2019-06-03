@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.23",
+  "version": "0.7.24",
   "category": "form",
   "main": "dist/gallery-picker.common.js",
   "module": "dist/gallery-picker.esm.js",

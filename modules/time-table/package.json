@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.26",
+  "version": "0.7.27",
   "category": "ui",
   "main": "dist/time-table.common.js",
   "module": "dist/time-table.esm.js",
@@ -40,7 +40,7 @@
     "@pluginjs/choice": "^0.7.16",
     "@pluginjs/classes": "^0.7.13",
     "@pluginjs/component": "^0.7.11",
-    "@pluginjs/date-picker": "^0.7.24",
+    "@pluginjs/date-picker": "^0.7.25",
     "@pluginjs/decorator": "^0.7.15",
     "@pluginjs/dom": "^0.7.14",
     "@pluginjs/events": "^0.7.13",
