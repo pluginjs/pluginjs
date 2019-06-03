@@ -4,7 +4,6 @@
 // Vars
 // =====================
 $cascader: "pj-cascader" !default;
-$cascader-width: 200px !default;
 $cascader-min-width: 150px !default;
 $cascader-max-height: 300px !default;
 
@@ -25,7 +24,6 @@ $cascader-clear-right: 11px !default;
 
 .#{$cascader} {
   position: relative;
-  width: $cascader-width;
 
   &-element {
     display: none;

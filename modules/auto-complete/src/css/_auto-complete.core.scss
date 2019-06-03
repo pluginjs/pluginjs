@@ -4,7 +4,6 @@
 // Vars
 // =====================
 $autoComplete: "pj-autoComplete" !default;
-$autoComplete-width: 200px !default;
 $autoComplete-max-height: 300px !default;
 
 $autoComplete-clear-icon: $pj-icon-close !default;
@@ -15,7 +14,6 @@ $autoComplete-hint-color: $gray !default;
 
 .#{$autoComplete} {
   position: relative;
-  width: $autoComplete-width;
 
   &-input,
   &-hint {

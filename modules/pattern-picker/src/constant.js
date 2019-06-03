@@ -80,6 +80,9 @@ export const defaults = {
   disabled: false,
   module: 'collection', // collection || custom
   manage() {},  /* eslint-disable-line */
+  dropdown: {
+    placement: 'bottom-start' // top
+  },
   templates: {
     item() {
       return '<li class="{class}"></li>'

@@ -80,13 +80,14 @@ class GalleryPicker extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-    this.initDropdown()
+    this.initDropdown(this.options.dropdown)
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  initDropdown() {
+  initDropdown(options) {
     this.$galleryDropdown = Dropdown.of(this.TRIGGER.$edit, {
+      ...options,
       reference: this.TRIGGER.$fill,
       target: this.$panel,
       hideOutClick: true,

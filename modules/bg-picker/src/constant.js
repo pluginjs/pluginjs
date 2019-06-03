@@ -92,6 +92,9 @@ export const defaults = {
   locale: 'en',
   localeFallbacks: true,
   disabled: false,
+  dropdown: {
+    placement: 'bottom-start'
+  },
   repeat: {
     defaultValue: 'repeat',
     values: ['no-repeat', 'repeat', 'repeat-x', 'repeat-y'],

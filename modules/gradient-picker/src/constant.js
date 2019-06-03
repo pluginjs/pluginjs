@@ -64,6 +64,9 @@ export const defaults = {
   clearable: false,
   clickWindowHide: true,
   touchOff: null,
+  dropdown: {
+    placement: 'bottom-start' // top
+  },
   templates: {
     wrap() {
       return '<div class="{classes.NAMESPACE}"></div>'

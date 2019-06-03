@@ -83,13 +83,14 @@ class BgPicker extends Component {
       this.disable()
     }
 
-    this.initDropdown()
+    this.initDropdown(this.options.dropdown)
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  initDropdown() {
+  initDropdown(options) {
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
+      ...options,
       theme: 'dafault',
       reference: this.TRIGGER.$trigger,
       target: this.$dropdown,

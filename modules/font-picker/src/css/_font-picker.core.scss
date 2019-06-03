@@ -4,7 +4,6 @@
 // Vars
 // =====================
 $fontPicker: "pj-fontPicker" !default;
-$fontPicker-width: 200px !default;
 $fontPicker-max-height: 300px !default;
 
 $fontPicker-dropdown-width: 272px !default;
@@ -26,7 +25,6 @@ $fontPicker-manage-font: $pj-icon-font-family !default;
 
 .#{$fontPicker} {
   position: relative;
-  width: $fontPicker-width;
 
   &-element {
     display: none;

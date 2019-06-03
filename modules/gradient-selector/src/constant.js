@@ -81,6 +81,9 @@ export const defaults = {
   data: null, // [json]images data
   manage() {},  /* eslint-disable-line */
   disabled: false,
+  dropdown: {
+    placement: 'bottom-start' // top
+  },
   templates: {
     trigger() {
       return `<div class="{classes.TRIGGER}">

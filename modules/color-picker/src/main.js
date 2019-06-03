@@ -192,6 +192,7 @@ class ColorPicker extends Component {
       this.DROPDOWN = Dropdown.of(
         this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
         {
+          ...this.options.dropdown,
           reference: this.options.touchOff
             ? this.options.touchOff
             : this.element,

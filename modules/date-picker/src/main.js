@@ -188,7 +188,7 @@ class DatePicker extends Component {
     this.setValue(false)
 
     // if (!this.isMobile) {
-    this.initDropdown()
+    this.initDropdown(this.options.dropdown)
     // }
     if (this.options.clearable) {
       this.CLEARABLE = new Clearable(this)
@@ -1359,11 +1359,12 @@ class DatePicker extends Component {
     return null
   }
 
-  initDropdown() {
+  initDropdown(options) {
     if (this.options.inline === true) {
       return false
     }
     this.DROPDOWN = Dropdown.of(this.$inputIcon, {
+      ...options,
       reference: this.$inputGroup,
       target: this.$dropdown,
       onShow: () => {

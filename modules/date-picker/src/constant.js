@@ -92,6 +92,9 @@ export const defaults = {
   clearable: false,
   alwaysShow: false, // true or false
   onceClick: false, // true or false
+  dropdown: {
+    placement: 'bottom-start'
+  },
 
   min: null, // min: '2012-12-1',//null|'today'|days|Date with (yyyy-mm-dd)
   max: null, // max: '2013-10-1',//null|'today'|days|Date with (yyyy-mm-dd)

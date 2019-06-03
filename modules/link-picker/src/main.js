@@ -195,11 +195,12 @@ class LinkPicker extends Component {
         }
       }
     )
-    this.initDropdown()
+    this.initDropdown(this.options.dropdown)
   }
 
-  initDropdown() {
+  initDropdown(options = {}) {
     this.DROPDOWN = Dropdown.of(this.$empty, {
+      ...options,
       reference: this.$trigger,
       target: this.$dropdown,
       hideOutClick: false,

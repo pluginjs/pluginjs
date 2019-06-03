@@ -7,7 +7,6 @@ $colorPicker: "pj-colorPicker" !default;
 $gradientPicker-border-width: 1px !default;
 $gradientPicker-preview-span-left: calc(50% - #{$gradientPicker-border-width}) !default;
 
-$gradientPicker-width: 192px !default;
 // panel
 $gradientPicker-panel-width: 290px !default;
 // preview
@@ -31,7 +30,6 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
 .#{$gradientPicker} {
   &-trigger {
     position: relative;
-    width: $gradientPicker-width;
   }
 
   &-input {

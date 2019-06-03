@@ -3,7 +3,6 @@
 // Vars
 // =====================
 $colorSelector: "pj-colorSelector" !default;
-$colorSelector-width: 192px !default;
 
 $colorSelector-border-width: 1px !default;
 $colorSelector-border-style: solid !default;
@@ -43,7 +42,6 @@ $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
 .#{$colorSelector}{
   &-trigger {
     position: relative;
-    width: $colorSelector-width;
   }
 
   &-input {

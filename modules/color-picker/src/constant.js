@@ -104,6 +104,9 @@ export const defaults = {
   clearable: false,
   clickWindowHide: true,
   touchOff: null,
+  dropdown: {
+    placement: 'bottom-start' // top
+  },
   module: {
     saturation: true,
     hue: true,

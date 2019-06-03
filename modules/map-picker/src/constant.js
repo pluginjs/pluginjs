@@ -61,6 +61,9 @@ export const defaults = {
     zoom: 12,
     libraries: 'places'
   },
+  dropdown: {
+    placement: 'bottom-start' // top
+  },
   markerOptions: { draggable: true },
   templates: {
     trigger() {

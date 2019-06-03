@@ -59,6 +59,9 @@ export const defaults = {
   placeholder: 'Click to Add Link',
   locale: 'en',
   disabled: false,
+  dropdown: {
+    placement: 'bottom-start' // top
+  },
   type: {
     value: 'internal',
     template() {

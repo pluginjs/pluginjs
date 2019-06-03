@@ -62,6 +62,9 @@ export const defaults = {
   localeFallbacks: true,
   height: 330,
   disabled: false,
+  dropdown: {
+    placement: 'bottom-start' // top
+  },
 
   templates: {
     main() {

@@ -101,7 +101,7 @@ class FontEditor extends Component {
       this.TRIGGER.$fillContentName.textContent = this.value.fontFamily.font
     }
 
-    this.initDropdown()
+    this.initDropdown(this.options.dropdown)
     this.bind()
 
     if (this.element.disabled || this.options.disabled) {
@@ -113,11 +113,10 @@ class FontEditor extends Component {
     this.trigger(EVENTS.READY)
   }
 
-  initDropdown() {
+  initDropdown(options) {
     const that = this
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
-      theme: 'dafault',
-      placement: 'bottom-start',
+      ...options,
       reference: this.TRIGGER.$trigger,
       target: this.$Panel,
       hideOutClick: true,

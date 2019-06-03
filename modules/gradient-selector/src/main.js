@@ -179,13 +179,14 @@ class GradientSelector extends Component {
     this.$trigger = query(`.${this.classes.TRIGGERPANEL}`, this.$panel)
     this.$container = query(`.${this.classes.CONTAINERPANEL}`, this.$panel)
 
-    this.setupDropdown()
+    this.setupDropdown(this.options.dropdown)
     this.setupCollection()
     this.setupGradientPicker()
   }
 
-  setupDropdown() {
+  setupDropdown(options) {
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
+      ...options,
       target: this.$panel,
       reference: this.TRIGGER.$trigger,
       templates: this.options.template,

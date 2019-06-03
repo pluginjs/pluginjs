@@ -4,8 +4,6 @@
 $colorPicker: "pj-colorPicker" !default;
 $select: "pj-select" !default;
 
-$colorPicker-width: 192px !default;
-
 $colorPicker-preview-width: 45px !default;
 $colorPicker-preview-height: 32px !default;
 
@@ -31,7 +29,6 @@ $colorPicker-mask-zindex: $colorPicker-panel-zindex - 1 !default;
 .#{$colorPicker} {
   &-trigger {
     position: relative;
-    width: $colorPicker-width;
   }
 
   &-input {

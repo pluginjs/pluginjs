@@ -75,6 +75,10 @@ export const defaults = {
   locale: 'en',
   localeFallbacks: true,
   disabled: false,
+  dropdown: {
+    theme: 'dafault',
+    placement: 'bottom-start'
+  },
   fontFamily: {
     value: { source: 'system', font: 'Arial' },
     template() {

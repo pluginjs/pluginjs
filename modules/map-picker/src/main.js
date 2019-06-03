@@ -115,12 +115,13 @@ class MapPicker extends Component {
     this.$wrap.append(this.$dropdown)
     this.buildPanelItem()
     // this.buildPop()
-    this.initDropdown()
+    this.initDropdown(this.options.dropdown)
   }
 
-  initDropdown() {
+  initDropdown(options = {}) {
     const that = this
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
+      ...options,
       reference: that.TRIGGER.$trigger,
       // placement: 'bottom-left',
       target: this.$dropdown,

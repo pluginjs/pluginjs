@@ -103,6 +103,9 @@ export const defaults = {
   module: ['collection', 'solid', 'gradient'], // 'collection', 'solid', 'gradient'
   data: null, // colors in the scheme and your favorite colors.  example: {scheme:{'Primary':'#55a4f2','fontColor':'#ccc','bgColor':'#f2a654','borderColor':'#f1f1f1'},favorite:['red':'red','brown':'brown','lightblue':'lightblue','green':'green']}
   manage() {},
+  dropdown: {
+    placement: 'bottom-start'
+  },
   templates: {
     wrap() {
       return '<div class="{class}"></div>'

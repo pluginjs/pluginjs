@@ -350,6 +350,7 @@ class GradientPicker extends Component {
       this.DROPDOWN = Dropdown.of(
         this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
         {
+          ...this.options.dropdown,
           target: this.$panel,
           reference: this.options.touchOff
             ? this.options.touchOff

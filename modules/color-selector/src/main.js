@@ -230,7 +230,7 @@ class ColorSelector extends Component {
     this.$container = query(`.${this.classes.PANELCONTAINER}`, this.$panel)
 
     // init Popper
-    this.setupDropdown()
+    this.setupDropdown(this.options.dropdown)
   }
 
   initFrame() {
@@ -245,8 +245,9 @@ class ColorSelector extends Component {
     this.initPanel()
   }
 
-  setupDropdown() {
+  setupDropdown(options) {
     this.DROPDOWN = new Dropdown(this.PREVIEW.element, {
+      ...options,
       reference: this.element,
       target: this.$panel,
       hideOnSelect: false,
