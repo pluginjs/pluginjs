@@ -77,6 +77,9 @@ export const defaults = {
   sources: ['YouTube', 'Vimeo', 'Local File'],
   disabled: false,
   date: null,
+  dropdown: {
+    placement: 'bottom-start'
+  },
   templates: {
     dropdown() {
       return `<div class='{classes.DROPDOWN}'>

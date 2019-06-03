@@ -15,8 +15,10 @@ $unitsRange-range-width: 200px;
   align-items: center;
 
   .#{$range} {
+    width: 100%;
+    
     &-control {
-      width: $unitsRange-range-width;
+      width: 100%;
     }
   }
 

@@ -205,6 +205,7 @@ class VideoPicker extends Component {
 
     // init source dropdown
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
+      ...this.options.dropdown,
       target: this.$dropdown,
       reference: this.TRIGGER.element,
       templates: this.options.template,

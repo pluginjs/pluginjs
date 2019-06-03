@@ -52,7 +52,7 @@ export const defaults = {
   min: null,
   step: 30,
   dropdown: {
-    placement: 'bottom' // top
+    placement: 'bottom-start' // top
   },
   parse(value) {
     return value
