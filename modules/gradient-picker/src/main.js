@@ -578,7 +578,7 @@ class GradientPicker extends Component {
     this.tempColor = colorData.toRGBA()
 
     this.update(false)
-    this.trigger(EVENTS.COLORCHANGE, colorData)
+    this.trigger(EVENTS.COLORCHANGE, colorData, this.color)
   }
 
   openPanel() {

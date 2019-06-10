@@ -282,7 +282,7 @@ class ColorPicker extends Component {
     )
   }
 
-  setColor(val) {
+  setColor(val, trigger = true) {
     if (!val) {
       val = this.color
     }
@@ -301,8 +301,9 @@ class ColorPicker extends Component {
     if (!this.options.inline) {
       this.PREVIEW.update(color)
     }
-
-    this.trigger(EVENTS.CHANGECOLOR, color, classify)
+    if (trigger) {
+      this.trigger(EVENTS.CHANGECOLOR, color, classify)
+    }
   }
 
   setInput(val) {
@@ -361,8 +362,7 @@ class ColorPicker extends Component {
       }
     } else {
       this.color = this.oldColor
-
-      this.setColor(this.color, true)
+      this.setColor(this.color, trigger)
     }
     return null
   }
@@ -388,14 +388,14 @@ class ColorPicker extends Component {
     this.enter('save')
     if (isNull(val)) {
       this.color = this.options.defaultColor || '#000'
-      this.setColor(this.color)
+      this.setColor(this.color, trigger)
       if (!this.options.inline) {
         this.PREVIEW.update('transparent')
       }
       this.element.value = ''
     } else {
       this.color = val
-      this.setColor(val)
+      this.setColor(val, trigger)
       this.update(trigger)
     }
 
