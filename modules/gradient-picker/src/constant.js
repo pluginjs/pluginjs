@@ -64,6 +64,7 @@ export const defaults = {
   clearable: false,
   clickWindowHide: true,
   touchOff: null,
+  reference: null,
   dropdown: {
     placement: 'bottom-start' // top
   },

@@ -193,8 +193,8 @@ class ColorPicker extends Component {
         this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
         {
           ...this.options.dropdown,
-          reference: this.options.touchOff
-            ? this.options.touchOff
+          reference: this.options.reference
+            ? this.options.reference
             : this.element,
           target: this.$panel,
           hideOnSelect: false,

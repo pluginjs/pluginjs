@@ -34,6 +34,10 @@ $connect-active-bg: $gray-lightest !default;
     position: relative;
     box-sizing: border-box;
     display: flex;
+
+    .pj-select {
+      width: 65px;
+    }
   }
 
   &-connect {
@@ -127,6 +131,4 @@ $connect-active-bg: $gray-lightest !default;
   }
 }
 
-.pj-select {
-  width: 65px !important;
-}
+
