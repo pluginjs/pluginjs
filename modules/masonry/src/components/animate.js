@@ -77,7 +77,7 @@ class Animate {
 
   getElement(chunk) {
     const $el = chunk.element
-    // console.log(chunk.movePosition)
+
     setStyle(
       {
         left: `${chunk.movePosition.x}px`,

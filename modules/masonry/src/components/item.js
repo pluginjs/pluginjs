@@ -1,6 +1,8 @@
+import { transitionEndEvent } from '@pluginjs/feature'
 import { wrap, query } from '@pluginjs/dom'
 import { addClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
+import { bindEventOnce } from '@pluginjs/events'
 
 import ImageLoader from '@pluginjs/image-loader'
 import Loader from '@pluginjs/loader'
@@ -116,6 +118,23 @@ class Item {
           parseFloat(getStyle('left', this.element), 10)}px, ${position.y -
           parseFloat(getStyle('top', this.element), 10)}px, 0)`,
         transition: `transform ${duration}ms`
+      },
+      this.element
+    )
+
+    bindEventOnce(
+      transitionEndEvent(),
+      () => {
+        setStyle(
+          {
+            left: `${position.x}px`,
+            top: `${position.y}px`
+          },
+          this.element
+        )
+
+        this.element.style.removeProperty('transition')
+        this.element.style.removeProperty('transform')
       },
       this.element
     )
