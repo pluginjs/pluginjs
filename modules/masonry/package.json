@@ -1,0 +1,87 @@
+{
+  "name": "@pluginjs/masonry",
+  "description": "A flexible modern masonry js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://pluginjs.com",
+  "repository": {
+    "url": "git@github.com:pluginjs/pluginjs.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/pluginjs/issues"
+  },
+  "version": "0.0.1",
+  "category": "media",
+  "main": "dist/masonry.common.js",
+  "module": "dist/masonry.esm.js",
+  "umd": "dist/masonry.js",
+  "unpkg": "dist/masonry.js",
+  "jsdelivr": "dist/masonry.js",
+  "source": "src/main.js",
+  "style": "dist/masonry.css",
+  "sass": "src/css/masonry.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "npm run build:js & npm run build:scss",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "npm run lint:js & npm run lint:scss",
+    "lint:js": "eslint ./src/**/*.js --fix",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublishOnly": "npm run build",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/classes": "^0.7.13",
+    "@pluginjs/component": "^0.7.11",
+    "@pluginjs/decorator": "^0.7.15",
+    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/dropdown": "^0.7.22",
+    "@pluginjs/events": "^0.7.13",
+    "@pluginjs/filters": "^0.7.23",
+    "@pluginjs/image-loader": "^0.7.13",
+    "@pluginjs/is": "^0.7.12",
+    "@pluginjs/loader": "^0.7.15",
+    "@pluginjs/styled": "^0.7.14",
+    "@pluginjs/template": "^0.7.13",
+    "@pluginjs/utils": "^0.7.13",
+    "animejs": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@pluginjs/browserslist-config": "^1.2.8",
+    "@pluginjs/cli": "^0.7.11",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rename": "^1.0.4",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "globals": {
+    "animejs": "anime"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testURL": "http://localhost",
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
+}

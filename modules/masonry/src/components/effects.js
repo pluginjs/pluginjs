@@ -1,8 +1,4 @@
-import { isEmptyObject } from '@pluginjs/is'
 import anime from 'animejs'
-import { setStyle } from '@pluginjs/styled'
-import { setData, getData } from '@pluginjs/dom'
-import { deepMerge } from '@pluginjs/utils'
 
 const EFFECTS = {
   bounce: {
@@ -34,11 +30,7 @@ const EFFECTS = {
       delay(el, i) {
         return i * 15
       },
-      opacity: {
-        value: [0, 1],
-        duration: 300,
-        easing: 'linear'
-      },
+      opacity: [0, 1],
       translateX() {
         return [anime.random(0, 1) === 0 ? 100 : -100, 0]
       },
@@ -131,14 +123,8 @@ const EFFECTS = {
       delay(el, i) {
         return i * 20
       },
-      opacity: {
-        value: [0, 1],
-        duration(el, i) {
-          return 250 + i * 50
-        },
-        easing: 'linear'
-      },
-      translateY: [-400, 0]
+      opacity: [0, 1],
+      translateY: [-200, 0]
     }
   },
   fadeInUp: {
@@ -156,14 +142,8 @@ const EFFECTS = {
       delay(el, i) {
         return i * 20
       },
-      opacity: {
-        value: [0, 1],
-        duration(el, i) {
-          return 250 + i * 50
-        },
-        easing: 'linear'
-      },
-      translateY: [400, 0]
+      opacity: [0, 1],
+      translateY: [200, 0]
     }
   },
   fadeInLeft: {
@@ -176,11 +156,7 @@ const EFFECTS = {
       delay(el, i) {
         return i * 20
       },
-      opacity: {
-        value: [0, 1],
-        duration: 600,
-        easing: 'linear'
-      },
+      opacity: [0, 1],
       translateX: [-500, 0],
       rotateZ: [15, 0]
     }
@@ -195,11 +171,7 @@ const EFFECTS = {
       delay(el, i) {
         return i * 20
       },
-      opacity: {
-        value: [0, 1],
-        duration: 600,
-        easing: 'linear'
-      },
+      opacity: [0, 1],
       translateX: [500, 0],
       rotateZ: [-15, 0]
     }
@@ -232,11 +204,7 @@ const EFFECTS = {
       delay(el, i) {
         return i * 35
       },
-      opacity: {
-        value: [0, 1],
-        duration: 600,
-        easing: 'linear'
-      },
+      opacity: [0, 1],
       translateX: [100, 0],
       translateY: [-100, 0],
       translateZ: [400, 0],
@@ -254,16 +222,12 @@ const EFFECTS = {
       delay(el, i) {
         return i * 50
       },
-      opacity: {
-        value: [0, 1],
-        duration: 700,
-        easing: 'linear'
-      },
+      opacity: [0, 1],
       translateZ: {
         value: [-3000, 0],
         duration: 1000
       },
-      rotateY: [-270, 0]
+      rotateY: [-180, 0]
     }
   },
   zoomIn: {
@@ -300,115 +264,4 @@ const EFFECTS = {
   }
 }
 
-class Animate {
-  constructor(instanced) {
-    this.api = instanced
-    this.effects = deepMerge({}, EFFECTS, this.api.options.effects)
-    this.effectName = isEmptyObject(this.effects[this.api.options.animate])
-      ? 'fadeInUp'
-      : this.api.options.animate
-    this.config = deepMerge({}, this.effects[this.effectName].animeOpts)
-  }
-
-  loading(chunks, callback) {
-    // get chunks element
-    const applyEls = this.getEls(chunks, this.effectName)
-
-    // handle config
-    applyEls.forEach((el, index) => {
-      const config = Object.assign({}, this.config, {
-        duration: this.api.options.duration,
-        delay: index * this.api.options.delay,
-        targets: el
-      })
-
-      const animation = anime(config)
-      animation.begin = () => {
-        // addClass(this.api.classes.SHOW, $(el))
-        // el.style.display = 'block'
-      }
-
-      if (applyEls.length === index + 1) {
-        animation.begin = () => {
-          if (callback) {
-            callback()
-          }
-        }
-      }
-
-      setData('animeApi', animation, el)
-    })
-    // run the animation
-    anime(this.config)
-  }
-
-  show(chunk) {
-    const $el = this.getEl(chunk)
-    const config = deepMerge({}, this.config, {
-      duration: this.api.options.duration,
-      targets: $el
-    })
-
-    const animation = anime(config)
-
-    setData('animeApi', animation, $el)
-  }
-
-  hide(chunk) {
-    const $el = chunk.$el
-    const animation = getData('animeApi', $el)
-
-    if (!animation) {
-      return
-    }
-
-    animation.autoplay = false
-    animation.reverse()
-    animation.play()
-  }
-
-  getEl(chunk) {
-    const $el = chunk.$el
-
-    setStyle(
-      {
-        left: `${chunk.movePosition.x}px`,
-        top: `${chunk.movePosition.y}px`
-      },
-      $el
-    )
-
-    chunk.info = Object.assign({}, chunk.info, chunk.movePosition)
-
-    return $el
-  }
-
-  getEls(chunks, effectName) {
-    const els = []
-    const effect = this.effects[effectName]
-
-    chunks.forEach(chunk => {
-      const $el = this.getEl(chunk)
-      let elOpts = Object.assign({}, this.effects[effectName].elOpts)
-      if (Object.keys(elOpts).length > 0) {
-        elOpts = Object.assign({}, elOpts, { opacity: 0 })
-
-        setStyle(elOpts, $el)
-      }
-
-      els.push($el)
-    })
-
-    // reset chunks sort
-    if (
-      effect.resetChunksSort &&
-      typeof effect.resetChunksSort === 'function'
-    ) {
-      els.sort(effect.resetChunksSort)
-    }
-
-    return els
-  }
-}
-
-export default Animate
+export default EFFECTS

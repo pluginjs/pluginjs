@@ -12,14 +12,14 @@ class Masonry {
     addClass(this.api.classes.MASONRYMODEL, this.api.element)
     this.handleState()
     this.height = this.getHeight()
-
+    console.log('height', this.height)
     this.bind()
   }
 
   handleState() {
     this.columnCount = this.getColumnCount()
     this.columnHeights = this.initColumnHeights()
-
+    console.log('columnHeights', this.columnHeights)
     this.api.chunks.forEach(chunk => {
       this.setItemSize(chunk)
     })
