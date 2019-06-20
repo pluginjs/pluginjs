@@ -3,9 +3,8 @@ import Masonry from '@pluginjs/masonry'
 
 const element = query('#toolbar .masonry')
 Masonry.of(element, {
-  /** options **/
   itemSelector: '.masonry-item',
-  maxColumn: 6,
+  maxColumn: 5,
   gutter: 20,
   toolbar: {
     filters: true,

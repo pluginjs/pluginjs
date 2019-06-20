@@ -4,3 +4,24 @@
 @import "@pluginjs/loader/src/css/loader.scss";
 @import "@pluginjs/dropdown/src/css/dropdown.scss";
 @import "@pluginjs/masonry/src/css/masonry.scss";
+
+* {
+	box-sizing: border-box;
+}
+
+.masonry-item {
+	border: 1px solid #999;
+}
+
+p {
+	margin: 10px;
+	margin-right: 0;
+}
+
+#add .masonry-item {
+	border: none;
+}
+
+.pj-masonry-image-error {
+	background-color: #ededed;
+}

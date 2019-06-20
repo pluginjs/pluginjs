@@ -3,6 +3,7 @@ import { wrap, query } from '@pluginjs/dom'
 import { addClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEventOnce } from '@pluginjs/events'
+import { isObject } from '@pluginjs/is'
 
 import ImageLoader from '@pluginjs/image-loader'
 import Loader from '@pluginjs/loader'
@@ -50,13 +51,19 @@ class Item {
       y: this.info.y
     }
 
-    this.sort = this.options.sort ? JSON.parse(this.options.sort) : null
+    this.sort = this.options.sort ? this.parseSort() : null
 
     this.tags = this.options.tags
       ? this.instance.options.parseTagsStr(this.options.tags)
       : null
 
     this.element.dataset.index = this.index
+  }
+
+  parseSort() {
+    return isObject(this.options.sort)
+      ? this.options.sort
+      : JSON.parse(this.options.sort)
   }
 
   initLoader(wrapper, img) {

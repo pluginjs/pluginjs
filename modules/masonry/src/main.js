@@ -482,12 +482,14 @@ class Masonry extends Component {
     }
 
     let addItems = ''
+    const chunkOptions = []
 
     const tempWrap = document.createElement('div')
 
     datas.forEach(data => {
       const html = data.html ? data.html : ''
       const customClass = data.class ? data.class : ''
+      const chunkOption = data.options ? data.options : {}
       const chunk = templateEngine.render(
         this.options.templates.chunk.call(this),
         {
@@ -498,6 +500,7 @@ class Masonry extends Component {
       )
 
       addItems += chunk
+      chunkOptions.push(chunkOption)
     })
 
     append(addItems, tempWrap)
@@ -512,9 +515,13 @@ class Masonry extends Component {
       append(addItem, this.element)
       this.$items.push(addItem)
       this.addChunks.push(
-        new Item(this, addItem, {
-          index: oldItemsLength + index
-        })
+        new Item(
+          this,
+          addItem,
+          Object.assign({}, chunkOptions[index], {
+            index: oldItemsLength + index
+          })
+        )
       )
     })
 
@@ -525,8 +532,6 @@ class Masonry extends Component {
     this.handleState()
 
     this.height = this.getHeight()
-
-    this.initToolbar()
 
     this.loading(this.addChunks)
   }

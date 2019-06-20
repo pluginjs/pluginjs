@@ -28,11 +28,18 @@ export const classes = {
   REVERSEMIN: '{namespace}-reverse-min'
 }
 
-export const methods = ['enable', 'disable', 'destroy']
+export const methods = [
+  'enable',
+  'disable',
+  'destroy',
+  'add',
+  'getHeight',
+  'getWidth'
+]
 
 export const defaults = {
   theme: null,
-  itemSelector: null, // [selector / null] // select the masonry item element. if not, select children of the element.
+  itemSelector: null, // [selector / null] null => select children of the element.
   maxColumn: 5, // set the max column number
   minWidth: 200, // item min width, unit: px
   gutter: 0,
