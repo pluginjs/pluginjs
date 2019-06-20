@@ -16,10 +16,9 @@ export default class Switcher {
     )
 
     this.$label = query(`.${instance.classes.SWITCHERLABEL}`, this.element)
-
-    this.DROPDOWN = Dropdown.of(this.element, {
+    this.DROPDOWN = Dropdown.of(this.element.children[0], {
       target: query(`.${instance.classes.SWITCHERDROPDOWN}`, this.element),
-      placement: 'top-start',
+      placement: 'top',
       value: instance.current.name,
       data: instance.getPacks().map(pack => {
         return {
@@ -32,9 +31,11 @@ export default class Switcher {
       },
       keyboard: instance.options.keyboard,
       onChange: value => {
-        instance.switchPack(value)
-        const pack = instance.getPack(value)
-        html(this.getLabel(pack), this.$label)
+        if (value) {
+          const pack = instance.getPack(value)
+          instance.switchPack(value)
+          html(this.getLabel(pack), this.$label)
+        }
       }
     })
   }
