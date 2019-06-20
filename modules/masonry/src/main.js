@@ -5,6 +5,7 @@ import { isArray } from '@pluginjs/is'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
+import { debounce } from '@pluginjs/utils'
 
 import {
   eventable,
@@ -210,7 +211,7 @@ class Masonry extends Component {
 
     this.chunks.forEach(chunk => {
       const width = this.getChunkWidth()
-      console.log('width', width)
+
       const size = {
         width
       }
@@ -250,7 +251,7 @@ class Masonry extends Component {
       position.x = (chunk.info.width + gutter) * minCol
       position.y = this.columnHeights[minCol]
 
-      this.columnHeights[minCol] += chunk.info.height + gutter
+      this.columnHeights[minCol] += Math.round(chunk.info.height + gutter)
 
       if (this.options.direction.indexOf('Right') >= 0) {
         position.x = this.width - chunk.info.width - position.x
@@ -297,7 +298,7 @@ class Masonry extends Component {
 
   getChunkWidth() {
     const gutter = parseFloat(this.options.gutter, 10)
-    // return (this.width - (this.columnCount - 1) * gutter) / this.columnCount
+    // return Math.round((this.width - (this.columnCount - 1) * gutter) / this.columnCount)
     return `calc((100% - ${(this.columnCount - 1) * gutter}px) / ${
       this.columnCount
     })`
@@ -364,12 +365,19 @@ class Masonry extends Component {
     this.trigger(EVENTS.REVERSE)
   }
 
-  resize() {
+  customResize() {
     this.width = this.getWidth()
     this.trigger(EVENTS.RESIZE, this.width)
   }
 
   bind() {
+    window.addEventListener(
+      'resize',
+      debounce(() => {
+        this.customResize()
+      }, 150)
+    )
+
     bindEvent(
       `${this.namespace}:${this.events.RESIZE}`,
       (e, instance, data) => {

@@ -18,14 +18,14 @@ class Item {
 
     this.index = this.options.index
     this.width = parseFloat(getStyle('width', this.element), 10)
-    console.log('width', this.width)
+
     this.img = query('img', this.element)
 
     if (this.img) {
       const width = this.img.getAttribute('width')
       const height = this.img.getAttribute('height')
-      // console.log('ratio',height/width)
-      const ratio = (height / width) * 100
+
+      const ratio = Math.round((height / width) * 100)
 
       const wrapper = wrap(
         `<div class="${this.instance.classes.IMGWRAPPER}"></div>`,
@@ -90,8 +90,6 @@ class Item {
   setSize(size) {
     const { width } = size
 
-    // const duration = this.getDuration()
-
     setStyle(
       {
         width
@@ -99,6 +97,7 @@ class Item {
       this.element
     )
 
+    size.width = parseFloat(getStyle('width', this.element), 10)
     size.height = parseFloat(getStyle('height', this.element), 10)
 
     this.info = Object.assign({}, this.info, size)
