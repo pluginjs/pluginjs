@@ -3,14 +3,14 @@
   "name": "color-picker-samples",
   "description": "Simple color-picker example",
   "license": "GPL-3.0",
-  "version": "1.1.27",
+  "version": "1.1.28",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
-    "@pluginjs/color-picker": "^0.7.27",
+    "@pluginjs/color-picker": "^0.7.28",
     "@pluginjs/dom": "^0.7.14",
     "@pluginjs/icons": "^0.7.3",
     "@pluginjs/styles": "^0.7.7"
