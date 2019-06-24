@@ -9,15 +9,42 @@ import ObjectValuesPolyfill from './Object/values.js'
 import ObjectEntriesPolyfill from './Object/entries.js'
 import IntersectionObserverPolyfill from './IntersectionObserver.js'
 
-export {
-  ArrayIncludesPolyfill,
-  ArrayFilterPolyfill,
-  ArrayFindPolyfill,
-  ArrayFromPolyfill,
-  StringIncludesPolyfill,
-  ObjectAssignPolyfill,
-  ObjectKeysPolyfill,
-  ObjectValuesPolyfill,
-  ObjectEntriesPolyfill,
-  IntersectionObserverPolyfill
+export const arrayIncludesPolyfill = () => {
+  ArrayIncludesPolyfill()
+}
+
+export const arrayFilterPolyfill = () => {
+  ArrayFilterPolyfill()
+}
+
+export const arrayFindPolyfill = () => {
+  ArrayFindPolyfill()
+}
+
+export const arrayFromPolyfill = () => {
+  ArrayFromPolyfill()
+}
+
+export const stringIncludesPolyfill = () => {
+  StringIncludesPolyfill()
+}
+
+export const objectAssignPolyfill = () => {
+  ObjectAssignPolyfill()
+}
+
+export const objectKeysPolyfill = () => {
+  ObjectKeysPolyfill()
+}
+
+export const objectValuesPolyfill = () => {
+  ObjectValuesPolyfill()
+}
+
+export const objectEntriesPolyfill = () => {
+  ObjectEntriesPolyfill()
+}
+
+export const intersectionObserverPolyfill = () => {
+  IntersectionObserverPolyfill()
 }
