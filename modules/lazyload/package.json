@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.16",
+  "version": "0.7.17",
   "category": "media",
   "main": "dist/lazyload.common.js",
   "module": "dist/lazyload.esm.js",
@@ -43,7 +43,7 @@
     "@pluginjs/events": "^0.7.13",
     "@pluginjs/image-loader": "^0.7.13",
     "@pluginjs/styled": "^0.7.14",
-    "@pluginjs/viewport": "^0.7.15"
+    "@pluginjs/viewport": "^0.7.16"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

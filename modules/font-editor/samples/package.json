@@ -3,7 +3,7 @@
   "name": "font-editor-samples",
   "description": "Simple font-editor example",
   "license": "GPL-3.0",
-  "version": "1.1.25",
+  "version": "1.1.26",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.14",
-    "@pluginjs/font-editor": "^0.7.25",
+    "@pluginjs/font-editor": "^0.7.26",
     "@pluginjs/icons": "^0.7.3",
     "@pluginjs/styles": "^0.7.7"
   },
