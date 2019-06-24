@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import '@pluginjs/polyfills/IntersectionObserver'
+import { intersectionObserverPolyfill } from '@pluginjs/polyfills'
 import { eventable, register, optionable } from '@pluginjs/decorator'
 import { isNumber, isString } from '@pluginjs/is'
 import { query } from '@pluginjs/dom'
@@ -9,6 +9,8 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+
+intersectionObserverPolyfill()
 
 @eventable(EVENTS)
 @optionable(DEFAULTS, true)

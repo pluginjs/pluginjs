@@ -1,31 +1,33 @@
-/* eslint-disable */
-if(!('filter' in Array.prototype)) {
-Array.prototype.filter = function filter(callback) {
-	if (this === undefined || this === null) {
-		throw new TypeError(this + ' is not an object');
+export default function() {
+  /* eslint-disable */
+	if(!('filter' in Array.prototype)) {
+		Array.prototype.filter = function filter(callback) {
+			if (this === undefined || this === null) {
+				throw new TypeError(this + ' is not an object');
+			}
+
+			if (typeof callback !== 'function') {
+				throw new TypeError(callback + ' is not a function');
+			}
+
+			var
+			object = Object(this),
+			scope = arguments[1],
+			arraylike = object instanceof String ? object.split('') : object,
+			length = Math.max(Math.min(arraylike.length, 9007199254740991), 0) || 0,
+			index = -1,
+			result = [],
+			element;
+
+			while (++index < length) {
+				element = arraylike[index];
+
+				if (index in arraylike && callback.call(scope, element, index, object)) {
+					result.push(element);
+				}
+			}
+
+			return result;
+		};
 	}
-
-	if (typeof callback !== 'function') {
-		throw new TypeError(callback + ' is not a function');
-	}
-
-	var
-	object = Object(this),
-	scope = arguments[1],
-	arraylike = object instanceof String ? object.split('') : object,
-	length = Math.max(Math.min(arraylike.length, 9007199254740991), 0) || 0,
-	index = -1,
-	result = [],
-	element;
-
-	while (++index < length) {
-		element = arraylike[index];
-
-		if (index in arraylike && callback.call(scope, element, index, object)) {
-			result.push(element);
-		}
-	}
-
-	return result;
-};
 }

@@ -1,10 +1,23 @@
-import './Array/prototype/includes.js'
-import './Array/prototype/filter.js'
-import './Array/prototype/find.js'
-import './Array/from.js'
-import './String/prototype/includes.js'
-import './Object/assign.js'
-import './Object/keys.js'
-import './Object/values.js'
-import './Object/entries.js'
-import './IntersectionObserver.js'
+import ArrayIncludesPolyfill from './Array/prototype/includes.js'
+import ArrayFilterPolyfill from './Array/prototype/filter.js'
+import ArrayFindPolyfill from './Array/prototype/find.js'
+import ArrayFromPolyfill from './Array/from.js'
+import StringIncludesPolyfill from './String/prototype/includes.js'
+import ObjectAssignPolyfill from './Object/assign.js'
+import ObjectKeysPolyfill from './Object/keys.js'
+import ObjectValuesPolyfill from './Object/values.js'
+import ObjectEntriesPolyfill from './Object/entries.js'
+import IntersectionObserverPolyfill from './IntersectionObserver.js'
+
+export {
+  ArrayIncludesPolyfill,
+  ArrayFilterPolyfill,
+  ArrayFindPolyfill,
+  ArrayFromPolyfill,
+  StringIncludesPolyfill,
+  ObjectAssignPolyfill,
+  ObjectKeysPolyfill,
+  ObjectValuesPolyfill,
+  ObjectEntriesPolyfill,
+  IntersectionObserverPolyfill
+}

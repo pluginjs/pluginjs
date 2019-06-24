@@ -1,3 +1,4 @@
+export default function() {
 /* eslint-disable */
 if(!('IntersectionObserver' in window &&
 'IntersectionObserverEntry' in window)) {
@@ -687,4 +688,6 @@ window.IntersectionObserver = IntersectionObserver;
 window.IntersectionObserverEntry = IntersectionObserverEntry;
 
 }(window, document));
+}
+
 }

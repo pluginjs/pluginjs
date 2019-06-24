@@ -1,5 +1,7 @@
 import { each } from '@pluginjs/utils'
-import '@pluginjs/polyfills/IntersectionObserver'
+import { IntersectionObserverPolyfill } from '@pluginjs/polyfills'
+
+IntersectionObserverPolyfill()
 
 export default class FontLoader {
   constructor(instance) {

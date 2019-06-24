@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
 import Component from '@pluginjs/component'
-import '@pluginjs/polyfills/IntersectionObserver'
+import { intersectionObserverPolyfill } from '@pluginjs/polyfills'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { attr, queryAll, query } from '@pluginjs/dom'
 import Pj from '@pluginjs/factory'
@@ -11,6 +11,9 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+
+console.log('111', intersectionObserverPolyfill)
+// IntersectionObserverPolyfill()
 
 @eventable(EVENTS)
 @stateable()
@@ -44,6 +47,8 @@ class ScrollSpy extends Component {
           .offsetHeight - this.menuHeight}px 0px`
       }
     )
+
+    console.log('observer', this.observer)
     this.observe()
     this.bind()
     this.enter('initialized')

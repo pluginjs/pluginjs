@@ -1,4 +1,4 @@
-import '@pluginjs/polyfills/IntersectionObserver'
+import { IntersectionObserverPolyfill } from '@pluginjs/polyfills'
 import Component from '@pluginjs/component'
 import Loader from '@pluginjs/loader'
 import {
@@ -27,6 +27,8 @@ import { isNumber, isString, isFunction } from '@pluginjs/is'
 import { getStyle, setStyle } from '@pluginjs/styled'
 import History from './history'
 // import 'whatwg-fetch'
+
+IntersectionObserverPolyfill()
 
 @translateable(TRANSLATIONS)
 @themeable()
