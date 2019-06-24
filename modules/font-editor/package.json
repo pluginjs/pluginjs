@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.24",
+  "version": "0.7.25",
   "category": "form",
   "main": "dist/font-editor.common.js",
   "module": "dist/font-editor.esm.js",
@@ -44,7 +44,7 @@
     "@pluginjs/dropdown": "^0.7.22",
     "@pluginjs/events": "^0.7.13",
     "@pluginjs/factory": "^0.7.13",
-    "@pluginjs/font-picker": "^0.7.24",
+    "@pluginjs/font-picker": "^0.7.25",
     "@pluginjs/is": "^0.7.12",
     "@pluginjs/pop-dialog": "^0.7.15",
     "@pluginjs/range": "^0.7.16",

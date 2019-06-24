@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.15",
+  "version": "0.7.16",
   "category": "scroll",
   "main": "dist/scroll-spy.common.js",
   "module": "dist/scroll-spy.esm.js",
@@ -38,7 +38,7 @@
     "@pluginjs/decorator": "^0.7.15",
     "@pluginjs/dom": "^0.7.14",
     "@pluginjs/factory": "^0.7.13",
-    "@pluginjs/polyfills": "^0.7.13"
+    "@pluginjs/polyfills": "^0.7.14"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

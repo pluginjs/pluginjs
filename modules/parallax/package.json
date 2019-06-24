@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.18",
+  "version": "0.7.19",
   "category": "scroll",
   "main": "dist/parallax.common.js",
   "module": "dist/parallax.esm.js",
@@ -50,7 +50,7 @@
     "@pluginjs/styled": "^0.7.14",
     "@pluginjs/template": "^0.7.13",
     "@pluginjs/utils": "^0.7.13",
-    "@pluginjs/viewport": "^0.7.14"
+    "@pluginjs/viewport": "^0.7.15"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

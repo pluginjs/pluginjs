@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.24",
+  "version": "0.7.25",
   "category": "form",
   "main": "dist/font-picker.common.js",
   "module": "dist/font-picker.esm.js",
@@ -45,7 +45,7 @@
     "@pluginjs/events": "^0.7.13",
     "@pluginjs/is": "^0.7.12",
     "@pluginjs/match": "^0.7.13",
-    "@pluginjs/polyfills": "^0.7.13",
+    "@pluginjs/polyfills": "^0.7.14",
     "@pluginjs/template": "^0.7.13",
     "@pluginjs/tooltip": "^0.7.15",
     "@pluginjs/utils": "^0.7.13"
