@@ -12,8 +12,7 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
-console.log('111', intersectionObserverPolyfill)
-// IntersectionObserverPolyfill()
+intersectionObserverPolyfill()
 
 @eventable(EVENTS)
 @stateable()
@@ -48,7 +47,6 @@ class ScrollSpy extends Component {
       }
     )
 
-    console.log('observer', this.observer)
     this.observe()
     this.bind()
     this.enter('initialized')

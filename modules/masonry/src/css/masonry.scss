@@ -9,6 +9,11 @@ $masonry-toolbar-margin-bottom: 30px;
 	position: relative;
 	overflow: hidden;
 
+	&-wrapper {
+		position: relative;
+		width: 100%;
+	}
+
 	&-chunk {
 		position: absolute;
 		transform-style: preserve-3d;
