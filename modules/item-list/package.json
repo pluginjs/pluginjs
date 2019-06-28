@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.15",
+  "version": "0.7.16",
   "category": "form",
   "main": "dist/item-list.common.js",
   "module": "dist/item-list.esm.js",
@@ -43,7 +43,7 @@
     "@pluginjs/dom": "^0.7.14",
     "@pluginjs/events": "^0.7.13",
     "@pluginjs/factory": "^0.7.13",
-    "@pluginjs/list": "^0.7.15",
+    "@pluginjs/list": "^0.7.16",
     "@pluginjs/template": "^0.7.13",
     "@pluginjs/utils": "^0.7.13"
   },

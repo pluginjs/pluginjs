@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.24",
+  "version": "0.7.25",
   "category": "form",
   "main": "dist/multi-select.common.js",
   "module": "dist/multi-select.esm.js",
@@ -44,7 +44,7 @@
     "@pluginjs/events": "^0.7.13",
     "@pluginjs/icons": "^0.7.3",
     "@pluginjs/is": "^0.7.12",
-    "@pluginjs/select": "^0.7.22",
+    "@pluginjs/select": "^0.7.23",
     "@pluginjs/template": "^0.7.13",
     "@pluginjs/utils": "^0.7.13"
   },
