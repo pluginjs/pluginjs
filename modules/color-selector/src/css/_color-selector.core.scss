@@ -45,7 +45,7 @@ $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
   }
 
   &-input {
-    width: 100% !important;
+    width: 100%;
   }
 
   &-clear {
@@ -101,7 +101,7 @@ $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
 
   .pj-colorPicker-panel,
   .pj-gradientPicker-panel {
-    border: none !important;
+    border: none;
   }
 
   &-panel-swicher {

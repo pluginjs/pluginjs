@@ -51,7 +51,7 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
       height: 100%;
 
       &-name {
-        display: none !important;
+        display: none;
       }
     }
   }
@@ -97,7 +97,7 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
 
       &-item {
         box-sizing: border-box;
-        margin-bottom: 0 !important;
+        margin-bottom: 0;
 
         &::before,
         &::after {

@@ -196,7 +196,7 @@ $datePicker-clear-right: 35px !default;
   &-dropdown {
     z-index: $datePicker-dropdown-zindex;
   }
-  
+
   .pj-dropdown {
     width: auto;
   }
@@ -281,6 +281,7 @@ $datePicker-clear-right: 35px !default;
   }
 
   &-inline {
+    .pj-input-group,
     .#{$datePicker}-input,
     .#{$datePicker}-icon {
       display: none;

@@ -79,7 +79,7 @@ export const defaults = {
   },
   keyboard: true,
   dropdown: {
-    placement: 'bottom' // top
+    placement: 'bottom-start' // top
   },
   tooltip: {
     trigger: 'hover'

@@ -5,8 +5,6 @@
 // =====================
 $list: "pj-list";
 
-$list-width: 240px;
-
 $list-padding: 16px;
 
 $list-font-size: $font-size-base;
@@ -43,7 +41,6 @@ $list-disabled-border-color: $disabled-color;
 // Skin
 // =====================
 .#{$list} {
-  min-width: $list-width;
   padding: $list-padding 0;
   font-family: $list-font-family;
   font-size: $list-font-size;
