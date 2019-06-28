@@ -3,7 +3,7 @@ import templateEngine from '@pluginjs/template'
 import { isArray } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { outerWidth, innerWidth } from '@pluginjs/styled'
+import { getStyle } from '@pluginjs/styled'
 import {
   parseHTML,
   children,
@@ -113,7 +113,7 @@ class Filters extends Component {
     $filters.forEach(($item, index) => {
       itemArr.push({
         $el: $item,
-        width: outerWidth(true, $item),
+        width: this.getOuterWidth($item),
         data: {
           label: $item.innerHTML,
           index
@@ -122,6 +122,19 @@ class Filters extends Component {
     })
 
     return itemArr
+  }
+
+  getOuterWidth(el) {
+    const { marginLeft, marginRight } = getStyle(
+      ['marginLeft', 'marginRight'],
+      el
+    )
+
+    return (
+      parseInt(marginLeft, 10) +
+      parseInt(marginRight, 10) +
+      parseFloat(getStyle('width', el), 10)
+    )
   }
 
   getItemsHtml(items) {
@@ -174,7 +187,8 @@ class Filters extends Component {
       const item = itemArr[index]
       removeClass(this.classes.HIDE, item.$el)
       tempWidth += item.width
-      if (tempWidth > this.getWidth()) {
+
+      if (Math.round(tempWidth) > Math.round(this.getWidth())) {
         nodeIndex = index - 1
         break
       }
@@ -236,14 +250,14 @@ class Filters extends Component {
   getFiltersWidth() {
     let count = 0
     this.$filters.forEach(item => {
-      count += outerWidth(item)
+      count += this.getOuterWidth(item)
     })
 
     return count
   }
 
   getWidth() {
-    return innerWidth(this.element)
+    return parseFloat(getStyle('width', this.element), 10)
   }
 
   unbind() {
