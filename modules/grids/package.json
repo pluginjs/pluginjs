@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.24",
+  "version": "0.7.25",
   "category": "media",
   "main": "dist/grids.common.js",
   "module": "dist/grids.esm.js",
@@ -43,7 +43,7 @@
     "@pluginjs/dom": "^0.7.14",
     "@pluginjs/dropdown": "^0.7.22",
     "@pluginjs/events": "^0.7.13",
-    "@pluginjs/filters": "^0.7.23",
+    "@pluginjs/filters": "^0.7.24",
     "@pluginjs/image-loader": "^0.7.13",
     "@pluginjs/is": "^0.7.12",
     "@pluginjs/loader": "^0.7.15",

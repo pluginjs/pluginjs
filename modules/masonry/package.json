@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "category": "media",
   "main": "dist/masonry.common.js",
   "module": "dist/masonry.esm.js",
@@ -44,7 +44,7 @@
     "@pluginjs/dropdown": "^0.7.22",
     "@pluginjs/events": "^0.7.13",
     "@pluginjs/feature": "^0.7.11",
-    "@pluginjs/filters": "^0.7.23",
+    "@pluginjs/filters": "^0.7.24",
     "@pluginjs/image-loader": "^0.7.13",
     "@pluginjs/is": "^0.7.12",
     "@pluginjs/loader": "^0.7.15",
