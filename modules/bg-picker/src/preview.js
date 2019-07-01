@@ -1,5 +1,5 @@
 import { removeClass, addClass } from '@pluginjs/classes'
-import { showElement, setStyle } from '@pluginjs/styled'
+import { setStyle } from '@pluginjs/styled'
 
 export default class Preview {
   constructor(instance) {
@@ -11,9 +11,7 @@ export default class Preview {
   set(image) {
     let thumbnailUrl
     this.setState(image)
-    this.returnFill(image)
     if (image === '' || typeof image === 'undefined') {
-      showElement(this.instance.TRIGGER.$fillImageName)
       setStyle('background-image', 'none', this.$image)
 
       setStyle('background-image', 'none', this.instance.TRIGGER.$fillImage)
@@ -24,7 +22,6 @@ export default class Preview {
       const IMG = new Image()
       IMG.onload = () => {
         this.instance.value.image = thumbnailUrl
-        this.returnFill(this.instance.value.image)
         setStyle(
           'background-image',
           `url('${this.instance.value.image}')`,
@@ -39,7 +36,6 @@ export default class Preview {
       }
       IMG.onerror = () => {
         this.instance.value.image = image
-        this.returnFill(image)
         this.update()
         setStyle('background-image', 'none', this.$image)
         setStyle('background-image', 'none', this.instance.TRIGGER.$fillImage)
@@ -53,18 +49,6 @@ export default class Preview {
       addClass(this.classes.WRITE, this.$wrap)
     } else {
       removeClass(this.classes.WRITE, this.$wrap)
-    }
-  }
-
-  returnFill(image) {
-    let imgName
-    if (!image || image === this.instance.options.image) {
-      this.instance.TRIGGER.$fillImageName.textContent = this.instance.translate(
-        'placeholder'
-      )
-    } else {
-      imgName = image.match(/([\S]+[/])([\S]+\w+$)/i)[2]
-      this.instance.TRIGGER.$fillImageName.textContent = imgName
     }
   }
 

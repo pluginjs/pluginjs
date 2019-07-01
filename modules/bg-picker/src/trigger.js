@@ -1,6 +1,5 @@
 import { compose } from '@pluginjs/utils'
 import { query } from '@pluginjs/dom'
-import { hideElement } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -16,11 +15,7 @@ export default class Trigger {
   initialize() {
     this.$trigger = query(`.${this.classes.TRIGGER}`, this.instance.$wrap)
     this.$empty = query(`.${this.classes.EMPTY}`, this.$trigger)
-
     this.$fill = query(`.${this.classes.FILL}`, this.$trigger)
-    this.$fillImageName = hideElement(
-      query(`.${this.classes.IMAGENAMEFILL}`, this.$fill)
-    )
     this.$fillImage = query(`.${this.classes.FILLIMAGE}`, this.$fill)
     this.$remove = query(`.${this.classes.REMOVE}`, this.$trigger)
     this.$edit = query(`.${this.classes.EDIT}`, this.$trigger)

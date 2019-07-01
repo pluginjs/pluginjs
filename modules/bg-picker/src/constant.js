@@ -91,6 +91,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   localeFallbacks: true,
+  hideOutClick: true,
   disabled: false,
   dropdown: {
     placement: 'bottom-start'
@@ -201,7 +202,6 @@ export const defaults = {
       '</div>' +
       '<div class="{classes.FILL}">' +
       '<div class="{classes.FILLIMAGE}">' +
-      '<div class="{classes.IMAGENAMEFILL}">{placeholder}</div>' +
       '</div>' +
       '</div>' +
       '<div class="{classes.TIGGERACTION}"><i class="{classes.EDIT} pj-icon pj-icon-edit"></i><i class="{classes.REMOVE} pj-icon pj-icon-trash"></i></div>' +

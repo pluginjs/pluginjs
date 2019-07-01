@@ -94,9 +94,8 @@ class BgPicker extends Component {
       theme: 'dafault',
       reference: this.TRIGGER.$trigger,
       target: this.$dropdown,
-      hideOutClick: true,
+      hideOutClick: this.options.hideOutClick,
       hideOnSelect: false,
-      templates: this.options.templates,
       onShow: () => {
         if (!this.DROPDOWN.is('builded')) {
           insertBefore(this.POSITION.$wrap, this.$control)
@@ -105,6 +104,16 @@ class BgPicker extends Component {
           insertBefore(this.SIZE.$wrap, this.$control)
           insertBefore(this.IMAGE.$wrap, this.$control)
         }
+      },
+      onHide: () => {
+        if (this.is('save')) {
+          this.set(this.value)
+          this.update()
+        } else {
+          this.val(this.oldValue)
+          this.update()
+        }
+        this.leave('save')
       }
     })
   }
@@ -113,25 +122,24 @@ class BgPicker extends Component {
     bindEvent(
       this.eventName('click'),
       e => {
-        if (
-          e.target === this.TRIGGER.$trigger ||
-          has(e.target, this.TRIGGER.$trigger) ||
-          e.target === this.$dropdown ||
-          has(e.target, this.$dropdown)
-        ) {
-          return
+        if (this.options.hideOutClick) {
+          if (
+            e.target === this.TRIGGER.$trigger ||
+            has(e.target, this.TRIGGER.$trigger) ||
+            e.target === this.$dropdown ||
+            has(e.target, this.$dropdown)
+          ) {
+            return
+          }
+          if (this.is('status')) {
+            removeClass(this.classes.SHOW, this.$wrap)
+            removeClass(this.classes.WRITE, this.$wrap)
+          } else {
+            removeClass(this.classes.SHOW, this.$wrap)
+            removeClass(this.classes.WRITE, this.$wrap)
+          }
+          removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         }
-        this.val(this.oldValue)
-        this.update()
-        if (this.is('status')) {
-          removeClass(
-            this.classes.SHOW,
-            addClass(this.classes.EXIST, this.$wrap)
-          )
-        } else {
-          removeClass(this.classes.SHOW, this.$wrap)
-        }
-        removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
       },
       window.document
     )
@@ -142,8 +150,6 @@ class BgPicker extends Component {
         if (this.is('disabled')) {
           return null
         }
-        this.val(this.oldValue)
-        this.update()
         if (this.is('status')) {
           removeClass(
             this.classes.SHOW,
@@ -154,6 +160,7 @@ class BgPicker extends Component {
         }
         this.DROPDOWN.hide()
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
+        removeClass(this.classes.WRITE, this.$wrap)
         return false
       },
       this.$cancel
@@ -165,8 +172,7 @@ class BgPicker extends Component {
         if (this.is('disbaled')) {
           return null
         }
-        this.set(this.value)
-        this.update()
+        this.enter('save')
         if (hasClass(this.classes.SHOW, this.$wrap)) {
           removeClass(
             this.classes.SHOW,
@@ -205,6 +211,11 @@ class BgPicker extends Component {
     this.$save = query(`.${this.classes.SAVE}`, this.$control)
   }
 
+  closePanel() {
+    this.enter('save')
+    this.DROPDOWN.hide()
+  }
+
   changeImage(url) {
     this.value.image = url.image
     this.value.id = url.id
@@ -240,8 +251,9 @@ class BgPicker extends Component {
     }
 
     if (update !== false) {
-      if (typeof value.image !== 'undefined') {
+      if (typeof value.image !== 'undefined' && value.image !== null) {
         this.PREVIEW.set(value.image)
+        this.IMAGE.set(value.image)
       } else {
         this.PREVIEW.clear()
       }

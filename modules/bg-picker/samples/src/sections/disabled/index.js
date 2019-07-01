@@ -3,6 +3,7 @@ import BgPicker from '@pluginjs/bg-picker'
 
 const element = query('#disabled   .example-disabled')
 BgPicker.of(element, {
+  disabled: true,
   selectPicture(resolve) {
     resolve({
       image: 'https://picsum.photos/200/300?image=1068',

@@ -24,11 +24,16 @@ export default class Image {
       }
     )
     this.$wrap = parseHTML(html)
+    this.image = query('.pj-input', this.$wrap)
+    this.instance.$imageName = query(
+      `.${this.instance.classes.IMAGENAME}`,
+      this.image
+    )
     this.bind()
   }
+
   bind() {
     // change image
-    this.image = query('.pj-input', this.$wrap)
     compose(
       bindEvent(
         this.instance.eventName('click'),
@@ -40,10 +45,6 @@ export default class Image {
           removeClass(
             this.instance.classes.SELECTEDDISABLE,
             query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
-          )
-          this.instance.$imageName = query(
-            `.${this.instance.classes.IMAGENAME}`,
-            this.image
           )
           this.instance.options.selectPicture.call(
             this.instance,
@@ -85,12 +86,22 @@ export default class Image {
       )
     )(this.$wrap)
   }
+
   removeImage() {
     const disabled = query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
     removeClass(this.instance.classes.SELECTEDDISABLE, disabled)
     removeClass(this.instance.classes.IMAGESELECTED, this.image)
-    this.instance.value.image = ''
-    this.instance.element.value = ''
+    this.instance.value.image = null
+    this.instance.element.value = null
     this.instance.set(this.instance.value)
+  }
+
+  set(value) {
+    const disabled = query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
+    const name = query(`.${this.instance.classes.IMAGENAME}`, this.image)
+    removeClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
+    removeClass(this.instance.classes.SELECTEDDISABLE, disabled)
+    addClass(this.instance.classes.IMAGESELECTED, this.image)
+    name.innerHTML = value
   }
 }
