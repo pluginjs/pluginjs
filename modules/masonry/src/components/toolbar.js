@@ -15,7 +15,11 @@ class Toolbar {
     this.init()
   }
 
-  init() {
+  init(update = false) {
+    if (update) {
+      find(`.${this.classes.TOOLBAR}`, this.wrap).remove()
+    }
+
     if (this.options.filters) {
       this.filters = templateEngine.render(
         this.instance.options.templates.filters.call(this),
@@ -53,10 +57,12 @@ class Toolbar {
       }
     )
 
-    this.wrap = wrap(
-      `<div class="${this.instance.classes.WRAPPER}"></div>`,
-      this.instance.element
-    )
+    this.wrap = update
+      ? this.wrap
+      : wrap(
+          `<div class="${this.instance.classes.WRAPPER}"></div>`,
+          this.instance.element
+        )
 
     prepend(this.toolbar, this.wrap)
 
@@ -97,6 +103,7 @@ class Toolbar {
     config.items = items
 
     this.$filters = find(`.${this.classes.FILTERS}`, this.wrap)
+
     Filters.of(this.$filters, config)
   }
 

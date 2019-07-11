@@ -450,7 +450,7 @@ class Masonry extends Component {
     )
   }
 
-  getTags() {
+  getTags(datas) {
     let tags = []
     this.$items.forEach(el => {
       const tag = this.options.parseTagsStr(getData('tags', el))
@@ -462,6 +462,22 @@ class Masonry extends Component {
         tags = tags.concat(tag)
       }
     })
+
+    if (datas) {
+      datas.forEach(data => {
+        const tag = data.options.tags
+          ? this.options.parseTagsStr(data.options.tags)
+          : null
+
+        if (tag) {
+          tag.forEach((item, index) => {
+            tag[index] = item.trim()
+          })
+
+          tags = tags.concat(tag)
+        }
+      })
+    }
 
     return Array.from(new Set(tags))
   }
@@ -525,6 +541,11 @@ class Masonry extends Component {
       )
     })
 
+    this.tags = this.getTags(datas)
+
+    this.filters = this.options.filters
+    this.sortby = this.options.sortby
+
     this.defaultChunks = this.defaultChunks.concat(this.addChunks)
 
     this.handleChunks()
@@ -532,6 +553,10 @@ class Masonry extends Component {
     this.handleState()
 
     this.height = this.getHeight()
+
+    if (this.TOOLBAR) {
+      this.TOOLBAR.init(true)
+    }
 
     this.loading(this.addChunks)
   }

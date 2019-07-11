@@ -30,11 +30,12 @@ button.addEventListener('click', () => {
         300
       )}" alt=""><p>Irure anim officia tempor est proident. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat.</p>`,
       options: {
-        tags: 'tag1',
+        tags: 'tag1,tag4',
         sort: {
           data: `2018-0${random(1, 9)}-${random(10, 30)}`,
           index: `${random(1, 100)}`,
-          title: `y${random(1, 2000)}`
+          title: `y${random(1, 2000)}`,
+          num: `${random(1, 100)}`
         }
       }
     },
@@ -45,11 +46,12 @@ button.addEventListener('click', () => {
         300
       )}" alt=""><p>Irure anim officia tempor est proident. Cillum dolore velit nisi ullamco deserunt minim culpa minim.</p>`,
       options: {
-        tags: 'tag3',
+        tags: 'tag2,tag5',
         sort: {
           data: `2018-0${random(1, 9)}-${random(10, 30)}`,
           index: `${random(1, 100)}`,
-          title: `u${random(1, 2000)}`
+          title: `u${random(1, 2000)}`,
+          num: `${random(1, 100)}`
         }
       }
     },
@@ -60,11 +62,12 @@ button.addEventListener('click', () => {
         300
       )}" alt=""><p>Irure anim officia tempor est proident. Cillum dolore velit nisi ullamco deserunt minim culpa minim. Nisi ad occaecat deserunt minim culpa minim.</p>`,
       options: {
-        tags: 'tag2',
+        tags: 'tag3, tag6',
         sort: {
           data: `2018-0${random(1, 9)}-${random(10, 30)}`,
           index: `${random(1, 100)}`,
-          title: `e${random(1, 2000)}`
+          title: `e${random(1, 2000)}`,
+          num: `${random(1, 100)}`
         }
       }
     }
