@@ -499,7 +499,6 @@ class Masonry extends Component {
 
     let addItems = ''
     const chunkOptions = []
-
     const tempWrap = document.createElement('div')
 
     datas.forEach(data => {
