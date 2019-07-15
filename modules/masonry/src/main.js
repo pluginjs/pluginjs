@@ -465,9 +465,10 @@ class Masonry extends Component {
 
     if (datas) {
       datas.forEach(data => {
-        const tag = data.options.tags
-          ? this.options.parseTagsStr(data.options.tags)
-          : null
+        const tag =
+          data.options && data.options.tags
+            ? this.options.parseTagsStr(data.options.tags)
+            : null
 
         if (tag) {
           tag.forEach((item, index) => {
