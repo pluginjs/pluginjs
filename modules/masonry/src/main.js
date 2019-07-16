@@ -299,9 +299,7 @@ class Masonry extends Component {
   getChunkWidth() {
     const gutter = parseFloat(this.options.gutter, 10)
 
-    return `calc((100% - ${(this.columnCount - 1) * gutter}px) / ${
-      this.columnCount
-    })`
+    return (this.width - (this.columnCount - 1) * gutter) / this.columnCount
   }
 
   getHeight() {
