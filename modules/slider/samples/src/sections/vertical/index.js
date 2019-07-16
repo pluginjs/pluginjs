@@ -19,40 +19,40 @@ const data = [
   {
     type: 'video',
     videoType: 'youtube',
-    src: 'https://picsum.photos/1600/1200?image=0',
+    src: 'https://picsum.photos/id/0/1600/1200',
     id: 'YE7VzlLtp-4'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/1600/1200?image=1'
+    src: 'https://picsum.photos/id/1/1600/1200'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/1600/1200?image=2'
+    src: 'https://picsum.photos/id/2/1600/1200'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/1600/1200?image=3'
+    src: 'https://picsum.photos/id/3/1600/1200'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/1600/1200?image=4'
+    src: 'https://picsum.photos/id/4/1600/1200'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/1600/1200?image=5'
+    src: 'https://picsum.photos/id/5/1600/1200'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/1600/1200?image=6'
+    src: 'https://picsum.photos/id/6/1600/1200'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/1600/1200?image=7'
+    src: 'https://picsum.photos/id/8/1600/1200'
   },
   {
     type: 'image',
-    src: 'https://picsum.photos/1600/1200?image=8'
+    src: 'https://picsum.photos/id/9/1600/1200'
   }
 ]
 

@@ -5,7 +5,7 @@ import { compose } from '@pluginjs/utils'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { query, append, parseHTML, data } from '@pluginjs/dom'
+import { query, children, append, parseHTML, data, attr } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -65,14 +65,15 @@ class Slider extends Component {
 
   initialize() {
     if (!this.options.data || this.options.data.length < 0) {
-      return
+      this.data = this.parseHtml()
+    } else {
+      this.data = this.options.data
     }
 
     if (this.options.breakpoint) {
       this.initBreakpoints()
     }
 
-    this.data = this.options.data
     this.modules = []
     this.axis = this.options.vertical ? 'translateY' : 'translateX'
     this.generate()
@@ -92,6 +93,44 @@ class Slider extends Component {
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  parseHtml() {
+    const dataArr = []
+
+    children(this.element).forEach(element => {
+      switch (element.tagName.toLowerCase()) {
+        case 'img':
+          dataArr.push({
+            type: 'image',
+            src: attr('src', element)
+          })
+          break
+        case 'video':
+          dataArr.push({
+            type: 'video',
+            videoType: data('videoType', element),
+            src: data('src', element),
+            href: attr('href', element),
+            id: data('id', element)
+          })
+          break
+        default:
+          if (data('type', element) === 'inline') {
+            dataArr.push({
+              type: 'inline',
+              html: element.innerHTML
+            })
+          } else {
+            dataArr.push({
+              type: data('type', element),
+              src: data('src', element)
+            })
+          }
+      }
+    })
+
+    return dataArr
   }
 
   initBreakpoints() {
