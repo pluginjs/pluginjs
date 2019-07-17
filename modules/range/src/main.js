@@ -142,9 +142,9 @@ class Range extends Component {
       this.selfEventName(EVENTS.POINTERMOVE),
       () => {
         if (this.options.range) {
-          this.set([this.p1.value, this.p2.value], false)
+          this.set([this.p1.value, this.p2.value], true, false)
         } else {
-          this.set(this.p1.value, false)
+          this.set(this.p1.value, true, false)
         }
       },
       this.element
@@ -261,7 +261,7 @@ class Range extends Component {
     return value
   }
 
-  set(value, update = true, trigger = true, force = false) {
+  set(value, trigger = true, update = true, force = false) {
     if (this.value !== value || force) {
       if (this.options.range) {
         this.value = value.map(v => this.getMatchedValue(v))
