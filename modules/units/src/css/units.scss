@@ -20,8 +20,9 @@ $units-trigger-font-size: $font-size-base;
 $units-trigger-color: $gray;
 $units-trigger-height: $units-height;
 $units-trigger-spacer: 8px;
+$units-trigger-width: 25px;
 
-$units-input-padding: 8px 24px 8px 8px;
+$units-input-padding: 8px 25px 8px 8px;
 
 $units-dropdown-box-shadow: $box-shadow-1;
 
@@ -51,12 +52,16 @@ $units-disabled-color: $disabled-color;
   }
 
   &-trigger {
+    width: $units-trigger-width;
     padding: 0 $units-trigger-spacer;
     padding-left: 0;
+    overflow: hidden;
     font-size: $units-trigger-font-size;
     line-height: $units-trigger-height;
     color: $units-trigger-color;
-    text-align: right;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
     background-color: transparent;
     border: none;
