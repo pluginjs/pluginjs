@@ -145,6 +145,14 @@ class Justified {
       },
       this.api.element
     )
+
+    bindEvent(
+      `${this.api.namespace}:${this.api.events.REVERSE}`,
+      () => {
+        this.api.setHeight(this.getHeight())
+      },
+      this.api.element
+    )
   }
 
   update() {

@@ -99,6 +99,15 @@ class Item {
       ? this.instance.options.parseTagsStr(this.options.tags)
       : null
 
+    if (this.instance.options.model === 'justified') {
+      this.element.dataset.aspectRatio = `${this.width}:${this.height}`
+    }
+
+    if (this.instance.options.model === 'nested') {
+      this.element.dataset.col = this.col
+      this.element.dataset.row = this.row
+    }
+
     this.element.dataset.index = this.index
   }
 

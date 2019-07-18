@@ -540,6 +540,9 @@ class Masonry extends Component {
     const oldItemsLength = this.$items.length
 
     this.addItems.forEach((addItem, index) => {
+      Object.keys(chunkOptions[index]).forEach(key => {
+        addItem.dataset[key] = JSON.stringify(chunkOptions[index][key])
+      })
       append(addItem, this.$inner)
       this.$items.push(addItem)
       this.addChunks.push(

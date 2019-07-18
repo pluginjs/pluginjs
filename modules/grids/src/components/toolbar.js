@@ -15,7 +15,11 @@ class Toolbar {
     this.init()
   }
 
-  init() {
+  init(update = false) {
+    if (update) {
+      find(`.${this.classes.TOOLBAR}`, this.api.element).remove()
+    }
+
     if (this.opts.filters) {
       this.filters = templateEngine.render(
         this.api.options.templates.filters.call(this),

@@ -1,16 +1,10 @@
 import Component from '@pluginjs/component'
+import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import {
-  append,
-  find,
-  queryAll,
-  // parent,
-  // closest,
-  children,
-  getData
-} from '@pluginjs/dom'
+import { isArray } from '@pluginjs/is'
+import { append, find, queryAll, children, getData } from '@pluginjs/dom'
 
 import {
   eventable,
@@ -20,9 +14,6 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-
-// import ImageLoader from '@pluginjs/image-loader'
-// import Loader from '@pluginjs/loader'
 
 import {
   classes as CLASSES,
@@ -77,32 +68,6 @@ class Grids extends Component {
 
     this.initToolbar()
 
-    // if (this.options.imgSelector) {
-    //   this.imgs = queryAll(this.options.imgSelector, this.$inner)
-    //   this.loading(this.chunks)
-    //   if (this.imgs && this.imgs.length > 0) {
-    //     this.imgs.forEach(img => {
-    //       let loader = ''
-
-    //       if (this.options.loader) {
-    //         loader = Loader.of(parent(img), this.options.loader)
-    //         loader.show()
-    //       }
-
-    //       ImageLoader.of(img).on('loaded', img => {
-    //         if (this.options.loader) {
-    //           loader.hide()
-    //         }
-    //         addClass(
-    //           this.classes.LOADED,
-    //           closest(`.${this.classes.CHUNK}`, img)
-    //         )
-    //       })
-    //     })
-    //   }
-    // } else {
-
-    // }
     this.loading(this.chunks)
 
     this.bind()
@@ -200,7 +165,7 @@ class Grids extends Component {
     this.TOOLBAR = new Toolbar(this, this.options.toolbar)
   }
 
-  getTags() {
+  getTags(datas) {
     let tags = []
     this.$items.forEach(el => {
       const tag = this.options.parseTagsStr(getData('tags', el))
@@ -212,6 +177,23 @@ class Grids extends Component {
         tags = tags.concat(tag)
       }
     })
+
+    if (datas) {
+      datas.forEach(data => {
+        const tag =
+          data.options && data.options.tags
+            ? this.options.parseTagsStr(data.options.tags)
+            : null
+
+        if (tag) {
+          tag.forEach((item, index) => {
+            tag[index] = item.trim()
+          })
+
+          tags = tags.concat(tag)
+        }
+      })
+    }
 
     return Array.from(new Set(tags))
   }
@@ -341,11 +323,9 @@ class Grids extends Component {
   }
 
   loading(chunks) {
-    addClass(this.classes.INNERSHOW, this.$inner)
-
     this.ANIMATE.loading(chunks, () => {
-      this.enter('loaded')
       this.setHeight(this.model.height)
+      this.enter('loaded')
     })
   }
 
@@ -386,6 +366,76 @@ class Grids extends Component {
 
     toggleClass(this.classes.REVERSEMIN, this.TOOLBAR.$reverse)
     this.trigger(EVENTS.REVERSE)
+  }
+
+  add(datas) {
+    if (!isArray(datas) || datas.length <= 0) {
+      return
+    }
+
+    let addItems = ''
+    const chunkOptions = []
+    const tempWrap = document.createElement('div')
+
+    datas.forEach(data => {
+      const html = data.html ? data.html : ''
+      const customClass = data.class ? data.class : ''
+      const chunkOption = data.options ? data.options : {}
+      const chunk = templateEngine.render(
+        this.options.templates.chunk.call(this),
+        {
+          classes: this.classes,
+          html,
+          class: customClass
+        }
+      )
+
+      addItems += chunk
+      chunkOptions.push(chunkOption)
+    })
+
+    append(addItems, tempWrap)
+
+    this.addItems = queryAll(`.${this.classes.CHUNK}`, tempWrap)
+
+    this.addChunks = []
+
+    const oldItemsLength = this.$items.length
+
+    this.addItems.forEach((addItem, index) => {
+      append(addItem, this.$inner)
+      this.$items.push(addItem)
+      this.addChunks.push(
+        new Item(
+          this,
+          addItem,
+          Object.assign({}, chunkOptions[index], {
+            index: oldItemsLength + index,
+            aspectRatio:
+              chunkOptions[index].aspectRatio || this.options.aspectRatio
+          })
+        )
+      )
+    })
+
+    this.tags = this.getTags(datas)
+
+    this.filters = this.options.filters
+    this.sortby = this.options.sortby
+
+    this.defaultChunks = this.defaultChunks.concat(this.addChunks)
+
+    this.handleChunks()
+
+    this.model.handleState()
+
+    this.model.height = this.model.getHeight()
+
+    if (this.TOOLBAR) {
+      this.TOOLBAR.init(true)
+    }
+
+    this.loading(this.addChunks)
   }
 
   enable() {

@@ -10,13 +10,6 @@ $grids: "pj-grids" !default;
   &-inner {
     position: relative;
     overflow: hidden;
-    // visibility: hidden;
-    // opacity: 0;
-
-    // &-show {
-    //   visibility: visible;
-    //   opacity: 1;
-    // }
   }
 
   &-chunk {
@@ -39,7 +32,7 @@ $grids: "pj-grids" !default;
     }
   }
 
-  &-loaded {
+  &-image-loaded {
     img {
       opacity: 1;
     }

@@ -25,14 +25,14 @@ class Grid {
   getColumnCount() {
     const gutter = parseFloat(this.api.gutter, 10)
     const minWidth = parseFloat(this.api.minWidth, 10)
+    const maxColumn = parseFloat(this.api.options.maxColumn, 10)
+
     let columnCount = Math.floor(
       (this.api.width - gutter) / (minWidth + gutter)
     )
+
     if (this.api.options.maxColumn) {
-      columnCount =
-        columnCount > this.api.options.maxColumn
-          ? this.api.options.maxColumn
-          : columnCount
+      columnCount = columnCount > maxColumn ? maxColumn : columnCount
     }
 
     return columnCount
@@ -118,8 +118,8 @@ class Grid {
         }
 
         if (showChunks) {
-          this.api.ANIMATE.loading(showChunks, () => {
-            this.api.setHeight(this.getHeight(this.chunksArr))
+          showChunks.forEach(chunk => {
+            chunk.show()
           })
         }
 
@@ -128,6 +128,24 @@ class Grid {
             chunk.moveTo(chunk.movePosition)
           })
         }
+
+        this.api.setHeight(this.getHeight())
+      },
+      this.api.element
+    )
+
+    bindEvent(
+      `${this.api.namespace}:${this.api.events.SORT}`,
+      () => {
+        this.api.setHeight(this.getHeight())
+      },
+      this.api.element
+    )
+
+    bindEvent(
+      `${this.api.namespace}:${this.api.events.REVERSE}`,
+      () => {
+        this.api.setHeight(this.getHeight())
       },
       this.api.element
     )

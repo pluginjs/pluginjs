@@ -21,6 +21,7 @@ class Nested {
     this.waitArr = []
     this.columnCount = this.getColumnCount()
     this.chunkWidth = this.getChunkWidth()
+
     this.chunksArr = []
 
     this.compute()
@@ -167,14 +168,13 @@ class Nested {
   getColumnCount() {
     const gutter = parseFloat(this.api.gutter, 10)
     const minWidth = parseFloat(this.api.minWidth, 10)
+    const maxColumn = parseFloat(this.api.options.maxColumn, 10)
+
     let columnCount = Math.floor(
       (this.api.width - gutter) / (minWidth + gutter)
     )
     if (this.api.options.maxColumn) {
-      columnCount =
-        columnCount > this.api.options.maxColumn
-          ? this.api.options.maxColumn
-          : columnCount
+      columnCount = columnCount > maxColumn ? maxColumn : columnCount
     }
 
     return columnCount
@@ -182,6 +182,7 @@ class Nested {
 
   getChunkWidth() {
     const gutter = parseFloat(this.api.options.gutter, 10)
+
     return (this.api.width - (this.columnCount - 1) * gutter) / this.columnCount
   }
 
@@ -199,8 +200,9 @@ class Nested {
       }
 
       if (
-        index > 0 &&
-        row[count].index === this.chunksArr[index - 1][count].index
+        !row[count] ||
+        (index > 0 &&
+          row[count].index === this.chunksArr[index - 1][count].index)
       ) {
         return
       }
@@ -255,6 +257,14 @@ class Nested {
 
     bindEvent(
       `${this.api.namespace}:${this.api.events.SORT}`,
+      () => {
+        this.api.setHeight(this.getHeight())
+      },
+      this.api.element
+    )
+
+    bindEvent(
+      `${this.api.namespace}:${this.api.events.REVERSE}`,
       () => {
         this.api.setHeight(this.getHeight())
       },

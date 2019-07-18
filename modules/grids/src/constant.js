@@ -18,7 +18,6 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   MASK: '{namespace}-mask',
   INNER: '{namespace}-inner',
-  INNERSHOW: '{namespace}-inner-show',
   IMAGELOADED: '{namespace}-image-loaded',
   IMAGEERROR: '{namespace}-image-error',
   LOADED: '{namespace}-loaded',
@@ -84,7 +83,7 @@ export const defaults = {
   }, // false, options
   templates: {
     chunk() {
-      return '<div class="{class} {classes.CHUNK}"><div class="{classes.CHUNKINNER}">{html}</div></div>'
+      return '<div class="{class} {classes.CHUNK}">{html}</div>'
     },
     toolbar() {
       return `<div class="{classes.TOOLBAR}">

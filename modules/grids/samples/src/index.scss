@@ -4,3 +4,19 @@
 @import "@pluginjs/loader/src/css/loader.scss";
 @import "@pluginjs/dropdown/src/css/dropdown.scss";
 @import "@pluginjs/grids/src/css/grids.scss";
+
+* {
+	box-sizing: border-box;
+}
+
+.pj-grids-image-error {
+	background-color: #ededed;
+
+	&::before {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 10px;
+		content: "Image Error";
+	}
+}
