@@ -13,7 +13,7 @@ export const events = {
 
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
-  WRAPPER: '{namespace}-wrapper',
+  INNER: '{namespace}-inner',
   THEME: '{namespace}--{theme}',
   CHUNK: '{namespace}-chunk',
   IMGWRAPPER: '{namespace}-image-wrapper',

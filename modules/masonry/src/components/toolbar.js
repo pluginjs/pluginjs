@@ -1,5 +1,5 @@
 import templateEngine from '@pluginjs/template'
-import { prepend, find, wrap } from '@pluginjs/dom'
+import { prepend, find } from '@pluginjs/dom'
 import { addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 
@@ -17,7 +17,7 @@ class Toolbar {
 
   init(update = false) {
     if (update) {
-      find(`.${this.classes.TOOLBAR}`, this.wrap).remove()
+      find(`.${this.classes.TOOLBAR}`, this.instance.element).remove()
     }
 
     if (this.options.filters) {
@@ -57,14 +57,7 @@ class Toolbar {
       }
     )
 
-    this.wrap = update
-      ? this.wrap
-      : wrap(
-          `<div class="${this.instance.classes.WRAPPER}"></div>`,
-          this.instance.element
-        )
-
-    prepend(this.toolbar, this.wrap)
+    prepend(this.toolbar, this.instance.element)
 
     this.handleFilters()
     this.handleSort()
@@ -102,7 +95,7 @@ class Toolbar {
 
     config.items = items
 
-    this.$filters = find(`.${this.classes.FILTERS}`, this.wrap)
+    this.$filters = find(`.${this.classes.FILTERS}`, this.instance.element)
 
     Filters.of(this.$filters, config)
   }
@@ -141,7 +134,7 @@ class Toolbar {
       }
     })
     config.data = sorts
-    this.$sortinner = find(`.${this.classes.SORTINNER}`, this.wrap)
+    this.$sortinner = find(`.${this.classes.SORTINNER}`, this.instance.element)
     this.$sortinner.innerHTML = sorts[0].label
     Dropdown.of(this.$sortinner, config)
   }
@@ -151,7 +144,7 @@ class Toolbar {
       return
     }
 
-    this.$reverse = find(`.${this.classes.REVERSE}`, this.wrap)
+    this.$reverse = find(`.${this.classes.REVERSE}`, this.instance.element)
     if (this.instance.options.sortDirection === 'min') {
       addClass(this.classes.REVERSEMIN, this.$reverse)
     }

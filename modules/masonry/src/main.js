@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import { queryAll, append, children, getData } from '@pluginjs/dom'
+import { queryAll, append, find, children, getData } from '@pluginjs/dom'
 import { isArray } from '@pluginjs/is'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -74,6 +74,12 @@ class Masonry extends Component {
       ? queryAll(this.options.itemSelector, this.element)
       : children(this.element)
 
+    append(`<div class="${this.classes.INNER}"></div>`, this.element)
+    this.$inner = find(`.${this.classes.INNER}`, this.element)
+    this.$items.forEach($item => {
+      append($item, this.$inner)
+    })
+
     this.minWidth = this.options.minWidth
     this.gutter = this.options.gutter
     this.width = this.getWidth()
@@ -90,6 +96,19 @@ class Masonry extends Component {
     this.height = this.getHeight()
 
     this.ANIMATE = new Animate(this)
+  }
+
+  createChunks(items) {
+    const chunks = []
+    items.forEach((item, index) => {
+      chunks.push(
+        new Item(this, item, {
+          index
+        })
+      )
+    })
+
+    return chunks
   }
 
   handleChunks(filters = this.filters, sortby = this.sortby) {
@@ -120,89 +139,10 @@ class Masonry extends Component {
     return tempArr
   }
 
-  filter(filters = this.filters) {
-    if (filters.toString() === this.filters.toString()) {
-      return
-    }
-
-    this.filters = filters
-
-    const oldChunks = this.chunks
-    this.handleChunks(filters, this.sortby)
-
-    let hideChunks = []
-    let moveChunks = []
-    let showChunks = []
-
-    moveChunks = this.intersectArr(oldChunks, this.chunks)
-
-    if (moveChunks.length <= 0) {
-      hideChunks = oldChunks
-      showChunks = this.chunks
-    } else {
-      showChunks = this.disjoint(this.chunks, moveChunks)
-      hideChunks = this.disjoint(oldChunks, moveChunks)
-    }
-
-    this.trigger(EVENTS.FILTER, {
-      hideChunks,
-      showChunks,
-      moveChunks
-    })
-  }
-
   _sort(sortby = this.options.sortby, chunks = this.chunks) {
     this.sortby = sortby
 
     return this.options.sort.bind(this)(sortby, chunks)
-  }
-
-  sort(sortby) {
-    this.handleChunks(this.filters, sortby)
-
-    this.handleState()
-
-    this.chunks.forEach(chunk => {
-      chunk.moveTo(chunk.movePosition)
-    })
-
-    this.trigger(EVENTS.SORT)
-  }
-
-  intersectArr(oldArr, newArr) {
-    const arr = []
-
-    oldArr.forEach(item => {
-      let inside = false
-
-      newArr.forEach(newItem => {
-        if (item.index === newItem.index) {
-          inside = true
-        }
-      })
-
-      if (inside) {
-        arr.push(item)
-      }
-    })
-
-    return arr
-  }
-
-  disjoint(originArr, intersectArr) {
-    const tempArr = [].concat(originArr)
-
-    intersectArr.forEach(item => {
-      tempArr.forEach((tempItem, index) => {
-        if (item.index === tempItem.index) {
-          tempArr.splice(index, 1)
-
-          return
-        }
-      })
-    })
-
-    return tempArr
   }
 
   handleState() {
@@ -222,6 +162,20 @@ class Masonry extends Component {
     this.update()
   }
 
+  getColumnCount() {
+    const gutter = parseFloat(this.gutter, 10)
+    const minWidth = parseFloat(this.minWidth, 10)
+    const maxColumn = parseFloat(this.options.maxColumn, 10)
+
+    let columnCount = Math.floor((this.width - gutter) / (minWidth + gutter))
+
+    if (this.options.maxColumn) {
+      columnCount = columnCount > maxColumn ? maxColumn : columnCount
+    }
+
+    return columnCount
+  }
+
   initColumnHeights() {
     // support IE11
     if (!Array.prototype.fill) {
@@ -235,6 +189,12 @@ class Masonry extends Component {
     }
 
     return new Array(this.columnCount).fill(0)
+  }
+
+  getChunkWidth() {
+    const gutter = parseFloat(this.options.gutter, 10)
+
+    return (this.width - (this.columnCount - 1) * gutter) / this.columnCount
   }
 
   update() {
@@ -296,28 +256,87 @@ class Masonry extends Component {
     this.TOOLBAR = new Toolbar(this, this.options.toolbar)
   }
 
-  getChunkWidth() {
-    const gutter = parseFloat(this.options.gutter, 10)
+  filter(filters = this.filters) {
+    if (filters.toString() === this.filters.toString()) {
+      return
+    }
 
-    return (this.width - (this.columnCount - 1) * gutter) / this.columnCount
+    this.filters = filters
+
+    const oldChunks = this.chunks
+    this.handleChunks(filters, this.sortby)
+
+    let hideChunks = []
+    let moveChunks = []
+    let showChunks = []
+
+    moveChunks = this.intersectArr(oldChunks, this.chunks)
+
+    if (moveChunks.length <= 0) {
+      hideChunks = oldChunks
+      showChunks = this.chunks
+    } else {
+      showChunks = this.disjoint(this.chunks, moveChunks)
+      hideChunks = this.disjoint(oldChunks, moveChunks)
+    }
+
+    this.trigger(EVENTS.FILTER, {
+      hideChunks,
+      showChunks,
+      moveChunks
+    })
+  }
+
+  sort(sortby) {
+    this.handleChunks(this.filters, sortby)
+
+    this.handleState()
+
+    this.chunks.forEach(chunk => {
+      chunk.moveTo(chunk.movePosition)
+    })
+
+    this.trigger(EVENTS.SORT)
+  }
+
+  intersectArr(oldArr, newArr) {
+    const arr = []
+
+    oldArr.forEach(item => {
+      let inside = false
+
+      newArr.forEach(newItem => {
+        if (item.index === newItem.index) {
+          inside = true
+        }
+      })
+
+      if (inside) {
+        arr.push(item)
+      }
+    })
+
+    return arr
+  }
+
+  disjoint(originArr, intersectArr) {
+    const tempArr = [].concat(originArr)
+
+    intersectArr.forEach(item => {
+      tempArr.forEach((tempItem, index) => {
+        if (item.index === tempItem.index) {
+          tempArr.splice(index, 1)
+
+          return
+        }
+      })
+    })
+
+    return tempArr
   }
 
   getHeight() {
     return Math.max(...this.columnHeights)
-  }
-
-  getColumnCount() {
-    const gutter = parseFloat(this.gutter, 10)
-    const minWidth = parseFloat(this.minWidth, 10)
-    const maxColumn = parseFloat(this.options.maxColumn, 10)
-
-    let columnCount = Math.floor((this.width - gutter) / (minWidth + gutter))
-
-    if (this.options.maxColumn) {
-      columnCount = columnCount > maxColumn ? maxColumn : columnCount
-    }
-
-    return columnCount
   }
 
   getMinHeightColumn() {
@@ -332,19 +351,6 @@ class Masonry extends Component {
     })
 
     return index
-  }
-
-  createChunks(items) {
-    const chunks = []
-    items.forEach((item, index) => {
-      chunks.push(
-        new Item(this, item, {
-          index
-        })
-      )
-    })
-
-    return chunks
   }
 
   getWidth() {
@@ -425,6 +431,14 @@ class Masonry extends Component {
       },
       this.element
     )
+
+    bindEvent(
+      `${this.namespace}:${this.events.REVERSE}`,
+      () => {
+        this.setHeight(this.getHeight())
+      },
+      this.element
+    )
   }
 
   unbind() {
@@ -444,7 +458,7 @@ class Masonry extends Component {
         height,
         transition: `height ${parseFloat(this.options.duration, 10)}ms`
       },
-      this.element
+      this.$inner
     )
   }
 
@@ -526,7 +540,7 @@ class Masonry extends Component {
     const oldItemsLength = this.$items.length
 
     this.addItems.forEach((addItem, index) => {
-      append(addItem, this.element)
+      append(addItem, this.$inner)
       this.$items.push(addItem)
       this.addChunks.push(
         new Item(

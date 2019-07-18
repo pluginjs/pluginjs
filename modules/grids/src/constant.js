@@ -17,13 +17,12 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   MASK: '{namespace}-mask',
-  WRAP: '{namespace}-wrap',
   INNER: '{namespace}-inner',
   INNERSHOW: '{namespace}-inner-show',
+  IMAGELOADED: '{namespace}-image-loaded',
+  IMAGEERROR: '{namespace}-image-error',
   LOADED: '{namespace}-loaded',
-  CONTAINER: '{namespace}-container',
   TOOLBAR: '{namespace}-toolbar',
-  // FILTERBAR: '{namespace}-filterbar',
   FILTERS: '{namespace}-filters',
   FILTER: '{namespace}-filter',
   SORT: '{namespace}-sort',
@@ -56,8 +55,7 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  wrapSelector: null,
-  itemSelector: 'figure', // [selector / null] // select the grids item element. if not, select children of the wraper.
+  itemSelector: null, // [selector / null] null => select children of the element.
   imgSelector: 'img', // [selector / null] If there is any image in item, the grid will select an IMG element marked by Imgselector
   model: 'grid', // select model
   maxColumn: 5, // [number] set the max column number.
@@ -85,6 +83,9 @@ export const defaults = {
     size: 'lg'
   }, // false, options
   templates: {
+    chunk() {
+      return '<div class="{class} {classes.CHUNK}"><div class="{classes.CHUNKINNER}">{html}</div></div>'
+    },
     toolbar() {
       return `<div class="{classes.TOOLBAR}">
                 {filters}
@@ -138,11 +139,6 @@ export const defaults = {
 
     return chunks
   },
-  // mode: 'grid' // grid display mode. grid && justified && masonry && nested
-  // advanced: {
-  //   // enterOrigin: [100, 100], // The origin when the animation begins to move in the wrap.
-  //   origin: 'topLeft', // the chunks arrangement origin.
-  // }
   parseTagsStr(str) {
     if (!str) {
       return false

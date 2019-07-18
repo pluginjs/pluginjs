@@ -6,8 +6,8 @@ import {
   append,
   find,
   queryAll,
-  parent,
-  closest,
+  // parent,
+  // closest,
   children,
   getData
 } from '@pluginjs/dom'
@@ -21,8 +21,8 @@ import {
   optionable
 } from '@pluginjs/decorator'
 
-import ImageLoader from '@pluginjs/image-loader'
-import Loader from '@pluginjs/loader'
+// import ImageLoader from '@pluginjs/image-loader'
+// import Loader from '@pluginjs/loader'
 
 import {
   classes as CLASSES,
@@ -67,7 +67,7 @@ class Grids extends Component {
   }
 
   initialize() {
-    addClass(this.classes.WRAP, this.element)
+    addClass(this.classes.NAMESPACE, this.element)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
@@ -77,32 +77,34 @@ class Grids extends Component {
 
     this.initToolbar()
 
-    if (this.options.imgSelector) {
-      this.imgs = queryAll(this.options.imgSelector, this.$container)
-      this.loading(this.chunks)
-      if (this.imgs && this.imgs.length > 0) {
-        this.imgs.forEach(img => {
-          let loader = ''
+    // if (this.options.imgSelector) {
+    //   this.imgs = queryAll(this.options.imgSelector, this.$inner)
+    //   this.loading(this.chunks)
+    //   if (this.imgs && this.imgs.length > 0) {
+    //     this.imgs.forEach(img => {
+    //       let loader = ''
 
-          if (this.options.loader) {
-            loader = Loader.of(parent(img), this.options.loader)
-            loader.show()
-          }
+    //       if (this.options.loader) {
+    //         loader = Loader.of(parent(img), this.options.loader)
+    //         loader.show()
+    //       }
 
-          ImageLoader.of(img).on('loaded', img => {
-            if (this.options.loader) {
-              loader.hide()
-            }
-            addClass(
-              this.classes.LOADED,
-              closest(`.${this.classes.CHUNK}`, img)
-            )
-          })
-        })
-      }
-    } else {
-      this.loading(this.chunks)
-    }
+    //       ImageLoader.of(img).on('loaded', img => {
+    //         if (this.options.loader) {
+    //           loader.hide()
+    //         }
+    //         addClass(
+    //           this.classes.LOADED,
+    //           closest(`.${this.classes.CHUNK}`, img)
+    //         )
+    //       })
+    //     })
+    //   }
+    // } else {
+
+    // }
+    this.loading(this.chunks)
+
     this.bind()
 
     this.enter('initialized')
@@ -110,33 +112,19 @@ class Grids extends Component {
   }
 
   initGlobalArgs() {
-    if (this.options.wrapSelector) {
-      this.element = find(this.options.wrapSelector, this.element)
-    }
-
-    this.minHeight = this.options.minHeight
-    this.minWidth = this.options.minWidth
-
     this.$items = this.options.itemSelector
       ? queryAll(this.options.itemSelector, this.element)
       : children(this.element)
 
-    const $itemsParent = parent(this.$items[0])
-
-    if ($itemsParent.getAttribute('class').indexOf(this.classes.INNER) >= 0) {
-      this.$inner = $itemsParent
-    } else {
-      append(`<div class="${this.classes.INNER}"></div>`, $itemsParent)
-      this.$inner = find(`.${this.classes.INNER}`, $itemsParent)
-    }
-
-    append(`<div class="${this.classes.CONTAINER}"></div>`, this.$inner)
-    this.$container = find(`.${this.classes.CONTAINER}`, this.$inner)
+    append(`<div class="${this.classes.INNER}"></div>`, this.element)
+    this.$inner = find(`.${this.classes.INNER}`, this.element)
 
     this.$items.forEach($item => {
-      append($item, this.$container)
+      append($item, this.$inner)
     })
 
+    this.minWidth = this.options.minWidth
+    this.minHeight = this.options.minHeight
     this.gutter = this.options.gutter
     this.width = this.getWidth()
     this.tags = this.getTags()
@@ -153,15 +141,6 @@ class Grids extends Component {
 
     /* 初始化animate，chunks发生filter，loading时使用 */
     this.ANIMATE = new Animate(this)
-  }
-
-  initToolbar() {
-    const { filters, sort } = this.options.toolbar
-    if (!filters && !sort) {
-      return
-    }
-
-    this.TOOLBAR = new Toolbar(this, this.options.toolbar)
   }
 
   createChunks(items) {
@@ -182,6 +161,43 @@ class Grids extends Component {
     this.filteredChunks = this._filter(filters, this.defaultChunks)
 
     this.chunks = this._sort(sortby, this.filteredChunks)
+  }
+
+  _filter(tags, chunks = this.defaultChunks) {
+    if (!tags || !Array.isArray(tags) || tags.length <= 0) {
+      return chunks
+    }
+
+    const chunkList = [].concat(chunks)
+    const tempArr = []
+
+    chunkList.forEach(chunk => {
+      const chunkTagsSize = chunk.tags ? chunk.tags.length : 0
+      const filterSize = tags.length
+
+      const arr = new Set(tags.concat(chunk.tags))
+
+      if (arr.size < chunkTagsSize + filterSize) {
+        tempArr.push(chunk)
+      }
+    })
+
+    return tempArr
+  }
+
+  _sort(sortby = this.options.sortby, chunks = this.chunks) {
+    this.sortby = sortby
+
+    return this.options.sort.bind(this)(sortby, chunks)
+  }
+
+  initToolbar() {
+    const { filters, sort } = this.options.toolbar
+    if (!filters && !sort) {
+      return
+    }
+
+    this.TOOLBAR = new Toolbar(this, this.options.toolbar)
   }
 
   getTags() {
@@ -210,12 +226,6 @@ class Grids extends Component {
     return sortData
   }
 
-  _sort(sortby = this.options.sortby, chunks = this.chunks) {
-    this.sortby = sortby
-
-    return this.options.sort.bind(this)(sortby, chunks)
-  }
-
   sort(sortby) {
     this.handleChunks(this.filters, sortby)
 
@@ -226,28 +236,6 @@ class Grids extends Component {
     })
 
     this.trigger(EVENTS.SORT)
-  }
-
-  _filter(tags, chunks = this.defaultChunks) {
-    if (!tags || !Array.isArray(tags) || tags.length <= 0) {
-      return chunks
-    }
-
-    const chunkList = [].concat(chunks)
-    const tempArr = []
-
-    chunkList.forEach(chunk => {
-      const chunkTagsSize = chunk.tags ? chunk.tags.length : 0
-      const filterSize = tags.length
-
-      const arr = new Set(tags.concat(chunk.tags))
-
-      if (arr.size < chunkTagsSize + filterSize) {
-        tempArr.push(chunk)
-      }
-    })
-
-    return tempArr
   }
 
   filter(filters = this.filters) {
@@ -374,7 +362,7 @@ class Grids extends Component {
         height,
         transition: `height ${parseFloat(this.options.duration, 10)}ms`
       },
-      this.$container
+      this.$inner
     )
   }
 

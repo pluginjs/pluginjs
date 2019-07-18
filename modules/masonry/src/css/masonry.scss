@@ -6,12 +6,9 @@ $icon: "pj-icon";
 $masonry-toolbar-margin-bottom: 30px;
 
 .#{$masonry} {
-	position: relative;
-	overflow: hidden;
-
-	&-wrapper {
+	&-inner {
 		position: relative;
-		width: 100%;
+		overflow: hidden;
 	}
 
 	&-chunk {
