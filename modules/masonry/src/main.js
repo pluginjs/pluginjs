@@ -121,17 +121,13 @@ class Masonry extends Component {
     if (!tags || !Array.isArray(tags) || tags.length <= 0) {
       return chunks
     }
+    console.log('tags', tags)
 
     const chunkList = [].concat(chunks)
     const tempArr = []
-
+    console.log('chunkList', chunkList)
     chunkList.forEach(chunk => {
-      const chunkTagsSize = chunk.tags ? chunk.tags.length : 0
-      const filterSize = tags.length
-
-      const arr = new Set(tags.concat(chunk.tags))
-
-      if (arr.size < chunkTagsSize + filterSize) {
+      if (chunk.tags.includes(tags[0])) {
         tempArr.push(chunk)
       }
     })
@@ -540,9 +536,6 @@ class Masonry extends Component {
     const oldItemsLength = this.$items.length
 
     this.addItems.forEach((addItem, index) => {
-      Object.keys(chunkOptions[index]).forEach(key => {
-        addItem.dataset[key] = JSON.stringify(chunkOptions[index][key])
-      })
       append(addItem, this.$inner)
       this.$items.push(addItem)
       this.addChunks.push(

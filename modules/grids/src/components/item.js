@@ -99,6 +99,12 @@ class Item {
       ? this.instance.options.parseTagsStr(this.options.tags)
       : null
 
+    if (this.tags) {
+      this.tags.forEach((item, index) => {
+        this.tags[index] = item.trim()
+      })
+    }
+
     if (this.instance.options.model === 'justified') {
       this.element.dataset.aspectRatio = `${this.width}:${this.height}`
     }

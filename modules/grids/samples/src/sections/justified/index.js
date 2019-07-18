@@ -20,28 +20,28 @@ button.addEventListener('click', () => {
       class: 'grids-item',
       html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
       options: {
-        aspectRatio: `${random(1, 16)}:${random(1, 16)}`
+        aspectRatio: `${random(1, 6)}:${random(1, 6)}`
       }
     },
     {
       class: 'grids-item',
       html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
       options: {
-        aspectRatio: `${random(1, 16)}:${random(1, 16)}`
+        aspectRatio: `${random(1, 6)}:${random(1, 6)}`
       }
     },
     {
       class: 'grids-item',
       html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
       options: {
-        aspectRatio: `${random(1, 16)}:${random(1, 16)}`
+        aspectRatio: `${random(1, 6)}:${random(1, 6)}`
       }
     },
     {
       class: 'grids-item',
       html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
       options: {
-        aspectRatio: `${random(1, 16)}:${random(1, 16)}`
+        aspectRatio: `${random(1, 6)}:${random(1, 6)}`
       }
     }
   ]

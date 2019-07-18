@@ -137,12 +137,7 @@ class Grids extends Component {
     const tempArr = []
 
     chunkList.forEach(chunk => {
-      const chunkTagsSize = chunk.tags ? chunk.tags.length : 0
-      const filterSize = tags.length
-
-      const arr = new Set(tags.concat(chunk.tags))
-
-      if (arr.size < chunkTagsSize + filterSize) {
+      if (chunk.tags.includes(tags[0])) {
         tempArr.push(chunk)
       }
     })
@@ -322,11 +317,15 @@ class Grids extends Component {
     removeEvent(this.eventName(), window)
   }
 
-  loading(chunks) {
-    this.ANIMATE.loading(chunks, () => {
-      this.setHeight(this.model.height)
-      this.enter('loaded')
-    })
+  loading(chunks, update = false) {
+    this.ANIMATE.loading(
+      chunks,
+      () => {
+        this.setHeight(this.model.height)
+        this.enter('loaded')
+      },
+      update
+    )
   }
 
   /*
@@ -435,7 +434,7 @@ class Grids extends Component {
       this.TOOLBAR.init(true)
     }
 
-    this.loading(this.addChunks)
+    this.loading(this.chunks, true)
   }
 
   enable() {

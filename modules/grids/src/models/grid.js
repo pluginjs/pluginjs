@@ -64,7 +64,6 @@ class Grid {
   }
 
   setItemSize(chunk, width) {
-    // let width = this.getChunkWidth();
     const size = {
       width,
       height: chunk.info.height * (width / chunk.info.width)

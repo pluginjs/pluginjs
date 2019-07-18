@@ -6,8 +6,7 @@ const button = query('#nested .add')
 const api = Grids.of(element, {
   itemSelector: '.grids-item',
   gutter: 20,
-  model: 'nested',
-  hoverPrimary: true
+  model: 'nested'
 })
 
 function random(lower = 1, upper = 100) {
