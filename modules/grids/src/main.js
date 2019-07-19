@@ -31,7 +31,6 @@ import Toolbar from './components/toolbar'
 
 // import models
 import Grid from './models/grid'
-import Masonry from './models/masonry'
 import Justified from './models/justified'
 import Nested from './models/nested'
 
@@ -285,10 +284,6 @@ class Grids extends Component {
   initModel(model) {
     if (model === 'grid') {
       return new Grid(this)
-    }
-
-    if (model === 'masonry') {
-      return new Masonry(this)
     }
 
     if (model === 'justified') {

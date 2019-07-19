@@ -17,34 +17,40 @@ button.addEventListener('click', () => {
   const data = [
     {
       class: 'grids-item',
-      html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
+      html: `<img src="https://picsum.photos/id/${random(
+        1,
+        300
+      )}/450/920" alt="">`,
       options: {
-        col: random(1, 3),
-        row: random(1, 3)
+        col: 1,
+        row: 2
       }
     },
     {
       class: 'grids-item',
       html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
       options: {
-        col: random(1, 3),
-        row: random(1, 3)
+        col: 1,
+        row: 1
       }
     },
     {
       class: 'grids-item',
       html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
       options: {
-        col: random(1, 3),
-        row: random(1, 3)
+        col: 1,
+        row: 1
       }
     },
     {
       class: 'grids-item',
-      html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
+      html: `<img src="https://picsum.photos/id/${random(
+        1,
+        300
+      )}/920/450" alt="">`,
       options: {
-        col: random(1, 3),
-        row: random(1, 3)
+        col: 2,
+        row: 1
       }
     }
   ]

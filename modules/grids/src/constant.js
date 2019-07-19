@@ -34,7 +34,6 @@ export const classes = {
   SHOW: '{namespace}-show',
   HIDE: '{namespace}-hide',
   GRIDMODEL: '{namespace}-grid',
-  MASONRYMODEL: '{namespace}-masonry',
   JUSTIFIEDMODEL: '{namespace}-justified',
   NESTEDMODEL: '{namespace}-nested'
 }

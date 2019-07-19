@@ -18,30 +18,42 @@ button.addEventListener('click', () => {
   const data = [
     {
       class: 'grids-item',
-      html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
+      html: `<img src="https://picsum.photos/id/${random(
+        1,
+        300
+      )}/864/486" alt="">`,
       options: {
-        aspectRatio: `${random(1, 6)}:${random(1, 6)}`
+        aspectRatio: '16:9'
       }
     },
     {
       class: 'grids-item',
-      html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
+      html: `<img src="https://picsum.photos/id/${random(
+        1,
+        300
+      )}/900/675" alt="">`,
       options: {
-        aspectRatio: `${random(1, 6)}:${random(1, 6)}`
+        aspectRatio: '4:3'
       }
     },
     {
       class: 'grids-item',
-      html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
+      html: `<img src="https://picsum.photos/id/${random(
+        1,
+        300
+      )}/900/600" alt="">`,
       options: {
-        aspectRatio: `${random(1, 6)}:${random(1, 6)}`
+        aspectRatio: '3:2'
       }
     },
     {
       class: 'grids-item',
-      html: `<img src="https://picsum.photos/id/${random(1, 300)}/900" alt="">`,
+      html: `<img src="https://picsum.photos/id/${random(
+        1,
+        300
+      )}/900/1350" alt="">`,
       options: {
-        aspectRatio: `${random(1, 6)}:${random(1, 6)}`
+        aspectRatio: '2:3'
       }
     }
   ]
