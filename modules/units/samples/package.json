@@ -3,22 +3,22 @@
   "name": "units-samples",
   "description": "Simple units example",
   "license": "GPL-3.0",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.14",
+    "@pluginjs/dom": "^0.7.15",
     "@pluginjs/icons": "^0.7.3",
-    "@pluginjs/styles": "^0.7.7",
-    "@pluginjs/units": "^0.7.22"
+    "@pluginjs/styles": "^0.7.8",
+    "@pluginjs/units": "^0.7.23"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@pluginjs/browserslist-config": "^1.2.8",
+    "@pluginjs/browserslist-config": "^1.2.9",
     "parcel-bundler": "^1.12.3",
     "posthtml-include": "*"
   },

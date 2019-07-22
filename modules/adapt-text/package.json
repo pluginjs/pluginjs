@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "1.7.15",
+  "version": "1.7.16",
   "category": "ui",
   "main": "dist/adapt-text.common.js",
   "module": "dist/adapt-text.esm.js",
@@ -33,19 +33,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/component": "^0.7.11",
-    "@pluginjs/decorator": "^0.7.15",
-    "@pluginjs/dom": "^0.7.14",
-    "@pluginjs/events": "^0.7.13",
-    "@pluginjs/factory": "^0.7.13",
-    "@pluginjs/styled": "^0.7.14",
-    "@pluginjs/utils": "^0.7.13",
+    "@pluginjs/component": "^0.7.12",
+    "@pluginjs/decorator": "^0.7.16",
+    "@pluginjs/dom": "^0.7.15",
+    "@pluginjs/events": "^0.7.14",
+    "@pluginjs/factory": "^0.7.14",
+    "@pluginjs/styled": "^0.7.15",
+    "@pluginjs/utils": "^0.7.14",
     "animejs": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@pluginjs/browserslist-config": "^1.2.8",
-    "@pluginjs/cli": "^0.7.11",
+    "@pluginjs/browserslist-config": "^1.2.9",
+    "@pluginjs/cli": "^0.7.12",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
