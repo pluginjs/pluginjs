@@ -343,9 +343,17 @@ class Swipe extends Component {
   }
 
   getItemWidth() {
+    const { paddingLeft, paddingRight } = getStyle(
+      ['paddingLeft', 'paddingRight'],
+      this.inner
+    )
+
+    const padding = parseInt(paddingLeft, 10) + parseInt(paddingRight, 10)
+
     return (
       (parseFloat(getStyle('width', this.element)) -
-        this.gutter * (this.itemNums - 1)) /
+        this.gutter * (this.itemNums - 1) -
+        padding) /
       this.itemNums
     )
   }
@@ -401,7 +409,12 @@ class Swipe extends Component {
     })
 
     width -= this.gutter
+    const { paddingLeft, paddingRight } = getStyle(
+      ['paddingLeft', 'paddingRight'],
+      this.inner
+    )
 
+    width = parseInt(paddingLeft, 10) + parseInt(paddingRight, 10) + width
     this.setWidth(width)
     this.itemWidth = this.getItemWidth() + this.gutter
   }
@@ -481,9 +494,7 @@ class Swipe extends Component {
       default: `${this.active}`,
       template: {
         item(css) {
-          return `<li class="${css} ${
-            that.classes.PAGINATIONITEM
-          }" data-href="{index}"><a>{index}</a></li>`
+          return `<li class="${css} ${that.classes.PAGINATIONITEM}" data-href="{index}"><a>{index}</a></li>`
         }
       }
     }
