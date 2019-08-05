@@ -17,7 +17,8 @@ class Scroll {
   bind() {
     const dots = this.instance.Dots.dots
     ScrollSpy.of(dots, {
-      itemSelector: 'li',
+      selector: 'li',
+      hrefFrom: this.instance.options.dots.valueFrom || 'href',
       changeHash: false,
       onChange: id => {
         if (!this.instance.is('moveing') && this.instance.is('initialized')) {
