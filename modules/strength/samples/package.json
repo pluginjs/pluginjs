@@ -3,22 +3,22 @@
   "name": "strength-samples",
   "description": "Simple strength example",
   "license": "GPL-3.0",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.15",
+    "@pluginjs/dom": "^0.7.16",
     "@pluginjs/icons": "^0.7.3",
-    "@pluginjs/strength": "^0.7.16",
-    "@pluginjs/styles": "^0.7.8"
+    "@pluginjs/strength": "^0.7.17",
+    "@pluginjs/styles": "^0.7.9"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@pluginjs/browserslist-config": "^1.2.9",
+    "@pluginjs/browserslist-config": "^1.2.10",
     "parcel-bundler": "^1.12.3",
     "posthtml-include": "*"
   },

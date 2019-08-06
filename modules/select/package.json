@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.24",
+  "version": "0.7.25",
   "category": "form",
   "main": "dist/select.common.js",
   "module": "dist/select.esm.js",
@@ -37,21 +37,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.14",
-    "@pluginjs/component": "^0.7.12",
-    "@pluginjs/decorator": "^0.7.16",
-    "@pluginjs/dom": "^0.7.15",
-    "@pluginjs/dropdown": "^0.7.23",
-    "@pluginjs/events": "^0.7.14",
-    "@pluginjs/is": "^0.7.13",
-    "@pluginjs/match": "^0.7.14",
-    "@pluginjs/template": "^0.7.14",
-    "@pluginjs/utils": "^0.7.14"
+    "@pluginjs/classes": "^0.7.15",
+    "@pluginjs/component": "^0.7.13",
+    "@pluginjs/decorator": "^0.7.17",
+    "@pluginjs/dom": "^0.7.16",
+    "@pluginjs/dropdown": "^0.7.24",
+    "@pluginjs/events": "^0.7.15",
+    "@pluginjs/is": "^0.7.14",
+    "@pluginjs/match": "^0.7.15",
+    "@pluginjs/template": "^0.7.15",
+    "@pluginjs/utils": "^0.7.15"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@pluginjs/browserslist-config": "^1.2.9",
-    "@pluginjs/cli": "^0.7.12",
+    "@pluginjs/browserslist-config": "^1.2.10",
+    "@pluginjs/cli": "^0.7.13",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.15",
+  "version": "0.7.16",
   "category": "scroll",
   "main": "dist/scroll.common.js",
   "module": "dist/scroll.esm.js",
@@ -33,14 +33,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/easing": "^0.7.12",
-    "@pluginjs/is": "^0.7.13",
-    "@pluginjs/styles": "^0.7.8"
+    "@pluginjs/easing": "^0.7.13",
+    "@pluginjs/is": "^0.7.14",
+    "@pluginjs/styles": "^0.7.9"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@pluginjs/browserslist-config": "^1.2.9",
-    "@pluginjs/cli": "^0.7.12",
+    "@pluginjs/browserslist-config": "^1.2.10",
+    "@pluginjs/cli": "^0.7.13",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

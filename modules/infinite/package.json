@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.18",
+  "version": "0.7.19",
   "category": "ui",
   "main": "dist/infinite.common.js",
   "module": "dist/infinite.esm.js",
@@ -37,22 +37,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.14",
-    "@pluginjs/component": "^0.7.12",
-    "@pluginjs/decorator": "^0.7.16",
-    "@pluginjs/dom": "^0.7.15",
-    "@pluginjs/events": "^0.7.14",
-    "@pluginjs/is": "^0.7.13",
-    "@pluginjs/loader": "^0.7.16",
-    "@pluginjs/polyfills": "^0.7.16",
-    "@pluginjs/styled": "^0.7.15",
-    "@pluginjs/template": "^0.7.14",
+    "@pluginjs/classes": "^0.7.15",
+    "@pluginjs/component": "^0.7.13",
+    "@pluginjs/decorator": "^0.7.17",
+    "@pluginjs/dom": "^0.7.16",
+    "@pluginjs/events": "^0.7.15",
+    "@pluginjs/is": "^0.7.14",
+    "@pluginjs/loader": "^0.7.17",
+    "@pluginjs/polyfills": "^0.7.17",
+    "@pluginjs/styled": "^0.7.16",
+    "@pluginjs/template": "^0.7.15",
     "whatwg-fetch": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@pluginjs/browserslist-config": "^1.2.9",
-    "@pluginjs/cli": "^0.7.12",
+    "@pluginjs/browserslist-config": "^1.2.10",
+    "@pluginjs/cli": "^0.7.13",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
