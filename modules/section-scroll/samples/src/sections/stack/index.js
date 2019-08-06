@@ -2,17 +2,15 @@ import { query, queryAll, parent, getData } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import sectionScroll from '@pluginjs/section-scroll'
 
-const element = query('#default .section-container')
-const $nav = query('#default #main-header')
+const element = query('#stack .section-container')
+const $nav = query('#stack #main-header')
 const $sections = queryAll('li', $nav)
 const API = sectionScroll.of(element, {
   /** options **/
   itemSelector: '.section',
   titleSelector: '.section-title',
-  animation: 'scroll',
+  animation: 'stack',
   easing: 'ease-in-out',
-  mousewheel: false,
-  changeHash: false,
   dots: {
     vertical: true
   },

@@ -2,7 +2,8 @@ import Component from '@pluginjs/component'
 import Hammer from 'hammerjs'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { queryAll } from '@pluginjs/dom'
+import { query, queryAll } from '@pluginjs/dom'
+import { isArray, isString } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -46,6 +47,7 @@ class SectionScroll extends Component {
   }
 
   initialize() {
+    // this.initSections()
     this.$sections = queryAll(this.options.itemSelector, this.element)
     this.currIndex = 1
     this.initStyle()
@@ -59,20 +61,33 @@ class SectionScroll extends Component {
     this.history = new History(this)
     this.bind()
 
-    const id = window.location.hash
-      ? window.location.hash
-      : `#${this.$sections[0].id}`
-    this.goTo(id)
+    if (window.location.hash) {
+      this.goTo(window.location.hash)
+    }
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  initSections() {
+    this.$sections = []
+
+    if (isString(this.options.itemSelector)) {
+      this.$sections = queryAll(this.options.itemSelector, this.element)
+    } else if (isArray(this.options.itemSelector)) {
+      this.options.itemSelector.forEach(arrItem => {
+        if (isString(arrItem) && query(`#${arrItem}`, this.element)) {
+          this.$sections.push(query(`#${arrItem}`, this.element))
+        }
+      })
+    }
   }
 
   bind() {
     if (this.options.touch) {
       this.bindChouch()
     }
-    if (this.options.mousewheel) {
+    if (this.options.mousewheel || this.options.animation === 'stack') {
       this.onMousewheel()
     }
     this.bindKeydown()
@@ -89,7 +104,11 @@ class SectionScroll extends Component {
     bindEvent(
       this.eventName('wheel'),
       e => {
-        e.preventDefault()
+        if (e.cancelable) {
+          if (!e.defaultPrevented) {
+            e.preventDefault()
+          }
+        }
 
         if (e.deltaY > 0) {
           this.next()
@@ -154,6 +173,14 @@ class SectionScroll extends Component {
     addClass(this.classes.CONTAINER, this.element)
 
     addClass(this.classes.SECTION, this.element)
+
+    if (this.options.animation === 'scroll') {
+      addClass(this.classes.SCROLL, this.element)
+    }
+
+    if (this.options.animation === 'stack') {
+      addClass(this.classes.STACK, this.element)
+    }
   }
 
   getIdByIndex(index) {

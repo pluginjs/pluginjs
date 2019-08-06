@@ -14,6 +14,12 @@ li {
   cursor: pointer;
 }
 
+.placeholder {
+  width: 100%;
+  height: 300px;
+  background-color: rgba(0,0,0,0.7);
+}
+
 .fixed-header {
   position: fixed;
   top: 0;
@@ -86,9 +92,13 @@ li {
 }
 
 .section {
-  height: 100%;
+  height: 100vh;
   color: #fff;
   text-align: center;
+}
+
+.pj-sectionScroll-stack .section {
+  height: 100%;
 }
 
 .section::after {

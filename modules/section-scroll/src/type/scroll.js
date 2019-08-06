@@ -25,7 +25,9 @@ class Scroll {
           this.instance.trigger(EVENTS.CHANGE, id)
           this.instance.Dots.setActive(id)
           this.instance.currIndex = this.instance.getIndexById(id)
-          this.instance.history.changeHash()
+          if (this.options.changeHash) {
+            this.instance.history.changeHash()
+          }
         }
       }
     })

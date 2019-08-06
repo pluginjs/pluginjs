@@ -41,14 +41,10 @@ export default class History {
 
       this.$sections.forEach(section => {
         if (index > i) {
-          const translate3d = `translate3d(${this.position[0].x}, ${
-            this.position[0].y
-          }, 0px)`
+          const translate3d = `translate3d(${this.position[0].x}, ${this.position[0].y}, 0px)`
           setStyle('transform', translate3d, section)
         } else {
-          const translate3d = `translate3d(${this.position[1].x}, ${
-            this.position[1].y
-          }, 0px)`
+          const translate3d = `translate3d(${this.position[1].x}, ${this.position[1].y}, 0px)`
           setStyle('transform', translate3d, section)
         }
         i++
@@ -69,7 +65,10 @@ export default class History {
     this.instance.trigger(EVENTS.CHANGE, id)
 
     this.setNavActive()
-    this.changeHash()
+
+    if (this.options.changeHash) {
+      this.changeHash()
+    }
   }
 
   setNavActive() {

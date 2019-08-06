@@ -39,7 +39,9 @@ class Dots {
 
   parseItems() {
     const items = []
-    const titles = queryAll(this.options.titleSelector)
+    const titles = this.options.titleSelector
+      ? queryAll(this.options.titleSelector)
+      : []
 
     this.sections.forEach((section, index) => {
       const item = {}

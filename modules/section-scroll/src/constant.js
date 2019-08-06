@@ -14,6 +14,8 @@ export const classes = {
   SECTION: '{namespace}-section',
   CONTAINER: '{namespace}-container',
   OPEN: '{namespace}-open',
+  SCROLL: '{namespace}-scroll',
+  STACK: '{namespace}-stack',
   DISABLED: '{namespace}-disabled'
 }
 
@@ -29,14 +31,15 @@ export const methods = [
 ]
 
 export const defaults = {
-  itemSelector: '',
+  itemSelector: '', // string => 'selector' or array => ['id-1', 'id-2', 'id-3']
   titleSelector: '',
   animation: 'scroll',
   duration: 700,
   easing: 'ease',
   touch: true,
-  mousewheel: true,
+  mousewheel: true, // stack always true
   appendTo: 'body',
+  changeHash: true,
   touchSensitivity: 5,
   loop: false,
   dots: {
