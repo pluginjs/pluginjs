@@ -1,4 +1,4 @@
-import { intersectionObserverPolyfill } from '@pluginjs/polyfills'
+// import { intersectionObserverPolyfill } from '@pluginjs/polyfills'
 import Component from '@pluginjs/component'
 import Loader from '@pluginjs/loader'
 import {
@@ -26,6 +26,7 @@ import { query, append, insertBefore, detach, parseHTML } from '@pluginjs/dom'
 import { isNumber, isString, isFunction } from '@pluginjs/is'
 import { getStyle, setStyle } from '@pluginjs/styled'
 import History from './history'
+import { intersectionObserverPolyfill } from '@pluginjs/polyfills'
 // import 'whatwg-fetch'
 
 intersectionObserverPolyfill()

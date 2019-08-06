@@ -44,6 +44,7 @@
     "@pluginjs/events": "^0.7.14",
     "@pluginjs/is": "^0.7.13",
     "@pluginjs/loader": "^0.7.16",
+    "@pluginjs/polyfills": "^0.7.16",
     "@pluginjs/styled": "^0.7.15",
     "@pluginjs/template": "^0.7.14",
     "whatwg-fetch": "*"
@@ -70,5 +71,5 @@
       "fixtures"
     ]
   },
-  "gitHead": "4c0e0dc988111520438e7b20270b8b3b08e4901f"
+  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6"
 }

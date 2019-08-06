@@ -67,6 +67,6 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "4c0e0dc988111520438e7b20270b8b3b08e4901f",
+  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6",
   "title": "Plugin"
 }
