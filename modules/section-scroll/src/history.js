@@ -93,17 +93,12 @@ export default class History {
     return window.pageYOffset || document.documentElement.scrollTop
   }
 
-  getOffset(node, offsetTop) {
-    if (!offsetTop) {
-      offsetTop = 0
-    }
+  getOffset(node, parent) {
+    parent = parent || document.body
 
-    if (node === document.body || node === null) {
-      return offsetTop
-    }
+    const bodyRect = parent.getBoundingClientRect()
+    const nodeRect = node.getBoundingClientRect()
 
-    offsetTop += node.offsetTop
-
-    return this.getOffset(node.parentNode, offsetTop)
+    return nodeRect.top - bodyRect.top
   }
 }

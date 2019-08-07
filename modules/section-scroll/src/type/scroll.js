@@ -19,7 +19,7 @@ class Scroll {
     ScrollSpy.of(dots, {
       selector: 'li',
       hrefFrom: this.instance.options.dots.valueFrom || 'href',
-      changeHash: false,
+      disableRootMargin: true,
       onChange: id => {
         if (!this.instance.is('moveing') && this.instance.is('initialized')) {
           this.instance.trigger(EVENTS.CHANGE, id)

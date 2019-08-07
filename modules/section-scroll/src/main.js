@@ -176,8 +176,6 @@ class SectionScroll extends Component {
 
     addClass(this.classes.CONTAINER, this.element)
 
-    addClass(this.classes.SECTION, this.element)
-
     if (this.options.animation === 'scroll') {
       addClass(this.classes.SCROLL, this.element)
     }

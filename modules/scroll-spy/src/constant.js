@@ -17,5 +17,6 @@ export const defaults = {
   threshold: 0, //  to be considered upon calculation
   hrefFrom: 'href',
   cloestActive: '',
+  disableRootMargin: false,
   reference: 'top' // ["top"|"bottom"] Which side to use as base when calculation element position.
 }

@@ -11,7 +11,6 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   DOTS: '{namespace}-dots',
-  SECTION: '{namespace}-section',
   CONTAINER: '{namespace}-container',
   OPEN: '{namespace}-open',
   SCROLL: '{namespace}-scroll',

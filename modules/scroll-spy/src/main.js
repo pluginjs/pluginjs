@@ -42,8 +42,10 @@ class ScrollSpy extends Component {
       },
       {
         root: query(this.options.container),
-        rootMargin: `-${this.menuHeight}px 0px -${this.scrollItems[0]
-          .offsetHeight - this.menuHeight}px 0px`
+        rootMargin: this.options.disableRootMargin
+          ? ''
+          : `-${this.menuHeight}px 0px -${this.scrollItems[0].offsetHeight -
+              this.menuHeight}px 0px`
       }
     )
 
@@ -80,7 +82,6 @@ class ScrollSpy extends Component {
     const id = entry.target.id
     const activeClass = this.options.activeClass
     this.lastId = id
-
     this.menuItems.forEach(item => {
       let activeElement
       if (this.options.cloestActive) {
