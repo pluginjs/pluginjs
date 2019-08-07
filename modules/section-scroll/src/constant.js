@@ -46,7 +46,7 @@ export const defaults = {
     theme: null,
     items: null,
     default: null,
-    direction: 'vertical',
+    vertical: true,
     valueFrom: 'data-href', // text or data-attr
     template: {
       item(css) {

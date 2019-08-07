@@ -47,8 +47,12 @@ class SectionScroll extends Component {
   }
 
   initialize() {
-    // this.initSections()
-    this.$sections = queryAll(this.options.itemSelector, this.element)
+    this.initSections()
+
+    if (this.$sections.length <= 0) {
+      return
+    }
+
     this.currIndex = 1
     this.initStyle()
     if (this.options.dots !== false) {
