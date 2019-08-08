@@ -10,19 +10,16 @@ $dropdown-index: $zindex-dropdown !default;
 // =====================
 .#{$dropdown} {
   position: absolute;
+  display: none;
   z-index: $dropdown-index;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   list-style: none;
-  visibility: hidden;
   background-color: $dropdown-bg;
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
 
   &-show {
-    visibility: visible;
-    opacity: 1;
+    display: block;
   }
 
   &-item {
