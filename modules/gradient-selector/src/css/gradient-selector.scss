@@ -11,6 +11,8 @@ $range: "pj-range" !default;
 // global
 $gradientSelector-sizer: $sizer !default;
 
+$gradientSelector-color: $gray-dark;
+$gradientSelector-hover-color: $gray-darkest;
 $gradientSelector-border: 1px solid $gray-lightest !default;
 $gradientSelector-border-radius: $border-radius-base !default;
 $gradientSelector-active-color: $color-primary !default;
@@ -20,6 +22,8 @@ $gradientSelector-width: 16 * $gradientSelector-sizer !default; //160px
 $gradientSelector-height: 9 * $gradientSelector-sizer !default; //30px
 $gradientSelector-border: 1px solid $border-color;
 
+//editor
+$gradientSelector-editor: 2.8 * $gradientSelector-sizer !default; //28px
 // panel
 $gradientSelector-panel-width: 28.8 * $gradientSelector-sizer !default; //288px
 $gradientSelector-panel-height: 37 * $gradientSelector-sizer !default; //370px
@@ -107,6 +111,10 @@ $editPanel-component-color: $color-red !default;
       background-color: $color-opacity;
       border-radius: 2px;
       opacity: 0;
+
+      > i {
+        cursor: pointer;
+      }
     }
   }
 
@@ -117,6 +125,12 @@ $editPanel-component-color: $color-red !default;
     justify-content: center;
     width: 100%;
     height: 100%;
+    color: $gradientSelector-color;
+    cursor: pointer;
+
+    &:hover {
+      color: $gradientSelector-hover-color;
+    }
   }
 
   &-open-disabled {
@@ -140,7 +154,7 @@ $editPanel-component-color: $color-red !default;
   }
 
   &-editor {
-    margin-right: 28px;
+    margin-right: $gradientSelector-editor;
   }
 
   &-preview {
@@ -149,7 +163,6 @@ $editPanel-component-color: $color-red !default;
     height: 13 * $gradientSelector-sizer;
     padding: 1.4 * $gradientSelector-sizer;
     margin-bottom: 2 * $gradientSelector-sizer;
-    // background: url(./images/bg-canvas.png) no-repeat center;
     border: 1px solid #dfe4ed;
     border-radius: 2px;
 
@@ -161,8 +174,7 @@ $editPanel-component-color: $color-red !default;
 
   &-panel{
     box-sizing: border-box;
-    width: 290px;
-    // padding: 20px;
+    width: $gradientSelector-panel-width;
     background-color: $color-white;
     border: $gradientSelector-border;
     border-radius: 2px;
@@ -213,8 +225,7 @@ $editPanel-component-color: $color-red !default;
 
     &-container {
       position: relative;
-      // padding: $gradientSelector-collection-scrollwrap-padding;
-  
+
       & > div {
         display: none;
       }
@@ -255,6 +266,7 @@ $editPanel-component-color: $color-red !default;
       height: $gradientSelector-collection-scrollwrap-height;
       overflow: hidden;
       overflow-y: auto;
+      box-sizing: content-box;
     }
 
     &-item {
@@ -325,7 +337,6 @@ $editPanel-component-color: $color-red !default;
   }
 
   &-selector-item {
-    //float: left;
     display: inline-flex;
     width: calc(100% / 4 - 2px - 20px);
     height: $selector-item-height;
@@ -395,7 +406,6 @@ $editPanel-component-color: $color-red !default;
   }
 
   &-warning {
-    // border-color: $gradientSelector-warning-color !important;
     animation: flashing 0.4s ease;
   }
 

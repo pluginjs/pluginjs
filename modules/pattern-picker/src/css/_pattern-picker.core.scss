@@ -57,6 +57,10 @@ $patternPicker-scheme-height: 230px !default;
       width: 100%;
       height: 100%;
       opacity: 0;
+
+      > i {
+        cursor: pointer;
+      }
     }
   }
 
@@ -67,6 +71,7 @@ $patternPicker-scheme-height: 230px !default;
     justify-content: center;
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
 
   &-panel{
