@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.30",
+  "version": "0.7.31",
   "category": "form",
   "main": "dist/font-editor.common.js",
   "module": "dist/font-editor.esm.js",
@@ -41,18 +41,18 @@
     "@pluginjs/component": "^0.7.13",
     "@pluginjs/decorator": "^0.7.17",
     "@pluginjs/dom": "^0.7.16",
-    "@pluginjs/dropdown": "^0.7.24",
+    "@pluginjs/dropdown": "^0.7.25",
     "@pluginjs/events": "^0.7.15",
     "@pluginjs/factory": "^0.7.15",
-    "@pluginjs/font-picker": "^0.7.29",
+    "@pluginjs/font-picker": "^0.7.30",
     "@pluginjs/is": "^0.7.14",
     "@pluginjs/pop-dialog": "^0.7.17",
     "@pluginjs/range": "^0.7.18",
-    "@pluginjs/select": "^0.7.25",
+    "@pluginjs/select": "^0.7.26",
     "@pluginjs/styled": "^0.7.16",
     "@pluginjs/template": "^0.7.15",
     "@pluginjs/tooltip": "^0.7.17",
-    "@pluginjs/units-range": "^0.7.25",
+    "@pluginjs/units-range": "^0.7.26",
     "@pluginjs/utils": "^0.7.15"
   },
   "devDependencies": {

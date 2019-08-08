@@ -3,14 +3,14 @@
   "name": "cascader-samples",
   "description": "Simple cascader example",
   "license": "GPL-3.0",
-  "version": "1.1.26",
+  "version": "1.1.27",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/cascader": "^0.7.26",
+    "@pluginjs/cascader": "^0.7.27",
     "@pluginjs/dom": "^0.7.16"
   },
   "devDependencies": {

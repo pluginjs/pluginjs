@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.25",
+  "version": "0.7.26",
   "category": "form",
   "main": "dist/svg-picker.common.js",
   "module": "dist/svg-picker.esm.js",
@@ -41,7 +41,7 @@
     "@pluginjs/component": "^0.7.13",
     "@pluginjs/decorator": "^0.7.17",
     "@pluginjs/dom": "^0.7.16",
-    "@pluginjs/dropdown": "^0.7.24",
+    "@pluginjs/dropdown": "^0.7.25",
     "@pluginjs/events": "^0.7.15",
     "@pluginjs/is": "^0.7.14",
     "@pluginjs/match": "^0.7.15",
