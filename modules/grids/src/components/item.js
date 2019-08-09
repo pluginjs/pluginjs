@@ -1,5 +1,5 @@
 import { transitionEndEvent } from '@pluginjs/feature'
-import { addClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { find, query, append, children } from '@pluginjs/dom'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEventOnce } from '@pluginjs/events'
@@ -62,19 +62,27 @@ class Item {
         loader.show()
       }
 
-      ImageLoader.of(this.img).on('loaded', () => {
-        if (this.instance.options.loader) {
-          loader.hide()
-        }
-        addClass(this.instance.classes.IMAGELOADED, this.chunkInner)
-      })
+      if (this.instance.options.imageLoader) {
+        addClass(this.instance.classes.IMAGELOADING, this.chunkInner)
 
-      ImageLoader.of(this.img).on('error', () => {
-        if (this.instance.options.loader) {
-          loader.hide()
-        }
-        addClass(this.instance.classes.IMAGEERROR, this.chunkInner)
-      })
+        ImageLoader.of(this.img).on('loaded', () => {
+          if (this.instance.options.loader) {
+            loader.hide()
+          }
+          removeClass(this.instance.classes.IMAGELOADING, this.chunkInner)
+          addClass(this.instance.classes.IMAGELOADED, this.chunkInner)
+        })
+
+        ImageLoader.of(this.img).on('error', () => {
+          if (this.instance.options.loader) {
+            loader.hide()
+          }
+          removeClass(this.instance.classes.IMAGELOADING, this.chunkInner)
+          addClass(this.instance.classes.IMAGEERROR, this.chunkInner)
+        })
+      } else if (this.instance.options.loader) {
+        loader.hide()
+      }
     }
 
     if (this.col > 2 || this.row > 2) {
@@ -97,7 +105,7 @@ class Item {
 
     this.tags = this.options.tags
       ? this.instance.options.parseTagsStr(this.options.tags)
-      : null
+      : []
 
     if (this.tags) {
       this.tags.forEach((item, index) => {

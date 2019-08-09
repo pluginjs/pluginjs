@@ -18,6 +18,7 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   MASK: '{namespace}-mask',
   INNER: '{namespace}-inner',
+  IMAGELOADING: '{namespace}-image-loading',
   IMAGELOADED: '{namespace}-image-loaded',
   IMAGEERROR: '{namespace}-image-error',
   LOADED: '{namespace}-loaded',
@@ -75,6 +76,7 @@ export const defaults = {
   sortDirection: 'max', // min && max
   animate: 'fadeInUp', // fadeInUp,fadeInDown, fadeInLeft, fadeInRight, zoomIn, zoomOut, bounce, bounceIn, flip, calendar, cards, fan
   effects: {}, // set custom effects.
+  imageLoader: true,
   loader: {
     theme: 'snake',
     color: '#000000',
