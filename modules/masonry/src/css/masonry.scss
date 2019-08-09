@@ -19,6 +19,10 @@ $masonry-toolbar-margin-bottom: 30px;
 	&-image-wrapper {
 		position: relative;
 
+		&.#{$masonry}-image-loading img {
+			opacity: 0;
+		}
+
 		&.#{$masonry}-image-loaded img {
 			opacity: 1;
 		}
@@ -30,7 +34,6 @@ $masonry-toolbar-margin-bottom: 30px;
 			width: 100%;
 			height: 100%;
 			pointer-events: none;
-			opacity: 0;
 		}
 	}
 

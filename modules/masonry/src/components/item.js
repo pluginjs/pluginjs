@@ -1,6 +1,6 @@
 import { transitionEndEvent } from '@pluginjs/feature'
 import { wrap, query } from '@pluginjs/dom'
-import { addClass } from '@pluginjs/classes'
+import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEventOnce } from '@pluginjs/events'
 import { isObject } from '@pluginjs/is'
@@ -55,7 +55,7 @@ class Item {
 
     this.tags = this.options.tags
       ? this.instance.options.parseTagsStr(this.options.tags)
-      : null
+      : []
 
     if (this.tags) {
       this.tags.forEach((item, index) => {
@@ -80,19 +80,27 @@ class Item {
       loader.show()
     }
 
-    ImageLoader.of(img).on('loaded', () => {
-      if (this.instance.options.loader) {
-        loader.hide()
-      }
-      addClass(this.instance.classes.IMAGELOADED, wrapper)
-    })
+    if (this.instance.options.imageLoader) {
+      addClass(this.instance.classes.IMAGELOADING, wrapper)
 
-    ImageLoader.of(img).on('error', () => {
-      if (this.instance.options.loader) {
-        loader.hide()
-      }
-      addClass(this.instance.classes.IMAGEERROR, wrapper)
-    })
+      ImageLoader.of(img).on('loaded', () => {
+        if (this.instance.options.loader) {
+          loader.hide()
+        }
+        removeClass(this.instance.classes.IMAGELOADING, wrapper)
+        addClass(this.instance.classes.IMAGELOADED, wrapper)
+      })
+
+      ImageLoader.of(img).on('error', () => {
+        if (this.instance.options.loader) {
+          loader.hide()
+        }
+        removeClass(this.instance.classes.IMAGELOADING, wrapper)
+        addClass(this.instance.classes.IMAGEERROR, wrapper)
+      })
+    } else if (this.instance.options.loader) {
+      loader.hide()
+    }
   }
 
   getPosition() {

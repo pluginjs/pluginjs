@@ -121,11 +121,10 @@ class Masonry extends Component {
     if (!tags || !Array.isArray(tags) || tags.length <= 0) {
       return chunks
     }
-    console.log('tags', tags)
 
     const chunkList = [].concat(chunks)
     const tempArr = []
-    console.log('chunkList', chunkList)
+
     chunkList.forEach(chunk => {
       if (chunk.tags.includes(tags[0])) {
         tempArr.push(chunk)

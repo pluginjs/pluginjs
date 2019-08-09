@@ -17,6 +17,7 @@ export const classes = {
   THEME: '{namespace}--{theme}',
   CHUNK: '{namespace}-chunk',
   IMGWRAPPER: '{namespace}-image-wrapper',
+  IMAGELOADING: '{namespace}-image-loading',
   IMAGELOADED: '{namespace}-image-loaded',
   IMAGEERROR: '{namespace}-image-error',
   TOOLBAR: '{namespace}-toolbar',
@@ -57,6 +58,7 @@ export const defaults = {
   filtertheme: 'group',
   sortby: '',
   sortDirection: 'max', // min && max
+  imageLoader: true,
   loader: {
     theme: 'snake',
     color: '#000000',
