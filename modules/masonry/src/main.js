@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
-import { queryAll, append, find, children, getData } from '@pluginjs/dom'
+import { queryAll, append, find, children, getData, query } from '@pluginjs/dom'
 import { isArray } from '@pluginjs/is'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -70,15 +70,11 @@ class Masonry extends Component {
   }
 
   initGlobalArgs() {
+    this.initInner()
+
     this.$items = this.options.itemSelector
       ? queryAll(this.options.itemSelector, this.element)
-      : children(this.element)
-
-    append(`<div class="${this.classes.INNER}"></div>`, this.element)
-    this.$inner = find(`.${this.classes.INNER}`, this.element)
-    this.$items.forEach($item => {
-      append($item, this.$inner)
-    })
+      : children(this.$inner)
 
     this.minWidth = this.options.minWidth
     this.gutter = this.options.gutter
@@ -96,6 +92,23 @@ class Masonry extends Component {
     this.height = this.getHeight()
 
     this.ANIMATE = new Animate(this)
+  }
+
+  initInner() {
+    this.$inner = this.options.innerSelector
+      ? query(this.options.innerSelector, this.element)
+      : null
+
+    if (!this.$inner) {
+      const items = children(this.element)
+      append(`<div class="${this.classes.INNER}"></div>`, this.element)
+      this.$inner = find(`.${this.classes.INNER}`, this.element)
+      items.forEach(item => {
+        append(item, this.$inner)
+      })
+    } else {
+      addClass(this.classes.INNER, this.$inner)
+    }
   }
 
   createChunks(items) {

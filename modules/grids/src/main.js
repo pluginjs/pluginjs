@@ -4,7 +4,7 @@ import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { isArray } from '@pluginjs/is'
-import { append, find, queryAll, children, getData } from '@pluginjs/dom'
+import { append, find, query, queryAll, children, getData } from '@pluginjs/dom'
 
 import {
   eventable,
@@ -76,16 +76,11 @@ class Grids extends Component {
   }
 
   initGlobalArgs() {
+    this.initInner()
+
     this.$items = this.options.itemSelector
       ? queryAll(this.options.itemSelector, this.element)
-      : children(this.element)
-
-    append(`<div class="${this.classes.INNER}"></div>`, this.element)
-    this.$inner = find(`.${this.classes.INNER}`, this.element)
-
-    this.$items.forEach($item => {
-      append($item, this.$inner)
-    })
+      : children(this.$inner)
 
     this.minWidth = this.options.minWidth
     this.minHeight = this.options.minHeight
@@ -97,14 +92,28 @@ class Grids extends Component {
 
     this.defaultChunks = this.createChunks(this.$items)
 
-    /* 处理chunks --> 根据filters过滤， 根据sortby重排 */
     this.handleChunks()
 
-    /* 初始化正常的模块 */
     this.model = this.initModel(this.options.model)
 
-    /* 初始化animate，chunks发生filter，loading时使用 */
     this.ANIMATE = new Animate(this)
+  }
+
+  initInner() {
+    this.$inner = this.options.innerSelector
+      ? query(this.options.innerSelector, this.element)
+      : null
+
+    if (!this.$inner) {
+      const items = children(this.element)
+      append(`<div class="${this.classes.INNER}"></div>`, this.element)
+      this.$inner = find(`.${this.classes.INNER}`, this.element)
+      items.forEach(item => {
+        append(item, this.$inner)
+      })
+    } else {
+      addClass(this.classes.INNER, this.$inner)
+    }
   }
 
   createChunks(items) {

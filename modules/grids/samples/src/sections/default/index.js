@@ -4,6 +4,7 @@ import Grids from '@pluginjs/grids'
 const element = query('#default .grids')
 const button = query('#default .add')
 const api = Grids.of(element, {
+  innerSelector: '.grids-inner',
   itemSelector: '.grids-item',
   maxColumn: 5,
   gutter: 20

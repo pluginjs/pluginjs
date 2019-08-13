@@ -54,6 +54,7 @@ export const methods = [
 
 export const defaults = {
   theme: null,
+  innerSelector: null,
   itemSelector: null, // [selector / null] null => select children of the element.
   imgSelector: 'img', // [selector / null] If there is any image in item, the grid will select an IMG element marked by Imgselector
   model: 'grid', // select model

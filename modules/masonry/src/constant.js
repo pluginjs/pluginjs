@@ -40,6 +40,7 @@ export const methods = [
 
 export const defaults = {
   theme: null,
+  innerSelector: null,
   itemSelector: null, // [selector / null] null => select children of the element.
   maxColumn: 5, // set the max column number
   minWidth: 200, // item min width, unit: px
