@@ -43,6 +43,7 @@
     "@pluginjs/dom": "^0.7.16",
     "@pluginjs/events": "^0.7.15",
     "@pluginjs/factory": "^0.7.15",
+    "@pluginjs/is": "^0.7.14",
     "@pluginjs/styled": "^0.7.16",
     "@pluginjs/utils": "^0.7.15",
     "animejs": "*"
