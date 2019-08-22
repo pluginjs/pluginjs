@@ -81,7 +81,10 @@ class Item {
           addClass(this.instance.classes.IMAGEERROR, this.chunkInner)
         })
       } else if (this.instance.options.loader) {
+        addClass(this.instance.classes.IMAGELOADED, this.chunkInner)
         loader.hide()
+      } else {
+        addClass(this.instance.classes.IMAGELOADED, this.chunkInner)
       }
     }
 

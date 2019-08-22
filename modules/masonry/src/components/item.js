@@ -99,7 +99,10 @@ class Item {
         addClass(this.instance.classes.IMAGEERROR, wrapper)
       })
     } else if (this.instance.options.loader) {
+      addClass(this.instance.classes.IMAGELOADED, wrapper)
       loader.hide()
+    } else {
+      addClass(this.instance.classes.IMAGELOADED, wrapper)
     }
   }
 
