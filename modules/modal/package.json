@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.18",
+  "version": "0.7.19",
   "category": "ui",
   "main": "dist/modal.common.js",
   "module": "dist/modal.esm.js",
