@@ -13,6 +13,7 @@ export default class Typewrite {
 
   initialize() {
     this.text = text(this.element)
+
     this.build()
 
     this.textArr = this.text.split('')
@@ -54,7 +55,7 @@ export default class Typewrite {
       duration: this.options.duration || 2000,
       easing: 'linear',
       delay: this.options.delay,
-      run: () => {
+      update: () => {
         const content = this.textArr
           .slice(0, this.indexList[target.textLen])
           .join('')
