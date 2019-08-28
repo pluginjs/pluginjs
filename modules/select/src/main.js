@@ -167,7 +167,7 @@ class Select extends Component {
         this.trigger(EVENTS.HIDED)
       },
       onChange: value => {
-        this.set(value)
+        this.set(value, true)
       }
     })
   }

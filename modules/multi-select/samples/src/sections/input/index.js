@@ -23,6 +23,10 @@ MultiSelect.of(element, {
     {
       value: 5,
       label: 'Option 5'
+    },
+    {
+      value: 6,
+      label: 'Option 6'
     }
   ]
 })

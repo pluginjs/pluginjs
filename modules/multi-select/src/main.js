@@ -125,6 +125,13 @@ class MultiSelect extends Select {
     }
   }
 
+  val(value, trigger = true) {
+    if (typeof value === 'undefined') {
+      return null
+    }
+    this.set(value, trigger)
+  }
+
   set(value, trigger) {
     value = this.purifyValue(value)
     if (!arrayEqual(value, this.value)) {
@@ -181,6 +188,7 @@ class MultiSelect extends Select {
     if (!this.isValidValue(value)) {
       return
     }
+
     if (!this.selected.includes(value)) {
       const option = this.getOptionByValue(value)
 
@@ -204,6 +212,7 @@ class MultiSelect extends Select {
     if (!this.isValidValue(value)) {
       return
     }
+    
     if (this.selected.includes(value)) {
       const option = this.getOptionByValue(value)
 

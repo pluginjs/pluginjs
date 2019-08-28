@@ -273,9 +273,9 @@ class Toggle extends Component {
     return this.element.checked
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value !== 'undefined') {
-      this.set(value)
+      this.set(value, trigger)
     } else {
       return this.get()
     }

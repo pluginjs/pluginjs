@@ -48,6 +48,7 @@ export default class FontWeight {
           return
         }
         // that.instance.update()
+        this.set(value)
         this.instance.TRIGGER.$fillContentName.style.fontWeight = value
       }
     })

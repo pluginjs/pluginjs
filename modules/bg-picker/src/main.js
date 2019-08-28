@@ -231,7 +231,13 @@ class BgPicker extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.value)
     }
-    const valueObj = this.options.parse.call(this, value)
+
+    if(typeof(value) == "object"){
+      var valueObj = value
+    } else {
+      var valueObj = this.options.parse.call(this, value);
+    }
+
     if (valueObj) {
       this.set(valueObj, true, trigger)
     } else {

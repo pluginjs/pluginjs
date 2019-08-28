@@ -74,6 +74,7 @@ $imagePicker-change-opacity: $color-opacity;
   &-remove,
   &-reselect {
     margin: 0 $imagePicker-icon-spacer;
+    cursor: pointer;
   }
 
   &-fadeOut {

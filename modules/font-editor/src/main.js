@@ -107,7 +107,7 @@ class FontEditor extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
-    this.set(this.value, true, false)
+    this.set(this.value, false, true)
     this.enter('initialized')
 
     this.trigger(EVENTS.READY)
@@ -210,19 +210,25 @@ class FontEditor extends Component {
     this.element.value = value
     this.TRIGGER.update()
     if (trigger) {
+      console.log(1, value)
       this.trigger(EVENTS.CHANGE, value)
       triggerNative(this.element, 'change')
     }
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.value)
     }
+    
+    if(typeof(value) == "object"){
+      var valueObj = value
+    } else {
+      var valueObj = this.options.parse.call(this, value);
+    }
 
-    const valueObj = this.options.parse.call(this, value)
     if (valueObj) {
-      this.set(valueObj)
+      this.set(valueObj, trigger)
     } else {
       this.clear()
     }
@@ -230,7 +236,8 @@ class FontEditor extends Component {
     return null
   }
 
-  set(value, update = true, trigger = true) {
+  set(value, trigger = true, update = true) {
+    console.log(value)
     if (update !== false) {
       if (typeof value.textAlign !== 'undefined') {
         this.textAlign.set(value.textAlign)

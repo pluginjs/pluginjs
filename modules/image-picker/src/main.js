@@ -62,7 +62,7 @@ class ImagePicker extends Component {
     // set initialed value
     this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
     this.setState('write')
-    this.set(this.value, false)
+    this.val(this.value, false)
 
     if (this.element.disabled || this.options.disabled) {
       this.disable()
@@ -227,6 +227,7 @@ class ImagePicker extends Component {
     if (!value) {
       return
     }
+
     this.value = value
     this.$image.setAttribute('src', value.image)
 
@@ -236,12 +237,18 @@ class ImagePicker extends Component {
     }
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
 
-    this.set(this.options.parse.call(this, value))
+    if(typeof(value) == "object"){
+      var valueObj = value
+    } else {
+      var valueObj = this.options.parse.call(this, value);
+    }
+
+    this.set(valueObj, trigger)
     return null
   }
 
