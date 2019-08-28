@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.31",
+  "version": "0.7.32",
   "category": "form",
   "main": "dist/bg-picker.common.js",
   "module": "dist/bg-picker.esm.js",
@@ -46,7 +46,7 @@
     "@pluginjs/factory": "^0.7.15",
     "@pluginjs/is": "^0.7.14",
     "@pluginjs/pop-dialog": "^0.7.17",
-    "@pluginjs/select": "^0.7.26",
+    "@pluginjs/select": "^0.7.27",
     "@pluginjs/styled": "^0.7.16",
     "@pluginjs/styles": "^0.7.9",
     "@pluginjs/template": "^0.7.15",

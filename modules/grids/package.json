@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.29",
+  "version": "0.7.30",
   "category": "media",
   "main": "dist/grids.common.js",
   "module": "dist/grids.esm.js",

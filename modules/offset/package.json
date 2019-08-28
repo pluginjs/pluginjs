@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.27",
+  "version": "0.7.28",
   "category": "form",
   "main": "dist/offset.common.js",
   "module": "dist/offset.esm.js",
@@ -45,7 +45,7 @@
     "@pluginjs/events": "^0.7.15",
     "@pluginjs/factory": "^0.7.15",
     "@pluginjs/is": "^0.7.14",
-    "@pluginjs/select": "^0.7.26",
+    "@pluginjs/select": "^0.7.27",
     "@pluginjs/styled": "^0.7.16",
     "@pluginjs/template": "^0.7.15",
     "@pluginjs/tooltip": "^0.7.17",
