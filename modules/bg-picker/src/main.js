@@ -84,6 +84,13 @@ class BgPicker extends Component {
     }
 
     this.initDropdown(this.options.dropdown)
+
+    insertBefore(this.POSITION.$wrap, this.$control)
+    insertBefore(this.REPEAT.$wrap, this.$control)
+    insertBefore(this.ATTACHMENT.$wrap, this.$control)
+    insertBefore(this.SIZE.$wrap, this.$control)
+    insertBefore(this.IMAGE.$wrap, this.$control)
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -96,15 +103,6 @@ class BgPicker extends Component {
       target: this.$dropdown,
       hideOutClick: this.options.hideOutClick,
       hideOnSelect: false,
-      onShow: () => {
-        if (!this.DROPDOWN.is('builded')) {
-          insertBefore(this.POSITION.$wrap, this.$control)
-          insertBefore(this.REPEAT.$wrap, this.$control)
-          insertBefore(this.ATTACHMENT.$wrap, this.$control)
-          insertBefore(this.SIZE.$wrap, this.$control)
-          insertBefore(this.IMAGE.$wrap, this.$control)
-        }
-      },
       onHide: () => {
         if (this.is('save')) {
           this.set(this.value)
@@ -237,11 +235,10 @@ class BgPicker extends Component {
     } else {
       var valueObj = this.options.parse.call(this, value);
     }
-
-    if (valueObj) {
+    if (valueObj && valueObj.image) {
       this.set(valueObj, true, trigger)
     } else {
-      this.clear()
+      this.clear(true, trigger)
     }
 
     return null
@@ -291,7 +288,7 @@ class BgPicker extends Component {
     }
   }
 
-  clear(update = true) {
+  clear(update = true, trigger = true) {
     this.value = {}
     this.$imageSelected = query(`.${this.classes.IMAGESELECTED}`, this.$wrap)
     removeClass(this.classes.EXIST, this.$wrap)
@@ -300,7 +297,6 @@ class BgPicker extends Component {
     if (update !== false) {
       const image = ''
       this.PREVIEW.set(image)
-
       this.REPEAT.clear()
       this.SIZE.clear()
       this.POSITION.clear()
@@ -308,7 +304,10 @@ class BgPicker extends Component {
       this.update()
     }
     this.leave('status')
-    triggerNative(this.element, 'change')
+    if(trigger == true) {
+      this.trigger(EVENTS.CHANGE, this.value)
+      triggerNative(this.element, 'change')
+    }
   }
 
   setRepeat(repeat) {

@@ -28,7 +28,6 @@ const instances = {
   },
   volume() {
     const val = parseInt(Math.random() * 100, 10)
-    console.log('volume:', val)
     instance.volume(val)
   },
   switchVideo() {

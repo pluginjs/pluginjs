@@ -59,7 +59,7 @@ export const defaults = {
     )
   },
   process(value) {
-    if (value && typeof value !== 'undefined') {
+    if (value && typeof value.image !== 'undefined' && typeof value !== 'undefined') {
       return JSON.stringify(value)
     }
     return ''

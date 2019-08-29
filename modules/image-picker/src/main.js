@@ -62,6 +62,7 @@ class ImagePicker extends Component {
     // set initialed value
     this.value = this.options.parse(this.element.value.replace(/'/g, '"'))
     this.setState('write')
+
     this.val(this.value, false)
 
     if (this.element.disabled || this.options.disabled) {
@@ -201,22 +202,22 @@ class ImagePicker extends Component {
       )(this.$wrap)
     }
   }
-  update() {
+  update(trigger = true) {
     this.element.value = this.val()
-    this.trigger(EVENTS.CHANGE, this.value)
-    triggerNative(this.element, 'change')
+    if(trigger) {
+      this.trigger(EVENTS.CHANGE, this.value)
+      triggerNative(this.element, 'change')
+    }
   }
 
   clear(update = true) {
-    this.value = null
-
+    this.value = {}
     this.$image.setAttribute('src', null)
 
     this.setState('write')
 
-    if (update !== false) {
-      this.update()
-    }
+    this.update(update)
+
   }
 
   get() {
@@ -232,9 +233,9 @@ class ImagePicker extends Component {
     this.$image.setAttribute('src', value.image)
 
     this.setState('exist')
-    if (update !== false) {
-      this.update()
-    }
+
+    this.update(update)
+
   }
 
   val(value, trigger = true) {
@@ -242,13 +243,18 @@ class ImagePicker extends Component {
       return this.options.process.call(this, this.get())
     }
 
-    if(typeof(value) == "object"){
+    if(typeof(value) == "object" && value && value.image){
       var valueObj = value
     } else {
       var valueObj = this.options.parse.call(this, value);
     }
 
-    this.set(valueObj, trigger)
+    if(valueObj) {
+      this.set(valueObj, trigger)
+    } else {
+      this.clear(trigger)
+    }
+
     return null
   }
 

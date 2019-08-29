@@ -210,7 +210,6 @@ class FontEditor extends Component {
     this.element.value = value
     this.TRIGGER.update()
     if (trigger) {
-      console.log(1, value)
       this.trigger(EVENTS.CHANGE, value)
       triggerNative(this.element, 'change')
     }
@@ -237,7 +236,6 @@ class FontEditor extends Component {
   }
 
   set(value, trigger = true, update = true) {
-    console.log(value)
     if (update !== false) {
       if (typeof value.textAlign !== 'undefined') {
         this.textAlign.set(value.textAlign)
