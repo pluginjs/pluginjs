@@ -4,6 +4,7 @@ import Parallax from '@pluginjs/parallax'
 const elements = queryAll('#default .parallax')
 elements.forEach(el =>
   Parallax.of(el, {
-    container: '.section'
+    container: '.section',
+    speed: 0.5
   })
 )

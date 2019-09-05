@@ -2,18 +2,16 @@
 @import "@pluginjs/parallax/src/css/parallax.scss";
 @import "@pluginjs/loader/src/css/loader.scss";
 
-section {
-  margin-bottom: 100px;
+body {
+  margin: 0;
+}
+
+.section {
+  height: 800px;
 }
 
 .wrapper {
-  width: calc(100% - 60px);
-  max-width: 1600px;
-  margin: 20px auto;
-
-  .section {
-    border-radius: 6px;
-  }
+  width: 100%;
 }
 
 .flex {
@@ -33,15 +31,13 @@ section {
   }
 }
 
-.flex-four {
-  .section {
-    width: calc((100% - 40px) / 4)
-  }
-}
-
 .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   font-size: 26px;
   color: #fff;
-  text-align: center;
   letter-spacing: 1px;
 }

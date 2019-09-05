@@ -9,14 +9,13 @@ $bgVideo: "pj-bgVideo" !default;
 // =====================
 .#{$parallax}-container {
 	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	overflow: hidden;
 
 	.#{$parallax} {
 		position: absolute;
 		z-index: -1;
+		width: 100%;
+		height: 100%;
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;

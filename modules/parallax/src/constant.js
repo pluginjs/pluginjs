@@ -21,7 +21,7 @@ export const defaults = {
   container: null,
   direction: 'vertical', // 'vertical', 'horizontal'
   type: 'scroll', // 'scroll', 'opacity', 'scale'
-  speed: 0.5, // -1 ~ 1
+  speed: 0.5, // 0 ~ 1
   mode: 'background', // 'background', 'image'
   image: null, // null, src, {} => src , srcset
   video: null, // null, {}

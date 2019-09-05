@@ -6,7 +6,7 @@ import { addClass, hasClass } from '@pluginjs/classes'
 import { closest, wrap, parentWith, parseHTML } from '@pluginjs/dom'
 import { isString, isNan, isPlainObject } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { setStyle } from '@pluginjs/styled'
+import { setStyle, getOffset } from '@pluginjs/styled'
 import Pj from '@pluginjs/factory'
 import {
   eventable,
@@ -259,37 +259,38 @@ class Parallax extends Component {
       this.speed = 0.5
     }
 
-    let moveX
-    let moveY
-
     const style = {
       'object-fit': 'cover'
     }
 
-    if (this.direction === 'horizontal') {
+    if (this.direction === 'vertical') {
+      style.height = this.imgHeight
+      style.width = this.imgWidth
+      style.left = 0
+
+      const distanceFromTop =
+        getOffset(this.container).top - this.getScrollTop()
+      const imageDiff = this.imgHeight - this.containerHeight
+      const percent =
+        1 -
+        (distanceFromTop + this.containerHeight) /
+          (this.windowHeight + this.containerHeight)
+      const scrollDistance =
+        this.windowHeight * (1 - this.speed) * 2 - imageDiff
+      const fromY = this.windowHeight * (1 - this.speed)
+      this.distance = (percent * scrollDistance - fromY).toFixed(2)
+
+      this.transform = `translate3d(0, ${this.distance}px, 0)`
+    } else {
       style.width = `${this.containerWidth * (1 + Math.abs(this.speed) * 2)}px`
       style.height = this.containerHeight
       style.top = 0
       this.distance =
-        this.containerWidth *
+        -this.containerWidth *
         Math.abs(this.speed) *
         (this.containerBottom / (this.windowHeight + this.containerHeight))
-      moveX = this.speed > 0 ? -this.distance : this.distance
-      moveY = '0'
-    } else {
-      style.height = `${this.containerHeight *
-        (1 + Math.abs(this.speed) * 2)}px`
-      style.width = this.containerWidth
-      style.left = 0
-      this.distance =
-        this.containerHeight *
-        Math.abs(this.speed) *
-        (this.containerBottom / (this.windowHeight + this.containerHeight))
-      moveX = '0'
-      moveY = this.speed > 0 ? -this.distance : this.distance
+      this.transform = `translate3d(${this.distance}px, 0, 0)`
     }
-
-    this.transform = `translate3d(${moveX}px, ${moveY}px, 0px)`
 
     style.transform = this.transform
 
@@ -349,13 +350,25 @@ class Parallax extends Component {
     this.containerHeight = rect.height
     this.containerWidth = rect.width
     this.containerBottom = rect.bottom
+    this.imgWidth = this.containerWidth
+    this.imgHeight = Math.floor(
+      this.windowHeight -
+        (this.windowHeight - this.containerHeight) * this.speed
+    )
+  }
+
+  getScrollTop() {
+    const scrollTop =
+      document.documentElement.scrollTop ||
+      window.pageYOffset ||
+      document.body.scrollTop
+    return scrollTop
   }
 
   bind() {
     bindEvent(
       'viewport:enter',
       () => {
-        this.effect()
         Pj.emitter.on(this.eventNameWithId('scroll'), this.effect.bind(this))
         this.trigger(EVENTS.ENTER)
       },
