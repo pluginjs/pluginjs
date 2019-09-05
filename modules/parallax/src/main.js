@@ -68,6 +68,7 @@ class Parallax extends Component {
     this.initBreakpoints()
     this.direction = this.options.direction || 'vertical'
     this.type = this.options.type || 'scroll'
+    this.ticking = false
 
     if (this.options.mode) {
       this.initMode()
@@ -253,11 +254,11 @@ class Parallax extends Component {
   }
 
   scrollHandle() {
-    this.updateVars()
-
     if (Math.abs(this.speed) > 1) {
       this.speed = 0.5
     }
+
+    this.updateVars()
 
     const style = {
       'object-fit': 'cover'
@@ -278,18 +279,20 @@ class Parallax extends Component {
       const scrollDistance =
         this.windowHeight * (1 - this.speed) * 2 - imageDiff
       const fromY = this.windowHeight * (1 - this.speed)
+
       this.distance = (percent * scrollDistance - fromY).toFixed(2)
 
       this.transform = `translate3d(0, ${this.distance}px, 0)`
     } else {
-      style.width = `${this.containerWidth * (1 + Math.abs(this.speed) * 2)}px`
+      style.width = `${this.containerWidth *
+        (1 + Math.abs(this.speed) * 1.5)}px`
       style.height = this.containerHeight
       style.top = 0
       this.distance =
         -this.containerWidth *
         Math.abs(this.speed) *
         (this.containerBottom / (this.windowHeight + this.containerHeight))
-      this.transform = `translate3d(${this.distance}px, 0, 0)`
+      this.transform = `translate3d(${this.distance.toFixed(2)}px, 0, 0)`
     }
 
     style.transform = this.transform
@@ -298,11 +301,11 @@ class Parallax extends Component {
   }
 
   opacityHandle() {
-    this.updateVars()
-
     if (Math.abs(this.speed) > 1) {
       this.speed = 0.6
     }
+
+    this.updateVars()
 
     const offset =
       this.containerBottom / (this.windowHeight + this.containerHeight)
@@ -320,11 +323,11 @@ class Parallax extends Component {
   }
 
   scaleHandle() {
-    this.updateVars()
-
     if (Math.abs(this.speed) > 1) {
       this.speed = 0.6
     }
+
+    this.updateVars()
 
     const offset =
       1.2 - this.containerBottom / (this.windowHeight + this.containerHeight)
@@ -365,11 +368,23 @@ class Parallax extends Component {
     return scrollTop
   }
 
+  scroll() {
+    if (!this.ticking) {
+      requestAnimationFrame(this.rafHandle.bind(this))
+      this.ticking = true
+    }
+  }
+
+  rafHandle() {
+    this.effect()
+    this.ticking = false
+  }
+
   bind() {
     bindEvent(
       'viewport:enter',
       () => {
-        Pj.emitter.on(this.eventNameWithId('scroll'), this.effect.bind(this))
+        Pj.emitter.on(this.eventNameWithId('scroll'), this.scroll.bind(this))
         this.trigger(EVENTS.ENTER)
       },
       this.container

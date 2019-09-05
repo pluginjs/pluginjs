@@ -5,6 +5,6 @@ const elements = queryAll('#background .parallax')
 elements.forEach(el =>
   Parallax.of(el, {
     container: '.section',
-    speed: 0.2
+    speed: 1.2
   })
 )
