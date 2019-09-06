@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.31",
+  "version": "0.7.32",
   "category": "form",
   "main": "dist/video-picker.common.js",
   "module": "dist/video-picker.esm.js",
@@ -48,7 +48,7 @@
     "@pluginjs/styled": "^0.7.16",
     "@pluginjs/template": "^0.7.15",
     "@pluginjs/utils": "^0.7.15",
-    "@pluginjs/video": "^0.7.20"
+    "@pluginjs/video": "^0.7.21"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

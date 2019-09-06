@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.21",
+  "version": "0.7.22",
   "category": "media",
   "main": "dist/gallery.common.js",
   "module": "dist/gallery.esm.js",
@@ -43,7 +43,7 @@
     "@pluginjs/dom": "^0.7.16",
     "@pluginjs/events": "^0.7.15",
     "@pluginjs/factory": "^0.7.15",
-    "@pluginjs/slider": "^0.7.23",
+    "@pluginjs/slider": "^0.7.24",
     "@pluginjs/styled": "^0.7.16",
     "@pluginjs/styles": "^0.7.9",
     "@pluginjs/template": "^0.7.15",

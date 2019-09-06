@@ -3,7 +3,7 @@
   "name": "scrollable-samples",
   "description": "Simple scrollable example",
   "license": "GPL-3.0",
-  "version": "1.1.17",
+  "version": "1.1.18",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.16",
-    "@pluginjs/scrollable": "^0.7.17"
+    "@pluginjs/scrollable": "^0.7.18"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

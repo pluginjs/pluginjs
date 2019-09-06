@@ -3,14 +3,14 @@
   "name": "bg-picker-samples",
   "description": "Simple bg-picker example",
   "license": "GPL-3.0",
-  "version": "1.1.32",
+  "version": "1.1.33",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --no-cache"
   },
   "dependencies": {
-    "@pluginjs/bg-picker": "^0.7.32",
+    "@pluginjs/bg-picker": "^0.7.33",
     "@pluginjs/dom": "^0.7.16",
     "@pluginjs/icons": "^0.7.3",
     "@pluginjs/styles": "^0.7.9"

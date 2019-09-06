@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.20",
+  "version": "0.7.21",
   "category": "media",
   "main": "dist/bg-video.common.js",
   "module": "dist/bg-video.esm.js",
@@ -45,7 +45,7 @@
     "@pluginjs/is": "^0.7.14",
     "@pluginjs/styled": "^0.7.16",
     "@pluginjs/utils": "^0.7.15",
-    "@pluginjs/video": "^0.7.20"
+    "@pluginjs/video": "^0.7.21"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

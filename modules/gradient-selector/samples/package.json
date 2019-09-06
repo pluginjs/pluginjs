@@ -3,7 +3,7 @@
   "name": "gradient-selector-samples",
   "description": "Simple gradient-selector example",
   "license": "GPL-3.0",
-  "version": "1.1.36",
+  "version": "1.1.37",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.16",
-    "@pluginjs/gradient-selector": "^0.7.36",
+    "@pluginjs/gradient-selector": "^0.7.37",
     "@pluginjs/icons": "^0.7.3",
     "@pluginjs/styles": "^0.7.9",
     "font-awesome": "^4.7.0"

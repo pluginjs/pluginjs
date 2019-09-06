@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.23",
+  "version": "0.7.24",
   "category": "ui",
   "main": "dist/slider.common.js",
   "module": "dist/slider.esm.js",
@@ -51,7 +51,7 @@
     "@pluginjs/swipeable": "^0.7.19",
     "@pluginjs/template": "^0.7.15",
     "@pluginjs/utils": "^0.7.15",
-    "@pluginjs/video": "^0.7.20",
+    "@pluginjs/video": "^0.7.21",
     "animejs": "*"
   },
   "devDependencies": {
