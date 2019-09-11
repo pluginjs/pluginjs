@@ -8,7 +8,6 @@ class Marker {
     this.$el = el
     this.instance = instance
     this.options = options
-
     this.color = this.options.color
     this.percent = this.options.percent
     this.index = this.options.index

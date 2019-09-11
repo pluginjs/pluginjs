@@ -180,7 +180,6 @@ class Gradient {
 
   fromString(string) {
     this.reset()
-
     const result = GradientString.parseString(string)
     if (result) {
       this.privatePrefix = result.prefix

@@ -80,7 +80,6 @@ class GradientPicker extends Component {
 
   initialize() {
     this.elementColor = this.element.value
-
     this.createHtml()
 
     if (this.options.inline) {
@@ -649,18 +648,15 @@ class GradientPicker extends Component {
     if (!color) {
       return this.options.process.call(this, this.get())
     }
-
     this.set(color, trigger)
     return null
   }
 
   set(val, trigger = true) {
     this.GRADIENT = new Gradient(val)
-
     if (val.indexOf('linear') > -1) {
       this.mode = 'linear'
       this.angle = this.GRADIENT.value.angle
-
       this.WHEEL.set(this.angle)
       this.$angle.value = `${this.angle}°`
     } else {
@@ -669,7 +665,6 @@ class GradientPicker extends Component {
 
     this.clearMarks()
     this.GRADIENT.reorder()
-
     this.GRADIENT.value.stops.forEach((v, i) => {
       let percent = parseFloat(v.position * 100, 10)
       if (i === this.GRADIENT.length - 1) {
@@ -685,6 +680,7 @@ class GradientPicker extends Component {
       // this.actionBarSize = getData('value', $marker).maxLenght
       this.addMarker(0, options)
     })
+
     if (typeof this.lastActiveMarkerIndex === 'number') {
       this.selectMarker(this.markers[this.lastActiveMarkerIndex].$el)
     }

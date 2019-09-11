@@ -7,7 +7,7 @@ const angleKeywordMap = util.flip(keywordAngleMap)
 const RegExpStrings = (() => {
   const color = /(?:rgba|rgb|hsla|hsl)\s*\([\s\d.,%]+\)|#[a-z0-9]{3,6}|[a-z]+/i
   const position = /\d{1,3}%/i
-  const angle = /(?:to ){0,1}(?:(?:top|left|right|bottom)\s*){1,2}|\d+deg/i
+  const angle = /(?:to ){0,1}(?:(?:top|left|right|bottom)\s*){1,2}|(?:-)\d+deg|\d+deg/i
   const shape = /circle/i
   const shapeOrAngle = new RegExp(
     `(?:${angle.source})|(?:${shape.source})`,
