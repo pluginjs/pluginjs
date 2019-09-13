@@ -2,7 +2,6 @@
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
-[![GitHub license](https://img.shields.io/badge/license-GPL-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 
 ## Installation
 `Nodejs 8+` and `Yarn` are required, make sure Yarn version is up-to-date.
