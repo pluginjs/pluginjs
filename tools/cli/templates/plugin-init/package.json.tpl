@@ -30,9 +30,10 @@
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
-    "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint ./src/**/*.js --fix",
-    "lint": "npm run lint:js & npm run lint:scss",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublishOnly": "npm run build",
     "test": "jest"
   },
   "dependencies": {
@@ -44,22 +45,23 @@
     "@pluginjs/decorator": "*"
   },
   "devDependencies": {
-    "@pluginjs/browserslist-config": "*",
-    "@babel/core": "^7.2.2",
-    "@pluginjs/cli": "*",
+    "@babel/core": "^7.6.0",
+    "@pluginjs/browserslist-config": "^1.2.10",
+    "@pluginjs/cli": "^0.7.13",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
+    "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
-    "rollup-plugin-uglify": "*",
     "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*"
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
   },
-  "browserslist": [
-    "extends @pluginjs/browserslist-config"
-  ],
-  "category": "{{category}}",
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
   "jest": {
     "setupTestFrameworkScriptFile": "jest-extended",
     "verbose": true,
@@ -67,5 +69,8 @@
     "testPathIgnorePatterns": [
       "fixtures"
     ]
-  }
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
 }

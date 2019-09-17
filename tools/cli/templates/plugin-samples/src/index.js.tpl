@@ -1,2 +1,2 @@
 // import sections
-{{importSections}}
+import './sections/default/index.js'
