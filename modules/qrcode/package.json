@@ -1,0 +1,71 @@
+{
+  "name": "@pluginjs/qrcode",
+  "description": "A flexible modern qrcode js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://pluginjs.com",
+  "repository": {
+    "url": "git@github.com:pluginjs/pluginjs.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/pluginjs/issues"
+  },
+  "version": "0.7.0",
+  "category": "ui",
+  "main": "dist/qrcode.common.js",
+  "module": "dist/qrcode.esm.js",
+  "umd": "dist/qrcode.js",
+  "unpkg": "dist/qrcode.js",
+  "jsdelivr": "dist/qrcode.js",
+  "source": "src/main.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "npm run build:js",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint ./src/**/*.js --fix",
+    "prepublishOnly": "npm run build",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/component": "*",
+    "@pluginjs/decorator": "*",
+    "@pluginjs/dom": "*",
+    "@pluginjs/is": "*",
+    "jr-qrcode": "^1.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@pluginjs/browserslist-config": "^1.2.10",
+    "@pluginjs/cli": "^0.7.13",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rename": "^1.0.4",
+    "rollup": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testURL": "http://localhost",
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
+}
