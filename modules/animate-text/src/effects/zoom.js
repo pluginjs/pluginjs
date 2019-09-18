@@ -22,15 +22,12 @@ export default class Zoom {
       scale: [0, 1],
       opacity: [0, 1],
       duration: this.options.duration || 1000,
+      loop: this.options.loop || false,
       easing: 'easeInOutQuart',
-      delay: this.options.delay
+      delay: this.options.delay,
+      endDelay: 1000
     }
 
-    anime
-      .timeline({
-        loop: this.options.loop || false
-      })
-      .add(options)
-      .add({})
+    anime(options)
   }
 }

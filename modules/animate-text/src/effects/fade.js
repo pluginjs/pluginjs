@@ -23,14 +23,11 @@ export default class Fade {
       opacity: [0, 1],
       duration: this.options.duration || 1000,
       easing: 'linear',
-      delay: this.options.delay
+      loop: this.options.loop || false,
+      delay: this.options.delay,
+      endDelay: 1000
     }
 
-    anime
-      .timeline({
-        loop: this.options.loop || false
-      })
-      .add(options)
-      .add({})
+    anime(options)
   }
 }

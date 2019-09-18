@@ -21,15 +21,12 @@ export default class Bounce {
       targets: this.element,
       scale: [0.5, 1.2, 0.8, 1.2, 1],
       duration: this.options.duration || 1000,
+      loop: this.options.loop || false,
       easing: 'easeInOutSine',
-      delay: this.options.delay
+      delay: this.options.delay,
+      endDelay: 1000
     }
 
-    anime
-      .timeline({
-        loop: this.options.loop || false
-      })
-      .add(options)
-      .add({})
+    anime(options)
   }
 }

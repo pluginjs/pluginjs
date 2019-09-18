@@ -12,16 +12,13 @@ export default class CharFlip extends Char {
       targets: this.chars,
       rotateY: [-90, 0],
       duration: this.options.duration,
+      loop: this.options.loop || false,
       delay(el, i) {
         return 60 * i
-      }
+      },
+      endDelay: 1000
     }
 
-    anime
-      .timeline({
-        loop: this.options.loop || false
-      })
-      .add(options)
-      .add({})
+    anime(options)
   }
 }

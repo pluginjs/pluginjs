@@ -1,5 +1,6 @@
 import anime from 'animejs'
 import { text, append } from '@pluginjs/dom'
+import { setStyle, getHeight, getWidth } from '@pluginjs/styled'
 import { addClass } from '@pluginjs/classes'
 
 export default class Typewrite {
@@ -46,28 +47,54 @@ export default class Typewrite {
   }
 
   setupAnime() {
-    const target = { textLen: 0 }
+    // const target = { textLen: 0 }
 
-    const options = {
-      targets: target,
-      textLen: this.indexList.length - 1,
-      round: 1,
-      duration: this.options.duration || 2000,
-      easing: 'linear',
-      delay: this.options.delay,
-      update: () => {
-        const content = this.textArr
-          .slice(0, this.indexList[target.textLen])
-          .join('')
-        text(`${content}`, this.content)
-      }
-    }
+    // const options = {
+    //   targets: target,
+    //   textLen: this.indexList.length - 1,
+    //   round: 1,
+    //   duration: 3000,
+    //   loop: this.options.loop || false,
+    //   easing: 'linear',
+    //   delay: this.options.delay,
+    //   update: () => {
+    //     const content = this.textArr
+    //       .slice(0, this.indexList[target.textLen])
+    //       .join('')
+    //     text(`${content}`, this.content)
+    //   },
+    //   endDelay: 2000
+    // }
+    // console.log(this)
+    this.contentWidth = getWidth(this.content)
+    this.contentHeight = getHeight(this.content)
+    setStyle(
+      {
+        height: this.contentHeight,
+        display: 'inline-flex',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden'
+      },
+      this.content
+    )
 
     anime
       .timeline({
         loop: this.options.loop || false
       })
-      .add(options)
-      .add({})
+      .add({
+        targets: this.content,
+        width: [0, this.contentWidth],
+        duration: this.options.duration || 1000,
+        easing: 'linear',
+        endDelay: 1500
+      })
+      .add({
+        targets: this.content,
+        width: [this.contentWidth, 0],
+        easing: 'easeOutSine',
+        duration: 800,
+        endDelay: 1500
+      })
   }
 }

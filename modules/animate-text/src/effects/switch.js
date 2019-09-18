@@ -1,4 +1,4 @@
-import { setStyle } from '@pluginjs/styled'
+import { setStyle, getHeight } from '@pluginjs/styled'
 import SyncAnimation from './syncAnimation'
 
 export default class Switch {
@@ -19,7 +19,8 @@ export default class Switch {
     this.childrens = Array.from(this.element.children)
     this.widthList = this.getWidthList(this.element)
     this.childrensOriginStyle = this.getChildrensOriginStyle(this.childrens)
-    this.clientHeight = this.element.parentElement.clientHeight
+    this.clientHeight = getHeight(this.element.parentElement)
+
     setStyle('height', this.clientHeight, this.element)
 
     this.DOWNTOMID = [this.clientHeight, 0]

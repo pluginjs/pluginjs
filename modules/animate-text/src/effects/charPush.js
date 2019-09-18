@@ -2,7 +2,7 @@ import anime from 'animejs'
 import { setStyle } from '@pluginjs/styled'
 import Char from './char'
 
-export default class CharDriveIn extends Char {
+export default class CharPush extends Char {
   constructor(instance) {
     super(instance)
     setStyle(
@@ -20,16 +20,13 @@ export default class CharDriveIn extends Char {
       targets: this.chars,
       translateY: ['1.1em', 0],
       duration: this.options.duration,
+      loop: this.options.loop || false,
       delay(el, i) {
         return 60 * i
-      }
+      },
+      endDelay: 1000
     }
 
-    anime
-      .timeline({
-        loop: this.options.loop || false
-      })
-      .add(options)
-      .add({})
+    anime(options)
   }
 }

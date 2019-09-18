@@ -13,7 +13,7 @@ import switchRotate from './switchRotate'
 import switchPush from './switchPush'
 import charFadeIn from './charFadeIn'
 import charZoomIn from './charZoomIn'
-import charDriveIn from './charDriveIn'
+import charPush from './charPush'
 import charRotate from './charRotate'
 import charBounceOut from './charBounceOut'
 import charFlip from './charFlip'
@@ -37,7 +37,7 @@ const effects = {
   switchPush,
   charFadeIn,
   charZoomIn,
-  charDriveIn,
+  charPush,
   charRotate,
   charBounceOut,
   charFlip,
