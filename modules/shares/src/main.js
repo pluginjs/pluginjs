@@ -19,6 +19,7 @@ import {
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { children, getData } from '@pluginjs/dom'
+import Tooltip from '@pluginjs/tooltip'
 import Share from './share'
 import Metadata from './Metadata'
 import SERVICES from './services'
@@ -46,8 +47,8 @@ class Shares extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
-    this.shares = this.getShares()
     this.metadata = new Metadata(this.options)
+    this.shares = this.getShares()
 
     this.bind()
     this.enter('initialized')
@@ -66,10 +67,28 @@ class Shares extends Component {
 
       if (share.service) {
         shares[share.service] = share
+
+        if (SERVICES[share.service].qrcode) {
+          this.createQrcode(this.metadata.getUrl(), $share)
+        }
       }
     })
 
     return shares
+  }
+
+  createQrcode(url, element) {
+    const qrcode = `<img width="180" height="180" src="http://qr.topscan.com/api.php?text=${url}">`
+    // attr('data-content', qrcode, element)
+    element.classList.add(this.classes.TOOLTIP)
+
+    Tooltip.of(element, {
+      title: qrcode,
+      html: true,
+      placement: 'auto',
+      trigger: 'hover',
+      ...this.options.tooltip
+    })
   }
 
   getShare(service) {

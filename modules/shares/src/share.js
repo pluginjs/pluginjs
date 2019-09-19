@@ -30,6 +30,10 @@ class Share {
     if (service.click.call(this)) {
       const url = makeUrl(service.url, metadata.getAll(this.service))
 
+      if (service.qrcode === true) {
+        return false
+      }
+
       if (service.popup === false) {
         createTempLink(url)
         return false

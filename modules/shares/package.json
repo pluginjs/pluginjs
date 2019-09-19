@@ -42,7 +42,8 @@
     "@pluginjs/decorator": "*",
     "@pluginjs/dom": "*",
     "@pluginjs/events": "*",
-    "@pluginjs/is": "*"
+    "@pluginjs/template": "*",
+    "@pluginjs/tooltip": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

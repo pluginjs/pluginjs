@@ -11,7 +11,8 @@ export const classes = {
   NAMESPACE: 'pj-share',
   CONTAINER: '{namespace}s',
   THEME: '{namespace}s-{theme}',
-  SHARE: '{namespace}'
+  SHARE: '{namespace}',
+  TOOLTIP: '{namespace}-tooltip'
 }
 
 export const methods = ['enable', 'disable', 'destroy', 'getShare', 'getShares']
@@ -22,7 +23,11 @@ export const defaults = {
   title: '',
   description: '',
   image: '',
-  prefix: 'share_'
+  prefix: 'share_',
+  tooltip: {
+    theme: 'light',
+    offset: '8,8'
+  }
 }
 
-export const dependencies = []
+export const dependencies = ['tooltip']
