@@ -1,0 +1,393 @@
+@import "shares.core";
+
+// Vars
+// =====================
+$shares: "pj-shares";
+
+$share-rounded-radius: 10%;
+$share-light-color: rgb(245,245,245);
+$share-dark-color: rgb(10,10,10);
+$share-gray: rgba(100, 100, 100, 0.8);
+
+$share-duration: 300ms;
+
+// Bordered, Dashed
+// =====================
+.#{$shares}-bordered,
+ .#{$shares}-dashed {
+  .#{$share} {
+    margin-left: -1px;
+    background: #fff;
+    border-color: $share-border-color;
+    border-style: solid;
+    border-width: 1px;
+  }
+}
+
+.#{$shares}-dashed {
+  .#{$share} {
+    border-style: dashed;
+
+    &:hover {
+      border-style: solid;
+    }
+  }
+}
+
+@each $social, $color in $share-colors {
+  .#{$shares}-bordered,
+ .#{$shares}-dashed {
+    .#{$share}-#{$social}:hover {
+      z-index: 1;
+      border-color: $color;
+    }
+  }
+}
+
+// Solid
+// =====================
+.#{$shares}-solid {
+  .#{$share} {
+    border: 1px solid transparent;
+  }
+}
+
+@each $social, $color in $share-colors {
+  .#{$shares}-solid {
+    .#{$share}-#{$social} {
+      color: #fff;
+      background-color: $color;
+    }
+  }
+}
+
+// Light
+// ======================
+.#{$shares}-light {
+  .#{$share} {
+    background-color: $share-light-color;
+    border: 1px solid $share-light-color;
+  }
+}
+@each $social, $color in $share-colors {
+  .#{$shares}-light {
+    .#{$share}-#{$social}:hover {
+      border-color: $color;
+    }
+  }
+}
+
+// Dark
+// ======================
+.#{$shares}-dark {
+  .#{$share} {
+    color: #fff;
+    background-color: $share-dark-color;
+    border: 1px solid $share-dark-color;
+  }
+}
+
+// Hexagon
+// ======================
+@mixin share-hexagon-size($size: $share-md-size){
+  $share-hexagon-width: $size;
+  $share-hexagon-radius: $share-hexagon-width/2;
+  $share-hexagon-side: $share-hexagon-radius/0.86602540378;
+
+  .#{$share} {
+    margin: ($share-hexagon-side / 2) 0;
+
+    &,
+    &::before,
+    &::after {
+      width:  $share-hexagon-width;
+      height: $share-hexagon-side;
+    }
+  }
+}
+
+.#{$shares}-hexagon {
+
+  // &.#{$shares}-solid {
+  //   .#{$share}:hover {
+  //     border-top-color: transparent;
+  //     border-bottom-color: transparent;
+  //   }
+  // }
+
+  @include share-hexagon-size();
+  .#{$share} {
+    z-index: 0;
+    box-sizing: content-box;
+    padding: 0;
+    background-clip: content-box;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      z-index: -1;
+      box-sizing: inherit;
+      content: "";
+      background: inherit;
+      border: inherit;
+      transition: inherit;
+    }
+
+    &::before {
+      transform: rotate(60deg);
+    }
+
+    &::after {
+      transform: rotate(-60deg);
+    }
+
+    svg {
+      height: 100%;
+    }
+  }
+
+  &.#{$shares}-bordered,
+ &.#{$shares}-dashed {
+    .#{$share} {
+      border-top-color: transparent;
+      border-right-color: $share-border-color;
+      border-bottom-color: transparent;
+      border-left-color: $share-border-color;
+    }
+  }
+
+  &.#{$shares}-light {
+    .#{$share} {
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+    }
+  }
+
+  &.#{$shares}-lg {
+    @include share-hexagon-size($share-lg-size);
+  }
+  &.#{$shares}-sm {
+    @include share-hexagon-size($share-sm-size);
+  }
+  &.#{$shares}-xs {
+    @include share-hexagon-size($share-xs-size);
+  }
+}
+
+@each $social, $color in $share-colors {
+  .#{$shares}-hexagon {
+    &.#{$shares}-bordered,
+ &.#{$shares}-dashed,
+ &.#{$shares}-light {
+      .#{$share}-#{$social}:hover {
+        &,
+ &::before,
+ &::after {
+          border-right-color: $color;
+          border-left-color: $color;
+        }
+      }
+    }
+  }
+}
+
+// Gray
+// ======================
+.#{$shares}-gray {
+  .#{$share} {
+    color: $share-gray;
+  }
+
+  &.#{$shares}-solid,
+ &.#{$shares}-dark {
+    .#{$share} {
+      color: $share-gray;
+    }
+  }
+
+  &.#{$shares}-solid {
+    .#{$share}:hover {
+      color: #fff;
+    }
+  }
+}
+
+@each $social, $color in $share-colors {
+  .#{$shares}-gray,
+ .#{$shares}-dark {
+    .#{$share}-#{$social}:hover {
+      color: $color;
+    }
+  }
+}
+
+// Reverse
+// =====================
+.#{$shares}-reverse {
+  .#{$share} {
+    transition-delay: 0;
+    transition-timing-function: ease;
+    transition-duration: $share-duration;
+    transition-property: color, background, border;
+  }
+
+  &.#{$shares}-bordered,
+ &.#{$shares}-dashed,
+ &.#{$shares}-light,
+ &.#{$shares}-dark {
+    .#{$share}:hover {
+      color: #fff;
+    }
+  }
+  &.#{$shares}-solid {
+    .#{$share}:hover {
+      background: #fff;
+    }
+  }
+  &.#{$shares}-hexagon {
+    .#{$share} {
+      transition: none;
+    }
+
+    .#{$share}:hover {
+      background: transparent;
+    }
+  }
+}
+@each $social, $color in $share-colors {
+  .#{$shares}-reverse {
+    &.#{$shares}-bordered,
+ &.#{$shares}-dashed,
+ &.#{$shares}-light,
+ &.#{$shares}-dark {
+      .#{$share}-#{$social}:hover {
+        background: $color;
+        border-color: $color;
+      }
+    }
+
+    &.#{$shares}-solid {
+      .#{$share}-#{$social}:hover {
+        color: $color;
+        border-color: $color;
+      }
+    }
+
+    &.#{$shares}-hexagon {
+      &.#{$shares}-bordered,
+ &.#{$shares}-dashed,
+ &.#{$shares}-light,
+ &.#{$shares}-dark {
+        .#{$share}-#{$social}:hover {
+          background: $color;
+          border-color: $color;
+        }
+      }
+      &.#{$shares}-solid {
+        .#{$share}-#{$social}:hover {
+          color: $color;
+          border-color: $color;
+          border-top-color: transparent;
+          border-bottom-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+// Round, Rounded
+// =====================
+.#{$shares}-round {
+  .#{$share} {
+    border-radius: 50%;
+  }
+}
+
+.#{$shares}-rounded {
+  .#{$share} {
+    border-radius: $share-rounded-radius;
+  }
+}
+
+.#{$shares}-round,
+ .#{$shares}-rounded {
+  &.#{$shares}-bordered,
+ &.#{$shares}-dashed {
+    .#{$share} {
+      margin-left: 0;
+    }
+  }
+}
+
+// Space
+// ======================
+.#{$shares}-round,
+ .#{$shares}-rounded,
+ .#{$shares}-hexagon,
+ .#{$shares}-space {
+  &.#{$shares}-lg {
+    .#{$share} {
+      margin-right: $share-lg-gutter-size;
+    }
+  }
+  &,
+ &.#{$shares}-md {
+    .#{$share} {
+      margin-right: $share-md-gutter-size;
+    }
+  }
+  &.#{$shares}-sm {
+    .#{$share} {
+      margin-right: $share-sm-gutter-size;
+    }
+  }
+  &.#{$shares}-xs {
+    .#{$share} {
+      margin-right: $share-xs-gutter-size;
+    }
+  }
+  .#{$share}:last-child {
+    margin-right: 0;
+  }
+  &.#{$shares}-left,
+ &.#{$shares}-right {
+    &.#{$shares}-lg {
+      .#{$share} {
+        margin-bottom: $share-lg-gutter-size;
+      }
+    }
+    &,
+ &.#{$shares}-md {
+      .#{$share} {
+        margin-bottom: $share-md-gutter-size;
+      }
+    }
+    &.#{$shares}-sm {
+      .#{$share} {
+        margin-bottom: $share-sm-gutter-size;
+      }
+    }
+    &.#{$shares}-xs {
+      .#{$share} {
+        margin-bottom: $share-xs-gutter-size;
+      }
+    }
+    .#{$share}:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &.#{$shares}-left {
+    margin-left: $share-edge-size;
+  }
+  &.#{$shares}-right {
+    margin-right: $share-edge-size;
+    .#{$share} {
+      margin-right: 0;
+    }
+  }
+  &.#{$shares}-bottom {
+    margin-bottom: $share-edge-size;
+  }
+}

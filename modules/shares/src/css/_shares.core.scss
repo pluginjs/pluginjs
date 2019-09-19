@@ -1,0 +1,167 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$shares: "pj-shares" !default;
+$share: "pj-share" !default;
+
+$share-edge-size: 16px;
+
+$share-xs-size: 32px;
+$share-xs-padding: 8px;
+$share-xs-gutter-size: 0.2 * $share-xs-size;
+
+$share-sm-size: 36px;
+$share-sm-padding: 9px;
+$share-sm-gutter-size: 0.2 * $share-sm-size;
+
+$share-md-size: 42px;
+$share-md-padding: 10px;
+$share-md-gutter-size: 0.2 * $share-md-size;
+
+$share-lg-size: 48px;
+$share-lg-padding: 12px;
+$share-lg-gutter-size: 0.2 * $share-lg-size;
+
+$share-colors: (
+  amazon: #F90,
+  evernote: #00A82D,
+  livejournal: #00B0EA,
+  telegram: #2CA5E0,
+  whatsapp: #25D366,
+  baidu: #2319DC,
+  facebook: #4172B8,
+  email: #000,
+  mailru: #168DE2,
+  odnoklassniki: #F4731C,
+  tumblr: #36465D,
+  wordpress: #21759B,
+  blogger: #FF5722,
+  flipboard: #E12828,
+  pinterest: #BD081C,
+  twitter: #1DA1F2,
+  xing: #006567,
+  buffer: #168EEA,
+  sms: #5BB967,
+  gmail: #D14836,
+  pocket: #EF3F56,
+  viber: #665CAC,
+  viadeo: #F88D2D,
+  delicious: #39F,
+  instapaper: #1F1F1F,
+  qzone: #FECE00,
+  vkontakte: #6383A8,
+  line: #00C300,
+  reddit: #FF4500,
+  wechat: #7BB32E,
+  digg: #000,
+  linkedin: #0077B5,
+  skype: #00AFF0,
+  weibo: #E6162D
+);
+
+$share-border-color: #e5e5e5;
+
+// Core
+// =====================
+.#{$shares} {
+  margin-bottom: 0.5em;
+  font-size: 0;
+
+  .#{$share} {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    width: $share-md-size;
+    height: $share-md-size;
+    padding: $share-md-padding;
+    margin: 0;
+    line-height: 1;
+    text-align: center;
+
+    // overflow: hidden;
+    cursor: pointer;
+    outline: none;
+
+    svg {
+      fill: currentColor;
+    }
+  }
+
+  &-vertical {
+    .#{$share} {
+      display: block;
+      clear: both;
+    }
+  }
+}
+
+// Sizes
+// =====================
+.#{$shares}-xs {
+  .#{$share} {
+    width: $share-xs-size;
+    height: $share-xs-size;
+    padding: $share-xs-padding;
+  }
+}
+
+.#{$shares}-sm {
+  .#{$share} {
+    width: $share-sm-size;
+    height: $share-sm-size;
+    padding: $share-sm-padding;
+  }
+}
+
+.#{$shares}-lg {
+  .#{$share} {
+    width: $share-lg-size;
+    height: $share-lg-size;
+    padding: $share-lg-padding;
+  }
+}
+
+// Colors
+// =====================
+@each $social, $color in $share-colors {
+  .#{$share}-#{$social} {
+    color: $color;
+  }
+}
+
+// Position
+// =====================
+.#{$shares}-left,
+ .#{$shares}-right,
+ .#{$shares}-bottom {
+  position: fixed;
+  z-index: 2000;
+}
+
+.#{$shares}-left,
+ .#{$shares}-right {
+  top: 50%;
+  transform: translateY(-50%);
+
+  .#{$share} {
+    display: block;
+    clear: both;
+  }
+}
+
+.#{$shares}-left {
+  left: 0;
+}
+
+.#{$shares}-right {
+  right: 0;
+}
+
+.#{$shares}-bottom {
+  top: auto;
+  bottom: 0;
+  left: 50%;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
