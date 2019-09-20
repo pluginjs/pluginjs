@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.0",
+  "version": "0.7.1",
   "category": "ui",
   "main": "dist/qrcode.common.js",
   "module": "dist/qrcode.esm.js",
@@ -33,16 +33,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/component": "*",
-    "@pluginjs/decorator": "*",
-    "@pluginjs/dom": "*",
-    "@pluginjs/is": "*",
+    "@pluginjs/component": "^0.7.14",
+    "@pluginjs/decorator": "^0.7.18",
+    "@pluginjs/dom": "^0.7.17",
+    "@pluginjs/is": "^0.7.15",
     "jr-qrcode": "^1.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
-    "@pluginjs/browserslist-config": "^1.2.10",
-    "@pluginjs/cli": "^0.7.13",
+    "@pluginjs/browserslist-config": "^1.2.11",
+    "@pluginjs/cli": "^0.7.14",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

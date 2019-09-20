@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.17",
+  "version": "0.7.18",
   "category": "core",
   "main": "dist/decorator.common.js",
   "module": "dist/decorator.esm.js",
@@ -33,18 +33,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.16",
-    "@pluginjs/events": "^0.7.15",
-    "@pluginjs/factory": "^0.7.15",
-    "@pluginjs/global-component": "^0.7.14",
-    "@pluginjs/i18n": "^0.7.15",
-    "@pluginjs/is": "^0.7.14",
-    "@pluginjs/utils": "^0.7.15"
+    "@pluginjs/dom": "^0.7.17",
+    "@pluginjs/events": "^0.7.16",
+    "@pluginjs/factory": "^0.7.16",
+    "@pluginjs/global-component": "^0.7.15",
+    "@pluginjs/i18n": "^0.7.16",
+    "@pluginjs/is": "^0.7.15",
+    "@pluginjs/utils": "^0.7.16"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
-    "@pluginjs/browserslist-config": "^1.2.10",
-    "@pluginjs/cli": "^0.7.13",
+    "@pluginjs/browserslist-config": "^1.2.11",
+    "@pluginjs/cli": "^0.7.14",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",
