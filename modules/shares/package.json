@@ -26,7 +26,7 @@
     "src"
   ],
   "scripts": {
-    "build": "npm run build:js & npm run build:scss",
+    "build": "npm run build:js && npm run build:scss",
     "build:js": "plugin script build-js",
     "build:md": "plugin script build-md",
     "build:scss": "plugin script build-scss",
@@ -43,7 +43,8 @@
     "@pluginjs/dom": "^0.7.17",
     "@pluginjs/events": "^0.7.16",
     "@pluginjs/template": "^0.7.16",
-    "@pluginjs/tooltip": "^0.7.18"
+    "@pluginjs/tooltip": "^0.7.18",
+    "@pluginjs/utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

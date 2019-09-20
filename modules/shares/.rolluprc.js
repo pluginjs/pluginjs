@@ -1,6 +1,6 @@
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
-import { uglify } from 'rollup-plugin-uglify'
+import { terser } from "rollup-plugin-terser"
 import rename from 'rename'
 import pkg from './package.json'
 
@@ -57,7 +57,7 @@ export default [
       format: 'umd',
       globals
     },
-    plugins: [babelCallback(), commonjs(), uglify()]
+    plugins: [babelCallback(), commonjs(), terser()]
   },
   {
     input: pkg.source,
@@ -66,6 +66,6 @@ export default [
       { file: rename(pkg.main, {suffix: '.min'}), format: 'cjs' },
       { file: rename(pkg.module, {suffix: '.min'}), format: 'es' }
     ],
-    plugins: [babelCallback({ esmodules: true }), commonjs(), uglify()]
+    plugins: [babelCallback({ esmodules: true }), commonjs(), terser()]
   }
 ]
