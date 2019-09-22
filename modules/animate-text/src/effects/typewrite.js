@@ -1,6 +1,5 @@
 import anime from 'animejs'
 import { text, append } from '@pluginjs/dom'
-import { setStyle, getHeight, getWidth } from '@pluginjs/styled'
 import { addClass } from '@pluginjs/classes'
 
 export default class Typewrite {
@@ -17,19 +16,18 @@ export default class Typewrite {
 
     this.build()
 
+    // this.alt = isArray(this.options.alt)
+    //   ? this.options.alt
+    //   : [].push(this.options.alt)
+
+    // this.totalText = []
+
     this.textArr = this.text.split('')
     this.chunk = Array(this.textArr.length + 1)
       .fill(1)
       .map((v, k) => k)
 
-    const pauseArr = []
-    const maxLen = this.options.duration / 100
-
-    for (let i = 0; i < maxLen; i++) {
-      pauseArr.push(this.chunk[this.chunk.length - 1])
-    }
-
-    this.indexList = this.chunk.concat(pauseArr, this.chunk.slice().reverse())
+    this.chunkReverse = this.chunk.slice().reverse()
   }
 
   build() {
@@ -47,54 +45,60 @@ export default class Typewrite {
   }
 
   setupAnime() {
-    // const target = { textLen: 0 }
+    const startTarget = { textLen: 0 }
+    const endTarget = { textLen: 0 }
 
-    // const options = {
-    //   targets: target,
-    //   textLen: this.indexList.length - 1,
-    //   round: 1,
-    //   duration: 3000,
-    //   loop: this.options.loop || false,
-    //   easing: 'linear',
-    //   delay: this.options.delay,
-    //   update: () => {
-    //     const content = this.textArr
-    //       .slice(0, this.indexList[target.textLen])
-    //       .join('')
-    //     text(`${content}`, this.content)
-    //   },
-    //   endDelay: 2000
-    // }
-    // console.log(this)
-    this.contentWidth = getWidth(this.content)
-    this.contentHeight = getHeight(this.content)
-    setStyle(
-      {
-        height: this.contentHeight,
-        display: 'inline-flex',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden'
+    const startOptions = {
+      targets: startTarget,
+      textLen: this.chunk.length - 1,
+      round: 1,
+      duration: this.options.duration,
+      easing: 'linear',
+      delay: this.options.delay,
+      update: () => {
+        const content = this.textArr
+          .slice(0, this.chunk[startTarget.textLen])
+          .join('')
+        text(`${content}`, this.content)
       },
-      this.content
-    )
+      complete: () => {
+        startTarget.textLen = 0
+      },
+      endDelay: 2000
+    }
+    const endOptions = {
+      targets: endTarget,
+      textLen: this.chunkReverse.length - 1,
+      round: 1,
+      duration: this.options.duration,
+      easing: 'linear',
+      update: () => {
+        const content = this.textArr
+          .slice(0, this.chunkReverse[endTarget.textLen])
+          .join('')
+        text(`${content}`, this.content)
+      },
+      endDelay: 1500,
+      complete: () => {
+        endTarget.textLen = 0
+        this.anime.pause()
+        animeSetup()
+      }
+    }
 
-    anime
-      .timeline({
-        loop: this.options.loop || false
-      })
-      .add({
-        targets: this.content,
-        width: [0, this.contentWidth],
-        duration: this.options.duration || 1000,
-        easing: 'linear',
-        endDelay: 1500
-      })
-      .add({
-        targets: this.content,
-        width: [this.contentWidth, 0],
-        easing: 'easeOutSine',
-        duration: 800,
-        endDelay: 1500
-      })
+    const that = this
+
+    function animeSetup() {
+      if (that.options.loop) {
+        that.anime = anime
+          .timeline({})
+          .add(startOptions)
+          .add(endOptions)
+      } else {
+        anime(startOptions)
+      }
+    }
+
+    animeSetup()
   }
 }

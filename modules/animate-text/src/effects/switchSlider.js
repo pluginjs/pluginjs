@@ -46,7 +46,7 @@ export default class SwitchSlider extends Switch {
 
     anime(container)
     childrens.forEach((children, index) => {
-      setTimeout(() => anime(children), index * 1000)
+      setTimeout(() => anime(children), index * this.options.duration)
     })
   }
 }
