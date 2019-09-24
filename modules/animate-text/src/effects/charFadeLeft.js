@@ -14,7 +14,7 @@ export default class CharFadeLeft extends Char {
       opacity: [0, 1],
       easing: 'easeOutExpo',
       duration: this.options.duration,
-      loop: this.options.loop || false,
+      loop: this.options.loop,
       delay(el, i) {
         return 60 * i
       },

@@ -13,7 +13,7 @@ export default class CharBounceOut extends Char {
       scale: [0, 1],
       easing: 'easeOutElastic',
       duration: this.options.duration,
-      loop: this.options.loop || false,
+      loop: this.options.loop,
       delay(el, i) {
         return 60 * i
       },

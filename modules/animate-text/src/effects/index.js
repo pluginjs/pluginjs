@@ -9,7 +9,6 @@ import swing from './swing'
 import typewrite from './typewrite'
 import switchSlider from './switchSlider'
 import switchFade from './switchFade'
-import switchRotate from './switchRotate'
 import switchPush from './switchPush'
 import charFadeIn from './charFadeIn'
 import charZoomIn from './charZoomIn'
@@ -33,7 +32,6 @@ const effects = {
   typewrite,
   switchSlider,
   switchFade,
-  switchRotate,
   switchPush,
   charFadeIn,
   charZoomIn,

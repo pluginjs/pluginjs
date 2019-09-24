@@ -26,7 +26,7 @@ export default class CharRotate extends Char {
       rotateZ: [180, 0],
       easing: 'easeOutExpo',
       duration: this.options.duration,
-      loop: this.options.loop || false,
+      loop: this.options.loop,
       delay(el, i) {
         return 60 * i
       },

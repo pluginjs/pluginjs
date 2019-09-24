@@ -22,10 +22,9 @@ export default class Swing {
     const options = {
       targets: this.element,
       rotateZ: [-5, 5, -10, 10, 0],
-      duration: this.options.duration || 1000,
-      loop: this.options.loop || false,
+      duration: this.options.duration,
+      loop: this.options.loop,
       easing: 'easeInOutSine',
-      delay: this.options.delay,
       endDelay: 1000
     }
 

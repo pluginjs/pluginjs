@@ -21,10 +21,9 @@ export default class Fade {
       targets: this.element,
       ...translate,
       opacity: [0, 1],
-      duration: this.options.duration || 1000,
+      duration: this.options.duration,
       easing: 'linear',
-      loop: this.options.loop || false,
-      delay: this.options.delay,
+      loop: this.options.loop,
       endDelay: 1000
     }
 

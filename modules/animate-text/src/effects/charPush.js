@@ -20,7 +20,7 @@ export default class CharPush extends Char {
       targets: this.chars,
       translateY: ['1.1em', 0],
       duration: this.options.duration,
-      loop: this.options.loop || false,
+      loop: this.options.loop,
       delay(el, i) {
         return 60 * i
       },

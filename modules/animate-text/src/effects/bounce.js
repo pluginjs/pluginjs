@@ -20,10 +20,9 @@ export default class Bounce {
     const options = {
       targets: this.element,
       scale: [0.5, 1.2, 0.8, 1.2, 1],
-      duration: this.options.duration || 1000,
-      loop: this.options.loop || false,
+      duration: this.options.duration,
+      loop: this.options.loop,
       easing: 'easeInOutSine',
-      delay: this.options.delay,
       endDelay: 1000
     }
 

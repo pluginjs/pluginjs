@@ -21,7 +21,7 @@ export default class CharSlideDown extends Char {
       translateY: [-100, 0],
       easing: 'easeOutExpo',
       duration: this.options.duration,
-      loop: this.options.loop || false,
+      loop: this.options.loop,
       delay(el, i) {
         return 60 * i
       },

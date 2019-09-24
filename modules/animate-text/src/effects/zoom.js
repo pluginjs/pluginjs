@@ -21,10 +21,9 @@ export default class Zoom {
       targets: this.element,
       scale: [0, 1],
       opacity: [0, 1],
-      duration: this.options.duration || 1000,
-      loop: this.options.loop || false,
+      duration: this.options.duration,
+      loop: this.options.loop,
       easing: 'easeInOutQuart',
-      delay: this.options.delay,
       endDelay: 1000
     }
 

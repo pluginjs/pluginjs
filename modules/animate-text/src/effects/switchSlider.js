@@ -7,46 +7,60 @@ export default class SwitchSlider extends Switch {
     this.setupAnime()
   }
 
-  setupAnime() {
-    const container = {
-      targets: this.element,
-      width: [
-        [this.widthList[this.widthList.length - 1], this.widthList[0]],
-        ...this.widthList.slice(1)
-      ],
-      duration: this.totalDuration,
-      easing: 'easeInOutQuart',
+  getAnimeDefaultOptions(targets) {
+    return {
+      targets,
+      easing: 'easeInSine',
+      duration: this.options.duration,
       begin: this.joinSyncAnimationGroup,
-      loop: this.options.loop || false
+      opacity: [
+        {
+          value: [0, 1],
+          duration: this.options.duration * (1 / 5)
+        },
+        {
+          value: 1,
+          duration: this.options.duration * (1 / 5)
+        },
+        {
+          value: [1, 0],
+          duration: this.options.duration * (3 / 5)
+        }
+      ],
+      translateY: [
+        { value: this.DOWNTOMID },
+        { value: 0 },
+        { value: this.MIDTOUP }
+      ]
     }
+  }
 
-    const childrens = this.childrens.map(el => {
-      return {
-        targets: el,
-        opacity: [[0, 1], 1, [1, 0]],
-        translateY: [
-          this.DOWNTOMID,
-          this.MIDTOUP,
-          {
-            value: this.UPTOHIDDEN,
-            delay: this.delayDuration
-          }
-        ],
-        easing: 'easeInOutQuart',
-        duration: this.childrensDuration,
-        begin: this.joinSyncAnimationGroup,
-        loop: this.options.loop || false,
-        complete: () => {
-          this.childrens.forEach((el, index) => {
-            Object.assign(el.style, this.childrensOriginStyle[index])
+  setupAnime() {
+    anime(this.getContainerOptions())
+
+    if (this.options.loop) {
+      anime(
+        Object.assign({}, this.getAnimeDefaultOptions(this.childrens), {
+          loop: true,
+          delay: (el, i) => i * this.options.duration
+        })
+      )
+    } else {
+      const childrens = this.childrens.map((el, index) => {
+        if (index === this.childrens.length - 1) {
+          return Object.assign(this.getAnimeDefaultOptions(el), {
+            opacity: [[0, 1], 1],
+            translateY: [{ value: this.DOWNTOMID }, { value: 0 }],
+            loop: false
           })
         }
-      }
-    })
-
-    anime(container)
-    childrens.forEach((children, index) => {
-      setTimeout(() => anime(children), index * this.options.duration)
-    })
+        return Object.assign(this.getAnimeDefaultOptions(el), {
+          loop: false
+        })
+      })
+      childrens.forEach((children, index) => {
+        setTimeout(() => anime(children), index * this.options.duration)
+      })
+    }
   }
 }

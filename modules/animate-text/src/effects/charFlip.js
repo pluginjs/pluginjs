@@ -12,7 +12,7 @@ export default class CharFlip extends Char {
       targets: this.chars,
       rotateY: [-90, 0],
       duration: this.options.duration,
-      loop: this.options.loop || false,
+      loop: this.options.loop,
       delay(el, i) {
         return 60 * i
       },

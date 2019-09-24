@@ -21,8 +21,8 @@ export const methods = ['enable', 'disable', 'destroy']
 export const defaults = {
   mode: 'fadeDown',
   loop: true,
-  delay: 0,
-  duration: 1000
+  duration: 1000,
+  alt: [] // switch words.  example: ['word1', 'word2']
 }
 
 export const dependencies = ['anime']

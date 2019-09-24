@@ -15,37 +15,52 @@ export default class Switch {
       anime => anime.play()
     )
     this.joinSyncAnimationGroup = anime => this.animationGroup.push(anime)
+    this.elementHeight = getHeight(this.element)
     this.instance.switchWord()
     this.childrens = Array.from(this.element.children)
     this.widthList = this.getWidthList(this.element)
-    this.childrensOriginStyle = this.getChildrensOriginStyle(this.childrens)
-    this.clientHeight = getHeight(this.element.parentElement)
+    this.setPosition()
 
-    setStyle('height', this.clientHeight, this.element)
+    setStyle('height', this.elementHeight, this.element)
 
-    this.DOWNTOMID = [this.clientHeight, 0]
-    this.MIDTOUP = [0, this.clientHeight * -1]
-    this.UPTOHIDDEN = [this.clientHeight * -1, this.clientHeight * -1]
+    this.DOWNTOMID = [this.elementHeight, 0]
+    this.MIDTOUP = [0, this.elementHeight * -1]
     this.totalDuration = this.options.duration * this.childrens.length
-    this.delayDuration = this.totalDuration / 4
-    this.childrensDuration = this.totalDuration - this.delayDuration
+  }
+
+  getContainerOptions() {
+    return {
+      targets: this.element,
+      duration: this.totalDuration,
+      easing: 'easeOutCirc',
+      begin: this.joinSyncAnimationGroup,
+      loop: this.options.loop,
+      width: this.widthList
+    }
   }
 
   getWidthList(element) {
-    const widthList = Array.from(element.children).map(node => {
+    const widthArr = Array.from(element.children).map(node => {
       return node.offsetWidth
+    })
+
+    const widthList = []
+
+    widthList.push({
+      value: widthArr[widthArr.length - 1],
+      duration: 0
+    })
+    widthArr.forEach(width => {
+      widthList.push({
+        value: width,
+        duration: this.options.duration
+      })
     })
     return widthList
   }
 
-  getChildrensOriginStyle(childrens) {
-    return childrens.map(el => {
-      const styles = window.getComputedStyle(el)
-      const originStyle = {
-        opacity: styles.opacity,
-        position: styles.position
-      }
-
+  setPosition() {
+    this.childrens.forEach(el => {
       setStyle(
         {
           opacity: 0,
@@ -53,7 +68,6 @@ export default class Switch {
         },
         el
       )
-      return originStyle
     })
   }
 }
