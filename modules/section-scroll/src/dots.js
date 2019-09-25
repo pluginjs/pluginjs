@@ -77,6 +77,10 @@ class Dots {
   initTitle() {
     let titleList = []
 
+    if (!this.options.titleSelector) {
+      return titleList
+    }
+
     if (isString(this.options.titleSelector)) {
       titleList = queryAll(this.options.titleSelector, this.element).map(
         title => {
