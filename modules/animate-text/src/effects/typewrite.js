@@ -103,7 +103,7 @@ export default class Typewrite {
           .join('')
         text(`${content}`, this.content)
       },
-      endDelay: 1500,
+      endDelay: 500,
       complete: () => {
         endTarget.textLen = 0
         this.anime.pause()
