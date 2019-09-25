@@ -49,6 +49,7 @@
     "@pluginjs/scroll-spy": "^0.7.22",
     "@pluginjs/styled": "^0.7.17",
     "@pluginjs/template": "^0.7.16",
+    "@pluginjs/tooltip": "^0.7.18",
     "hammerjs": "*"
   },
   "devDependencies": {

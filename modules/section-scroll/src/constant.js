@@ -11,6 +11,8 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   DOTS: '{namespace}-dots',
+  LEFT: '{namespace}-left',
+  RIGHT: '{namespace}-right',
   CONTAINER: '{namespace}-container',
   OPEN: '{namespace}-open',
   SCROLL: '{namespace}-scroll',
@@ -31,15 +33,17 @@ export const methods = [
 
 export const defaults = {
   itemSelector: '', // string => 'selector' or array => ['id-1', 'id-2', 'id-3']
-  titleSelector: '',
+  titleSelector: '', // string => 'selector' or array => ['Title-1', 'Title-2', 'Title-3']
   animation: 'scroll',
   duration: 700,
-  easing: 'ease',
+  easing: 'ease', // ease, linear, easeIn, easeOut, easeInOut, easeInSine, easeOutSine, easeInOutSine, easeInQuad, easeOutQuad, easeInOutQuad, easeInCubic, easeOutCubic, easeInOutCubic, easeInQuart, easeOutQuart, easeInOutQuart, easeInQuint, easeOutQuint, easeInOutQuint, easeInExpo, easeOutExpo, easeInOutExpo, easeInCirc, easeOutCirc, easeInOutCirc, easeInBack, easeOutBack, easeInOutBack
   touch: true,
   mousewheel: true, // stack always true
   appendTo: 'body',
+  placement: 'right', // left or right
   changeHash: true,
   touchSensitivity: 5,
+  tooltip: false, // true, false || { theme: 'light large' }
   loop: false,
   dots: {
     theme: null,
@@ -55,7 +59,7 @@ export const defaults = {
   }, // false
   template() {
     return (
-      '<div class="{classes.NAMESPACE}">' +
+      '<div class="{classes.NAMESPACE} {placement}">' +
       '<ul class="{classes.DOTS}">' +
       '</ul>' +
       '</div>'

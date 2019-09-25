@@ -9,10 +9,17 @@ $sectionScroll: "pj-sectionScroll" !default;
 .#{$sectionScroll} {
   position: fixed;
   top: 50%;
-  right: 0;
   z-index: 999;
   margin: 0 20px;
   transform: translateY(-50%);
+}
+
+.#{$sectionScroll}-left {
+  left: 0;
+}
+
+.#{$sectionScroll}-right {
+  right: 0;
 }
 
 .#{$sectionScroll}-stack {

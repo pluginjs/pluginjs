@@ -9,8 +9,9 @@ const API = sectionScroll.of(element, {
   /** options **/
   itemSelector: '.section',
   titleSelector: '.section-title',
+  tooltip: true,
   animation: 'scroll',
-  easing: 'ease-in-out',
+  easing: 'easeInOut',
   mousewheel: false,
   changeHash: false,
   dots: {
