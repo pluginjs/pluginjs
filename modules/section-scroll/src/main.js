@@ -76,6 +76,10 @@ class SectionScroll extends Component {
   initSections() {
     this.$sections = []
 
+    if (!this.options.itemSelector) {
+      return
+    }
+
     if (isString(this.options.itemSelector)) {
       this.$sections = queryAll(this.options.itemSelector, this.element)
     } else if (isArray(this.options.itemSelector)) {
