@@ -11,6 +11,7 @@ export default class CharFlip extends Char {
     const options = {
       targets: this.chars,
       rotateY: [-90, 0],
+      opacity: [0, 1],
       duration: this.options.duration,
       loop: this.options.loop,
       delay(el, i) {

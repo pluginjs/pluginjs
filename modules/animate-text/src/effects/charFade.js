@@ -1,25 +1,17 @@
 import anime from 'animejs'
-import { setStyle } from '@pluginjs/styled'
 import Char from './char'
 
-export default class CharSlideDown extends Char {
+export default class CharFade extends Char {
   constructor(instance) {
     super(instance)
-    setStyle(
-      {
-        overflow: 'hidden',
-        'vertical-align': 'bottom'
-      },
-      this.element
-    )
     this.setupAnime()
   }
 
   setupAnime() {
     const options = {
       targets: this.chars,
-      translateY: [-100, 0],
-      easing: 'easeOutExpo',
+      opacity: [0, 1],
+      easing: 'easeInOutQuad',
       duration: this.options.duration,
       loop: this.options.loop,
       delay(el, i) {

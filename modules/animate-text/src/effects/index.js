@@ -10,15 +10,16 @@ import typewrite from './typewrite'
 import switchSlider from './switchSlider'
 import switchFade from './switchFade'
 import switchPush from './switchPush'
-import charFadeIn from './charFadeIn'
-import charZoomIn from './charZoomIn'
+import charFade from './charFade'
+import charFadeLeft from './charFadeLeft'
+import charFadeUp from './charFadeUp'
+import charFadeDown from './charFadeDown'
 import charPush from './charPush'
 import charRotate from './charRotate'
 import charBounceOut from './charBounceOut'
 import charFlip from './charFlip'
-import charFadeLeft from './charFadeLeft'
-import charFadeUp from './charFadeUp'
-import charSlideDown from './charSlideDown'
+
+import charZoomIn from './charZoomIn'
 
 const effects = {
   fade,
@@ -33,15 +34,15 @@ const effects = {
   switchSlider,
   switchFade,
   switchPush,
-  charFadeIn,
-  charZoomIn,
+  charFade,
+  charFadeLeft,
+  charFadeUp,
+  charFadeDown,
   charPush,
   charRotate,
   charBounceOut,
   charFlip,
-  charFadeLeft,
-  charFadeUp,
-  charSlideDown
+  charZoomIn
 }
 
 export default effects

@@ -16,17 +16,30 @@ export default class Fade {
     this.instance.splitWord(this.text)
   }
 
-  setupAnime(translate) {
-    const options = {
-      targets: this.element,
-      ...translate,
-      opacity: [0, 1],
-      duration: this.options.duration,
-      easing: 'linear',
-      loop: this.options.loop,
-      endDelay: 1000
+  setupAnime() {
+    if (this.options.loop) {
+      anime
+        .timeline({
+          targets: this.element,
+          loop: true,
+          duration: this.options.duration,
+          easing: 'linear'
+        })
+        .add({
+          opacity: [0, 1],
+          endDelay: 700
+        })
+        .add({
+          opacity: [1, 0]
+        })
+    } else {
+      anime({
+        targets: this.element,
+        opacity: [0, 1],
+        duration: this.options.duration,
+        loop: false,
+        easing: 'linear'
+      })
     }
-
-    anime(options)
   }
 }

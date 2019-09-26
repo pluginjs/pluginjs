@@ -10,7 +10,7 @@ export default class CharZoomIn extends Char {
   setupAnime() {
     const options = {
       targets: this.chars,
-      scale: [3, 1],
+      scale: [2, 1],
       opacity: [0, 1],
       easing: 'easeOutExpo',
       duration: this.options.duration,

@@ -22,12 +22,15 @@ export default class Swing {
     const options = {
       targets: this.element,
       rotateZ: [-5, 5, -10, 10, 0],
-      duration: this.options.duration,
-      loop: this.options.loop,
-      easing: 'easeInOutSine',
-      endDelay: 1000
+      endDelay: 700 + this.options.duration
     }
 
-    anime(options)
+    anime
+      .timeline({
+        duration: this.options.duration,
+        easing: 'easeInOutSine',
+        loop: this.options.loop
+      })
+      .add(options)
   }
 }

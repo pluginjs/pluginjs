@@ -95,7 +95,7 @@ export default class Typewrite {
       targets: endTarget,
       textLen: this.totalText[count].chunkReverse.length - 1,
       round: 1,
-      duration: this.options.duration,
+      duration: this.options.duration / 3,
       easing: 'linear',
       update: () => {
         const content = this.totalText[count].textArr
@@ -103,7 +103,6 @@ export default class Typewrite {
           .join('')
         text(`${content}`, this.content)
       },
-      endDelay: 500,
       complete: () => {
         endTarget.textLen = 0
         this.anime.pause()

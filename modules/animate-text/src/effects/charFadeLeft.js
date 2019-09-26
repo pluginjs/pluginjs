@@ -12,7 +12,7 @@ export default class CharFadeLeft extends Char {
       targets: this.chars,
       translateX: [40, 0],
       opacity: [0, 1],
-      easing: 'easeOutExpo',
+      easing: 'easeOutQuart',
       duration: this.options.duration,
       loop: this.options.loop,
       delay(el, i) {

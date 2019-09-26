@@ -17,16 +17,32 @@ export default class Zoom {
   }
 
   setupAnime() {
-    const options = {
-      targets: this.element,
-      scale: [0, 1],
-      opacity: [0, 1],
-      duration: this.options.duration,
-      loop: this.options.loop,
-      easing: 'easeInOutQuart',
-      endDelay: 1000
+    if (this.options.loop) {
+      anime
+        .timeline({
+          targets: this.element,
+          loop: true,
+          duration: this.options.duration,
+          easing: 'easeInOutQuart'
+        })
+        .add({
+          scale: [0, 1],
+          opacity: [0, 1],
+          endDelay: 700
+        })
+        .add({
+          scale: [1, 1.3],
+          opacity: [1, 0]
+        })
+    } else {
+      anime({
+        targets: this.element,
+        scale: [0, 1],
+        opacity: [0, 1],
+        duration: this.options.duration,
+        loop: false,
+        easing: 'easeInOutQuart'
+      })
     }
-
-    anime(options)
   }
 }
