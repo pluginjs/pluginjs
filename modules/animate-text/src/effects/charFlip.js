@@ -8,18 +8,36 @@ export default class CharFlip extends Char {
   }
 
   setupAnime() {
-    const options = {
-      targets: this.chars,
-      rotateY: [-90, 0],
-      opacity: [0, 1],
-      duration: this.options.duration,
-      loop: this.options.loop,
-      delay(el, i) {
-        return 60 * i
-      },
-      endDelay: 1000
+    if (this.options.loop) {
+      anime
+        .timeline({
+          targets: this.chars,
+          loop: true,
+          duration: this.options.duration,
+          delay(el, i) {
+            return 60 * i
+          }
+        })
+        .add({
+          rotateY: [-90, 0],
+          opacity: [0, 1],
+          endDelay: 700
+        })
+        .add({
+          rotateY: [0, 90],
+          opacity: [1, 0]
+        })
+    } else {
+      anime({
+        targets: this.chars,
+        rotateY: [-90, 0],
+        opacity: [0, 1],
+        duration: this.options.duration,
+        loop: false,
+        delay(el, i) {
+          return 60 * i
+        }
+      })
     }
-
-    anime(options)
   }
 }

@@ -8,18 +8,37 @@ export default class CharBounceOut extends Char {
   }
 
   setupAnime() {
-    const options = {
-      targets: this.chars,
-      scale: [0, 1],
-      easing: 'easeOutElastic',
-      duration: this.options.duration,
-      loop: this.options.loop,
-      delay(el, i) {
-        return 60 * i
-      },
-      endDelay: 1000
+    if (this.options.loop) {
+      anime
+        .timeline({
+          targets: this.chars,
+          loop: true,
+          duration: this.options.duration,
+          delay(el, i) {
+            return 60 * i
+          }
+        })
+        .add({
+          scale: [0, 1],
+          easing: 'easeOutElastic',
+          endDelay: 700
+        })
+        .add({
+          scale: [1, 1.5],
+          easing: 'easeInElastic',
+          opacity: [1, 0]
+        })
+    } else {
+      anime({
+        targets: this.chars,
+        scale: [0, 1],
+        easing: 'easeOutElastic',
+        duration: this.options.duration,
+        loop: false,
+        delay(el, i) {
+          return 60 * i
+        }
+      })
     }
-
-    anime(options)
   }
 }

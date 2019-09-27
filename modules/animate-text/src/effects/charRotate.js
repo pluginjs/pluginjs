@@ -19,20 +19,39 @@ export default class CharRotate extends Char {
   }
 
   setupAnime() {
-    const options = {
-      targets: this.chars,
-      translateX: ['0.55em', 0],
-      translateY: ['1.1em', 0],
-      rotateZ: [180, 0],
-      easing: 'easeOutExpo',
-      duration: this.options.duration,
-      loop: this.options.loop,
-      delay(el, i) {
-        return 60 * i
-      },
-      endDelay: 1000
+    if (this.options.loop) {
+      anime
+        .timeline({
+          targets: this.chars,
+          loop: true,
+          duration: this.options.duration,
+          delay(el, i) {
+            return 60 * i
+          }
+        })
+        .add({
+          rotateZ: [180, 0],
+          opacity: [0, 1],
+          easing: 'easeOutExpo',
+          endDelay: 700
+        })
+        .add({
+          rotateZ: [0, -45],
+          opacity: [1, 0],
+          easing: 'easeInExpo'
+        })
+    } else {
+      anime({
+        targets: this.chars,
+        rotateZ: [180, 0],
+        opacity: [0, 1],
+        easing: 'easeOutExpo',
+        duration: this.options.duration,
+        loop: false,
+        delay(el, i) {
+          return 60 * i
+        }
+      })
     }
-
-    anime(options)
   }
 }

@@ -8,18 +8,35 @@ export default class CharFade extends Char {
   }
 
   setupAnime() {
-    const options = {
-      targets: this.chars,
-      opacity: [0, 1],
-      easing: 'easeInOutQuad',
-      duration: this.options.duration,
-      loop: this.options.loop,
-      delay(el, i) {
-        return 60 * i
-      },
-      endDelay: 1000
+    if (this.options.loop) {
+      anime
+        .timeline({
+          targets: this.chars,
+          loop: true,
+          duration: this.options.duration,
+          easing: 'easeInOutQuad',
+          delay(el, i) {
+            return 60 * i
+          }
+        })
+        .add({
+          opacity: [0, 1],
+          endDelay: 700
+        })
+        .add({
+          opacity: [1, 0]
+        })
+    } else {
+      anime({
+        targets: this.chars,
+        opacity: [0, 1],
+        easing: 'easeInOutQuad',
+        duration: this.options.duration,
+        loop: false,
+        delay(el, i) {
+          return 60 * i
+        }
+      })
     }
-
-    anime(options)
   }
 }
