@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.20",
+  "version": "0.7.21",
   "category": "ui",
   "main": "dist/animate-text.common.js",
   "module": "dist/animate-text.esm.js",
