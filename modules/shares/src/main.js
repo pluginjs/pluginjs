@@ -21,7 +21,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { children, getData } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 import Share from './share'
-import Metadata from './Metadata'
+import Metadata from './metadata'
 import SERVICES from './services'
 
 @themeable()
