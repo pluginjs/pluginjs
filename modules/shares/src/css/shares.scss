@@ -4,12 +4,22 @@
 // =====================
 $shares: "pj-shares";
 
-$share-rounded-radius: 10%;
+$share-rounded-radius: 4px;
 $share-light-color: rgb(245,245,245);
 $share-dark-color: rgb(10,10,10);
 $share-gray: rgba(100, 100, 100, 0.8);
 
 $share-duration: 300ms;
+
+$share-xs-hover-size: 1.3 * $share-xs-size;
+$share-sm-hover-size: 1.3 * $share-sm-size;
+$share-md-hover-size: 1.3 * $share-md-size;
+$share-lg-hover-size: 1.3 * $share-lg-size;
+
+$share-text-xs-font-size: 12px;
+$share-text-sm-font-size: 14px;
+$share-text-md-font-size: 16px;
+$share-text-lg-font-size: 20px;
 
 // Bordered, Dashed
 // =====================
@@ -36,7 +46,7 @@ $share-duration: 300ms;
 
 @each $social, $color in $share-colors {
   .#{$shares}-bordered,
- .#{$shares}-dashed {
+  .#{$shares}-dashed {
     .#{$share}-#{$social}:hover {
       z-index: 1;
       border-color: $color;
@@ -87,6 +97,17 @@ $share-duration: 300ms;
   }
 }
 
+// Shadow
+// ======================
+.#{$shares}-shadow {
+  .#{$share} {
+    color: #b2bac2;
+    background-color: #fff;
+    border: 1px solid #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+  }
+}
+
 // Hexagon
 // ======================
 @mixin share-hexagon-size($size: $share-md-size){
@@ -102,6 +123,13 @@ $share-duration: 300ms;
     &::after {
       width:  $share-hexagon-width;
       height: $share-hexagon-side;
+    }
+  }
+
+  &.#{$shares}-left,
+  &.#{$shares}-right {
+    .#{$share} {
+      margin-bottom: $share-hexagon-side * 1.2;
     }
   }
 }
@@ -149,7 +177,7 @@ $share-duration: 300ms;
   }
 
   &.#{$shares}-bordered,
- &.#{$shares}-dashed {
+  &.#{$shares}-dashed {
     .#{$share} {
       border-top-color: transparent;
       border-right-color: $share-border-color;
@@ -162,6 +190,12 @@ $share-duration: 300ms;
     .#{$share} {
       border-top-color: transparent;
       border-bottom-color: transparent;
+    }
+  }
+
+  &.#{$shares}-dark {
+    .#{$share} {
+      background-clip: border-box;
     }
   }
 
@@ -179,12 +213,12 @@ $share-duration: 300ms;
 @each $social, $color in $share-colors {
   .#{$shares}-hexagon {
     &.#{$shares}-bordered,
- &.#{$shares}-dashed,
- &.#{$shares}-light {
+    &.#{$shares}-dashed,
+    &.#{$shares}-light {
       .#{$share}-#{$social}:hover {
         &,
- &::before,
- &::after {
+        &::before,
+        &::after {
           border-right-color: $color;
           border-left-color: $color;
         }
@@ -201,7 +235,7 @@ $share-duration: 300ms;
   }
 
   &.#{$shares}-solid,
- &.#{$shares}-dark {
+  &.#{$shares}-dark {
     .#{$share} {
       color: $share-gray;
     }
@@ -216,7 +250,8 @@ $share-duration: 300ms;
 
 @each $social, $color in $share-colors {
   .#{$shares}-gray,
- .#{$shares}-dark {
+  .#{$shares}-dark,
+  .#{$shares}-shadow {
     .#{$share}-#{$social}:hover {
       color: $color;
     }
@@ -227,16 +262,17 @@ $share-duration: 300ms;
 // =====================
 .#{$shares}-reverse {
   .#{$share} {
-    transition-delay: 0;
+    transition-delay: 0s;
     transition-timing-function: ease;
     transition-duration: $share-duration;
     transition-property: color, background, border;
   }
 
   &.#{$shares}-bordered,
- &.#{$shares}-dashed,
- &.#{$shares}-light,
- &.#{$shares}-dark {
+  &.#{$shares}-dashed,
+  &.#{$shares}-light,
+  &.#{$shares}-dark,
+  &.#{$shares}-shadow {
     .#{$share}:hover {
       color: #fff;
     }
@@ -250,18 +286,15 @@ $share-duration: 300ms;
     .#{$share} {
       transition: none;
     }
-
-    .#{$share}:hover {
-      background: transparent;
-    }
   }
 }
 @each $social, $color in $share-colors {
   .#{$shares}-reverse {
     &.#{$shares}-bordered,
- &.#{$shares}-dashed,
- &.#{$shares}-light,
- &.#{$shares}-dark {
+    &.#{$shares}-dashed,
+    &.#{$shares}-light,
+    &.#{$shares}-dark,
+    &.#{$shares}-shadow {
       .#{$share}-#{$social}:hover {
         background: $color;
         border-color: $color;
@@ -277,9 +310,9 @@ $share-duration: 300ms;
 
     &.#{$shares}-hexagon {
       &.#{$shares}-bordered,
- &.#{$shares}-dashed,
- &.#{$shares}-light,
- &.#{$shares}-dark {
+      &.#{$shares}-dashed,
+      &.#{$shares}-light,
+      &.#{$shares}-dark {
         .#{$share}-#{$social}:hover {
           background: $color;
           border-color: $color;
@@ -312,9 +345,9 @@ $share-duration: 300ms;
 }
 
 .#{$shares}-round,
- .#{$shares}-rounded {
+.#{$shares}-rounded {
   &.#{$shares}-bordered,
- &.#{$shares}-dashed {
+  &.#{$shares}-dashed {
     .#{$share} {
       margin-left: 0;
     }
@@ -324,16 +357,16 @@ $share-duration: 300ms;
 // Space
 // ======================
 .#{$shares}-round,
- .#{$shares}-rounded,
- .#{$shares}-hexagon,
- .#{$shares}-space {
+.#{$shares}-rounded,
+.#{$shares}-hexagon,
+.#{$shares}-space {
   &.#{$shares}-lg {
     .#{$share} {
       margin-right: $share-lg-gutter-size;
     }
   }
   &,
- &.#{$shares}-md {
+  &.#{$shares}-md {
     .#{$share} {
       margin-right: $share-md-gutter-size;
     }
@@ -352,28 +385,7 @@ $share-duration: 300ms;
     margin-right: 0;
   }
   &.#{$shares}-left,
- &.#{$shares}-right {
-    &.#{$shares}-lg {
-      .#{$share} {
-        margin-bottom: $share-lg-gutter-size;
-      }
-    }
-    &,
- &.#{$shares}-md {
-      .#{$share} {
-        margin-bottom: $share-md-gutter-size;
-      }
-    }
-    &.#{$shares}-sm {
-      .#{$share} {
-        margin-bottom: $share-sm-gutter-size;
-      }
-    }
-    &.#{$shares}-xs {
-      .#{$share} {
-        margin-bottom: $share-xs-gutter-size;
-      }
-    }
+  &.#{$shares}-right {
     .#{$share}:last-child {
       margin-bottom: 0;
     }
@@ -389,5 +401,146 @@ $share-duration: 300ms;
   }
   &.#{$shares}-bottom {
     margin-bottom: $share-edge-size;
+  }
+}
+.#{$shares}-round,
+.#{$shares}-rounded,
+.#{$shares}-space {
+  &.#{$shares}-left,
+  &.#{$shares}-right {
+    &.#{$shares}-lg {
+      .#{$share} {
+        margin-bottom: $share-lg-gutter-size;
+      }
+    }
+    &,
+    &.#{$shares}-md {
+      .#{$share} {
+        margin-bottom: $share-md-gutter-size;
+      }
+    }
+    &.#{$shares}-sm {
+      .#{$share} {
+        margin-bottom: $share-sm-gutter-size;
+      }
+    }
+    &.#{$shares}-xs {
+      .#{$share} {
+        margin-bottom: $share-xs-gutter-size;
+      }
+    }
+  }
+}
+
+// Left & Right hover transition
+.#{$shares}-left,
+.#{$shares}-right {
+  &:not(.#{$shares}-round):not(.#{$shares}-hexagon):not(.#{$shares}-with-text) {
+    .#{$share} {
+      transition: width $share-duration/2 ease-in-out;
+
+      &:hover {
+        width: $share-md-hover-size;
+      }
+
+      svg {
+        height: 100%;
+      }
+    }
+
+    &.#{$shares}-reverse{
+      .#{$share} {
+        transition-property: width, color, background, border;
+      }
+    }
+
+    &.#{$shares}-lg {
+      .#{$share} {
+        &:hover {
+          width: $share-lg-hover-size;
+        }
+      }
+    }
+    &.#{$shares}-sm {
+      .#{$share} {
+        &:hover {
+          width: $share-sm-hover-size;
+        }
+      }
+    }
+    &.#{$shares}-xs {
+      .#{$share} {
+        &:hover {
+          width: $share-xs-hover-size;
+        }
+      }
+    }
+  }
+}
+.#{$shares}-left {
+  &:not(.#{$shares}-round):not(.#{$shares}-hexagon):not(.#{$shares}-with-text) {
+    .#{$share} {
+      float: left;
+    }
+  }
+}
+.#{$shares}-right {
+  &:not(.#{$shares}-round):not(.#{$shares}-hexagon):not(.#{$shares}-with-text) {
+    .#{$share} {
+      float: right;
+    }
+  }
+}
+
+// With Text
+.#{$shares}-with-text {
+  .#{$share} {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    font-size: $share-text-md-font-size;
+
+    svg {
+      height: 100%;
+    }
+
+    .#{$share}-text {
+      padding-left: $share-md-padding;
+    }
+  }
+
+  &.#{$shares}-lg {
+    .#{$share} {
+      font-size: $share-text-lg-font-size;
+
+      .#{$share}-text {
+        padding-left: $share-lg-padding;
+      }
+    }
+  }
+  &.#{$shares}-sm {
+    .#{$share} {
+      font-size: $share-text-sm-font-size;
+
+      .#{$share}-text {
+        padding-left: $share-sm-padding;
+      }
+    }
+  }
+  &.#{$shares}-xs {
+    .#{$share} {
+      font-size: $share-text-xs-font-size;
+
+      .#{$share}-text {
+        padding-left: $share-xs-padding;
+      }
+    }
+  }
+
+  &.#{$shares}-left,
+  &.#{$shares}-right {
+    .#{$share} {
+      display: flex;
+    }
   }
 }
