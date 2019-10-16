@@ -19,7 +19,12 @@ $share-lg-hover-size: 1.3 * $share-lg-size;
 $share-text-xs-font-size: 12px;
 $share-text-sm-font-size: 14px;
 $share-text-md-font-size: 16px;
-$share-text-lg-font-size: 20px;
+$share-text-lg-font-size: 18px;
+
+$share-text-arrow-xs-size: 8px;
+$share-text-arrow-sm-size: 10px;
+$share-text-arrow-md-size: 12px;
+$share-text-arrow-lg-size: 14px;
 
 // Bordered, Dashed
 // =====================
@@ -27,7 +32,7 @@ $share-text-lg-font-size: 20px;
  .#{$shares}-dashed {
   .#{$share} {
     margin-left: -1px;
-    background: #fff;
+    background-color: #fff;
     border-color: $share-border-color;
     border-style: solid;
     border-width: 1px;
@@ -67,6 +72,7 @@ $share-text-lg-font-size: 20px;
     .#{$share}-#{$social} {
       color: #fff;
       background-color: $color;
+      border-color: $color;
     }
   }
 }
@@ -193,6 +199,8 @@ $share-text-lg-font-size: 20px;
     }
   }
 
+  &.#{$shares}-solid,
+  &.#{$shares}-shadow,
   &.#{$shares}-dark {
     .#{$share} {
       background-clip: border-box;
@@ -279,12 +287,25 @@ $share-text-lg-font-size: 20px;
   }
   &.#{$shares}-solid {
     .#{$share}:hover {
-      background: #fff;
+      background-color: #fff;
     }
   }
   &.#{$shares}-hexagon {
     .#{$share} {
       transition: none;
+    }
+
+    &.#{$shares}-bordered,
+    &.#{$shares}-dashed,
+    &.#{$shares}-light {
+      .#{$share}:hover {
+        background-clip: border-box;
+      }
+    }
+    &.#{$shares}-solid {
+      .#{$share}:hover {
+        background-clip: content-box;
+      }
     }
   }
 }
@@ -296,7 +317,7 @@ $share-text-lg-font-size: 20px;
     &.#{$shares}-dark,
     &.#{$shares}-shadow {
       .#{$share}-#{$social}:hover {
-        background: $color;
+        background-color: $color;
         border-color: $color;
       }
     }
@@ -314,7 +335,7 @@ $share-text-lg-font-size: 20px;
       &.#{$shares}-light,
       &.#{$shares}-dark {
         .#{$share}-#{$social}:hover {
-          background: $color;
+          background-color: $color;
           border-color: $color;
         }
       }
@@ -541,6 +562,137 @@ $share-text-lg-font-size: 20px;
   &.#{$shares}-right {
     .#{$share} {
       display: flex;
+    }
+  }
+
+
+  &.#{$shares}-solid {
+    &.#{$shares}-contrast,
+    &.#{$shares}-arrow {
+      .#{$share} {
+        padding: 0;
+        border: none;
+      }
+
+      .#{$share}-text {
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 $share-text-md-font-size;
+        border-style: solid;
+        border-width: 1px;
+        border-left: none;
+      }
+
+      .#{$share} svg {
+        box-sizing: border-box;
+        padding: $share-md-padding;
+        fill: #fff;
+      }
+
+      &.#{$shares}-lg {
+        .#{$share} svg {
+          padding: $share-lg-padding;
+        }
+
+        .#{$share}-text {
+          padding: 0 $share-text-lg-font-size;
+        }
+      }
+      &.#{$shares}-sm {
+        .#{$share} svg {
+          padding: $share-sm-padding;
+        }
+
+        .#{$share}-text {
+          padding: 0 $share-text-sm-font-size;
+        }
+      }
+      &.#{$shares}-xs {
+        .#{$share} svg {
+          padding: $share-xs-padding;
+        }
+
+        .#{$share}-text {
+          padding: 0 $share-text-xs-font-size;
+        }
+      }
+    }
+
+    &.#{$shares}-arrow {
+      .#{$share}-text {
+        position: relative;
+        border-color: rgba(0, 0, 0, 0.1);
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          display: block;
+          width: $share-text-arrow-md-size;
+          height: $share-text-arrow-md-size;
+          content: "";
+          transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+        }
+      }
+
+      &.#{$shares}-lg {
+        .#{$share}-text::before {
+          width: $share-text-arrow-lg-size;
+          height: $share-text-arrow-lg-size;
+        }
+      }
+      &.#{$shares}-sm {
+        .#{$share}-text::before {
+          width: $share-text-arrow-sm-size;
+          height: $share-text-arrow-sm-size;
+        }
+      }
+      &.#{$shares}-xs {
+        .#{$share}-text::before {
+          width: $share-text-arrow-xs-size;
+          height: $share-text-arrow-xs-size;
+        }
+      }
+
+      &.#{$shares}-reverse{
+        .#{$share}-text {
+          transition: border-color 200ms ease;
+        }
+      }
+    }
+  }
+}
+@each $social, $color in $share-colors {
+  .#{$shares}-with-text.#{$shares}-solid.#{$shares}-contrast {
+    .#{$share}-#{$social} .#{$share}-text {
+      border-color: $color;
+    }
+
+    .#{$share}-#{$social} svg {
+      background-color: darken($color: $color, $amount: 10);
+    }
+  }
+
+  .#{$shares}-with-text.#{$shares}-solid.#{$shares}-arrow {
+    .#{$share}-#{$social} .#{$share}-text {
+      color: $color;
+      background-color: #fff;
+    }
+
+    .#{$share}-#{$social} .#{$share}-text::before {
+      background-color: $color;
+    }
+
+    .#{$share}-#{$social} svg {
+      background-color: $color;
+    }
+
+    &.#{$shares}-reverse .#{$share}-#{$social}:hover{
+      .#{$share}-text {
+        border-color: $color;
+      }
     }
   }
 }
