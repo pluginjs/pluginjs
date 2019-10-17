@@ -21,10 +21,10 @@ $share-text-sm-font-size: 14px;
 $share-text-md-font-size: 16px;
 $share-text-lg-font-size: 18px;
 
-$share-text-arrow-xs-size: 8px;
-$share-text-arrow-sm-size: 10px;
-$share-text-arrow-md-size: 12px;
-$share-text-arrow-lg-size: 14px;
+$share-text-triangle-xs-size: 8px;
+$share-text-triangle-sm-size: 10px;
+$share-text-triangle-md-size: 12px;
+$share-text-triangle-lg-size: 14px;
 
 // Bordered, Dashed
 // =====================
@@ -568,7 +568,7 @@ $share-text-arrow-lg-size: 14px;
 
   &.#{$shares}-solid {
     &.#{$shares}-contrast,
-    &.#{$shares}-arrow {
+    &.#{$shares}-triangle {
       .#{$share} {
         padding: 0;
         border: none;
@@ -620,7 +620,7 @@ $share-text-arrow-lg-size: 14px;
       }
     }
 
-    &.#{$shares}-arrow {
+    &.#{$shares}-triangle {
       .#{$share}-text {
         position: relative;
         border-color: rgba(0, 0, 0, 0.1);
@@ -630,8 +630,8 @@ $share-text-arrow-lg-size: 14px;
           top: 50%;
           left: 0;
           display: block;
-          width: $share-text-arrow-md-size;
-          height: $share-text-arrow-md-size;
+          width: $share-text-triangle-md-size;
+          height: $share-text-triangle-md-size;
           content: "";
           transform: translateY(-50%) translateX(-50%) rotate(-45deg);
         }
@@ -639,23 +639,24 @@ $share-text-arrow-lg-size: 14px;
 
       &.#{$shares}-lg {
         .#{$share}-text::before {
-          width: $share-text-arrow-lg-size;
-          height: $share-text-arrow-lg-size;
+          width: $share-text-triangle-lg-size;
+          height: $share-text-triangle-lg-size;
         }
       }
       &.#{$shares}-sm {
         .#{$share}-text::before {
-          width: $share-text-arrow-sm-size;
-          height: $share-text-arrow-sm-size;
+          width: $share-text-triangle-sm-size;
+          height: $share-text-triangle-sm-size;
         }
       }
       &.#{$shares}-xs {
         .#{$share}-text::before {
-          width: $share-text-arrow-xs-size;
-          height: $share-text-arrow-xs-size;
+          width: $share-text-triangle-xs-size;
+          height: $share-text-triangle-xs-size;
         }
       }
 
+      &,
       &.#{$shares}-reverse{
         .#{$share}-text {
           transition: border-color 200ms ease;
@@ -675,7 +676,7 @@ $share-text-arrow-lg-size: 14px;
     }
   }
 
-  .#{$shares}-with-text.#{$shares}-solid.#{$shares}-arrow {
+  .#{$shares}-with-text.#{$shares}-solid.#{$shares}-triangle {
     .#{$share}-#{$social} .#{$share}-text {
       color: $color;
       background-color: #fff;
@@ -689,6 +690,7 @@ $share-text-arrow-lg-size: 14px;
       background-color: $color;
     }
 
+    & .#{$share}-#{$social}:hover,
     &.#{$shares}-reverse .#{$share}-#{$social}:hover{
       .#{$share}-text {
         border-color: $color;
