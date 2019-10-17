@@ -14,6 +14,7 @@ class Dots {
   }
 
   init() {
+    this.titleList = this.initTitle()
     this.items = this.parseItems()
 
     this.dots = parseHTML(this.createHtml())
@@ -62,16 +63,31 @@ class Dots {
 
   parseItems() {
     const items = []
-    this.titleList = this.initTitle()
+    this.iconList = this.initIcon()
 
     this.sections.forEach((section, index) => {
       const item = {}
       item.href = `#${section.getAttribute('id')}`
       item.text = this.titleList[index] ? this.titleList[index] : ''
+      item.icon = this.iconList[index] ? this.iconList[index] : ''
       items.push(item)
     })
 
     return items
+  }
+
+  initIcon() {
+    const iconList = []
+
+    if (this.options.iconList && isArray(this.options.iconList)) {
+      this.options.iconList.forEach(icon => {
+        if (isString(icon)) {
+          iconList.push(icon)
+        }
+      })
+    }
+
+    return iconList
   }
 
   initTitle() {
