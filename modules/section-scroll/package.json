@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.25",
+  "version": "0.7.26",
   "category": "scroll",
   "main": "dist/section-scroll.common.js",
   "module": "dist/section-scroll.esm.js",
@@ -46,7 +46,7 @@
     "@pluginjs/factory": "^0.7.16",
     "@pluginjs/is": "^0.7.15",
     "@pluginjs/scroll": "^0.7.17",
-    "@pluginjs/scroll-spy": "^0.7.22",
+    "@pluginjs/scroll-spy": "^0.7.23",
     "@pluginjs/styled": "^0.7.17",
     "@pluginjs/template": "^0.7.16",
     "@pluginjs/tooltip": "^0.7.18",
