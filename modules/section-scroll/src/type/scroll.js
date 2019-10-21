@@ -20,6 +20,7 @@ class Scroll {
       selector: 'li',
       hrefFrom: this.instance.options.dots.valueFrom || 'href',
       disableRootMargin: true,
+      rootMargin: '-50% 0px -50% 0px',
       onChange: id => {
         if (!this.instance.is('moveing') && this.instance.is('initialized')) {
           this.instance.trigger(EVENTS.CHANGE, id)

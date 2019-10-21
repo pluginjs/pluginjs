@@ -18,5 +18,6 @@ export const defaults = {
   hrefFrom: 'href',
   cloestActive: '',
   disableRootMargin: false,
+  rootMargin: null, // also can have values similar to the CSS margin property, e.g."10px 20px 30px 40px"(top, right, bottom, left)
   reference: 'top' // ["top"|"bottom"] Which side to use as base when calculation element position.
 }

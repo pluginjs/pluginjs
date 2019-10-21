@@ -32,6 +32,7 @@ class ScrollSpy extends Component {
   initialize() {
     this.assignValues()
     this.cacheItems()
+    const rootMargin = this.options.rootMargin ? this.options.rootMargin : ''
     this.observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -43,7 +44,7 @@ class ScrollSpy extends Component {
       {
         root: query(this.options.container),
         rootMargin: this.options.disableRootMargin
-          ? ''
+          ? rootMargin
           : `-${this.menuHeight}px 0px -${this.scrollItems[0].offsetHeight -
               this.menuHeight}px 0px`
       }
