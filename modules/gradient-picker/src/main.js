@@ -84,13 +84,7 @@ class GradientPicker extends Component {
 
     if (this.options.inline) {
       hideElement(this.element)
-      setStyle(
-        {
-          boxShadow: 'none',
-          border: '1px solid #e6e6e6'
-        },
-        this.$panel
-      )
+      addClass(this.classes.INLINE, this.$panel)
     }
 
     if (this.options.theme) {

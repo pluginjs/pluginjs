@@ -5,11 +5,14 @@ $gradientPicker: "pj-gradientPicker" !default;
 $colorPicker: "pj-colorPicker" !default;
 
 $gradientPicker-border-width: 1px !default;
+$gradientPicker-border-color: #e6e6e6 !default;
 $gradientPicker-preview-span-left: calc(50% - #{$gradientPicker-border-width}) !default;
 
 // panel
 $gradientPicker-panel-width: 290px !default;
+
 // preview
+$gradientPicker-preview-bg: $color-white !default;
 $gradientPicker-preview-width: 45px !default;
 $gradientPicker-preview-height: 32px !default;
 $gradientPicker-preview-bg-width: 36px !default;
@@ -24,7 +27,7 @@ $gradientPicker-gradient-bar-width: 240px !default;
 $gradientPicker-marker-width: 12px !default;
 $gradientPicker-marker-height: 12px !default;
 // wheel
-$gradientPicker-wheel-width: 24px !default;
+$gradientPicker-wheel-width: 22px !default;
 $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
 
 .#{$gradientPicker} {
@@ -75,10 +78,11 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
   &-preview {
     position: absolute;
     top: 50%;
-    right: 0;
+    right: 1px;
     width: $gradientPicker-preview-width;
     height: $gradientPicker-preview-height - 2px;
     cursor: pointer;
+    background-color: $gradientPicker-preview-bg;
     transform: translateY(-50%);
 
     span {
@@ -132,6 +136,11 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
     width: 100%;
     padding: 0;
     border: none !important;
+  }
+
+  &-inline {
+    border: 1px solid $gradientPicker-border-color;
+    box-shadow: none;
   }
 
   &-marker {

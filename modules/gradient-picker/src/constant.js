@@ -21,6 +21,7 @@ export const classes = {
   CLEAR: '{namespace}-clear',
   // panel
   PANEL: '{namespace}-panel',
+  INLINE: '{namespace}-inline',
   HANDLE: '{namespace}-handle',
   CONTENT: '{namespace}-content',
   CONTROL: '{namespace}-control',

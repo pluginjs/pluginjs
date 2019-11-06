@@ -211,6 +211,7 @@ $editPanel-component-color: $color-red !default;
 
       &-gradient{
         cursor: not-allowed;
+
         &::before {
           background-color: #aab3bf;
           border: 1px solid $gray-dark;
@@ -221,6 +222,10 @@ $editPanel-component-color: $color-red !default;
           cursor: pointer;
         }
       }
+    }
+
+    .pj-gradientPicker-panel {
+      border: 0;
     }
 
     &-container {
@@ -262,11 +267,11 @@ $editPanel-component-color: $color-red !default;
 
   &-collection {
     &-scrollwrap {
+      box-sizing: content-box;
       width: $gradientSelector-collection-scrollwrap-width;
       height: $gradientSelector-collection-scrollwrap-height;
       overflow: hidden;
       overflow-y: auto;
-      box-sizing: content-box;
     }
 
     &-item {
