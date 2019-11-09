@@ -57,11 +57,6 @@ $imageSelector-trigger-padding-right: 30px !default;
   }
 
   &-dropdown {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: flex-start;
     width: auto;
     max-height: $imageSelector-max-height;
     overflow: auto;

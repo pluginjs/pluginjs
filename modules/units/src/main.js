@@ -237,7 +237,6 @@ class Units extends Component {
 
   set(value, trigger = true) {
     let changed = false
-
     if (this.isStatic(value)) {
       if (value !== this.value) {
         this.value = value
@@ -255,7 +254,6 @@ class Units extends Component {
         if (trigger) {
           this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
         }
-
         changed = true
       }
 
@@ -264,14 +262,15 @@ class Units extends Component {
         if (!isNull(value.input)) {
           this.cached[this.getUnit()] = value.input
         }
+
         if (trigger) {
           this.trigger(EVENTS.CHANGEINPUT, this.value.input)
         }
-
+        
         changed = true
       }
     }
-
+    
     if (changed && trigger) {
       if (this.value.input) {
         this.element.value = this.val()
@@ -303,11 +302,11 @@ class Units extends Component {
     return null
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-    return this.set(this.options.parse.call(this, value))
+    return this.set(this.options.parse.call(this, value), trigger)
   }
 
   enable() {
