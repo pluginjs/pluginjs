@@ -8,8 +8,6 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
 // Core
 // =====================
 .#{$bgPicker} {
-  display: inline-block;
-
   &-input {
     display: none;
   }
