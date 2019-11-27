@@ -111,7 +111,7 @@ class Swipe extends Component {
         throw Error('can\'t find option "wrapperSelector"!')
       }
 
-      this.$wrapper = query(`.${this.options.wrapperSelector}`, this.element)
+      this.$wrapper = query(this.options.wrapperSelector, this.element)
       addClass(this.classes.WRAPPER, this.$wrapper)
     }
   }
@@ -124,7 +124,7 @@ class Swipe extends Component {
         throw Error('can\'t find option "innerSelector"!')
       }
 
-      this.$inner = query(`.${this.options.innerSelector}`, this.element)
+      this.$inner = query(this.options.innerSelector, this.element)
       addClass(this.classes.INNER, this.$inner)
     }
   }
