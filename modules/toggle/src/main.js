@@ -52,9 +52,7 @@ class Toggle extends Component {
 
   initialize() {
     this.initContent()
-
     this.$wrap = wrap(`<div class="${this.classes.WRAP}"></div>`, this.element)
-
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)
     }
@@ -67,6 +65,7 @@ class Toggle extends Component {
     this.$handle = parseHTML(`<div class="${this.classes.HANDLE}"></div>`)
 
     this.$inner.append(this.$on, this.$handle, this.$off)
+
     this.$wrap.append(this.$inner)
 
     this.initIcon()
@@ -88,6 +87,8 @@ class Toggle extends Component {
         clientWidth -
         parseInt(getStyle('width', this.$handle).replace(/px|pt|em/gi, ''), 0)
     }
+
+    setStyle('marginLeft', `-${this.distance}`, this.$inner)
 
     this.bind()
     this.set(this.checked, false)
@@ -126,6 +127,7 @@ class Toggle extends Component {
       addClass(this.classes.ICONOFF, this.$off)
     }
   }
+  
   bind() {
     if (this.options.clickable === true) {
       this.wrapHammer = new Hammer(this.$wrap)
