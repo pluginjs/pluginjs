@@ -1,11 +1,16 @@
 import { query } from '@pluginjs/dom'
 import Swipe from '@pluginjs/swipe'
 
-const element = query('#decay .swipe')
+const element = query('#center-loop .swipe')
 Swipe.of(element, {
-  itemNums: 3,
+  /** options **/
+  itemNums: 2,
+  center: true,
   gutter: 20,
-  decay: true,
+  loop: true,
+  arrows: {
+    type: 'solid'
+  },
   pagination: {
     type: 'square light'
   }

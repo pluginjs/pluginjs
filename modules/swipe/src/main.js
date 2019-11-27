@@ -1,20 +1,23 @@
-import anime from 'animejs'
+/* Credit to https://swiperjs.com/ MIT */
+import { transitionEndEvent } from '@pluginjs/feature'
 import Component from '@pluginjs/component'
+import { bindEvent, removeEvent, bindEventOnce } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
-import { isPlainObject, isNumeric, isElement } from '@pluginjs/is'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import templateEngine from '@pluginjs/template'
+import { setStyle, getStyle, getWidth, getHeight } from '@pluginjs/styled'
+import { isPlainObject, isElement } from '@pluginjs/is'
 import {
   append,
-  wrap,
-  closest,
-  find,
-  parent,
-  parentWith,
-  queryAll,
-  parseHTML,
   appendTo,
-  prependTo
+  prependTo,
+  parentWith,
+  prev,
+  next,
+  clone,
+  attr,
+  query,
+  queryAll,
+  children
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -24,7 +27,6 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-import templateEngine from '@pluginjs/template'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -34,9 +36,6 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
-import Item from './item'
-import ImageLoader from '@pluginjs/image-loader'
-import Loader from '@pluginjs/loader'
 import Swipeable from '@pluginjs/swipeable'
 import Arrows from '@pluginjs/arrows'
 import Dots from '@pluginjs/dots'
@@ -53,113 +52,1029 @@ import Dots from '@pluginjs/dots'
 class Swipe extends Component {
   constructor(element, options = {}) {
     super(element)
+
     this.setupOptions(options)
     this.setupClasses()
-
-    addClass(this.classes.NAMESPACE, this.element)
-
-    if (this.options.theme) {
-      addClass(this.getThemeClass(), this.element)
-    }
-
-    if (this.options.height) {
-      this.setHeight(this.options.height)
-    }
-
-    // wrap width
-    this.width = parseFloat(getStyle('width', this.element), 10)
-
-    this.itemNums = this.options.itemNums
-    this.gutter = this.options.gutter
-    this.active = 0
-
     this.setupStates()
     this.initialize()
   }
 
   initialize() {
-    this.build()
-    this.initSwipeable()
-    this.bind()
-
-    this.active =
-      this.options.defaultActive > this.maxActiveCount
-        ? this.maxActiveCount
-        : this.options.defaultActive
-
-    this.moveTo(this.active)
-
-    if (!this.options.group) {
-      addClass(
-        `${this.classes.ACTIVE}`,
-        this.itemInstances[this.active || 0].$el
-      )
+    if (this.options.theme) {
+      addClass(this.getThemeClass(), this.element)
     }
 
+    addClass(this.classes.NAMESPACE, this.element)
+
+    this.initWrapper()
+    this.initInner()
+    this.initState()
+    if (this.options.loop && !this.options.multiple) {
+      this.initLoop()
+    }
+    if (this.options.multiple) {
+      addClass(this.classes.MULTIPLE, this.element)
+    }
+    this.updateSize()
+    this.updateItem()
+
+    if (this.options.loop && !this.options.multiple) {
+      this.moveTo(this.options.defaultActive + this.loopedItemsLength, 0, true)
+    } else {
+      this.moveTo(this.options.defaultActive, 0, true)
+    }
+
+    if (this.options.arrows) {
+      this.initArrows()
+      this.updateArrows()
+    }
+
+    if (this.options.pagination) {
+      this.initPagination()
+      this.updatePagination()
+    }
+
+    if (this.options.swipeable) {
+      this.initSwipeable()
+    }
+
+    this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  build() {
-    this.buildWrapper()
+  initWrapper() {
+    this.$wrapper = query(`.${this.classes.WRAPPER}`, this.element)
 
-    this.items = this.getItems()
+    if (!this.$wrapper) {
+      if (!this.options.wrapperSelector) {
+        throw Error('can\'t find option "wrapperSelector"!')
+      }
 
-    this.buildContainer()
-
-    if (this.options.loop) {
-      this.buildClonedItems()
-      this.updateWidths()
-      this.updateCoordinates()
-      this.itemsWithCloned = this.prevItems
-        .concat(this.items)
-        .concat(this.nextItems)
-      this.instancesWithCloned = this.getItemInstances(this.itemsWithCloned)
-      this.computeItemLocation(this.instancesWithCloned)
-      this.computeInnerLocation()
-      this.itemInstances = [].concat(this.instancesWithCloned)
-      this.itemInstances.splice(0, this.clones.length / 2)
-      this.itemInstances.splice(
-        this.itemInstances.length - this.clones.length / 2,
-        this.clones.length / 2
-      )
-    } else {
-      this.itemInstances = this.getItemInstances(this.items)
-      this.computeItemLocation(this.itemInstances)
-    }
-
-    this.sortedItems = this.getItemsBySort()
-
-    this.maxActiveCount = this.getMaxActiveCount()
-
-    this.initLoader()
-
-    if (this.options.arrows) {
-      this.buildArrows()
-    }
-
-    if (this.options.pagination) {
-      this.buildPagination()
+      this.$wrapper = query(`.${this.options.wrapperSelector}`, this.element)
+      addClass(this.classes.WRAPPER, this.$wrapper)
     }
   }
 
-  buildWrapper() {
-    this.wrapper = closest(`.${this.classes.WRAPPER}`, this.element)
-    if (!this.wrapper) {
-      if (this.options.wrapperSelector) {
-        addClass(
-          this.classes.WRAPPER,
-          closest(this.options.wrapperSelector, this.element)
-        )
-      } else {
-        wrap(`<div class="${this.classes.WRAPPER}"></div>`, this.element)
+  initInner() {
+    this.$inner = query(`.${this.classes.INNER}`, this.element)
+
+    if (!this.$inner) {
+      if (!this.options.innerSelector) {
+        throw Error('can\'t find option "innerSelector"!')
       }
-      this.wrapper = parentWith(hasClass(this.classes.WRAPPER), this.element)
+
+      this.$inner = query(`.${this.options.innerSelector}`, this.element)
+      addClass(this.classes.INNER, this.$inner)
     }
+  }
+
+  initArrows() {
+    this.$arrows = Arrows.of(this.$wrapper, this.options.arrows)
+  }
+
+  initPagination() {
+    const that = this
+    const pagination = this.createEl('pagination', {
+      classes: this.classes
+    })
+    const items = []
+    const itemGroupNum = this.options.group ? this.itemNums : 1
+
+    const paginationCounts =
+      this.options.loop && !this.options.multiple
+        ? Math.ceil(
+            (this.items.length - this.loopedItemsLength * 2) / itemGroupNum
+          )
+        : this.snapGrid.length
+    this.paginationCounts = paginationCounts
+
+    for (let i = 0; i < paginationCounts; i++) {
+      items.push({ index: i })
+    }
+
+    let config = {
+      items,
+      valueFrom: 'data-href',
+      default: `${this.activeIndex}`,
+      template: {
+        item(css) {
+          return `<li class="${css} ${that.classes.PAGINATIONITEM}" data-href="{index}"><a>{index}</a></li>`
+        }
+      }
+    }
+
+    append(pagination, this.element)
+
+    config = isPlainObject(this.options.pagination)
+      ? Object.assign({}, config, this.options.pagination)
+      : config
+
+    this.$pagination = Dots.of(
+      query(`.${this.classes.PAGINATION}`, this.element),
+      config
+    )
+  }
+
+  updateArrows() {
+    if (!this.options.arrows || this.options.loop) {
+      return
+    }
+    if (this.is('first')) {
+      this.$arrows.disable('prev')
+    } else {
+      this.$arrows.enable('prev')
+    }
+    if (this.is('last')) {
+      this.$arrows.disable('next')
+    } else {
+      this.$arrows.enable('next')
+    }
+  }
+
+  updatePagination() {
+    if (!this.options.pagination) {
+      return
+    }
+    let current
+    const itemGroupNum = this.options.group ? this.itemNums : 1
+    const slidesLength = this.items.length
+    const paginationCounts = this.paginationCounts
+
+    if (this.options.loop && !this.options.multiple) {
+      current = Math.ceil(
+        (this.activeIndex - this.loopedItemsLength) / itemGroupNum
+      )
+      if (current > slidesLength - 1 - this.loopedItemsLength * 2) {
+        current -= slidesLength - this.loopedItemsLength * 2
+      }
+      if (current > paginationCounts - 1) {
+        current -= paginationCounts
+      }
+      if (current < 0) {
+        current = paginationCounts + current
+      }
+    } else if (typeof this.snapIndex !== 'undefined') {
+      current = this.snapIndex
+    } else {
+      current = this.activeIndex || 0
+    }
+    this.$pagination.set(current)
+  }
+
+  initSwipeable() {
+    const that = this
+
+    this.$swipeable = Swipeable.of(this.$inner, {
+      container: that.$wrapper,
+      power: 1,
+      duration: that.options.duration,
+      onStart() {
+        that.startTime = Date.now()
+        that.updateSize()
+        this.startPointer = this.info.pointer.x
+        that.leave('move')
+      },
+      onMove() {
+        if (!that.is('move')) {
+          if (that.options.loop && !that.options.multiple) {
+            that.fixLoop()
+          }
+          this.startPosition.x = that.getTranslate()
+          that.setTransition(0)
+        }
+        that.enter('move')
+
+        const diff = this.info.pointer.x - this.startPointer
+        that.swipeDirection = diff > 0 ? 'prev' : 'next'
+        that.currentTranslate = diff + this.startPosition.x
+
+        if (diff > 0 && that.currentTranslate > that.minTranslate()) {
+          that.currentTranslate =
+            that.minTranslate() -
+            1 +
+            (-that.minTranslate() + this.startPosition.x + diff) ** 0.85
+        } else if (diff < 0 && that.currentTranslate < that.maxTranslate()) {
+          that.currentTranslate =
+            that.maxTranslate() +
+            1 -
+            (that.maxTranslate() - this.startPosition.x - diff) ** 0.85
+        }
+
+        that.updateProgress(that.currentTranslate)
+        that.setTranslate(that.currentTranslate)
+        this.position = { x: that.currentTranslate, y: 0 }
+      },
+      onEnd() {
+        that.leave('move')
+        const EndTime = Date.now()
+        const timeDiff = EndTime - that.startTime
+        const currentPos = -this.position.x
+        const itemsGrid = that.itemsGrid
+        let stopIndex = 0
+        let groupSize = that.itemsSizesGrid[0]
+        const itemGroupNum = that.options.group ? that.itemNums : 1
+
+        for (let i = 0; i < itemsGrid.length; i += itemGroupNum) {
+          if (typeof itemsGrid[i + itemGroupNum] !== 'undefined') {
+            if (
+              currentPos >= itemsGrid[i] &&
+              currentPos < itemsGrid[i + itemGroupNum]
+            ) {
+              stopIndex = i
+              groupSize = itemsGrid[i + itemGroupNum] - itemsGrid[i]
+            }
+          } else if (currentPos >= itemsGrid[i]) {
+            stopIndex = i
+            groupSize =
+              itemsGrid[itemsGrid.length - 1] - itemsGrid[itemsGrid.length - 2]
+          }
+        }
+
+        const ratio = (currentPos - itemsGrid[stopIndex]) / groupSize
+
+        if (timeDiff > 300) {
+          if (that.swipeDirection === 'next') {
+            if (ratio >= 0.5) {
+              that.moveTo(stopIndex + itemGroupNum)
+            } else {
+              that.moveTo(stopIndex)
+            }
+          }
+          if (that.swipeDirection === 'prev') {
+            if (ratio > 0.5) {
+              that.moveTo(stopIndex + itemGroupNum)
+            } else {
+              that.moveTo(stopIndex)
+            }
+          }
+        } else {
+          if (that.swipeDirection === 'next') {
+            that.moveTo(stopIndex + itemGroupNum)
+          }
+          if (that.swipeDirection === 'prev') {
+            that.moveTo(stopIndex)
+          }
+        }
+      }
+    })
+  }
+
+  initLoop() {
+    children(
+      `.${this.classes.ITEM}.${this.classes.CLONED}`,
+      this.$inner
+    ).forEach(clonedItem => {
+      clonedItem.remove()
+    })
+
+    const items = this.getItems()
+
+    if (items.length === 0) {
+      return
+    }
+
+    this.loopedItemsLength = Math.ceil(parseFloat(this.itemNums, 10))
+
+    if (this.loopedItemsLength > items.length) {
+      this.loopedItemsLength = items.length
+    }
+
+    const prependItems = []
+    const appendItems = []
+
+    items.forEach((item, index) => {
+      if (index < this.loopedItemsLength) {
+        appendItems.push(item)
+      }
+      if (
+        index < items.length &&
+        index >= items.length - this.loopedItemsLength
+      ) {
+        prependItems.push(item)
+      }
+      attr('data-swipe-item-index', index, item)
+    })
+
+    for (let i = 0; i < appendItems.length; i++) {
+      addClass(
+        this.classes.CLONED,
+        appendTo(clone(appendItems[i]), this.$inner)
+      )
+    }
+
+    for (let i = prependItems.length - 1; i >= 0; i--) {
+      addClass(
+        this.classes.CLONED,
+        prependTo(clone(prependItems[i]), this.$inner)
+      )
+    }
+  }
+
+  fixLoop() {
+    this.trigger('beforeFixLoop')
+    let newIndex
+    const snapTranslate = -this.snapGrid[this.activeIndex]
+    const diff = snapTranslate - this.getTranslate()
+
+    if (this.activeIndex < this.loopedItemsLength) {
+      newIndex =
+        this.items.length - this.loopedItemsLength * 3 + this.activeIndex
+      newIndex += this.loopedItemsLength
+      const changed = this.moveTo(newIndex, 0, false)
+      if (changed && diff !== 0) {
+        this.setTranslate(this.translate - diff)
+      }
+    } else if (this.activeIndex >= this.items.length - this.loopedItemsLength) {
+      newIndex = -this.items.length + this.activeIndex + this.loopedItemsLength
+      newIndex += this.loopedItemsLength
+      const changed = this.moveTo(newIndex, 0, false)
+      if (changed && diff !== 0) {
+        this.setTranslate(this.translate - diff)
+      }
+    }
+
+    this.trigger('fixLoop')
+  }
+
+  initState() {
+    this.enter('first')
+    this.leave('last')
+    this.progress = 0
+    this.translate = 0
+    this.activeIndex = 0
+    this.realIndex = 0
+    this.prevTranslate = 0
+    this.virtualHeight = 0
+    this.itemNums = this.options.itemNums
+    this.items = []
+    this.itemsGrid = []
+    this.snapGrid = []
+    this.itemsSizesGrid = []
+    this.leave('animating')
+  }
+
+  updateSize() {
+    const width = getWidth(this.element)
+    this.width = width
+    this.size = width
+  }
+
+  updateGutter() {
+    this.gutter = this.options.gutter
+
+    if (typeof this.gutter === 'string' && this.gutter.indexOf('%') >= 0) {
+      this.gutter = (parseFloat(this.gutter.replace('%', '')) / 100) * this.size
+    }
+  }
+
+  setMultipleMargin(numFullColumns, index, item) {
+    let column = Math.floor(index / 2)
+    let row = index - column * 2
+
+    if (column > numFullColumns || (column === numFullColumns && row === 1)) {
+      row += 1
+      if (row >= 2) {
+        row = 0
+        column += 1
+      }
+    }
+
+    if (row === 0) {
+      this.firstRowHeight = getHeight(item)
+    }
+
+    if (row === 1) {
+      this.secondRowHeight = getHeight(item)
+      const columnHeight =
+        this.firstRowHeight + this.gutter + this.secondRowHeight
+
+      this.virtualHeight = Math.max(this.virtualHeight, columnHeight)
+      this.firstRowHeight = 0
+      this.secondRowHeight = 0
+    }
+
+    setStyle(
+      {
+        'margin-top': row !== 0 && this.gutter && `${this.gutter}px`
+      },
+      item
+    )
+  }
+
+  updateItem() {
+    const prevItemsLength = this.items.length
+    const items = this.getItems()
+    const itemsLength = items.length
+    let snapGrid = []
+    const itemsGrid = []
+    const itemsSizesGrid = []
+    const prevSnapGridLength = this.snapGrid.length
+    const prevItemsGridLength = this.snapGrid.length
+    let itemPosition = -0
+    let prevItemSize = 0
+    let index = 0
+    this.firstRowHeight = 0
+    this.secondRowHeight = 0
+    this.virtualHeight = 0
+
+    if (typeof this.size === 'undefined') {
+      return
+    }
+
+    this.updateGutter()
+    this.virtualSize = -this.gutter
+
+    const itemGroupNum = this.options.group ? this.itemNums : 1
+    const itemSize =
+      (this.size - (this.itemNums - 1) * this.gutter) / this.itemNums
+    const numFullColumns = this.options.multiple
+      ? Math.floor(itemsLength / 2)
+      : Math.floor(itemsLength)
+
+    for (let i = 0; i < itemsLength; i++) {
+      const item = items[i]
+
+      if (this.options.multiple) {
+        this.setMultipleMargin(numFullColumns, index, item)
+      }
+
+      if (getStyle('display', item) === 'none') {
+        continue
+      }
+      setStyle({ width: `${itemSize}px` }, item)
+      item.swipeItemSize = itemSize
+      itemsSizesGrid.push(itemSize)
+
+      if (this.options.center) {
+        itemPosition =
+          itemPosition + itemSize / 2 + prevItemSize / 2 + this.gutter
+        if ((prevItemSize === 0 && i !== 0) || i === 0) {
+          itemPosition = itemPosition - this.size / 2 - this.gutter
+        }
+        if (Math.abs(itemPosition) < 1 / 1000) {
+          itemPosition = 0
+        }
+        if (index % itemGroupNum === 0) {
+          snapGrid.push(itemPosition)
+        }
+        itemsGrid.push(itemPosition)
+      } else {
+        if (index % itemGroupNum === 0) {
+          snapGrid.push(itemPosition)
+        }
+        itemsGrid.push(itemPosition)
+        itemPosition = itemPosition + itemSize + this.gutter
+      }
+
+      if (this.gutter !== 0) {
+        setStyle({ marginRight: `${this.gutter}px` }, item)
+      }
+
+      this.virtualSize += itemSize + this.gutter
+
+      prevItemSize = itemSize
+
+      index += 1
+    }
+
+    this.virtualSize = Math.max(this.virtualSize, this.size)
+
+    let newItemsGrid
+    let itemsNumberEvenToRows
+
+    if (this.options.multiple) {
+      if (Math.floor(itemsLength / 2) === itemsLength / 2) {
+        itemsNumberEvenToRows = itemsLength
+      } else {
+        itemsNumberEvenToRows = Math.ceil(itemsLength / 2) * 2
+      }
+
+      this.virtualSize = (itemSize + this.gutter) * itemsNumberEvenToRows
+      this.virtualSize = Math.ceil(this.virtualSize / 2) - this.gutter
+      setStyle({ width: `${this.virtualSize + this.gutter}px` }, this.$inner)
+      setStyle({ height: `${this.virtualHeight}px` }, this.$inner)
+
+      if (this.options.center) {
+        newItemsGrid = []
+        for (let i = 0; i < snapGrid.length; i++) {
+          const itemsGridItem = snapGrid[i]
+          if (snapGrid[i] < this.virtualSize + snapGrid[0]) {
+            newItemsGrid.push(itemsGridItem)
+          }
+        }
+        snapGrid = newItemsGrid
+      }
+    } else {
+      setStyle({ width: `${this.virtualSize}px` }, this.$inner)
+    }
+
+    if (!this.options.center) {
+      newItemsGrid = []
+      for (let i = 0; i < snapGrid.length; i++) {
+        const itemsGridItem = snapGrid[i]
+        if (snapGrid[i] <= this.virtualSize - this.size) {
+          newItemsGrid.push(itemsGridItem)
+        }
+      }
+
+      snapGrid = newItemsGrid
+      if (
+        Math.floor(this.virtualSize - this.size) -
+          Math.floor(snapGrid[snapGrid.length - 1]) >
+        1
+      ) {
+        snapGrid.push(this.virtualSize - this.size)
+      }
+    }
+
+    if (snapGrid.length === 0) {
+      snapGrid = [0]
+    }
+
+    this.items = items
+    this.snapGrid = snapGrid
+    this.itemsGrid = itemsGrid
+    this.itemsSizesGrid = itemsSizesGrid
+
+    if (itemsLength !== prevItemsLength) {
+      this.trigger('itemsLengthChange')
+    }
+    if (snapGrid.length !== prevSnapGridLength) {
+      this.trigger('snapGridLengthChange')
+    }
+    if (itemsGrid.length !== prevItemsGridLength) {
+      this.trigger('itemsGridLengthChange')
+    }
+  }
+
+  updateItemsClass() {
+    this.items.forEach(item => {
+      removeClass(
+        this.classes.ACTIVE,
+        this.classes.PREV,
+        this.classes.NEXT,
+        this.classes.CLONEDACTIVE,
+        this.classes.CLONEDPREV,
+        this.classes.CLONEDNEXT,
+        item
+      )
+    })
+    const activeItem = this.items[this.activeIndex]
+
+    addClass(this.classes.ACTIVE, activeItem)
+
+    if (this.options.loop && !this.options.multiple) {
+      if (hasClass(this.classes.CLONED, activeItem)) {
+        children(
+          `.${this.classes.ITEM}:not(.${this.classes.CLONED})[data-swipe-item-index="${this.realIndex}"]`,
+          this.$inner
+        ).forEach(children => {
+          addClass(this.classes.CLONEDACTIVE, children)
+        })
+      } else {
+        children(
+          `.${this.classes.ITEM}.${this.classes.CLONED}[data-swipe-item-index="${this.realIndex}"]`,
+          this.$inner
+        ).forEach(children => {
+          addClass(this.classes.CLONEDACTIVE, children)
+        })
+      }
+    }
+
+    let nextItem = addClass(this.classes.NEXT, next(activeItem))
+    if (this.options.loop && !this.options.multiple && !isElement(nextItem)) {
+      nextItem = this.items[0]
+      addClass(this.classes.NEXT, nextItem)
+    }
+    let prevItem = addClass(this.classes.PREV, prev(activeItem))
+    if (this.options.loop && !this.options.multiple && !isElement(prevItem)) {
+      prevItem = this.items[this.items.length - 1]
+      addClass(this.classes.PREV, prevItem)
+    }
+
+    if (this.options.loop && !this.options.multiple) {
+      if (hasClass(this.classes.CLONED, nextItem)) {
+        children(
+          `.${this.classes.ITEM}:not(.${
+            this.classes.CLONED
+          })[data-swipe-item-index="${attr(
+            'data-swipe-item-index',
+            nextItem
+          )}"]`,
+          this.$inner
+        ).forEach(children => {
+          addClass(this.classes.CLONEDNEXT, children)
+        })
+      } else {
+        children(
+          `.${this.classes.ITEM}.${
+            this.classes.CLONED
+          }[data-swipe-item-index="${attr(
+            'data-swipe-item-index',
+            nextItem
+          )}"]`,
+          this.$inner
+        ).forEach(children => {
+          addClass(this.classes.CLONEDNEXT, children)
+        })
+      }
+      if (hasClass(this.classes.CLONED, prevItem)) {
+        children(
+          `.${this.classes.ITEM}:not(.${
+            this.classes.CLONED
+          })[data-swipe-item-index="${attr(
+            'data-swipe-item-index',
+            prevItem
+          )}"]`,
+          this.$inner
+        ).forEach(children => {
+          addClass(this.classes.CLONEDPREV, children)
+        })
+      } else {
+        children(
+          `.${this.classes.ITEM}.${
+            this.classes.CLONED
+          }[data-swipe-item-index="${attr(
+            'data-swipe-item-index',
+            prevItem
+          )}"]`,
+          this.$inner
+        ).forEach(children => {
+          addClass(this.classes.CLONEDPREV, children)
+        })
+      }
+    }
+  }
+
+  moveTo(index = 0, speed = this.options.duration, runCallback = true) {
+    if (this.is('disabled')) {
+      return
+    }
+    let itemIndex = index
+    if (itemIndex < 0) {
+      itemIndex = 0
+    }
+    const { snapGrid, itemsGrid, prevIndex, activeIndex } = this
+    const itemGroupNum = this.options.group ? this.itemNums : 1
+
+    let snapIndex = Math.floor(itemIndex / itemGroupNum)
+    if (snapIndex >= snapGrid.length) {
+      snapIndex = snapGrid.length - 1
+    }
+
+    if (
+      (activeIndex || this.options.defaultActive || 0) === (prevIndex || 0) &&
+      runCallback
+    ) {
+      this.trigger('beforeItemChangeStart')
+    }
+
+    const translate = -snapGrid[snapIndex]
+
+    this.updateProgress(translate)
+
+    for (let i = 0; i < itemsGrid.length; i++) {
+      if (-Math.floor(translate * 100) >= Math.floor(itemsGrid[i] * 100)) {
+        itemIndex = i
+      }
+    }
+
+    let direction
+    if (itemIndex > activeIndex) {
+      direction = 'next'
+    } else if (itemIndex < activeIndex) {
+      direction = 'prev'
+    } else {
+      direction = 'reset'
+    }
+
+    if (translate === this.translate) {
+      this.updateActiveIndex(itemIndex)
+
+      this.updateItemsClass()
+      if (direction !== 'reset') {
+        this.transitionStart(runCallback, direction)
+        this.transitionEnd(runCallback, direction)
+      }
+
+      return
+    }
+
+    if (speed === 0) {
+      this.setTransition(0)
+      this.setTranslate(translate)
+      this.updateActiveIndex(itemIndex)
+      this.updateItemsClass()
+      this.trigger('beforeTransitionStart', speed)
+      this.transitionStart(runCallback, direction)
+      this.transitionEnd(runCallback, direction)
+    } else {
+      this.setTransition(speed)
+      this.setTranslate(translate)
+      this.updateActiveIndex(itemIndex)
+      this.updateItemsClass()
+      this.trigger('beforeTransitionStart', speed)
+      this.transitionStart(runCallback, direction)
+      if (!this.is('animating')) {
+        this.enter('animating')
+        bindEventOnce(
+          transitionEndEvent(),
+          () => {
+            this.transitionEnd(runCallback, direction)
+          },
+          this.$inner
+        )
+      }
+    }
+
+    return
+  }
+
+  prev(speed = this.options.duration, runCallback = true) {
+    if (this.is('disabled')) {
+      return
+    }
+    if (this.options.loop && !this.options.multiple) {
+      if (this.is('animating')) {
+        return
+      }
+      this.fixLoop()
+      this.clientLeft = this.$inner.clientLeft
+    }
+    const translate = -this.translate
+    const normalizedTranslate = this.normalize(translate)
+    const normalizedSnapGrid = this.snapGrid.map(value => this.normalize(value))
+    const prevSnap = this.snapGrid[
+      normalizedSnapGrid.indexOf(normalizedTranslate) - 1
+    ]
+
+    let prevIndex
+    if (typeof prevSnap !== 'undefined') {
+      prevIndex = this.itemsGrid.indexOf(prevSnap)
+      if (prevIndex < 0) {
+        prevIndex = this.activeIndex - 1
+      }
+    }
+
+    this.moveTo(prevIndex, speed, runCallback)
+  }
+
+  next(speed = this.options.duration, runCallback = true) {
+    if (this.is('disabled')) {
+      return
+    }
+    const itemGroupNum = this.options.group ? this.itemNums : 1
+
+    if (this.options.loop && !this.options.multiple) {
+      if (this.is('animating')) {
+        return
+      }
+      this.fixLoop()
+      this.clientLeft = this.$inner.clientLeft
+      this.moveTo(this.activeIndex + itemGroupNum, speed, runCallback)
+      return
+    }
+
+    this.moveTo(this.activeIndex + itemGroupNum, speed, runCallback)
+  }
+
+  updateProgress(translate) {
+    if (typeof translate === 'undefined') {
+      translate = (this && this.translate) || 0
+    }
+    const translateDiff = this.maxTranslate() - this.minTranslate()
+    const isFirst = this.is('first')
+    const isLast = this.is('last')
+    if (translateDiff === 0) {
+      this.progress = 0
+      this.enter('first')
+      this.enter('last')
+    } else {
+      this.progress = (translate - this.minTranslate()) / translateDiff
+
+      if (this.progress <= 0) {
+        this.enter('first')
+      } else {
+        this.leave('first')
+      }
+      if (this.progress >= 1) {
+        this.enter('last')
+      } else {
+        this.leave('last')
+      }
+    }
+
+    if (this.is('first') && !isFirst) {
+      this.trigger('reachFirst')
+      this.trigger('toEdge')
+    }
+
+    if (this.is('last') && !isLast) {
+      this.trigger('reachLast')
+      this.trigger('toEdge')
+    }
+
+    if ((isFirst && !this.is('first')) || (isLast && !this.is('last'))) {
+      this.trigger('fromEdge')
+    }
+
+    this.trigger('progress', this.progress)
+  }
+
+  updateTranslate() {
+    const newTranslate = Math.min(
+      Math.max(this.translate, this.maxTranslate()),
+      this.minTranslate()
+    )
+    this.setTranslate(newTranslate)
+    this.updateActiveIndex()
+    this.updateItemsClass()
+  }
+
+  updateActiveIndex(newActiveIndex) {
+    const translate = -this.translate
+    const {
+      itemsGrid,
+      snapGrid,
+      activeIndex: prevIndex,
+      realIndex: prevRealIndex,
+      snapIndex: prevSnapIndex
+    } = this
+    const itemGroupNum = this.options.group ? this.itemNums : 1
+    let activeIndex = newActiveIndex
+    let snapIndex
+    if (typeof activeIndex === 'undefined') {
+      for (let i = 0; i < itemsGrid.length; i++) {
+        if (typeof itemsGrid[i + 1] !== 'undefined') {
+          if (
+            translate >= itemsGrid[i] &&
+            translate < itemsGrid[i + 1] - (itemsGrid[i + 1] - itemsGrid[i]) / 2
+          ) {
+            activeIndex = i
+          } else if (
+            translate >= itemsGrid[i] &&
+            translate < itemsGrid[i + 1]
+          ) {
+            activeIndex = i + 1
+          }
+        } else if (translate >= itemsGrid[i]) {
+          activeIndex = i
+        }
+      }
+
+      if (activeIndex < 0 || typeof activeIndex === 'undefined') {
+        activeIndex = 0
+      }
+    }
+
+    if (snapGrid.indexOf(translate) >= 0) {
+      snapIndex = snapGrid.indexOf(translate)
+    } else {
+      snapIndex = Math.floor(activeIndex / itemGroupNum)
+    }
+    if (snapIndex >= snapGrid.length) {
+      snapIndex = snapGrid.length - 1
+    }
+    if (activeIndex === prevIndex) {
+      if (snapIndex !== prevSnapIndex) {
+        this.snapIndex = snapIndex
+        this.trigger('snapIndexChange')
+      }
+      return
+    }
+
+    const realIndex = parseInt(
+      this.items[activeIndex].dataset.swipeItemIndex || activeIndex,
+      10
+    )
+
+    this.snapIndex = snapIndex
+    this.realIndex = realIndex
+    this.prevIndex = prevIndex
+    this.activeIndex = activeIndex
+
+    this.trigger('activeIndexChange')
+    this.trigger('snapIndexChange')
+    if (prevRealIndex !== realIndex) {
+      this.trigger('realIndexChange')
+    }
+    this.trigger('itemChange')
+  }
+
+  transitionStart(runCallback = true, direction) {
+    const { activeIndex, prevIndex } = this
+
+    let dir = direction
+    if (!dir) {
+      if (activeIndex > prevIndex) {
+        dir = 'next'
+      } else if (activeIndex < prevIndex) {
+        dir = 'prev'
+      } else {
+        dir = 'reset'
+      }
+    }
+
+    this.trigger('transitionStart')
+
+    if (runCallback && activeIndex !== prevIndex) {
+      if (dir === 'reset') {
+        this.trigger('itemResetTransitionStart')
+        return
+      }
+      this.trigger('itemChangeTransitionStart')
+      if (dir === 'next') {
+        this.trigger('itemNextTransitionStart')
+      } else {
+        this.trigger('itemPrevTransitionStart')
+      }
+    }
+  }
+
+  transitionEnd(runCallback = true, direction) {
+    const { activeIndex, prevIndex } = this
+    this.leave('animating')
+    this.setTransition(0)
+
+    let dir = direction
+    if (!dir) {
+      if (activeIndex > prevIndex) {
+        dir = 'next'
+      } else if (activeIndex < prevIndex) {
+        dir = 'prev'
+      } else {
+        dir = 'reset'
+      }
+    }
+
+    this.trigger('transitionEnd')
+
+    if (runCallback && activeIndex !== prevIndex) {
+      if (dir === 'reset') {
+        this.trigger('itemResetTransitionEnd')
+        return
+      }
+      this.trigger('itemChangeTransitionEnd')
+      if (dir === 'next') {
+        this.trigger('itemNextTransitionEnd')
+      } else {
+        this.trigger('itemPrevTransitionEnd')
+      }
+    }
+  }
+
+  setTransition(duration) {
+    setStyle({ transitionDuration: `${duration}ms` }, this.$inner)
+    this.trigger('setTransition', duration)
+  }
+
+  setTranslate(translate) {
+    const x = translate
+    const y = 0
+
+    setStyle(
+      { transform: `translateX(${x}px) translateY(${y}px) translateZ(0)` },
+      this.$inner
+    )
+    this.prevTranslate = this.translate
+    this.translate = x
+
+    let newProgress
+    const translateDiff = this.maxTranslate() - this.minTranslate()
+    if (translateDiff === 0) {
+      newProgress = 0
+    } else {
+      newProgress = (translate - this.minTranslate()) / translateDiff
+    }
+
+    if (newProgress !== this.progress) {
+      this.updateProgress(translate)
+    }
+
+    this.trigger('setTranslate', this.translate)
+  }
+
+  getTranslate() {
+    const transform = getStyle('transform', this.$inner)
+    if (transform === 'none') {
+      return 0
+    }
+
+    return Number(transform.split(',')[4])
+  }
+
+  minTranslate() {
+    return -this.snapGrid[0]
+  }
+
+  maxTranslate() {
+    return -this.snapGrid[this.snapGrid.length - 1]
   }
 
   getItems() {
-    let items = queryAll(`.${this.classes.ITEM}`, this.element)
+    let items = children(`.${this.classes.ITEM}`, this.$inner)
+
     if (items.length === 0) {
       items = queryAll(this.options.itemSelector, this.element)
       items.forEach(item => {
@@ -170,588 +1085,16 @@ class Swipe extends Component {
     return items
   }
 
-  initLoader() {
-    const images = queryAll(
-      `.${this.classes.ITEM} ${this.options.imgSelector}`,
-      this.element
-    )
-
-    if (images.length > 0) {
-      images.forEach(image => {
-        addClass(this.classes.IMG, image)
-        let loader = ''
-        if (this.options.loader) {
-          loader = Loader.of(
-            closest(this.options.imgContainer, image),
-            this.options.loader
-          )
-          loader.show()
-        }
-
-        ImageLoader.of(image).on('loaded', img => {
-          if (this.options.loader) {
-            loader.hide()
-          }
-          addClass(this.classes.LOADED, closest(`.${this.classes.ITEM}`, img))
-        })
-      })
-    }
-  }
-
-  buildContainer() {
-    this.inner = find(`.${this.classes.INNER}`, this.element)
-
-    if (!this.inner) {
-      if (this.options.innerSelector) {
-        this.inner = find(this.options.innerSelector, this.element)
-        addClass(this.classes.INNER, this.$inner)
-      } else {
-        const itemsParent = parent(this.items[0])
-        const inner = this.createEl('inner', {
-          classes: this.classes
-        })
-        append(inner, itemsParent)
-        this.inner = find(`.${this.classes.INNER}`, this.element)
-        this.items.forEach(item => {
-          append(item, this.inner)
-        })
-      }
-    }
-  }
-
-  computeInnerLocation() {
-    let width = this.itemWidth * this.itemNums * -1
-
-    if (this.options.center) {
-      width =
-        (this.itemWidth * this.itemNums -
-          (this.itemWidth / 2) * (this.itemNums - 1)) *
-        -1
-    }
-
-    this.setInnerPosition(width)
-  }
-
-  buildClonedItems() {
-    const clones = []
-    let repeat = this.options.multiple ? this.itemNums * 2 : this.itemNums
-    let append = ''
-    let prepend = ''
-
-    while (repeat > 0) {
-      clones.push(this.normalize(clones.length / 2, true))
-      append += this.items[clones[clones.length - 1]].outerHTML
-      clones.push(
-        this.normalize(this.items.length - 1 - (clones.length - 1) / 2, true)
-      )
-      prepend = this.items[clones[clones.length - 1]].outerHTML + prepend
-      repeat -= 1
-    }
-
-    const appendEle = parseHTML(append)
-    if (isElement(appendEle)) {
-      addClass(this.classes.CLONED, appendEle)
-      this.nextItems = [appendEle]
-    } else {
-      this.nextItems = queryAll(`.${this.classes.ITEM}`, appendEle)
-      this.nextItems.forEach(el => addClass(this.classes.CLONED, el))
-    }
-
-    appendTo(appendEle, this.inner)
-
-    const prependEle = parseHTML(prepend)
-    if (isElement(prependEle)) {
-      addClass(this.classes.CLONED, prependEle)
-      this.prevItems = [prependEle]
-    } else {
-      this.prevItems = queryAll(`.${this.classes.ITEM}`, prependEle)
-      this.prevItems.forEach(el => addClass(this.classes.CLONED, el))
-    }
-
-    prependTo(prependEle, this.inner)
-
-    this.clones = clones
-  }
-
-  updateWidths() {
-    const width = this.getItemWidth()
-    let iterator = this.items.length
-    const widths = []
-
-    while (iterator--) {
-      widths[iterator] = width
-    }
-
-    this.widths = widths
-  }
-
-  updateCoordinates() {
-    const size = this.clones.length + this.items.length
-    let iterator = 0
-    let previous = 0
-    let current = 0
-    const coordinates = []
-
-    while (++iterator < size) {
-      previous = coordinates[iterator - 2] || 0
-      current = this.widths[this.relative(iterator)] + this.options.gutter
-      const coordinate = previous + current * -1
-      coordinates.push(coordinate)
-    }
-
-    coordinates.unshift(0)
-
-    this.coordinates = coordinates
-  }
-
-  relative(position) {
-    position -= this.clones.length / 2
-    return this.normalize(position, true)
-  }
-
-  normalize(position, relative) {
-    const n = this.items.length
-    const m = relative ? 0 : this.clones.length
-
-    if (!isNumeric(position) || n < 1) {
-      position = undefined
-    } else if (position < 0 || position >= n + m) {
-      position = ((((position - m / 2) % n) + n) % n) + m / 2
-    }
-
-    return position
-  }
-
-  getItemInstances(items) {
-    const itemWidth = this.getItemWidth()
-    const itemHeight = '100%'
-
-    const itemInstances = []
-
-    items.forEach((item, index) => {
-      const instanced = new Item(item)
-
-      instanced.index = index
-      instanced.setInfo({
-        width: itemWidth,
-        height: itemHeight
-      })
-      itemInstances.push(instanced)
-    })
-
-    return itemInstances
-  }
-
-  getItemWidth() {
-    const { paddingLeft, paddingRight } = getStyle(
-      ['paddingLeft', 'paddingRight'],
-      this.inner
-    )
-
-    const padding = parseInt(paddingLeft, 10) + parseInt(paddingRight, 10)
-
-    return (
-      (parseFloat(getStyle('width', this.element)) -
-        this.gutter * (this.itemNums - 1) -
-        padding) /
-      this.itemNums
-    )
-  }
-
-  computeItemLocation(itemInstances) {
-    let width = 0
-
-    itemInstances.forEach((item, index) => {
-      const $item = item.el
-      const info = item.info
-
-      const config = {
-        x: width,
-        y: 0
-      }
-
-      if (this.options.multiple) {
-        config.height =
-          (parseFloat(getStyle('height', this.inner), 10) - this.gutter) / 2
-
-        if (index % 2) {
-          config.x = itemInstances[index - 1].info.x
-          config.y = config.height + this.gutter
-        }
-      }
-
-      item.setInfo(config)
-
-      setStyle(
-        {
-          width: `${item.info.width}px`,
-          height: '100%',
-          transform: `translate3d(${config.x}px, ${config.y}px, 0)`
-        },
-        $item
-      )
-
-      if (this.options.multiple) {
-        setStyle(
-          {
-            height: `${item.info.height}px`
-          },
-          $item
-        )
-        if (!(index % 2)) {
-          width += itemInstances[index - 1]
-            ? itemInstances[index - 1].info.width + this.gutter
-            : item.info.width + this.gutter
-        }
-      } else {
-        width += info.width + this.gutter
-      }
-    })
-
-    width -= this.gutter
-    const { paddingLeft, paddingRight } = getStyle(
-      ['paddingLeft', 'paddingRight'],
-      this.inner
-    )
-
-    width = parseInt(paddingLeft, 10) + parseInt(paddingRight, 10) + width
-    this.setWidth(width)
-    this.itemWidth = this.getItemWidth() + this.gutter
-  }
-
-  setWidth(width) {
-    setStyle('width', width, this.inner)
-    this.innerWidth = width
-  }
-
-  getItemsBySort() {
-    const itemInstancesClone = [].concat(this.itemInstances)
-    const tempArr = []
-    let offsetX
-
-    itemInstancesClone.sort((prev, next) => prev.info.x - next.info.x)
-    itemInstancesClone.forEach(item => {
-      if (Math.floor(item.info.x) !== offsetX) {
-        tempArr.push(item)
-        offsetX = Math.floor(item.info.x)
-      }
-    })
-
-    return tempArr
-  }
-
-  getMaxActiveCount() {
-    if (this.options.group) {
-      return Math.ceil(this.sortedItems.length / this.options.itemNums)
-    }
-
-    if (this.options.center) {
-      return this.sortedItems.length
-    }
-
-    const maxWidth = this.innerWidth - this.width
-
-    if (maxWidth <= 0) {
-      return 1
-    }
-
-    let dotNum = 0
-    let targetItem = this.sortedItems[0]
-
-    for (const item of this.sortedItems) {
-      if (item.info.x >= maxWidth) {
-        break
-      }
-
-      dotNum++
-      targetItem = item
-    }
-
-    if (
-      Math.floor(targetItem.info.x) < Math.floor(maxWidth) &&
-      !this.options.loop
-    ) {
-      dotNum += 1
-    }
-
-    return Math.max(1, dotNum)
-  }
-
-  buildPagination() {
-    const that = this
-    const pagination = this.createEl('pagination', {
-      classes: this.classes
-    })
-    const items = []
-
-    for (let index = 0; index < this.maxActiveCount; index++) {
-      items.push({ index })
-    }
-
-    let config = {
-      items,
-      valueFrom: 'data-href',
-      default: `${this.active}`,
-      template: {
-        item(css) {
-          return `<li class="${css} ${that.classes.PAGINATIONITEM}" data-href="{index}"><a>{index}</a></li>`
-        }
-      }
-    }
-
-    append(pagination, this.wrapper)
-
-    config = isPlainObject(this.options.pagination)
-      ? Object.assign({}, config, this.options.pagination)
-      : config
-
-    this.pagination = Dots.of(
-      find(`.${this.classes.PAGINATION}`, this.wrapper),
-      config
-    )
-  }
-
-  initSwipeable() {
-    const that = this
-
-    this.swipeable = Swipeable.of(this.inner, {
-      container: that.element,
-      power: 1,
-      duration: that.options.duration,
-      onStart() {
-        if (that.anime) {
-          that.anime.pause()
-        }
-        that.trigger(EVENTS.DRAGSTART)
-      },
-      onMove() {
-        let posX = this.startPosition.x + this.info.deltaX
-        if (!that.options.loop) {
-          const scrollMax = that.width - that.innerWidth
-          const distance =
-            (that.width - that.sortedItems[that.active].info.width) / 2
-          const scrollMaxCenter = that.width - that.innerWidth - distance
-
-          if (that.options.center) {
-            if (posX > distance) {
-              posX = Math.round(distance + (posX - distance) / 5)
-            } else if (posX < scrollMaxCenter) {
-              posX = Math.round(scrollMaxCenter + (posX - scrollMaxCenter) / 5)
-            }
-          } else if (posX > 0) {
-            posX = Math.round(posX / 5)
-          } else if (posX < scrollMax) {
-            posX = Math.round(scrollMax + (posX - scrollMax) / 5)
-          }
-        } else {
-          const condition = that.options.group
-            ? that.coordinates[
-                that.maxActiveCount * that.itemNums + that.itemNums
-              ]
-            : that.coordinates[that.maxActiveCount + that.itemNums]
-
-          if (posX >= 0 || posX < condition) {
-            this.leave('paning')
-          }
-        }
-
-        that.setInnerPosition(posX)
-        this.position = { x: posX, y: 0 }
-      },
-      onSnail() {
-        const locationX = this.getLocation(this.element).x
-        let index = that.getIndexByDistance(locationX)
-
-        if (that.options.loop) {
-          const itemLength = that.options.multiple
-            ? Math.ceil(that.items.length / 2)
-            : that.items.length
-
-          const condition =
-            Math.abs(this.info.deltaX) >
-            (that.options.multiple
-              ? (that.itemWidth * that.itemNums) / 2
-              : that.itemWidth / 2)
-
-          if (
-            locationX > that.getDistanceByIndex(0) &&
-            condition &&
-            this.info.deltaX > 0
-          ) {
-            const distance = locationX - that.itemWidth * itemLength
-            that.setInnerPosition(distance)
-            index = that.getIndexByDistance(distance)
-          } else if (
-            locationX < that.getDistanceByIndex(that.maxActiveCount - 1) &&
-            condition &&
-            this.info.deltaX < 0
-          ) {
-            const distance = locationX + that.itemWidth * itemLength
-            that.setInnerPosition(distance)
-            index = that.getIndexByDistance(distance)
-          }
-        }
-        that.moveTo(index)
-        that.trigger(EVENTS.DRAGSNAIL)
-      },
-      onThrow() {
-        const locationX = this.getLocation(this.element).x
-        const throwDistance = this.getDecayDistance(this.info.velocityX)
-        const distance = that.options.decay
-          ? locationX + throwDistance
-          : locationX
-        let index = that.getIndexByDistance(distance)
-
-        if (that.options.loop) {
-          const itemLength = that.options.multiple
-            ? Math.ceil(that.items.length / 2)
-            : that.items.length
-
-          if (distance > that.getDistanceByIndex(0) && this.info.deltaX > 0) {
-            const coordinate = distance - that.itemWidth * itemLength
-            that.setInnerPosition(coordinate)
-            index = that.getIndexByDistance(coordinate)
-          } else if (
-            distance < that.getDistanceByIndex(that.maxActiveCount - 1) &&
-            this.info.deltaX < 0
-          ) {
-            const coordinate = distance + that.itemWidth * itemLength
-            that.setInnerPosition(coordinate)
-            index = that.getIndexByDistance(coordinate)
-          }
-        }
-
-        if (throwDistance < 0) {
-          if (that.active !== that.maxActiveCount - 1 && index <= that.active) {
-            index += 1
-          }
-        } else if (that.active !== 0 && index >= that.active) {
-          index -= 1
-        }
-
-        that.moveTo(index)
-
-        if (that.options.decay) {
-          that.trigger(EVENTS.DRAGDECAY)
-        } else {
-          that.trigger(EVENTS.DRAGTHROW)
-        }
-      }
-    })
-  }
-
-  getDistanceByIndex(index) {
-    let distance = 0
-
-    if (this.options.loop) {
-      if (this.options.group && !this.options.center) {
-        distance = -this.coordinates[index * this.itemNums + this.itemNums]
-      } else {
-        distance = -this.coordinates[index + this.itemNums]
-      }
-    } else if (this.options.group && !this.options.center) {
-      distance =
-        Math.max(
-          0,
-          Math.min(this.sortedItems[index].info.x, this.innerWidth - this.width)
-        ) * this.options.itemNums
-    } else {
-      distance = this.sortedItems[index].info.x
-    }
-
-    if (
-      index === this.maxActiveCount - 1 &&
-      index !== 0 &&
-      !this.options.center &&
-      !this.options.loop
-    ) {
-      distance = this.innerWidth - this.width
-    }
-
-    if (
-      this.options.center &&
-      !this.options.group &&
-      this.options.itemNums > 1
-    ) {
-      distance -= (this.itemWidth / 2) * (this.itemNums - 1)
-    }
-
-    return -distance
-  }
-
-  computeWidthResize() {
-    if (!this.options.loop) {
-      this.itemInstances.forEach(item => {
-        const itemWidth = this.getItemWidth()
-        item.setInfo({ width: itemWidth })
-      })
-      this.computeItemLocation(this.itemInstances)
-    } else {
-      this.updateWidths()
-      this.updateCoordinates()
-      this.instancesWithCloned = this.getItemInstances(this.itemsWithCloned)
-      this.computeItemLocation(this.instancesWithCloned)
-      this.itemInstances = [].concat(this.instancesWithCloned)
-      this.itemInstances.splice(0, this.clones.length / 2)
-      this.itemInstances.splice(
-        this.itemInstances.length - this.clones.length / 2,
-        this.clones.length / 2
-      )
-    }
-
-    this.sortedItems = this.getItemsBySort()
-
-    this.width = parseFloat(getStyle('width', this.element), 10)
-
-    let distance = 0
-
-    if (this.options.loop) {
-      if (this.options.group && !this.options.center) {
-        distance = -this.coordinates[
-          this.active * this.itemNums + this.itemNums
-        ]
-      } else {
-        distance = -this.coordinates[this.active + this.itemNums]
-      }
-    } else if (this.options.group && !this.options.center) {
-      distance =
-        Math.max(
-          0,
-          Math.min(
-            this.sortedItems[this.active].info.x,
-            this.innerWidth - this.width
-          )
-        ) * this.options.itemNums
-    } else {
-      distance = this.sortedItems[this.active].info.x
-    }
-
-    if (
-      this.active === this.maxActiveCount - 1 &&
-      this.active !== 0 &&
-      !this.options.center &&
-      !this.options.loop
-    ) {
-      distance = this.innerWidth - this.width
-    }
-
-    if (
-      this.options.center &&
-      !this.options.group &&
-      this.options.itemNums > 1
-    ) {
-      distance -= (this.itemWidth / 2) * (this.itemNums - 1)
-    }
-
-    this.setInnerPosition(-distance)
-  }
-
-  buildArrows() {
-    this.arrows = Arrows.of(this.element, this.options.arrows)
-  }
-
   resize() {
-    this.computeWidthResize()
+    this.updateSize()
+    this.updateItem()
+    this.updateItemsClass()
+
+    if (this.options.itemNums > 1 && this.is('end') && !this.options.center) {
+      this.moveTo(this.items.length - 1, 0, false)
+    } else {
+      this.moveTo(this.activeIndex, 0, false)
+    }
 
     if (!this.is('disabled')) {
       this.trigger(EVENTS.RESIZE)
@@ -759,18 +1102,36 @@ class Swipe extends Component {
   }
 
   bind() {
-    if (!this.swipeable.is('bind')) {
-      this.swipeable.bind()
-    }
-
     if (this.options.arrows) {
-      this.arrows.options.onNext = () => {
+      this.$arrows.options.onNext = () => {
+        if (this.is('last') && !this.options.loop) {
+          return
+        }
         this.next()
       }
 
-      this.arrows.options.onPrev = () => {
+      this.$arrows.options.onPrev = () => {
+        if (this.is('first') && !this.options.loop) {
+          return
+        }
         this.prev()
       }
+
+      bindEvent(
+        this.selfEventName('toEdge'),
+        () => {
+          this.updateArrows()
+        },
+        this.element
+      )
+
+      bindEvent(
+        this.selfEventName('fromEdge'),
+        () => {
+          this.updateArrows()
+        },
+        this.element
+      )
     }
 
     if (this.options.pagination) {
@@ -782,301 +1143,71 @@ class Swipe extends Component {
             hasClass(this.classes.PAGINATIONITEM),
             e.target
           )
-          const index = this.pagination.dots.indexOf($item)
+          let index = this.$pagination.dots.indexOf($item)
+          if (this.options.group) {
+            index *= this.itemNums
+          }
+          if (this.options.loop && !this.options.multiple) {
+            index += this.loopedItemsLength
+          }
+
           this.moveTo(index)
         },
-        this.wrapper
+        this.element
+      )
+
+      bindEvent(
+        this.selfEventName('activeIndexChange'),
+        () => {
+          if (this.options.loop && !this.options.multiple) {
+            this.updatePagination()
+          } else if (typeof this.snapIndex === 'undefined') {
+            this.updatePagination()
+          }
+        },
+        this.element
+      )
+
+      bindEvent(
+        this.selfEventName('snapIndexChange'),
+        () => {
+          if (!this.options.loop) {
+            this.updatePagination()
+          }
+        },
+        this.element
       )
     }
+
+    if (this.options.swipeable && !this.$swipeable.is('bind')) {
+      this.$swipeable.bind()
+    }
+  }
+
+  createEl(name, options) {
+    return templateEngine.compile(this.options.templates[name]())(options)
+  }
+
+  normalize(value) {
+    if (value < 0) {
+      return -Math.floor(Math.abs(value))
+    }
+    return Math.floor(value)
   }
 
   unbind() {
-    this.swipeable.unbind()
-
-    removeEvent(this.eventName(), this.wrapper)
-  }
-
-  next() {
-    if (this.is('disabled')) {
-      return
+    if (this.options.swipeable) {
+      this.$swipeable.unbind()
     }
 
-    const step = 1
-    const minIndex = this.options.loop ? 0 : this.active
-
-    const active =
-      this.active >= this.maxActiveCount - 1 ? minIndex : this.active + step
-
-    if (this.options.loop && active === 0) {
-      this.anime.pause()
-      const itemLength = this.options.multiple
-        ? Math.ceil(this.items.length / 2)
-        : this.items.length
-      const currentPosition = parseInt(anime.get(this.inner, 'translateX'), 10)
-      const position = currentPosition + this.itemWidth * itemLength
-      this.setInnerPosition(position)
-    }
-
-    this.moveTo(active, () => this.trigger(EVENTS.NEXT))
-  }
-
-  prev() {
-    if (this.is('disabled')) {
-      return
-    }
-
-    const step = 1
-    const maxIndex = this.options.loop ? this.maxActiveCount - 1 : 0
-
-    const active = this.active - step >= 0 ? this.active - step : maxIndex
-
-    if (this.options.loop && active === this.maxActiveCount - 1) {
-      this.anime.pause()
-      const itemLength = this.options.multiple
-        ? Math.ceil(this.items.length / 2)
-        : this.items.length
-      const currentPosition = parseInt(anime.get(this.inner, 'translateX'), 10)
-      const position = currentPosition - this.itemWidth * itemLength
-      this.setInnerPosition(position)
-    }
-
-    this.moveTo(active, () => this.trigger(EVENTS.PREV))
-  }
-
-  move(distance, details) {
-    let { trigger, ease } = details
-    const { callback } = details
-
-    trigger = trigger || false
-    ease = ease || 'linear'
-    const duration = this.options.duration
-
-    if (
-      this.options.center &&
-      !this.options.group &&
-      this.options.itemNums > 1
-    ) {
-      distance -= (this.itemWidth / 2) * (this.itemNums - 1)
-    }
-
-    this.anime = anime({
-      targets: this.inner,
-      translateX: -distance,
-      easing: ease,
-      duration
-    })
-
-    if (!this.options.loop && this.arrows) {
-      if (this.active === 0) {
-        this.arrows.disable('prev')
-        this.arrows.enable('next')
-      } else if (this.active === this.maxActiveCount - 1) {
-        this.arrows.disable('next')
-        this.arrows.enable('prev')
-      } else {
-        this.arrows.enable()
-      }
-    }
-
-    if (!this.options.group) {
-      this.itemInstances.forEach((item, index) => {
-        const $item = item.el
-        removeClass(this.classes.ACTIVE, $item)
-        if (index === this.active) {
-          addClass(this.classes.ACTIVE, $item)
-        }
-      })
-    }
-
-    setTimeout(() => {
-      if (callback) {
-        callback()
-      }
-
-      if (trigger) {
-        this.trigger(EVENTS.MOVEEND, this.active)
-      }
-    }, duration)
-  }
-
-  moveTo(index, callback) {
-    let distance = 0
-    if (index >= this.maxActiveCount) {
-      index = this.maxActiveCount - 1
-    }
-
-    this.active = index
-
-    if (this.options.loop) {
-      if (this.options.group && !this.options.center) {
-        distance = -this.coordinates[index * this.itemNums + this.itemNums]
-      } else {
-        distance = -this.coordinates[index + this.itemNums]
-      }
-    } else if (this.options.group && !this.options.center) {
-      distance =
-        Math.max(
-          0,
-          Math.min(this.sortedItems[index].info.x, this.innerWidth - this.width)
-        ) * this.options.itemNums
-    } else {
-      distance = this.sortedItems[index].info.x
-    }
-
-    if (
-      index === this.maxActiveCount - 1 &&
-      index !== 0 &&
-      !this.options.center &&
-      !this.options.loop
-    ) {
-      distance = this.innerWidth - this.width
-    }
-
-    if (this.options.pagination) {
-      this.pagination.set(`${this.active}`)
-    }
-
-    this.move(distance, {
-      trigger: true,
-      ease: 'linear',
-      callback
-    })
-  }
-
-  getIndexByDistance(distance) {
-    distance = -distance
-    let min = 0
-    let max = this.innerWidth - this.width
-    let add = 0
-
-    if (this.options.center) {
-      add = (this.itemWidth / 2) * (this.itemNums - 1)
-
-      min += add
-      max += add
-    }
-
-    if (distance <= -min) {
-      return 0
-    }
-
-    if (distance >= max) {
-      return this.maxActiveCount - 1
-    }
-
-    if (this.options.group && !this.options.center) {
-      let index = 0
-      const tempWidth = this.width
-      if (!this.options.loop) {
-        const maybeIndex = Math.ceil(distance / this.width)
-        index =
-          distance - (maybeIndex - 1) * tempWidth > tempWidth / 2
-            ? maybeIndex
-            : maybeIndex - 1
-        return Math.max(0, Math.min(index, this.maxActiveCount))
-      }
-      const tempDistance =
-        distance -
-        Math.abs(
-          this.coordinates[
-            this.options.multiple
-              ? this.prevItems.length / 2
-              : this.prevItems.length
-          ]
-        )
-      const maybeIndex = Math.ceil(tempDistance / this.width)
-
-      index =
-        tempDistance - (maybeIndex - 1) * tempWidth > tempWidth / 2
-          ? maybeIndex
-          : maybeIndex - 1
-      return Math.max(0, Math.min(index, this.maxActiveCount))
-    }
-
-    let offsetX
-    let index
-
-    const tempArr = [].concat(this.sortedItems)
-
-    for (let i = 0; i < tempArr.length; i++) {
-      const item = tempArr[i]
-      const tempCount = Math.abs(item.info.x - distance - add)
-      if (i === 0) {
-        offsetX = tempCount
-        index = 0
-        continue
-      }
-
-      if (tempCount < offsetX) {
-        offsetX = tempCount
-        index = i
-      }
-    }
-
-    return index
-  }
-
-  setInnerPosition(position) {
-    setStyle('transform', `translateX(${position}px)`, this.inner)
-  }
-
-  createEl(name, opts) {
-    return templateEngine.compile(this.options.templates[name]())(opts)
-  }
-
-  setPagination(num, active = this.active) {
-    const items = []
-    this.pagination.empty()
-
-    for (let index = 0; index < num; index++) {
-      items.push({ index })
-    }
-
-    this.pagination.load(items, true)
-
-    if (active >= items.length) {
-      active = items.length - 1
-    }
-
-    this.pagination.set(`${active}`)
-    this.moveTo(active)
-  }
-
-  setHeight(height) {
-    setStyle('paddingBottom', `${height}%`, this.element)
-  }
-
-  getLocationX(el) {
-    const transform = getStyle('transform', el)
-    if (transform === 'none') {
-      return 0
-    }
-
-    return parseInt(transform.split(',')[4], 10)
-  }
-
-  getDots() {
-    if (this.options.group) {
-      return this.maxActiveCount
-    }
-
-    let dotNum = 0
-    const maxWidth = this.innerWidth - this.width
-
-    for (const item of this.sortedItems) {
-      if (item.info.x >= maxWidth) {
-        break
-      }
-
-      dotNum++
-    }
-
-    return dotNum
+    removeEvent(this.eventName(), this.element)
   }
 
   enable() {
     if (this.is('disabled')) {
-      this.swipeable.enable()
+      if (this.options.swipeable) {
+        this.$swipeable.enable()
+      }
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -1084,7 +1215,9 @@ class Swipe extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      this.swipeable.disable()
+      if (this.options.swipeable) {
+        this.$swipeable.disable()
+      }
       this.enter('disabled')
     }
 
@@ -1094,6 +1227,10 @@ class Swipe extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
+
+      if (this.options.theme) {
+        removeClass(this.getThemeClass(), this.element)
+      }
       this.leave('initialized')
     }
 

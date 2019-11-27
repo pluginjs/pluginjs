@@ -3,6 +3,7 @@ import Swipe from '@pluginjs/swipe'
 
 const element = query('#group .swipe')
 Swipe.of(element, {
+  /** options **/
   itemNums: 3,
   gutter: 20,
   group: true,

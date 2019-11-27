@@ -44,13 +44,11 @@
     "@pluginjs/dom": "^0.7.17",
     "@pluginjs/dots": "^0.7.19",
     "@pluginjs/events": "^0.7.16",
-    "@pluginjs/image-loader": "^0.7.16",
+    "@pluginjs/feature": "^0.7.14",
     "@pluginjs/is": "^0.7.15",
-    "@pluginjs/loader": "^0.7.18",
     "@pluginjs/styled": "^0.7.17",
     "@pluginjs/swipeable": "^0.7.20",
-    "@pluginjs/template": "^0.7.16",
-    "animejs": "*"
+    "@pluginjs/template": "^0.7.16"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

@@ -157,7 +157,7 @@ class Swipeable extends Component {
 
     setStyle(
       {
-        transform: `translateX(${posX}px) translateY(${posY}px)`
+        transform: `translateX(${posX}px) translateY(${posY}px) translateZ(0)`
       },
       this.element
     )

@@ -1,11 +1,13 @@
 import { query } from '@pluginjs/dom'
 import Swipe from '@pluginjs/swipe'
 
-const element = query('#loop .swipe')
+const element = query('#multiple-center .swipe')
 Swipe.of(element, {
   /** options **/
-  itemNums: 1,
-  loop: true,
+  center: true,
+  itemNums: 3,
+  gutter: 20,
+  multiple: true,
   arrows: {
     type: 'solid'
   },

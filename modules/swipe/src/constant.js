@@ -1,19 +1,10 @@
 export const namespace = 'swipe'
 
 export const events = {
-  UPDATE: 'update',
   READY: 'ready',
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  CHANGE: 'change',
-  NEXT: 'next',
-  PREV: 'prev',
-  DRAGSTART: 'dragstart',
-  DRAGSNAIL: 'dragsnail',
-  DRAGDECAY: 'dragdecay',
-  DRAGTHROW: 'dragthrow',
-  MOVEEND: 'moveend',
   RESIZE: 'resize'
 }
 
@@ -23,49 +14,41 @@ export const classes = {
   WRAPPER: '{namespace}-wrapper',
   INNER: '{namespace}-inner',
   ITEM: '{namespace}-item',
-  CLONED: '{namespace}-cloned',
+  ACTIVE: '{namespace}-active',
   PAGINATION: '{namespace}-pagination',
   PAGINATIONITEM: '{namespace}-pagination-item',
-  IMG: '{namespace}-img',
-  LOADED: '{namespace}-loaded',
-  ACTIVE: '{namespace}-active'
+  PREV: '{namespace}-prev',
+  NEXT: '{namespace}-next',
+  CLONED: '{namespace}-cloned',
+  CLONEDACTIVE: '{namespace}-cloned-active',
+  CLONEDPREV: '{namespace}-cloned-prev',
+  CLONEDNEXT: '{namespace}-cloned-next',
+  MULTIPLE: '{namespace}-multiple'
 }
 
 export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null,
-  locale: 'en',
   wrapperSelector: null,
   innerSelector: null,
-  itemSelector: 'div',
-  imgSelector: 'img',
-  imgContainer: 'div',
-  arrows: false, // false, options
-  pagination: false, // false, options
+  itemSelector: null,
+  itemNums: 1,
+  arrows: false,
+  pagination: false,
+  swipeable: true,
   group: false,
   loop: false,
   multiple: false,
-  decay: false,
-  center: false, // center model
-  itemNums: 1, // Number of swipe per column
-  gutter: 0, // [number|string]  '10px 10px' => 'top&bottom left&right', 10 => top&bottom&left&right
-  height: null, // set swipe height
-  defaultActive: 0, // default active item
+  center: false,
+  gutter: 0,
+  defaultActive: 0,
   duration: 300,
-  loader: {
-    theme: 'circle',
-    color: '#000000',
-    size: 'lg'
-  }, // false, options
   templates: {
-    inner() {
-      return '<div class="{classes.INNER}"></div>'
-    },
     pagination() {
       return '<ul class="{classes.PAGINATION}"></ul>'
     }
   }
 }
 
-export const dependencies = ['arrows', 'dots', 'Hammer']
+export const dependencies = ['arrows', 'dots']
