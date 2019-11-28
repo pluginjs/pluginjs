@@ -7,6 +7,7 @@ Swipe.of(element, {
   itemNums: 2,
   center: true,
   gutter: 20,
+  defaultActive: 1,
   arrows: {
     type: 'solid'
   },

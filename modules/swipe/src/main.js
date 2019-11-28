@@ -494,6 +494,7 @@ class Swipe extends Component {
 
     for (let i = 0; i < itemsLength; i++) {
       const item = items[i]
+      setStyle({ width: `${itemSize}px` }, item)
 
       if (this.options.multiple) {
         this.setMultipleMargin(numFullColumns, index, item)
@@ -502,7 +503,7 @@ class Swipe extends Component {
       if (getStyle('display', item) === 'none') {
         continue
       }
-      setStyle({ width: `${itemSize}px` }, item)
+
       item.swipeItemSize = itemSize
       itemsSizesGrid.push(itemSize)
 
