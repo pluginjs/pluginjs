@@ -1160,7 +1160,7 @@ class Swipe extends Component {
       bindEvent(
         this.selfEventName('activeIndexChange'),
         () => {
-          if (this.options.loop && !this.options.multiple) {
+          if (this.options.loop) {
             this.updatePagination()
           } else if (typeof this.snapIndex === 'undefined') {
             this.updatePagination()
