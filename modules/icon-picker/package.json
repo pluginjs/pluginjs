@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.29",
+  "version": "0.7.30",
   "category": "form",
   "main": "dist/icon-picker.common.js",
   "module": "dist/icon-picker.esm.js",

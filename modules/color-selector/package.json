@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.38",
+  "version": "0.7.39",
   "category": "form",
   "main": "dist/color-selector.common.js",
   "module": "dist/color-selector.esm.js",
@@ -47,7 +47,7 @@
     "@pluginjs/events": "^0.7.16",
     "@pluginjs/factory": "^0.7.16",
     "@pluginjs/gradient": "^0.7.17",
-    "@pluginjs/gradient-picker": "^0.7.37",
+    "@pluginjs/gradient-picker": "^0.7.38",
     "@pluginjs/is": "^0.7.15",
     "@pluginjs/keyboard": "^0.7.17",
     "@pluginjs/scrollable": "^0.7.19",

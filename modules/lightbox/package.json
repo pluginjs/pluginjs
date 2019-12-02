@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.28",
+  "version": "0.7.29",
   "category": "media",
   "main": "dist/lightbox.common.js",
   "module": "dist/lightbox.esm.js",
@@ -47,10 +47,10 @@
     "@pluginjs/fullscreen": "^0.7.16",
     "@pluginjs/is": "^0.7.15",
     "@pluginjs/keyboard": "^0.7.17",
-    "@pluginjs/slider": "^0.7.25",
+    "@pluginjs/slider": "^0.7.26",
     "@pluginjs/styled": "^0.7.17",
     "@pluginjs/template": "^0.7.16",
-    "@pluginjs/thumbnails": "^0.7.21",
+    "@pluginjs/thumbnails": "^0.7.22",
     "@pluginjs/utils": "^0.7.16",
     "@pluginjs/video": "^0.7.22"
   },

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.28",
+  "version": "0.7.29",
   "category": "form",
   "main": "dist/image-selector.common.js",
   "module": "dist/image-selector.esm.js",

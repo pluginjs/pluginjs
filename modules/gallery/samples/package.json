@@ -3,7 +3,7 @@
   "name": "gallery-samples",
   "description": "Simple gallery example",
   "license": "GPL-3.0",
-  "version": "1.1.23",
+  "version": "1.1.24",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.17",
-    "@pluginjs/gallery": "^0.7.23"
+    "@pluginjs/gallery": "^0.7.24"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

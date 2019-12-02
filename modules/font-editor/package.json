@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.34",
+  "version": "0.7.35",
   "category": "form",
   "main": "dist/font-editor.common.js",
   "module": "dist/font-editor.esm.js",
@@ -52,7 +52,7 @@
     "@pluginjs/styled": "^0.7.17",
     "@pluginjs/template": "^0.7.16",
     "@pluginjs/tooltip": "^0.7.18",
-    "@pluginjs/units-range": "^0.7.28",
+    "@pluginjs/units-range": "^0.7.29",
     "@pluginjs/utils": "^0.7.16"
   },
   "devDependencies": {

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.26",
+  "version": "0.7.27",
   "category": "form",
   "main": "dist/units.common.js",
   "module": "dist/units.esm.js",
