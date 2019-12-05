@@ -78,6 +78,10 @@ class Swipe extends Component {
     this.updateSize()
     this.updateItem()
 
+    if (this.items.length === 0) {
+      return
+    }
+
     if (this.options.loop && !this.options.multiple) {
       this.moveTo(this.options.defaultActive + this.loopedItemsLength, 0, true)
     } else {
@@ -127,6 +131,23 @@ class Swipe extends Component {
       this.$inner = query(this.options.innerSelector, this.element)
       addClass(this.classes.INNER, this.$inner)
     }
+  }
+
+  initState() {
+    this.enter('first')
+    this.leave('last')
+    this.progress = 0
+    this.translate = 0
+    this.activeIndex = 0
+    this.realIndex = 0
+    this.prevTranslate = 0
+    this.virtualHeight = 0
+    this.itemNums = this.options.itemNums
+    this.items = []
+    this.itemsGrid = []
+    this.snapGrid = []
+    this.itemsSizesGrid = []
+    this.leave('animating')
   }
 
   initArrows() {
@@ -397,23 +418,6 @@ class Swipe extends Component {
     this.trigger('fixLoop')
   }
 
-  initState() {
-    this.enter('first')
-    this.leave('last')
-    this.progress = 0
-    this.translate = 0
-    this.activeIndex = 0
-    this.realIndex = 0
-    this.prevTranslate = 0
-    this.virtualHeight = 0
-    this.itemNums = this.options.itemNums
-    this.items = []
-    this.itemsGrid = []
-    this.snapGrid = []
-    this.itemsSizesGrid = []
-    this.leave('animating')
-  }
-
   updateSize() {
     const width = getWidth(this.element)
     this.width = width
@@ -478,7 +482,7 @@ class Swipe extends Component {
     this.secondRowHeight = 0
     this.virtualHeight = 0
 
-    if (typeof this.size === 'undefined') {
+    if (typeof this.size === 'undefined' || itemsLength === 0) {
       return
     }
 
@@ -610,6 +614,10 @@ class Swipe extends Component {
   }
 
   updateItemsClass() {
+    if (this.items.length === 0) {
+      return
+    }
+
     this.items.forEach(item => {
       removeClass(
         this.classes.ACTIVE,
