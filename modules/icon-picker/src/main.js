@@ -300,7 +300,7 @@ class IconPicker extends Component {
   }
 
   clear() {
-    this.set(null, false)
+    this.set(null)
   }
 
   getItemLabel(item) {

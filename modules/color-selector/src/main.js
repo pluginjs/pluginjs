@@ -114,7 +114,7 @@ class ColorSelector extends Component {
     if (this.elementColor) {
       this.val(this.elementColor, false)
     } else {
-      this.clear()
+      this.clear(false)
     }
   }
 
@@ -389,8 +389,8 @@ class ColorSelector extends Component {
     }
   }
 
-  clear() {
-    this.set(null, false)
+  clear(trigger = true) {
+    this.set(null, trigger)
   }
 
   unbind() {
@@ -420,6 +420,10 @@ class ColorSelector extends Component {
       this.switchModule(this.options.module[0])
       this.PREVIEW.update('transparent')
       this.element.value = ''
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, this.color)
+        triggerNative(this.element, 'change')
+      }
     } else {
       const module = val.module
       const color = val.color

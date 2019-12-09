@@ -108,6 +108,8 @@ class Choice extends Component {
     if (this.$element.value) {
       this.val(this.value)
     }
+    
+    this.setupOptions(options)
     this.setupStates()
     this.initialize()
   }
