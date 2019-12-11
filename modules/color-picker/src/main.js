@@ -393,6 +393,7 @@ class ColorPicker extends Component {
         this.PREVIEW.update('transparent')
       }
       this.element.value = ''
+ 
     } else {
       this.color = val
       this.setColor(val)
@@ -402,7 +403,11 @@ class ColorPicker extends Component {
     return null
   }
 
-  clear() {
+  clear(trigger = false) {
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, '')
+      triggerNative(this.element, 'change')
+    }
     this.set(null, false)
   }
 

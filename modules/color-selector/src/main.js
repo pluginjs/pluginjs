@@ -114,7 +114,7 @@ class ColorSelector extends Component {
     if (this.elementColor) {
       this.val(this.elementColor, false)
     } else {
-      this.clear(false)
+      this.clear()
     }
   }
 
@@ -389,8 +389,12 @@ class ColorSelector extends Component {
     }
   }
 
-  clear(trigger = true) {
-    this.set(null, trigger)
+  clear(trigger = false) {
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, '')
+      triggerNative(this.element, 'change')
+    }
+    this.set(null, false)
   }
 
   unbind() {
@@ -420,10 +424,6 @@ class ColorSelector extends Component {
       this.switchModule(this.options.module[0])
       this.PREVIEW.update('transparent')
       this.element.value = ''
-      if (trigger) {
-        this.trigger(EVENTS.CHANGE, this.color)
-        triggerNative(this.element, 'change')
-      }
     } else {
       const module = val.module
       const color = val.color

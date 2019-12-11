@@ -687,7 +687,7 @@ class GradientPicker extends Component {
     this.leave('save')
   }
 
-  clear() {
+  clear(trigger = false) {
     this.color =
       this.options.defaultColor || 'linear-gradient(90deg, #fff 0%,#000 100%)'
     this.set(this.color, false)
@@ -695,6 +695,12 @@ class GradientPicker extends Component {
     if (!this.options.inline) {
       this.PREVIEW.update('transparent')
     }
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, '')
+      triggerNative(this.element, 'change')
+    }
+
     this.element.value = ''
   }
 
