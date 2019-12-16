@@ -80,6 +80,7 @@ export const defaults = {
   locale: 'en',
   data: null, // [json]images data
   manage() {},  /* eslint-disable-line */
+  manageButton: true,
   disabled: false,
   dropdown: {
     placement: 'bottom-start' // top

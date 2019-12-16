@@ -39,11 +39,17 @@ class Collection {
     const $scheme = this.instance.createEl('scheme', {
       classes: this.classes
     })
-    const $manage = this.instance.createEl('manage', {
-      classes: this.classes,
-      manageText: this.instance.translate('manage')
-    })
-    this.element.append($scheme, $manage)
+
+    if(this.instance.options.manageButton) {
+      const $manage = this.instance.createEl('manage', {
+        classes: this.classes,
+        manageText: this.instance.translate('manage')
+      })
+      this.element.append($scheme, $manage)
+    } else {
+      this.element.append($scheme)
+    }
+   
     // create favorite item
     Object.keys(this.instance.data).forEach(groupName => {
       const $groupList = query(

@@ -102,6 +102,7 @@ export const defaults = {
   clearable: false,
   module: ['collection', 'solid', 'gradient'], // 'collection', 'solid', 'gradient'
   data: null, // colors in the scheme and your favorite colors.  example: {scheme:{'Primary':'#55a4f2','fontColor':'#ccc','bgColor':'#f2a654','borderColor':'#f1f1f1'},favorite:['red':'red','brown':'brown','lightblue':'lightblue','green':'green']}
+  manageButton: true,
   manage() {},
   dropdown: {
     placement: 'bottom-start'
@@ -141,7 +142,7 @@ export const defaults = {
       return '<div class="{classes.SCHEME}"><ul class="{classes.GROUPLIST}"></ul></div>'
     },
     manage() {
-      return '<div class="pj-btn pj-btn-block {classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
+      return '<div class="{classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
     },
     collectionItem() {
       return '<li class="{classes.COLLECTIONITEM}"></li>'

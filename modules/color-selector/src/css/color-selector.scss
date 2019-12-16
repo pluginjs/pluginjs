@@ -6,6 +6,7 @@
 $colorSelector: "pj-colorSelector";
 $colorSelector-font-family: $font-family-base;
 $colorSelector-font-size: $font-size-base;
+$colorSelector-sizer: $sizer !default;
 
 $colorSelector-input-padding-right: $colorSelector-preview-width + 4px;
 
@@ -14,15 +15,17 @@ $colorSelector-border-radius: $border-radius-base;
 $colorSelector-clear-color: $gray;
 $colorSelector-clear-hover-color: $text-color;
 
-
-$colorSelector-panel-width: 288px;
+$colorSelector-panel-width: 28.8 * $colorSelector-sizer !default; //288px
 
 $colorSelector-preview-border-color: $gray-light;
 $colorSelector-preview-bg-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEXLy8v////hf8FnAAAAGklEQVQoz2PghwEG/KwPMECANWreqHkDaB4AtSFCzONj1qEAAAAASUVORK5CYII=");
 
-$colorSelector-collection-item-margin-right: 15px;
-$colorSelector-collection-padding: 24px;
-$colorSelector-collection-item-margin-bottom: 15px;
+$colorSelector-collection-item-margin-right: 1.5 * $colorSelector-sizer !default; //15px
+$colorSelector-collection-padding: 2.4 * $colorSelector-sizer !default; //15px
+$colorSelector-collection-item-margin-bottom: 1.5 * $colorSelector-sizer !default; //15px
+$colorSelector-collection-manage-height: 3 * $colorSelector-sizer !default; //30px
+$colorSelector-collection-manage-icon-margin-right: $colorSelector-sizer !default; //10px
+
 //skin
 .#{$colorSelector}{
   font-family: $colorSelector-font-family;
@@ -58,6 +61,25 @@ $colorSelector-collection-item-margin-bottom: 15px;
 
   &-panel-collection {
     padding: $colorSelector-collection-padding;
+
+    .#{$colorSelector}-manage {
+
+      line-height: $colorSelector-collection-manage-height;
+      color: $color-primary-black;
+      text-align: center;
+      border: 1px solid #e6e6e6;
+
+      i {
+        margin-right: $colorSelector-collection-manage-icon-margin-right;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f2f2f2;
+        border: 1px solid #e6e6e6;
+      }
+    }
   }
 
   &-collection {

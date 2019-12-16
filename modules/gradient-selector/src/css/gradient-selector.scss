@@ -8,8 +8,6 @@ $gradientSelector-sizer: $sizer !default;
 $editPanel: "pj-editPanel" !default;
 $scrollable: "pj-scrollable" !default;
 $range: "pj-range" !default;
-// global
-$gradientSelector-sizer: $sizer !default;
 
 $gradientSelector-color: $gray-dark;
 $gradientSelector-hover-color: $gray-darkest;
@@ -34,7 +32,6 @@ $gradientSelector-panel-swicher-icon-size: 2 * $gradientSelector-sizer !default;
 $gradientSelector-panel-swicher-icon-color: $gray !default;
 // collection
 $gradientSelector-collection-padding: 2 * $gradientSelector-sizer 2.4 * $gradientSelector-sizer 3 * $gradientSelector-sizer !default; //20px 0 30px
-$gradientSelector-collection-height: 28 * $gradientSelector-sizer !default; //28px
 // collection scrollwrap
 $gradientSelector-collection-scrollwrap-padding: 0 2 * $gradientSelector-sizer !default; //20px
 $gradientSelector-collection-scrollwrap-width: 26 * $gradientSelector-sizer !default; //260px
@@ -237,19 +234,14 @@ $editPanel-component-color: $color-red !default;
     }
   
     &-collection {
-      height: $gradientSelector-collection-height;
       padding: $gradientSelector-collection-padding;
   
       .#{$gradientSelector}-manage {
-        position: absolute;
-        bottom: 23.5px;
-        left: 23.5px;
-        width: 241px;
-        height: $gradientSelector-collection-manage-height;
+
         line-height: $gradientSelector-collection-manage-height - 2px;
         color: $color-primary-black;
         text-align: center;
-        border: 1px solid #e6e6e6 !important;
+        border: 1px solid #e6e6e6;
   
         i {
           margin-right: $gradientSelector-collection-manage-icon-margin-right;
@@ -258,8 +250,8 @@ $editPanel-component-color: $color-red !default;
   
         &:hover {
           cursor: pointer;
-          background-color: #f2f2f2 !important;
-          border: 1px solid #e6e6e6 !important;
+          background-color: #f2f2f2;
+          border: 1px solid #e6e6e6;
         }
       }
     }
