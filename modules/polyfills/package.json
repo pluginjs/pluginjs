@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.18",
+  "version": "0.7.19",
   "category": "core",
   "main": "dist/polyfills.common.js",
   "module": "dist/polyfills.esm.js",
@@ -32,8 +32,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/is": "^0.7.15",
-    "@pluginjs/utils": "^0.7.16"
+    "@pluginjs/is": "^0.7.16",
+    "@pluginjs/utils": "^0.7.17"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

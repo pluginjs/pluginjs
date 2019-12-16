@@ -3,15 +3,15 @@
   "name": "infinite-samples",
   "description": "Simple infinite example",
   "license": "GPL-3.0",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.17",
-    "@pluginjs/infinite": "^0.7.21",
+    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/infinite": "^0.7.22",
     "lorem-ipsum": "^2.0.3"
   },
   "devDependencies": {

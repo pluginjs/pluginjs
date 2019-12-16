@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.38",
+  "version": "0.7.39",
   "category": "form",
   "main": "dist/gradient-picker.common.js",
   "module": "dist/gradient-picker.esm.js",
@@ -37,20 +37,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.16",
-    "@pluginjs/color-picker": "^0.7.34",
-    "@pluginjs/component": "^0.7.14",
-    "@pluginjs/decorator": "^0.7.18",
-    "@pluginjs/dom": "^0.7.17",
-    "@pluginjs/dropdown": "^0.7.26",
-    "@pluginjs/events": "^0.7.16",
-    "@pluginjs/gradient": "^0.7.17",
-    "@pluginjs/is": "^0.7.15",
-    "@pluginjs/keyboard": "^0.7.17",
-    "@pluginjs/select": "^0.7.28",
-    "@pluginjs/styled": "^0.7.17",
-    "@pluginjs/template": "^0.7.16",
-    "@pluginjs/utils": "^0.7.16"
+    "@pluginjs/classes": "^0.7.17",
+    "@pluginjs/color-picker": "^0.7.35",
+    "@pluginjs/component": "^0.7.15",
+    "@pluginjs/decorator": "^0.7.19",
+    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/dropdown": "^0.7.27",
+    "@pluginjs/events": "^0.7.17",
+    "@pluginjs/gradient": "^0.7.18",
+    "@pluginjs/is": "^0.7.16",
+    "@pluginjs/keyboard": "^0.7.18",
+    "@pluginjs/select": "^0.7.29",
+    "@pluginjs/styled": "^0.7.18",
+    "@pluginjs/template": "^0.7.17",
+    "@pluginjs/utils": "^0.7.17"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

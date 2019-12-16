@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.27",
+  "version": "0.7.28",
   "category": "ui",
   "main": "dist/breadcrumb.common.js",
   "module": "dist/breadcrumb.esm.js",
@@ -37,15 +37,15 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.16",
-    "@pluginjs/component": "^0.7.14",
-    "@pluginjs/decorator": "^0.7.18",
-    "@pluginjs/dom": "^0.7.17",
-    "@pluginjs/dropdown": "^0.7.26",
-    "@pluginjs/factory": "^0.7.16",
-    "@pluginjs/styled": "^0.7.17",
-    "@pluginjs/template": "^0.7.16",
-    "@pluginjs/utils": "^0.7.16"
+    "@pluginjs/classes": "^0.7.17",
+    "@pluginjs/component": "^0.7.15",
+    "@pluginjs/decorator": "^0.7.19",
+    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/dropdown": "^0.7.27",
+    "@pluginjs/factory": "^0.7.17",
+    "@pluginjs/styled": "^0.7.18",
+    "@pluginjs/template": "^0.7.17",
+    "@pluginjs/utils": "^0.7.17"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

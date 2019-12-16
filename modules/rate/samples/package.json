@@ -3,15 +3,15 @@
   "name": "rate-samples",
   "description": "Simple rate example",
   "license": "GPL-3.0",
-  "version": "1.1.18",
+  "version": "1.1.19",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.17",
-    "@pluginjs/rate": "^0.7.18"
+    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/rate": "^0.7.19"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

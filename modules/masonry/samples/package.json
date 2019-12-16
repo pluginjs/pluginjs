@@ -3,15 +3,15 @@
   "name": "masonry-samples",
   "description": "Simple masonry example",
   "license": "GPL-3.0",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.17",
-    "@pluginjs/masonry": "^0.0.11"
+    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/masonry": "^0.0.12"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

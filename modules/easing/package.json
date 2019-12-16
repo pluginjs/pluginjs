@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.14",
+  "version": "0.7.15",
   "category": "utils",
   "main": "dist/easing.common.js",
   "module": "dist/easing.esm.js",

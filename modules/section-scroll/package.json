@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.26",
+  "version": "0.7.27",
   "category": "scroll",
   "main": "dist/section-scroll.common.js",
   "module": "dist/section-scroll.esm.js",
@@ -37,19 +37,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.16",
-    "@pluginjs/component": "^0.7.14",
-    "@pluginjs/decorator": "^0.7.18",
-    "@pluginjs/dom": "^0.7.17",
-    "@pluginjs/dots": "^0.7.19",
-    "@pluginjs/events": "^0.7.16",
-    "@pluginjs/factory": "^0.7.16",
-    "@pluginjs/is": "^0.7.15",
-    "@pluginjs/scroll": "^0.7.17",
-    "@pluginjs/scroll-spy": "^0.7.23",
-    "@pluginjs/styled": "^0.7.17",
-    "@pluginjs/template": "^0.7.16",
-    "@pluginjs/tooltip": "^0.7.18",
+    "@pluginjs/classes": "^0.7.17",
+    "@pluginjs/component": "^0.7.15",
+    "@pluginjs/decorator": "^0.7.19",
+    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/dots": "^0.7.20",
+    "@pluginjs/events": "^0.7.17",
+    "@pluginjs/factory": "^0.7.17",
+    "@pluginjs/is": "^0.7.16",
+    "@pluginjs/scroll": "^0.7.18",
+    "@pluginjs/scroll-spy": "^0.7.24",
+    "@pluginjs/styled": "^0.7.18",
+    "@pluginjs/template": "^0.7.17",
+    "@pluginjs/tooltip": "^0.7.19",
     "hammerjs": "*"
   },
   "devDependencies": {

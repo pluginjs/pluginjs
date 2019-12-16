@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.17",
+  "version": "0.7.18",
   "category": "utils",
   "main": "dist/gradient.common.js",
   "module": "dist/gradient.esm.js",
@@ -33,10 +33,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/color": "^0.7.16",
-    "@pluginjs/factory": "^0.7.16",
-    "@pluginjs/is": "^0.7.15",
-    "@pluginjs/utils": "^0.7.16"
+    "@pluginjs/color": "^0.7.17",
+    "@pluginjs/factory": "^0.7.17",
+    "@pluginjs/is": "^0.7.16",
+    "@pluginjs/utils": "^0.7.17"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

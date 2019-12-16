@@ -3,17 +3,17 @@
   "name": "item-list-samples",
   "description": "Simple item-list example",
   "license": "GPL-3.0",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.17",
+    "@pluginjs/dom": "^0.7.18",
     "@pluginjs/icons": "^0.7.3",
-    "@pluginjs/item-list": "^0.7.19",
-    "@pluginjs/styles": "^0.7.10"
+    "@pluginjs/item-list": "^0.7.20",
+    "@pluginjs/styles": "^0.7.11"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

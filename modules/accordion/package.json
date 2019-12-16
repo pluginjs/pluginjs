@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.19",
+  "version": "0.7.20",
   "category": "ui",
   "main": "dist/accordion.common.js",
   "module": "dist/accordion.esm.js",
@@ -37,17 +37,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/breakpoints": "^0.7.16",
-    "@pluginjs/classes": "^0.7.16",
-    "@pluginjs/component": "^0.7.14",
-    "@pluginjs/decorator": "^0.7.18",
-    "@pluginjs/dom": "^0.7.17",
-    "@pluginjs/events": "^0.7.16",
-    "@pluginjs/factory": "^0.7.16",
-    "@pluginjs/is": "^0.7.15",
-    "@pluginjs/styled": "^0.7.17",
-    "@pluginjs/styles": "^0.7.10",
-    "@pluginjs/utils": "^0.7.16",
+    "@pluginjs/breakpoints": "^0.7.17",
+    "@pluginjs/classes": "^0.7.17",
+    "@pluginjs/component": "^0.7.15",
+    "@pluginjs/decorator": "^0.7.19",
+    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/events": "^0.7.17",
+    "@pluginjs/factory": "^0.7.17",
+    "@pluginjs/is": "^0.7.16",
+    "@pluginjs/styled": "^0.7.18",
+    "@pluginjs/styles": "^0.7.11",
+    "@pluginjs/utils": "^0.7.17",
     "animejs": "*",
     "hammerjs": "*"
   },
