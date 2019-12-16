@@ -49,10 +49,10 @@
     "@pluginjs/is": "^0.7.15",
     "@pluginjs/styled": "^0.7.17",
     "@pluginjs/template": "^0.7.16",
-    "date-fns": "^2.1.0"
+    "date-fns": "^2.8.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
+    "@babel/core": "^7.7.5",
     "@pluginjs/browserslist-config": "^1.2.11",
     "@pluginjs/cli": "^0.7.14",
     "babel-jest": "*",

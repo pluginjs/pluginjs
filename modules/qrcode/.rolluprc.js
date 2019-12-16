@@ -28,7 +28,7 @@ const babelCallback = (options = {}) => {
   })
 }
 
-external = external.filter(e => e !== 'jr-qrcode')
+// external = external.filter(e => e !== 'jr-qrcode')
 
 export default [
   {

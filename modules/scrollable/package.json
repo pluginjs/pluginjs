@@ -50,7 +50,7 @@
     "@pluginjs/utils": "^0.7.16"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
+    "@babel/core": "^7.7.5",
     "@pluginjs/browserslist-config": "^1.2.11",
     "@pluginjs/cli": "^0.7.14",
     "babel-jest": "^24.9.0",
@@ -58,7 +58,7 @@
     "jest": "^24.9.0",
     "jest-extended": "^0.11.2",
     "rename": "^1.0.4",
-    "rollup": "^1.21.2",
+    "rollup": "^1.27.13",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0"

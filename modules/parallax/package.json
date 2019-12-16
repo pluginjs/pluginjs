@@ -53,7 +53,7 @@
     "@pluginjs/viewport": "^0.7.19"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
+    "@babel/core": "^7.7.5",
     "@pluginjs/browserslist-config": "^1.2.11",
     "@pluginjs/cli": "^0.7.14",
     "babel-jest": "*",

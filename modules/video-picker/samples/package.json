@@ -16,10 +16,10 @@
     "@pluginjs/video-picker": "^0.7.33"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
     "@pluginjs/browserslist-config": "^1.2.11",
-    "parcel-bundler": "^1.12.3",
+    "parcel-bundler": "^1.12.4",
     "posthtml-include": "*"
   },
   "browserslist": [
