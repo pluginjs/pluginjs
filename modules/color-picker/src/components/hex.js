@@ -34,18 +34,20 @@ class Hex {
   build() {
     this.$opac = parseHTML(
       `<div class='${this.classes.HEXBOX}'>
-        <input class="pj-input pj-input-sm ${
-          this.classes.HEXANGLE
-        }" type="text"/>
-         <div class="${this.classes.HEXUNIT}">%</div>
-       </div>`
+        <input class="pj-input pj-input-sm ${this.classes.HEXANGLE}" type="text"/>
+        <div class="${this.classes.HEXUNIT}">%</div>
+      </div>`
     )
     const $selector = parseHTML(
-      `<div class='${this.classes.HEXMODE}'><input type="text" value="${
-        this.data[0].value
-      }" /></div>`
+      `<div class='${this.classes.HEXMODE}'><input type="text" value="${this.data[0].value}" /></div>`
     )
-    this.element.append($selector, this.$opac)
+
+    if (this.instance.module.alpha) {
+      this.element.append($selector, this.$opac)
+    } else {
+      this.element.append($selector)
+    }
+
     this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
     this.SELECT = Select.of(this.$el, {
       source: this.data,
@@ -63,7 +65,9 @@ class Hex {
       this.instance.selfEventName('changeColor'),
       (e, el, color) => {
         this.color = color
-        query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
+        if (this.instance.module.alpha) {
+          query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
+        }
         this.updateColor(this.SELECT.element.value, color)
       },
       this.instance.element
@@ -78,14 +82,16 @@ class Hex {
       this.element
     )
 
-    bindEvent(
-      this.instance.eventName('change'),
-      `.${this.classes.HEXANGLE}`,
-      ({ target }) => {
-        this.updateAlpha(target.value)
-      },
-      this.$opac
-    )
+    if (this.instance.module.alpha) {
+      bindEvent(
+        this.instance.eventName('change'),
+        `.${this.classes.HEXANGLE}`,
+        ({ target }) => {
+          this.updateAlpha(target.value)
+        },
+        this.$opac
+      )
+    }
   }
 
   updateColor(val, color) {
