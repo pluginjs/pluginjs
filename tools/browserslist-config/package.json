@@ -8,7 +8,7 @@
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
   },
-  "version": "1.2.12",
+  "version": "1.2.13",
   "main": "index.js",
   "devDependencies": {
     "browserslist": "^4.8.2"
@@ -20,7 +20,7 @@
   "engines": {
     "node": ">=8"
   },
-  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6",
+  "gitHead": "f0767d4ff57027169d885ad7a3a46dbc4ff5cf7f",
   "publishConfig": {
     "access": "public"
   }
