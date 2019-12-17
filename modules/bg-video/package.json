@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.24",
+  "version": "0.7.25",
   "category": "media",
   "main": "dist/bg-video.common.js",
   "module": "dist/bg-video.esm.js",
@@ -37,20 +37,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.18",
-    "@pluginjs/component": "^0.7.15",
-    "@pluginjs/decorator": "^0.7.19",
-    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/classes": "^0.7.19",
+    "@pluginjs/component": "^0.7.16",
+    "@pluginjs/decorator": "^0.7.20",
+    "@pluginjs/dom": "^0.7.19",
     "@pluginjs/factory": "^0.7.18",
-    "@pluginjs/is": "^0.7.16",
-    "@pluginjs/styled": "^0.7.18",
-    "@pluginjs/utils": "^0.7.17",
-    "@pluginjs/video": "^0.7.23"
+    "@pluginjs/is": "^0.7.17",
+    "@pluginjs/styled": "^0.7.19",
+    "@pluginjs/utils": "^0.7.18",
+    "@pluginjs/video": "^0.7.24"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
-    "@pluginjs/browserslist-config": "^1.2.11",
-    "@pluginjs/cli": "^0.7.14",
+    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/cli": "^0.7.15",
     "babel-jest": "*",
     "jest": "*",
     "jest-extended": "*",

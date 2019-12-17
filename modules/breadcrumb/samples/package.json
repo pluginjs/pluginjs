@@ -3,22 +3,22 @@
   "name": "breadcrumb-samples",
   "description": "Simple breadcrumb example",
   "license": "GPL-3.0",
-  "version": "1.1.28",
+  "version": "1.1.29",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/breadcrumb": "^0.7.29",
-    "@pluginjs/dom": "^0.7.18",
+    "@pluginjs/breadcrumb": "^0.7.30",
+    "@pluginjs/dom": "^0.7.19",
     "@pluginjs/styles": "^0.7.11",
     "bootstrap": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
-    "@pluginjs/browserslist-config": "^1.2.11",
+    "@pluginjs/browserslist-config": "^1.2.12",
     "parcel-bundler": "^1.12.4",
     "posthtml-include": "*"
   },
