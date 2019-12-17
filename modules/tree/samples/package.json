@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
-    "@pluginjs/tree": "^0.7.19"
+    "@pluginjs/tree": "^0.7.21"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

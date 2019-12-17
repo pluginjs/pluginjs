@@ -41,7 +41,7 @@
     "@pluginjs/decorator": "^0.7.19",
     "@pluginjs/dom": "^0.7.18",
     "@pluginjs/events": "^0.7.17",
-    "@pluginjs/factory": "^0.7.17",
+    "@pluginjs/factory": "^0.7.18",
     "@pluginjs/is": "^0.7.16",
     "@pluginjs/list": "^0.7.20",
     "@pluginjs/template": "^0.7.17",

@@ -35,9 +35,9 @@
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
     "@pluginjs/events": "^0.7.17",
-    "@pluginjs/factory": "^0.7.17",
+    "@pluginjs/factory": "^0.7.18",
     "@pluginjs/global-component": "^0.7.16",
-    "@pluginjs/i18n": "^0.7.17",
+    "@pluginjs/i18n": "^0.7.20",
     "@pluginjs/is": "^0.7.16",
     "@pluginjs/utils": "^0.7.17"
   },

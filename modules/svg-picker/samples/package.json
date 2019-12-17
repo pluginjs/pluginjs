@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
-    "@pluginjs/svg-picker": "^0.7.28",
+    "@pluginjs/svg-picker": "^0.7.29",
     "feather-icons": "*"
   },
   "devDependencies": {

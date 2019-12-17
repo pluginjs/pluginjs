@@ -33,7 +33,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "^0.7.16",
+    "@pluginjs/emitter": "^0.7.19",
     "@pluginjs/is": "^0.7.16",
     "@pluginjs/utils": "^0.7.17"
   },

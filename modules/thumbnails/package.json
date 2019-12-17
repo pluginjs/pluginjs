@@ -38,13 +38,13 @@
   },
   "dependencies": {
     "@pluginjs/breakpoints": "^0.7.17",
-    "@pluginjs/classes": "^0.7.17",
+    "@pluginjs/classes": "^0.7.18",
     "@pluginjs/component": "^0.7.15",
     "@pluginjs/decorator": "^0.7.19",
     "@pluginjs/dom": "^0.7.18",
     "@pluginjs/events": "^0.7.17",
-    "@pluginjs/factory": "^0.7.17",
-    "@pluginjs/image-loader": "^0.7.17",
+    "@pluginjs/factory": "^0.7.18",
+    "@pluginjs/image-loader": "^0.7.19",
     "@pluginjs/is": "^0.7.16",
     "@pluginjs/loader": "^0.7.19",
     "@pluginjs/styled": "^0.7.18",
@@ -55,7 +55,7 @@
     "animejs": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
+    "@babel/core": "^7.7.5",
     "@pluginjs/browserslist-config": "^1.2.11",
     "@pluginjs/cli": "^0.7.14",
     "babel-jest": "*",

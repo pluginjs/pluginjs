@@ -37,13 +37,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.17",
+    "@pluginjs/classes": "^0.7.18",
     "@pluginjs/decorator": "^0.7.19",
     "@pluginjs/dom": "^0.7.18",
     "@pluginjs/events": "^0.7.17",
     "@pluginjs/is": "^0.7.16",
     "@pluginjs/list": "^0.7.20",
-    "@pluginjs/toggle": "^0.7.25",
+    "@pluginjs/toggle": "^0.7.27",
     "@pluginjs/utils": "^0.7.17"
   },
   "devDependencies": {

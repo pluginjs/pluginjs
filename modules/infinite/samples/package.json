@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
-    "@pluginjs/infinite": "^0.7.22",
+    "@pluginjs/infinite": "^0.7.24",
     "lorem-ipsum": "^2.0.3"
   },
   "devDependencies": {

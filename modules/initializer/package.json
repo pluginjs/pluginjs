@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
-    "@pluginjs/factory": "^0.7.17",
+    "@pluginjs/factory": "^0.7.18",
     "@pluginjs/utils": "^0.7.17"
   },
   "devDependencies": {

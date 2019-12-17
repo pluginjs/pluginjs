@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
-    "@pluginjs/filters": "^0.7.29"
+    "@pluginjs/filters": "^0.7.31"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

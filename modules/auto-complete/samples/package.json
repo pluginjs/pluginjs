@@ -10,7 +10,7 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/auto-complete": "^0.7.29",
+    "@pluginjs/auto-complete": "^0.7.30",
     "@pluginjs/dom": "^0.7.18",
     "countries-list": "*"
   },

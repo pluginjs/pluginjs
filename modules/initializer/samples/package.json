@@ -12,7 +12,7 @@
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
     "@pluginjs/initializer": "^0.7.20",
-    "@pluginjs/toggle": "^0.7.25",
+    "@pluginjs/toggle": "^0.7.27",
     "number-flip": "*"
   },
   "devDependencies": {

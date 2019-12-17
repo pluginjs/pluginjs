@@ -10,7 +10,7 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/breadcrumb": "^0.7.28",
+    "@pluginjs/breadcrumb": "^0.7.29",
     "@pluginjs/dom": "^0.7.18",
     "@pluginjs/styles": "^0.7.11",
     "bootstrap": "*"

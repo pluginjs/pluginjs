@@ -37,17 +37,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.17",
+    "@pluginjs/classes": "^0.7.18",
     "@pluginjs/color-picker": "^0.7.35",
     "@pluginjs/component": "^0.7.15",
     "@pluginjs/decorator": "^0.7.19",
     "@pluginjs/dom": "^0.7.18",
     "@pluginjs/dropdown": "^0.7.27",
     "@pluginjs/events": "^0.7.17",
-    "@pluginjs/gradient": "^0.7.18",
+    "@pluginjs/gradient": "^0.7.22",
     "@pluginjs/is": "^0.7.16",
-    "@pluginjs/keyboard": "^0.7.18",
-    "@pluginjs/select": "^0.7.29",
+    "@pluginjs/keyboard": "^0.7.19",
+    "@pluginjs/select": "^0.7.30",
     "@pluginjs/styled": "^0.7.18",
     "@pluginjs/template": "^0.7.17",
     "@pluginjs/utils": "^0.7.17"

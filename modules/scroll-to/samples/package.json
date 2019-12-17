@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
-    "@pluginjs/scroll-to": "^0.7.20"
+    "@pluginjs/scroll-to": "^0.7.22"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

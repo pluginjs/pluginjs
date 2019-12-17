@@ -13,7 +13,7 @@
     "@pluginjs/dom": "^0.7.18",
     "@pluginjs/icons": "^0.7.3",
     "@pluginjs/styles": "^0.7.11",
-    "@pluginjs/units": "^0.7.28"
+    "@pluginjs/units": "^0.7.30"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

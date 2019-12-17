@@ -10,7 +10,7 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/arrows": "^0.7.19",
+    "@pluginjs/arrows": "^0.7.20",
     "@pluginjs/dom": "^0.7.18"
   },
   "devDependencies": {

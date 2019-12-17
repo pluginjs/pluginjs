@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.28",
+  "version": "0.7.30",
   "category": "form",
   "main": "dist/units.common.js",
   "module": "dist/units.esm.js",
@@ -37,7 +37,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.17",
+    "@pluginjs/classes": "^0.7.18",
     "@pluginjs/component": "^0.7.15",
     "@pluginjs/decorator": "^0.7.19",
     "@pluginjs/dom": "^0.7.18",

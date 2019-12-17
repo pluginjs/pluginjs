@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.7.18",
-    "@pluginjs/nav-to-select": "^0.7.19"
+    "@pluginjs/nav-to-select": "^0.7.20"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
