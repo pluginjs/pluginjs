@@ -79,6 +79,7 @@ export const defaults = {
   bgColor: '#eee', // background color.
   disabled: false,
   module: 'collection', // collection || custom
+  manageButton: true,
   manage() {},  /* eslint-disable-line */
   dropdown: {
     placement: 'bottom-start' // top
@@ -177,19 +178,13 @@ export const defaults = {
     if (typeof type === 'undefined') {
       return value
     }
+
     if (type === 'color') {
-      let color = value['background-image']
-        .match(/fill=('|").*?('|")/g)
-        .toString()
-        .match(/(\w){3,8}/g)
-        .toString()
-      if (color.length > 6) {
-        color = `#${color.slice(2)}`
-      } else {
-        color = `#${color}`
-      }
+      let color = value['background-image'].match(/fill='(\S*)'/)[1].replace('%23', '#')
+
       return color
     }
+
     if (type === 'opacity') {
       if (value['background-image'].match(/fill-opacity=('|")(.*?)('|")/g)) {
         return (
@@ -202,6 +197,7 @@ export const defaults = {
         )
       }
     }
+
     if (type === 'background-color') {
       return value['background-color']
     }

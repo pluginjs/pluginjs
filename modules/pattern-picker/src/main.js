@@ -66,7 +66,7 @@ class PatternPicker extends Component {
     this.bgColor = this.options.bgColor
     this.opacity = 1
     this.module = this.options.module
-
+    this.oldInfo = null
     this.$selecting = null
     this.$selected = null
     this.actived = false
@@ -182,10 +182,11 @@ class PatternPicker extends Component {
 
     this.TRIGGER = new Trigger(this)
     this.$fillImg = query(`.${this.classes.FILLIMG}`, this.TRIGGER.$fill)
-
+    
     this.$panel = this.createEl('panel', {
       classes: this.classes
     })
+
     this.$wrap.append(this.$panel)
 
     this.handelComponent()
@@ -251,10 +252,15 @@ class PatternPicker extends Component {
         this.$selected = this.$selecting
         if (this.$selected) {
           const data = JSON.parse(
-            JSON.stringify(getData('info', this.$selected))
+            JSON.stringify(getData('info', this.$fillImg))
           )
+
+          this.oldInfo = data
           setData('info', data, this.TRIGGER.$fill)
+        } else {
+          this.oldInfo = null
         }
+        
         this.switchModule(this.module)
         this.leave('save')
       },
@@ -341,7 +347,7 @@ class PatternPicker extends Component {
 
     this.setAttr(key, this.$fillImg)
   }
-
+  
   setAttr(key, el) {
     const info = getData('info', el)
     if (!info) {
@@ -353,11 +359,12 @@ class PatternPicker extends Component {
       const reg = new RegExp(`${attr}='(.*?)'`, 'g')
 
       const img = info['background-image'].replace(reg, `${attr}='${val}'`)
-
+      
       info['background-image'] = img
     } else {
       info['background-color'] = this.bgColor
     }
+
     setData('info', info, el)
     this.setInfo(el)
   }
@@ -417,11 +424,12 @@ class PatternPicker extends Component {
 
   setPlugins() {
     this.$selected = this.$selecting
+ 
     if (!this.$selected) {
       return
     }
 
-    const info = JSON.parse(JSON.stringify(getData('info', this.$selected)))
+    const info = JSON.parse(JSON.stringify(getData('info', this.$selecting)))
     setData('info', info, this.$fillImg)
 
     if (info['background-color']) {
@@ -435,6 +443,7 @@ class PatternPicker extends Component {
     this.OPACITY.val(`${this.options.format(info, 'opacity')}%`)
 
     // set preview
+
     this.setInfo(this.$fillImg)
   }
 
@@ -467,8 +476,10 @@ class PatternPicker extends Component {
       }
     } else if (!this.$selected) {
       this.clear()
+    } else if (this.oldInfo === null) {
+      this.clear()
     } else {
-      const info = JSON.parse(JSON.stringify(getData('info', this.$selected)))
+      const info =  this.oldInfo
 
       setData('info', info, this.$fillImg)
 
@@ -477,11 +488,11 @@ class PatternPicker extends Component {
       } else {
         info['background-color'] = this.options.bgColor
       }
-
+  
       this.BGCOLOR.val(this.options.format(info, 'background-color'))
       this.FORECOLOR.val(this.options.format(info, 'color'))
       this.OPACITY.val(`${this.options.format(info, 'opacity')}%`)
-
+      
       // set preview
       this.setInfo(this.$fillImg)
     }
@@ -495,8 +506,9 @@ class PatternPicker extends Component {
     if (!this.imgs || !data) {
       return
     }
-    const name = data.name
 
+    const name = data.name
+   
     if (!this.imgs[name]) {
       return
     }
@@ -508,6 +520,7 @@ class PatternPicker extends Component {
       this.COLLECTION.$selectorList
     ).forEach($this => {
       const info = getData('info', $this)
+ 
       removeClass(this.classes.COLLECTIONITEMACTIVE, $this)
       if (info.name === name) {
         if (data['background-color']) {
@@ -515,12 +528,12 @@ class PatternPicker extends Component {
         } else {
           data['background-color'] = this.bgColor
         }
+        
         addClass(this.classes.COLLECTIONITEMACTIVE, $this)
         // getObjData('info', data, $this)
+    
         setData('info', data, this.$fillImg)
-
         this.$selecting = $this
-
         this.BGCOLOR.val(this.options.format(data, 'background-color'))
         this.FORECOLOR.val(this.options.format(data, 'color'))
         this.OPACITY.val(`${this.options.format(data, 'opacity')}%`)
@@ -536,7 +549,9 @@ class PatternPicker extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
+
     const val = this.options.parse.call(this, value)
+
     this.set(val, trigger)
     return null
   }

@@ -376,7 +376,7 @@ class ColorPicker extends Component {
       return this.get()
     }
 
-    this.set(color, trigger )
+    this.set(color, trigger)
     return null
   }
 
