@@ -3,6 +3,7 @@ import Units from '@pluginjs/units'
 import { prependTo, wrap, unwrap } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { deepMerge } from '@pluginjs/utils'
+import { isObject } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -32,6 +33,25 @@ import {
 class UnitsRange extends Units {
   constructor(element, options = {}) {
     super(element, options)
+
+    if (
+      isObject(this.options.units) &&
+      Object.keys(this.options.units).length === 0
+    ) {
+      this.options.units = {
+        inherit: false,
+        px: {
+          min: 0,
+          max: 150,
+          step: 1
+        },
+        '%': {
+          min: 0,
+          max: 100,
+          step: 1
+        }
+      }
+    }
   }
 
   build() {

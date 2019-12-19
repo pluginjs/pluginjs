@@ -35,9 +35,6 @@ class Units extends Component {
   constructor(element, options = {}) {
     super(element)
     this.setupOptions(options)
-    if (options.units) {
-      this.options.units = options.units
-    }
     this.setupClasses()
 
     if (
@@ -266,11 +263,11 @@ class Units extends Component {
         if (trigger) {
           this.trigger(EVENTS.CHANGEINPUT, this.value.input)
         }
-        
+
         changed = true
       }
     }
-    
+
     if (changed && trigger) {
       if (this.value.input) {
         this.element.value = this.val()

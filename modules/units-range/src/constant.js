@@ -23,18 +23,4 @@ export const methods = deepMerge(Units.methods, [])
 
 export const defaults = deepMerge(Units.defaults, {})
 
-defaults.units = {
-  inherit: false,
-  px: {
-    min: 0,
-    max: 150,
-    step: 1
-  },
-  '%': {
-    min: 0,
-    max: 100,
-    step: 1
-  }
-}
-
 export const dependencies = ['units', 'range']
