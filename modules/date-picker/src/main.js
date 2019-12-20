@@ -2164,7 +2164,7 @@ class DatePicker extends Component {
     return undefined  /* eslint-disable-line */
   }
 
-  set(value) {
+  set(value, trigger = true) {
     if (typeof value === 'undefined') {
       return
     }
@@ -2173,7 +2173,7 @@ class DatePicker extends Component {
     this.privateDate.currentDate = [new Date(selectedDate)]
     this.privateDate.selectedDate = [new Date(selectedDate)]
     this.updateDate(0)
-    this.setValue()
+    this.setValue(trigger)
 
     for (let i = 0; i < this.views.length; i++) {
       this.views[i] = 'days'
