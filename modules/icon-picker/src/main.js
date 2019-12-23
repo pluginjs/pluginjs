@@ -285,11 +285,11 @@ class IconPicker extends Component {
     }
   }
 
-  val(value) {
+  val(value, trigger = true) {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-    return this.set(this.options.parse.call(this, value))
+    return this.set(this.options.parse.call(this, value), trigger)
   }
 
   get() {

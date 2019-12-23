@@ -375,8 +375,9 @@ class ColorPicker extends Component {
     if (!color) {
       return this.get()
     }
-
+    
     this.set(color, trigger)
+    
     return null
   }
 
@@ -384,7 +385,7 @@ class ColorPicker extends Component {
     return this.color
   }
 
-  set(val, trigger = true,  ) {
+  set(val, trigger = true) {
     this.enter('save')
     if (isNull(val)) {
       this.color = this.options.defaultColor || '#000'

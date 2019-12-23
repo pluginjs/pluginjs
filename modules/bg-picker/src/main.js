@@ -218,6 +218,7 @@ class BgPicker extends Component {
     this.value.image = url.image
     this.value.id = url.id
     this.$imageName.innerHTML = this.value.image
+    this.PREVIEW.set(url.image)
   }
 
   update() {
