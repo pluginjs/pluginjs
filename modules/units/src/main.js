@@ -77,7 +77,7 @@ class Units extends Component {
   }
 
   initialize() {
-    this.set(this.options.parse.call(this, this.element.value), false)
+    this.val(this.element.value, false)
     this.build()
     this.bind()
 
@@ -248,9 +248,9 @@ class Units extends Component {
       if (!isUndefined(value.unit) && value.unit !== this.value.unit) {
         this.value.unit = value.unit ? value.unit : this.getDefaultUnit()
         html(this.value.unit, this.$trigger)
-        if (trigger) {
-          this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
-        }
+ 
+        this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
+        
         changed = true
       }
 
@@ -260,10 +260,8 @@ class Units extends Component {
           this.cached[this.getUnit()] = value.input
         }
 
-        if (trigger) {
-          this.trigger(EVENTS.CHANGEINPUT, this.value.input)
-        }
-
+        this.trigger(EVENTS.CHANGEINPUT, this.value.input)
+     
         changed = true
       }
     }

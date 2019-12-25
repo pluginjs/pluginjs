@@ -157,13 +157,23 @@ class Offset extends Component {
     if (!value || typeof value === 'undefined') {
       return
     }
-    this.$top.value = value.top
-    this.$right.value = value.right
-    this.$bottom.value = value.bottom
-    this.$left.value = value.left
-    if (typeof value.unit !== 'undefined') {
-      this.unit.set(value.unit)
-    }
+
+    if(JSON.stringify(value) =="{}") {
+      this.$top.value = '';
+      this.$right.value = '';
+      this.$bottom.value = '';
+      this.$left.value = '';
+    } else {
+      this.$top.value = value.top
+      this.$right.value = value.right
+      this.$bottom.value = value.bottom
+      this.$left.value = value.left
+
+      if (typeof value.unit !== 'undefined') {
+        this.unit.set(value.unit)
+      }
+    } 
+    
     this.update(trigger)
   }
 

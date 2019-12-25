@@ -289,7 +289,7 @@ class Range extends Component {
     return this.set(this.options.parse.call(this, value), trigger)
   }
 
-  update(options) {
+  update(options, trigger = true, update = true, force = true) {
     let value
 
     if (options.value) {
@@ -307,7 +307,7 @@ class Range extends Component {
 
     this.interval = this.max - this.min
 
-    this.set(value, true, true, true)
+    this.set(value, trigger, update, force)
   }
 
   enable() {

@@ -88,7 +88,7 @@ class UnitsRange extends Units {
     bindEvent(
       this.selfEventName(EVENTS.CHANGEINPUT),
       () => {
-        this.RANGE.set(this.value.input, true, false)
+        this.RANGE.set(this.value.input, false, true)
       },
       this.element
     )
@@ -97,11 +97,10 @@ class UnitsRange extends Units {
       this.selfEventName(EVENTS.CHANGEUNIT),
       (e, instance, unit) => {
         const options = this.getRangeOption(unit)
-
         if (this.RANGE.is('disabled')) {
           this.RANGE.enable()
         }
-        this.RANGE.update(options, true)
+        this.RANGE.update(options, false, true, false)
       },
       this.element
     )

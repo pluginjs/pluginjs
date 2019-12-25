@@ -409,6 +409,7 @@ class ColorSelector extends Component {
     const val = this.options.parse.call(this, color)
 
     this.set(val, trigger)
+    
     return null
   }
 
