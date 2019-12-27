@@ -211,8 +211,8 @@ class ImagePicker extends Component {
   }
 
   clear(update = true) {
-    this.value = {}
-    this.$image.setAttribute('src', null)
+    this.value = null
+    this.$image.setAttribute('src', '')
 
     this.setState('write')
 

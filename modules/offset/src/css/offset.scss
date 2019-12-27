@@ -6,7 +6,7 @@ $offset: "pj-offset" !default;
 $select: "pj-select" !default;
 $offset-sizer: $sizer !default;
 
-$offset-input-width: 5.0 * $offset-sizer !default; //50px
+$offset-input-width: 5.5 * $offset-sizer !default; //50px
 $offset-input-height: 3.2 * $offset-sizer !default; //3.2px
 $offset-input-border: 1px solid rgba(230,230,230,1);
 
@@ -34,10 +34,10 @@ $connect-active-bg: $gray-lightest !default;
     position: relative;
     box-sizing: border-box;
     display: flex;
+  }
 
-    .pj-select {
-      width: 65px;
-    }
+  &-size {
+    max-width: $offset-input-width;
   }
 
   &-connect {
@@ -57,7 +57,7 @@ $connect-active-bg: $gray-lightest !default;
 
   &-input {
     box-sizing: border-box;
-    width: $offset-input-width !important;
+    width: 100%;
     height: $offset-input-height;
     border: $offset-input-border;
     border-right: none;
