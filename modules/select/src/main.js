@@ -353,8 +353,8 @@ class Select extends Component {
     return this.value
   }
 
-  clear() {
-    this.set(null)
+  clear(trigger = false) {
+    this.set(null, trigger)
   }
 
   getOptionLabel(option) {

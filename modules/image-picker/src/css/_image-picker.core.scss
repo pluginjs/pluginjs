@@ -45,6 +45,9 @@ input.#{$imagePicker}-input {
   &-fill-image {
     width: 100%;
     height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   &-write {

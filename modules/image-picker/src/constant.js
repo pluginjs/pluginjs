@@ -49,7 +49,7 @@ export const defaults = {
       '<i class="pj-icon pj-icon-image"></i>{placeholder}' +
       '</div>' +
       '<div class="{classes.FILL}">' +
-      '<img class="{classes.FILLIMAGE}" src="">' +
+      '<div class="{classes.FILLIMAGE}" />' +
       '</div>' +
       '<div class="{classes.TRIGGERACTION}">' +
       '<i class="{classes.RESELECT} pj-icon pj-icon-upload"></i>' +

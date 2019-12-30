@@ -4,6 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, parentWith, parseHTML, insertAfter } from '@pluginjs/dom'
+import { setStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
 import {
   eventable,
@@ -212,8 +213,8 @@ class ImagePicker extends Component {
 
   clear(update = true) {
     this.value = null
-    this.$image.setAttribute('src', '')
-
+    // this.$image.setAttribute('src', '')
+    setStyle({ 'background-image': 'none' }, this.$image)
     this.setState('write')
 
     this.update(update)
@@ -230,8 +231,8 @@ class ImagePicker extends Component {
     }
 
     this.value = value
-    this.$image.setAttribute('src', value.image)
-
+    // this.$image.setAttribute('src', value.image)
+    setStyle({ 'background-image': `url(${value.image})` }, this.$image)
     this.setState('exist')
 
     this.update(update)
