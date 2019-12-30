@@ -209,7 +209,7 @@ class VideoPicker extends Component {
       target: this.$dropdown,
       reference: this.TRIGGER.element,
       templates: this.options.template,
-      hideOutClick: true,
+      hideOutClick: this.options.hideOutClick,
       hideOnSelect: false,
       onShow: () => {
         if (!this.DROPDOWN.is('builded')) {
@@ -575,19 +575,23 @@ class VideoPicker extends Component {
       }
     })
 
-    this.$fillCover.setAttribute('src', this.data.poster)
+     if(this.data.poster){
+      this.$fillCover.setAttribute('src', this.data.poster)
+      addClass(this.classes.SHOW, this.$wrap)
+     }
 
     if (this.videoApi) {
       this.videoApi.stop()
     }
     this.element.value = this.val()
-    addClass(this.classes.SHOW, this.$wrap)
+
   }
 
   set(data, trigger = true) {
     if (!data || typeof data === 'undefined') {
       return
     }
+
     this.data = Object.assign({}, this.data, data)
 
     if (trigger) {

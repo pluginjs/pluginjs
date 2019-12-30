@@ -74,7 +74,7 @@ class BgPicker extends Component {
     this.IMAGE = new Image(this)
 
     this.value = this.element.value
-
+    
     this.val(this.value, false)
 
     this.bind()

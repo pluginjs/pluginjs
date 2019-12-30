@@ -74,6 +74,7 @@ export const methods = ['set', 'get', 'val', 'enable', 'disable', 'destroy']
 export const defaults = {
   theme: null,
   locale: 'en',
+  hideOutClick: true,
   sources: ['YouTube', 'Vimeo', 'Local File'],
   disabled: false,
   date: null,
