@@ -17,7 +17,6 @@ export const classes = {
   WRAP: '{namespace}-wrap',
   INPUT: '{namespace}-input',
   HAHA: '{namespace}-haha',
-  ALLSIZE: '{namespace}-allsize',
   TOP: '{namespace}-top',
   RIGHT: '{namespace}-right',
   BOTTOM: '{namespace}-bottom',
@@ -68,9 +67,6 @@ export const defaults = {
   templates: {
     wrap() {
       return '<div class="{classes.WRAP}"></div>'
-    },
-    allsize() {
-      return '<div class="{classes.ALLSIZE}"></div>'
     },
     size() {
       return `<div class="{classes.SIZE}">

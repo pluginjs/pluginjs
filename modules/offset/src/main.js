@@ -104,7 +104,7 @@ class Offset extends Component {
 
   create() {
     this.$wrap = this.createEl('wrap', { classes: this.classes })
-    this.$allsize = this.createEl('allsize', { classes: this.classes })
+
     const top = this.createEl('size', {
       classes: this.classes,
       field: this.classes.TOP,
@@ -126,12 +126,12 @@ class Offset extends Component {
       reverse: 'LEFT'
     })
 
-    appendTo(top, this.$allsize)
-    appendTo(right, this.$allsize)
-    appendTo(bottom, this.$allsize)
-    appendTo(left, this.$allsize)
+
+    appendTo(top, this.$wrap)
+    appendTo(right, this.$wrap)
+    appendTo(bottom, this.$wrap)
+    appendTo(left, this.$wrap)
     insertAfter(this.$wrap, this.element)
-    appendTo(this.$allsize, this.$wrap)
 
     this.$top = query(`.${this.classes.TOP}`, this.$wrap)
     this.$right = query(`.${this.classes.RIGHT}`, this.$wrap)

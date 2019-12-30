@@ -9,6 +9,7 @@ $offset-sizer: $sizer !default;
 $offset-input-width: 5.5 * $offset-sizer !default; //50px
 $offset-input-height: 3.2 * $offset-sizer !default; //3.2px
 $offset-input-border: 1px solid rgba(230,230,230,1);
+$offset-input-padding: .8 * $offset-sizer !default; //8px
 
 $offset-lock-width: 5.0 * $offset-sizer !default; //50px
 $offset-lock-height: 3.2 * $offset-sizer !default; //3.2px
@@ -20,7 +21,9 @@ $offset-unit-margin-left: 1.0 * $offset-sizer !default; //10px
 
 $offset-size-label-height: 1.2 * $offset-sizer !default; //64px
 $offset-size-label-color: rgba(179,179,179,1);
-$offset-size-label-margin-top: 1.2 * $offset-sizer !default; //10px;
+$offset-size-label-margin-top: 1.0 * $offset-sizer !default; //10px;
+$offset-size-label-font-size: 1.0 * $offset-sizer !default; //10px;
+
 // connect
 $connect-width: 2.5 * $offset-sizer !default; //25px
 $connect-height: $connect-width !default;
@@ -50,15 +53,11 @@ $connect-active-bg: $gray-lightest !default;
     }
   }
 
-  &-allsize {
-    position: relative;
-    display: flex;
-  }
-
   &-input {
     box-sizing: border-box;
     width: 100%;
     height: $offset-input-height;
+    padding: $offset-input-padding;
     border: $offset-input-border;
     border-right: none;
   }
@@ -92,8 +91,8 @@ $connect-active-bg: $gray-lightest !default;
 
   &-size-label {
     height: $offset-size-label-height;
-    margin-top: 10px;
-    font-size: 10px;
+    margin-top: $offset-size-label-margin-top;
+    font-size: $offset-size-label-font-size;
     line-height: $offset-size-label-height;
     color: $offset-size-label-color;
     text-align: center;
@@ -102,7 +101,7 @@ $connect-active-bg: $gray-lightest !default;
 /* stylelint-disable */
 .#{$offset}-disabled {
 
-  .#{$offset}-allsize {
+  .#{$offset}-size {
     cursor: not-allowed;
   }
 
