@@ -17,7 +17,7 @@ import {
 import { addClass, removeClass } from '@pluginjs/classes'
 import { parent, query, queryAll, getData, attr } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEventOnce, removeEvent } from '@pluginjs/events'
 
 @styleable(CLASSES)
 @eventable(EVENTS)
@@ -94,7 +94,7 @@ class Lazyload extends Viewport {
   }
 
   bind() {
-    bindEvent(
+    bindEventOnce(
       'viewport:enter',
       () => {
         this.load()
