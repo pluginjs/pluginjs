@@ -249,12 +249,14 @@ class List extends Component {
     return data
   }
 
-  set(data) {
+  set(data, trigger = true) {
     if (isArray(data) && !arrayEqual(data, this.data)) {
       this.data = this.processData(data)
       this.buildItems()
       this.element.value = this.val()
-      this.trigger(EVENTS.CHANGE, this.val())
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, this.val())
+      }
     }
   }
 
@@ -262,14 +264,14 @@ class List extends Component {
     return this.data
   }
 
-  val(data) {
+  val(data, trigger = true) {
     if (typeof data === 'undefined') {
       return this.options.process(this.get())
     }
 
     data = this.options.parse.call(this, data)
 
-    return this.set(data)
+    return this.set(data, trigger)
   }
 
   getItems() {

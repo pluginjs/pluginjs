@@ -79,7 +79,6 @@ export default class Trigger {
           return
         }
         addClass(that.classes.OPENDISABLE, that.$trigger)
-        // addClass(that.classes.SHOW, that.$wrap)
         return
       },
       this.$empty
@@ -112,8 +111,7 @@ export default class Trigger {
         if (that.instance.is('disabled')) {
           return
         }
-        // removeClass(this.classes.EXSIT, this.$wrap)
-        addClass(that.classes.SHOW, that.instance.$wrap)
+
         addClass(that.classes.OPENDISABLE, that.$trigger)
         that.instance.DROPDOWN.show()
         return false /* eslint-disable-line */
@@ -164,10 +162,7 @@ export default class Trigger {
       this.instance.value.fontFamily &&
       this.instance.value.fontFamily !== 'inherit'
     ) {
-      compose(
-        removeClass(this.classes.SHOW),
-        addClass(this.classes.EXSIT)
-      )(this.instance.$wrap)
+      addClass(this.classes.EXSIT, this.instance.$wrap)
     }
   }
 }

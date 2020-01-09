@@ -149,8 +149,6 @@ class FontEditor extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        removeClass(that.classes.SHOW, that.$wrap)
-        // addClass(that.classes.EXSIT, that.$wrap)
         that.DROPDOWN.hide()
         return
       },
@@ -161,7 +159,6 @@ class FontEditor extends Component {
       this.eventName('click'),
       () => {
         addClass(that.classes.EXSIT, that.$wrap)
-        removeClass(that.classes.SHOW, that.$wrap)
         removeClass(that.classes.WRITE, that.$wrap)
         that.update()
         that.DROPDOWN.hide()

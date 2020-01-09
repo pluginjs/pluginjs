@@ -191,7 +191,14 @@ class Offset extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
-    return this.set(this.options.parse.call(this, value), trigger)
+
+    if(value && typeof(value) == "object"){
+      var valueObj = value
+    } else {
+      var valueObj = this.options.parse.call(this, value);
+    }
+
+    return this.set(valueObj, trigger)
   }
 
   enable() {

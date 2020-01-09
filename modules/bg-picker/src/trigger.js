@@ -26,7 +26,7 @@ export default class Trigger {
 
   bind() {
     bindEvent(
-      this.instance.eventName('click'),
+      this.instance.eventName('mousedown'),
       () => {
         if (this.instance.is('disabled')) {
           return

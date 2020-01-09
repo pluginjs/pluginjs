@@ -452,12 +452,16 @@ class Dropdown extends Component {
       this.setupPopper()
       addClass(this.classes.SHOW, this.$dropdown)
       this.$trigger.setAttribute('aria-expanded', 'true')
-
       if (this.options.hideOutClick) {
         bindEvent(
           this.eventNameWithId('mousedown'),
           e => {
+            this.$mediaModals = queryAll('.media-modal', document)
+            this.$mediaModal = this.$mediaModals[this.$mediaModals.length - 1]
+            
             if (
+              e.target === this.$mediaModal ||
+              (this.$mediaModal ? has(e.target, this.$mediaModal) : null) ||
               e.target === this.$dropdown ||
               has(e.target, this.$dropdown) ||
               e.target === this.$trigger ||
@@ -465,7 +469,7 @@ class Dropdown extends Component {
             ) {
               return
             }
-
+    
             this.hide()
           },
           document
@@ -484,7 +488,7 @@ class Dropdown extends Component {
       this.$trigger.setAttribute('aria-expanded', 'false')
 
       if (this.options.hideOutClick) {
-        removeEvent(this.eventNameWithId('click'), document)
+        removeEvent(this.eventNameWithId('mousedown'), document)
       }
 
       this.leave('shown')

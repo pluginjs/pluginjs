@@ -45,6 +45,7 @@
     "@pluginjs/factory": "^0.7.18",
     "@pluginjs/is": "^0.7.17",
     "@pluginjs/pop-dialog": "^0.7.20",
+    "@pluginjs/styled": "^0.7.19",
     "@pluginjs/template": "^0.7.18",
     "@pluginjs/utils": "^0.7.18"
   },

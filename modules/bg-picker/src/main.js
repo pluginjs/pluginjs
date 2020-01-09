@@ -118,10 +118,15 @@ class BgPicker extends Component {
 
   bind() {
     bindEvent(
-      this.eventName('click'),
+      this.eventName('mousedown'),
       e => {
         if (this.options.hideOutClick) {
+          this.$mediaModals = queryAll('.media-modal', document)
+          this.$mediaModal = this.$mediaModals[this.$mediaModals.length - 1]
+          
           if (
+            e.target === this.$mediaModal ||
+            (this.$mediaModal ? has(e.target, this.$mediaModal) : null) ||
             e.target === this.TRIGGER.$trigger ||
             has(e.target, this.TRIGGER.$trigger) ||
             e.target === this.$dropdown ||
@@ -129,13 +134,9 @@ class BgPicker extends Component {
           ) {
             return
           }
-          if (this.is('status')) {
-            removeClass(this.classes.SHOW, this.$wrap)
-            removeClass(this.classes.WRITE, this.$wrap)
-          } else {
-            removeClass(this.classes.SHOW, this.$wrap)
-            removeClass(this.classes.WRITE, this.$wrap)
-          }
+   
+          removeClass(this.classes.SHOW, this.$wrap)
+          removeClass(this.classes.WRITE, this.$wrap)
           removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
         }
       },
@@ -215,10 +216,24 @@ class BgPicker extends Component {
   }
 
   changeImage(url) {
-    this.value.image = url.image
-    this.value.id = url.id
-    this.$imageName.innerHTML = this.value.image
-    this.PREVIEW.set(url.image)
+    if(url.image) {
+      this.value.image = url.image
+      this.value.id = url.id
+      this.$imageName.innerHTML = this.value.image
+      this.PREVIEW.set(url.image)
+      if(this.is('imageSelecting')) {
+        addClass(this.classes.IMAGESELECTED, this.IMAGE.image)
+        removeClass(
+          this.classes.SELECTEDDISABLE,
+          query(`.${this.classes.IMAGECHANGE}`, this.IMAGE.image)
+        )
+        this.leave('imageSelecting')
+      } else if(this.is('imageChanging')) {
+        removeClass(this.classes.IMAGEENTERCHANGE, this.IMAGE.image)
+        addClass(this.classes.IMAGECHANGEDDISABLE, this.IMAGE.image)
+        this.leave('imageChanging')
+      }
+    }
   }
 
   update() {
@@ -231,7 +246,7 @@ class BgPicker extends Component {
       return this.options.process.call(this, this.value)
     }
 
-    if(typeof(value) == "object"){
+    if(value && typeof(value) == "object"){
       var valueObj = value
     } else {
       var valueObj = this.options.parse.call(this, value);
@@ -294,6 +309,7 @@ class BgPicker extends Component {
     this.$imageSelected = query(`.${this.classes.IMAGESELECTED}`, this.$wrap)
     removeClass(this.classes.EXIST, this.$wrap)
     removeClass(this.classes.IMAGESELECTED, this.$imageSelected)
+    removeClass(this.classes.IMAGEENTERCHANGE, this.$imageSelected)
     removeClass(this.classes.IMAGECHANGEDDISABLE, this.$imageSelected)
     if (update !== false) {
       const image = ''

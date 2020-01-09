@@ -39,13 +39,7 @@ export default class Image {
         this.instance.eventName('click'),
         `.${this.instance.classes.IMAGESELECT}`,
         () => {
-          this.instance.leave('imageChange')
-          addClass(this.instance.classes.IMAGESELECTED, this.image)
-          addClass(this.instance.classes.SHOW, this.instance.$wrap)
-          removeClass(
-            this.instance.classes.SELECTEDDISABLE,
-            query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
-          )
+          this.instance.enter('imageSelecting')
           this.instance.options.selectPicture.call(
             this.instance,
             this.instance.changeImage.bind(this.instance)
@@ -63,15 +57,12 @@ export default class Image {
         this.instance.eventName('click'),
         `.${this.instance.classes.IMAGECHANGE}`,
         () => {
-          if (!this.instance.is('imageChange')) {
-            removeClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
+
+            this.instance.enter('imageChanging')
             this.instance.options.changePicture.call(
               this.instance,
               this.instance.changeImage.bind(this.instance)
             )
-            addClass(this.instance.classes.IMAGECHANGEDDISABLE, this.image)
-          }
-          this.instance.enter('imageChange')
         }
       ),
       bindEvent(
@@ -81,7 +72,6 @@ export default class Image {
           removeClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
           removeClass(this.instance.classes.IMAGECHANGEDDISABLE, this.image)
           this.removeImage()
-          this.instance.leave('imageChange')
         }
       )
     )(this.$wrap)
@@ -100,6 +90,7 @@ export default class Image {
     const disabled = query(`.${this.instance.classes.IMAGECHANGE}`, this.image)
     const name = query(`.${this.instance.classes.IMAGENAME}`, this.image)
     removeClass(this.instance.classes.IMAGEENTERCHANGE, this.image)
+    removeClass(this.instance.classes.IMAGECHANGEDDISABLE, this.image)
     removeClass(this.instance.classes.SELECTEDDISABLE, disabled)
     addClass(this.instance.classes.IMAGESELECTED, this.image)
     name.innerHTML = value
