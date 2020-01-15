@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.31",
+  "version": "0.7.32",
   "category": "form",
   "main": "dist/gallery-picker.common.js",
   "module": "dist/gallery-picker.esm.js",
@@ -37,23 +37,23 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.19",
-    "@pluginjs/component": "^0.7.16",
-    "@pluginjs/decorator": "^0.7.20",
-    "@pluginjs/dom": "^0.7.19",
-    "@pluginjs/dropdown": "^0.7.28",
-    "@pluginjs/events": "^0.7.18",
-    "@pluginjs/factory": "^0.7.18",
-    "@pluginjs/is": "^0.7.17",
-    "@pluginjs/pop-dialog": "^0.7.20",
-    "@pluginjs/scrollable": "^0.7.22",
-    "@pluginjs/styled": "^0.7.19",
-    "@pluginjs/template": "^0.7.18",
-    "@pluginjs/utils": "^0.7.18"
+    "@pluginjs/classes": "^0.7.20",
+    "@pluginjs/component": "^0.7.17",
+    "@pluginjs/decorator": "^0.7.21",
+    "@pluginjs/dom": "^0.7.20",
+    "@pluginjs/dropdown": "^0.7.29",
+    "@pluginjs/events": "^0.7.19",
+    "@pluginjs/factory": "^0.7.19",
+    "@pluginjs/is": "^0.7.18",
+    "@pluginjs/pop-dialog": "^0.7.21",
+    "@pluginjs/scrollable": "^0.7.23",
+    "@pluginjs/styled": "^0.7.20",
+    "@pluginjs/template": "^0.7.19",
+    "@pluginjs/utils": "^0.7.19"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
-    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/browserslist-config": "^1.2.14",
     "@pluginjs/cli": "^0.7.15",
     "babel-jest": "*",
     "jest": "*",

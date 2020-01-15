@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.21",
+  "version": "0.7.22",
   "category": "utils",
   "main": "dist/fullscreen.common.js",
   "module": "dist/fullscreen.esm.js",
@@ -33,12 +33,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "^0.7.20",
-    "@pluginjs/factory": "^0.7.18"
+    "@pluginjs/emitter": "^0.7.21",
+    "@pluginjs/factory": "^0.7.19"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
-    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/browserslist-config": "^1.2.14",
     "@pluginjs/cli": "^0.7.15",
     "babel-jest": "*",
     "jest": "*",

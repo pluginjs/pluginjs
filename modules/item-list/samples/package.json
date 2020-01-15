@@ -3,22 +3,22 @@
   "name": "item-list-samples",
   "description": "Simple item-list example",
   "license": "GPL-3.0",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.19",
+    "@pluginjs/dom": "^0.7.20",
     "@pluginjs/icons": "^0.7.3",
-    "@pluginjs/item-list": "^0.7.21",
+    "@pluginjs/item-list": "^0.7.22",
     "@pluginjs/styles": "^0.7.11"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
-    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/browserslist-config": "^1.2.14",
     "parcel-bundler": "^1.12.4",
     "posthtml-include": "*"
   },

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.27",
+  "version": "0.7.28",
   "category": "form",
   "main": "dist/swipe.common.js",
   "module": "dist/swipe.esm.js",
@@ -37,22 +37,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/arrows": "^0.7.21",
-    "@pluginjs/classes": "^0.7.19",
-    "@pluginjs/component": "^0.7.16",
-    "@pluginjs/decorator": "^0.7.20",
-    "@pluginjs/dom": "^0.7.19",
-    "@pluginjs/dots": "^0.7.21",
-    "@pluginjs/events": "^0.7.18",
-    "@pluginjs/feature": "^0.7.16",
-    "@pluginjs/is": "^0.7.17",
-    "@pluginjs/styled": "^0.7.19",
-    "@pluginjs/swipeable": "^0.7.23",
-    "@pluginjs/template": "^0.7.18"
+    "@pluginjs/arrows": "^0.7.22",
+    "@pluginjs/classes": "^0.7.20",
+    "@pluginjs/component": "^0.7.17",
+    "@pluginjs/decorator": "^0.7.21",
+    "@pluginjs/dom": "^0.7.20",
+    "@pluginjs/dots": "^0.7.22",
+    "@pluginjs/events": "^0.7.19",
+    "@pluginjs/feature": "^0.7.17",
+    "@pluginjs/is": "^0.7.18",
+    "@pluginjs/styled": "^0.7.20",
+    "@pluginjs/swipeable": "^0.7.24",
+    "@pluginjs/template": "^0.7.19"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
-    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/browserslist-config": "^1.2.14",
     "@pluginjs/cli": "^0.7.15",
     "babel-jest": "*",
     "jest": "*",

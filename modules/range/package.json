@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.22",
+  "version": "0.7.23",
   "category": "form",
   "main": "dist/range.common.js",
   "module": "dist/range.esm.js",
@@ -37,20 +37,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.19",
-    "@pluginjs/component": "^0.7.16",
-    "@pluginjs/decorator": "^0.7.20",
-    "@pluginjs/dom": "^0.7.19",
-    "@pluginjs/events": "^0.7.18",
-    "@pluginjs/factory": "^0.7.18",
-    "@pluginjs/is": "^0.7.17",
-    "@pluginjs/keyboard": "^0.7.20",
-    "@pluginjs/styled": "^0.7.19",
-    "@pluginjs/utils": "^0.7.18"
+    "@pluginjs/classes": "^0.7.20",
+    "@pluginjs/component": "^0.7.17",
+    "@pluginjs/decorator": "^0.7.21",
+    "@pluginjs/dom": "^0.7.20",
+    "@pluginjs/events": "^0.7.19",
+    "@pluginjs/factory": "^0.7.19",
+    "@pluginjs/is": "^0.7.18",
+    "@pluginjs/keyboard": "^0.7.21",
+    "@pluginjs/styled": "^0.7.20",
+    "@pluginjs/utils": "^0.7.19"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
-    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/browserslist-config": "^1.2.14",
     "@pluginjs/cli": "^0.7.15",
     "babel-jest": "*",
     "jest": "*",

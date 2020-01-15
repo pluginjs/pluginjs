@@ -3,23 +3,23 @@
   "name": "pattern-picker-samples",
   "description": "Simple pattern-picker example",
   "license": "GPL-3.0",
-  "version": "1.1.41",
+  "version": "1.1.42",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.19",
+    "@pluginjs/dom": "^0.7.20",
     "@pluginjs/icons": "^0.7.3",
-    "@pluginjs/pattern-picker": "^0.7.41",
+    "@pluginjs/pattern-picker": "^0.7.42",
     "@pluginjs/styles": "^0.7.11",
     "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
-    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/browserslist-config": "^1.2.14",
     "parcel-bundler": "^1.12.4",
     "posthtml-include": "*"
   },

@@ -3,21 +3,21 @@
   "name": "section-scroll-samples",
   "description": "Simple section-scroll example",
   "license": "GPL-3.0",
-  "version": "1.1.28",
+  "version": "1.1.29",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.19",
-    "@pluginjs/dom": "^0.7.19",
-    "@pluginjs/section-scroll": "^0.7.28"
+    "@pluginjs/classes": "^0.7.20",
+    "@pluginjs/dom": "^0.7.20",
+    "@pluginjs/section-scroll": "^0.7.29"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
-    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/browserslist-config": "^1.2.14",
     "parcel-bundler": "^1.12.4",
     "posthtml-include": "*"
   },

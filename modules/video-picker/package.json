@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.35",
+  "version": "0.7.36",
   "category": "form",
   "main": "dist/video-picker.common.js",
   "module": "dist/video-picker.esm.js",
@@ -37,22 +37,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.19",
-    "@pluginjs/component": "^0.7.16",
-    "@pluginjs/decorator": "^0.7.20",
-    "@pluginjs/dom": "^0.7.19",
-    "@pluginjs/dropdown": "^0.7.28",
-    "@pluginjs/events": "^0.7.18",
-    "@pluginjs/pop-dialog": "^0.7.20",
-    "@pluginjs/select": "^0.7.31",
-    "@pluginjs/styled": "^0.7.19",
-    "@pluginjs/template": "^0.7.18",
-    "@pluginjs/utils": "^0.7.18",
-    "@pluginjs/video": "^0.7.24"
+    "@pluginjs/classes": "^0.7.20",
+    "@pluginjs/component": "^0.7.17",
+    "@pluginjs/decorator": "^0.7.21",
+    "@pluginjs/dom": "^0.7.20",
+    "@pluginjs/dropdown": "^0.7.29",
+    "@pluginjs/events": "^0.7.19",
+    "@pluginjs/pop-dialog": "^0.7.21",
+    "@pluginjs/select": "^0.7.32",
+    "@pluginjs/styled": "^0.7.20",
+    "@pluginjs/template": "^0.7.19",
+    "@pluginjs/utils": "^0.7.19",
+    "@pluginjs/video": "^0.7.25"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
-    "@pluginjs/browserslist-config": "^1.2.12",
+    "@pluginjs/browserslist-config": "^1.2.14",
     "@pluginjs/cli": "^0.7.15",
     "babel-jest": "*",
     "jest": "*",
