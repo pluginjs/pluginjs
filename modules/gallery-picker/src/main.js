@@ -72,6 +72,7 @@ class GalleryPicker extends Component {
     }
 
     const value = this.options.parse(this.element.value)
+
     this.set(value, false)
 
     addClass(this.classes.EXIST, this.$wrap)
@@ -140,6 +141,7 @@ class GalleryPicker extends Component {
           if (this.is('disabled')) {
             return false
           }
+ 
           this.options.add.call(this, this.add.bind(this))
           return null
         }
@@ -192,7 +194,7 @@ class GalleryPicker extends Component {
     this.element.value = this.val()
 
     if (trigger) {
-      this.trigger(EVENTS.CHANGE, [this.value])
+      this.trigger(EVENTS.CHANGE, this.value)
       triggerNative(this.element, 'change')
     }
   }
@@ -334,7 +336,7 @@ class GalleryPicker extends Component {
     if (isArray(value)) {
       this.value = value
     } else if (isString(value)) {
-      this.value = [value]
+      this.value = this.options.parse(value)
     } else {
       this.value = []
     }
@@ -348,6 +350,7 @@ class GalleryPicker extends Component {
   add(item) {
     for (const key in item) {
       if ({}.hasOwnProperty.call(item, key)) {
+      
         this.value.push(item[key])
       }
     }

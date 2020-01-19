@@ -71,6 +71,7 @@ export default class Trigger {
         if (that.instance.is('disabled')) {
           return false
         }
+
         this.instance.options.add.call(
           this.instance,
           this.instance.set.bind(this.instance)
@@ -88,6 +89,7 @@ export default class Trigger {
           if (that.instance.is('disabled')) {
             return false
           }
+ 
           this.instance.options.add.call(
             this.instance,
             this.instance.add.bind(this.instance)
