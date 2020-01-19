@@ -135,7 +135,7 @@ class Dropdown extends Component {
         this.eventName('mouseenter'),
         () => {
           this.show()
-          return false
+          // return false
         },
         this.$trigger
       )
@@ -144,7 +144,7 @@ class Dropdown extends Component {
         this.eventName('mousedown'),
         () => {
           this.toggle()
-          return false
+          // return false
         },
         this.$trigger
       )
@@ -166,7 +166,6 @@ class Dropdown extends Component {
       `.${this.classes.ITEM}`,
       function() {
         const $item = this // eslint-disable-line
-
         if (!self.isItemOf($item)) {
           return
         }
@@ -458,7 +457,6 @@ class Dropdown extends Component {
           e => {
             this.$mediaModals = queryAll('.media-modal', document)
             this.$mediaModal = this.$mediaModals[this.$mediaModals.length - 1]
-            
             if (
               e.target === this.$mediaModal ||
               (this.$mediaModal ? has(e.target, this.$mediaModal) : null) ||
@@ -469,7 +467,7 @@ class Dropdown extends Component {
             ) {
               return
             }
-    
+            console.log(123)
             this.hide()
           },
           document

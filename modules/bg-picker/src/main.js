@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { parseHTML, insertAfter, query, has, insertBefore } from '@pluginjs/dom'
+import { parseHTML, insertAfter, query, queryAll, has, insertBefore } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { triggerNative } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
