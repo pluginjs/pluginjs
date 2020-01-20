@@ -17,10 +17,12 @@ $scrollTop-gutter: 20px !default;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
+  visibility: hidden;
   outline: none;
   opacity: 0;
 
   &-show {
+    visibility: visible;
     opacity: 1;
   }
 
