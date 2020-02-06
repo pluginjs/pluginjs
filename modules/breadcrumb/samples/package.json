@@ -3,14 +3,14 @@
   "name": "breadcrumb-samples",
   "description": "Simple breadcrumb example",
   "license": "GPL-3.0",
-  "version": "1.1.30",
+  "version": "1.1.31",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/breadcrumb": "^0.7.31",
+    "@pluginjs/breadcrumb": "^0.7.32",
     "@pluginjs/dom": "^0.7.20",
     "@pluginjs/styles": "^0.7.11",
     "bootstrap": "*"

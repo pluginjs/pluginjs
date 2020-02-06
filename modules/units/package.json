@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.32",
+  "version": "0.7.33",
   "category": "form",
   "main": "dist/units.common.js",
   "module": "dist/units.esm.js",
@@ -41,7 +41,7 @@
     "@pluginjs/component": "^0.7.17",
     "@pluginjs/decorator": "^0.7.21",
     "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/dropdown": "^0.7.29",
+    "@pluginjs/dropdown": "^0.7.30",
     "@pluginjs/events": "^0.7.19",
     "@pluginjs/is": "^0.7.18",
     "@pluginjs/styled": "^0.7.20"

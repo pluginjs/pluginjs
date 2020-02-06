@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.35",
+  "version": "0.7.36",
   "category": "form",
   "main": "dist/offset.common.js",
   "module": "dist/offset.esm.js",
@@ -41,15 +41,15 @@
     "@pluginjs/component": "^0.7.17",
     "@pluginjs/decorator": "^0.7.21",
     "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/dropdown": "^0.7.29",
+    "@pluginjs/dropdown": "^0.7.30",
     "@pluginjs/events": "^0.7.19",
     "@pluginjs/factory": "^0.7.19",
     "@pluginjs/is": "^0.7.18",
-    "@pluginjs/select": "^0.7.32",
+    "@pluginjs/select": "^0.7.33",
     "@pluginjs/styled": "^0.7.20",
     "@pluginjs/template": "^0.7.19",
     "@pluginjs/tooltip": "^0.7.21",
-    "@pluginjs/units": "^0.7.32"
+    "@pluginjs/units": "^0.7.33"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

@@ -3,7 +3,7 @@
   "name": "offset-samples",
   "description": "Simple offset example",
   "license": "GPL-3.0",
-  "version": "1.1.33",
+  "version": "1.1.34",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@pluginjs/dom": "^0.7.20",
     "@pluginjs/icons": "^0.7.3",
-    "@pluginjs/offset": "^0.7.35",
+    "@pluginjs/offset": "^0.7.36",
     "@pluginjs/styles": "^0.7.11"
   },
   "devDependencies": {
