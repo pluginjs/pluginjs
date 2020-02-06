@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "@pluginjs/time-table",
   "description": "A flexible modern time-table js plugin.",
   "license": "GPL-3.0",
