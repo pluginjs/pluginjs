@@ -89,9 +89,9 @@ class Units extends Component {
     setStyle('display', 'none', this.element)
     this.$wrap = wrap(
       `<div class="${this.classes.WRAP}">
-  <input type="text" class="${this.classes.INPUT}">
-  <span class="${this.classes.TRIGGER}"></span><div></div>
-</div>`,
+        <input type="text" class="${this.classes.INPUT}">
+        <span class="${this.classes.TRIGGER}"></span><div></div>
+      </div>`,
       this.element
     )
 
@@ -147,8 +147,10 @@ class Units extends Component {
           return
         }
         if (this.isStatic(value)) {
+          console.log('isStatic')
           this.setStatic(value)
         } else {
+          console.log('noStatic')
           this.setUnit(value)
         }
       },
@@ -207,6 +209,7 @@ class Units extends Component {
   }
 
   setStatic(value, trigger = true) {
+    console.log('setStatic', value)
     this.set(value, trigger)
   }
 
@@ -215,7 +218,7 @@ class Units extends Component {
       unit
     }
 
-    const cached = this.getInputByUnit(unit)
+    const cached = this.getInputCached(unit)
     if (!isNull(cached)) {
       value.input = cached
     }
@@ -248,30 +251,35 @@ class Units extends Component {
       if (!isUndefined(value.unit) && value.unit !== this.value.unit) {
         this.value.unit = value.unit ? value.unit : this.getDefaultUnit()
         html(this.value.unit, this.$trigger)
- 
         this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
-        
         changed = true
       }
 
       if (!isUndefined(value.input) && value.input !== this.value.input) {
         this.value.input = value.input
         if (!isNull(value.input)) {
-          this.cached[this.getUnit()] = value.input
+          this.cached.input = value.input
         }
 
         this.trigger(EVENTS.CHANGEINPUT, this.value.input)
-     
+
         changed = true
       }
     }
 
     if (changed && trigger) {
+      console.log(this.value, this.val())
       if (this.value.input) {
         this.element.value = this.val()
         this.trigger(EVENTS.CHANGE, this.element.value)
       } else {
-        this.element.value = ''
+        console.log()
+        if (this.isStatic(value)) {
+          this.$input.value = ''
+          this.element.value = value
+        } else {
+          this.element.value = ''
+        }
         this.trigger(EVENTS.CHANGE, this.element.value)
       }
     }
@@ -289,9 +297,9 @@ class Units extends Component {
     return this.value.input ? this.value.input : null
   }
 
-  getInputByUnit(unit) {
-    if (!isUndefined(this.cached[unit])) {
-      return this.cached[unit]
+  getInputCached() {
+    if (!isUndefined(this.cached.input)) {
+      return this.cached.input
     }
 
     return null

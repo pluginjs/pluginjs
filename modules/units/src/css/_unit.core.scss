@@ -26,7 +26,8 @@ $units: "pj-units" !default;
 
     .#{$units}-trigger {
       width: 100%;
-      text-align: center
+      padding-right: 0;
+      text-align: center;
     }
   }
 }
