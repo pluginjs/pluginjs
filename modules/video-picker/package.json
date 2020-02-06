@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.37",
+  "version": "0.7.36",
   "category": "form",
   "main": "dist/video-picker.common.js",
   "module": "dist/video-picker.esm.js",
@@ -79,5 +79,5 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6"
+  "gitHead": "c290de9b0e5456a45889dd6a5eb44e8a18e71be4"
 }
