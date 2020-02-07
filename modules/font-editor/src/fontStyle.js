@@ -25,7 +25,6 @@ export default class FontStyle {
       placement: 'bottom'
     })
     this.instance.$typoDecorations.append(this.$wrap)
-    // this.$wrap.dataset.fontStyle = this.value
     setData('fontStyle', this.value, this.$wrap)
     this.set(this.value)
 
@@ -33,12 +32,12 @@ export default class FontStyle {
   }
 
   set(value) {
-    if (value === 'normal') {
-      removeClass(this.instance.classes.ACTIVE, this.$wrap)
-      this.instance.value.fontStyle = 'normal'
-    } else {
+    if (value === 'italic') {
       addClass(this.instance.classes.ACTIVE, this.$wrap)
       this.instance.value.fontStyle = 'italic'
+    } else {
+      removeClass(this.instance.classes.ACTIVE, this.$wrap)
+      this.instance.value.fontStyle = ''
     }
   }
 
@@ -54,12 +53,12 @@ export default class FontStyle {
         if (that.instance.is('disabled')) {
           return this
         }
-        if (that.instance.value.fontStyle === 'normal') {
+        if (that.instance.value.fontStyle === 'italic') {
+          that.instance.value.fontStyle = ''
+          removeClass(that.instance.classes.ACTIVE, e.target)
+        } else {
           that.instance.value.fontStyle = 'italic'
           addClass(that.instance.classes.ACTIVE, e.target)
-        } else {
-          that.instance.value.fontStyle = 'normal'
-          removeClass(that.instance.classes.ACTIVE, e.target)
         }
         return null
       },

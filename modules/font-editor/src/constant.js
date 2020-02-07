@@ -93,8 +93,18 @@ export const defaults = {
     }
   },
   fontWeight: {
-    value: 'inherit',
-    values: ['inherit', 'bold', '400', '500', '600', '700'],
+    value: '',
+    values: [
+      'normal',
+      'bold',
+      'bolder',
+      'lighter',
+      'inherit',
+      '300',
+      '400',
+      '500',
+      '600'
+    ],
     template() {
       return (
         '<div class="{field}">' +
@@ -145,7 +155,7 @@ export const defaults = {
     }
   },
   textAlign: {
-    value: 'left',
+    value: '',
     values: ['left', 'center', 'right'],
     template() {
       return (
@@ -158,14 +168,14 @@ export const defaults = {
     }
   },
   fontStyle: {
-    value: 'normal',
+    value: '',
     values: ['italic', 'normal'],
     template() {
       return '<li class="{classes.FONTSTYLE} pj-icon pj-icon-font"  title="{font}"></li>'
     }
   },
   textTransform: {
-    value: 'none',
+    value: '',
     values: ['uppercase', 'lowercase', 'capitalize'],
     template() {
       return (
@@ -176,7 +186,7 @@ export const defaults = {
     }
   },
   textDecoration: {
-    value: 'none',
+    value: '',
     values: ['underline', 'line-through'],
     template() {
       return (

@@ -103,13 +103,13 @@ export default class TextAlign {
 
         switch (that.instance.value.textAlign) {
           case 'left':
-            that.instance.value.textAlign = 'flex-start'
+            that.instance.value.textAlign = 'left'
             break
           case 'center':
             that.instance.value.textAlign = 'center'
             break
           case 'right':
-            that.instance.value.textAlign = 'flex-end'
+            that.instance.value.textAlign = 'right'
             break
           default:
             break

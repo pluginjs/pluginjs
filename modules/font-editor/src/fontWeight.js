@@ -56,8 +56,8 @@ export default class FontWeight {
 
   set(value) {
     if (!value) {
-      this.SELECT.select('inherit')
-      this.instance.value.fontWeight = 'inherit'
+      this.SELECT.select('')
+      this.instance.value.fontWeight = ''
     } else {
       this.SELECT.select(value)
       this.instance.value.fontWeight = value
