@@ -147,10 +147,8 @@ class Units extends Component {
           return
         }
         if (this.isStatic(value)) {
-          console.log('isStatic')
           this.setStatic(value)
         } else {
-          console.log('noStatic')
           this.setUnit(value)
         }
       },
@@ -209,7 +207,6 @@ class Units extends Component {
   }
 
   setStatic(value, trigger = true) {
-    console.log('setStatic', value)
     this.set(value, trigger)
   }
 
@@ -268,12 +265,10 @@ class Units extends Component {
     }
 
     if (changed && trigger) {
-      console.log(this.value, this.val())
       if (this.value.input) {
         this.element.value = this.val()
         this.trigger(EVENTS.CHANGE, this.element.value)
       } else {
-        console.log()
         if (this.isStatic(value)) {
           this.$input.value = ''
           this.element.value = value
