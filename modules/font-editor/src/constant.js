@@ -117,7 +117,6 @@ export const defaults = {
     }
   },
   fontSize: {
-    // defaultValue: 'inherit',
     value: 'inherit',
     unit: 'px',
     units: ['inherit', 'px', 'em', 'rem'],
@@ -148,7 +147,6 @@ export const defaults = {
         '<span class="{classes.FIELDTITLE}">{lineHeight}</span>' +
         '<div class="{classes.FIELDCONTENT}">' +
         '<div class="{classes.LINEHEIGHTRANGE}"></div>' +
-        // '<div class="{namespace}-lineHeight-value">1</div>' +
         '</div>' +
         '</div>'
       )

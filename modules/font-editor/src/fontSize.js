@@ -12,7 +12,6 @@ export default class FontSize {
   }
 
   initialize() {
-    // this.parse(this.instance.value.fontSize)
     this.initRange()
   }
 
@@ -50,7 +49,6 @@ export default class FontSize {
     this.UNITSRANGE = UnitsRange.of(this.element, {
       theme: 'default',
       tip: false,
-      // replaceFirst: 'inherit',
       value,
       units,
       onChange(val) {

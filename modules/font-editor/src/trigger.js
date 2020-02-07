@@ -144,8 +144,12 @@ export default class Trigger {
         this.$fillContentName.textContent = v.font
       }
       if (i === 'textAlign') {
-        i = 'align-self'
-        setStyle('alignSelf', v, this.$fillContentSub)
+        i = 'justify-content'
+        setStyle(
+          'justifyContent',
+          this.transformTextAlign(v),
+          this.$fillContent
+        )
       }
 
       i = i.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
@@ -164,5 +168,17 @@ export default class Trigger {
     ) {
       addClass(this.classes.EXSIT, this.instance.$wrap)
     }
+  }
+
+  transformTextAlign(value) {
+    if (value === 'left') {
+      return 'flex-start'
+    }
+
+    if (value === 'right') {
+      return 'flex-end'
+    }
+
+    return value
   }
 }

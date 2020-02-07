@@ -216,11 +216,13 @@ class FontEditor extends Component {
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.value)
     }
-    
-    if(typeof(value) == "object"){
-      var valueObj = value
+
+    let valueObj
+
+    if (typeof value === 'object') {
+      valueObj = value
     } else {
-      var valueObj = this.options.parse.call(this, value);
+      valueObj = this.options.parse.call(this, value)
     }
 
     if (valueObj) {
@@ -310,11 +312,6 @@ class FontEditor extends Component {
     this.fontFamily.set(value)
     this.update()
   }
-
-  // updateFontFamilyList(value) {
-  //   this.fontFamily.values = value
-  //   this.fontFamily.updateList()
-  // }
 
   setFontWeight(value) {
     this.value.fontWeight = value
