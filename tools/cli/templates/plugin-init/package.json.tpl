@@ -54,8 +54,8 @@
     "rename": "^1.0.4",
     "rollup": "*",
     "rollup-plugin-babel": "*",
-    "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*",
+    "@rollup/plugin-commonjs": "*",
+    "@rollup/plugin-node-resolve": "*",
     "rollup-plugin-terser": "*"
   },
   "engines": {

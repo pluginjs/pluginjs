@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "@pluginjs/helper": "^0.2.1",
+    "@rollup/plugin-json": "^4.0.2",
     "fs-extra": "^8.1.0",
-    "inquirer": "^7.0.1",
-    "node-sass": "^4.13.0",
-    "rollup": "*",
-    "rollup-plugin-json": "*",
-    "yargs": "^15.0.2"
+    "inquirer": "^7.0.4",
+    "node-sass": "^4.13.1",
+    "rollup": "^1.31.0",
+    "yargs": "^15.1.0"
   },
   "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6"
 }

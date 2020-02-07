@@ -4,7 +4,7 @@ const fetchPkg = require('./utils/package-utils')
 const options = {
   rollup: '^0.59.2',
   'rollup-plugin-babel': '^4.0.0-beta.4',
-  'rollup-plugin-commonjs': '^9.1.3',
+  '@rollup/plugin-commonjs': '^9.1.3',
   'rollup-plugin-node-resolve': '^3.3.0',
   '@pluginjs/cli': '^0.5.18'
 }
