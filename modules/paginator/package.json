@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.23",
+  "version": "0.8.0",
   "category": "ui",
   "main": "dist/paginator.common.js",
   "module": "dist/paginator.esm.js",

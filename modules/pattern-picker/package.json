@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.43",
+  "version": "0.8.0",
   "category": "form",
   "main": "dist/pattern-picker.common.js",
   "module": "dist/pattern-picker.esm.js",

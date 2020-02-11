@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.0.15",
+  "version": "0.1.0",
   "category": "media",
   "main": "dist/masonry.common.js",
   "module": "dist/masonry.esm.js",

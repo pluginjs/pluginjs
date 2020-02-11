@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.18",
+  "version": "0.8.0",
   "category": "core",
   "main": "dist/global-plugin.common.js",
   "module": "dist/global-plugin.esm.js",

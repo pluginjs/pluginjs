@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.21",
+  "version": "0.8.0",
   "category": "media",
   "main": "dist/image-loader.common.js",
   "module": "dist/image-loader.esm.js",

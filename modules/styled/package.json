@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.20",
+  "version": "0.8.0",
   "category": "utils",
   "main": "dist/styled.common.js",
   "module": "dist/styled.esm.js",

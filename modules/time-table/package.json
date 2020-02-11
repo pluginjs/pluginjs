@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.7.37",
+  "version": "0.8.0",
   "category": "ui",
   "main": "dist/time-table.common.js",
   "module": "dist/time-table.esm.js",
