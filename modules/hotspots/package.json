@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.0",
+  "version": "0.8.1",
   "category": "media",
   "main": "dist/hotspots.common.js",
   "module": "dist/hotspots.esm.js",

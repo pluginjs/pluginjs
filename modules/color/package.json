@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.0",
+  "version": "0.8.1",
   "category": "utils",
   "main": "dist/color.common.js",
   "module": "dist/color.esm.js",

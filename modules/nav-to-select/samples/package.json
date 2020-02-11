@@ -3,7 +3,7 @@
   "name": "nav-to-select-samples",
   "description": "Simple nav-to-select example",
   "license": "GPL-3.0",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "1.8.0",
+  "version": "1.8.1",
   "category": "ui",
   "main": "dist/adapt-text.common.js",
   "module": "dist/adapt-text.esm.js",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.0",
+  "version": "0.8.1",
   "category": "scroll",
   "main": "dist/scroll-end.common.js",
   "module": "dist/scroll-end.esm.js",
