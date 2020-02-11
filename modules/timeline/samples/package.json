@@ -10,8 +10,8 @@
     "start": "parcel index.html"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/timeline": "^0.7.22"
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/timeline": "^0.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

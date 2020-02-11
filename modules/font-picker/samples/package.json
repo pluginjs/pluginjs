@@ -10,8 +10,8 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/font-picker": "^0.7.35",
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/font-picker": "^0.8.2",
     "webfontloader": "*"
   },
   "devDependencies": {

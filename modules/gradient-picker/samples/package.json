@@ -10,10 +10,10 @@
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/gradient-picker": "^0.7.42",
-    "@pluginjs/icons": "^0.7.3",
-    "@pluginjs/styles": "^0.7.11"
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/gradient-picker": "^0.8.2",
+    "@pluginjs/icons": "^0.8.2",
+    "@pluginjs/styles": "^0.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

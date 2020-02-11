@@ -10,8 +10,8 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/wizard": "^0.7.22",
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/wizard": "^0.8.2",
     "hyperform": "0.11.0"
   },
   "devDependencies": {

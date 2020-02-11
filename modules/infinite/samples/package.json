@@ -10,8 +10,8 @@
     "start": "parcel index.html"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/infinite": "^0.7.26",
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/infinite": "^0.8.2",
     "lorem-ipsum": "^2.0.3"
   },
   "devDependencies": {

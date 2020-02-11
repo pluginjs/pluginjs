@@ -35,18 +35,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/component": "^0.7.17",
-    "@pluginjs/decorator": "^0.7.21",
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/factory": "^0.7.19",
-    "@pluginjs/tween": "^0.7.19",
-    "@pluginjs/utils": "^0.7.19"
+    "@pluginjs/component": "^0.8.2",
+    "@pluginjs/decorator": "^0.8.2",
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/factory": "^0.8.2",
+    "@pluginjs/tween": "^0.8.2",
+    "@pluginjs/utils": "^0.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@pluginjs/cli": "^0.7.16",
+    "@pluginjs/cli": "^0.8.0",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "babel-jest": "*",

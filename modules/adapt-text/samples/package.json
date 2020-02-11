@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/adapt-text": "^1.8.2",
-    "@pluginjs/dom": "^0.7.20"
+    "@pluginjs/dom": "^0.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

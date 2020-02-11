@@ -10,9 +10,9 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.20",
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/section-scroll": "^0.7.29"
+    "@pluginjs/classes": "^0.8.2",
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/section-scroll": "^0.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

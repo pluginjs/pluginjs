@@ -10,8 +10,8 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/svg-picker": "^0.7.32",
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/svg-picker": "^0.8.2",
     "feather-icons": "*"
   },
   "devDependencies": {

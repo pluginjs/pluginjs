@@ -10,9 +10,9 @@
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/image-loader": "^0.7.21",
-    "@pluginjs/loader": "^0.7.21"
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/image-loader": "^0.8.2",
+    "@pluginjs/loader": "^0.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

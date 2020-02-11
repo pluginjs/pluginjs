@@ -37,19 +37,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.7.20",
-    "@pluginjs/component": "^0.7.17",
-    "@pluginjs/decorator": "^0.7.21",
-    "@pluginjs/dom": "^0.7.20",
-    "@pluginjs/events": "^0.7.19",
-    "@pluginjs/factory": "^0.7.19",
-    "@pluginjs/is": "^0.7.18",
-    "@pluginjs/template": "^0.7.19"
+    "@pluginjs/classes": "^0.8.2",
+    "@pluginjs/component": "^0.8.2",
+    "@pluginjs/decorator": "^0.8.2",
+    "@pluginjs/dom": "^0.8.2",
+    "@pluginjs/events": "^0.8.2",
+    "@pluginjs/factory": "^0.8.2",
+    "@pluginjs/is": "^0.8.2",
+    "@pluginjs/template": "^0.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@pluginjs/browserslist-config": "^1.3.0",
-    "@pluginjs/cli": "^0.7.16",
+    "@pluginjs/cli": "^0.8.0",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "babel-jest": "*",
