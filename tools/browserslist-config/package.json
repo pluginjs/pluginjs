@@ -8,7 +8,7 @@
     "url": "git@github.com:pluginjs/pluginjs.git",
     "type": "git"
   },
-  "version": "1.2.14",
+  "version": "1.3.0",
   "main": "index.js",
   "devDependencies": {
     "browserslist": "^4.8.6"

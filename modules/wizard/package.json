@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.1",
+  "version": "0.8.2",
   "category": "ui",
   "main": "dist/wizard.common.js",
   "module": "dist/wizard.esm.js",
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "@pluginjs/browserslist-config": "^1.2.14",
+    "@pluginjs/browserslist-config": "^1.3.0",
     "@pluginjs/cli": "^0.7.16",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
