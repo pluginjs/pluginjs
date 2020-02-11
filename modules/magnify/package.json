@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.2",
+  "version": "0.8.3",
   "category": "ui",
   "main": "dist/magnify.common.js",
   "module": "dist/magnify.esm.js",
@@ -37,17 +37,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/breakpoints": "^0.8.2",
-    "@pluginjs/classes": "^0.8.2",
-    "@pluginjs/component": "^0.8.2",
-    "@pluginjs/decorator": "^0.8.2",
-    "@pluginjs/dom": "^0.8.2",
-    "@pluginjs/events": "^0.8.2",
-    "@pluginjs/image-loader": "^0.8.2",
-    "@pluginjs/is": "^0.8.2",
-    "@pluginjs/loader": "^0.8.2",
-    "@pluginjs/styled": "^0.8.2",
-    "@pluginjs/template": "^0.8.2"
+    "@pluginjs/breakpoints": "^0.8.3",
+    "@pluginjs/classes": "^0.8.3",
+    "@pluginjs/component": "^0.8.3",
+    "@pluginjs/decorator": "^0.8.3",
+    "@pluginjs/dom": "^0.8.3",
+    "@pluginjs/events": "^0.8.3",
+    "@pluginjs/image-loader": "^0.8.3",
+    "@pluginjs/is": "^0.8.3",
+    "@pluginjs/loader": "^0.8.3",
+    "@pluginjs/styled": "^0.8.3",
+    "@pluginjs/template": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.2",
+  "version": "0.8.3",
   "category": "scroll",
   "main": "dist/scroll-end.common.js",
   "module": "dist/scroll-end.esm.js",
@@ -33,11 +33,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/decorator": "^0.8.2",
-    "@pluginjs/dom": "^0.8.2",
-    "@pluginjs/emitter": "^0.8.2",
-    "@pluginjs/factory": "^0.8.2",
-    "@pluginjs/utils": "^0.8.2"
+    "@pluginjs/decorator": "^0.8.3",
+    "@pluginjs/dom": "^0.8.3",
+    "@pluginjs/emitter": "^0.8.3",
+    "@pluginjs/factory": "^0.8.3",
+    "@pluginjs/utils": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

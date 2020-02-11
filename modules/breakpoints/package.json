@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.2",
+  "version": "0.8.3",
   "category": "utils",
   "main": "dist/breakpoints.common.js",
   "module": "dist/breakpoints.esm.js",
@@ -33,11 +33,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "^0.8.2",
-    "@pluginjs/factory": "^0.8.2",
-    "@pluginjs/is": "^0.8.2",
-    "@pluginjs/simple-emitter": "^0.8.2",
-    "@pluginjs/utils": "^0.8.2"
+    "@pluginjs/emitter": "^0.8.3",
+    "@pluginjs/factory": "^0.8.3",
+    "@pluginjs/is": "^0.8.3",
+    "@pluginjs/simple-emitter": "^0.8.3",
+    "@pluginjs/utils": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

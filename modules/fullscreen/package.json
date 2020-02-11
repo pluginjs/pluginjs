@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.2",
+  "version": "0.8.3",
   "category": "utils",
   "main": "dist/fullscreen.common.js",
   "module": "dist/fullscreen.esm.js",
@@ -33,8 +33,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/emitter": "^0.8.2",
-    "@pluginjs/factory": "^0.8.2"
+    "@pluginjs/emitter": "^0.8.3",
+    "@pluginjs/factory": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

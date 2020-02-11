@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.2",
+  "version": "0.8.3",
   "category": "core",
   "main": "dist/emitter.common.js",
   "module": "dist/emitter.esm.js",
@@ -33,7 +33,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/simple-emitter": "^0.8.2"
+    "@pluginjs/simple-emitter": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

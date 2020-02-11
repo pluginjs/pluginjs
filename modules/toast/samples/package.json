@@ -3,15 +3,15 @@
   "name": "toast-samples",
   "description": "Simple toast example",
   "license": "GPL-3.0",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.8.2",
-    "@pluginjs/toast": "^0.8.2"
+    "@pluginjs/dom": "^0.8.3",
+    "@pluginjs/toast": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
