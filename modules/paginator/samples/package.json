@@ -3,7 +3,7 @@
   "name": "paginator-samples",
   "description": "Simple paginator example",
   "license": "GPL-3.0",
-  "version": "1.1.23",
+  "version": "1.2.0",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",

@@ -3,7 +3,7 @@
   "name": "filters-samples",
   "description": "Simple filters example",
   "license": "GPL-3.0",
-  "version": "1.1.32",
+  "version": "1.2.0",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",

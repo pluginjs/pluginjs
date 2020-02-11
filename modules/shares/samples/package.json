@@ -3,7 +3,7 @@
   "name": "shares-samples",
   "description": "Simple shares example",
   "license": "GPL-3.0",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",

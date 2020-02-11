@@ -3,7 +3,7 @@
   "name": "animate-text-samples",
   "description": "Simple animate-text example",
   "license": "GPL-3.0",
-  "version": "1.1.24",
+  "version": "1.2.0",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
