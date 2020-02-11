@@ -13,7 +13,7 @@
     "@pluginjs/dom": "^0.7.20",
     "@pluginjs/icons": "^0.7.3",
     "@pluginjs/styles": "^0.7.11",
-    "@pluginjs/video-picker": "^0.7.36"
+    "@pluginjs/video-picker": "^0.7.37"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
