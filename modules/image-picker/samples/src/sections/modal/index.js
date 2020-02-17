@@ -1,7 +1,7 @@
 import { query } from '@pluginjs/dom'
 import ImagePicker from '@pluginjs/image-picker'
 
-const element = query('#default .example-default')
+const element = query('#modal .example-modal')
 ImagePicker.of(element, {
   select(resolve) {
     resolve({

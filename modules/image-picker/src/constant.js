@@ -40,6 +40,7 @@ export const methods = [
 export const defaults = {
   theme: null,
   disabled: false,
+  deleteMode: 'modal', // modal or tooltip
   locale: 'en',
   localeFallbacks: true,
   template() {
@@ -59,7 +60,11 @@ export const defaults = {
     )
   },
   process(value) {
-    if (value && typeof value.image !== 'undefined' && typeof value !== 'undefined') {
+    if (
+      value &&
+      typeof value.image !== 'undefined' &&
+      typeof value !== 'undefined'
+    ) {
       return JSON.stringify(value)
     }
     return ''

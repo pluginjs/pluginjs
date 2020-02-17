@@ -6,6 +6,7 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, parentWith, parseHTML, insertAfter } from '@pluginjs/dom'
 import { setStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
+import Modal from '@pluginjs/modal'
 import {
   eventable,
   register,
@@ -154,40 +155,79 @@ class ImagePicker extends Component {
     this.$remove = query(`.${this.classes.REMOVE}`, this.$wrap)
     this.$reselect = query(`.${this.classes.RESELECT}`, this.$wrap)
 
-    // init popDialog
-    this.pop = PopDialog.of(this.$remove, {
-      placement: 'bottom',
-      content: this.translate('deleteTitle'),
-      buttons: [
-        {
-          action: 'cancel',
-          label: this.translate('cancel')
-        },
-        {
-          action: 'delete',
-          label: this.translate('delete'),
-          color: 'danger',
-          fn(resolve) {
-            const $fill = that.$remove.matches(`.${that.classes.FILL}`)
-              ? that.$remove
-              : parentWith(hasClass(that.classes.FILL), that.$remove)
-            addClass(`${that.classes.FADEOUT}`, $fill)
-            window.setTimeout(() => {
-              removeClass(`${that.classes.FADEOUT}`, $fill)
-              that.clear()
-            }, 300)
-            resolve()
+    // init deleteMode
+    if (this.options.deleteMode === 'modal') {
+      bindEvent(
+        this.eventName('click'),
+        () => {
+          if (this.is('disabled')) {
+            return null
           }
+          Modal.open({
+            content: this.translate('deleteTitle'),
+            buttons: [
+              {
+                action: 'cancel',
+                label: this.translate('cancel'),
+                classes: 'pj-btn'
+              },
+              {
+                action: 'delete',
+                label: this.translate('delete'),
+                classes: 'pj-btn pj-btn-danger',
+                fn: resolve => {
+                  const $fill = that.$remove.matches(`.${that.classes.FILL}`)
+                    ? that.$remove
+                    : parentWith(hasClass(that.classes.FILL), that.$remove)
+                  addClass(`${that.classes.FADEOUT}`, $fill)
+                  window.setTimeout(() => {
+                    removeClass(`${that.classes.FADEOUT}`, $fill)
+                    that.clear()
+                  }, 300)
+                  resolve()
+                }
+              }
+            ]
+          })
+          return false
+        },
+        this.$remove
+      )
+    } else {
+      this.deleteMode = PopDialog.of(this.$remove, {
+        placement: 'bottom',
+        content: this.translate('deleteTitle'),
+        buttons: [
+          {
+            action: 'cancel',
+            label: this.translate('cancel')
+          },
+          {
+            action: 'delete',
+            label: this.translate('delete'),
+            color: 'danger',
+            fn(resolve) {
+              const $fill = that.$remove.matches(`.${that.classes.FILL}`)
+                ? that.$remove
+                : parentWith(hasClass(that.classes.FILL), that.$remove)
+              addClass(`${that.classes.FADEOUT}`, $fill)
+              window.setTimeout(() => {
+                removeClass(`${that.classes.FADEOUT}`, $fill)
+                that.clear()
+              }, 300)
+              resolve()
+            }
+          }
+        ],
+        onShown: () => {
+          this.enter('holdHover')
+        },
+        onHidden: () => {
+          removeClass(this.classes.HOVER, this.$wrap)
+          this.leave('holdHover')
         }
-      ],
-      onShown: () => {
-        this.enter('holdHover')
-      },
-      onHidden: () => {
-        removeClass(this.classes.HOVER, this.$wrap)
-        this.leave('holdHover')
-      }
-    })
+      })
+    }
   }
 
   setState(state) {
@@ -205,7 +245,7 @@ class ImagePicker extends Component {
   }
   update(trigger = true) {
     this.element.value = this.val()
-    if(trigger) {
+    if (trigger) {
       this.trigger(EVENTS.CHANGE, this.value)
       triggerNative(this.element, 'change')
     }
@@ -218,7 +258,6 @@ class ImagePicker extends Component {
     this.setState('write')
 
     this.update(update)
-
   }
 
   get() {
@@ -236,7 +275,6 @@ class ImagePicker extends Component {
     this.setState('exist')
 
     this.update(update)
-
   }
 
   val(value, trigger = true) {
@@ -244,13 +282,15 @@ class ImagePicker extends Component {
       return this.options.process.call(this, this.get())
     }
 
-    if(typeof(value) == "object" && value && value.image){
-      var valueObj = value
+    let valueObj
+
+    if (typeof value === 'object' && value && value.image) {
+      valueObj = value
     } else {
-      var valueObj = this.options.parse.call(this, value);
+      valueObj = this.options.parse.call(this, value)
     }
 
-    if(valueObj) {
+    if (valueObj) {
       this.set(valueObj, trigger)
     } else {
       this.clear(trigger)
@@ -263,7 +303,9 @@ class ImagePicker extends Component {
     if (this.is('disabled')) {
       removeClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = false
-      this.pop.enable()
+      if (this.deleteMode) {
+        this.deleteMode.enable()
+      }
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -273,7 +315,9 @@ class ImagePicker extends Component {
     if (!this.is('disabled')) {
       addClass(this.classes.DISABLED, this.$wrap)
       this.element.disabled = true
-      this.pop.disable()
+      if (this.deleteMode) {
+        this.deleteMode.disable()
+      }
       this.enter('disabled')
     }
 

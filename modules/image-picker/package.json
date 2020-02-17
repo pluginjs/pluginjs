@@ -44,6 +44,7 @@
     "@pluginjs/events": "^0.8.3",
     "@pluginjs/factory": "^0.8.3",
     "@pluginjs/is": "^0.8.3",
+    "@pluginjs/modal": "^0.8.3",
     "@pluginjs/pop-dialog": "^0.8.3",
     "@pluginjs/styled": "^0.8.3",
     "@pluginjs/template": "^0.8.3",
