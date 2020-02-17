@@ -100,7 +100,7 @@ export const defaults = {
   locale: 'en',
   placeholder: 'choose color',
   clearable: false,
-  module: ['collection', 'solid', 'gradient'], // 'collection', 'solid', 'gradient'
+  gradient: true,
   data: null, // colors in the scheme and your favorite colors.  example: {scheme:{'Primary':'#55a4f2','fontColor':'#ccc','bgColor':'#f2a654','borderColor':'#f1f1f1'},favorite:['red':'red','brown':'brown','lightblue':'lightblue','green':'green']}
   manageButton: true,
   manage() {},

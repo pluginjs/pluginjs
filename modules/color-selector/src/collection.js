@@ -1,21 +1,5 @@
-// import { isString } from '@pluginjs/is'
-// import { bindEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
-import {
-  append,
-  // parseHTML,
-  // parent,
-  // children,
-  // prepend,
-  query,
-  // attr,
-  // parentWith,
-  // wrap,
-  // unwrap,
-  setData
-  // getData,
-  // empty
-} from '@pluginjs/dom'
+import { append, query, setData } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 
 class Collection {
@@ -40,7 +24,7 @@ class Collection {
       classes: this.classes
     })
 
-    if(this.instance.options.manageButton) {
+    if (this.instance.options.manageButton) {
       const $manage = this.instance.createEl('manage', {
         classes: this.classes,
         manageText: this.instance.translate('manage')
@@ -49,7 +33,7 @@ class Collection {
     } else {
       this.element.append($scheme)
     }
-   
+
     // create favorite item
     Object.keys(this.instance.data).forEach(groupName => {
       const $groupList = query(
@@ -87,7 +71,10 @@ class Collection {
     Object.entries(this.instance.data).forEach(([, v]) => {
       Object.entries(v).forEach(([name, dataColor]) => {
         if (colorName.toLowerCase() === name.toLowerCase()) {
-          if (dataColor.indexOf('gradient') > -1) {
+          if (
+            dataColor.indexOf('gradient') > -1 &&
+            this.instance.options.gradient
+          ) {
             this.instance.GRADIENTPICKER.set(dataColor)
           } else {
             this.instance.COLORPICKER.set(dataColor)

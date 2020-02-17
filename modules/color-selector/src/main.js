@@ -58,9 +58,9 @@ class ColorSelector extends Component {
     super(element)
     // options
     this.setupOptions(options)
-    if (options.module) {
-      this.options.module = options.module
-    }
+    this.modules = this.options.gradient
+      ? ['collection', 'solid', 'gradient']
+      : ['collection', 'solid']
 
     this.setupI18n()
     // class
@@ -204,7 +204,7 @@ class ColorSelector extends Component {
     })
 
     // set module
-    this.options.module.forEach(v => {
+    this.modules.forEach(v => {
       const triggerClassName = `${this.classes.PANELTRIGGER}-${v}`
       const wrapClassName = `${this.classes.PANEL}-${v}`
       const colorClassName = `${this.classes.NAMESPACE}-${v}`
@@ -217,7 +217,7 @@ class ColorSelector extends Component {
       })
       append(trigger, query(`.${this.classes.PANELTRIGGER}`, this.$panel))
       append(wrap, query(`.${this.classes.PANELCONTAINER}`, this.$panel))
-      if (this.options.module.length <= 1) {
+      if (this.modules.length <= 1) {
         hideElement(query(`.${this.classes.PANELTRIGGER}`, this.$panel))
       }
     })
@@ -255,7 +255,9 @@ class ColorSelector extends Component {
       onShown: () => {
         this.leave('save')
         this.COLORPICKER.oldColor = this.COLORPICKER.color
-        this.GRADIENTPICKER.oldColor = this.GRADIENTPICKER.color
+        if (this.options.gradient) {
+          this.GRADIENTPICKER.oldColor = this.GRADIENTPICKER.color
+        }
         this.oldColor.module = this.module
         this.oldColor.color = this.color
         this.switchModule(this.module)
@@ -297,6 +299,9 @@ class ColorSelector extends Component {
   }
 
   setupGradient() {
+    if (!this.options.gradient) {
+      return
+    }
     this.gradientPickerTrigger = query('.pj-colorSelector-gradient', this.$wrap)
     this.GRADIENTPICKER = new GradientPicker(this.gradientPickerTrigger, {
       ...this.options.gradientPicker,
@@ -385,7 +390,9 @@ class ColorSelector extends Component {
       this.module = this.oldColor.module
       this.setInput(this.color)
       this.COLORPICKER.set(this.COLORPICKER.oldColor)
-      this.GRADIENTPICKER.reset()
+      if (this.options.gradient) {
+        this.GRADIENTPICKER.reset()
+      }
     }
   }
 
@@ -409,7 +416,7 @@ class ColorSelector extends Component {
     const val = this.options.parse.call(this, color)
 
     this.set(val, trigger)
-    
+
     return null
   }
 
@@ -421,8 +428,10 @@ class ColorSelector extends Component {
     if (isNull(val)) {
       this.color = ''
       this.COLORPICKER.clear()
-      this.GRADIENTPICKER.clear()
-      this.switchModule(this.options.module[0])
+      if (this.options.gradient) {
+        this.GRADIENTPICKER.clear()
+      }
+      this.switchModule(this.modules[0])
       this.PREVIEW.update('transparent')
       this.element.value = ''
     } else {

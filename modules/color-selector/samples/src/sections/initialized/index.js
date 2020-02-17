@@ -11,8 +11,7 @@ const data = {
     brown: 'brown',
     lightblue: 'lightblue',
     green: 'green',
-    alphaTest: 'rgba(210,133,89,.3)',
-    'Gradient Bg': 'linear-gradient(90deg, #fff 0%,#2aaedc 40%, #000 100%)'
+    alphaTest: 'rgba(210,133,89,.3)'
   }
 }
 
