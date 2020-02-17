@@ -41,6 +41,7 @@ $fontEditor-empty-fill-hover-bg: $gray-lightest;
 
 $fontEditor-name-margin-right: 12px;
 $fontEditor-name-font-size: $font-size-base;
+$fontEditor-name-max-width: 48px;
 $fontEditor-sub-font-size: $font-size-xs;
 // decorations
 $fontEditor-decorations-padding: 8px 10px;
@@ -116,9 +117,12 @@ $fontEditor-control-button-padding: 8px 28px;
 
       &-name {
         display: inline-block;
+        max-width: $fontEditor-name-max-width;
         margin-right: $fontEditor-name-margin-right;
+        overflow: hidden;
         font-size: $fontEditor-font-size;
         line-height: $fontEditor-line-height;
+        text-overflow: ellipsis;
       }
 
       &-sub {
