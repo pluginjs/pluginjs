@@ -1,6 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import { deepMerge } from '@pluginjs/utils'
-import { isObject, isFunction, isString, isElement } from '@pluginjs/is'
+import { isPlainObject, isFunction, isString, isElement } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, bindEventOnce } from '@pluginjs/events'
 import { append, parseHTML, query, data, remove } from '@pluginjs/dom'
@@ -431,7 +431,7 @@ class Modal extends GlobalComponent {
     const func = []
     let length = args.length
 
-    if (length && isObject(args[length - 1])) {
+    if (length && isPlainObject(args[length - 1])) {
       if (args[length - 1].buttons) {
         args[length - 1].buttons.forEach(button => {
           opt.buttons.forEach(btn => {
@@ -500,7 +500,7 @@ class Modal extends GlobalComponent {
 
     let length = args.length
 
-    if (length && isObject(args[length - 1])) {
+    if (length && isPlainObject(args[length - 1])) {
       opt = deepMerge(opt, args[length - 1])
       length -= 1
     }
