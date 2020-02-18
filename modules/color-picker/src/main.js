@@ -3,7 +3,7 @@ import { compose, triggerNative } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { setStyle, hideElement } from '@pluginjs/styled'
+import { hideElement } from '@pluginjs/styled'
 import { isString, isNull } from '@pluginjs/is'
 import {
   append,
@@ -86,13 +86,7 @@ class ColorPicker extends Component {
 
     if (this.options.inline) {
       hideElement(this.element)
-      setStyle(
-        {
-          boxShadow: 'none',
-          border: '1px solid #f2f2f2'
-        },
-        this.$panel
-      )
+      addClass(this.classes.INLINE, this.$panel)
     }
 
     if (this.options.theme) {
@@ -375,9 +369,9 @@ class ColorPicker extends Component {
     if (!color) {
       return this.get()
     }
-    
+
     this.set(color, trigger)
-    
+
     return null
   }
 
@@ -394,7 +388,6 @@ class ColorPicker extends Component {
         this.PREVIEW.update('transparent')
       }
       this.element.value = ''
- 
     } else {
       this.color = val
       this.setColor(val)

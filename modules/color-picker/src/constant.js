@@ -28,6 +28,7 @@ export const BASECLASS = {
   DISABLED: '{namespace}-disabled',
   INPUT: '{namespace}-input',
   PANEL: '{namespace}-panel',
+  INLINE: '{namespace}-inline',
   MASK: '{namespace}-mask',
   SAVE: '{namespace}-save'
 }

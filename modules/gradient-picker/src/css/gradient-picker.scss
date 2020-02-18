@@ -27,7 +27,7 @@ $gradientPicker-gradient-remove-color-active: $gray-lighter;
 $gradientPicker-gradient-mode-width: 124px;
 $gradientPicker-gradient-mode-margin-right: 10px;
 
-$gradientPicker-marker-box-shadow: box-shadow-4;
+$gradientPicker-marker-box-shadow: $box-shadow-4;
 
 $gradientPicker-wheel-margin-right: 10px;
 $gradientPicker-wheel-margin-left: 6px;
@@ -74,6 +74,7 @@ $gradientPicker-font-weight: $font-weight-medium;
       background: $gradientPicker-gradient-bar-bg-image;
 
       &-view {
+        background-size: 100% 100% !important;
         border-radius: $gradientPicker-handle-view-border-radius;
       }
     }
@@ -91,15 +92,19 @@ $gradientPicker-font-weight: $font-weight-medium;
       }
     }
 
+    .#{$gradientPicker}-wheel-angle {
+      width: $gradientPicker-wheel-angle-width !important;
+      min-height: auto;
+    }
   }
 
   &-mode {
     .pj-select {
-      width: $gradientPicker-gradient-mode-width;
+      width: auto;
       margin-right: $gradientPicker-gradient-mode-margin-right;
     }
   }
-  
+
   &-marker {
     border: 2px solid $color-white;
     border-radius: 1000px;
@@ -125,10 +130,6 @@ $gradientPicker-font-weight: $font-weight-medium;
       height: $gradientPicker-wheel-handle-height;
       background-color: $gradientPicker-wheel-bg-color;
       border-radius: 100%;
-    }
-
-    &-angle {
-      width: $gradientPicker-wheel-angle-width !important;
     }
   }
 

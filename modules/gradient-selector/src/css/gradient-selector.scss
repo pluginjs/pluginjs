@@ -147,6 +147,7 @@ $editPanel-component-color: $color-red !default;
     &-img {
       width: $gradientSelector-width;
       height: $gradientSelector-height;
+      background-size: 100% 100%;
     }
   }
 

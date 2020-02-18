@@ -23,7 +23,6 @@ $gradientPicker-clear-icon: $pj-icon-close !default;
 $gradientPicker-clear-font: $pj-icon-font-family !default;
 
 $gradientPicker-gradient-bar-height: 16px !default;
-$gradientPicker-gradient-bar-width: 240px !default;
 $gradientPicker-marker-width: 12px !default;
 $gradientPicker-marker-height: 12px !default;
 // wheel
@@ -107,7 +106,7 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
 
     .#{$gradientPicker}-bar {
       position: relative;
-      width: $gradientPicker-gradient-bar-width;
+      width: 100%;
       height: $gradientPicker-gradient-bar-height;
 
       &:hover {
@@ -130,6 +129,10 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
         cursor: pointer;
       }
     }
+  }
+
+  &-mode {
+    flex-grow: 1;
   }
 
   .#{$colorPicker}-panel {
