@@ -25,6 +25,7 @@ $colorSelector-collection-padding: 2.4 * $colorSelector-sizer !default; //15px
 $colorSelector-collection-item-margin-bottom: 1.5 * $colorSelector-sizer !default; //15px
 $colorSelector-collection-manage-height: 3 * $colorSelector-sizer !default; //30px
 $colorSelector-collection-manage-icon-margin-right: $colorSelector-sizer !default; //10px
+$colorSelector-collection-item-box-shadow: $box-shadow-2 !default;
 
 //skin
 .#{$colorSelector}{
@@ -63,7 +64,6 @@ $colorSelector-collection-manage-icon-margin-right: $colorSelector-sizer !defaul
     padding: $colorSelector-collection-padding;
 
     .#{$colorSelector}-manage {
-
       line-height: $colorSelector-collection-manage-height;
       color: $color-primary-black;
       text-align: center;
@@ -87,6 +87,7 @@ $colorSelector-collection-manage-icon-margin-right: $colorSelector-sizer !defaul
       margin-right: $colorSelector-collection-item-margin-right;
       margin-bottom: $colorSelector-collection-item-margin-bottom;
       border-radius: 2px;
+      box-shadow: $colorSelector-collection-item-box-shadow;
 
       &:nth-of-type(6n) {
         margin-right: 0;

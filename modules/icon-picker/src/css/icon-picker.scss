@@ -81,7 +81,7 @@ $iconPicker-group-margin-bottom: 8px;
     padding: $iconPicker-group-label-space-y $iconPicker-group-label-space-x;
     font-size: $iconPicker-group-label-font-size;
     color: $iconPicker-group-label-color;
-    background-color: $iconPicker-group-label-backgroud-color; 
+    background-color: $iconPicker-group-label-backgroud-color;
   }
 
   &-empty,
@@ -113,6 +113,10 @@ $iconPicker-group-margin-bottom: 8px;
     margin: $iconPicker-item-margin;
     border-radius: 100%;
 
+    &.pj-dropdown-highlighted:not(.pj-dropdown-item-disabled) {
+      background-color: transparent;
+    }
+
     &:not(.pj-dropdown-item-disabled):hover {
       background-color: $iconPicker-item-hover-bg;
     }
@@ -124,7 +128,7 @@ $iconPicker-group-margin-bottom: 8px;
       }
     }
   }
-  
+
   &-actions {
     border-top: 1px solid $iconPicker-action-border-color;
   }
