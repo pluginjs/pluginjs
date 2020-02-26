@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.5",
+  "version": "0.8.6",
   "category": "form",
   "main": "dist/color-selector.common.js",
   "module": "dist/color-selector.esm.js",
