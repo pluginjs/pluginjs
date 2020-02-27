@@ -77,7 +77,9 @@ class Toggle extends Component {
       )
     }
     // get components width
-    this.distance = this.$wrap.clientWidth - getWidth(this.$handle)
+    this.distance =
+      this.$wrap.clientWidth -
+      parseInt(getStyle('width', this.$handle).replace(/px|pt|em/gi, ''), 0)
 
     if (!this.distance) {
       const clientWidth =
@@ -127,7 +129,7 @@ class Toggle extends Component {
       addClass(this.classes.ICONOFF, this.$off)
     }
   }
-  
+
   bind() {
     if (this.options.clickable === true) {
       this.wrapHammer = new Hammer(this.$wrap)
