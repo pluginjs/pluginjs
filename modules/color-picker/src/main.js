@@ -191,6 +191,7 @@ class ColorPicker extends Component {
             ? this.options.reference
             : this.element,
           target: this.$panel,
+          responsiveFull: this.options.responsiveDropdownFull,
           hideOnSelect: false,
           hideOutClick: this.options.clickWindowHide,
           onShown: () => {

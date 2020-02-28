@@ -60,6 +60,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   localeFallbacks: true,
+  responsiveDropdownFull: false,
   height: 330,
   disabled: false,
   dropdown: {

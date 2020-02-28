@@ -90,6 +90,7 @@ class GalleryPicker extends Component {
     this.$galleryDropdown = Dropdown.of(this.TRIGGER.$edit, {
       ...options,
       reference: this.TRIGGER.$fill,
+      responsiveFull: this.options.responsiveDropdownFull,
       target: this.$panel,
       hideOutClick: true,
       hideOnSelect: false,
@@ -141,7 +142,7 @@ class GalleryPicker extends Component {
           if (this.is('disabled')) {
             return false
           }
- 
+
           this.options.add.call(this, this.add.bind(this))
           return null
         }
@@ -350,7 +351,6 @@ class GalleryPicker extends Component {
   add(item) {
     for (const key in item) {
       if ({}.hasOwnProperty.call(item, key)) {
-      
         this.value.push(item[key])
       }
     }

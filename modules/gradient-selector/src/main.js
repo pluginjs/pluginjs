@@ -188,6 +188,7 @@ class GradientSelector extends Component {
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       ...options,
       target: this.$panel,
+      responsiveFull: this.options.responsiveDropdownFull,
       reference: this.TRIGGER.$trigger,
       templates: this.options.template,
       hideOutClick: true,

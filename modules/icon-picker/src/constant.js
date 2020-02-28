@@ -64,6 +64,7 @@ export const defaults = {
   theme: null,
   source: null,
   placeholder: true,
+  responsiveDropdownFull: false,
   clearable: true,
   manage: null,
   multiple: false,

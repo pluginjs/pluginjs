@@ -250,6 +250,7 @@ class ColorSelector extends Component {
       ...options,
       reference: this.element,
       target: this.$panel,
+      responsiveFull: this.options.responsiveDropdownFull,
       hideOnSelect: false,
       hideOutClick: true,
       onShown: () => {

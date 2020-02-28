@@ -73,6 +73,7 @@ export const methods = [
 ]
 
 export const defaults = {
+  responsiveDropdownFull: false,
   theme: null,
   locale: 'en',
   data: null, // [json]images data
@@ -180,7 +181,9 @@ export const defaults = {
     }
 
     if (type === 'color') {
-      let color = value['background-image'].match(/fill='(\S*)'/)[1].replace('%23', '#')
+      const color = value['background-image']
+        .match(/fill='(\S*)'/)[1]
+        .replace('%23', '#')
 
       return color
     }

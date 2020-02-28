@@ -142,6 +142,7 @@ class ImageSelector extends Component {
         ...options,
         target: this.$dropdown,
         keyboard: this.options.keyboard,
+        responsiveFull: this.options.responsiveDropdownFull,
         classes: {
           PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
         },

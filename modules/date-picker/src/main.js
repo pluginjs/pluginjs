@@ -1364,6 +1364,7 @@ class DatePicker extends Component {
     this.DROPDOWN = Dropdown.of(this.$inputIcon, {
       ...options,
       reference: this.$inputGroup,
+      responsiveFull: this.options.responsiveDropdownFull,
       target: this.$dropdown,
       onShow: () => {
         if (!this.DROPDOWN.is('builded')) {

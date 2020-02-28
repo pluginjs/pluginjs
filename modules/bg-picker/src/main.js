@@ -1,5 +1,12 @@
 import Component from '@pluginjs/component'
-import { parseHTML, insertAfter, query, queryAll, has, insertBefore } from '@pluginjs/dom'
+import {
+  parseHTML,
+  insertAfter,
+  query,
+  queryAll,
+  has,
+  insertBefore
+} from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { triggerNative } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -74,7 +81,7 @@ class BgPicker extends Component {
     this.IMAGE = new Image(this)
 
     this.value = this.element.value
-    
+
     this.val(this.value, false)
 
     this.bind()
@@ -99,6 +106,7 @@ class BgPicker extends Component {
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       ...options,
       theme: 'dafault',
+      responsiveFull: this.options.responsiveDropdownFull,
       reference: this.TRIGGER.$trigger,
       target: this.$dropdown,
       hideOutClick: this.options.hideOutClick,
@@ -123,7 +131,7 @@ class BgPicker extends Component {
         if (this.options.hideOutClick) {
           this.$mediaModals = queryAll('.media-modal', document)
           this.$mediaModal = this.$mediaModals[this.$mediaModals.length - 1]
-          
+
           if (
             e.target === this.$mediaModal ||
             (this.$mediaModal ? has(e.target, this.$mediaModal) : null) ||
@@ -134,7 +142,7 @@ class BgPicker extends Component {
           ) {
             return
           }
-   
+
           removeClass(this.classes.SHOW, this.$wrap)
           removeClass(this.classes.WRITE, this.$wrap)
           removeClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
@@ -216,19 +224,19 @@ class BgPicker extends Component {
   }
 
   changeImage(url) {
-    if(url.image) {
+    if (url.image) {
       this.value.image = url.image
       this.value.id = url.id
       this.$imageName.innerHTML = this.value.image
       this.PREVIEW.set(url.image)
-      if(this.is('imageSelecting')) {
+      if (this.is('imageSelecting')) {
         addClass(this.classes.IMAGESELECTED, this.IMAGE.image)
         removeClass(
           this.classes.SELECTEDDISABLE,
           query(`.${this.classes.IMAGECHANGE}`, this.IMAGE.image)
         )
         this.leave('imageSelecting')
-      } else if(this.is('imageChanging')) {
+      } else if (this.is('imageChanging')) {
         removeClass(this.classes.IMAGEENTERCHANGE, this.IMAGE.image)
         addClass(this.classes.IMAGECHANGEDDISABLE, this.IMAGE.image)
         this.leave('imageChanging')
@@ -246,11 +254,13 @@ class BgPicker extends Component {
       return this.options.process.call(this, this.value)
     }
 
-    if(value && typeof(value) == "object"){
-      var valueObj = value
+    let valueObj = null
+    if (value && typeof value === 'object') {
+      valueObj = value
     } else {
-      var valueObj = this.options.parse.call(this, value);
+      valueObj = this.options.parse.call(this, value)
     }
+
     if (valueObj && valueObj.image) {
       this.set(valueObj, true, trigger)
     } else {
@@ -321,7 +331,7 @@ class BgPicker extends Component {
       this.update()
     }
     this.leave('status')
-    if(trigger == true) {
+    if (trigger === true) {
       this.trigger(EVENTS.CHANGE, this.value)
       triggerNative(this.element, 'change')
     }

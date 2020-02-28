@@ -208,6 +208,7 @@ class VideoPicker extends Component {
       ...this.options.dropdown,
       target: this.$dropdown,
       reference: this.TRIGGER.element,
+      responsiveFull: this.options.responsiveDropdownFull,
       templates: this.options.template,
       hideOutClick: this.options.hideOutClick,
       hideOnSelect: false,
@@ -575,16 +576,15 @@ class VideoPicker extends Component {
       }
     })
 
-     if(this.data.poster){
+    if (this.data.poster) {
       this.$fillCover.setAttribute('src', this.data.poster)
       addClass(this.classes.SHOW, this.$wrap)
-     }
+    }
 
     if (this.videoApi) {
       this.videoApi.stop()
     }
     this.element.value = this.val()
-
   }
 
   set(data, trigger = true) {

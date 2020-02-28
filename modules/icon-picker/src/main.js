@@ -136,6 +136,7 @@ class IconPicker extends Component {
     this.DROPDOWN = Dropdown.of(this.$trigger, {
       ...options,
       target: this.$dropdown,
+      responsiveFull: this.options.responsiveDropdownFull,
       keyboard: this.options.keyboard ? this.$wrap : false,
       classes: {
         PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`
@@ -290,10 +291,11 @@ class IconPicker extends Component {
       return this.options.process.call(this, this.get())
     }
 
-    if(typeof(value) == "object"){
-      var valueObj = value
+    let valueObj = null
+    if (typeof value === 'object') {
+      valueObj = value
     } else {
-      var valueObj = this.options.parse.call(this, value);
+      valueObj = this.options.parse.call(this, value)
     }
 
     return this.set(valueObj, trigger)
