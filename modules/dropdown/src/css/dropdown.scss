@@ -32,6 +32,14 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
 
 // Skin
 // =====================
+.pj-dropdown-full-width.pj-dropdown-show {
+  display: flex;
+
+  .pj-dropdown {
+    width: 100%;
+  }
+}
+
 .#{$dropdown} {
   width: $dropdown-width;
   font-family: $dropdown-font-family;
@@ -42,6 +50,31 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
   border-radius: $dropdown-border-radius;
   box-shadow: $dropdown-box-shadow;
   will-change: transform;
+
+  &-fade-in {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+  }
+
+ 
+
+  &-full-width {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    display: none;
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 
   &-trigger {
     font-family: $dropdown-font-family;

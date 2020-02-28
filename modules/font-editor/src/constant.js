@@ -75,6 +75,7 @@ export const defaults = {
   locale: 'en',
   localeFallbacks: true,
   disabled: false,
+  responsiveDropdownFull: true,
   dropdown: {
     theme: 'dafault',
     placement: 'bottom-start'

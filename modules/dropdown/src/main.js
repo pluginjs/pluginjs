@@ -23,6 +23,7 @@ import {
   optionable
 } from '@pluginjs/decorator'
 import Keyboard from './keyboard'
+import Responsive from './responsive'
 import Popper from 'popper.js'
 import {
   classes as CLASSES,
@@ -106,6 +107,16 @@ class Dropdown extends Component {
 
     if (this.options.keyboard) {
       this.KEYBOARD = new Keyboard(this)
+    }
+
+    if (this.options.responsiveFull) {
+      this.$fadeIn = parseHTML(
+        templateEngine.render(this.options.templates.fullWidth.call(this), {
+          classes: this.classes
+        })
+      )
+
+      this.RESPONSIVE = new Responsive(this)
     }
 
     this.bind()
@@ -448,8 +459,13 @@ class Dropdown extends Component {
     if (!this.is('shown')) {
       this.trigger(EVENTS.SHOW)
       this.update()
-      this.setupPopper()
+      if (!this.is('responsive')) {
+        this.setupPopper()
+      }
       addClass(this.classes.SHOW, this.$dropdown)
+      if (this.options.responsiveFull) {
+        addClass(this.classes.SHOW, this.$dropdown.parentNode)
+      }
       this.$trigger.setAttribute('aria-expanded', 'true')
       if (this.options.hideOutClick) {
         bindEvent(
@@ -467,7 +483,7 @@ class Dropdown extends Component {
             ) {
               return
             }
-            console.log(123)
+
             this.hide()
           },
           document
@@ -483,6 +499,9 @@ class Dropdown extends Component {
     if (this.is('shown')) {
       this.trigger(EVENTS.HIDE)
       removeClass(this.classes.SHOW, this.$dropdown)
+      if (this.options.responsiveFull) {
+        removeClass(this.classes.SHOW, this.$dropdown.parentNode)
+      }
       this.$trigger.setAttribute('aria-expanded', 'false')
 
       if (this.options.hideOutClick) {
@@ -511,7 +530,7 @@ class Dropdown extends Component {
   }
 
   setupPopper() {
-    if (!this.is('popper')) {
+    if (!this.is('popper') && !this.is('responsive')) {
       let placementClass
 
       this.POPPER = new Popper(this.$reference, this.$dropdown, {

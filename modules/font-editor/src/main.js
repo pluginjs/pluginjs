@@ -117,6 +117,7 @@ class FontEditor extends Component {
     const that = this
     this.DROPDOWN = Dropdown.of(this.TRIGGER.$empty, {
       ...options,
+      responsiveFull: this.options.responsiveDropdownFull,
       reference: this.TRIGGER.$trigger,
       target: this.$Panel,
       hideOutClick: true,

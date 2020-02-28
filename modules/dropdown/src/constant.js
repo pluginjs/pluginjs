@@ -21,6 +21,8 @@ export const classes = {
   REFERENCE: '{namespace}-reference',
   DROPDOWN: '{namespace}',
   ITEM: '{namespace}-item',
+  FADEIN: '{namespace}-fade-in',
+  FULLWidth: '{namespace}-full-width',
   ITEMDISABLED: '{namespace}-item-disabled',
   ITEMHIDED: '{namespace}-item-hided',
   SHOW: '{namespace}-show',
@@ -53,6 +55,8 @@ export const defaults = {
   hideOnSelect: true,
   hideOutClick: true, // When clicking outside of the dropdown, trigger hide event
   keyboard: false,
+  breakpoints: { xs: { min: 0, max: 350 } },
+  responsiveFull: false, // When window to some size, dropdown full width
   placement: 'bottom-start', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
   offset: '0,6px',
   flip: true,
@@ -64,6 +68,9 @@ export const defaults = {
   templates: {
     item() {
       return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}">{item.label}</div>'
+    },
+    fullWidth() {
+      return '<div class="{classes.FULLWidth}"><div class="{classes.FADEIN}"></div></div>'
     }
   }
 }

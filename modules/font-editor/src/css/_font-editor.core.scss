@@ -73,9 +73,9 @@ $fontEditor-dropdown-zindex: $zindex-dropdown !default;
         width: inherit;
       }
 
-      .#{$range}-control {
-        width: $fontEditor-range-control;
-      }
+      // .#{$range}-control {
+      //   width: $fontEditor-range-control;
+      // }
     }
   }
 
