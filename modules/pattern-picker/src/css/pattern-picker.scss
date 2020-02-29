@@ -5,6 +5,7 @@
 // Vars
 // =====================
 $patternPicker: "pj-patternPicker";
+$dropdown: "pj-dropdown";
 
 $patternPicker-trigger-padding: 4px;
 
@@ -124,6 +125,16 @@ $patternPicker-empty-hover-color: $gray-darkest;
     .#{$patternPicker}-remove,
     .#{$patternPicker}-edit {
       cursor: not-allowed;
+    }
+  }
+}
+
+.#{$dropdown} {
+  &-full-width{
+    .#{$patternPicker}-scheme {
+      .pj-patternPicker-collection-item:nth-of-type(5n) {
+        margin-right: $patternPicker-collection-item-margin-right;
+      }
     }
   }
 }

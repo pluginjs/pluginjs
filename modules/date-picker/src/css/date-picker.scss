@@ -73,17 +73,13 @@ $datePicker-body-font-size: $font-size-xs;
   font-family: $datePicker-font;
 
   &-input,
-  &-icon,
-  {
+  &-icon {
     border-color: $datePicker-border-color;
     border-style: $datePicker-border-style;
     border-width: $datePicker-border-width;
     outline: none;
   }
 
-  &-input {
-    width: $datePicker-input-width !important;
-  }
 
   &.#{$datePicker}-active {
     /* stylelint-disable */

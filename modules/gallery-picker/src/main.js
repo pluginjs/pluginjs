@@ -15,7 +15,7 @@ import {
   parentWith,
   insertAfter
 } from '@pluginjs/dom'
-import { setStyle, css, showElement, hideElement } from '@pluginjs/styled'
+import { css, showElement, hideElement } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
 import Trigger from './trigger'
 import {
@@ -64,8 +64,6 @@ class GalleryPicker extends Component {
 
   initialize() {
     this.createHtml()
-
-    setStyle('height', this.options.height, this.$panel)
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.$wrap)

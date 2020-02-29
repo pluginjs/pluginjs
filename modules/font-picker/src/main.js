@@ -137,6 +137,7 @@ class FontPicker extends Component {
     this.DROPDOWN = Dropdown.of(this.$trigger, {
       ...options,
       target: this.$dropdown,
+      responsiveFull: this.options.responsiveDropdownFull,
       keyboard: this.options.keyboard ? this.$wrap : false,
       classes: {
         PLACEMENT: `${this.classes.NAMESPACE}-on-{placement}`

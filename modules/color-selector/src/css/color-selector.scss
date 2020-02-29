@@ -4,6 +4,8 @@
 // Vars
 // =====================
 $colorSelector: "pj-colorSelector";
+$dropdown: "pj-dropdown";
+
 $colorSelector-font-family: $font-family-base;
 $colorSelector-font-size: $font-size-base;
 $colorSelector-sizer: $sizer !default;
@@ -60,6 +62,12 @@ $colorSelector-collection-item-box-shadow: $box-shadow-2 !default;
     }
   }
 
+  &-panel-gradient {
+    .pj-gradientPicker-panel {
+      width: unset;
+    }
+  }
+
   &-panel-collection {
     padding: $colorSelector-collection-padding;
 
@@ -97,5 +105,15 @@ $colorSelector-collection-item-box-shadow: $box-shadow-2 !default;
 
   &-selected {
     color: $color-primary-active !important;
+  }
+}
+
+.#{$dropdown} {
+  &-full-width{
+    .#{$colorSelector}-group-list {
+      .pj-colorSelector-collection-item:nth-of-type(6n) {
+        margin-right: $colorSelector-collection-item-margin-right;
+    } 
+    }
   }
 }

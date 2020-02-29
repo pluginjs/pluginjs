@@ -8,7 +8,7 @@ $imageSelector-width: 96px !default;
 $imageSelector-max-height: 330px !default;
 $imageSelector-dropdown-padding: 24px !default;
 $imageSelector-dropdown-padding-right: 14px !default;
-$imageSelector-dropdown-width: 272px !default;
+$imageSelector-dropdown-width: 279px !default;
 $imageSelector-option-width: 100px !default;
 
 $imageSelector-trigger-border-color: $gray-light !default;
@@ -57,7 +57,7 @@ $imageSelector-trigger-padding-right: 30px !default;
   }
 
   &-dropdown {
-    width: auto;
+    width: $imageSelector-dropdown-width;
     max-height: $imageSelector-max-height;
     overflow: auto;
     line-height: 1;
@@ -67,7 +67,6 @@ $imageSelector-trigger-padding-right: 30px !default;
       box-sizing: border-box;
       display: flex;
       flex-wrap: wrap;
-      width: $imageSelector-dropdown-width;
       padding: $imageSelector-dropdown-padding;
       padding-right: $imageSelector-dropdown-padding-right;
     }

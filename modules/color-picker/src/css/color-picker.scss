@@ -3,6 +3,7 @@
 
 $colorPicker: "pj-colorPicker";
 $select: "pj-select";
+$dropdown: "pj-dropdown";
 
 $colorPicker-font-size: $font-size-base;
 $colorPicker-font-family: $font-family-base;
@@ -189,5 +190,21 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
     font-weight: $colorPicker-font-weight;
     letter-spacing: 1.3px;
     transition: unset;
+  }
+}
+
+.#{$dropdown} {
+  &-full-width{
+    .#{$colorPicker}-history {
+      margin-top: 0;
+
+      &-item:nth-child(-n+9) {
+        margin-top: $colorPicker-history-item-margin-right;
+      } 
+
+      &-item:nth-child(9n) {
+        margin-right: $colorPicker-history-item-margin-right;
+      } 
+    }
   }
 }

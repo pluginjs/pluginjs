@@ -55,7 +55,7 @@ export const defaults = {
   hideOnSelect: true,
   hideOutClick: true, // When clicking outside of the dropdown, trigger hide event
   keyboard: false,
-  breakpoints: { xs: { min: 0, max: 350 } },
+  breakpoints: { xs: { min: 0, max: 360 } },
   responsiveFull: false, // When window to some size, dropdown full width
   placement: 'bottom-start', // ['auto','bottom', 'top', 'right', 'left'] and ['start', 'end'] can be combination, like 'bottom-start', 'left-end'. when use a single value, like 'bottom', means 'bottom-center'.
   offset: '0,6px',

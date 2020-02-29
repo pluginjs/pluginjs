@@ -85,6 +85,7 @@ $videoPicker-poster-with: 190px;
 
   &-empty {
     color: $videoPicker-color;
+    cursor: pointer;
     background: $videoPicker-bg-color;
     border: 1px dashed $videoPicker-border-color;
 

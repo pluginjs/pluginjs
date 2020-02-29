@@ -8,6 +8,7 @@ $gradientSelector-sizer: $sizer !default;
 $editPanel: "pj-editPanel" !default;
 $scrollable: "pj-scrollable" !default;
 $range: "pj-range" !default;
+$dropdown: "pj-dropdown" !default;
 
 $gradientSelector-color: $gray-dark;
 $gradientSelector-hover-color: $gray-darkest;
@@ -31,7 +32,7 @@ $gradientSelector-panel-swicher-height: 4 * $gradientSelector-sizer !default; //
 $gradientSelector-panel-swicher-icon-size: 2 * $gradientSelector-sizer !default; //20px
 $gradientSelector-panel-swicher-icon-color: $gray !default;
 // collection
-$gradientSelector-collection-padding: 2 * $gradientSelector-sizer 2.4 * $gradientSelector-sizer 3 * $gradientSelector-sizer !default; //20px 0 30px
+$gradientSelector-collection-padding: 2 * $gradientSelector-sizer 2.3 * $gradientSelector-sizer 3 * $gradientSelector-sizer !default; //20px 0 30px
 // collection scrollwrap
 $gradientSelector-collection-scrollwrap-padding: 0 2 * $gradientSelector-sizer !default; //20px
 $gradientSelector-collection-scrollwrap-width: 26 * $gradientSelector-sizer !default; //260px
@@ -256,12 +257,19 @@ $editPanel-component-color: $color-red !default;
         }
       }
     }
+
+    &-gradient {
+      .pj-gradientPicker{
+        .pj-gradientPicker-panel {
+          width: unset;
+        }
+      }
+    }
   }
 
   &-collection {
     &-scrollwrap {
       box-sizing: content-box;
-      width: $gradientSelector-collection-scrollwrap-width;
       height: $gradientSelector-collection-scrollwrap-height;
       overflow: hidden;
       overflow-y: auto;
@@ -418,6 +426,16 @@ $editPanel-component-color: $color-red !default;
 
     .#{$gradientSelector}-trigger-action {
       display: flex;
+    }
+  }
+}
+
+.#{$dropdown} {
+  &-full-width{
+    .#{$gradientSelector}-collection {
+      &-item:nth-of-type(5n) {
+        margin-right: $gradientSelector-collection-item-margin-right;
+    } 
     }
   }
 }

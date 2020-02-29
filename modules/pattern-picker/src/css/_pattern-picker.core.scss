@@ -5,6 +5,8 @@
 // =====================
 $patternPicker: "pj-patternPicker" !default;
 
+$patternPicker-driodown-width: 275px !default;
+
 $patternPicker-width: 160px !default;
 $patternPicker-height: 90px !default;
 $patternPicker-panel-swicher-height: 56px !default;
@@ -76,7 +78,7 @@ $patternPicker-scheme-height: 230px !default;
 
   &-panel{
     box-sizing: border-box;
-    width: 300px;
+    width: $patternPicker-driodown-width;
 
     &-swicher {
       display: flex;

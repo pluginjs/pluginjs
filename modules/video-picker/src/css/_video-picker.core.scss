@@ -8,7 +8,7 @@ $videoPicker-width: 160px !default;
 $videoPicker-height: 90px !default;
 
 $videoPicker-local-url-content-width: 190px !default;
-$videoPicker-preview-width: 223px !default;
+$videoPicker-dropdown-width: 273px !default;
 
 $videoPicker-poster-delete-right: 5px !default;
 
@@ -23,7 +23,7 @@ $videoPicker-icon: $pj-icon-play-circle !default;
   height: $videoPicker-height;
 
   &-dropdown {
-    width: auto;
+    width: $videoPicker-dropdown-width;
   }
 
   &-trigger {
@@ -91,7 +91,6 @@ $videoPicker-icon: $pj-icon-play-circle !default;
   &-preview {
     position: relative;
     box-sizing: border-box;
-    width: $videoPicker-preview-width;
   }
 
   &-video {

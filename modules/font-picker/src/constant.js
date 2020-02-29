@@ -131,6 +131,7 @@ export const defaults = {
     }
   ],
   placeholder: true,
+  responsiveDropdownFull: false,
   clearable: true,
   manage: null,
   multiple: false,

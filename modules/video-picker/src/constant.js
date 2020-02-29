@@ -75,7 +75,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   hideOutClick: true,
-  responsiveDropdownFull: false,
+  responsiveDropdownFull: true,
   sources: ['YouTube', 'Vimeo', 'Local File'],
   disabled: false,
   date: null,

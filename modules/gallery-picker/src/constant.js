@@ -61,7 +61,6 @@ export const defaults = {
   locale: 'en',
   localeFallbacks: true,
   responsiveDropdownFull: false,
-  height: 330,
   disabled: false,
   dropdown: {
     placement: 'bottom-start' // top

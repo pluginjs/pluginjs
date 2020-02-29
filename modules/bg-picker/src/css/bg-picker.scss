@@ -61,6 +61,8 @@ $bgPicker-image-margin: 5.5px;
 $bgPicker-image-remove-right: 10px;
 $bgPicker-image-name-with: 198px;
 
+$bgPicker-field-content-mw: 224px;
+
 // Style
 // =====================
 .#{$bgPicker} {
@@ -218,11 +220,6 @@ $bgPicker-image-name-with: 198px;
   }
 
   &-position,
-  &-repeat {
-    overflow: hidden;
-  }
-
-  &-position,
   &-repeat,
   &-size {
     .#{$bgPicker}-field-content {
@@ -282,6 +279,8 @@ $bgPicker-image-name-with: 198px;
 
   &-position {
     .#{$bgPicker}-field-content {
+      max-width: $bgPicker-field-content-mw;
+
       li {
         width: $bgPicker-expand-position-width;
         height: $bgPicker-position-content-li-height;

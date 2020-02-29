@@ -5,6 +5,7 @@
 $bgPicker: "pj-bgPicker" !default;
 $bgPicker-dropdown-zindex: $zindex-dropdown !default;
 
+
 // Core
 // =====================
 .#{$bgPicker} {
@@ -83,6 +84,7 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+  
 
     &-title {
       float: left;

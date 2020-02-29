@@ -10,7 +10,7 @@ export default class Clearable {
     )
     addClass(instance.classes.CLEARABLE, instance.$wrap)
     bindEvent(
-      instance.eventName('click'),
+      instance.eventName('mousedown'),
       () => {
         instance.clear()
 
