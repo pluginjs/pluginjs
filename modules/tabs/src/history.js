@@ -86,7 +86,7 @@ class History {
     const REG = new RegExp(`#*${this.instance.historyId}=[^&]+`, 'i')
     const state = {
       index: current,
-      slug: typeof attr === "undefined" && attr === null ? current : attr, /* eslint-disable-line */
+      slug: typeof attr === "undefined" || attr === null ? current : attr, /* eslint-disable-line */
       initial: current === this.instance.options.initialIndex
     }
     let url = window.location.hash

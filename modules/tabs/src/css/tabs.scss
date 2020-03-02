@@ -113,7 +113,7 @@ $tabs-drop-content-padding-top: 2px;
   }
 }
 
-.#{$tabs}-drop {
+.#{$tabs}--drop {
   .#{$tabs}-nav-label {
     padding: $tabs-label-padding-y $tabs-label-padding-x;
     color: inherit;
