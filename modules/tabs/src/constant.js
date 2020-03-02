@@ -15,7 +15,7 @@ export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
   ELEMENT: '{namespace}',
-  RESPONSIVE: '{namespace}--{responsiveMode}',
+  RESPONSIVE: '{namespace}-{responsiveMode}',
   NAVLABEL: '{namespace}-nav-label',
   NAVWRAP: '{namespace}-nav-wrap',
   DROPOPEN: '{namespace}-drop-open',
