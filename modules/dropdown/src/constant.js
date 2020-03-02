@@ -65,6 +65,7 @@ export const defaults = {
   itemValueAttr: 'data-value',
   data: null,
   multiple: false,
+  more: false,
   templates: {
     item() {
       return '<div class="{classes.ITEM}" {itemValueAttr}="{item.value}">{item.label}</div>'

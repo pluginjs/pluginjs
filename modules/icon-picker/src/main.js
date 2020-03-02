@@ -244,12 +244,6 @@ class IconPicker extends Component {
 
     if (!isEmpty(value)) {
       this.set(this.options.parse.call(this, value), false)
-      // const valuePack = this.options.parse.call(this, value)
-      // if (valuePack && this.packs.includes(valuePack.package)) {
-
-      // } else {
-      //   this.placeholder = 'Icon Removed'
-      // }
     }
 
     if (isNull(this.current)) {
