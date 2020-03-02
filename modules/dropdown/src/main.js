@@ -309,8 +309,9 @@ class Dropdown extends Component {
 
   unselectByValue(value, trigger = true) {
     const $selected = this.getItems().find($item => {
-      return this.getItemValue($item) === value
+      return this.getItemValue($item) === value && this.$active.includes($item)
     })
+
     if ($selected) {
       this.unselectItem($selected, trigger)
     }

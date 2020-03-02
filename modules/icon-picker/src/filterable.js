@@ -33,7 +33,7 @@ export default class Filterable {
       () => {
         const value = this.$input.value
         const DROPDOWN = instance.DROPDOWN
-        if (!value) {
+        if (!value.trim()) {
           this.refreshDefault()
         } else {
           this.filter(value)
@@ -129,12 +129,68 @@ export default class Filterable {
     }
   }
 
-  filter(query) {
-    const { filter } = this.instance.options
+  showPackage(pack) {
+    if (pack.hided) {
+      removeClass(this.instance.classes.PACKAGEHIDED, pack.$dom)
 
+      pack.hided = false
+    }
+  }
+
+  hidePackage(pack) {
+    if (typeof pack.hided === 'undefined' || pack.hided === false) {
+      addClass(this.instance.classes.PACKAGEHIDED, pack.$dom)
+
+      pack.hided = true
+    }
+  }
+
+  filter(query) {
     let found = 0
     const pack = this.instance.getCurrentPack()
     const items = this.instance.getCurrentPackItems()
+
+    if (pack.name === 'all-icons') {
+      each(items, (name, iconPackage) => {
+        let packageFound = 0
+
+        const filterResult = this.filterAllIcon(
+          iconPackage,
+          iconPackage.__items,
+          query,
+          true
+        )
+
+        found = filterResult.found
+        packageFound = filterResult.packageFound
+
+        if (packageFound) {
+          if (this.instance.collapses) {
+            this.instance.collapses.forEach(collapse => {
+              collapse.expand()
+            })
+          }
+          this.showPackage(iconPackage)
+        } else {
+          this.hidePackage(iconPackage)
+        }
+      })
+    } else {
+      const filterResult = this.filterAllIcon(pack, items, query)
+      found = filterResult.found
+    }
+
+    if (found) {
+      this.hideNotFound()
+    } else {
+      this.showNotFound()
+    }
+  }
+
+  filterAllIcon(pack, items, query, hasPackageFound) {
+    const { filter } = this.instance.options
+    let found = 0
+    let packageFound = 0
 
     if (pack.classifiable) {
       each(items, (name, group) => {
@@ -145,6 +201,7 @@ export default class Filterable {
             this.showItem(item)
             found++
             groupFound++
+            packageFound++
           } else {
             this.hideItem(item)
           }
@@ -161,17 +218,14 @@ export default class Filterable {
         if (filter(item.icon, query)) {
           this.showItem(item)
           found++
+          packageFound++
         } else {
           this.hideItem(item)
         }
       })
     }
 
-    if (found) {
-      this.hideNotFound()
-    } else {
-      this.showNotFound()
-    }
+    return hasPackageFound ? { found, packageFound } : { found }
   }
 
   refreshDefault() {
@@ -181,6 +235,17 @@ export default class Filterable {
     const pack = this.instance.getCurrentPack()
     const items = this.instance.getCurrentPackItems()
 
+    if (pack.name === 'all-icons') {
+      each(items, (name, iconPackage) => {
+        this.showAll(iconPackage, iconPackage.__items)
+        this.showPackage(iconPackage)
+      })
+    } else {
+      this.showAll(pack, items)
+    }
+  }
+
+  showAll(pack, items) {
     if (pack.classifiable) {
       each(items, (name, group) => {
         each(group.items, (k, item) => {

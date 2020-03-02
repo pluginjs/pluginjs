@@ -9,6 +9,7 @@ IconPicker.of(element, {
   source(resolve) {
     resolve(feather)
   },
+  showManage: true,
   manage(resolve) {
     resolve(entypo)
   }

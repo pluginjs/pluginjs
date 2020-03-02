@@ -30,6 +30,7 @@ import Filterable from './filterable'
 import Manage from './manage'
 import Switcher from './switcher'
 import Loading from './loading'
+import Collapse from './collapse'
 import { removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import Dropdown from '@pluginjs/dropdown'
@@ -40,7 +41,8 @@ import {
   html,
   parseHTML,
   closest,
-  empty
+  empty,
+  queryAll
 } from '@pluginjs/dom'
 import { deepClone, each, triggerNative } from '@pluginjs/utils'
 import Tooltip from '@pluginjs/tooltip'
@@ -69,8 +71,8 @@ class IconPicker extends Component {
   initialize() {
     this.selected = null
     this.current = null
-
     this.placeholder = this.element.getAttribute('placeholder')
+
     if (!this.placeholder && this.options.placeholder) {
       if (this.options.placeholder === true) {
         this.placeholder = this.translate('placeholderText')
@@ -167,9 +169,18 @@ class IconPicker extends Component {
       },
       onSelect: $item => {
         const $pack = closest(`.${this.classes.PACK}`, $item)
-        const pack = this.getPack($pack.dataset.name)
+        let pack = this.getPack($pack.dataset.name)
+        let isAllIcon = false
+
+        if (pack.name === 'all-icons') {
+          const $package = closest(`.${this.classes.PACKAGES}`, $item)
+          const packName = $package.getAttribute('data-name')
+          pack = pack.packages[packName]
+          isAllIcon = true
+        }
 
         this.set({
+          isAllIcon,
           package: pack.name,
           icon: $item.dataset.value,
           class: pack.class,
@@ -186,7 +197,7 @@ class IconPicker extends Component {
   }
 
   buildDropdown() {
-    if (this.options.manage) {
+    if (this.options.showManage) {
       this.MANAGE = new Manage(this)
     }
 
@@ -201,13 +212,13 @@ class IconPicker extends Component {
     if (isArray(this.options.source) || isPlainObject(this.options.source)) {
       this.resolveData(this.options.source)
     } else if (isFunction(this.options.source)) {
-      this.enter('loading')
       this.options.source.call(this, this.resolveData.bind(this))
     }
   }
 
   resolveData(data) {
     this.data = deepClone(data)
+    this.showAllIcons = false
 
     if (!isArray(this.data)) {
       this.data = [this.data]
@@ -217,14 +228,32 @@ class IconPicker extends Component {
       return
     }
 
+    if (this.data.length > 1) {
+      this.showAllIcons = true
+    }
+
+    this.packs = []
+
+    this.data.forEach(data => {
+      this.packs.push(data.name)
+    })
+
+    this.realData = this.showAllIcons ? this.parseAllIcons() : this.data
+
     const value = this.element.value
 
     if (!isEmpty(value)) {
       this.set(this.options.parse.call(this, value), false)
+      // const valuePack = this.options.parse.call(this, value)
+      // if (valuePack && this.packs.includes(valuePack.package)) {
+
+      // } else {
+      //   this.placeholder = 'Icon Removed'
+      // }
     }
 
     if (isNull(this.current)) {
-      this.setCurrentPack(this.data[0].name)
+      this.setCurrentPack(this.realData[0].name)
     }
 
     if (this.is('loading')) {
@@ -240,6 +269,22 @@ class IconPicker extends Component {
     }
   }
 
+  parseAllIcons() {
+    const dataWithAllIcons = [...this.data]
+    const allIconData = {
+      name: 'all-icons',
+      title: 'All Icons',
+      packages: {}
+    }
+    this.data.forEach(data => {
+      allIconData.packages[data.name] = data
+    })
+
+    dataWithAllIcons.unshift(allIconData)
+
+    return dataWithAllIcons
+  }
+
   set(item, trigger = true) {
     if (item !== this.selected) {
       if (this.selected) {
@@ -247,6 +292,7 @@ class IconPicker extends Component {
           this.DROPDOWN.unselectByValue(this.getItemValue(this.selected), false)
         }
       }
+
       if (isNull(item)) {
         this.setLabel(this.placeholder)
         removeClass(this.classes.SELECTED, this.$wrap)
@@ -254,20 +300,23 @@ class IconPicker extends Component {
         if (trigger) {
           this.trigger(EVENTS.CLEAR)
         }
-      } else {
+      } else if (this.packs.includes(item.package)) {
         this.setLabel(this.getItemLabel(item))
         addClass(this.classes.SELECTED, this.$wrap)
 
         if (trigger) {
           this.trigger(EVENTS.SELECT, item)
         }
+      } else {
+        this.setLabel(this.translate('iconRemoveText'))
       }
 
       this.selected = item
       let value
       if (item) {
         if (item.package) {
-          this.setCurrentPack(item.package)
+          const pack = item.isAllIcon ? 'all-icons' : item.package
+          this.setCurrentPack(pack)
         }
 
         value = this.options.process.call(this, item)
@@ -330,7 +379,7 @@ class IconPicker extends Component {
     if (pack) {
       this.current = pack
     } else {
-      this.current = this.data.length > 0 ? this.data[0] : null
+      this.current = this.realData.length > 0 ? this.realData[0] : null
     }
   }
 
@@ -354,11 +403,11 @@ class IconPicker extends Component {
   }
 
   getPack(name) {
-    return this.data.find(pack => pack.name === name)
+    return this.realData.find(pack => pack.name === name)
   }
 
   getPacks() {
-    return this.data
+    return this.realData
   }
 
   getCurrentPackItems() {
@@ -383,7 +432,7 @@ class IconPicker extends Component {
   }
 
   buildDropdownContent() {
-    if (this.data.length > 1 && !this.SWITCHER) {
+    if (!this.SWITCHER) {
       this.SWITCHER = new Switcher(this)
     }
 
@@ -413,7 +462,12 @@ class IconPicker extends Component {
     pack.__dom = $pack
     pack.__items = {}
 
-    if (pack.classifiable === false) {
+    if (pack.name === 'all-icons') {
+      addClass(this.classes.PACKALLICON, $pack)
+      each(pack.packages, (name, iconPackage) => {
+        $pack.appendChild(this.buildPackages(pack, iconPackage, name))
+      })
+    } else if (pack.classifiable === false) {
       each(pack.icons, (name, label) => {
         $pack.appendChild(this.buildItem(pack, name, label))
       })
@@ -425,10 +479,71 @@ class IconPicker extends Component {
 
     this.$main.appendChild($pack)
 
+    this.initCollapse()
+
     return $pack
   }
 
-  buildGroup(pack, group, icons) {
+  initCollapse() {
+    if (!this.showAllIcons) {
+      return
+    }
+    this.collapses = []
+    const packages = queryAll(`.${this.classes.PACKAGES}`, this.$main)
+    packages.forEach(iconPack => {
+      this.collapses.push(
+        Collapse.of(this, iconPack, {
+          collapsed: true
+        })
+      )
+    })
+  }
+
+  buildPackages(pack, iconPackage, name) {
+    if (!this.packageTemplate) {
+      this.packageTemplate = templateEngine.compile(
+        this.options.templates.packages.call(this)
+      )
+    }
+
+    const $package = parseHTML(
+      this.packageTemplate({
+        classes: this.classes,
+        title: iconPackage.title,
+        name
+      })
+    )
+
+    const $contentinner = query(
+      `.${this.classes.PACKAGECONTENTINNER}`,
+      $package
+    )
+
+    pack.__items[iconPackage.title] = {
+      classifiable: iconPackage.classifiable,
+      package: iconPackage.title,
+      __items: {},
+      $dom: $package
+    }
+
+    if (iconPackage.classifiable === false) {
+      each(iconPackage.icons, (name, label) => {
+        $contentinner.appendChild(
+          this.buildItem(iconPackage, name, label, null, pack)
+        )
+      })
+    } else {
+      each(iconPackage.categories, (category, icons) => {
+        $contentinner.appendChild(
+          this.buildGroup(iconPackage, category, icons, pack)
+        )
+      })
+    }
+
+    return $package
+  }
+
+  buildGroup(pack, group, icons, allIconPack) {
     if (!this.groupTemplate) {
       this.groupTemplate = templateEngine.compile(
         this.options.templates.group.call(this)
@@ -442,22 +557,32 @@ class IconPicker extends Component {
       })
     )
 
-    pack.__items[group] = {
-      group,
-      items: {},
-      $dom: $group
+    if (allIconPack) {
+      allIconPack.__items[pack.title].__items[group] = {
+        group,
+        items: {},
+        $dom: $group
+      }
+    } else {
+      pack.__items[group] = {
+        group,
+        items: {},
+        $dom: $group
+      }
     }
 
     icons.forEach(icon => {
       if (Object.prototype.hasOwnProperty.call(pack.icons, icon)) {
-        $group.appendChild(this.buildItem(pack, icon, pack.icons[icon], group))
+        $group.appendChild(
+          this.buildItem(pack, icon, pack.icons[icon], group, allIconPack)
+        )
       }
     })
 
     return $group
   }
 
-  buildItem(pack, value, label, group) {
+  buildItem(pack, value, label, group, allIconPack) {
     if (!this.itemTemplate) {
       this.itemTemplate = templateEngine.compile(
         this.options.templates.item.call(this)
@@ -477,7 +602,19 @@ class IconPicker extends Component {
       })
     )
 
-    if (group) {
+    if (allIconPack) {
+      if (group) {
+        allIconPack.__items[pack.title].__items[group].items[value] = {
+          icon: value,
+          $dom: $item
+        }
+      } else {
+        allIconPack.__items[pack.title].__items[value] = {
+          icon: value,
+          $dom: $item
+        }
+      }
+    } else if (group) {
       pack.__items[group].items[value] = {
         icon: value,
         $dom: $item
@@ -535,6 +672,8 @@ class IconPicker extends Component {
         this.SWITCHER.destroy()
         this.SWITCHER = null
       }
+
+      this.current = null
 
       this.resolveData(data)
     }

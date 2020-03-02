@@ -21,8 +21,11 @@ $iconPicker-item-height: 36px !default;
 $iconPicker-icon-width: 16px !default;
 $iconPicker-icon-height: 16px !default;
 
+// $iconPicker-switcher-arrow-icon: $pj-icon-caret-thin-up !default;
+$iconPicker-switcher-label-padding: 7.5px 0;
 $iconPicker-manage-icon: $pj-icon-setting !default;
 $iconPicker-manage-font: $pj-icon-font-family !default;
+
 
 $iconPicker-search-height: 40px !default;
 $iconPicker-search-left: 12px !default;
@@ -52,7 +55,8 @@ $iconPicker-search-icon: $pj-icon-search !default;
 
   &-main,
   &-pack,
-  &-group {
+  &-group,
+  &-package-content-inner {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -79,7 +83,8 @@ $iconPicker-search-icon: $pj-icon-search !default;
     }
   }
 
-  &-group {
+  &-group,
+  &-packages {
     width: 100%;
   }
 
@@ -91,10 +96,8 @@ $iconPicker-search-icon: $pj-icon-search !default;
     white-space: nowrap;
   }
 
-  &-pack-hided {
-    display: none;
-  }
-
+  &-pack-hided,
+  &-package-hided,
   &-group-hided {
     display: none;
   }
@@ -125,6 +128,52 @@ $iconPicker-search-icon: $pj-icon-search !default;
     cursor: pointer;
   }
 
+  &-packages {
+    .#{$iconPicker}-group {
+      margin: 0;
+
+      &:first-child {
+        margin-top: 8px;
+      }
+
+      &-label {
+        padding-left: 0;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &-package-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+    &::before {
+      @include icon();
+      margin-right: 8px;
+      font-family: $iconPicker-manage-font;
+      content: icon-content($iconPicker-trigger-arrow-icon);
+      transform: rotate(-90deg);
+
+      .#{$iconPicker}-package-expanded & {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  &-package-content {
+    overflow: hidden;
+
+    .#{$iconPicker}-package-collapsed & {
+      display: none;
+    }
+
+    .#{$iconPicker}-package-expanded & {
+      display: block;
+    }
+  }
+
   &-manage {
     &::before {
       @include icon();
@@ -135,7 +184,19 @@ $iconPicker-search-icon: $pj-icon-search !default;
   }
 
   &-switcher-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    padding: $iconPicker-switcher-label-padding;
+
+    &::after {
+      @include icon();
+      margin-left: 5px;
+      font-family: $iconPicker-manage-font;
+      content: icon-content($iconPicker-trigger-arrow-icon);
+      transform: rotate(180deg);
+    }
   }
 
   &-switcher-dropdown {

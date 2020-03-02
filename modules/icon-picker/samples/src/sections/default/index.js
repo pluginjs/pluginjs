@@ -11,6 +11,7 @@ const init = () => {
     source(resolve) {
       resolve([fontAwesome, dashicons, entypo, feather])
     },
+    showManage: true,
     manage(resolve) {
       resolve([fontAwesome])
     }

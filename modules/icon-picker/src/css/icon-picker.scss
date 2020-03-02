@@ -4,6 +4,7 @@
 // Vars
 // =====================
 $iconPicker: "pj-iconPicker";
+$dropdown: "pj-dropdown";
 
 $iconPicker-color: $text-color;
 
@@ -15,6 +16,7 @@ $iconPicker-item-active-color: $color-white;
 $iconPicker-item-active-bg: $color-primary;
 $iconPicker-item-active-color: $color-white;
 $iconPicker-item-active-bg: $color-primary;
+$iconPicker-bg: $color-white;
 
 $iconPicker-pack-size: 6 * ($iconPicker-item-size + $iconPicker-item-margin * 2 );
 
@@ -87,20 +89,38 @@ $iconPicker-group-margin-bottom: 8px;
   &-empty,
   &-not-found,
   &-loading {
-    width: 80%;
-    margin: 0 auto;
+    position: absolute;
+    width: 100%;
     color: $iconPicker-state-color;
-  }
-
-  &-main {
-    margin-top: $iconPicker-main-margin;
-    margin-bottom: $iconPicker-main-margin;
+    background-color: $iconPicker-bg;
   }
 
   &-pack {
     width: $iconPicker-pack-size;
     height: 100%;
-    margin: 0 16px;
+    padding: 0 16px;
+
+    .#{$dropdown}-full-width & {
+      width: 100%;
+    }
+
+    &-all-icon {
+      width: #{$iconPicker-pack-size + 16px * 2};
+      padding: 0;
+    }
+  }
+
+  &-package {
+    &-header {
+      padding: $iconPicker-group-label-space-y $iconPicker-group-label-space-x;
+      font-size: $iconPicker-group-label-font-size;
+      color: $iconPicker-group-label-color;
+      background-color: $iconPicker-group-label-backgroud-color;
+    }
+
+    &-content-inner {
+      padding: 0 16px;
+    }
   }
 
   &-group {
@@ -134,7 +154,6 @@ $iconPicker-group-margin-bottom: 8px;
   }
 
   &-action {
-    padding: $iconPicker-action-padding;
     font-size: $iconPicker-action-font-size;
 
     &:hover {
@@ -144,6 +163,10 @@ $iconPicker-group-margin-bottom: 8px;
     & + & {
       border-left: 1px solid $iconPicker-action-border-color;
     }
+  }
+
+  &-manage {
+    padding: $iconPicker-action-padding;
   }
 
   &-filter {
