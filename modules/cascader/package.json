@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.4",
+  "version": "0.8.5",
   "category": "form",
   "main": "dist/cascader.common.js",
   "module": "dist/cascader.esm.js",
@@ -41,7 +41,7 @@
     "@pluginjs/component": "^0.8.3",
     "@pluginjs/decorator": "^0.8.3",
     "@pluginjs/dom": "^0.8.3",
-    "@pluginjs/dropdown": "^0.8.4",
+    "@pluginjs/dropdown": "^0.8.5",
     "@pluginjs/events": "^0.8.3",
     "@pluginjs/is": "^0.8.3",
     "@pluginjs/match": "^0.8.3",

@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.4",
+  "version": "0.8.5",
   "category": "ui",
   "main": "dist/time-table.common.js",
   "module": "dist/time-table.esm.js",
@@ -41,12 +41,12 @@
     "@pluginjs/choice": "^0.8.3",
     "@pluginjs/classes": "^0.8.3",
     "@pluginjs/component": "^0.8.3",
-    "@pluginjs/date-picker": "^0.8.4",
+    "@pluginjs/date-picker": "^0.8.5",
     "@pluginjs/decorator": "^0.8.3",
     "@pluginjs/dom": "^0.8.3",
     "@pluginjs/events": "^0.8.3",
     "@pluginjs/factory": "^0.8.3",
-    "@pluginjs/filters": "^0.8.4",
+    "@pluginjs/filters": "^0.8.5",
     "@pluginjs/is": "^0.8.3",
     "@pluginjs/styled": "^0.8.3",
     "@pluginjs/template": "^0.8.3",
