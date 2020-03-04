@@ -118,7 +118,7 @@ export const defaults = {
     }
   },
   fontSize: {
-    value: 'inherit',
+    value: '',
     unit: 'px',
     units: ['inherit', 'px', 'em', 'rem'],
     min: 0,
@@ -136,7 +136,7 @@ export const defaults = {
     }
   },
   lineHeight: {
-    value: 'inherit',
+    value: '',
     unit: 'em',
     units: ['inherit', 'px', 'em', 'rem'],
     min: 1,
