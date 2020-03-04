@@ -97,7 +97,7 @@ class Effect {
       height = Math.max(this.instance.panelMinHeight, height)
     }
 
-    this.instance.$content.style.cssText = ''
+    // this.instance.$content.style.cssText = ''
     anime({
       targets: this.instance.$content,
       height: [this.instance.previousHeight, height],
