@@ -161,7 +161,7 @@ export const defaults = {
 
   process(value) {
     if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value).replace(/("|\\")/g, '"')
+      return JSON.stringify(value)
     }
     return ''
   },
@@ -182,7 +182,7 @@ export const defaults = {
 
     if (type === 'color') {
       const color = value['background-image']
-        .match(/fill='(\S*)'/)[1]
+        .match(/fill='(.*?)'/)[1]
         .replace('%23', '#')
 
       return color

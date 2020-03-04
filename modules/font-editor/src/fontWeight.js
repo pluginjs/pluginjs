@@ -56,18 +56,15 @@ export default class FontWeight {
 
   set(value) {
     if (!value) {
-      console.log(value, 111)
       this.SELECT.clear()
       this.instance.value.fontWeight = ''
     } else {
-      console.log(value, 222)
       this.SELECT.select(value)
       this.instance.value.fontWeight = value
     }
   }
 
   clear() {
-    console.log(111)
     this.set(this.defaultValue)
   }
 }

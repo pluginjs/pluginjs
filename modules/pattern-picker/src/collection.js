@@ -24,7 +24,7 @@ class Collection {
       classes: this.classes
     })
 
-    if(this.instance.options.manageButton) {
+    if (this.instance.options.manageButton) {
       const $manage = this.instance.createEl('manage', {
         classes: this.classes,
         manageText: this.instance.translate('manage')
@@ -48,38 +48,46 @@ class Collection {
 
       // set tooltip
       Tooltip.of($item, {
-        title: i.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
+        title: v.name.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
         placement: 'bottom',
         trigger: 'hover'
       })
 
-      v = v.replace(/\"/g, "'") /* eslint-disable-line */
-      const fillValue = v.match(/fill='(\S*)'/)
-      const fillOpacity = v.match(/fill-opacity='(\S*)'/)
-      const dRule = v.match(/\sd='([\s\S]*)'/)
+      let pattern = v.pattern.replace(/\"/g, "'") /* eslint-disable-line */
+      const fillValue = pattern.match(/fill='(.*?)'/)
+      const fillOpacity = pattern.match(/fill-opacity='(.*?)'/)
+      const dRule = pattern.match(/\sd='(.*?)'/)
       let bgValue = ''
-
-      if (!fillOpacity && !fillValue && dRule) {
-        v = v.replace(dRule[0], `${dRule[0]} fill-opacity='1' fill='%23000000'`)
-      } else if (!fillOpacity && fillValue && dRule) {
-        v = v.replace(dRule[0], `${dRule[0]} fill-opacity='1'`)
-      } else if (fillOpacity && !fillValue && dRule) {
-        v = v.replace(dRule[0], `${dRule[0]} fill='%23000000'`)
+      let bgColor = ''
+      if (v.backcolor) {
+        bgColor = v.backcolor
       }
 
-      v = v.replace(/[\r\n]/g, '').replace(/\s+/g, ' ')
+      if (!fillOpacity && !fillValue && dRule) {
+        pattern = pattern.replace(
+          dRule[0],
+          `${dRule[0]} fill-opacity='1' fill='%23000000'`
+        )
+      } else if (!fillOpacity && fillValue && dRule) {
+        pattern = pattern.replace(dRule[0], `${dRule[0]} fill-opacity='1'`)
+      } else if (fillOpacity && !fillValue && dRule) {
+        pattern = pattern.replace(dRule[0], `${dRule[0]} fill='%23000000'`)
+      }
 
-      if (v.match(/encoding='UTF-8'/)) {
-        bgValue = `url(\"data:image/svg+xml,${v}\")` /* eslint-disable-line */
+      pattern = pattern.replace(/[\r\n]/g, '').replace(/\s+/g, ' ')
+
+      if (pattern.match(/encoding='UTF-8'/)) {
+        bgValue = `url(\"data:image/svg+xml,${pattern}\")` /* eslint-disable-line */
       } else {
-        bgValue = `url(\"data:image/svg+xml,<?xml version='1.0' encoding='UTF-8' standalone='no'?>${v}\")` /* eslint-disable-line */
+        bgValue = `url(\"data:image/svg+xml,<?xml version='1.0' encoding='UTF-8' standalone='no'?>${pattern}\")` /* eslint-disable-line */
       }
 
       setStyle('background', bgValue, $item)
+      setStyle('background-color', bgColor, $item)
 
       const info = {
         name: i,
-        'background-color': this.bgColor,
+        'background-color': bgColor,
         // make '#' to '%23', fixed svg data image not working on FireFox.
         'background-image': bgValue.replace(/\#+/g, '%23') /* eslint-disable-line */
       }

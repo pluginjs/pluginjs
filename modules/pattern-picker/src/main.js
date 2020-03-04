@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose, triggerNative } from '@pluginjs/utils'
+import { compose, triggerNative, deepClone } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -468,7 +468,11 @@ class PatternPicker extends Component {
 
       this.module = 'custom'
       this.actived = true
-      this.element.value = this.val()
+
+      const elValue = deepClone(this.data)
+      const bgValue = elValue['background-image'].replace(/(")/g, '\\"')
+      elValue['background-image'] = bgValue
+      this.element.value = this.options.process.call(this, elValue, false)
       addClass(this.classes.SHOW, this.$wrap)
 
       if (trigger) {
