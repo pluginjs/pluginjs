@@ -229,10 +229,6 @@ $editPanel-component-color: $color-red !default;
 
     &-container {
       position: relative;
-
-      & > div {
-        display: none;
-      }
     }
   
     &-collection {

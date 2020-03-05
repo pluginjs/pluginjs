@@ -1,11 +1,15 @@
 export default function valueParser(originData) {
   const tokens = originData
+    .replace('image/svg+xml,', 'image/svg+xml--')
+    .replace(/(\\")/g, '"')
+    .replace(/(",")/g, '"--"')
     .slice(1, -1)
-    .split(',')
+    .split('--')
     .map(str => str.split(':'))
   const svgXmlIndex = tokens.findIndex(
     tokenTuple => tokenTuple[tokenTuple.length - 1] === 'image/svg+xml'
   )
+
   const svgPath = Array.of(
     tokens[svgXmlIndex].slice(1),
     tokens[svgXmlIndex + 1]
@@ -13,7 +17,7 @@ export default function valueParser(originData) {
     .map(strList => strList.join(':'))
     .join(',')
     .slice(1, -1)
-    .replace(/&quot;/g, '"')
+
   const key = tokens[svgXmlIndex][0].slice(1, -1)
   const result = tokens
     .filter((tuple, index) => index !== svgXmlIndex + 1)

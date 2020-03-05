@@ -73,7 +73,7 @@ export const methods = [
 ]
 
 export const defaults = {
-  responsiveDropdownFull: false,
+  responsiveDropdownFull: true,
   theme: null,
   locale: 'en',
   data: null, // [json]images data

@@ -7,6 +7,7 @@ import { hideElement } from '@pluginjs/styled'
 import { isString, isNull } from '@pluginjs/is'
 import {
   append,
+  prepend,
   parseHTML,
   query,
   attr,
@@ -198,6 +199,10 @@ class ColorPicker extends Component {
             this.oldColor = this.color
             // showElement(this.$mask)
 
+            if (this.options.responsiveDropdownFull) {
+              this.Saturation.init()
+            }
+
             if (this.HISTORY) {
               this.HISTORY.updateHistory()
             }
@@ -236,14 +241,16 @@ class ColorPicker extends Component {
     const saturation = this.createEl('saturation', {
       classes: this.classes
     })
-    append(saturation, query(`.${this.classes.PRIMARY}`, this.$panel))
-      new Saturation(this, query(`.${this.classes.SATURATION}`, this.$panel))   /* eslint-disable-line */
+    prepend(saturation, query(`.${this.classes.PRIMARY}`, this.$panel))
+    this.Saturation = new Saturation(this, query(`.${this.classes.SATURATION}`, this.$panel))   /* eslint-disable-line */
   }
+
   initHue() {
     const hue = this.createEl('hue', { classes: this.classes })
     append(hue, query(`.${this.classes.PRIMARY}`, this.$panel))
      new Hue(this, query(`.${this.classes.HUE}`, this.$panel))   /* eslint-disable-line */
   }
+
   initAlpha() {
     const alpha = this.createEl('alpha', { classes: this.classes })
     append(alpha, query(`.${this.classes.PRIMARY}`, this.$panel))
@@ -308,10 +315,6 @@ class ColorPicker extends Component {
   }
 
   registerComponent() {
-    if (this.module.saturation) {
-      this.initSaturation()
-    }
-
     if (this.module.hue) {
       this.initHue()
     }
@@ -329,6 +332,10 @@ class ColorPicker extends Component {
       this.initHistory()
     } else {
       query(`.${this.classes.HISTORY}`, this.$panel).remove()
+    }
+
+    if (this.module.saturation) {
+      this.initSaturation()
     }
 
     if (!this.options.inline || this.options.showControl) {

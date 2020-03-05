@@ -246,6 +246,10 @@ class ColorSelector extends Component {
   }
 
   setupDropdown(options) {
+    this.setupCollection()
+    this.setupSolid()
+    this.setupGradient()
+
     this.DROPDOWN = new Dropdown(this.PREVIEW.element, {
       ...options,
       reference: this.element,
@@ -259,6 +263,7 @@ class ColorSelector extends Component {
         if (this.options.gradient) {
           this.GRADIENTPICKER.oldColor = this.GRADIENTPICKER.color
         }
+
         this.oldColor.module = this.module
         this.oldColor.color = this.color
         this.switchModule(this.module)
@@ -267,10 +272,6 @@ class ColorSelector extends Component {
         this.update()
       }
     })
-
-    this.setupCollection()
-    this.setupSolid()
-    this.setupGradient()
   }
 
   setupCollection() {
@@ -335,6 +336,15 @@ class ColorSelector extends Component {
         addClass(this.classes.SELECTED, $this)
         $content.style.display = 'block'
         // showElement($content)
+
+        if (typeName === 'solid' && this.options.responsiveDropdownFull) {
+          this.COLORPICKER.Saturation.init()
+        } else if (
+          typeName === 'gradient' &&
+          this.options.responsiveDropdownFull
+        ) {
+          this.GRADIENTPICKER.COLORPICKER.Saturation.init()
+        }
       }
     })
 

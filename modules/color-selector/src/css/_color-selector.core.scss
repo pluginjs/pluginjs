@@ -147,9 +147,9 @@ $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
   &-panel-container {
     position: relative;
 
-    & > div {
-      display: none;
-    }
+    // & > div {
+    //   display: none;
+    // }
   }
 
   &-group-list {

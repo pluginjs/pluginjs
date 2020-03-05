@@ -179,9 +179,9 @@ class GradientSelector extends Component {
     this.$trigger = query(`.${this.classes.TRIGGERPANEL}`, this.$panel)
     this.$container = query(`.${this.classes.CONTAINERPANEL}`, this.$panel)
 
-    this.setupDropdown(this.options.dropdown)
     this.setupCollection()
     this.setupGradientPicker()
+    this.setupDropdown(this.options.dropdown)
   }
 
   setupDropdown(options) {
@@ -256,6 +256,9 @@ class GradientSelector extends Component {
         addClass(this.classes.SELECTED, $this)
         $content.style.display = 'block'
         // showElement($content)
+        if (typeName === 'gradient' && this.options.responsiveDropdownFull) {
+          this.GRADIENTPICKER.COLORPICKER.Saturation.init()
+        }
       }
     })
 

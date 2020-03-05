@@ -12,24 +12,43 @@ class Saturation {
       `<i class="${this.instance.classes.POINTER}"></i>`
     )
 
-    this.init()
-  }
-
-  init() {
     this.element.append(this.$pointer)
     this.size = parseInt(getStyle('width', this.$pointer), 10) / 2
-    this.maxLengthX = parseInt(getStyle('width', this.element), 10)
-    this.maxLengthY = parseInt(getStyle('height', this.element), 10)
+
+    this.init()
     this.bind()
   }
 
+  init() {
+    this.maxLengthX = parseInt(getStyle('width', this.element), 10)
+    this.maxLengthY = parseInt(getStyle('height', this.element), 10)
+    this.width = this.maxLengthX
+  }
+
   bind() {
+    let timer
+    window.addEventListener('resize', () => {
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        timer = null
+        if (
+          this.width !== parseInt(getStyle('width', this.element), 10) &&
+          this.element.offsetParent !== null
+        ) {
+          this.init()
+        }
+      }, 400)
+    })
+
     bindEvent(
       this.instance.eventName('mousedown'),
       e => {
         if (e.which === 2 || e.which === 3) {
           return false
         }
+
         if (!hasClass(this.instance.classes.POINTER, e.target)) {
           this.move([e.offsetX, e.offsetY])
         }

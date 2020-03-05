@@ -338,7 +338,7 @@ class GradientPicker extends Component {
 
     // // create panel
     this.initPanel()
-
+    this.initColorPicker()
     if (!this.options.inline) {
       this.DROPDOWN = Dropdown.of(
         this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
@@ -358,6 +358,10 @@ class GradientPicker extends Component {
               this.COLORPICKER.HISTORY.updateHistory()
             }
 
+            if (this.options.responsiveDropdownFull) {
+              this.COLORPICKER.Saturation.init()
+            }
+
             this.leave('save')
           },
           onHided: () => {
@@ -368,7 +372,6 @@ class GradientPicker extends Component {
         }
       )
     }
-    this.initColorPicker()
   }
   initPreview() {
     const $preview = this.createEl('preview', {
