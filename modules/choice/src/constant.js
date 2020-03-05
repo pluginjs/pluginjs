@@ -38,7 +38,7 @@ export const defaults = {
   multiple: false,
   overflow: false,
   disabled: false,
-  toggleTrigger: 'hover', // click
+  toggleTrigger: 'click', // click
   toggleIcon: 'pj-icon pj-icon-caret-down-mini',
   toggleText: 'Other &nbsp;',
   templates: {

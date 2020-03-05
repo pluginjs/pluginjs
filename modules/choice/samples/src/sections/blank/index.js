@@ -14,5 +14,6 @@ Choice.of(element, {
       label: 'default'
     }
   },
+  overflow: true,
   multiple: false
 })

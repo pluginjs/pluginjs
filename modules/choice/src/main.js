@@ -45,15 +45,12 @@ import {
 
 const $doc = window.document
 const childrenMatchSelector = (selector, el) =>
-  compose(
-    elementList => {
-      if (elementList) {
-        return elementList.filter(el => el.matches(selector))
-      }
-      return []
-    },
-    children
-  )(el)
+  compose(elementList => {
+    if (elementList) {
+      return elementList.filter(el => el.matches(selector))
+    }
+    return []
+  }, children)(el)
 @themeable()
 @optionable(DEFAULTS, true)
 @styleable(CLASSES)
@@ -108,7 +105,7 @@ class Choice extends Component {
     if (this.$element.value) {
       this.val(this.value)
     }
-    
+
     this.setupOptions(options)
     this.setupStates()
     this.initialize()
@@ -491,12 +488,6 @@ class Choice extends Component {
       $item = this.getItemByValue(value)
     }
 
-    if (!$item.matches(`.${this.classes.SELECTED}`)) {
-      return
-    }
-
-    removeClass(this.classes.SELECTED, $item)
-
     if (this.options.overflow) {
       if (
         this.$dropdown.contains($item) &&
@@ -504,6 +495,12 @@ class Choice extends Component {
       ) {
         removeClass(this.classes.SELECTED, this.$toggle)
       }
+    }
+
+    removeClass(this.classes.SELECTED, $item)
+
+    if (!$item.matches(`.${this.classes.SELECTED}`)) {
+      return
     }
 
     if (update === true) {
