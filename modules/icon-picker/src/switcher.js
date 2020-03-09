@@ -26,6 +26,7 @@ export default class Switcher {
       this.DROPDOWN = Dropdown.of(this.$label, {
         target: query(`.${instance.classes.SWITCHERDROPDOWN}`, this.element),
         placement: 'top',
+        offset: 0,
         value: instance.current.name,
         data: instance.getPacks().map(pack => {
           return {
