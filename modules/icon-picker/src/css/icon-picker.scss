@@ -8,8 +8,9 @@ $dropdown: "pj-dropdown";
 
 $iconPicker-color: $text-color;
 
-$iconPicker-item-size: 32px;
-$iconPicker-item-margin: 4px;
+$iconPicker-content-gutter: 12px;
+$iconPicker-item-size: 28px;
+$iconPicker-item-margin: 3px;
 $iconPicker-item-hover-bg: $gray-lighter;
 $iconPicker-item-icon-font-size: $font-size-md;
 $iconPicker-item-active-color: $color-white;
@@ -18,7 +19,7 @@ $iconPicker-item-active-color: $color-white;
 $iconPicker-item-active-bg: $color-primary;
 $iconPicker-bg: $color-white;
 
-$iconPicker-pack-size: 6 * ($iconPicker-item-size + $iconPicker-item-margin * 2 );
+$iconPicker-pack-size: 6 * (30.5px + $iconPicker-item-margin * 2 );
 
 $iconPicker-trigger-placeholder-color: $gray;
 $iconPicker-trigger-disabled-bg: $disabled-bg;
@@ -95,18 +96,28 @@ $iconPicker-group-margin-bottom: 8px;
     background-color: $iconPicker-bg;
   }
 
-  &-pack {
-    width: $iconPicker-pack-size;
-    height: 100%;
-    padding: 0 16px;
+  &-main {
+    width: #{$iconPicker-pack-size + $iconPicker-content-gutter * 2};
 
     .#{$dropdown}-full-width & {
       width: 100%;
     }
+  }
+
+  &-pack {
+    height: 100%;
+    padding: 0 $iconPicker-content-gutter;
 
     &-all-icon {
-      width: #{$iconPicker-pack-size + 16px * 2};
       padding: 0;
+    }
+
+    &-with-group {
+      .#{$iconPicker}-group-label {
+        box-sizing: content-box;
+        margin-right: -$iconPicker-content-gutter;
+        margin-left: -$iconPicker-content-gutter;
+      }
     }
   }
 
@@ -119,7 +130,7 @@ $iconPicker-group-margin-bottom: 8px;
     }
 
     &-content-inner {
-      padding: 0 16px;
+      padding: 0 12px;
     }
   }
 

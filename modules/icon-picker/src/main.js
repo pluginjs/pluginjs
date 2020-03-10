@@ -302,7 +302,7 @@ class IconPicker extends Component {
           this.trigger(EVENTS.SELECT, item)
         }
       } else {
-        this.setLabel(this.translate('iconRemoveText'))
+        this.setRemoveLabel(item)
       }
 
       this.selected = item
@@ -327,6 +327,31 @@ class IconPicker extends Component {
         }
       }
     }
+  }
+
+  setRemoveLabel(item) {
+    if (item.package) {
+      const packName = this.getPackName(item.package)
+      if (this.getLocale() === 'zh') {
+        this.setLabel(`${packName} 已移除`)
+      } else {
+        this.setLabel(`${packName} Removed`)
+      }
+    } else {
+      this.setLabel(this.translate('iconRemoveText'))
+    }
+  }
+
+  getPackName(pack) {
+    const names = pack.split('-')
+    if (names.length > 1) {
+      return names
+        .map(name => {
+          return name.charAt(0).toUpperCase() + name.slice(1)
+        })
+        .join(' ')
+    }
+    return names[0].charAt(0).toUpperCase() + names[0].slice(1)
   }
 
   val(value, trigger = true) {
@@ -466,6 +491,7 @@ class IconPicker extends Component {
         $pack.appendChild(this.buildItem(pack, name, label))
       })
     } else {
+      addClass(this.classes.PACKWITHGROUP, $pack)
       each(pack.categories, (category, icons) => {
         $pack.appendChild(this.buildGroup(pack, category, icons))
       })

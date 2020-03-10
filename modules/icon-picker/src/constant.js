@@ -38,6 +38,7 @@ export const classes = {
   GROUPHIDED: '{namespace}-group-hided',
   MAIN: '{namespace}-main',
   PACK: '{namespace}-pack',
+  PACKWITHGROUP: '{namespace}-pack-with-group',
   PACKHIDED: '{namespace}-pack-hided',
   PACKALLICON: '{namespace}-pack-all-icon',
   ITEM: '{namespace}-item pj-dropdown-item',
