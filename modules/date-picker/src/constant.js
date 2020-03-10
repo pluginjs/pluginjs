@@ -79,7 +79,7 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-  responsiveDropdownFull: false,
+  responsiveDropdownFull: true,
   firstDayOfWeek: 0, // 0-6 === sunday---saturday
   mode: 'single', // single,range,multiple
   inline: false,

@@ -5,6 +5,7 @@
 // Vars
 // ========================
 $datePicker: "pj-datePicker";
+$dropdown: "pj-dropdown";
 
 $datePicker-width: 100%;
 
@@ -334,5 +335,15 @@ $datePicker-body-font-size: $font-size-xs;
       color: $datePicker-disabled-color;
     }
     /* stylelint-enable */
+  }
+}
+
+.#{$dropdown} {
+  &-full-width{
+    .#{$datePicker}-dropdown {
+      .#{$datePicker}-content {
+        width: 100%;
+      }
+    }
   }
 }

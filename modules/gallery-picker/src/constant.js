@@ -60,7 +60,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   localeFallbacks: true,
-  responsiveDropdownFull: false,
+  responsiveDropdownFull: true,
   disabled: false,
   dropdown: {
     placement: 'bottom-start' // top

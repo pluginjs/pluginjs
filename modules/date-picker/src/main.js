@@ -1454,6 +1454,7 @@ class DatePicker extends Component {
   /* eslint-disable */
   click(e) {
     const $target = e.target
+    console.log(666)
     if (
       !this.$inputIcon.contains($target) &&
       !this.$picker.contains($target) &&
@@ -1959,7 +1960,7 @@ class DatePicker extends Component {
     if (this.is('disabled')) {
       return null
     }
-
+  
     if (this.options.inline === true) {
       this.trigger(EVENTS.BEFORESHOW)
       compose(
@@ -1979,7 +1980,7 @@ class DatePicker extends Component {
         e => {
           this.click(e)
         },
-        $doc
+        this.$picker
       )
 
       if (this.is('popper')) {
