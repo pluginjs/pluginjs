@@ -8,8 +8,8 @@ $dropdown: "pj-dropdown";
 
 $iconPicker-color: $text-color;
 
-$iconPicker-content-gutter: 12px;
-$iconPicker-item-size: 28px;
+$iconPicker-content-gutter: 16px;
+$iconPicker-item-size: 32px;
 $iconPicker-item-margin: 3px;
 $iconPicker-item-hover-bg: $gray-lighter;
 $iconPicker-item-icon-font-size: $font-size-md;
@@ -18,8 +18,6 @@ $iconPicker-item-active-bg: $color-primary;
 $iconPicker-item-active-color: $color-white;
 $iconPicker-item-active-bg: $color-primary;
 $iconPicker-bg: $color-white;
-
-$iconPicker-pack-size: 6 * (30.5px + $iconPicker-item-margin * 2 );
 
 $iconPicker-trigger-placeholder-color: $gray;
 $iconPicker-trigger-disabled-bg: $disabled-bg;
@@ -33,7 +31,7 @@ $iconPicker-group-label-font-size: $font-size-base;
 $iconPicker-group-label-color: $gray-darker;
 $iconPicker-group-label-space-x: 12px;
 $iconPicker-group-label-space-y: 9.5px;
-$iconPicker-group-label-backgroud-color: rgba(250,250,250,1);
+$iconPicker-package-header-backgroud-color: rgba(250,250,250,1);
 
 $iconPicker-search-color: $gray;
 $iconPicker-search-padding-x: 12px;
@@ -56,6 +54,12 @@ $iconPicker-group-margin-bottom: 8px;
 
 .#{$iconPicker} {
   outline: none;
+
+  .#{$dropdown}-full-width {
+    .#{$iconPicker}-dropdown {
+      width: $iconPicker-width;
+    }
+  }
 
   &-trigger {
     position: relative;
@@ -84,7 +88,6 @@ $iconPicker-group-margin-bottom: 8px;
     padding: $iconPicker-group-label-space-y $iconPicker-group-label-space-x;
     font-size: $iconPicker-group-label-font-size;
     color: $iconPicker-group-label-color;
-    background-color: $iconPicker-group-label-backgroud-color;
   }
 
   &-empty,
@@ -94,14 +97,6 @@ $iconPicker-group-margin-bottom: 8px;
     width: 100%;
     color: $iconPicker-state-color;
     background-color: $iconPicker-bg;
-  }
-
-  &-main {
-    width: #{$iconPicker-pack-size + $iconPicker-content-gutter * 2};
-
-    .#{$dropdown}-full-width & {
-      width: 100%;
-    }
   }
 
   &-pack {
@@ -127,11 +122,11 @@ $iconPicker-group-margin-bottom: 8px;
       padding: $iconPicker-group-label-space-y $iconPicker-group-label-space-x;
       font-size: $iconPicker-group-label-font-size;
       color: $iconPicker-group-label-color;
-      background-color: $iconPicker-group-label-backgroud-color;
+      background-color: $iconPicker-package-header-backgroud-color;
     }
 
     &-content-inner {
-      padding: 0 12px;
+      padding: 0 $iconPicker-content-gutter;
     }
   }
 

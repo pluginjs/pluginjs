@@ -5,6 +5,7 @@
 // =====================
 $iconPicker: "pj-iconPicker" !default;
 $iconPicker-max-height: 300px !default;
+$iconPicker-width: 272px;
 
 $iconPicker-trigger-arrow-icon: $pj-icon-caret-down-mini !default;
 $iconPicker-trigger-arrow-font: $pj-icon-font-family !default;
@@ -33,6 +34,10 @@ $iconPicker-search-icon: $pj-icon-search !default;
 .#{$iconPicker} {
   position: relative;
 
+  * {
+    box-sizing: border-box;
+  }
+
   &-element {
     display: none;
   }
@@ -43,16 +48,16 @@ $iconPicker-search-icon: $pj-icon-search !default;
   }
 
   & &-dropdown {
-    width: auto;
+    width: $iconPicker-width;
   }
 
   &-main {
     position: relative;
+    width: 100%;
     height: $iconPicker-max-height;
     overflow-y: auto;
   }
 
-  &-main,
   &-pack,
   &-group,
   &-package-content-inner {
@@ -60,6 +65,7 @@ $iconPicker-search-icon: $pj-icon-search !default;
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
+    justify-content: space-between;
   }
 
   &-pack {
@@ -68,7 +74,6 @@ $iconPicker-search-icon: $pj-icon-search !default;
 
   &-item {
     position:relative;
-    box-sizing: border-box;
     justify-content: center;
 
     i {
@@ -128,10 +133,6 @@ $iconPicker-search-icon: $pj-icon-search !default;
   &-packages {
     .#{$iconPicker}-group {
       margin: 0;
-
-      &:first-child {
-        margin-top: 8px;
-      }
 
       &-label {
         padding-left: 0;

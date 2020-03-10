@@ -49,7 +49,7 @@ export default class Filterable {
         }
 
         instance.trigger(EVENTS.FILTER, value)
-      }, 300),
+      }, 200),
       this.$input
     )
 
