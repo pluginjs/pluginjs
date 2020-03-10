@@ -4,7 +4,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { isNull } from '@pluginjs/is'
 import { events as EVENTS } from './constant'
 import templateEngine from '@pluginjs/template'
-import { each } from '@pluginjs/utils'
+import { each, debounce } from '@pluginjs/utils'
 
 export default class Filterable {
   constructor(instance) {
@@ -30,7 +30,7 @@ export default class Filterable {
 
     bindEvent(
       instance.eventName('input'),
-      () => {
+      debounce(() => {
         const value = this.$input.value
         const DROPDOWN = instance.DROPDOWN
         if (!value.trim()) {
@@ -49,7 +49,7 @@ export default class Filterable {
         }
 
         instance.trigger(EVENTS.FILTER, value)
-      },
+      }, 300),
       this.$input
     )
 
