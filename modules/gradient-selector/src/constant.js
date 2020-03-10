@@ -78,7 +78,7 @@ export const methods = [
 export const defaults = {
   theme: null,
   locale: 'en',
-  responsiveDropdownFull: false,
+  responsiveDropdownFull: true,
   data: null, // [json]images data
   manage() {},  /* eslint-disable-line */
   manageButton: true,

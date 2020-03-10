@@ -99,7 +99,7 @@ export const defaults = {
   theme: null,
   locale: 'en',
   placeholder: 'choose color',
-  responsiveDropdownFull: false,
+  responsiveDropdownFull: true,
   disabled: false,
   inline: false,
   showControl: false,

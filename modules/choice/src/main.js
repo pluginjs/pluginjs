@@ -374,7 +374,7 @@ class Choice extends Component {
     }
   }
 
-  set(value) {
+  set(value, trigger = true) {
     if (
       this.value === value ||
       (isArray(value) && arrayEqual(this.value, value))
@@ -387,6 +387,7 @@ class Choice extends Component {
       } else {
         this.$element.value = this.value
       }
+   
       return
     }
 
@@ -402,7 +403,10 @@ class Choice extends Component {
         this.unselect($item, false)
       }
     })
-    this.trigger(EVENTS.CHANGE, this.value)
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.value)
+    }
   }
 
   get() {

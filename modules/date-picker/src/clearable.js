@@ -13,7 +13,6 @@ export default class Clearable {
       instance.eventName('click'),
       () => {
         instance.clear()
-
         return false
       },
       this.element
