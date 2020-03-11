@@ -79,8 +79,9 @@ $iconPicker-search-icon: $pj-icon-search !default;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 16px;
-      height: 16px;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
     }
   }
 
@@ -148,7 +149,7 @@ $iconPicker-search-icon: $pj-icon-search !default;
 
     &::before {
       @include icon();
-      margin-right: 8px;
+      margin-right: 5px;
       font-family: $iconPicker-manage-font;
       content: icon-content($iconPicker-trigger-arrow-icon);
       transform: rotate(-90deg);
