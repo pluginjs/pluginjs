@@ -135,7 +135,7 @@ $iconPicker-group-margin-bottom: 8px;
   }
 
   &-item {
-    width: $iconPicker-item-size;
+    width: calc(20% - #{$iconPicker-item-margin * 2});
     height: $iconPicker-item-size;
     margin: $iconPicker-item-margin;
     border-radius: 100%;
