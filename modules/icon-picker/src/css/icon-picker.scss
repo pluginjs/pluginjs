@@ -55,12 +55,6 @@ $iconPicker-group-margin-bottom: 8px;
 .#{$iconPicker} {
   outline: none;
 
-  .#{$dropdown}-full-width {
-    .#{$iconPicker}-dropdown {
-      width: $iconPicker-width;
-    }
-  }
-
   &-trigger {
     position: relative;
     color: $iconPicker-trigger-placeholder-color;
