@@ -32,14 +32,6 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
 
 // Skin
 // =====================
-.pj-dropdown-full-width.pj-dropdown-show {
-  display: flex;
-
-  .pj-dropdown {
-    width: 90%;
-  }
-}
-
 .#{$dropdown} {
   width: $dropdown-width;
   font-family: $dropdown-font-family;
@@ -59,8 +51,6 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
     height: 100%;
     background-color: rgba(0,0,0,0.4);
   }
-
- 
 
   &-full-width {
     position: fixed;
@@ -113,5 +103,13 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
     &.#{$dropdown}-highlighted:not(.#{$dropdown}-item-disabled) {
       background-color: $dropdown-item-highlighted-bg;
     }
+  }
+}
+
+.pj-dropdown-full-width.pj-dropdown-show {
+  display: flex;
+
+  > .pj-dropdown {
+    max-width: 90%;
   }
 }

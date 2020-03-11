@@ -62,7 +62,7 @@ export const methods = [
 ]
 
 export const defaults = {
-  responsiveDropdownFull: true,
+  responsiveDropdownFull: false,
   inline: false,
   theme: null,
   source: null,

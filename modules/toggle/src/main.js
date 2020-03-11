@@ -80,7 +80,6 @@ class Toggle extends Component {
 
     const borderWidth = 3
     const wrapWidth = parseInt(getStyle('width', this.$wrap).replace(/px|pt|em/gi, ''), 0)
-
     const wrapClientWidth = wrapWidth - 2 * borderWidth
    
     this.distance =

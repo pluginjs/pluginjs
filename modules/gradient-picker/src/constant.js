@@ -59,7 +59,7 @@ export const translations = {
 }
 
 export const defaults = {
-  responsiveDropdownFull: true,
+  responsiveDropdownFull: false,
   theme: null,
   placeholder: 'choose color',
   inline: false,

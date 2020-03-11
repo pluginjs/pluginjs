@@ -90,7 +90,7 @@ export const methods = [
 export const defaults = {
   theme: null,
   locale: 'en',
-  responsiveDropdownFull: true,
+  responsiveDropdownFull: false,
   localeFallbacks: true,
   hideOutClick: true,
   disabled: false,
