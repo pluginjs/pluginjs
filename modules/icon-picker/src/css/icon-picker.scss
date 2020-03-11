@@ -9,7 +9,7 @@ $dropdown: "pj-dropdown";
 $iconPicker-color: $text-color;
 
 $iconPicker-content-gutter: 16px;
-$iconPicker-item-size: 32px;
+$iconPicker-item-size: 31px;
 $iconPicker-item-margin: 3px;
 $iconPicker-item-hover-bg: $gray-lighter;
 $iconPicker-item-icon-font-size: $font-size-md;
@@ -135,7 +135,7 @@ $iconPicker-group-margin-bottom: 8px;
   }
 
   &-item {
-    width: calc(20% - #{$iconPicker-item-margin * 2});
+    width: calc(100% / 6 - #{$iconPicker-item-margin * 2});
     height: $iconPicker-item-size;
     margin: $iconPicker-item-margin;
     border-radius: 100%;
