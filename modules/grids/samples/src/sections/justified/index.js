@@ -6,7 +6,6 @@ const button = query('#justified .add')
 const api = Grids.of(element, {
   itemSelector: '.grids-item',
   gutter: 20,
-  minHeight: 260,
   model: 'justified'
 })
 

@@ -31,6 +31,8 @@ class Grid {
       (this.api.width - gutter) / (minWidth + gutter)
     )
 
+    columnCount = columnCount < 1 ? 1 : columnCount
+
     if (this.api.options.maxColumn) {
       columnCount = columnCount > maxColumn ? maxColumn : columnCount
     }
