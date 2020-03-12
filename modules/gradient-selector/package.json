@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.9",
+  "version": "0.8.10",
   "category": "form",
   "main": "dist/gradient-selector.common.js",
   "module": "dist/gradient-selector.esm.js",
@@ -38,14 +38,14 @@
   },
   "dependencies": {
     "@pluginjs/classes": "^0.8.3",
-    "@pluginjs/color-selector": "^0.8.9",
+    "@pluginjs/color-selector": "^0.8.10",
     "@pluginjs/component": "^0.8.3",
     "@pluginjs/decorator": "^0.8.3",
     "@pluginjs/dom": "^0.8.3",
-    "@pluginjs/dropdown": "^0.8.6",
+    "@pluginjs/dropdown": "^0.8.7",
     "@pluginjs/events": "^0.8.3",
     "@pluginjs/factory": "^0.8.3",
-    "@pluginjs/gradient-picker": "^0.8.7",
+    "@pluginjs/gradient-picker": "^0.8.8",
     "@pluginjs/pop-dialog": "^0.8.3",
     "@pluginjs/range": "^0.8.3",
     "@pluginjs/scrollable": "^0.8.3",

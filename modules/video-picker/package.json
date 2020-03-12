@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.6",
+  "version": "0.8.7",
   "category": "form",
   "main": "dist/video-picker.common.js",
   "module": "dist/video-picker.esm.js",
@@ -41,10 +41,10 @@
     "@pluginjs/component": "^0.8.3",
     "@pluginjs/decorator": "^0.8.3",
     "@pluginjs/dom": "^0.8.3",
-    "@pluginjs/dropdown": "^0.8.6",
+    "@pluginjs/dropdown": "^0.8.7",
     "@pluginjs/events": "^0.8.3",
     "@pluginjs/pop-dialog": "^0.8.3",
-    "@pluginjs/select": "^0.8.6",
+    "@pluginjs/select": "^0.8.7",
     "@pluginjs/styled": "^0.8.3",
     "@pluginjs/template": "^0.8.3",
     "@pluginjs/utils": "^0.8.3",

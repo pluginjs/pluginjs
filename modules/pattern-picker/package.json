@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.9",
+  "version": "0.8.10",
   "category": "form",
   "main": "dist/pattern-picker.common.js",
   "module": "dist/pattern-picker.esm.js",
@@ -38,12 +38,12 @@
   },
   "dependencies": {
     "@pluginjs/classes": "^0.8.3",
-    "@pluginjs/color-picker": "^0.8.7",
-    "@pluginjs/color-selector": "^0.8.9",
+    "@pluginjs/color-picker": "^0.8.8",
+    "@pluginjs/color-selector": "^0.8.10",
     "@pluginjs/component": "^0.8.3",
     "@pluginjs/decorator": "^0.8.3",
     "@pluginjs/dom": "^0.8.3",
-    "@pluginjs/dropdown": "^0.8.6",
+    "@pluginjs/dropdown": "^0.8.7",
     "@pluginjs/events": "^0.8.3",
     "@pluginjs/factory": "^0.8.3",
     "@pluginjs/is": "^0.8.3",
