@@ -259,7 +259,7 @@ class Thumbnails extends Component {
     this.distance = 0
 
     this.gutter =
-      this.length > 0
+      this.length > 1
         ? parseInt(
             window.getComputedStyle(this.items[1])[
               vertical ? 'margin-top' : 'margin-left'
