@@ -70,6 +70,10 @@ class Slider extends Component {
       this.data = this.options.data
     }
 
+    if (this.data.length === 0) {
+      return
+    }
+
     if (this.options.breakpoint) {
       this.initBreakpoints()
     }
