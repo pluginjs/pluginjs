@@ -32,17 +32,18 @@ $gradientSelector-panel-swicher-height: 4 * $gradientSelector-sizer !default; //
 $gradientSelector-panel-swicher-icon-size: 2 * $gradientSelector-sizer !default; //20px
 $gradientSelector-panel-swicher-icon-color: $gray !default;
 // collection
-$gradientSelector-collection-padding: 2 * $gradientSelector-sizer 2.3 * $gradientSelector-sizer 3 * $gradientSelector-sizer !default; //20px 0 30px
+$gradientSelector-collection-padding: 16px 0 24px !default;
 // collection scrollwrap
-$gradientSelector-collection-scrollwrap-padding: 0 2 * $gradientSelector-sizer !default; //20px
+$gradientSelector-collection-scrollwrap-padding: 0 16px !default;
 $gradientSelector-collection-scrollwrap-width: 26 * $gradientSelector-sizer !default; //260px
 $gradientSelector-collection-scrollwrap-height: 25 * $gradientSelector-sizer !default; //250px
 // collection item
 $gradientSelector-collection-item-width: 3.2 * $gradientSelector-sizer !default; //32px
 $gradientSelector-collection-item-height: $gradientSelector-collection-item-width !default;
 $gradientSelector-collection-item-border-radius: 100 * $gradientSelector-sizer !default; //1000px
+$gradientSelector-collection-item-margin-x: 4px !default;
 $gradientSelector-collection-item-margin-right: $gradientSelector-sizer * 2 !default; //20px
-$gradientSelector-collection-item-margin-bottom: $gradientSelector-sizer * 1.5 !default; //15px
+$gradientSelector-collection-item-margin-bottom: 12px !default;
 // collection group
 $gradientSelector-collection-group-title-margin-bottom: 1.5 * $gradientSelector-sizer !default; //15px
 $gradientSelector-collection-group-title-color: $color-primary-black !default;
@@ -50,6 +51,7 @@ $gradientSelector-collection-group-title-font-size: $font-size-xs !default;
 // collection manage
 $gradientSelector-collection-manage-height: 3.3 * $gradientSelector-sizer !default; //30px
 $gradientSelector-collection-manage-padding: $gradientSelector-sizer * 0.6 0 !default; //6px
+$gradientSelector-collection-manage-margin: 12px 24px 0 !default;
 $gradientSelector-collection-manage-icon-margin-right: $gradientSelector-sizer !default; //10px
 
 // component
@@ -216,7 +218,7 @@ $editPanel-component-color: $color-red !default;
           border: 1px solid $gray-dark;
           border-radius: 2px;
         }
-        
+
         &-active {
           cursor: pointer;
         }
@@ -230,22 +232,22 @@ $editPanel-component-color: $color-red !default;
     &-container {
       position: relative;
     }
-  
+
     &-collection {
       padding: $gradientSelector-collection-padding;
-  
-      .#{$gradientSelector}-manage {
 
+      .#{$gradientSelector}-manage {
+        margin: $gradientSelector-collection-manage-margin;
         line-height: $gradientSelector-collection-manage-height - 2px;
         color: $color-primary-black;
         text-align: center;
         border: 1px solid #e6e6e6;
-  
+
         i {
           margin-right: $gradientSelector-collection-manage-icon-margin-right;
           vertical-align: middle;
         }
-  
+
         &:hover {
           cursor: pointer;
           background-color: #f2f2f2;
@@ -263,10 +265,15 @@ $editPanel-component-color: $color-red !default;
     }
   }
 
+  &-scheme {
+    width: 100%;
+  }
+
   &-collection {
     &-scrollwrap {
       box-sizing: content-box;
       height: $gradientSelector-collection-scrollwrap-height;
+      padding: $gradientSelector-collection-scrollwrap-padding;
       overflow: hidden;
       overflow-y: auto;
     }
@@ -275,16 +282,17 @@ $editPanel-component-color: $color-red !default;
       display: inline-block;
       width: $gradientSelector-collection-item-width;
       height: $gradientSelector-collection-item-height;
-      margin-right: $gradientSelector-collection-item-margin-right;
-      margin-bottom: $gradientSelector-collection-item-margin-bottom;
       list-style: none;
       cursor: pointer;
       background-size: 100% 100% !important;
       border-radius: 2px;
 
-      &:nth-of-type(5n) {
-        width: $gradientSelector-collection-item-width - 1;
-        margin-right: 0;
+      &-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: calc(20% - #{$gradientSelector-collection-item-margin-x * 2});
+        margin: 0 $gradientSelector-collection-item-margin-x $gradientSelector-collection-item-margin-bottom;
       }
     }
   }

@@ -61,6 +61,7 @@ export const classes = {
   SCHEME: '{namespace}-scheme',
   MANAGE: '{namespace}-manage',
   COLLECTIONITEM: '{namespace}-collection-item',
+  COLLECTIONITEMWRAP: '{namespace}-collection-item-wrap',
   COLLECTIONITEMACTIVE: '{namespace}-collection-item-active',
   COLLECTIONSCROLLWRAP: '{namespace}-collection-scrollwrap'
 }

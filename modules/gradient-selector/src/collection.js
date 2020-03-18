@@ -1,12 +1,5 @@
 import { setStyle } from '@pluginjs/styled'
-import {
-  append,
-  parseHTML,
-  children,
-  prepend,
-  query,
-  setData
-} from '@pluginjs/dom'
+import { wrap, append, parseHTML, prepend, query, setData } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 
 class Collection {
@@ -28,7 +21,7 @@ class Collection {
       classes: this.classes
     })
 
-    if(this.instance.options.manageButton) {
+    if (this.instance.options.manageButton) {
       const $manage = this.instance.createEl('manage', {
         classes: this.classes,
         manageText: this.instance.translate('manage')
@@ -37,24 +30,15 @@ class Collection {
     } else {
       this.element.append($scheme)
     }
-    
+
     this.createCollectionItem()
 
     // init scrollable
     const $scorllWrap = parseHTML(
-      `<div class='${
-        this.classes.COLLECTIONSCROLLWRAP
-      }'><div><div></div></div></div>`
+      `<div class='${this.classes.COLLECTIONSCROLLWRAP}'></div>`
     )
     prepend($scorllWrap, this.element)
-    const scrollWrapChildren = children($scorllWrap)
-      .filter(el => el.tagName === 'DIV')
-      .map(el =>
-        children(el)
-          .filter(el => el.tagName === 'DIV')
-          .reduce((a, b) => a.concat(b))
-      )
-    scrollWrapChildren.map(append(this.$selectorList))
+    append(this.$selectorList, $scorllWrap)
 
     return null
   }
@@ -65,6 +49,10 @@ class Collection {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes
       })
+      const $itemwrap = wrap(
+        `<div class="${this.classes.COLLECTIONITEMWRAP}"></div>`,
+        $item
+      )
 
       // set tooltip
       Tooltip.of($item, {
@@ -81,7 +69,7 @@ class Collection {
       }
       setData('info', info, $item)
       // append to group list
-      append($item, this.$selectorList)
+      append($itemwrap, this.$selectorList)
     })
   }
 }
