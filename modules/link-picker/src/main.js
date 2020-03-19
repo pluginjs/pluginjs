@@ -3,6 +3,7 @@ import { deepMerge, compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import {
   wrap,
+  has,
   unwrap,
   query,
   parent,
@@ -203,24 +204,28 @@ class LinkPicker extends Component {
       ...options,
       reference: this.$trigger,
       target: this.$dropdown,
-      hideOutClick: false,
+      hideOutClick: this.options.hideOutClick,
       hideOnSelect: false,
       templates: this.options.templates
     })
   }
 
   bind() {
-    // open dropdown
     bindEvent(
-      this.eventName('click'),
-      `.${this.classes.EMPTY}`,
-      () => {
-        if (this.is('disabled')) {
-          return
+      this.eventName('mousedown'),
+      e => {
+        if (this.options.hideOutClick) {
+          if (
+            e.target === this.$dropdown ||
+            has(e.target, this.$dropdown)
+          ) {
+            return
+          }
+
+          removeClass(this.classes.SHOW, this.$wrap)
         }
-        this.show()
       },
-      this.$wrap
+      window.document
     )
 
     // hold hover
@@ -235,6 +240,7 @@ class LinkPicker extends Component {
         if (this.is('disabled')) {
           return false
         }
+
         if (this.is('holdHover')) {
           return false
         }
@@ -283,7 +289,7 @@ class LinkPicker extends Component {
   show() {
     this.DROPDOWN.show()
     addClass(this.classes.SHOW, this.$wrap)
-    if (this.value.internal.length === 0) {
+    if (!this.value.internal || this.value.internal.length === 0) {
       query('.pj-cascader-label', this.$wrap).textContent = 'Please select'
     }
   }
@@ -293,7 +299,7 @@ class LinkPicker extends Component {
     removeClass(this.classes.SHOW, this.$wrap)
   }
 
-  clear(update = true) {
+  clear(trigger = true, update = true) {
     this.value = {}
 
     if (update !== false) {
@@ -302,14 +308,14 @@ class LinkPicker extends Component {
       this.external.clear()
       this.target.clear()
       this.title.clear()
-      this.update()
+      this.update(trigger)
       this.element.value = ''
     }
     removeClass(this.classes.HOVER, this.$action)
     removeClass(this.classes.WRITE, this.$wrap)
   }
 
-  set(value, update = true) {
+  set(value, trigger = true, update = true) {
     if (update !== false) {
       if (typeof value.type !== 'undefined') {
         this.type.set(value.type)
@@ -331,7 +337,7 @@ class LinkPicker extends Component {
       if (typeof value.title !== 'undefined') {
         this.title.set(value.title)
       }
-      this.update()
+      this.update(trigger)
     }
   }
 
@@ -345,11 +351,15 @@ class LinkPicker extends Component {
     }
   }
 
-  update() {
+  update(trigger = true) {
     const value = this.val()
     this.element.value = value
     this.updatePreview()
-    this.trigger(EVENTS.CHANGE, value)
+
+    if(trigger) {
+      this.trigger(EVENTS.CHANGE, value)
+    }
+
   }
 
   val(value, trigger = true) {
@@ -357,15 +367,19 @@ class LinkPicker extends Component {
       return this.options.process.call(this, this.get())
     }
 
-    const valueObj = this.options.parse.call(this, value)
-    if (valueObj) {
-      this.set(valueObj)
+    let valueObj = null
+    if (value && typeof value === 'object') {
+      valueObj = value
     } else {
-      this.clear()
+      valueObj = this.options.parse.call(this, value)
     }
-    if (trigger) {
-      this.trigger(EVENTS.CHANGE, value)
+
+    if (valueObj) {
+      this.set(valueObj, trigger)
+    } else {
+      this.clear(trigger)
     }
+
     return null
   }
 

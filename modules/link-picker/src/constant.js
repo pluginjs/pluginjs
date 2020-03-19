@@ -58,6 +58,7 @@ export const methods = ['val', 'set', 'enable', 'disable', 'destroy', 'get']
 export const defaults = {
   placeholder: 'Click to Add Link',
   locale: 'en',
+  hideOutClick: true,
   disabled: false,
   dropdown: {
     placement: 'bottom-start' // top

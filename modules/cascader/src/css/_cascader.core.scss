@@ -69,7 +69,7 @@ $cascader-clear-right: 11px !default;
     }
   }
 
-  &-dropdown {
+  .pj-dropdown-show {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
