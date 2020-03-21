@@ -18,12 +18,18 @@ $patternPicker-action-bg-color: $color-opacity;
 
 $patternPicker-panel-bg-color: $color-white;
 
-$patternPicker-custom-padding-bottom: 24px;
+$patternPicker-custom-padding: 0 24px 24px;
 
 $patternPicker-collection-scrollwrap-padding: 0 15px;
+$patternPicker-collection-scheme-padding: 0 16px;
 $patternPicker-collection-padding: 16px 0 24px;
+$patternPicker-collection-manage-margin: 12px 24px 0 !default;
+$patternPicker-collection-manage-icon-margin-right: 10px !default;
+$patternPicker-collection-manage-height: 31px !default;
 $patternPicker-collection-item-margin-right: 17px;
-$patternPicker-collection-item-margin-bottom: 15px;
+
+$patternPicker-collection-item-margin-x: 4px !default;
+$patternPicker-collection-item-margin-bottom: 15px !default;
 
 $patternPicker-field-spacer: 20px;
 $patternPicker-field-title-spacer: 12px;
@@ -67,28 +73,46 @@ $patternPicker-empty-hover-color: $gray-darkest;
       }
     }
 
-    &-container {
-      padding: $patternPicker-collection-scrollwrap-padding;
-    }
-
     &-collection {
       padding: $patternPicker-collection-padding;
+
+      .#{$patternPicker}-manage {
+        margin: $patternPicker-collection-manage-margin;
+        line-height: $patternPicker-collection-manage-height;
+        color: $color-primary-black;
+        text-align: center;
+        border: 1px solid #e6e6e6;
+
+        i {
+          margin-right: $patternPicker-collection-manage-icon-margin-right;
+          vertical-align: middle;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: #f2f2f2;
+          border: 1px solid #e6e6e6;
+        }
+      }
     }
 
     &-custom {
-      padding-bottom: $patternPicker-custom-padding-bottom;
+      padding: $patternPicker-custom-padding;
     }
+  }
+
+  &-scheme {
+    padding: $patternPicker-collection-scheme-padding;
   }
 
   &-collection {
     &-item {
-      margin-right: $patternPicker-collection-item-margin-right;
-      margin-bottom: $patternPicker-collection-item-margin-bottom;
       background-size: 100% 100% !important;
       border-radius: $patternPicker-border-radius;
 
-      &:nth-of-type(5n) {
-        margin-right: 0;
+      &-wrap {
+        width: calc(20% - #{$patternPicker-collection-item-margin-x * 2});
+        margin: 0 $patternPicker-collection-item-margin-x $patternPicker-collection-item-margin-bottom;
       }
     }
   }

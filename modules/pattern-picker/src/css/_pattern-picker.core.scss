@@ -5,7 +5,7 @@
 // =====================
 $patternPicker: "pj-patternPicker" !default;
 
-$patternPicker-driodown-width: 275px !default;
+$patternPicker-dropdown-width: 288px !default;
 
 $patternPicker-width: 160px !default;
 $patternPicker-height: 90px !default;
@@ -17,10 +17,10 @@ $patternPicker-icon-font-family: $pj-icon-font-family !default;
 $patternPicker-collection-icon: $pj-icon-start-mini !default;
 $patternPicker-custom-icon: $pj-icon-browser-tab !default;
 
-$patternPicker-collection-item-width: 35px !default;
+$patternPicker-collection-item-width: 32px !default;
 $patternPicker-collection-item-height: 32px !default;
 
-$patternPicker-scheme-height: 230px !default;
+$patternPicker-scheme-height: 270px !default;
 
 // Core
 // =====================
@@ -78,7 +78,7 @@ $patternPicker-scheme-height: 230px !default;
 
   &-panel{
     box-sizing: border-box;
-    width: $patternPicker-driodown-width;
+    width: $patternPicker-dropdown-width;
 
     &-swicher {
       display: flex;
@@ -120,8 +120,10 @@ $patternPicker-scheme-height: 230px !default;
   }
 
   &-scheme {
+    box-sizing: border-box;
     height: $patternPicker-scheme-height;
-    overflow: auto;
+    overflow: hidden;
+    overflow-y: auto;
   }
 
   &-collection {
@@ -131,6 +133,12 @@ $patternPicker-scheme-height: 230px !default;
       height: $patternPicker-collection-item-height;
       list-style: none;
       cursor: pointer;
+
+      &-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 

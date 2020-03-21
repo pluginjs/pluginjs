@@ -59,6 +59,7 @@ export const classes = {
   SCHEME: '{namespace}-scheme',
   MANAGE: '{namespace}-manage',
   COLLECTIONITEM: '{namespace}-collection-item',
+  COLLECTIONITEMWRAP: '{namespace}-collection-item-wrap',
   COLLECTIONITEMACTIVE: '{namespace}-collection-item-active'
 }
 
@@ -149,7 +150,7 @@ export const defaults = {
       return '<div class="{classes.SCHEME}"></div>'
     },
     manage() {
-      return '<div class="pj-btn pj-btn-block {classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
+      return '<div class="{classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
     },
     collectionItem() {
       return '<span class="{classes.COLLECTIONITEM}"></span>'

@@ -1,5 +1,5 @@
 import { setStyle } from '@pluginjs/styled'
-import { append, query, setData } from '@pluginjs/dom'
+import { append, query, setData, wrap } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 
 class Collection {
@@ -45,6 +45,11 @@ class Collection {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes
       })
+
+      const $itemwrap = wrap(
+        `<div class="${this.classes.COLLECTIONITEMWRAP}"></div>`,
+        $item
+      )
 
       // set tooltip
       Tooltip.of($item, {
@@ -93,7 +98,7 @@ class Collection {
       }
       setData('info', info, $item)
       // append to group list
-      append($item, this.$selectorList)
+      append($itemwrap, this.$selectorList)
     })
   }
 }
