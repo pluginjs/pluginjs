@@ -55,36 +55,26 @@ class BeforeAfter extends Component {
   }
 
   initialize() {
-    addClass(this.classes.CONTAINER, this.element)
+    let classes = this.classes.CONTAINER
+
+    classes += ` ${this.getClass(
+      this.classes.DIRECTION,
+      'direction',
+      this.options.direction
+    )}`
+
     if (this.options.theme) {
-      addClass(this.getThemeClass(), this.element)
+      classes += ` ${this.getThemeClass()}`
     }
     if (!this.options.showLabel) {
-      addClass(this.classes.HIDE, this.element)
+      classes += ` ${this.classes.HIDE}`
     }
 
-    addClass(
-      this.getClass(
-        this.classes.DIRECTION,
-        'direction',
-        this.options.direction
-      ),
-      this.element
-    )
+    addClass(classes, this.element)
 
-    this.$before = compose(
-      addClass(this.classes.BEFORE),
-      find('img:first-child')
-    )(this.element)
-    this.$after = compose(
-      addClass(this.classes.AFTER),
-      find('img:last-child')
-    )(this.element)
-
+    this.parseImage()
     this.createHandle()
-    if (this.options.labels) {
-      this.createLabels()
-    }
+    this.createLabels()
 
     this.bind()
     this.adjust(this.position)
@@ -94,33 +84,41 @@ class BeforeAfter extends Component {
     this.trigger(EVENTS.READY)
   }
 
+  parseImage() {
+    this.$before = compose(
+      addClass(this.classes.BEFORE),
+      find('img:first-child')
+    )(this.element)
+    this.$after = compose(
+      addClass(this.classes.AFTER),
+      find('img:last-child')
+    )(this.element)
+  }
+
   createHandle() {
     this.$handle = query(`.${this.classes.HANDLE}`, this.element)
-    if (!this.$handle) {
-      let arrows
 
-      if (this.options.direction === 'vertical') {
-        arrows = {
-          before: this.options.arrows.up,
-          after: this.options.arrows.down
-        }
-      } else {
-        arrows = {
-          before: this.options.arrows.left,
-          after: this.options.arrows.right
-        }
-      }
-      this.$handle = parseHTML(
-        template.render(this.options.templates.handle.call(this), {
-          classes: this.classes,
-          arrows
-        })
-      )
-      append(this.$handle, this.element)
+    if (this.$handle) {
+      return
     }
+
+    const vertical = this.options.direction === 'vertical'
+
+    this.$handle = parseHTML(
+      template.render(this.options.templates.handle.call(this), {
+        classes: this.classes,
+        before: this.options.arrows[vertical ? 'up' : 'left'],
+        after: this.options.arrows[vertical ? 'down' : 'right']
+      })
+    )
+    append(this.$handle, this.element)
   }
 
   createLabels() {
+    if (!this.options.labels) {
+      return
+    }
+
     const themes = this.getThemeClass(
       this.options.labelTheme,
       this.classes.LABELTHEME
