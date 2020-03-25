@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "form",
   "main": "dist/link-picker.common.js",
   "module": "dist/link-picker.esm.js",
@@ -37,7 +37,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/cascader": "^0.8.7",
+    "@pluginjs/cascader": "^0.8.8",
     "@pluginjs/classes": "^0.8.3",
     "@pluginjs/component": "^0.8.3",
     "@pluginjs/decorator": "^0.8.3",

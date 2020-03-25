@@ -3,14 +3,14 @@
   "name": "before-after-samples",
   "description": "Simple before-after example",
   "license": "GPL-3.0",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/before-after": "^0.8.3",
+    "@pluginjs/before-after": "^0.8.4",
     "@pluginjs/dom": "^0.8.3",
     "@pluginjs/icons": "^0.8.2"
   },
