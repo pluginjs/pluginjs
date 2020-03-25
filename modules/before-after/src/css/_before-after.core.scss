@@ -73,7 +73,6 @@ $beforeAfter-handle-color: $color-white !default;
     line-height: 1;
     color: $beforeAfter-handle-color;
     background-color: transparent;
-    transform: translate(-50%, -50%);
 
     &::before,
     &::after {

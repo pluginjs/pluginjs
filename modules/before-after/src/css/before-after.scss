@@ -44,6 +44,8 @@ $beforeAfter-handle-arrow-pos: 7px;
   }
 
   &-handle {
+    top: calc(50% - #{$beforeAfter-handle-size} / 2);
+    left: calc(50% - #{$beforeAfter-handle-size} / 2);
     width: $beforeAfter-handle-size;
     height: $beforeAfter-handle-size;
     font-size: $beforeAfter-handle-arrow-size;

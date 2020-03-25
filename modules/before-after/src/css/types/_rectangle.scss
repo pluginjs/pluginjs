@@ -19,8 +19,11 @@ $beforeAfter-rectangle-border-width: $beforeAfter-handle-line-size;
   &.#{$beforeAfter}-horizontal {
     .#{$beforeAfter} {
       &-handle {
+        top: calc(50% - #{$beforeAfter-rectangle-size-max} / 2);
+        left: calc(50% - #{$beforeAfter-rectangle-size-min} / 2);
         width: $beforeAfter-rectangle-size-min;
         height: $beforeAfter-rectangle-size-max;
+
 
         &::before {
           transform: translate(-50%, calc(-100% - #{$beforeAfter-rectangle-size-max / 2}));
@@ -36,6 +39,8 @@ $beforeAfter-rectangle-border-width: $beforeAfter-handle-line-size;
   &.#{$beforeAfter}-vertical {
     .#{$beforeAfter} {
       &-handle {
+        top: calc(50% - #{$beforeAfter-rectangle-size-min} / 2);
+        left: calc(50% - #{$beforeAfter-rectangle-size-max} / 2);
         width: $beforeAfter-rectangle-size-max;
         height: $beforeAfter-rectangle-size-min;
 

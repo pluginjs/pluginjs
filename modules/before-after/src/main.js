@@ -1,12 +1,11 @@
 import Component from '@pluginjs/component'
-import { pointer, pointerEvent, touch } from '@pluginjs/feature'
-import { getTime, compose } from '@pluginjs/utils'
-import { getWidth, getHeight, setStyle } from '@pluginjs/styled'
+import { compose } from '@pluginjs/utils'
+import { getStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { query, find, append, parseHTML } from '@pluginjs/dom'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import easing from '@pluginjs/easing'
 import template from '@pluginjs/template'
+import Hammer from 'hammerjs'
+import anime from 'animejs'
 import {
   eventable,
   register,
@@ -38,17 +37,8 @@ class BeforeAfter extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
-    // Current state information for the drag operation.
-    this._drag = {
-      time: null,
-      pointer: null
-    }
-
-    this._position = null // position cache for the drag operation.
-    this.position = 0
-    this.width = getWidth(this.element)
-    this.height = getHeight(this.element)
-    this.easing = easing.get(this.options.easing) || easing.get('ease')
+    this.position = this.options.initial || 0.5
+    this.vertical = this.options.direction === 'vertical'
 
     this.setupStates()
     this.initialize()
@@ -76,12 +66,30 @@ class BeforeAfter extends Component {
     this.createHandle()
     this.createLabels()
 
+    setTimeout(() => {
+      this.initPos(this.options.initial)
+
+      this.adjust(this.distance, this.options.duration)
+    }, 0)
+
     this.bind()
-    this.adjust(this.position)
-    this.animateTo(this.options.initial, false)
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  initPos(percent) {
+    this.clientReact = this.element.getBoundingClientRect()
+    this.width = this.clientReact.width
+    this.height = this.clientReact.height
+    this.size = this.vertical ? this.height : this.width
+    this.distance = this.toDistance(percent)
+  }
+
+  toDistance(percent) {
+    const offset = this.size * percent
+
+    return offset - this.size / 2
   }
 
   parseImage() {
@@ -102,13 +110,13 @@ class BeforeAfter extends Component {
       return
     }
 
-    const vertical = this.options.direction === 'vertical'
-
     this.$handle = parseHTML(
       template.render(this.options.templates.handle.call(this), {
         classes: this.classes,
-        before: this.options.arrows[vertical ? 'up' : 'left'],
-        after: this.options.arrows[vertical ? 'down' : 'right']
+        arrows: {
+          before: this.options.arrows[this.vertical ? 'up' : 'left'],
+          after: this.options.arrows[this.vertical ? 'down' : 'right']
+        }
       })
     )
     append(this.$handle, this.element)
@@ -143,389 +151,150 @@ class BeforeAfter extends Component {
     this.$labelAfter = query(`.${this.classes.LABELAFTER}`, this.$labels)
   }
 
-  adjust(position) {
-    this.adjustClip(position)
-    this.adjustHandle(position)
-  }
+  adjust(distance, duration = 0) {
+    if (this.vertical) {
+      if (Math.abs(distance) > this.height / 2) {
+        return
+      }
 
-  adjustClip(position) {
-    const width = this.width
-    const height = this.height
-    const clipWidth = position * width
-    const clipHeight = position * height
+      anime({
+        targets: this.$before,
+        clip: `rect(0,${this.width}px,${this.height / 2 + distance}px,0)`,
+        duration,
+        easing: this.options.easing
+      })
 
-    if (this.options.direction === 'vertical') {
-      setStyle('clip', `rect(0,${width}px,${clipHeight}px,0)`, this.$before)
+      anime({
+        targets: this.$handle,
+        translateY: `${distance}px`,
+        duration,
+        easing: this.options.easing
+      })
+      this.handleLabel(distance)
     } else {
-      setStyle('clip', `rect(0,${clipWidth}px,${height}px,0)`, this.$before)
-    }
-  }
+      if (Math.abs(distance) > this.width / 2) {
+        return
+      }
 
-  adjustHandle(position) {
-    if (this.options.direction === 'vertical') {
-      setStyle('top', `${position * this.height}px`, this.$handle)
-    } else {
-      setStyle('left', `${position * this.width}px`, this.$handle)
+      anime({
+        targets: this.$before,
+        clip: `rect(0,${this.width / 2 + distance}px,${this.height}px,0)`,
+        duration,
+        easing: this.options.easing
+      })
+
+      anime({
+        targets: this.$handle,
+        translateX: `${distance}px`,
+        duration,
+        easing: this.options.easing
+      })
+      this.handleLabel(distance)
     }
   }
 
   bind() {
-    if (this.options.mouseDrag) {
-      bindEvent(
-        this.eventName('mousedown'),
-        this.onDragStart.bind(this),
-        this.$handle
-      )
-      bindEvent(
-        this.eventName('dragstart selectstart'),
-        () => false,
-        this.$handle
-      )
-    }
+    let matrix = [0, 0, 0, 0, 0, 0]
+    let [transform, regex, deltaX, deltaY] = [0, 0, 0, 0]
 
-    if (this.options.touchDrag && touch) {
-      bindEvent(
-        this.eventName('touchstart'),
-        this.onDragStart.bind(this),
-        this.$handle
-      )
-      bindEvent(
-        this.eventName('touchcancel'),
-        this.onDragEnd.bind(this),
-        this.$handle
-      )
-    }
+    if (this.options.drag) {
+      this.handle = new Hammer(this.$handle, {
+        touchAction: 'none'
+      })
 
-    if (this.options.pointerDrag && pointer) {
-      bindEvent(
-        this.eventName(pointerEvent('pointerdown')),
-        this.onDragStart.bind(this),
-        this.$handle
-      )
-      bindEvent(
-        this.eventName(pointerEvent('pointercancel')),
-        this.onDragEnd.bind(this),
-        this.$handle
-      )
+      this.handle.on('panleft panright panup pandown panstart panend', e => {
+        switch (e.type) {
+          case 'panstart':
+            transform = getStyle('transform', this.$handle)
+            regex = '\\((.+?)\\)'
+
+            if (transform && transform !== 'none') {
+              matrix = transform.match(regex)[1].split(',')
+            }
+            addClass(this.classes.DRAGGING, this.element)
+
+            this.enter('dragging')
+            this.trigger(EVENTS.DRAG)
+            break
+          case 'panleft':
+          case 'panright':
+            if (this.vertical) {
+              return
+            }
+
+            deltaX = Number(matrix[4]) + e.deltaX
+
+            this.adjust(deltaX)
+            this.position = (deltaX + this.size / 2) / this.size
+            break
+          case 'panup':
+          case 'pandown':
+            if (!this.vertical) {
+              return
+            }
+
+            deltaY = Number(matrix[5]) + e.deltaY
+
+            this.adjust(deltaY)
+            this.position = (deltaY + this.size / 2) / this.size
+            break
+          case 'panend':
+            removeClass(this.classes.DRAGGING, this.element)
+
+            this.leave('dragging')
+            this.trigger(EVENTS.DRAGGED)
+            break
+          default:
+            break
+        }
+      })
     }
 
     if (this.options.clickMove) {
-      bindEvent(
-        this.eventName('mousedown'),
-        this.onClick.bind(this),
-        this.element
-      )
-    }
+      this.container = new Hammer(this.element)
 
-    bindEvent(
-      this.eventName('mouseenter'),
-      () => {
-        addClass(this.classes.HOVERING, this.element)
-        this.enter('hovering')
-        this.trigger(EVENTS.HOVER)
-      },
-      this.element
-    )
+      this.container.on('tap', e => {
+        const { target } = e
 
-    bindEvent(
-      this.eventName('mouseleave'),
-      () => {
-        removeClass(this.classes.HOVERING, this.element)
-
-        if (!this.is('hovering')) {
+        if (this.$handle === target || this.$handle.contains(target)) {
           return
         }
-        this.leave('hovering')
-        this.trigger(EVENTS.HOVERED)
-      },
-      this.element
-    )
 
-    if (this.options.labels) {
-      bindEvent(
-        this.selfEventName(EVENTS.CHANGE),
-        (e, instance, position) => {
-          if (position < 0.25) {
-            if (!instance.is('labelBeforeHide')) {
-              addClass(instance.classes.LABELHIDE, instance.$labelBefore)
-              instance.enter('labelBeforeHide')
-            }
-          } else if (instance.is('labelBeforeHide')) {
-            removeClass(instance.classes.LABELHIDE, instance.$labelBefore)
-            instance.leave('labelBeforeHide')
-          }
+        this.clientReact = this.element.getBoundingClientRect()
 
-          if (position > 0.75) {
-            if (!instance.is('labelAfterHide')) {
-              addClass(instance.classes.LABELHIDE, instance.$labelAfter)
-              instance.enter('labelAfterHide')
-            }
-          } else if (instance.is('labelAfterHide')) {
-            removeClass(instance.classes.LABELHIDE, instance.$labelAfter)
-            instance.leave('labelAfterHide')
-          }
-        },
-        this.element
-      )
+        const { x, y } = e.center
+        const distance = this.vertical
+          ? y - this.clientReact.top - this.height / 2
+          : x - this.clientReact.left - this.width / 2
+
+        this.adjust(distance, this.options.duration)
+        this.position = (distance + this.size / 2) / this.size
+      })
     }
   }
 
-  onClick(event) {
-    if (event.which === 3) {
+  handleLabel(distance) {
+    if (!this.options.labels) {
       return
     }
 
-    if (this.is('dragging') || this.is('animating')) {
-      return
-    }
-
-    if (this.$handle === event.target || this.$handle.contains(event.target)) {
-      return
-    }
-
-    this._drag.time = new Date().getTime()
-    this._drag.pointer = this.pointer(event)
-
-    const { offsetLeft, offsetTop } = this.getElementLeftTop()
-
-    const distance = this.distance(
-      {
-        x: offsetLeft,
-        y: offsetTop
-      },
-      this._drag.pointer
-    )
-
-    this.moveTo(this.getProportionFromDistance(distance), true)
-  }
-
-  getElementLeftTop() {
-    let actualLeft = this.element.offsetLeft
-    let actualTop = this.element.offsetTop
-    let current = this.element.offsetParent
-
-    while (current !== null) {
-      actualLeft += current.offsetLeft
-      actualTop += current.offsetTop
-      current = current.offsetParent
-    }
-    return { offsetLeft: actualLeft, offsetTop: actualTop }
-  }
-
-  getProportionFromDistance(distance) {
-    if (this.options.direction === 'vertical') {
-      return distance / this.height
-    }
-    return distance / this.width
-  }
-
-  // Handles `touchstart` and `mousedown` events.
-  onDragStart(event) {
-    if (event.which === 3) {
-      return
-    }
-
-    addClass(this.classes.DRAGGING, this.element)
-
-    this._drag.time = new Date().getTime()
-    this._drag.pointer = this.pointer(event)
-
-    const callback = () => {
-      this.enter('dragging')
-      this.trigger(EVENTS.DRAG)
-    }
-
-    if (this.options.mouseDrag) {
-      compose(
-        bindEvent(this.eventNameWithId('mousemove'), () => {
-          bindEvent(
-            this.eventNameWithId('mousemove'),
-            this.onDragMove.bind(this),
-            window.document
-          )
-          callback()
-        }),
-        bindEvent(this.eventNameWithId('mouseup'), this.onDragEnd.bind(this))
-      )(window.document)
-    }
-
-    if (this.options.touchDrag && touch) {
-      compose(
-        bindEvent(this.eventNameWithId('touchmove'), () => {
-          bindEvent(
-            this.eventNameWithId('touchmove'),
-            this.onDragMove.bind(this),
-            window.document
-          )
-          callback()
-        }),
-        bindEvent(this.eventNameWithId('touchend'), this.onDragEnd.bind(this))
-      )(window.document)
-    }
-
-    if (this.options.pointerDrag && pointer) {
-      compose(
-        bindEvent(this.eventNameWithId(pointerEvent('pointermove')), () => {
-          bindEvent(
-            this.eventNameWithId(pointerEvent('pointermove')),
-            this.onDragMove.bind(this),
-            window.document
-          )
-          callback()
-        }),
-        bindEvent(
-          this.eventNameWithId(pointerEvent('pointerup')),
-          this.onDragEnd.bind(this)
-        )
-      )(window.document)
-    }
-
-    bindEvent(
-      this.eventNameWithId('blur'),
-      this.onDragEnd.bind(this),
-      window.document
-    )
-  }
-
-  // Handles the `touchmove` and `mousemove` events.
-  onDragMove(event) {
-    const distance = this.distance(this._drag.pointer, this.pointer(event))
-
-    if (!this.is('dragging')) {
-      return
-    }
-
-    event.preventDefault()
-
-    this.moveBy(this.getProportionFromDistance(distance), true, true)
-  }
-
-  // Handles the `touchend` and `mouseup` events.
-  onDragEnd() {
-    removeEvent(this.eventNameWithId(), window.document)
-
-    this.position = this._position
-    removeClass(this.classes.DRAGGING, this.element)
-
-    if (!this.is('dragging')) {
-      return
-    }
-
-    this.leave('dragging')
-    this.trigger(EVENTS.DRAGGED)
-  }
-
-  // Gets unified pointer coordinates from event.
-  // @returns {Object} - Contains `x` and `y` coordinates of current pointer position.
-  pointer(event) {
-    const result = {
-      x: null,
-      y: null
-    }
-
-    event = event.originalEvent || event || window.event
-
-    if (event.touches && event.touches.length) {
-      event = event.touches[0]
+    if (distance < 100 - this.size / 2) {
+      addClass(this.classes.LABELHIDE, this.$labelBefore)
+      this.enter('labelBeforeHide')
+    } else if (distance > this.size / 2 - 100) {
+      addClass(this.classes.LABELHIDE, this.$labelAfter)
+      this.enter('labelAfterHide')
     } else {
-      event =
-        event.changedTouches && event.changedTouches.length
-          ? event.changedTouches[0]
-          : event
+      removeClass(this.classes.LABELHIDE, this.$labelBefore)
+      removeClass(this.classes.LABELHIDE, this.$labelAfter)
+      this.leave('labelAfterHide')
+      this.leave('labelBeforeHide')
     }
-    if (event.pageX) {
-      result.x = event.pageX
-      result.y = event.pageY
-    } else {
-      result.x = event.clientX
-      result.y = event.clientY
-    }
-
-    return result
-  }
-
-  moveBy(value, trigger = true, sync = false) {
-    value = parseFloat(value)
-
-    this.moveTo(this.position + value, trigger, sync)
-  }
-
-  moveTo(position, trigger = true, sync = false) {
-    if (this.is('disabled')) {
-      return
-    }
-    position = parseFloat(position)
-
-    if (position < 0) {
-      position = 0
-    } else if (position > 1) {
-      position = 1
-    }
-
-    if (!this.is('dragging') && sync !== true) {
-      this.animateTo(position, trigger)
-    } else {
-      this.adjust(position)
-
-      if (trigger) {
-        this.trigger(EVENTS.CHANGE, position)
-      }
-      if (sync) {
-        this._position = position
-      } else {
-        this.position = position
-      }
-    }
-  }
-
-  animateTo(position, trigger) {
-    this.enter('animating')
-
-    const startTime = getTime()
-    const start = this.position
-    const end = position
-
-    const run = time => {
-      let percent = (time - startTime) / this.options.duration
-
-      if (percent > 1) {
-        percent = 1
-      }
-
-      percent = this.easing(percent)
-      const current = parseFloat(start + percent * (end - start), 10)
-      this.adjust(current)
-
-      if (trigger) {
-        this.trigger(EVENTS.CHANGE, current)
-      }
-      this.position = current
-
-      if (percent === 1) {
-        window.cancelAnimationFrame(this._frameId)
-        this.position = position
-        this._frameId = null
-
-        this.leave('animating')
-      } else {
-        this._frameId = window.requestAnimationFrame(run)
-      }
-    }
-
-    this._frameId = window.requestAnimationFrame(run)
-  }
-
-  // Gets the distance of two pointer.
-  distance(first, second) {
-    if (this.options.direction === 'vertical') {
-      return second.y - first.y
-    }
-    return second.x - first.x
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.element)
-    removeEvent(this.eventName(), this.$handle)
+    this.handle.off('panleft panright panup pandown panstart panend')
+    this.container.off('tap')
   }
 
   enable() {
@@ -560,12 +329,8 @@ class BeforeAfter extends Component {
   }
 
   resize() {
-    if (!this.is('disabled')) {
-      this.width = getWidth(this.element)
-      this.height = getHeight(this.element)
-
-      this.adjust(this.position)
-    }
+    this.initPos(this.position)
+    this.adjust(this.distance)
   }
 }
 
