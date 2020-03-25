@@ -357,10 +357,11 @@ class GradientPicker extends Component {
             if (this.COLORPICKER.HISTORY) {
               this.COLORPICKER.HISTORY.updateHistory()
             }
-
-            if (this.options.responsiveDropdownFull) {
+            console.log()
+            // if (this.options.responsiveDropdownFull) {
               this.COLORPICKER.Saturation.init()
-            }
+              this.COLORPICKER.Saturation.position(this.COLORPICKER.COLOR.val(getData('value', this.$marker).color))
+            // }
 
             this.leave('save')
           },

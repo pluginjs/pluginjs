@@ -337,13 +337,14 @@ class ColorSelector extends Component {
         $content.style.display = 'block'
         // showElement($content)
 
-        if (typeName === 'solid' && this.options.responsiveDropdownFull) {
+        if (typeName === 'solid') {
           this.COLORPICKER.Saturation.init()
-        } else if (
-          typeName === 'gradient' &&
-          this.options.responsiveDropdownFull
-        ) {
+          this.COLORPICKER.Saturation.position(this.COLORPICKER.COLOR.val(this.val()))
+        } else if (typeName === 'gradient') {
           this.GRADIENTPICKER.COLORPICKER.Saturation.init()
+          this.GRADIENTPICKER.COLORPICKER.Saturation.position(
+            this.GRADIENTPICKER.COLORPICKER.COLOR.val(getData('value', this.GRADIENTPICKER.$marker).color)
+          )
         }
       }
     })

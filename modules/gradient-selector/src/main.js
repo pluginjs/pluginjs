@@ -256,8 +256,11 @@ class GradientSelector extends Component {
         addClass(this.classes.SELECTED, $this)
         $content.style.display = 'block'
         // showElement($content)
-        if (typeName === 'gradient' && this.options.responsiveDropdownFull) {
+        if (typeName === 'gradient') {
           this.GRADIENTPICKER.COLORPICKER.Saturation.init()
+          this.GRADIENTPICKER.COLORPICKER.Saturation.position(
+            this.GRADIENTPICKER.COLORPICKER.COLOR.val(getData('value', this.GRADIENTPICKER.$marker).color)
+          )
         }
       }
     })

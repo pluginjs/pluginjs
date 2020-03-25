@@ -74,7 +74,7 @@ class ColorPicker extends Component {
 
     this.module = this.options.module
     this.COLOR = Color.of(this.options.defaultColor, this.options.color)
-
+ 
     this.setupStates()
     this.initialize()
   }
@@ -198,11 +198,11 @@ class ColorPicker extends Component {
           onShown: () => {
             this.oldColor = this.color
             // showElement(this.$mask)
-
-            if (this.options.responsiveDropdownFull) {
-              this.Saturation.init()
-            }
-
+            
+            this.Saturation.init()
+            if(this.color)
+            this.Saturation.position(this.COLOR.val(this.color))
+    
             if (this.HISTORY) {
               this.HISTORY.updateHistory()
             }
