@@ -504,6 +504,10 @@ class Slider extends Component {
   }
 
   resize() {
+    if (this.data.length === 0) {
+      return
+    }
+
     this.width = outerWidth(this.box)
     this.height = outerHeight(this.box)
     this.distance = this.getDistance(this.box, this.options.vertical)
