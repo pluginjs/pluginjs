@@ -40,7 +40,7 @@ export const defaults = {
   theme: null, // circle, line, outline, rectangle
   labelTheme: null, // solid, bordered, start, end, overlay
   direction: 'horizontal', // horizontal, vertical
-  initial: 0.9, // initial position for slider, 0 to 1
+  initial: 0.5, // initial position for slider, 0 to 1
   showLabel: true,
   drag: true,
   clickMove: true,
