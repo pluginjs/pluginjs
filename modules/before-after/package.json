@@ -65,6 +65,10 @@
     "rollup-plugin-babel": "*",
     "rollup-plugin-terser": "*"
   },
+  "globals": {
+    "animejs": "anime",
+    "hammerjs": "Hammer"
+  },
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
