@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
-import { getStyle } from '@pluginjs/styled'
+import { setStyle, getStyle } from '@pluginjs/styled'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { query, find, append, parseHTML } from '@pluginjs/dom'
 import template from '@pluginjs/template'
@@ -68,7 +68,13 @@ class BeforeAfter extends Component {
 
     setTimeout(() => {
       this.initPos(this.options.initial)
-
+      setStyle(
+        'clip',
+        `rect(0, ${this.vertical ? this.width : this.width / 2}px, ${
+          this.vertical ? this.height / 2 : this.height
+        }px, 0)`,
+        this.$before
+      )
       this.adjust(this.distance, this.options.duration)
     }, 0)
 
