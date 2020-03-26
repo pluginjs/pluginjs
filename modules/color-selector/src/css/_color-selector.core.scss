@@ -30,10 +30,11 @@ $colorSelector-collection-icon-content: $pj-icon-star-solid !default;
 $colorSelector-solid-icon-content: $pj-icon-browser-tab !default;
 $colorSelector-gradient-icon-content: $pj-icon-browser-tab !default;
 
-$colorSelector-collection-item-width: 24px !default;
+$colorSelector-collection-item-width: 32px !default;
 $colorSelector-collection-item-height: $colorSelector-collection-item-width !default;
 
 $colorSelector-scheme-height: 240px !default;
+$colorSelector-scheme-padding-x: 16px !default;
 
 $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
 
@@ -146,10 +147,6 @@ $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
 
   &-panel-container {
     position: relative;
-
-    // & > div {
-    //   display: none;
-    // }
   }
 
   &-group-list {
@@ -159,6 +156,7 @@ $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
 
   &-scheme {
     height: $colorSelector-scheme-height;
+    padding: 0 $colorSelector-scheme-padding-x;
     overflow: auto;
   }
   &-collection {
@@ -168,6 +166,8 @@ $colorSelector-mask-zindex: $zindex-dropdown - 1 !default;
       height: $colorSelector-collection-item-height;
       list-style: none;
       cursor: pointer;
+      background-size: 100% 100% !important;
+      border-radius: 2px;
     }
   }
 

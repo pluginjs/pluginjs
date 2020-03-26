@@ -15,6 +15,62 @@ const data = {
     'name': "cutout-tow",
     'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
   },
+  'cutout-1':
+  {
+    'name': "cutout-1",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-7':
+  {
+    'name': "cutout-7",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-8':
+  {
+    'name': "cutout-8",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-2':
+  {
+    'name': "cutout-2",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-2':
+  {
+    'name': "cutout-2",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-2':
+  {
+    'name': "cutout-2",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-q':
+  {
+    'name': "cutout-q",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-2222':
+  {
+    'name': "cutout-2222",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-222':
+  {
+    'name': "cutout-222",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+  'cutout-22':
+  {
+    'name': "cutout-22",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
+
+  'cutout-11':
+  {
+    'name': "cutout-11",
+    'pattern': "<svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'><path d='M0 40L40 0H20L0 20zm40 0V20L20 40z' fill-rule='evenodd'/></svg>"
+  },
   'home':
   {
     'backcolor': "rgba(146, 90, 90, 1)",

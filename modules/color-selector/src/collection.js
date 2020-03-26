@@ -1,5 +1,5 @@
 import { setStyle } from '@pluginjs/styled'
-import { append, query, setData } from '@pluginjs/dom'
+import { append, query, setData, wrap } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 
 class Collection {
@@ -36,11 +36,8 @@ class Collection {
 
     // create favorite item
     Object.keys(this.instance.data).forEach(groupName => {
-      const $groupList = query(
-        `.${this.classes.NAMESPACE}-${groupName} .${this.classes.GROUPLIST}`,
-        this.instance.$panel
-      )
-      this.createCollectionItem(groupName, $groupList)
+      const $List = query(`.${this.classes.SCHEME}`, this.instance.$panel)
+      this.createCollectionItem(groupName, $List)
     })
 
     return null
@@ -51,6 +48,11 @@ class Collection {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes
       })
+
+      const $itemwrap = wrap(
+        `<div class="${this.classes.COLLECTIONITEMWRAP}"></div>`,
+        $item
+      )
 
       // set tooltip
       Tooltip.of($item, {
@@ -63,7 +65,7 @@ class Collection {
       setStyle('background', v, $item)
       setData('info', { title: i, color: v }, $item)
       // append to group list
-      append($item, groupList)
+      append($itemwrap, groupList)
     })
   }
 

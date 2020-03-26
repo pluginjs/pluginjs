@@ -22,6 +22,7 @@ class Saturation {
   init() {
     this.maxLengthX = parseInt(getStyle('width', this.element), 10)
     this.maxLengthY = parseInt(getStyle('height', this.element), 10)
+  
     this.width = this.maxLengthX
   }
 
@@ -38,6 +39,7 @@ class Saturation {
           this.element.offsetParent !== null
         ) {
           this.init()
+          this.position( this.instance.COLOR.val(this.instance.color))
         }
       }, 400)
     })

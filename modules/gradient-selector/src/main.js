@@ -257,6 +257,24 @@ class GradientSelector extends Component {
         $content.style.display = 'block'
         // showElement($content)
         if (typeName === 'gradient') {
+          this.GRADIENTPICKER.clearMarks()
+          this.GRADIENTPICKER.GRADIENT.reorder()
+          this.GRADIENTPICKER.GRADIENT.value.stops.forEach((v, i) => {
+            let percent = parseFloat(v.position * 100, 10)
+            if (i === this.GRADIENTPICKER.GRADIENT.length - 1) {
+              percent = 100
+            } else if (i === 0) {
+              percent = 0
+            }
+            const options = {
+              color: v.color.toRGBA(),
+              index: i,
+              percent
+            }
+            // this.actionBarSize = getData('value', $marker).maxLenght
+            this.GRADIENTPICKER.addMarker(0, options)
+          })
+
           this.GRADIENTPICKER.COLORPICKER.Saturation.init()
           this.GRADIENTPICKER.COLORPICKER.Saturation.position(
             this.GRADIENTPICKER.COLORPICKER.COLOR.val(getData('value', this.GRADIENTPICKER.$marker).color)

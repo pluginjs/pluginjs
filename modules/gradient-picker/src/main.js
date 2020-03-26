@@ -115,6 +115,33 @@ class GradientPicker extends Component {
   }
 
   bind() {
+    window.addEventListener('resize', () => {
+      const minPosition = this.markers[0].elSize / 2
+      const maxPosition = this.markers[0].wrapSize - this.markers[0].elSize / 2
+      if(
+        (maxPosition - minPosition) !==  
+        (parseInt(getStyle('width', this.Marker.$wrap), 10) - parseInt(getStyle('width', this.Marker.$el), 10))
+      ) {
+        this.clearMarks()
+        this.GRADIENT.reorder()
+        this.GRADIENT.value.stops.forEach((v, i) => {
+          let percent = parseFloat(v.position * 100, 10)
+          if (i === this.GRADIENT.length - 1) {
+            percent = 100
+          } else if (i === 0) {
+            percent = 0
+          }
+          const options = {
+            color: v.color.toRGBA(),
+            index: i,
+            percent
+          }
+          // this.actionBarSize = getData('value', $marker).maxLenght
+          this.addMarker(0, options)
+        })
+      }
+    })
+
     if (!this.options.inline) {
       // input remove color
       if (this.options.clearable) {
@@ -339,6 +366,7 @@ class GradientPicker extends Component {
     // // create panel
     this.initPanel()
     this.initColorPicker()
+    
     if (!this.options.inline) {
       this.DROPDOWN = Dropdown.of(
         this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
@@ -357,12 +385,28 @@ class GradientPicker extends Component {
             if (this.COLORPICKER.HISTORY) {
               this.COLORPICKER.HISTORY.updateHistory()
             }
-            console.log()
-            // if (this.options.responsiveDropdownFull) {
-              this.COLORPICKER.Saturation.init()
-              this.COLORPICKER.Saturation.position(this.COLORPICKER.COLOR.val(getData('value', this.$marker).color))
-            // }
+      
+            this.clearMarks()
+            this.GRADIENT.reorder()
+            this.GRADIENT.value.stops.forEach((v, i) => {
+              let percent = parseFloat(v.position * 100, 10)
+              if (i === this.GRADIENT.length - 1) {
+                percent = 100
+              } else if (i === 0) {
+                percent = 0
+              }
+              const options = {
+                color: v.color.toRGBA(),
+                index: i,
+                percent
+              }
+              // this.actionBarSize = getData('value', $marker).maxLenght
+              this.addMarker(0, options)
+            })
 
+            this.COLORPICKER.Saturation.init()
+            this.COLORPICKER.Saturation.position(this.COLORPICKER.COLOR.val(getData('value', this.$marker).color))
+    
             this.leave('save')
           },
           onHided: () => {
@@ -492,7 +536,9 @@ class GradientPicker extends Component {
     const $marker = parseHTML(
       `<div class="${this.classes.MARKER}" tabindex="1"></div>`
     )
-    setData('value', new Marker(this, $marker, options), $marker)
+
+    this.Marker = new Marker(this, $marker, options)
+    setData('value', this.Marker , $marker)
     return $marker
   }
 
@@ -504,10 +550,11 @@ class GradientPicker extends Component {
   }
 
   addMarker(position, options = null) {
+   
     let value = {}
     if (!options) {
       const percent = this.getMarkerPercent(position)
-
+     
       const color = this.tempColor || '#000'
       value = {
         color,
@@ -517,10 +564,11 @@ class GradientPicker extends Component {
     } else {
       value = options
     }
+
     const $marker = this.createMarker(value)
     this.actionBarSize = getData('value', $marker).maxLenght
-
     this.markers.push(getData('value', $marker))
+
     this.sort()
     this.selectMarker($marker)
 
@@ -530,7 +578,6 @@ class GradientPicker extends Component {
   getMarkerPercent(position) {
     const minPosition = this.markers[0].elSize / 2
     const maxPosition = this.markers[0].wrapSize - this.markers[0].elSize / 2
-
     position = Math.min(maxPosition, Math.max(minPosition, position))
     return ((position - minPosition) / this.actionBarSize) * 100
   }

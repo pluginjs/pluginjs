@@ -43,6 +43,7 @@ export const COLLECTIONCLASS = {
   SCHEME: '{namespace}-scheme',
   GROUPTITLE: '{namespace}-group-title',
   GROUPLIST: '{namespace}-group-list',
+  COLLECTIONITEMWRAP: '{namespace}-collection-item-wrap',
   COLLECTIONITEM: '{namespace}-collection-item',
   MANAGE: '{namespace}-manage'
 }
@@ -140,13 +141,13 @@ export const defaults = {
       return '<div class="{classes.wrapClassName}"><input type="text" class="{classes.colorClassName}"></div>'
     },
     scheme() {
-      return '<div class="{classes.SCHEME}"><ul class="{classes.GROUPLIST}"></ul></div>'
+      return '<div class="{classes.SCHEME}"></div>'
     },
     manage() {
       return '<div class="{classes.MANAGE}"><i class="pj-icon pj-icon-setting"></i>{manageText}</div>'
     },
     collectionItem() {
-      return '<li class="{classes.COLLECTIONITEM}"></li>'
+      return '<span class="{classes.COLLECTIONITEM}"></span>'
     },
     ok() {
       return '<button type="button" class="{class} pj-btn pj-btn-xs pj-btn-outline">{text}</button>'

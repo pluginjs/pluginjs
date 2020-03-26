@@ -49,6 +49,7 @@ class Collection {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes
       })
+      
       const $itemwrap = wrap(
         `<div class="${this.classes.COLLECTIONITEMWRAP}"></div>`,
         $item

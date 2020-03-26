@@ -14,13 +14,15 @@ class Marker {
     this.$wrap = query(`.${this.instance.classes.BAR}`, this.instance.$panel)
     this.$wrap.append(this.$el)
 
-    this.wrapSize = parseInt(getStyle('width', this.$wrap), 10)
-    this.elSize = parseInt(getStyle('width', this.$el), 10)
-    this.maxLenght = this.wrapSize - this.elSize
+
     this.init()
   }
 
   init() {
+    this.wrapSize = parseInt(getStyle('width', this.$wrap), 10)
+    this.elSize = parseInt(getStyle('width', this.$el), 10)
+    this.maxLenght = this.wrapSize - this.elSize
+    
     const offset = this.getOffset()
     setStyle('background', this.color, this.$el)
     setStyle('left', offset, this.$el)
