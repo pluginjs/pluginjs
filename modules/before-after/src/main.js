@@ -56,9 +56,9 @@ class BeforeAfter extends Component {
     if (this.options.theme) {
       classes += ` ${this.getThemeClass()}`
     }
-    if (!this.options.showLabel) {
-      classes += ` ${this.classes.HIDE}`
-    }
+    // if (!this.options.showLabel) {
+    //   classes += ` ${this.classes.LABELSHIDE}`
+    // }
 
     addClass(classes, this.element)
 
@@ -149,6 +149,10 @@ class BeforeAfter extends Component {
         })
       )
       append(this.$labels, this.element)
+    }
+
+    if (!this.options.showLabel) {
+      addClass(this.classes.LABELSHIDE, this.$labels)
     }
 
     addClass(themes, this.$labels)

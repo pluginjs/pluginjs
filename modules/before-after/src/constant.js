@@ -27,7 +27,7 @@ export const classes = {
   LABELBEFORE: '{namespace}-label-before',
   LABELAFTER: '{namespace}-label-after',
   LABELHIDE: '{namespace}-label-hide',
-  HIDE: '{namespace}-hide',
+  LABELSHIDE: '{namespace}-labels-hide',
   ACTIVE: '{namespace}-active',
   DISABLED: '{namespace}-disabled',
   DRAGGING: '{namespace}-dragging',
@@ -38,7 +38,7 @@ export const methods = ['moveBy', 'moveTo', 'enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null, // circle, line, outline, rectangle
-  labelTheme: null, // solid, bordered, start, end, overlay
+  labelTheme: null, // solid, outline, start, end,
   direction: 'horizontal', // horizontal, vertical
   initial: 0.5, // initial position for slider, 0 to 1
   showLabel: true,

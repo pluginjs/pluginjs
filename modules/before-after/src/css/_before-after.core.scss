@@ -54,7 +54,7 @@ $beforeAfter-handle-color: $color-white !default;
     opacity: 0;
   }
 
-  &-hide {
+  &-labels-hide {
     .#{$beforeAfter}-label-before,
     .#{$beforeAfter}-label-after {
       visibility: hidden;
