@@ -56,9 +56,6 @@ class BeforeAfter extends Component {
     if (this.options.theme) {
       classes += ` ${this.getThemeClass()}`
     }
-    // if (!this.options.showLabel) {
-    //   classes += ` ${this.classes.LABELSHIDE}`
-    // }
 
     addClass(classes, this.element)
 
@@ -289,10 +286,14 @@ class BeforeAfter extends Component {
     }
 
     if (distance < 100 - this.size / 2) {
+      removeClass(this.classes.LABELHIDE, this.$labelAfter)
       addClass(this.classes.LABELHIDE, this.$labelBefore)
+      this.leave('labelAfterHide')
       this.enter('labelBeforeHide')
     } else if (distance > this.size / 2 - 100) {
+      removeClass(this.classes.LABELHIDE, this.$labelBefore)
       addClass(this.classes.LABELHIDE, this.$labelAfter)
+      this.leave('labelBeforeHide')
       this.enter('labelAfterHide')
     } else {
       removeClass(this.classes.LABELHIDE, this.$labelBefore)
