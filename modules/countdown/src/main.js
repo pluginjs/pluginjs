@@ -171,10 +171,10 @@ class CountDown extends Component {
   }
 
   update() {
-    const dif = this.getDif()
+    let dif = this.getDif()
 
-    if (dif < 0) {
-      return
+    if (dif < 0 || isNaN(dif)) {
+      dif = 0
     }
 
     const newTimes = new Times(dif)
