@@ -1293,7 +1293,7 @@ class DatePicker extends Component {
     if (this.is('disabled')) {
       return null
     }
-
+ 
     this.privateDate.currentDate[i].setDate(1)
     this.privateDate.currentDate[i].setHours(0, 0, 0, 0)
 
@@ -1454,7 +1454,7 @@ class DatePicker extends Component {
   /* eslint-disable */
   click(e) {
     const $target = e.target
-    console.log(666)
+
     if (
       !this.$inputIcon.contains($target) &&
       !this.$picker.contains($target) &&
@@ -1556,11 +1556,11 @@ class DatePicker extends Component {
     switch (this.views[i]) {
       case 'years':
         newVal = parseInt(target.textContent, 10)
-        this.privateDate.currentDate[i].setYear(newVal)
+        this.privateDate.selectedDate[i].setYear(newVal)
         break
       case 'months':
         newVal = Number(target.getAttribute('class').match(/month-([0-9]+)/)[1])
-        this.privateDate.currentDate[i].setMonth(newVal)
+        this.privateDate.selectedDate[i].setMonth(newVal)
         break
       case 'days':
         newVal = parseInt(target.textContent, 10)
@@ -1606,6 +1606,7 @@ class DatePicker extends Component {
     if (this.is('disabled')) {
       return null
     }
+
     switch (this.mode) {
       case 'single': {
         const formated = this.formatDate(
@@ -2174,7 +2175,7 @@ class DatePicker extends Component {
     this.setValue(trigger)
 
     for (let i = 0; i < this.views.length; i++) {
-      this.views[i] = 'days'
+      // this.views[i] = 'days'
       this.generateDaypicker(i)
     }
   }
