@@ -189,6 +189,7 @@ class Choice extends Component {
         classes: this.classes
       })
     )
+
     insertAfter(this.$dropdown, this.$wrap)
   }
 
@@ -484,7 +485,6 @@ class Choice extends Component {
 
   unselect(value, update = true, trigger = true) {
     let $item
-
     if (value instanceof HTMLElement) {
       $item = value
       value = getData('value', $item)
@@ -501,11 +501,11 @@ class Choice extends Component {
       }
     }
 
-    removeClass(this.classes.SELECTED, $item)
-
     if (!$item.matches(`.${this.classes.SELECTED}`)) {
       return
     }
+
+    removeClass(this.classes.SELECTED, $item)
 
     if (update === true) {
       if (this.options.multiple) {
@@ -554,10 +554,9 @@ class Choice extends Component {
     const width = getWidth(this.$wrap)
     let totalWidth
     const $items = []
-
+    
     if (this.$wrap.scrollWidth > containerWidth) {
       append(this.$toggle, this.$wrap)
-
       totalWidth = outerWidth(this.$toggle)
       childrenMatchSelector('[data-value]', this.$wrap).forEach($item => {
         const itemWidth = outerWidth($item)
