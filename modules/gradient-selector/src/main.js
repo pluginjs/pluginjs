@@ -97,7 +97,7 @@ class GradientSelector extends Component {
   initData() {
     const data = this.element.value
     if (data) {
-      this.val(data)
+      this.val(data, false)
     }
   }
 
