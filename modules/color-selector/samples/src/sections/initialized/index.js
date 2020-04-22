@@ -3,32 +3,12 @@ import ColorSelector from '@pluginjs/color-selector'
 
 const data = {
   scheme: {
-    Primary: '#55a4f2',
-    fontColor: '#ccc',
-    'bg Color': '#f2a654',
-    'border Color': '#f1f1f1',
-    red: 'red',
-    brown: 'brown',
-    lightblue: 'lightblue',
-    green: 'green',
-    1: 'green',
-    2: 'green',
-    3: 'green',
-    4: 'green',
-    5: 'green',
-    6: 'green',
-    7: 'green',
-    8: 'green',
-    9: 'green',
-    12: 'green',
-    11: 'green',
-    13: 'green',
-    14: 'green',
-    15: 'green',
-    16: 'rgba(210,133,89,.3)',
-    333: 'rgba(210,133,89,.3)',
-    222: 'rgba(210,133,89,.3)',
-    111: 'rgba(210,133,89,.3)',
+    primary: {name: 'Primary', color: '#55a4f2'},
+    fontColor: {name: 'FontColor', color: '#ccc'},
+    brown: {name: 'Brown', color: '#55a4f2'},
+    lightblue: {name: 'Lightblue', color: '#55a4f2'},
+    1: {name: '1', color: '#55a4f2'},
+    2: {name: '3', color: '#55a4f2'},
   }
 }
 

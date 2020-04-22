@@ -473,6 +473,7 @@ class ColorSelector extends Component {
 
       // collection
       if (module === 'collection') {
+        console.log(color)
         this.COLLECTION.setCollection(color)
         return false
       }

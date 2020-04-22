@@ -19,6 +19,7 @@ class Collection {
     if (!this.instance.data) {
       return false
     }
+
     // create group
     const $scheme = this.instance.createEl('scheme', {
       classes: this.classes
@@ -56,14 +57,14 @@ class Collection {
 
       // set tooltip
       Tooltip.of($item, {
-        title: i.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
+        title: v.name.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
         placement: 'bottom',
         trigger: 'hover'
       })
 
       // set BgColor and Data val
-      setStyle('background', v, $item)
-      setData('info', { title: i, color: v }, $item)
+      setStyle('background', v.color, $item)
+      setData('info', { title: v.name, color: v.color }, $item)
       // append to group list
       append($itemwrap, groupList)
     })
@@ -72,18 +73,18 @@ class Collection {
   setCollection(colorName) {
     Object.entries(this.instance.data).forEach(([, v]) => {
       Object.entries(v).forEach(([name, dataColor]) => {
-        if (colorName.toLowerCase() === name.toLowerCase()) {
+        if (colorName.toLowerCase() === dataColor.name.toLowerCase()) {
           if (
-            dataColor.indexOf('gradient') > -1 &&
+            dataColor.color.indexOf('gradient') > -1 &&
             this.instance.options.gradient
           ) {
-            this.instance.GRADIENTPICKER.set(dataColor)
+            this.instance.GRADIENTPICKER.set(dataColor.color)
           } else {
-            this.instance.COLORPICKER.set(dataColor)
+            this.instance.COLORPICKER.set(dataColor.color)
           }
 
-          this.instance.setInput(dataColor)
-          this.instance.PREVIEW.update(dataColor)
+          this.instance.setInput(dataColor.color)
+          this.instance.PREVIEW.update(dataColor.color)
         }
       })
     })
