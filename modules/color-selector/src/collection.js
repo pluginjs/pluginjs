@@ -30,6 +30,7 @@ class Collection {
         classes: this.classes,
         manageText: this.instance.translate('manage')
       })
+      console.log($scheme)
       this.element.append($scheme, $manage)
     } else {
       this.element.append($scheme)
@@ -45,6 +46,7 @@ class Collection {
   }
 
   createCollectionItem(groupName, groupList) {
+    groupList.innerHTML = "";
     Object.entries(this.instance.data[groupName]).forEach(([i, v]) => {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes
