@@ -41,6 +41,8 @@ class Collection {
 
   createCollectionItem() {
     this.$selectorList = query(`.${this.classes.SCHEME}`, this.element)
+    this.$selectorList.innerHTML = "";
+    
     Object.entries(this.instance.imgs).forEach(([i, v]) => {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes

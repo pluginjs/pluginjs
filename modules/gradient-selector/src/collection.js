@@ -45,6 +45,8 @@ class Collection {
 
   createCollectionItem() {
     this.$selectorList = query(`.${this.classes.SCHEME}`, this.element)
+    this.$selectorList.innerHTML = "";
+    
     Object.entries(this.instance.colors).forEach(([i, v]) => {
       const $item = this.instance.createEl('collectionItem', {
         classes: this.classes
@@ -57,16 +59,16 @@ class Collection {
 
       // set tooltip
       Tooltip.of($item, {
-        title: i.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
+        title: v.name.replace(/^[a-zA-Z]?/g, char => char.toLocaleUpperCase()),
         placement: 'bottom',
         trigger: 'hover'
       })
-
+   
       // set BgColor and Data val
-      setStyle('background', v, $item)
+      setStyle('background', v.gradient, $item)
       const info = {
-        name: i,
-        color: v
+        name: v.name,
+        color: v.gradient
       }
       setData('info', info, $item)
       // append to group list
