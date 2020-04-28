@@ -9,6 +9,7 @@ $bgVideo: "pj-bgVideo" !default;
 // =====================
 .#{$parallax}-container {
 	position: relative;
+	z-index: 1;
 	overflow: hidden;
 
 	.#{$parallax} {
@@ -28,15 +29,15 @@ $bgVideo: "pj-bgVideo" !default;
 		}
 
 		.#{$bgVideo} {
-		  width: 100%;
-		  height: 100%;
+			width: 100%;
+			height: 100%;
 
-		  video {
-		    width: 100%;
-		    height: 100%;
-		    object-fit: cover;
-		    object-position: 50% 50%;
-		  }
+			video {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: 50% 50%;
+			}
 		}
 	}
 }
