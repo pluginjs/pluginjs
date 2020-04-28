@@ -46,6 +46,7 @@ class Sticky extends Component {
     this.clone = document.createElement('div')
 
     this.resetCloneStyle()
+    this.resetStickyStyle()
 
     append(this.clone, this.$wrap)
     addClass(this.classes.PARENT, this.$parent)
@@ -90,6 +91,15 @@ class Sticky extends Component {
         position: 'static'
       },
       this.clone
+    )
+  }
+
+  resetStickyStyle() {
+    setStyle(
+      {
+        width: `${this.$wrap.clientWidth}px`
+      },
+      this.element
     )
   }
 
@@ -210,6 +220,7 @@ class Sticky extends Component {
 
   resizeHandle() {
     this.resetCloneStyle()
+    this.resetStickyStyle()
   }
 
   bind() {
