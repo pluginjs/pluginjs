@@ -166,7 +166,7 @@ export const defaults = {
 
   size: {
     defaultValue: 'auto',
-    values: ['auto 100%', '100% auto', '100% 100%', 'auto'],
+    values: ['auto', 'auto 100%', '100% auto', '100% 100%', 'contain', 'cover'],
     template() {
       return (
         '<div class="{field}">' +
