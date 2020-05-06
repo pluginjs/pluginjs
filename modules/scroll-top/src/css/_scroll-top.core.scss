@@ -12,7 +12,7 @@ $scrollTop-gutter: 20px !default;
   position: fixed;
   right: $scrollTop-gutter;
   bottom: $scrollTop-gutter;
-  z-index: 1000;
+  z-index: 100000;
   overflow: hidden;
   text-decoration: none;
   white-space: nowrap;
