@@ -16,7 +16,7 @@ $unitsRange-range-width: 200px;
 
   .#{$range} {
     width: 100%;
-    
+
     &-control {
       width: 100%;
     }
@@ -25,5 +25,6 @@ $unitsRange-range-width: 200px;
   .#{$units} {
     height: 100%;
     margin-left: $unitsRange-gap;
+    flex-shrink: 0;
   }
 }
