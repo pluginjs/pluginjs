@@ -30,7 +30,7 @@ class Collection {
         classes: this.classes,
         manageText: this.instance.translate('manage')
       })
-      console.log($scheme)
+
       this.element.append($scheme, $manage)
     } else {
       this.element.append($scheme)

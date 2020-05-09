@@ -62,6 +62,7 @@ export const defaults = {
   localeFallbacks: true,
   responsiveDropdownFull: false,
   disabled: false,
+  outputArray: true,
   dropdown: {
     placement: 'bottom-start' // top
   },
@@ -106,15 +107,22 @@ export const defaults = {
 
   process(value) {
     if (value && typeof value !== 'undefined') {
-      return value.join(',')
+      if(this.outputArray) {
+        return JSON.stringify(value)
+      } else {
+        return value.join(',')
+      }
     }
     return ''
   },
 
   parse(value) {
     if (isString(value) && value.length !== 0) {
+      let string = value
+      if(value[0] == '[' && value[value.length - 1] == ']')
+      string = value.slice(1,-1)
       let array = []
-      array = value.split(',')
+      array = string.split(',')
       return array
     }
     return []

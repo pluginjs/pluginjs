@@ -239,12 +239,12 @@ class MultiSelect extends Select {
   }
 
   buildChip(option) {
+    console.log(this.chipTemplate)
     if (!this.chipTemplate) {
       this.chipTemplate = templateEngine.compile(
         this.options.templates.chip.call(this)
       )
     }
-
     const $chip = parseHTML(
       this.chipTemplate({
         classes: this.classes,

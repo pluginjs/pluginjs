@@ -101,7 +101,7 @@ class ColorSelector extends Component {
     }
 
     // swtichover default mode
-    this.switchModule()
+    // this.switchModule()
 
     // set default data
     this.initData()
