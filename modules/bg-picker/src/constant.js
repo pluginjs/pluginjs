@@ -98,7 +98,7 @@ export const defaults = {
     placement: 'bottom-start'
   },
   repeat: {
-    defaultValue: 'repeat',
+    defaultValue: 'no-repeat',
     values: ['no-repeat', 'repeat', 'repeat-x', 'repeat-y'],
     template() {
       return (
@@ -132,7 +132,7 @@ export const defaults = {
   },
 
   position: {
-    defaultValue: 'top left',
+    defaultValue: 'center center',
     values: [
       'top left',
       'top center',
@@ -165,7 +165,7 @@ export const defaults = {
   },
 
   size: {
-    defaultValue: 'auto',
+    defaultValue: 'cover',
     values: ['auto', 'auto 100%', '100% auto', '100% 100%', 'contain', 'cover'],
     template() {
       return (

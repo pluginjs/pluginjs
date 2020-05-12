@@ -119,8 +119,11 @@ export const defaults = {
   parse(value) {
     if (isString(value) && value.length !== 0) {
       let string = value
-      if(value[0] == '[' && value[value.length - 1] == ']')
-      string = value.slice(1,-1)
+      if(value[0] == '[' && value[value.length - 1] == ']') {
+        string = value.slice(1,-1)
+        string = string.replace(/\'/g, "").replace(/\"/g, "");
+      }
+
       let array = []
       array = string.split(',')
       return array
