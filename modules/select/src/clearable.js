@@ -12,7 +12,7 @@ export default class Clearable {
     bindEvent(
       instance.eventName('click'),
       () => {
-        instance.clear()
+        instance.clear(true)
 
         return false
       },
