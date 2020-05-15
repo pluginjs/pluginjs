@@ -44,6 +44,7 @@ class Sticky extends Component {
 
     this.spacing = this.options.spacing
     this.clone = document.createElement('div')
+    this.hiddentHeigh = 0
 
     this.resetCloneStyle()
     this.resetStickyStyle()
@@ -76,10 +77,12 @@ class Sticky extends Component {
   resetCloneStyle() {
     const elementOffset = this.element.getBoundingClientRect()
     const nodeComputedStyle = getComputedStyle(this.element)
+    this.hiddentHeight = elementOffset.height
+
     setStyle(
       {
         width: `${elementOffset.right - elementOffset.left}px`,
-        height: `${elementOffset.bottom - elementOffset.top}px`,
+        height: `${this.hiddentHeight}px`,
         marginTop: `${nodeComputedStyle.marginTop}px`,
         marginBottom: `${nodeComputedStyle.marginBottom}px`,
         marginLeft: `${nodeComputedStyle.marginLeft}px`,
@@ -144,6 +147,10 @@ class Sticky extends Component {
       this.stuckEle()
     } else {
       this.defaultEle()
+    }
+
+    if (this.element.clientHeight !== this.hiddentHeigh) {
+      this.clone.style.height = `${this.element.clientHeight}px`
     }
   }
 
