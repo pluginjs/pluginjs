@@ -1,0 +1,182 @@
+@import "@pluginjs/styles/variables.scss";
+@import "./audio-picker.core";
+
+// Vars
+// =====================
+$audioPicker: "pj-audioPicker";
+$audioPicker-width: 160px;
+$audioPicker-height: 100px;
+
+$audioPicker-font-family: $font-family-base;
+$audioPicker-font-size: $font-size-base;
+
+$audioPicker-text-font-size: $font-size-sm;
+$audioPicker-text-color: $color-primary-black;
+$audioPicker-text-with-image-color: $color-white;
+
+$audioPicker-color: $gray;
+$audioPicker-hover-color: $color-primary-black;
+$audioPicker-padding: 4px;
+
+$audioPicker-border-width: 1px;
+$audioPicker-border-color: $border-color;
+$audioPicker-border: $audioPicker-border-width solid $audioPicker-border-color;
+$audioPicker-border-radius: $border-radius-base;
+
+$audioPicker-icon-font-size: $font-size-md;
+$audioPicker-icon-spacer: 17px;
+$audioPicker-icon-empty-margin: 10px;
+$audioPicker-icon-trigger-action: $color-white;
+
+$audioPicker-write-border-style: dashed;
+$audioPicker-change-bg: $gray-darker;
+$audioPicker-change-opacity: $color-opacity;
+
+// Style
+// =====================
+.#{$audioPicker} {
+  width: $audioPicker-width;
+  height: $audioPicker-height;
+  padding: $audioPicker-padding;
+  font-family: $audioPicker-font-family;
+  text-align: center;
+  border: $audioPicker-border;
+  border-radius: $audioPicker-border-radius;
+
+  &-empty {
+    font-size: $audioPicker-font-size;
+    color: $audioPicker-color;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: nowrap;
+    cursor: pointer;
+
+    i {
+      margin-bottom: $audioPicker-icon-empty-margin;
+      font-size: $audioPicker-icon-font-size;
+    }
+
+    &:hover {
+      color: $audioPicker-hover-color;
+    }
+  }
+
+  &-fill {
+    border-radius: $audioPicker-border-radius;
+  }
+
+  &-fill-text {
+    font-size: $audioPicker-text-font-size;
+    line-height: 1.3;
+    color: $audioPicker-text-color;
+
+    &.#{$audioPicker}-with-image {
+      position: relative;
+      z-index: 0;
+      color: $audioPicker-text-with-image-color;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        content: "";
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+
+  &-trigger-action {
+    font-size: $audioPicker-icon-font-size;
+    color: $audioPicker-icon-trigger-action;
+    text-align: center;
+    background-color: $audioPicker-change-bg;
+    border-radius: $audioPicker-border-radius;
+  }
+
+  &-remove,
+  &-reselect {
+    margin: 0 $audioPicker-icon-spacer;
+    cursor: pointer;
+  }
+
+  &-fadeOut {
+    animation: fadeOut 0.3s;
+    animation-fill-mode: forwards;
+  }
+
+  &-fadeIn {
+    animation: fadeIn 0.3s;
+    animation-fill-mode: forwards;
+  }
+}
+
+//state
+.#{$audioPicker}-write {
+  &.#{$audioPicker} {
+    border-style: $audioPicker-write-border-style;
+  }
+}
+
+.#{$audioPicker}-exist {
+  border-style: solid;
+
+  &.#{$audioPicker}-hover {
+    .#{$audioPicker} {
+      &-trigger-action {
+        background: $audioPicker-change-opacity;
+        opacity: 1;
+        transition: all 300ms ease-in-out;
+      }
+    }
+  }
+}
+
+.#{$audioPicker}-disabled {
+  background-color: $disabled-bg;
+  border-color: $disabled-border;
+
+  .#{$audioPicker}-fill {
+    color: $disabled-color;
+    cursor: not-allowed;
+    background-color: $disabled-bg;
+    border-color: $disabled-border;
+  }
+
+  .#{$audioPicker}-empty,
+  .#{$audioPicker}-trigger-action {
+    color: $disabled-color;
+    cursor: not-allowed;
+    background-color: $disabled-bg;
+    border-color: $disabled-border;
+
+    .#{$audioPicker}-reselect,
+    .#{$audioPicker}-remove {
+      cursor: not-allowed;
+    }
+  }
+}
+
+// animations
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

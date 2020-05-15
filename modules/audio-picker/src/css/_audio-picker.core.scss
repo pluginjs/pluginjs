@@ -2,15 +2,15 @@
 
 // Vars
 // =====================
-$imagePicker: "pj-imagePicker" !default;
+$audioPicker: "pj-audioPicker" !default;
 
 // Core
 // =====================
-input.#{$imagePicker}-input {
+input.#{$audioPicker}-input {
   display: none;
 }
 
-.#{$imagePicker} {
+.#{$audioPicker} {
   position: relative;
   display: block;
 
@@ -31,6 +31,18 @@ input.#{$imagePicker}-input {
     overflow: hidden;
   }
 
+  &-fill-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
   &-trigger-action {
     position: absolute;
     top: 0;
@@ -42,16 +54,8 @@ input.#{$imagePicker}-input {
     height: 100%;
   }
 
-  &-fill-image {
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-  }
-
   &-write {
-    .#{$imagePicker} {
+    .#{$audioPicker} {
       &-fill {
         display: none;
       }
@@ -59,7 +63,7 @@ input.#{$imagePicker}-input {
   }
 
   &-exist {
-    .#{$imagePicker} {
+    .#{$audioPicker} {
       &-empty {
         display: none;
       }

@@ -237,7 +237,8 @@
     "prettier/prettier": ["error", {
       "semi": false,
       "singleQuote": true,
-      "bracketSpacing": true
+      "bracketSpacing": true,
+      "trailingComma": "none"
     }]
   }
 }
