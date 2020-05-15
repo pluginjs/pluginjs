@@ -106,7 +106,7 @@ export const defaults = {
   },
 
   process(value) {
-    if (value && typeof value !== 'undefined') {
+    if (value && typeof value !== 'undefined' && JSON.stringify(value) !== '[]') {
       if(this.outputArray) {
         return JSON.stringify(value)
       } else {
