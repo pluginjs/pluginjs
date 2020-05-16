@@ -84,6 +84,10 @@ class Grid {
     const index = this.chunksArr.length - 1
     let height = 0
 
+    if (this.chunksArr[index].length === 0) {
+      return
+    }
+
     this.chunksArr[index].forEach(chunk => {
       height = Math.max(height, chunk.info.height)
     })
