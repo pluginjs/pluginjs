@@ -1,5 +1,5 @@
 import Emitter from '@pluginjs/emitter'
-import { throttle } from '@pluginjs/utils'
+import { throttle, debounce } from '@pluginjs/utils'
 
 if (!window.Pj) {
   let plugins = {}
@@ -42,6 +42,15 @@ function globalResizeHandle(e) {
   )
 }
 
+function globalResizeDebounceHandle(e) {
+  Pj.emitter.emit(
+    'resizeDebounce',
+    e,
+    window.document.documentElement.clientWidth,
+    window.document.documentElement.clientHeight
+  )
+}
+
 function globalScrollHanle(e) {
   const scrollTop =
     window.pageYOffset ||
@@ -65,6 +74,7 @@ function globalReadyHanle() {
 window.addEventListener('DOMContentLoaded', globalReadyHanle)
 window.addEventListener('orientationchange', globalResizeHandle)
 window.addEventListener('resize', throttle(globalResizeHandle))
+window.addEventListener('resize', debounce(globalResizeDebounceHandle))
 window.addEventListener('scroll', throttle(globalScrollHanle))
 
 export default Pj

@@ -5,7 +5,7 @@ import { deepMerge, getUID } from '@pluginjs/utils'
 import { getData, setData, removeData } from '@pluginjs/dom'
 
 export default function register(name, obj = {}) {
-  return function(plugin) {
+  return function (plugin) {
     const { methods = [], dependencies = {}, ...others } = obj
 
     Pj.register(
@@ -47,7 +47,7 @@ export default function register(name, obj = {}) {
       instances.find(plugin => plugin.element === el)
 
     if (plugin.prototype.resize && typeof plugin.resize === 'undefined') {
-      plugin.resize = function(documentWidth, documentHeight) {
+      plugin.resize = function (documentWidth, documentHeight) {
         for (let i = 0; i < instances.length; i++) {
           instances[i].resize(documentWidth, documentHeight)
         }
@@ -57,6 +57,23 @@ export default function register(name, obj = {}) {
     if (isFunction(plugin.resize)) {
       Pj.emitter.on('resize', (e, documentWidth, documentHeight) => {
         plugin.resize(documentWidth, documentHeight)
+      })
+    }
+
+    if (
+      plugin.prototype.resizeDebounce &&
+      typeof plugin.resizeDebounce === 'undefined'
+    ) {
+      plugin.resizeDebounce = function (documentWidth, documentHeight) {
+        for (let i = 0; i < instances.length; i++) {
+          instances[i].resizeDebounce(documentWidth, documentHeight)
+        }
+      }
+    }
+
+    if (isFunction(plugin.resizeDebounce)) {
+      Pj.emitter.on('resizeDebounce', (e, documentWidth, documentHeight) => {
+        plugin.resizeDebounce(documentWidth, documentHeight)
       })
     }
 
