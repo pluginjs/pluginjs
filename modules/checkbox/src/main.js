@@ -121,7 +121,7 @@ class Checkbox extends Component {
         if (value.includes($item.value)) {
           api.check(true, false)
         } else {
-          // api.uncheck(true, false)
+          api.uncheck(true, false)
         }
       })
     } else if (this.element.value === value) {
