@@ -110,7 +110,7 @@ export const css = curryWith((key, value, el) => {
 // ----------
 // Dimensions
 // ----------
-export const outerHeight = (includeMargins, el) => {
+export const outerHeight = (includeMargins, el, isFloat = false) => {
   if (isElement(includeMargins) && typeof el === 'undefined') {
     el = includeMargins
     includeMargins = false
@@ -120,21 +120,28 @@ export const outerHeight = (includeMargins, el) => {
     return el.outerHeight
   }
 
+  const offsetHeight = isFloat
+    ? parseFloat(getStyle('width', el), 10)
+    : el.offsetHeight
+
   if (includeMargins) {
-    const { marginTop, marginBottom } = getStyle(
+    let { marginTop, marginBottom } = getStyle(
       ['marginTop', 'marginBottom'],
       el
     )
 
-    return (
-      parseInt(marginTop, 10) + parseInt(marginBottom, 10) + el.offsetHeight
-    )
+    marginTop = isFloat ? parseFloat(marginTop, 10) : parseInt(marginTop, 10)
+    marginBottom = isFloat
+      ? parseFloat(marginBottom, 10)
+      : parseInt(marginBottom, 10)
+
+    return marginTop + marginBottom + offsetHeight
   }
 
-  return el.offsetHeight
+  return offsetHeight
 }
 
-export const outerWidth = (includeMargins, el) => {
+export const outerWidth = (includeMargins, el, isFloat = false) => {
   if (isElement(includeMargins) && typeof el === 'undefined') {
     el = includeMargins
     includeMargins = false
@@ -144,16 +151,25 @@ export const outerWidth = (includeMargins, el) => {
     return el.outerWidth
   }
 
+  const offsetWidth = isFloat
+    ? parseFloat(getStyle('width', el), 10)
+    : el.offsetWidth
+
   if (includeMargins) {
-    const { marginLeft, marginRight } = getStyle(
+    let { marginLeft, marginRight } = getStyle(
       ['marginLeft', 'marginRight'],
       el
     )
 
-    return parseInt(marginLeft, 10) + parseInt(marginRight, 10) + el.offsetWidth
+    marginLeft = isFloat ? parseFloat(marginLeft, 10) : parseInt(marginLeft, 10)
+    marginRight = isFloat
+      ? parseFloat(marginRight, 10)
+      : parseInt(marginRight, 10)
+
+    return marginLeft + marginRight + offsetWidth
   }
 
-  return el.offsetWidth
+  return offsetWidth
 }
 
 export const innerWidth = el => {
