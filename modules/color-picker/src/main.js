@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose, triggerNative } from '@pluginjs/utils'
+import { compose, triggerNative, debounce } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -148,11 +148,11 @@ class ColorPicker extends Component {
       }
       bindEvent(
         this.eventName('input'),
-        e => {
+        debounce(e => {
           if (new Color().matchString(e.target.value)) {
             this.set(e.target.value)
           }
-        },
+        }, 1000),
         this.element
       )
     }
