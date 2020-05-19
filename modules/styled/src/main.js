@@ -91,9 +91,7 @@ export const getStyle = (key, el) => {
     key = dasherize(key)
   }
 
-  value = getDefaultView(el)
-    .getComputedStyle(el, '')
-    .getPropertyValue(key)
+  value = getDefaultView(el).getComputedStyle(el, '').getPropertyValue(key)
   return isNumeric(value) ? parseFloat(value) : value
 }
 
@@ -365,11 +363,11 @@ export const position = el => {
     coords = el.getBoundingClientRect()
   } else {
     coords = offset(el)
-    const offsetParent = offsetParent(el)
-    if (offsetParent && offsetParent !== el && offsetParent.nodeType === 1) {
-      parentOffset = offset(offsetParent)
-      parentOffset.top += parseFloat(offsetParent.style.borderTopWidth) || 0
-      parentOffset.left += parseFloat(offsetParent.style.borderLeftWidth) || 0
+    const parent = offsetParent(el)
+    if (parent && parent !== el && parent.nodeType === 1) {
+      parentOffset = offset(parent)
+      parentOffset.top += parseFloat(parent.style.borderTopWidth) || 0
+      parentOffset.left += parseFloat(parent.style.borderLeftWidth) || 0
     }
   }
 
