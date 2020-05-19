@@ -39,12 +39,15 @@ export default class Attachment {
           if (that.instance.is('disabled')) {
             return
           }
+
           that.instance.value.attachment = value
+          
           setStyle(
             'background-attachment',
             that.instance.value.attachment,
             that.instance.$image
           )
+
           setStyle(
             'background-attachment',
             that.instance.value.attachment,

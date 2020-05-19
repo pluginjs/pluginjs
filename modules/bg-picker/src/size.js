@@ -23,11 +23,13 @@ export default class Size {
     })
 
     this.$wrap = parseHTML(html)
-
     this.$trigger = query(`.${this.instance.classes.SELECTTRIGGER}`, this.$wrap)
     const data = this.values.map(val => ({ label: val, value: val }))
     const that = this
     this.$trigger.value = this.defaultValue
+
+    this.setStyle(this.defaultValue)
+    
     this.$sizeSelect = Select.of(this.$trigger, {
       source: data,
       keyboard: true,
@@ -36,14 +38,20 @@ export default class Size {
           return
         }
         this.instance.value.size = val
-        setStyle('background-size', val, this.instance.$image)
-        setStyle('background-size', val, this.instance.TRIGGER.$fillImage)
+        this.setStyle(val)
       }
     })
+
+    this.set(this.defaultValue)
   }
 
   set(val) {
     this.$sizeSelect.set(val)
+  }
+
+  setStyle(val) {
+    setStyle('background-size', val, this.instance.$image)
+    setStyle('background-size', val, this.instance.TRIGGER.$fillImage)
   }
 
   clear() {
