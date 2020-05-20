@@ -1,6 +1,15 @@
 import { curry, curryWith, camelize } from '@pluginjs/utils'
 import { isString, isElement, isEmptyObject } from '@pluginjs/is'
 
+export const docReady = callback => {
+  const readyState = document.readyState
+  if (readyState === 'complete' || readyState === 'interactive') {
+    setTimeout(callback)
+  } else {
+    document.addEventListener('DOMContentLoaded', callback)
+  }
+}
+
 export const parseHTML = (...args) => {
   const htmlString = Array.isArray(args[0])
     ? args[0].reduce((result, str, index) => result + args[index] + str)
