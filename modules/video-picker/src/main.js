@@ -377,6 +377,7 @@ class VideoPicker extends Component {
       bindEvent(this.eventName('click'), `.${this.classes.CANCEL}`, () => {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
         this.DROPDOWN.hide()
+        return false
       }),
       bindEvent(this.eventName('click'), `.${this.classes.SAVE}`, () => {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)

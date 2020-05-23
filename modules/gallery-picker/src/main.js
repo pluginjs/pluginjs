@@ -151,10 +151,11 @@ class GalleryPicker extends Component {
         if (this.is('disabled')) {
           return false
         }
+
         const val = this.element.value
         this.set(this.options.parse(val))
         this.close()
-        return null
+        return false
       })
     )(this.$panel)
   }
