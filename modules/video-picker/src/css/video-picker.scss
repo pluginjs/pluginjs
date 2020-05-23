@@ -166,7 +166,8 @@ $videoPicker-poster-with: 190px;
   }
 
   &-poster {
-     position: relative;
+    position: relative;
+
     > span {
       color: $videoPicker-active-color;
       cursor: pointer;
@@ -217,9 +218,9 @@ $videoPicker-poster-with: 190px;
     }
 
     &-delete {
-     position: absolute;
-     right: 5px;
-     display: none !important;
+      position: absolute;
+      right: 5px;
+      display: none !important;
     }
 
 

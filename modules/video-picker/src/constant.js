@@ -82,6 +82,7 @@ export const defaults = {
   dropdown: {
     placement: 'bottom-start'
   },
+  fillImage: 'https://picsum.photos/200/300?image=1020',
   templates: {
     dropdown() {
       return `<div class='{classes.DROPDOWN}'>
@@ -100,7 +101,7 @@ export const defaults = {
       </div>`
     },
     fill() {
-      return `<div class='{classes.FILL}'><image src='https://picsum.photos/200/300?image=1020' class='{classes.FILLPOSTER}' />
+      return `<div class='{classes.FILL}'><img src='{image}' class='{classes.FILLPOSTER}' />
       </div>`
     },
     triggerAction() {
@@ -112,7 +113,7 @@ export const defaults = {
       <i class='pj-icon pj-icon-play-circle {classes.VIDEOBTN}'></i>
       <div class='{classes.VIDEOPOSTER}'></div>
       <div class="{classes.VIDEOANIMATE}"></div></div>
-     `
+    `
     },
     videoPreview() {
       return `<div class='{classes.VIDEO}'>
@@ -123,7 +124,6 @@ export const defaults = {
         <div class='{preview}'></div></section>`
     }
   },
-
   selectCover() {
     return `https://picsum.photos/200/300?image=990
     `

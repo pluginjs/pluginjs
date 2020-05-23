@@ -34,11 +34,10 @@ $linkPicker-disabled-bg: $disabled-bg;
 
   &-action {
     color: $action-color;
+    background-color: $color-opacity;
     border-radius: $linkPicker-border-radius;
     opacity: 0;
     transition: opacity $action-time;
-    background-color: $color-opacity;
-  
 
     > i {
       &:hover {
@@ -135,7 +134,7 @@ $linkPicker-disabled-bg: $disabled-bg;
       display: block;
     }
   }
-  
+
   &-write {
     .#{$linkPicker} {
       &-empty {
@@ -150,11 +149,12 @@ $linkPicker-disabled-bg: $disabled-bg;
 }
 
 .#{$linkPicker}-disabled {
-   cursor: not-allowed;
+  cursor: not-allowed;
+
   .#{$linkPicker}-action {
     color: $disabled-color;
-    background-color: $linkPicker-disabled-bg;
     pointer-events: none;
+    background-color: $linkPicker-disabled-bg;
   }
 
   .#{$linkPicker}-empty,

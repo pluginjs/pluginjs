@@ -23,7 +23,8 @@ export default class Trigger {
     )
     this.$fill = parseHTML(
       template.compile(this.options.templates.fill())({
-        classes: this.classes
+        classes: this.classes,
+        image: this.options.fillImage
       })
     )
     this.$empty = parseHTML(

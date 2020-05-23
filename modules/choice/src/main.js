@@ -388,7 +388,7 @@ class Choice extends Component {
       } else {
         this.$element.value = this.value
       }
-   
+
       return
     }
 
@@ -554,7 +554,7 @@ class Choice extends Component {
     const width = getWidth(this.$wrap)
     let totalWidth
     const $items = []
-    
+
     if (this.$wrap.scrollWidth > containerWidth) {
       append(this.$toggle, this.$wrap)
       totalWidth = outerWidth(this.$toggle)
@@ -595,8 +595,6 @@ class Choice extends Component {
         ) {
           removeClass(this.classes.SELECTED, this.$toggle)
         }
-      } else {
-        console.info('width > containerWidth', width, containerWidth)
       }
 
       if (childrenMatchSelector('[data-value]', this.$dropdown).length === 0) {
