@@ -7,18 +7,23 @@
   <link rel="stylesheet" href="src/index.scss">
 </head>
 <body>
-  <section id="default">
-    <include src="src/sections/default/index.html"></include>
-  </section>
-  <section id="toolbar">
-    <include src="src/sections/toolbar/index.html"></include>
-  </section>
-  <section id="add">
-    <include src="src/sections/add/index.html"></include>
-  </section>
-  <section id="add-with-toolbar">
-    <include src="src/sections/add-with-toolbar/index.html"></include>
-  </section>
+  <div class="container" style="margin-bottom: 100px;">
+    <section id="default">
+      <include src="src/sections/default/index.html"></include>
+    </section>
+    <section id="gutter">
+      <include src="src/sections/gutter/index.html"></include>
+    </section>
+    <section id="custom">
+      <include src="src/sections/custom/index.html"></include>
+    </section>
+      <section id="add">
+      <include src="src/sections/add/index.html"></include>
+    </section>
+    <section id="loader">
+      <include src="src/sections/loader/index.html"></include>
+    </section>
+  </div>
   <script src="src/index.js"></script>
 </body>
 </html>

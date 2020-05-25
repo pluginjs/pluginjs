@@ -1,8 +1,8 @@
 import { query } from '@pluginjs/dom'
 import Masonry from '@pluginjs/masonry'
 
-const element = query('#default .masonry')
+const custom = query('#custom .masonry')
 
-Masonry.of(element, {
+Masonry.of(custom, {
   itemSelector: '.masonry-item'
 })

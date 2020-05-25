@@ -1,18 +1,25 @@
-import { transitionEndEvent } from '@pluginjs/feature'
-import { wrap, query } from '@pluginjs/dom'
+import anime from 'animejs'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getStyle } from '@pluginjs/styled'
-import { bindEventOnce } from '@pluginjs/events'
+import { wrap, query } from '@pluginjs/dom'
 import { isObject } from '@pluginjs/is'
+
+import { outerWidth, outerHeight, setStyle } from '@pluginjs/styled'
 
 import ImageLoader from '@pluginjs/image-loader'
 import Loader from '@pluginjs/loader'
+
+import EFFECTS from './effects'
 
 class Item {
   constructor(instance, element, options) {
     this.instance = instance
     this.element = element
-    this.options = Object.assign({}, options, this.element.dataset)
+    this.options = Object.assign(
+      {},
+      this.instance.options,
+      options,
+      this.element.dataset
+    )
     this.init()
   }
 
@@ -20,159 +27,166 @@ class Item {
     addClass(this.instance.classes.CHUNK, this.element)
 
     this.index = this.options.index
-    this.width = parseFloat(getStyle('width', this.element), 10)
+    this.length = this.options.length
+    this.col = 0
+    this.colSpan = 1
+    this.effect = this.getEffect()
 
-    this.img = query('img', this.element)
+    this.position = { x: 0, y: 0 }
+    this.width = this.getWidth(true)
+    this.height = this.getHeight()
 
-    if (this.img) {
-      const width = this.img.getAttribute('width')
-      const height = this.img.getAttribute('height')
+    this.initLoader()
 
-      const ratio = Math.round((height / width) * 100)
-
-      const wrapper = wrap(
-        `<div class="${this.instance.classes.IMGWRAPPER}"></div>`,
-        this.img
-      )
-
-      setStyle({ paddingTop: `${ratio}%` }, wrapper)
-
-      this.initLoader(wrapper, this.img)
-    }
-
-    this.info = {
-      x: this.getPosition().x,
-      y: this.getPosition().y,
-      width: this.width
-    }
-
-    this.movePosition = {
-      x: this.info.x,
-      y: this.info.y
-    }
-
-    this.sort = this.options.sort ? this.parseSort() : null
-
-    this.tags = this.options.tags
-      ? this.instance.options.parseTagsStr(this.options.tags)
-      : []
-
-    if (this.tags) {
-      this.tags.forEach((item, index) => {
-        this.tags[index] = item.trim()
-      })
-    }
-
-    this.element.dataset.index = this.index
+    setStyle(
+      {
+        position: 'absolute'
+      },
+      this.element
+    )
   }
 
-  parseSort() {
-    return isObject(this.options.sort)
-      ? this.options.sort
-      : JSON.parse(this.options.sort)
+  getWidth(isFloat = false) {
+    return outerWidth(true, this.element, isFloat) + this.options.gutter
   }
 
-  initLoader(wrapper, img) {
-    let loader = ''
+  getHeight(isFloat = false) {
+    return outerHeight(true, this.element, isFloat)
+  }
 
-    if (this.instance.options.loader) {
-      loader = Loader.of(wrapper, this.instance.options.loader)
-      loader.show()
+  initLoader() {
+    if (!this.options.imageLoader) {
+      return
     }
 
-    if (this.instance.options.imageLoader) {
-      addClass(this.instance.classes.IMAGELOADING, wrapper)
+    const $image = query('img', this.element)
+    if (!$image) {
+      return
+    }
 
-      ImageLoader.of(img).on('loaded', () => {
-        if (this.instance.options.loader) {
-          loader.hide()
-        }
-        removeClass(this.instance.classes.IMAGELOADING, wrapper)
-        addClass(this.instance.classes.IMAGELOADED, wrapper)
-      })
+    const $wrap = document.createElement('div')
 
-      ImageLoader.of(img).on('error', () => {
-        if (this.instance.options.loader) {
-          loader.hide()
-        }
-        removeClass(this.instance.classes.IMAGELOADING, wrapper)
-        addClass(this.instance.classes.IMAGEERROR, wrapper)
+    addClass(this.instance.classes.IMAGEWRAP, $wrap)
+    wrap($wrap, $image)
+
+    this.loader = this.options.loader
+      ? Loader.of($wrap, this.options.loader)
+      : {}
+    this.toggleLoader(true)
+
+    addClass(this.instance.classes.IMAGELOADING, $wrap)
+
+    ImageLoader.of($image, {
+      background: this.options.imageBackground
+    })
+      .on('loaded', () => {
+        this.toggleLoader(false)
+        removeClass(this.instance.classes.IMAGELOADING, $wrap)
+        addClass(this.instance.classes.IMAGELOADED, $wrap)
+
+        this.instance.trigger(this.instance.events.IMAGELOADED)
       })
-    } else if (this.instance.options.loader) {
-      addClass(this.instance.classes.IMAGELOADED, wrapper)
-      loader.hide()
+      .on('error', () => {
+        this.toggleLoader(false)
+        removeClass(this.instance.classes.IMAGELOADING, $wrap)
+        addClass(this.instance.classes.IMAGEERROR, $wrap)
+
+        this.instance.trigger(this.instance.events.IMAGEERROR)
+      })
+  }
+
+  toggleLoader(show) {
+    if (!this.options.loader) {
+      return
+    }
+
+    if (show) {
+      this.loader.show()
     } else {
-      addClass(this.instance.classes.IMAGELOADED, wrapper)
+      this.loader.hide()
     }
   }
 
-  getPosition() {
-    return {
-      x: this.element.offsetLeft,
-      y: this.element.offsetTop
+  render(intact = false) {
+    const spanCols = []
+    let isOver = false
+
+    this.width = this.getWidth(true)
+    this.height = this.getHeight()
+    this.colSpan = this.getColSpan()
+
+    let spanColsNum = this.instance.colsNum + 1 - this.colSpan
+    spanColsNum = spanColsNum < 1 ? this.instance.colsNum : spanColsNum
+
+    for (let i = 0; i < spanColsNum; i++) {
+      spanCols[i] =
+        this.colSpan < 2
+          ? this.instance.cols[i]
+          : Math.max.apply(null, this.instance.cols.slice(i, i + this.colSpan))
+    }
+
+    const minHeight = Math.min.apply(null, spanCols)
+    const maxHeight = Math.max.apply(null, spanCols)
+
+    this.col = spanCols.indexOf(minHeight)
+    isOver = this.col + this.colSpan > this.instance.colsNum
+    this.col = isOver ? 0 : this.col
+
+    this.position.x =
+      (parseInt(this.instance.colWidth * 1000, 10) / 1000) * this.col
+    this.position.y = isOver ? maxHeight : minHeight
+
+    this.setPosition(this.position, intact)
+
+    const maxCol = isOver ? this.instance.colsNum : this.col + this.colSpan
+    for (let j = this.col; j < maxCol; j++) {
+      this.instance.cols[j] += this.height
+      this.instance.cols[j] = Math.max(
+        this.position.y + this.height,
+        this.instance.cols[j]
+      )
     }
   }
 
-  setSize(size) {
-    const { width } = size
+  getEffect() {
+    if (!this.options.animate) {
+      return false
+    }
 
-    setStyle(
-      {
-        width
-      },
-      this.element
+    return EFFECTS[this.options.animate] || EFFECTS.fadeInUp
+  }
+
+  setPosition(position, intact = true) {
+    anime(
+      this.getAnimeConfig(position, intact ? this.effect : this.effect && true)
     )
-
-    size.width = parseFloat(getStyle('width', this.element), 10)
-    size.height = parseFloat(getStyle('height', this.element), 10)
-
-    this.info = Object.assign({}, this.info, size)
   }
 
-  getDuration() {
-    return parseFloat(this.instance.options.duration, 10)
+  getAnimeConfig(position, effect) {
+    const config = {
+      targets: this.element,
+      easing: 'easeOutQuad',
+      duration: effect ? this.options.duration : 0
+    }
+
+    if (isObject(effect)) {
+      for (const key in effect) {
+        if (effect[key]) {
+          const value = effect[key]
+
+          config[key] = typeof value === 'function' ? value.call(this) : value
+        }
+      }
+    } else {
+      config.translateX = position.x
+      config.translateY = position.y
+    }
+
+    return config
   }
 
-  moveTo(position) {
-    const duration = this.getDuration()
-
-    setStyle(
-      {
-        transform: `translate3d(${position.x -
-          parseFloat(getStyle('left', this.element), 10)}px, ${position.y -
-          parseFloat(getStyle('top', this.element), 10)}px, 0)`,
-        transition: `transform ${duration}ms`
-      },
-      this.element
-    )
-
-    bindEventOnce(
-      transitionEndEvent(),
-      () => {
-        setStyle(
-          {
-            left: `${position.x}px`,
-            top: `${position.y}px`
-          },
-          this.element
-        )
-
-        this.element.style.removeProperty('transition')
-        this.element.style.removeProperty('transform')
-      },
-      this.element
-    )
-
-    this.info.x = position.x
-    this.info.y = position.y
-  }
-
-  show() {
-    this.instance.ANIMATE.show(this)
-  }
-
-  hide() {
-    this.instance.ANIMATE.hide(this)
+  getColSpan() {
+    return Math.ceil(this.width / this.instance.colWidth)
   }
 }
 

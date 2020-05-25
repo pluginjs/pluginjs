@@ -1,11 +1,7 @@
 import Component from '@pluginjs/component'
-import templateEngine from '@pluginjs/template'
-import { queryAll, append, find, children, getData, query } from '@pluginjs/dom'
-import { isArray } from '@pluginjs/is'
-import { setStyle, getStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import { addClass, removeClass, toggleClass } from '@pluginjs/classes'
-import { debounce } from '@pluginjs/utils'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { docReady, queryAll, children, query } from '@pluginjs/dom'
+import { outerWidth, setStyle, getStyle } from '@pluginjs/styled'
 
 import {
   eventable,
@@ -27,8 +23,6 @@ import {
 
 // import components
 import Item from './components/item'
-import Animate from './components/animate'
-import Toolbar from './components/toolbar'
 
 @themeable()
 @styleable(CLASSES)
@@ -53,532 +47,168 @@ class Masonry extends Component {
 
   initialize() {
     addClass(this.classes.NAMESPACE, this.element)
+    setStyle(
+      {
+        position: 'relative'
+      },
+      this.element
+    )
 
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
 
-    this.initGlobalArgs()
-
-    this.initToolbar()
-
-    this.loading(this.chunks)
-
-    this.bind()
-    this.enter('initialized')
-    this.trigger(EVENTS.READY)
-  }
-
-  initGlobalArgs() {
-    this.initInner()
+    this.gutter = this.options.gutter
 
     this.$items = this.options.itemSelector
       ? queryAll(this.options.itemSelector, this.element)
-      : children(this.$inner)
+      : children(this.element)
+    this.$base =
+      this.options.colWidth === 'base'
+        ? query(this.options.baseClass, this.element) || this.$items[0]
+        : this.$items[0]
 
-    this.minWidth = this.options.minWidth
-    this.gutter = this.options.gutter
-    this.width = this.getWidth()
-    this.tags = this.getTags()
-    this.filters = this.options.filters
-    this.sortby = this.options.sortby
+    docReady(() => {
+      this.chunks = this.createChunks(this.$items)
 
-    this.defaultChunks = this.createChunks(this.$items)
+      this.render(true)
 
-    this.handleChunks()
-
-    this.handleState()
-
-    this.height = this.getHeight()
-
-    this.ANIMATE = new Animate(this)
+      this.enter('initialized')
+      this.trigger(EVENTS.READY)
+    })
   }
 
-  initInner() {
-    this.$inner = this.options.innerSelector
-      ? query(this.options.innerSelector, this.element)
-      : null
-
-    if (!this.$inner) {
-      const items = children(this.element)
-      append(`<div class="${this.classes.INNER}"></div>`, this.element)
-      this.$inner = find(`.${this.classes.INNER}`, this.element)
-      items.forEach(item => {
-        append(item, this.$inner)
-      })
-    } else {
-      addClass(this.classes.INNER, this.$inner)
-    }
-  }
-
-  createChunks(items) {
+  createChunks($items) {
     const chunks = []
-    items.forEach((item, index) => {
+    const length = $items.length
+    $items.forEach((item, index) => {
       chunks.push(
         new Item(this, item, {
-          index
+          index,
+          length
         })
       )
     })
-
     return chunks
   }
 
-  handleChunks(filters = this.filters, sortby = this.sortby) {
-    this.filteredChunks = this._filter(filters, this.defaultChunks)
+  render(intact = false) {
+    this.width = this.getWidth()
+    this.colWidth = this.getColWidth()
+    this.colsNum = this.getcolsNum()
 
-    this.chunks = this._sort(sortby, this.filteredChunks)
+    this.initPosition(intact)
   }
 
-  _filter(tags, chunks = this.defaultChunks) {
-    if (!tags || !Array.isArray(tags) || tags.length <= 0) {
-      return chunks
+  initPosition(intact = false) {
+    this.cols = []
+
+    for (let i = 0; i < this.colsNum; i++) {
+      this.cols.push(0)
     }
 
-    const chunkList = [].concat(chunks)
-    const tempArr = []
+    this.setPosition(this.chunks, intact)
+  }
 
-    chunkList.forEach(chunk => {
-      if (chunk.tags.includes(tags[0])) {
-        tempArr.push(chunk)
-      }
+  setPosition(chunks, intact = false) {
+    chunks.forEach(chunk => {
+      chunk.render(intact)
     })
 
-    return tempArr
+    this.setHeight()
   }
 
-  _sort(sortby = this.options.sortby, chunks = this.chunks) {
-    this.sortby = sortby
-
-    return this.options.sort.bind(this)(sortby, chunks)
+  setHeight() {
+    setStyle(
+      {
+        height: `${this.getHeight()}px`
+      },
+      this.element
+    )
   }
 
-  handleState() {
-    this.columnCount = this.getColumnCount()
-    this.columnHeights = this.initColumnHeights()
-
-    this.chunks.forEach(chunk => {
-      const width = this.getChunkWidth()
-
-      const size = {
-        width
-      }
-
-      chunk.setSize(size)
-    })
-
-    this.update()
-  }
-
-  getColumnCount() {
-    const gutter = parseFloat(this.gutter, 10)
-    const minWidth = parseFloat(this.minWidth, 10)
-    const maxColumn = parseFloat(this.options.maxColumn, 10)
-
-    let columnCount = Math.floor((this.width - gutter) / (minWidth + gutter))
-
-    if (this.options.maxColumn) {
-      columnCount = columnCount > maxColumn ? maxColumn : columnCount
-    }
-
-    return columnCount
-  }
-
-  initColumnHeights() {
-    // support IE11
-    if (!Array.prototype.fill) {
-      const arr = []
-
-      for (let i = 0; i < this.columnCount; i++) {
-        arr.push(i)
-      }
-
-      return arr
-    }
-
-    return new Array(this.columnCount).fill(0)
-  }
-
-  getChunkWidth() {
-    const gutter = parseFloat(this.options.gutter, 10)
-
-    return (this.width - (this.columnCount - 1) * gutter) / this.columnCount
-  }
-
-  update() {
-    const gutter = parseFloat(this.gutter, 10)
-
-    this.chunks.forEach(chunk => {
-      const minCol = this.getMinHeightColumn()
-
-      const position = {
-        x: 0,
-        y: 0
-      }
-
-      position.x = (chunk.info.width + gutter) * minCol
-      position.y = this.columnHeights[minCol]
-
-      this.columnHeights[minCol] += Math.round(chunk.info.height + gutter)
-
-      if (this.options.direction.indexOf('Right') >= 0) {
-        position.x = this.width - chunk.info.width - position.x
-      }
-
-      chunk.movePosition = position
-    })
-
-    if (this.options.direction.indexOf('bottom') >= 0) {
-      const maxHeight = Math.max(...this.columnHeights)
-
-      this.chunks.forEach(chunk => {
-        chunk.movePosition.y =
-          maxHeight - (chunk.movePosition.y + chunk.info.height)
-      })
-    }
-  }
-
-  render() {
-    this.chunks.forEach(chunk => {
-      // set item size.
-      chunk.info = Object.assign({}, chunk.info, chunk.movePosition)
-
-      if (this.options.delay) {
-        setTimeout(() => {
-          chunk.moveTo(chunk.movePosition)
-        }, chunk.index * this.options.delay)
-      } else {
-        chunk.moveTo(chunk.movePosition)
-      }
-    })
-
-    this.setHeight(this.getHeight())
-  }
-
-  initToolbar() {
-    const { filters, sort } = this.options.toolbar
-    if (!filters && !sort) {
+  add($items) {
+    if (!$items) {
       return
     }
 
-    this.TOOLBAR = new Toolbar(this, this.options.toolbar)
-  }
-
-  filter(filters = this.filters) {
-    if (filters.toString() === this.filters.toString()) {
-      return
+    if (!Array.isArray($items)) {
+      $items = [$items]
     }
 
-    this.filters = filters
+    const chunks = this.createChunks($items)
 
-    const oldChunks = this.chunks
-    this.handleChunks(filters, this.sortby)
+    this.$items = this.$items.concat($items)
+    this.chunks = this.chunks.concat(chunks)
+    this.setPosition(chunks, true)
 
-    let hideChunks = []
-    let moveChunks = []
-    let showChunks = []
-
-    moveChunks = this.intersectArr(oldChunks, this.chunks)
-
-    if (moveChunks.length <= 0) {
-      hideChunks = oldChunks
-      showChunks = this.chunks
-    } else {
-      showChunks = this.disjoint(this.chunks, moveChunks)
-      hideChunks = this.disjoint(oldChunks, moveChunks)
-    }
-
-    this.trigger(EVENTS.FILTER, {
-      hideChunks,
-      showChunks,
-      moveChunks
-    })
-  }
-
-  sort(sortby) {
-    this.handleChunks(this.filters, sortby)
-
-    this.handleState()
-
-    this.chunks.forEach(chunk => {
-      chunk.moveTo(chunk.movePosition)
-    })
-
-    this.trigger(EVENTS.SORT)
-  }
-
-  intersectArr(oldArr, newArr) {
-    const arr = []
-
-    oldArr.forEach(item => {
-      let inside = false
-
-      newArr.forEach(newItem => {
-        if (item.index === newItem.index) {
-          inside = true
-        }
-      })
-
-      if (inside) {
-        arr.push(item)
-      }
-    })
-
-    return arr
-  }
-
-  disjoint(originArr, intersectArr) {
-    const tempArr = [].concat(originArr)
-
-    intersectArr.forEach(item => {
-      tempArr.forEach((tempItem, index) => {
-        if (item.index === tempItem.index) {
-          tempArr.splice(index, 1)
-
-          return
-        }
-      })
-    })
-
-    return tempArr
-  }
-
-  getHeight() {
-    return Math.max(...this.columnHeights)
-  }
-
-  getMinHeightColumn() {
-    let index = 0
-    let value = this.columnHeights[0]
-
-    this.columnHeights.forEach((val, i) => {
-      if (val < value) {
-        index = i
-        value = val
-      }
-    })
-
-    return index
-  }
-
-  getWidth() {
-    return parseFloat(getStyle('width', this.element), 10)
+    this.trigger(EVENTS.ADD)
   }
 
   reverse() {
     this.chunks.reverse()
-    this.handleState()
 
-    this.chunks.forEach(chunk => {
-      chunk.moveTo(chunk.movePosition)
-    })
+    this.colWidth = this.getColWidth()
+    this.colsNum = this.getcolsNum()
 
-    toggleClass(this.classes.REVERSEMIN, this.TOOLBAR.$reverse)
+    this.cols = []
+
+    for (let i = 0; i < this.colsNum; i++) {
+      this.cols.push(0)
+    }
+
+    this.setPosition(this.chunks, true)
+
     this.trigger(EVENTS.REVERSE)
   }
 
-  customResize() {
-    this.width = this.getWidth()
-    this.trigger(EVENTS.RESIZE, this.width)
-  }
-
-  bind() {
-    window.addEventListener(
-      'resize',
-      debounce(() => {
-        this.customResize()
-      }, 150)
-    )
-
-    bindEvent(
-      `${this.namespace}:${this.events.RESIZE}`,
-      (e, instance, data) => {
-        if (data < this.minWidth) {
-          return
-        }
-        this.handleState()
-        this.render()
-      },
+  getWidth() {
+    let width = outerWidth(false, this.element, true)
+    let { marginLeft, marginRight } = getStyle(
+      ['marginLeft', 'marginRight'],
       this.element
     )
 
-    bindEvent(
-      `${this.namespace}:${this.events.FILTER}`,
-      (e, instance, data) => {
-        const { showChunks, hideChunks, moveChunks } = data
+    marginLeft = parseFloat(marginLeft, 10)
+    marginRight = parseFloat(marginRight, 10)
 
-        this.handleState()
-
-        if (hideChunks) {
-          hideChunks.forEach(chunk => {
-            chunk.hide()
-          })
-        }
-
-        if (showChunks) {
-          showChunks.forEach(chunk => {
-            chunk.show()
-          })
-        }
-
-        if (moveChunks) {
-          moveChunks.forEach(chunk => {
-            chunk.moveTo(chunk.movePosition)
-          })
-        }
-
-        this.setHeight(this.getHeight())
-      },
-      this.element
-    )
-
-    bindEvent(
-      `${this.namespace}:${this.events.SORT}`,
-      () => {
-        this.setHeight(this.getHeight())
-      },
-      this.element
-    )
-
-    bindEvent(
-      `${this.namespace}:${this.events.REVERSE}`,
-      () => {
-        this.setHeight(this.getHeight())
-      },
-      this.element
-    )
-  }
-
-  unbind() {
-    removeEvent(this.eventName(), this.element)
-  }
-
-  loading(chunks) {
-    this.ANIMATE.loading(chunks, () => {
-      this.setHeight(this.height)
-      this.enter('loaded')
-    })
-  }
-
-  setHeight(height) {
-    setStyle(
-      {
-        height,
-        transition: `height ${parseFloat(this.options.duration, 10)}ms`
-      },
-      this.$inner
-    )
-  }
-
-  getTags(datas) {
-    let tags = []
-    this.$items.forEach(el => {
-      const tag = this.options.parseTagsStr(getData('tags', el))
-      if (tag) {
-        tag.forEach((item, index) => {
-          tag[index] = item.trim()
-        })
-
-        tags = tags.concat(tag)
-      }
-    })
-
-    if (datas) {
-      datas.forEach(data => {
-        const tag =
-          data.options && data.options.tags
-            ? this.options.parseTagsStr(data.options.tags)
-            : null
-
-        if (tag) {
-          tag.forEach((item, index) => {
-            tag[index] = item.trim()
-          })
-
-          tags = tags.concat(tag)
-        }
-      })
+    if (marginLeft < 0) {
+      width += -marginLeft
+    }
+    if (marginRight < 0) {
+      width += -marginRight
     }
 
-    return Array.from(new Set(tags))
+    width += this.options.gutter
+
+    return width
   }
 
-  getSortData() {
-    const sortData = []
-
-    this.$items.forEach(el => {
-      sortData.push(getData('sort', el))
-    })
-
-    return sortData
+  getHeight() {
+    return Math.max.apply(null, this.cols)
   }
 
-  add(datas) {
-    if (!isArray(datas) || datas.length <= 0) {
-      return
-    }
+  getColWidth() {
+    const colWidth =
+      this.options.colWidth && this.options.colWidth !== 'base'
+        ? this.options.colWidth
+        : outerWidth(true, this.$base, true)
+    return colWidth + this.options.gutter
+  }
 
-    let addItems = ''
-    const chunkOptions = []
-    const tempWrap = document.createElement('div')
+  getcolsNum() {
+    const diff = this.colWidth - (this.width % this.colWidth)
+    const columns = Math[diff < 1 ? 'round' : 'floor'](
+      this.width / this.colWidth
+    )
 
-    datas.forEach(data => {
-      const html = data.html ? data.html : ''
-      const customClass = data.class ? data.class : ''
-      const chunkOption = data.options ? data.options : {}
-      const chunk = templateEngine.render(
-        this.options.templates.chunk.call(this),
-        {
-          classes: this.classes,
-          html,
-          class: customClass
-        }
-      )
+    return Math.max(columns, 1)
+  }
 
-      addItems += chunk
-      chunkOptions.push(chunkOption)
-    })
+  resizeDebounce() {
+    this.render()
 
-    append(addItems, tempWrap)
-
-    this.addItems = queryAll(`.${this.classes.CHUNK}`, tempWrap)
-
-    this.addChunks = []
-
-    const oldItemsLength = this.$items.length
-
-    this.addItems.forEach((addItem, index) => {
-      append(addItem, this.$inner)
-      this.$items.push(addItem)
-      this.addChunks.push(
-        new Item(
-          this,
-          addItem,
-          Object.assign({}, chunkOptions[index], {
-            index: oldItemsLength + index
-          })
-        )
-      )
-    })
-
-    this.tags = this.getTags(datas)
-
-    this.filters = this.options.filters
-    this.sortby = this.options.sortby
-
-    this.defaultChunks = this.defaultChunks.concat(this.addChunks)
-
-    this.handleChunks()
-
-    this.handleState()
-
-    this.height = this.getHeight()
-
-    if (this.TOOLBAR) {
-      this.TOOLBAR.init(true)
-    }
-
-    this.loading(this.addChunks)
+    this.trigger(EVENTS.RESIZE)
   }
 
   enable() {

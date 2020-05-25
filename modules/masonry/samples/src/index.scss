@@ -1,27 +1,117 @@
 // import masonry css
 @import "@pluginjs/styles/buttons.scss";
-@import "@pluginjs/filters/src/css/filters.scss";
 @import "@pluginjs/loader/src/css/loader.scss";
-@import "@pluginjs/dropdown/src/css/dropdown.scss";
 @import "@pluginjs/masonry/src/css/masonry.scss";
 
 * {
 	box-sizing: border-box;
 }
 
+.container {
+	width: 100%;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
 .masonry-item {
-	border: 1px solid #999;
+	width: 100%;
+	
+	img {
+		width: 100%;
+		height: auto;
+	}
+
+	p {
+		padding: 10px;
+	}
+
+
+	.masonry-border & {
+		background-color: rgba(76, 106, 255, 0.1);
+		border: 1px solid #999;
+	}
+
+	.masonry-shadow & {
+		box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.1);
+	}
+
+	.masonry-gutter & {
+		padding: 10px;
+	}
 }
 
-p {
-	margin: 10px;
-	margin-right: 0;
+.masonry-border-inner {
+	.masonry-item-inner {
+		background-color: rgba(76, 106, 255, 0.1);
+		border: 1px solid #999;
+	}
 }
 
-#add .masonry-item {
-	border: none;
+.masonry-gutter {
+	margin-right: -10px;
+	margin-left: -10px;
 }
 
-.pj-masonry-image-error {
-	background-color: #ededed;
+
+.masonry-cols-5 {
+	display: flex;
+	flex-wrap: wrap;
+
+	.masonry-item {
+		flex: 0 0 20%;
+		max-width: 20%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+  .masonry-cols-5 {
+		.masonry-item {
+			flex: 0 0 33.3%;
+			max-width: 33.3%;
+		}
+	}
+}
+
+@media screen and (max-width: 450px) {
+  .masonry-cols-5 {
+		.masonry-item {
+			flex: 0 0 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+
+.width-100 {
+	width: 100px;
+}
+.width-200 {
+	width: 200px;
+}
+.width-300 {
+	width: 300px;
+}
+.width-400 {
+	width: 400px;
+}
+.width-500 {
+	width: 500px;
+}
+
+.height-100 {
+	height: 100px;
+}
+.height-200 {
+	height: 200px;
+}
+.height-300 {
+	height: 300px;
+}
+.height-400 {
+	height: 400px;
+}
+.height-500 {
+	height: 500px;
 }
