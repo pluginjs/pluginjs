@@ -138,7 +138,7 @@ export const defaults = {
   lineHeight: {
     value: '',
     unit: 'em',
-    units: ['inherit', 'px', 'em', 'rem'],
+    units: ['inherit', 'px', 'em', 'rem', 'no'],
     min: 1,
     max: 10,
     step: 0.5,

@@ -40,6 +40,8 @@ export default class LineHeight {
     this.instance.options.lineHeight.units.forEach(v => {
       if (v === 'inherit') {
         units[v] = false
+      } else if (v === 'no') {
+        units[v] = true
       } else {
         units[v] = {
           min: parseInt(this.instance.options.fontSize.min, 10),

@@ -42,6 +42,7 @@ class Units extends Component {
       Object.keys(this.options.units).length === 0
     ) {
       this.options.units = {
+        no: true,
         inherit: false,
         px: true,
         '%': true
@@ -127,7 +128,6 @@ class Units extends Component {
     } else if (isObject(this.options.units)) {
       return Object.keys(this.options.units)
     }
-
     return []
   }
 
