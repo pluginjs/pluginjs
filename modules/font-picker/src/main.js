@@ -236,7 +236,7 @@ class FontPicker extends Component {
 
       this.leave('loading')
     }
-
+    
     if (this.is('builded') || this.is('shown')) {
       this.buildDropdownContent()
     }
@@ -269,10 +269,28 @@ class FontPicker extends Component {
       let value
       if (item) {
         if (item.source) {
+          if(this.getCurrentSource()) {
+            addClass(this.classes.SOURCEHIDED, this.current.__dom)
+          }
+      
           this.setCurrentSource(item.source)
+
+          if(this.SWITCHER) {
+            this.SWITCHER.DROPDOWN.selectByValue(this.current.name, false)
+            html(this.SWITCHER.getLabel(this.getSource(this.current.name)), this.SWITCHER.$label)
+       
+            if(this.current.__dom) {
+              removeClass(this.classes.SOURCEHIDED, this.current.__dom)
+            } else {
+              this.buildSource(this.getCurrentSource())
+            }
+
+            this.selectForDropdown()
+          }
         }
 
         value = this.options.process.call(this, item)
+     
       } else {
         value = ''
       }
@@ -320,7 +338,6 @@ class FontPicker extends Component {
 
   setCurrentSource(name) {
     const source = this.getSource(name)
-
     if (source) {
       this.current = source
     } else {
@@ -333,9 +350,11 @@ class FontPicker extends Component {
       if (this.FILTERABLE) {
         this.FILTERABLE.refreshDefault()
       }
+
       addClass(this.classes.SOURCEHIDED, this.current.__dom)
 
       const source = this.getSource(name)
+
       if (!source.__dom) {
         source.__dom = this.buildSource(source)
       } else {
@@ -393,11 +412,16 @@ class FontPicker extends Component {
   buildDropdownContent() {
     if (this.data.length > 1 && !this.SWITCHER) {
       this.SWITCHER = new Switcher(this)
+    } else if(this.SWITCHER) {
+      this.SWITCHER.DROPDOWN.selectByValue(this.current.name, false)
+      html(this.SWITCHER.getLabel(this.getSource(this.current.name)), this.SWITCHER.$label)
     }
 
     if (this.options.filterable && !this.FILTERABLE) {
       this.FILTERABLE = new Filterable(this)
-    }
+    } 
+
+    this.$main.innerHTML = "";
 
     this.buildSource(this.getCurrentSource())
 
@@ -420,7 +444,7 @@ class FontPicker extends Component {
 
     source.__dom = $source
     source.__items = {}
-
+ 
     if (isArray(source.fonts)) {
       source.fonts.forEach(font => {
         $source.appendChild(this.buildItem(source, font))
@@ -430,7 +454,7 @@ class FontPicker extends Component {
         $source.appendChild(this.buildGroup(source, category, fonts))
       })
     }
-
+    
     this.$main.appendChild($source)
 
     if (isArray(source.fonts)) {
@@ -477,7 +501,7 @@ class FontPicker extends Component {
         this.options.templates.item.call(this)
       )
     }
-
+    
     const $item = parseHTML(
       this.itemTemplate({
         classes: this.classes,
