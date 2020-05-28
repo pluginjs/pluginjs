@@ -46,6 +46,7 @@ export default class Size {
   }
 
   set(val) {
+    this.instance.value.size = val
     this.$sizeSelect.set(val)
   }
 
@@ -55,6 +56,6 @@ export default class Size {
   }
 
   clear() {
-    this.$sizeSelect.set(this.defaultValue)
+    this.set(this.defaultValue)
   }
 }

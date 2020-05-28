@@ -55,11 +55,12 @@ class BgPicker extends Component {
     this.setupOptions(options)
     this.setupClasses()
     this.value = {}
-    this.value.repeat = ''
-    this.value.position = ''
-    this.value.attachment = ''
-    this.value.image = ''
-    this.value.thumbnail = ''
+    this.value.repeat = null
+    this.value.position = null
+    this.value.attachment = null
+    this.value.image = null
+    this.value.size = null
+    this.value.thumbnail = null
     addClass(this.classes.INPUT, this.element)
     this.setupI18n()
     this.setupStates()
@@ -79,10 +80,12 @@ class BgPicker extends Component {
     this.REPEAT = new Repeat(this)
     this.PREVIEW = new Preview(this)
     this.IMAGE = new Image(this)
+  
+    if(this.element.value) {
+      this.value = this.element.value
+      this.val(this.value, false)
+    }
 
-    this.value = this.element.value
-
-    this.val(this.value, false)
 
     this.bind()
 

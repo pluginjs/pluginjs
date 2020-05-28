@@ -397,10 +397,11 @@ class Choice extends Component {
 
     this.$items.forEach($item => {
       const value = getData('value', $item)
-
+       
       if (this.isSelected(value)) {
         this.select($item, false)
       } else {
+        console.log(123456)
         this.unselect($item, false)
       }
     })

@@ -30,6 +30,8 @@ export default class Attachment {
     const data = this.values.map(val => ({ label: val, value: val }))
     const that = this
     this.$select.value = 'inherit'
+    this.instance.value.attachment = this.$select.value
+
     setData(
       'select',
       Select.of(this.$select, {
@@ -60,10 +62,11 @@ export default class Attachment {
   }
 
   set(val) {
+    this.instance.value.attachment = val
     getData('select', this.$select).set(val)
   }
 
   clear() {
-    getData('select', this.$select).set(this.defaultValue)
+    this.set(this.defaultValue)
   }
 }
