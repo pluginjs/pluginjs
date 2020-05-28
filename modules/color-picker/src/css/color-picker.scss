@@ -163,6 +163,28 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
     }
   }
 
+  &-hex-has-input {
+    .#{$colorPicker}-hex-input {
+      width: 100%;
+      min-height: auto;
+      font-size: 12px;
+      border-radius: $colorPicker-alpha-width / 8;
+    }
+
+    .#{$colorPicker}-hex-mode {
+      width: unset;
+      margin-left: $colorPicker-hex-box-margin-left;
+
+      .pj-select-label {
+        display: none;
+      }
+
+      .pj-select-dropdown {
+        width: 150px;
+      }
+    }
+  }
+
   &-history {
     margin-top: $colorPicker-history-item-margin-top;
 

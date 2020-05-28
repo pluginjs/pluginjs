@@ -1,7 +1,10 @@
 import { bindEvent } from '@pluginjs/events'
-import { query, parseHTML } from '@pluginjs/dom'
+import { query, parseHTML, attr } from '@pluginjs/dom'
+import { compose, debounce } from '@pluginjs/utils'
 import { Color } from '@pluginjs/color'
 import Select from '@pluginjs/select'
+import { addClass } from '@pluginjs/classes'
+
 class Hex {
   constructor(instance, element) {
     this.instance = instance
@@ -9,7 +12,6 @@ class Hex {
     this.classes = this.instance.classes
     this.opac = 100
     this.color = null
-
     this.COLOR = new Color()
     this.mode = this.COLOR.toHEX()
     this.HSL = this.COLOR.toHSL().toUpperCase()
@@ -32,17 +34,32 @@ class Hex {
   }
 
   build() {
-    this.$opac = parseHTML(
-      `<div class='${this.classes.HEXBOX}'>
-        <input class="pj-input pj-input-sm ${this.classes.HEXANGLE}" type="text"/>
-        <div class="${this.classes.HEXUNIT}">%</div>
-      </div>`
-    )
     const $selector = parseHTML(
       `<div class='${this.classes.HEXMODE}'><input type="text" value="${this.data[0].value}" /></div>`
     )
 
+    if(this.instance.module.hexInput) {
+      this.$input = parseHTML(
+        `<input class="pj-input pj-input-sm ${this.classes.HEXINPUT}" type="text"/>`
+      )
+
+      compose(
+        attr({ placeholder: this.instance.options.placeholder })
+      )(this.$input)
+
+      this.element.append(this.$input)
+
+      addClass(this.classes.HEXWIDTHINPUT, this.element)
+    }
+
     if (this.instance.module.alpha) {
+      this.$opac = parseHTML(
+        `<div class='${this.classes.HEXBOX}'>
+          <input class="pj-input pj-input-sm ${this.classes.HEXANGLE}" type="text"/>
+          <div class="${this.classes.HEXUNIT}">%</div>
+        </div>`
+      )
+
       this.element.append($selector, this.$opac)
     } else {
       this.element.append($selector)
@@ -51,11 +68,22 @@ class Hex {
     this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
     this.SELECT = Select.of(this.$el, {
       source: this.data,
+      allSelectTriggerChange: true,
+      dropdown: {
+        placement: 'bottom-end' // top
+      },
       classes: {
         TRIGGER: '{namespace}-trigger pj-input pj-input-sm'
       },
       onChange: res => {
         this.updateColor(res, this.color)
+      },
+      onShow: () => {
+        if (!this.instance.is('hexFirsrtShown')) {
+          this.color &&
+          this.updateColor(this.SELECT.element.value, this.color)
+          this.instance.enter('hexFirsrtShown')
+        }   
       }
     })
   }
@@ -68,6 +96,7 @@ class Hex {
         if (this.instance.module.alpha) {
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
         }
+
         this.updateColor(this.SELECT.element.value, color)
       },
       this.instance.element
@@ -76,10 +105,19 @@ class Hex {
     bindEvent(
       this.instance.eventName('change'),
       ({ target }) => {
-        const color = target.value
-        this.update(color)
+        this.update(this.mode)
       },
-      this.element
+      this.$el
+    )
+
+    bindEvent(
+      this.instance.eventName('input'),
+      debounce(e => {
+        if (new Color().matchString(e.target.value)) {
+          this.instance.set(e.target.value)
+        }
+      }, 1000),
+      this.$input
     )
 
     if (this.instance.module.alpha) {
@@ -108,6 +146,7 @@ class Hex {
       this.color.toHSL().toUpperCase(),
       this.color.toRGB().toUpperCase()
     ]
+
     this.SELECT.$label.innerText = this.mode
     this.SELECT.options.value = this.mode
     this.SELECT.options.source = this.data
@@ -121,13 +160,14 @@ class Hex {
 
   updateAlpha(percent) {
     percent /= 100
-    this.instance.setColor({ a: percent })
+    
+    this.instance.setColor({ a: `${percent}` })
   }
 
   update(value) {
     if (this.instance.COLOR.isValid(value)) {
       this.instance.setColor(value)
-      this.updateColor(this.instance.color, this.instance.COLOR)
+      // this.updateColor(this.instance.color, this.instance.COLOR)
     }
   }
 }

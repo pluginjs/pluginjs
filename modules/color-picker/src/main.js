@@ -85,6 +85,9 @@ class ColorPicker extends Component {
 
     this.createHtml()
 
+    if(this.module.hexInput)
+    this.Hex.$input.value = this.element.value
+
     if (this.options.inline) {
       hideElement(this.element)
       addClass(this.classes.INLINE, this.$panel)
@@ -248,7 +251,7 @@ class ColorPicker extends Component {
   initHue() {
     const hue = this.createEl('hue', { classes: this.classes })
     append(hue, query(`.${this.classes.PRIMARY}`, this.$panel))
-     new Hue(this, query(`.${this.classes.HUE}`, this.$panel))   /* eslint-disable-line */
+    new Hue(this, query(`.${this.classes.HUE}`, this.$panel))   /* eslint-disable-line */
   }
 
   initAlpha() {
@@ -258,7 +261,7 @@ class ColorPicker extends Component {
   }
 
   initHex() {
-     new Hex(this, query(`.${this.classes.HEX}`, this.$panel))  /* eslint-disable-line */
+    this.Hex = new Hex(this, query(`.${this.classes.HEX}`, this.$panel))  /* eslint-disable-line */
 
   }
 
@@ -288,8 +291,10 @@ class ColorPicker extends Component {
     if (!val) {
       val = this.color
     }
+
     const color = this.COLOR.val(val)
     let classify = ''
+    
     if (isString(val) && val.indexOf('#') > -1) {
       classify = color.toHEX()
       this.setInput(color.toHEX())
@@ -311,6 +316,10 @@ class ColorPicker extends Component {
   setInput(val) {
     this.color = val
     this.element.value = val
+    
+    if(this.module.hexInput)
+    this.Hex.$input.value = val
+
     return null
   }
 
@@ -357,6 +366,8 @@ class ColorPicker extends Component {
   update(trigger = true) {
     if (this.is('save')) {
       this.element.value = this.color
+      if(this.module.hexInput)
+      this.Hex.$input.value = this.color
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, this.color)
@@ -395,7 +406,10 @@ class ColorPicker extends Component {
       if (!this.options.inline) {
         this.PREVIEW.update('transparent')
       }
+  
       this.element.value = ''
+      if(this.module.hexInput)
+      this.Hex.$input.value = ''
     } else {
       this.color = val
       this.setColor(val)

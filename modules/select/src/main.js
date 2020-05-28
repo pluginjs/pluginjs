@@ -331,6 +331,11 @@ class Select extends Component {
         this.trigger(EVENTS.CHANGE, value)
         triggerNative(this.element, 'change')
       }
+    } else if (this.options.allSelectTriggerChange) {
+      if (trigger) {
+        this.trigger(EVENTS.CHANGE, value)
+        triggerNative(this.element, 'change')
+      }
     }
   }
 

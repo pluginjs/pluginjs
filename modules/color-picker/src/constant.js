@@ -49,6 +49,8 @@ export const PALETTECLASS = {
 export const HEXCLASS = {
   NAMESPACE: `pj-${namespace}`,
   HEX: '{namespace}-hex',
+  HEXWIDTHINPUT: '{namespace}-hex-has-input',
+  HEXINPUT: '{namespace}-hex-input',
   HEXMODE: '{namespace}-hex-mode',
   HEXANGLE: '{namespace}-hex-angle',
   HEXBOX: '{namespace}-hex-box',
@@ -113,6 +115,7 @@ export const defaults = {
   module: {
     saturation: true,
     hue: true,
+    hexInput: false,
     alpha: true,
     hex: true,
     history: true

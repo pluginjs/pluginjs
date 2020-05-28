@@ -57,6 +57,7 @@ export const defaults = {
   source: null,
   placeholder: true,
   filterable: false,
+  allSelectTriggerChange: false,
   filter(option, query) {
     return search(query, option.label, {
       diacritics: false,
