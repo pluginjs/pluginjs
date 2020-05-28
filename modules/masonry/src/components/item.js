@@ -105,6 +105,14 @@ class Item {
     let isOver = false
 
     this.width = this.getWidth(true)
+
+    setStyle(
+      {
+        position: 'absolute'
+      },
+      this.element
+    )
+
     this.height = this.getHeight()
     this.colSpan = this.getColSpan()
 
@@ -129,12 +137,6 @@ class Item {
       (parseInt(this.instance.colWidth * 1000, 10) / 1000) * this.col
     this.position.y = isOver ? maxHeight : minHeight
 
-    setStyle(
-      {
-        position: 'absolute'
-      },
-      this.element
-    )
     this.setPosition(this.position, intact)
 
     const maxCol = isOver ? this.instance.colsNum : this.col + this.colSpan
