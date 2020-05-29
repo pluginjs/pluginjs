@@ -399,10 +399,9 @@ class Choice extends Component {
       const value = getData('value', $item)
        
       if (this.isSelected(value)) {
-        this.select($item, false)
+        this.select($item, trigger)
       } else {
-        console.log(123456)
-        this.unselect($item, false)
+        this.unselect($item, trigger)
       }
     })
 
@@ -429,7 +428,7 @@ class Choice extends Component {
     return this.value === value
   }
 
-  select(value, update = true, trigger = true) {
+  select(value, trigger = true, update = true) {
     let $item
     if (value instanceof HTMLElement) {
       $item = value
@@ -441,7 +440,7 @@ class Choice extends Component {
     if (!this.options.multiple) {
       this.$items
         .filter(el => el.matches(`.${this.classes.SELECTED}`))
-        .forEach(el => this.unselect(el))
+        .forEach(el => this.unselect(el, trigger))
     }
 
     if ($item.matches(`.${this.classes.SELECTED}`)) {
@@ -475,8 +474,11 @@ class Choice extends Component {
         this.value = value
         this.$element.value = this.value
       }
-      this.trigger(EVENTS.CHANGE, this.value)
-      triggerNative(this.$element, 'change')
+
+      if (trigger === true) {
+        this.trigger(EVENTS.CHANGE, this.value)
+        triggerNative(this.$element, 'change')
+      }
     }
 
     if (trigger === true) {
@@ -484,7 +486,7 @@ class Choice extends Component {
     }
   }
 
-  unselect(value, update = true, trigger = true) {
+  unselect(value, trigger = true, update = true) {
     let $item
     if (value instanceof HTMLElement) {
       $item = value
@@ -492,11 +494,10 @@ class Choice extends Component {
     } else {
       $item = this.getItemByValue(value)
     }
-
+    
     if (this.options.overflow) {
-      if (
-        this.$dropdown.contains($item) &&
-        query(`.${this.classes.SELECTED}`, this.$dropdown)
+      if ( this.$dropdown.contains($item) &&
+      queryAll(`.${this.classes.SELECTED}`, this.$dropdown).length == 1
       ) {
         removeClass(this.classes.SELECTED, this.$toggle)
       }
@@ -534,8 +535,10 @@ class Choice extends Component {
         this.$element.value = this.value
       }
 
-      this.trigger(EVENTS.CHANGE, this.value)
-      triggerNative(this.$element, 'change')
+      if (trigger === true) {
+        this.trigger(EVENTS.CHANGE, this.value)
+        triggerNative(this.$element, 'change')
+      }
     }
 
     if (trigger === true) {
