@@ -86,8 +86,9 @@ class Choice extends Component {
       })
     }
 
-    this.options = deepMerge(DEFAULTS, options, override)
     this.setupClasses()
+    this.setupOptions(options)
+    this.options = deepMerge({}, this.options, override)
     this.data = this.options.data || getData('data', this.$element)
     this.value = this.$element.value
     if (this.options.multiple) {
@@ -105,8 +106,6 @@ class Choice extends Component {
     if (this.$element.value) {
       this.val(this.value)
     }
-
-    this.setupOptions(options)
     this.setupStates()
     this.initialize()
   }
@@ -397,7 +396,7 @@ class Choice extends Component {
 
     this.$items.forEach($item => {
       const value = getData('value', $item)
-       
+
       if (this.isSelected(value)) {
         this.select($item, trigger)
       } else {
@@ -494,7 +493,7 @@ class Choice extends Component {
     } else {
       $item = this.getItemByValue(value)
     }
-    
+
     if (this.options.overflow) {
       if ( this.$dropdown.contains($item) &&
       queryAll(`.${this.classes.SELECTED}`, this.$dropdown).length == 1
