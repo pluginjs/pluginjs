@@ -267,7 +267,7 @@ class BgPicker extends Component {
     if (valueObj && valueObj.image) {
       this.set(valueObj, true, trigger)
     } else {
-      this.clear(true, trigger)
+      this.clear(trigger)
     }
 
     return null
@@ -317,7 +317,7 @@ class BgPicker extends Component {
     }
   }
 
-  clear(update = true, trigger = true) {
+  clear(trigger = true, update = true) {
     this.value = {}
     this.$imageSelected = query(`.${this.classes.IMAGESELECTED}`, this.$wrap)
     removeClass(this.classes.EXIST, this.$wrap)
