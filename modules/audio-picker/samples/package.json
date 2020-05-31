@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@pluginjs/audio-picker": "*",
-    "@pluginjs/dom": "*"
+    "@pluginjs/dom": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@pluginjs/browserslist-config": "^1.2.10",
     "parcel-bundler": "^1.12.3",
-    "posthtml-include": "*"
+    "posthtml-include": "^1.4.3"
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"

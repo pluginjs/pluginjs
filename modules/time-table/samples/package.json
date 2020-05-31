@@ -20,7 +20,7 @@
     "@babel/preset-env": "^7.8.4",
     "@pluginjs/browserslist-config": "^1.3.0",
     "parcel-bundler": "^1.12.4",
-    "posthtml-include": "*"
+    "posthtml-include": "^1.4.3"
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
