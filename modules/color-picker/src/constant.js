@@ -115,7 +115,7 @@ export const defaults = {
   module: {
     saturation: true,
     hue: true,
-    hexInput: false,
+    hexInput: true,
     alpha: true,
     hex: true,
     history: true
