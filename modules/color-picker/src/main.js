@@ -84,8 +84,8 @@ class ColorPicker extends Component {
     this.elementColor = this.element.value
 
     this.createHtml()
-
-    if(this.module.hexInput)
+ 
+    if(this.module.hex && this.module.hexInput)
     this.Hex.$input.value = this.element.value
 
     if (this.options.inline) {
@@ -305,9 +305,11 @@ class ColorPicker extends Component {
       classify = color.toRGBA()
       this.setInput(color.toRGBA())
     }
+
     if (!this.options.inline) {
       this.PREVIEW.update(color)
     }
+
     if (trigger) {
       this.trigger(EVENTS.CHANGECOLOR, color, classify)
     }
@@ -317,7 +319,7 @@ class ColorPicker extends Component {
     this.color = val
     this.element.value = val
     
-    if(this.module.hexInput)
+    if(this.module.hex && this.module.hexInput)
     this.Hex.$input.value = val
 
     return null
@@ -366,7 +368,8 @@ class ColorPicker extends Component {
   update(trigger = true) {
     if (this.is('save')) {
       this.element.value = this.color
-      if(this.module.hexInput)
+
+      if(this.module.hex && this.module.hexInput)
       this.Hex.$input.value = this.color
 
       if (trigger) {
@@ -408,7 +411,8 @@ class ColorPicker extends Component {
       }
   
       this.element.value = ''
-      if(this.module.hexInput)
+
+      if(this.module.hex && this.module.hexInput)
       this.Hex.$input.value = ''
     } else {
       this.color = val

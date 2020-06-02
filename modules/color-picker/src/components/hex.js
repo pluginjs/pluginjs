@@ -114,7 +114,7 @@ class Hex {
       this.instance.eventName('input'),
       debounce(e => {
         if (new Color().matchString(e.target.value)) {
-          this.instance.set(e.target.value)
+          this.instance.setColor(e.target.value)
         }
       }, 1000),
       this.$input
