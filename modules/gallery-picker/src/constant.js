@@ -106,22 +106,25 @@ export const defaults = {
   },
 
   process(value) {
-    if (value && typeof value !== 'undefined' && JSON.stringify(value) !== '[]') {
-      if(this.outputArray) {
+    if (
+      value &&
+      typeof value !== 'undefined' &&
+      JSON.stringify(value) !== '[]'
+    ) {
+      if (this.outputArray) {
         return JSON.stringify(value)
-      } else {
-        return value.join(',')
       }
+      return value.join(',')
     }
     return ''
   },
 
   parse(value) {
-    if (isString(value) && value.length !== 0) {
+    if (isString(value) && value.length !== 0 && value !== '[]') {
       let string = value
-      if(value[0] == '[' && value[value.length - 1] == ']') {
-        string = value.slice(1,-1)
-        string = string.replace(/\'/g, "").replace(/\"/g, "");
+      if (value[0] === '[' && value[value.length - 1] === ']') {
+        string = value.slice(1, -1)
+        string = string.replace(/'/g, '').replace(/"/g, '')
       }
 
       let array = []
