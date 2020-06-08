@@ -108,9 +108,6 @@ class Checkbox extends Component {
   }
 
   set(value, trigger = true) {
-    if (this.get().toString() !== value.toString()) {
-      this.trigger(EVENTS.CHANGE, value)
-    }
     if (this.group && isArray(value)) {
       this.$group.forEach($item => {
         const api = getData(this.plugin, $item)

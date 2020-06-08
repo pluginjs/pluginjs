@@ -18,7 +18,6 @@ export default class Switcher {
     )
 
     this.$label = query(`.${instance.classes.SWITCHERLABEL}`, this.element)
-
     this.DROPDOWN = Dropdown.of(this.$label, {
       reference: this.element,
       target: query(`.${instance.classes.SWITCHERDROPDOWN}`, this.element),

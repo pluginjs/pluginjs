@@ -42,7 +42,8 @@ import {
   html,
   parseHTML,
   closest,
-  empty
+  empty,
+  remove
 } from '@pluginjs/dom'
 import { deepClone, each, triggerNative } from '@pluginjs/utils'
 
@@ -211,6 +212,7 @@ class FontPicker extends Component {
 
   resolveData(data) {
     this.data = deepClone(data)
+
     if (!isArray(this.data)) {
       this.data = [this.data]
     }
@@ -410,21 +412,21 @@ class FontPicker extends Component {
   }
 
   buildDropdownContent() {
-    if (this.data.length > 1 && !this.SWITCHER) {
-      this.SWITCHER = new Switcher(this)
-    } else if(this.SWITCHER) {
-      this.SWITCHER.DROPDOWN.selectByValue(this.current.name, false)
-      html(this.SWITCHER.getLabel(this.getSource(this.current.name)), this.SWITCHER.$label)
+    if (this.data.length > 1) {
+      if (this.SWITCHER && query('.pj-fontPicker-switcher',  this.getActions())) 
+        query('.pj-fontPicker-switcher',  this.getActions()).remove()
+        this.SWITCHER = new Switcher(this)
+    } else {
+      if (this.SWITCHER && query('.pj-fontPicker-switcher', this.getActions())) { 
+        query('.pj-fontPicker-switcher', this.getActions()).remove();
+      } 
     }
 
-    if (this.options.filterable && !this.FILTERABLE) {
-      this.FILTERABLE = new Filterable(this)
-    } 
-
+    if (this.options.filterable && !this.FILTERABLE) 
+    this.FILTERABLE = new Filterable(this)
+    
     this.$main.innerHTML = "";
-
     this.buildSource(this.getCurrentSource())
-
     this.selectForDropdown()
   }
 
@@ -464,7 +466,7 @@ class FontPicker extends Component {
         this.FONTLOADER.observe(group.items)
       })
     }
-
+ 
     return $source
   }
 
