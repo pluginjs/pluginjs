@@ -271,12 +271,8 @@ class FontPicker extends Component {
       let value
       if (item) {
         if (item.source) {
-          if(this.getCurrentSource()) {
-            addClass(this.classes.SOURCEHIDED, this.current.__dom)
-          }
-      
           this.setCurrentSource(item.source)
-
+       
           if(this.SWITCHER) {
             this.SWITCHER.DROPDOWN.selectByValue(this.current.name, false)
             html(this.SWITCHER.getLabel(this.getSource(this.current.name)), this.SWITCHER.$label)
@@ -424,7 +420,6 @@ class FontPicker extends Component {
 
     if (this.options.filterable && !this.FILTERABLE) 
     this.FILTERABLE = new Filterable(this)
-    
     this.$main.innerHTML = "";
     this.buildSource(this.getCurrentSource())
     this.selectForDropdown()
