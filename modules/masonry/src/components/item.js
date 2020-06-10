@@ -48,7 +48,7 @@ class Item {
   }
 
   initLoader() {
-    if (!this.options.imageLoader) {
+    if (!this.options.imageLoader || this.element.dataset.loader === 'false') {
       return
     }
 
