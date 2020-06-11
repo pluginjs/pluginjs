@@ -66,25 +66,41 @@ class Lazyload extends Viewport {
           const src = getData('src', source)
           const srcset = getData('srcset', source)
           attr('src', src, source)
-          attr('srcset', srcset, source)
+          if (source.dataset.srcset) {
+            attr('srcset', srcset, source)
+          } else {
+            attr('srcset', src, source)
+          }
         })
       }
 
       attr('src', this.src, this.element)
-      attr('srcset', this.srcset, this.element)
+      if (this.element.dataset.srcset) {
+        attr('srcset', this.srcset, this.element)
+      } else {
+        attr('srcset', this.src, this.element)
+      }
     } else if (this.element.tagName === 'PICTURE') {
       queryAll('source', this.element).forEach(source => {
         const src = getData('src', source)
         const srcset = getData('srcset', source)
         attr('src', src, source)
-        attr('srcset', srcset, source)
+        if (source.dataset.srcset) {
+          attr('srcset', srcset, source)
+        } else {
+          attr('srcset', src, source)
+        }
       })
       const img = query('img', this.element)
       const src = getData('src', img)
       const srcset = getData('srcset', img)
 
       attr('src', src, img)
-      attr('srcset', srcset, img)
+      if (img.dataset.srcset) {
+        attr('srcset', srcset, img)
+      } else {
+        attr('srcset', src, img)
+      }
     } else {
       setStyle('backgroundImage', `url(${this.src})`, this.element)
     }
