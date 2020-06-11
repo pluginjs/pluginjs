@@ -213,7 +213,7 @@ class GalleryPicker extends Component {
 
     if (this.count >= length) {
       for (let i = length; i <= this.count; i++) {
-        const $item = this.addImage(this.value[i - 1])
+        const $item = this.addImage(this.value[i - 1].image)
         insertAfter($item, this.$items.children[i - 1])
         $item.dataset.index = i
         PopDialog.of(
@@ -362,6 +362,7 @@ class GalleryPicker extends Component {
   change(index, value) {
     this.value[index - 1] = value
     const eq = curry((index, arr) => arr[index])
+ 
     compose(
       css({
         backgroundImage: `url(${this.options.getImage(value)})`

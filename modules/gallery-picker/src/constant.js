@@ -120,22 +120,18 @@ export const defaults = {
   },
 
   parse(value) {
-    if (isString(value) && value.length !== 0 && value !== '[]') {
-      let string = value
-      if (value[0] === '[' && value[value.length - 1] === ']') {
-        string = value.slice(1, -1)
-        string = string.replace(/'/g, '').replace(/"/g, '')
+    if (isString(value)) {
+      try {
+        return JSON.parse(value)
+      } catch (e) {
+        return []
       }
-
-      let array = []
-      array = string.split(',')
-      return array
     }
     return []
   },
 
   getImage(value) {
-    return value
+    return value.image
   },
   change() {
     return false // return an image url;

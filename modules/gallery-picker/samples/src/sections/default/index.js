@@ -5,9 +5,16 @@ const element = query('#default .example-default')
 
 GalleryPicker.of(element, {
   add(resolve) {
-    resolve(['https://picsum.photos/200/300?image=929'])
+    resolve([
+      {
+        image: 'https://picsum.photos/200/300?image=929',
+        id: 789
+      }])
   },
   change(resolve) {
-    resolve('https://picsum.photos/200/300?image=927')
+    resolve({
+      image: 'https://picsum.photos/200/300?image=943',
+      id: 654
+    })
   }
 })

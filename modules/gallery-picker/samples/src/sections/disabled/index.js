@@ -5,10 +5,22 @@ const element = query('#disabled .example-locale')
 GalleryPicker.of(element, {
   locale: 'zh',
   add(resolve) {
-    resolve(['https://picsum.photos/200/300?image=929'])
+    resolve([{
+      image: 'https://picsum.photos/200/300?image=980',
+      id: 789
+    }, {
+      image: 'https://picsum.photos/200/300?image=980',
+      id: 123
+    }, {
+      image: 'https://picsum.photos/200/300?image=980',
+      id: 654
+    }])
   },
   change(resolve) {
-    resolve('https://picsum.photos/200/300?image=916')
+    resolve({
+      image: 'https://picsum.photos/200/300?image=943',
+      id: 654
+    })
   },
   disabled: true
 })
