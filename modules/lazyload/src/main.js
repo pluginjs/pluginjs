@@ -69,7 +69,7 @@ class Lazyload extends Viewport {
           if (source.dataset.srcset) {
             attr('srcset', srcset, source)
           } else {
-            attr('srcset', src, source)
+            attr('srcset', attr('src', source), source)
           }
         })
       }
@@ -78,7 +78,7 @@ class Lazyload extends Viewport {
       if (this.element.dataset.srcset) {
         attr('srcset', this.srcset, this.element)
       } else {
-        attr('srcset', this.src, this.element)
+        attr('srcset', attr('src', this.element), this.element)
       }
     } else if (this.element.tagName === 'PICTURE') {
       queryAll('source', this.element).forEach(source => {
@@ -88,7 +88,7 @@ class Lazyload extends Viewport {
         if (source.dataset.srcset) {
           attr('srcset', srcset, source)
         } else {
-          attr('srcset', src, source)
+          attr('srcset', attr('src', source), source)
         }
       })
       const img = query('img', this.element)
@@ -99,7 +99,7 @@ class Lazyload extends Viewport {
       if (img.dataset.srcset) {
         attr('srcset', srcset, img)
       } else {
-        attr('srcset', src, img)
+        attr('srcset', attr('src', img), img)
       }
     } else {
       setStyle('backgroundImage', `url(${this.src})`, this.element)
