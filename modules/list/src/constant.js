@@ -28,6 +28,7 @@ export const classes = {
   DISABLED: '{namespace}-disabled',
   ITEM: '{namespace}-item',
   LABEL: '{namespace}-item-label',
+  LABELICON: '{namespace}-item-label-icon',
   ACTIONS: '{namespace}-item-actions',
   ACTION: '{namespace}-item-action',
   HANDLE: '{namespace}-item-handle',
@@ -102,14 +103,17 @@ export const defaults = {
     },
     item() {
       return `<li class='{classes.ITEM}'>
-  <span class='{classes.HANDLE}'><i class='pj-icon pj-icon-list'></i></span>
-  <div class='{classes.LABEL}'>{label}</div>
-  <div class='{classes.ACTIONS}'>{actions}</div>
-</li>`
+                <span class='{classes.HANDLE}'><i class='pj-icon pj-icon-list'></i></span>
+                <div class='{classes.LABEL}'>{icon}<span>{label}</span></div>
+                <div class='{classes.ACTIONS}'>{actions}</div>
+              </li>`
     },
     action() {
       return '<i class="{classes.ACTION} {action.classes}" data-action="{action.action}" title="{action.label}"></i>'
-    }
+    },
+    icon() {
+      return '<i class="{classes.LABELICON} {item.class} {item.prefix}{item.icon}"></i>'
+    },
   },
   parse(data) {
     if (isString(data)) {

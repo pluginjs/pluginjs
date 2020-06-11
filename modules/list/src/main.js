@@ -200,14 +200,25 @@ class List extends Component {
     }
   }
 
+  buildItemIcon(item) {
+    if(item.value && item.value.icon) {
+      const $icon = 
+      template.compile(this.options.templates.icon())({
+        classes: this.classes,
+        item: item.value.icon,
+      })
+
+      return $icon
+    }
+
+    return ''
+  }
+
   buildItems() {
     empty(this.$list)
-
     this.data.forEach(item => {
       const $item = this.buildItem(item)
-
       this.$list.append($item)
-
       this.initActions(item, $item)
     })
   }
@@ -216,6 +227,7 @@ class List extends Component {
     const $item = parseHTML(
       template.compile(this.options.templates.item())({
         classes: this.classes,
+        icon: this.buildItemIcon(item),
         label: this.getItemLabel(item),
         actions: this.buildActions(item)
       })
@@ -227,7 +239,6 @@ class List extends Component {
   initActions(item, $item) {
     each(this.options.actions, action => {
       const $action = query(`[data-action="${action.action}"]`, $item)
-
       action.init.apply($action, [this, item, $item])
     })
   }

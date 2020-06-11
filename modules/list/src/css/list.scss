@@ -18,6 +18,7 @@ $list-active-color: $color-primary-black;
 $list-item-active-border-color: $color-primary;
 $list-item-bg-color: $color-white;
 $list-item-label-padding-right: $list-font-size * 2 + $list-actions-right + $list-action-action-margin-left;
+$list-item-label-icon-margin-right: 5px;
 $list-item-actions-color: $gray;
 $list-item-actions-hover-color: $gray-darkest;
 
@@ -83,6 +84,10 @@ $list-disabled-border-color: $disabled-color;
 
     &-label {
       width: 100%;
+
+      &-icon {
+        margin-right: $list-item-label-icon-margin-right;
+      }
     }
 
     &-action {
