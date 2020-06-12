@@ -14,6 +14,8 @@ class Hex {
     this.color = null
     this.COLOR = new Color()
     this.mode = this.COLOR.toHEX()
+    this.value = this.COLOR.toHEX()
+    this.selectValue = 'HEX'
     this.HSL = this.COLOR.toHSL().toUpperCase()
     this.HEX = this.COLOR.toHEX().toUpperCase()
     this.RGB = this.COLOR.toRGB().toUpperCase()
@@ -93,11 +95,20 @@ class Hex {
       this.instance.selfEventName('changeColor'),
       (e, el, color) => {
         this.color = color
+   
         if (this.instance.module.alpha) {
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
         }
 
-        this.updateColor(this.SELECT.element.value, color)
+        console.log(color)
+
+        if (color.privateMatchFormat.indexOf(this.SELECT.element.value) !== -1) {
+          this.updateColor(this.SELECT.element.value, color)
+        } else {
+          this.updateColor(color.privateMatchFormat, color)
+          this.instance.leave('setColor')
+        }
+    
       },
       this.instance.element
     )
@@ -105,7 +116,8 @@ class Hex {
     bindEvent(
       this.instance.eventName('change'),
       ({ target }) => {
-        this.update(this.mode)
+    
+        this.update(this.value)
       },
       this.$el
     )
@@ -114,7 +126,9 @@ class Hex {
       this.instance.eventName('input'),
       debounce(e => {
         if (new Color().matchString(e.target.value)) {
+          this.instance.enter('setColor')
           this.instance.setColor(e.target.value)
+
         }
       }, 1000),
       this.$input
@@ -135,10 +149,16 @@ class Hex {
   updateColor(val, color) {
     if (val.indexOf('HSL') > -1) {
       this.mode = color.toHSL().toUpperCase()
+      this.value = color.toHSLA().toUpperCase()
+      this.selectValue = 'HSL'
     } else if (val.indexOf('RGB') > -1) {
       this.mode = color.toRGB().toUpperCase()
+      this.value = color.toRGBA().toUpperCase()
+      this.selectValue = 'RGB'
     } else {
       this.mode = color.toHEX().toUpperCase()
+      this.value = color.toHEX().toUpperCase()
+      this.selectValue = 'HEX'
     }
 
     this.data = [
@@ -147,15 +167,40 @@ class Hex {
       this.color.toRGB().toUpperCase()
     ]
 
-    this.SELECT.$label.innerText = this.mode
-    this.SELECT.options.value = this.mode
-    this.SELECT.options.source = this.data
+ 
 
     this.element
       .querySelectorAll('.pj-dropdown-item')
       .forEach((value, index) => {
         value.innerText = this.data[index]
       })
+    
+    console.log(this.SELECT.$label,this.mode)
+
+    
+    var alpha = Math.round(0.91 * 255);
+    var zzz = alpha + 0x10000
+    var a2 = zzz.toString(16)
+    var hex = a2.substr(-2).toUpperCase();
+  
+    const aaa = '100' + hex.toString()
+    const bbb = parseInt(aaa, 16)
+    const ccc = bbb - 0x10000
+    const ddd = Math.round((ccc / 255) * 100) / 100
+    console.log('hex', hex)
+    console.log('alpha', alpha)
+    console.log('zzz', zzz)
+    console.log('aaa', aaa)
+    console.log('bbb', bbb)
+    console.log('ccc', ccc)
+    console.log('ddd', ddd)
+    this.SELECT.set(this.selectValue, false)
+    this.SELECT.$label.innerText = this.mode
+    // this.SELECT.options.value = this.selectValue
+    // this.SELECT.options.source = this.data
+ 
+    if(this.$input)
+    this.$input.value = this.mode
   }
 
   updateAlpha(percent) {

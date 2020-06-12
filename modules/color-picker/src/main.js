@@ -84,9 +84,6 @@ class ColorPicker extends Component {
     this.elementColor = this.element.value
 
     this.createHtml()
- 
-    if(this.module.hex && this.module.hexInput)
-    this.Hex.$input.value = this.element.value
 
     if (this.options.inline) {
       hideElement(this.element)
@@ -294,16 +291,33 @@ class ColorPicker extends Component {
 
     const color = this.COLOR.val(val)
     let classify = ''
-    
+
     if (isString(val) && val.indexOf('#') > -1) {
       classify = color.toHEX()
       this.setInput(color.toHEX())
+    } else if (isString(val) && val.indexOf('HSL') > -1) {
+      classify = color.toHSLA()
+      this.setInput(color.toHSLA())
+    } else if (isString(val) && val.indexOf('RGB') > -1) {
+      classify = color.toRGBA()
+      this.setInput(color.toRGBA())
     } else if (isString(val) && !val.match(/\d/g)) {
       classify = color.toNAME()
       this.setInput(color.toNAME())
     } else {
-      classify = color.toRGBA()
-      this.setInput(color.toRGBA())
+      if(color.privateMatchFormat === 'HSLA') {
+        classify = color.toHSLA()
+        this.setInput(color.toHSLA())
+      } else if(color.privateMatchFormat === 'RGBA') {
+        classify = color.toRGBA()
+        this.setInput(color.toRGBA())
+      } else if(color.privateMatchFormat === 'HEX'){
+        classify = color.toHEX()
+        this.setInput(color.toHEX())
+      } else {
+        classify = color.toNAME()
+        this.setInput(color.toNAME())
+      }
     }
 
     if (!this.options.inline) {
@@ -320,7 +334,6 @@ class ColorPicker extends Component {
     this.element.value = val
     
     if(this.module.hex && this.module.hexInput)
-    this.Hex.$input.value = val
 
     return null
   }
@@ -370,7 +383,6 @@ class ColorPicker extends Component {
       this.element.value = this.color
 
       if(this.module.hex && this.module.hexInput)
-      this.Hex.$input.value = this.color
 
       if (trigger) {
         this.trigger(EVENTS.CHANGE, this.color)
@@ -402,6 +414,7 @@ class ColorPicker extends Component {
   }
 
   set(val, trigger = true) {
+    console.log(val)
     this.enter('save')
     if (isNull(val)) {
       this.color = this.options.defaultColor || '#000'
@@ -412,9 +425,8 @@ class ColorPicker extends Component {
   
       this.element.value = ''
 
-      if(this.module.hex && this.module.hexInput)
-      this.Hex.$input.value = ''
     } else {
+      
       this.color = val
       this.setColor(val)
       this.update(trigger)
