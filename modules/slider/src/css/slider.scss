@@ -166,6 +166,7 @@ $slider-video-color: $color-white;
     &-next {
       position: absolute;
       top: 50%;
+      box-sizing: content-box;
       transform: translateY(-50%);
     }
 
