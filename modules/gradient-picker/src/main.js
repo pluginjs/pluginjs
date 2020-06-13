@@ -74,6 +74,7 @@ class GradientPicker extends Component {
     this.gradientValue = `${this.mode}-gradient(${
       this.mode === 'linear' ? 'to right' : 'circle'
     },#fff 0%,#000 100%)`
+
     this.setupStates()
     this.initialize()
   }
@@ -131,6 +132,7 @@ class GradientPicker extends Component {
           } else if (i === 0) {
             percent = 0
           }
+
           const options = {
             color: v.color.toRGBA(),
             index: i,
@@ -242,7 +244,7 @@ class GradientPicker extends Component {
             this.GRADIENT.get(marker.index).setPosition(percent / 100)
             this.sort()
             this.GRADIENT.reorder()
-
+  
             this.update(false)
             this.trigger('gradientChange')
           },
@@ -388,6 +390,7 @@ class GradientPicker extends Component {
       
             this.clearMarks()
             this.GRADIENT.reorder()
+     
             this.GRADIENT.value.stops.forEach((v, i) => {
               let percent = parseFloat(v.position * 100, 10)
               if (i === this.GRADIENT.length - 1) {
@@ -550,11 +553,9 @@ class GradientPicker extends Component {
   }
 
   addMarker(position, options = null) {
-   
     let value = {}
     if (!options) {
       const percent = this.getMarkerPercent(position)
-     
       const color = this.tempColor || '#000'
       value = {
         color,
@@ -568,10 +569,8 @@ class GradientPicker extends Component {
     const $marker = this.createMarker(value)
     this.actionBarSize = getData('value', $marker).maxLenght
     this.markers.push(getData('value', $marker))
-
     this.sort()
     this.selectMarker($marker)
-
     this.update(false)
   }
 
@@ -615,13 +614,20 @@ class GradientPicker extends Component {
 
   setGradientColor(color, index) {
     if (!isString(color)) {
-      color = color.toRGBA()
+      if(color.privateMatchFormat === 'HSLA') {
+        color = color.toHSLA()
+     
+      } else if(color.privateMatchFormat === 'RGBA') {
+        color = color.toRGBA()
+        
+      } else if(color.privateMatchFormat === 'HEXA'){
+        color = color.toHEXA()
+
+      }
     }
 
     const colorData = this.GRADIENT.get(index).color.val(color)
-
     this.tempColor = colorData.toRGBA()
-
     this.update(false)
     this.trigger(EVENTS.COLORCHANGE, colorData, this.color)
   }
@@ -647,6 +653,7 @@ class GradientPicker extends Component {
     } else {
       this.GRADIENT.privateType = 'RADIAL'
     }
+  
     this.gradientValue = this.GRADIENT.toString()
 
     const viewValue = this.gradientValue
@@ -658,6 +665,7 @@ class GradientPicker extends Component {
     if (!this.options.inline) {
       this.PREVIEW.update(this.gradientValue, true)
     }
+
     this.setInput(this.gradientValue)
     this.trigger(EVENTS.UPDATE, this.gradientValue)
 
@@ -700,6 +708,7 @@ class GradientPicker extends Component {
 
   set(val, trigger = true) {
     this.GRADIENT = new Gradient(val)
+
     if (val.indexOf('linear') > -1) {
       this.mode = 'linear'
       this.angle = this.GRADIENT.value.angle
@@ -718,11 +727,15 @@ class GradientPicker extends Component {
       } else if (i === 0) {
         percent = 0
       }
+
+      const color = v.color.toRGBA()
+
       const options = {
-        color: v.color.toRGBA(),
+        color: color,
         index: i,
         percent
       }
+     
       // this.actionBarSize = getData('value', $marker).maxLenght
       this.addMarker(0, options)
     })
@@ -730,7 +743,7 @@ class GradientPicker extends Component {
     if (typeof this.lastActiveMarkerIndex === 'number') {
       this.selectMarker(this.markers[this.lastActiveMarkerIndex].$el)
     }
-
+  
     this.COLORPICKER.set(getData('value', this.$marker).color, false)
     this.gradientValue = ''
 

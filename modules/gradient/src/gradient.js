@@ -181,6 +181,7 @@ class Gradient {
   fromString(string) {
     this.reset()
     const result = GradientString.parseString(string)
+  
     if (result) {
       this.privatePrefix = result.prefix
       this.type(result.type)
@@ -201,7 +202,8 @@ class Gradient {
   toString(prefix) {
     if (prefix === true) {
       prefix = util.getPrefix()
-    }
+    }  
+
     return GradientTypes[this.type()].to(this.value, this, prefix)
   }
 

@@ -150,7 +150,9 @@ export default {
       } else {
         position = stop.position
       }
+  
       positions.push(position)
+  
       colors.push(stop.color.toString())
     }
 
@@ -185,9 +187,10 @@ export default {
       } else {
         position = ` ${this.formatPosition(positions[x])}`
       }
-
+    
       output.push(colors[x] + position)
     }
+
     return output.join(', ')
   },
 

@@ -100,8 +100,6 @@ class Hex {
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
         }
 
-        console.log(color)
-
         if (color.privateMatchFormat.indexOf(this.SELECT.element.value) !== -1) {
           this.updateColor(this.SELECT.element.value, color)
         } else {
@@ -157,7 +155,7 @@ class Hex {
       this.selectValue = 'RGB'
     } else {
       this.mode = color.toHEX().toUpperCase()
-      this.value = color.toHEX().toUpperCase()
+      this.value = color.toHEXA().toUpperCase()
       this.selectValue = 'HEX'
     }
 
@@ -174,31 +172,10 @@ class Hex {
       .forEach((value, index) => {
         value.innerText = this.data[index]
       })
-    
-    console.log(this.SELECT.$label,this.mode)
 
-    
-    var alpha = Math.round(0.91 * 255);
-    var zzz = alpha + 0x10000
-    var a2 = zzz.toString(16)
-    var hex = a2.substr(-2).toUpperCase();
-  
-    const aaa = '100' + hex.toString()
-    const bbb = parseInt(aaa, 16)
-    const ccc = bbb - 0x10000
-    const ddd = Math.round((ccc / 255) * 100) / 100
-    console.log('hex', hex)
-    console.log('alpha', alpha)
-    console.log('zzz', zzz)
-    console.log('aaa', aaa)
-    console.log('bbb', bbb)
-    console.log('ccc', ccc)
-    console.log('ddd', ddd)
     this.SELECT.set(this.selectValue, false)
     this.SELECT.$label.innerText = this.mode
-    // this.SELECT.options.value = this.selectValue
-    // this.SELECT.options.source = this.data
- 
+
     if(this.$input)
     this.$input.value = this.mode
   }

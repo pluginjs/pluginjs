@@ -88,17 +88,34 @@ export default {
     }
   },
 
-  RGBtoHEX(rgb) {
+  RGBtoHEXA(rgb) {
     const hex = [
       rgb.r.toString(16),
       rgb.g.toString(16),
-      rgb.b.toString(16)
+      rgb.b.toString(16),
+      util.getAtoHex(rgb.a)
     ].map(val => {
       if (val.length === 1) {
         return `0${val}`
       }
       return val
     })
+
+    return `#${hex.join('')}`
+  },
+
+  RGBtoHEX(rgb) {
+    const hex = [
+      rgb.r.toString(16),
+      rgb.g.toString(16),
+      rgb.b.toString(16),
+    ].map(val => {
+      if (val.length === 1) {
+        return `0${val}`
+      }
+      return val
+    })
+
     return `#${hex.join('')}`
   },
 
@@ -196,10 +213,21 @@ export default {
     if (hex.length === 4) {
       hex = util.expandHex(hex)
     }
+
+    if(hex.length === 9) {
+      return {
+        r: util.parseIntFromHex(hex.substr(1, 2)),
+        g: util.parseIntFromHex(hex.substr(3, 2)),
+        b: util.parseIntFromHex(hex.substr(5, 2)),
+        a: util.getAFromHex(hex.substr(7, 2)),
+      }
+    }
+
     return {
       r: util.parseIntFromHex(hex.substr(1, 2)),
       g: util.parseIntFromHex(hex.substr(3, 2)),
-      b: util.parseIntFromHex(hex.substr(5, 2))
+      b: util.parseIntFromHex(hex.substr(5, 2)),
+      a: 1
     }
   },
 
@@ -227,14 +255,19 @@ export default {
   },
 
   hasNAME(rgb) {
-    let hex = this.RGBtoHEX(rgb)
+    let hex = null
+    if(rgb.a === 1) {
+      hex = this.RGBtoHEX(rgb)
+    } else {
+      hex = this.RGBtoHEXA(rgb)
+    }
 
     hex = util.shrinkHex(hex)
-
+ 
     if (hex.indexOf('#') === 0) {
       hex = hex.substr(1)
     }
-
+  
     if (Object.prototype.hasOwnProperty.call(hexNames, hex)) {
       return hexNames[hex]
     }
@@ -243,6 +276,7 @@ export default {
 
   RGBtoNAME(rgb) {
     const hasName = this.hasNAME(rgb)
+
     if (hasName) {
       return hasName
     }

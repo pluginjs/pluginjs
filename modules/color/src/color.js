@@ -45,6 +45,7 @@ class Color {
       return this.toString()
     }
     this.fromString(value)
+    
     return this
   }
 
@@ -77,7 +78,6 @@ class Color {
       for (let i in ColorStrings) {
         if ((matched = ColorStrings[i].match.exec(string)) !== null) {
           rgb = ColorStrings[i].parse(matched)
-
           if (rgb) {
             this.set(rgb)
             if (i === 'TRANSPARENT') {
@@ -137,6 +137,10 @@ class Color {
     return ColorStrings.HEX.to(this.value, this)
   }
 
+  toHEXA() {
+    return ColorStrings.HEXA.to(this.value, this)
+  }
+
   toNAME() {
     return ColorStrings.NAME.to(this.value, this)
   }
@@ -161,7 +165,7 @@ class Color {
         return value
       }
     }
-
+  
     if (value.a === 0 && this.options.zeroAlphaAsTransparent) {
       return ColorStrings.TRANSPARENT.to(value, this)
     }
@@ -172,7 +176,7 @@ class Color {
     } else {
       format = this.privateFormat
     }
-
+    
     if (this.options.reduceAlpha && value.a === 1) {
       switch (format) {
         case 'RGBA':
@@ -180,6 +184,9 @@ class Color {
           break
         case 'HSLA':
           format = 'HSL'
+          break
+        case 'HEXA':
+          format = 'HEX'
           break
         default:
           break
@@ -190,6 +197,7 @@ class Color {
       value.a !== 1 &&
       format !== 'RGBA' &&
       format !== 'HSLA' &&
+      format !== 'HEXA' &&
       this.options.alphaConvert
     ) {
       if (isString(this.options.alphaConvert)) {
@@ -199,6 +207,7 @@ class Color {
         format = this.options.alphaConvert[format]
       }
     }
+   
     return ColorStrings[format].to(value, this)
   }
 
@@ -252,6 +261,7 @@ class Color {
       string = string.trim()
       let matched = null
       let rgb
+      
       for (const i in ColorStrings) {
         if ((matched = ColorStrings[i].match.exec(string)) !== null) {
           rgb = ColorStrings[i].parse(matched)

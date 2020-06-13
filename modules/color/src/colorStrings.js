@@ -101,6 +101,36 @@ const ColorStrings = {
       )}%, ${Math.round(hsl.l * 100)}%, ${color.a})`
     }
   },
+  HEXA: {
+    match: /^#([a-f0-9]{8})$/i,
+    parse(result) {
+      const hex = result[0]
+      const rgb = Converter.HEXtoRGB(hex)
+  
+      return {
+        r: rgb.r,
+        g: rgb.g,
+        b: rgb.b,
+        a: rgb.a
+      }
+    },
+    to(color, instance) {
+      let hex = Converter.RGBtoHEXA(color)
+
+      if (instance) {
+        if (instance.options.hexUseName) {
+          const hasName = Converter.hasNAME(color)
+          if (hasName) {
+            return hasName
+          }
+        }
+        if (instance.options.shortenHex) {
+          hex = util.shrinkHex(hex)
+        }
+      }
+      return `${hex}`
+    }
+  },
   HEX: {
     match: /^#([a-f0-9]{6}|[a-f0-9]{3})$/i,
     parse(result) {
@@ -110,12 +140,12 @@ const ColorStrings = {
         r: rgb.r,
         g: rgb.g,
         b: rgb.b,
-        a: 1
+        a: rgb.a
       }
     },
     to(color, instance) {
       let hex = Converter.RGBtoHEX(color)
-
+    
       if (instance) {
         if (instance.options.hexUseName) {
           const hasName = Converter.hasNAME(color)
@@ -160,13 +190,15 @@ const ColorStrings = {
       return null
     },
     to(color, instance) {
+ 
       const name = Converter.RGBtoNAME(color)
-
+   
       if (name) {
         return name
       }
 
-      return ColorStrings[instance.options.nameDegradation.toUpperCase()].to(
+      const type = instance.options.nameDegradation.toUpperCase()
+      return ColorStrings[`${type}A`].to(
         color
       )
     }

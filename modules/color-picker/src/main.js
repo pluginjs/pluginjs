@@ -293,8 +293,8 @@ class ColorPicker extends Component {
     let classify = ''
 
     if (isString(val) && val.indexOf('#') > -1) {
-      classify = color.toHEX()
-      this.setInput(color.toHEX())
+      classify = color.toHEXA()
+      this.setInput(color.toHEXA())
     } else if (isString(val) && val.indexOf('HSL') > -1) {
       classify = color.toHSLA()
       this.setInput(color.toHSLA())
@@ -311,9 +311,9 @@ class ColorPicker extends Component {
       } else if(color.privateMatchFormat === 'RGBA') {
         classify = color.toRGBA()
         this.setInput(color.toRGBA())
-      } else if(color.privateMatchFormat === 'HEX'){
-        classify = color.toHEX()
-        this.setInput(color.toHEX())
+      } else if(color.privateMatchFormat === 'HEXA'){
+        classify = color.toHEXA()
+        this.setInput(color.toHEXA())
       } else {
         classify = color.toNAME()
         this.setInput(color.toNAME())
@@ -414,7 +414,6 @@ class ColorPicker extends Component {
   }
 
   set(val, trigger = true) {
-    console.log(val)
     this.enter('save')
     if (isNull(val)) {
       this.color = this.options.defaultColor || '#000'
@@ -426,7 +425,6 @@ class ColorPicker extends Component {
       this.element.value = ''
 
     } else {
-      
       this.color = val
       this.setColor(val)
       this.update(trigger)

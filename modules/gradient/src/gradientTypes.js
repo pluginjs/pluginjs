@@ -43,6 +43,7 @@ export default {
         !standard,
         instance.options.angleUseKeyword
       )
+
       const stops = GradientString.formatStops(
         gradient.stops,
         instance.options.cleanPosition
@@ -52,6 +53,7 @@ export default {
       if (standard) {
         return output
       }
+
       return privatePrefix + output
     }
   },

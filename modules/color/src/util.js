@@ -32,6 +32,23 @@ export function parseIntFromHex(val) {
   return parseInt(val, 16)
 }
 
+export function getAFromHex(val) {
+  const a = '100' + val.toString()
+  const b = parseInt(a, 16)
+  const c = b - 0x10000
+  const d = Math.round((c / 255) * 100) / 100
+
+  return d
+}
+
+export function getAtoHex(val) {
+  var alpha = Math.round(val * 255);
+  var b = alpha + 0x10000
+  var a = b.toString(16)
+  var hex = a.substr(-2);
+  return hex
+}
+
 export function isPercentage(n) {
   return isString(n) && n.indexOf('%') === n.length - 1
 }
