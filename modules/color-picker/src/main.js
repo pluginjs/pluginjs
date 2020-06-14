@@ -74,7 +74,7 @@ class ColorPicker extends Component {
 
     this.module = this.options.module
     this.COLOR = Color.of(this.options.defaultColor, this.options.color)
- 
+
     this.setupStates()
     this.initialize()
   }
@@ -198,11 +198,12 @@ class ColorPicker extends Component {
           onShown: () => {
             this.oldColor = this.color
             // showElement(this.$mask)
-            
+
             this.Saturation.init()
-            if(this.color)
-            this.Saturation.position(this.COLOR.val(this.color))
-    
+            if (this.color) {
+              this.Saturation.position(this.COLOR.val(this.color))
+            }
+
             if (this.HISTORY) {
               this.HISTORY.updateHistory()
             }
@@ -290,6 +291,7 @@ class ColorPicker extends Component {
     }
 
     const color = this.COLOR.val(val)
+
     let classify = ''
 
     if (isString(val) && val.indexOf('#') > -1) {
@@ -304,20 +306,18 @@ class ColorPicker extends Component {
     } else if (isString(val) && !val.match(/\d/g)) {
       classify = color.toNAME()
       this.setInput(color.toNAME())
+    } else if (color.privateMatchFormat === 'HSLA') {
+      classify = color.toHSLA()
+      this.setInput(color.toHSLA())
+    } else if (color.privateMatchFormat === 'RGBA') {
+      classify = color.toRGBA()
+      this.setInput(color.toRGBA())
+    } else if (color.privateMatchFormat === 'HEXA') {
+      classify = color.toHEXA()
+      this.setInput(color.toHEXA())
     } else {
-      if(color.privateMatchFormat === 'HSLA') {
-        classify = color.toHSLA()
-        this.setInput(color.toHSLA())
-      } else if(color.privateMatchFormat === 'RGBA') {
-        classify = color.toRGBA()
-        this.setInput(color.toRGBA())
-      } else if(color.privateMatchFormat === 'HEXA'){
-        classify = color.toHEXA()
-        this.setInput(color.toHEXA())
-      } else {
-        classify = color.toNAME()
-        this.setInput(color.toNAME())
-      }
+      classify = color.toNAME()
+      this.setInput(color.toNAME())
     }
 
     if (!this.options.inline) {
@@ -332,8 +332,6 @@ class ColorPicker extends Component {
   setInput(val) {
     this.color = val
     this.element.value = val
-    
-    if(this.module.hex && this.module.hexInput)
 
     return null
   }
@@ -382,11 +380,11 @@ class ColorPicker extends Component {
     if (this.is('save')) {
       this.element.value = this.color
 
-      if(this.module.hex && this.module.hexInput)
-
-      if (trigger) {
-        this.trigger(EVENTS.CHANGE, this.color)
-        triggerNative(this.element, 'change')
+      if (this.module.hex && this.module.hexInput) {
+        if (trigger) {
+          this.trigger(EVENTS.CHANGE, this.color)
+          triggerNative(this.element, 'change')
+        }
       }
     } else {
       this.color = this.oldColor
@@ -421,9 +419,8 @@ class ColorPicker extends Component {
       if (!this.options.inline) {
         this.PREVIEW.update('transparent')
       }
-  
-      this.element.value = ''
 
+      this.element.value = ''
     } else {
       this.color = val
       this.setColor(val)

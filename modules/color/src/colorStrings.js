@@ -106,7 +106,7 @@ const ColorStrings = {
     parse(result) {
       const hex = result[0]
       const rgb = Converter.HEXtoRGB(hex)
-  
+
       return {
         r: rgb.r,
         g: rgb.g,
@@ -145,7 +145,7 @@ const ColorStrings = {
     },
     to(color, instance) {
       let hex = Converter.RGBtoHEX(color)
-    
+
       if (instance) {
         if (instance.options.hexUseName) {
           const hasName = Converter.hasNAME(color)
@@ -190,17 +190,14 @@ const ColorStrings = {
       return null
     },
     to(color, instance) {
- 
       const name = Converter.RGBtoNAME(color)
-   
+
       if (name) {
         return name
       }
 
       const type = instance.options.nameDegradation.toUpperCase()
-      return ColorStrings[`${type}A`].to(
-        color
-      )
+      return ColorStrings[`${type}A`].to(color)
     }
   }
 }

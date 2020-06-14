@@ -119,9 +119,10 @@ class GradientPicker extends Component {
     window.addEventListener('resize', () => {
       const minPosition = this.markers[0].elSize / 2
       const maxPosition = this.markers[0].wrapSize - this.markers[0].elSize / 2
-      if(
-        (maxPosition - minPosition) !==  
-        (parseInt(getStyle('width', this.Marker.$wrap), 10) - parseInt(getStyle('width', this.Marker.$el), 10))
+      if (
+        maxPosition - minPosition !==
+        parseInt(getStyle('width', this.Marker.$wrap), 10) -
+          parseInt(getStyle('width', this.Marker.$el), 10)
       ) {
         this.clearMarks()
         this.GRADIENT.reorder()
@@ -221,6 +222,7 @@ class GradientPicker extends Component {
         if (e.which === 2 || e.which === 3) {
           return false
         }
+
         const $this = e.target
         const marker = getData('value', $this)
         this.selectMarker($this)
@@ -244,7 +246,7 @@ class GradientPicker extends Component {
             this.GRADIENT.get(marker.index).setPosition(percent / 100)
             this.sort()
             this.GRADIENT.reorder()
-  
+
             this.update(false)
             this.trigger('gradientChange')
           },
@@ -368,7 +370,7 @@ class GradientPicker extends Component {
     // // create panel
     this.initPanel()
     this.initColorPicker()
-    
+
     if (!this.options.inline) {
       this.DROPDOWN = Dropdown.of(
         this.options.touchOff ? this.options.touchOff : this.PREVIEW.element,
@@ -387,10 +389,10 @@ class GradientPicker extends Component {
             if (this.COLORPICKER.HISTORY) {
               this.COLORPICKER.HISTORY.updateHistory()
             }
-      
+
             this.clearMarks()
             this.GRADIENT.reorder()
-     
+
             this.GRADIENT.value.stops.forEach((v, i) => {
               let percent = parseFloat(v.position * 100, 10)
               if (i === this.GRADIENT.length - 1) {
@@ -398,8 +400,21 @@ class GradientPicker extends Component {
               } else if (i === 0) {
                 percent = 0
               }
+
+              let color = v.color.toRGBA()
+
+              if (v.color.privateMatchFormat.indexOf('HSL') !== -1) {
+                color = v.color.toHSLA()
+              } else if (v.color.privateMatchFormat.indexOf('RGB') !== -1) {
+                color = v.color.toRGBA()
+              } else if (v.color.privateMatchFormat.indexOf('HEX') !== -1) {
+                color = v.color.toHEXA()
+              } else {
+                color = v.color.toNAME()
+              }
+
               const options = {
-                color: v.color.toRGBA(),
+                color,
                 index: i,
                 percent
               }
@@ -408,8 +423,9 @@ class GradientPicker extends Component {
             })
 
             this.COLORPICKER.Saturation.init()
-            this.COLORPICKER.Saturation.position(this.COLORPICKER.COLOR.val(getData('value', this.$marker).color))
-    
+            this.COLORPICKER.Saturation.position(
+              this.COLORPICKER.COLOR.val(getData('value', this.$marker).color)
+            )
             this.leave('save')
           },
           onHided: () => {
@@ -541,7 +557,7 @@ class GradientPicker extends Component {
     )
 
     this.Marker = new Marker(this, $marker, options)
-    setData('value', this.Marker , $marker)
+    setData('value', this.Marker, $marker)
     return $marker
   }
 
@@ -614,20 +630,19 @@ class GradientPicker extends Component {
 
   setGradientColor(color, index) {
     if (!isString(color)) {
-      if(color.privateMatchFormat === 'HSLA') {
+      if (color.privateMatchFormat === 'HSLA') {
         color = color.toHSLA()
-     
-      } else if(color.privateMatchFormat === 'RGBA') {
+      } else if (color.privateMatchFormat === 'RGBA') {
         color = color.toRGBA()
-        
-      } else if(color.privateMatchFormat === 'HEXA'){
+      } else if (color.privateMatchFormat === 'HEXA') {
         color = color.toHEXA()
-
+      } else {
+        color = color.toNAME()
       }
     }
 
     const colorData = this.GRADIENT.get(index).color.val(color)
-    this.tempColor = colorData.toRGBA()
+    this.tempColor = color
     this.update(false)
     this.trigger(EVENTS.COLORCHANGE, colorData, this.color)
   }
@@ -653,9 +668,8 @@ class GradientPicker extends Component {
     } else {
       this.GRADIENT.privateType = 'RADIAL'
     }
-  
-    this.gradientValue = this.GRADIENT.toString()
 
+    this.gradientValue = this.GRADIENT.toString()
     const viewValue = this.gradientValue
       .replace(/radial/, 'linear')
       .replace(/(.*?\().*?(,.*)/, '$190deg$2')
@@ -679,7 +693,6 @@ class GradientPicker extends Component {
   reset() {
     this.mode = this.oldMode
     this.SELECT.set(this.mode.replace(/^.?/g, match => match.toUpperCase()))
-
     this.color = this.oldColor
     this.set(this.color, false)
   }
@@ -702,6 +715,7 @@ class GradientPicker extends Component {
     if (!color) {
       return this.options.process.call(this, this.get())
     }
+
     this.set(color, trigger)
     return null
   }
@@ -728,14 +742,22 @@ class GradientPicker extends Component {
         percent = 0
       }
 
-      const color = v.color.toRGBA()
+      let color = null
+
+      if (v.color.privateMatchFormat.indexOf('HSL') !== -1) {
+        color = v.color.toHSLA()
+      } else if (v.color.privateMatchFormat.indexOf('RGB') !== -1) {
+        color = v.color.toRGBA()
+      } else if (v.color.privateMatchFormat.indexOf('HEX') !== -1) {
+        color = v.color.toHEXA()
+      }
 
       const options = {
-        color: color,
+        color,
         index: i,
         percent
       }
-     
+
       // this.actionBarSize = getData('value', $marker).maxLenght
       this.addMarker(0, options)
     })
@@ -743,7 +765,7 @@ class GradientPicker extends Component {
     if (typeof this.lastActiveMarkerIndex === 'number') {
       this.selectMarker(this.markers[this.lastActiveMarkerIndex].$el)
     }
-  
+
     this.COLORPICKER.set(getData('value', this.$marker).color, false)
     this.gradientValue = ''
 

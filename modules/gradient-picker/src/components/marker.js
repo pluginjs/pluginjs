@@ -14,7 +14,6 @@ class Marker {
     this.$wrap = query(`.${this.instance.classes.BAR}`, this.instance.$panel)
     this.$wrap.append(this.$el)
 
-
     this.init()
   }
 
@@ -22,7 +21,7 @@ class Marker {
     this.wrapSize = parseInt(getStyle('width', this.$wrap), 10)
     this.elSize = parseInt(getStyle('width', this.$el), 10)
     this.maxLenght = this.wrapSize - this.elSize
-    
+
     const offset = this.getOffset()
     setStyle('background', this.color, this.$el)
     setStyle('left', offset, this.$el)
@@ -37,6 +36,7 @@ class Marker {
         if (this.instance.is('noSelectedMarker')) {
           return false
         }
+
         this.update(color)
         return null
       },
@@ -45,9 +45,8 @@ class Marker {
 
     bindEvent(
       this.instance.eventName('click'),
-      e => {
-        const color = getStyle('backgroundColor', e.target)
-        this.instance.setGradientColor(color, this.index)
+      () => {
+        this.instance.setGradientColor(this.color, this.index)
       },
       this.$el
     )
@@ -57,7 +56,17 @@ class Marker {
     if (!hasClass(this.instance.classes.MARKERACTIVE, this.$el)) {
       return false
     }
-    this.color = color.toRGBA()
+
+    if (color.privateMatchFormat.indexOf('HSL') !== -1) {
+      this.color = color.toHSLA()
+    } else if (color.privateMatchFormat.indexOf('RGB') !== -1) {
+      this.color = color.toRGBA()
+    } else if (color.privateMatchFormat.indexOf('HEX') !== -1) {
+      this.color = color.toHEXA()
+    } else {
+      this.color = color.toNAME()
+    }
+
     setStyle('background', this.color, this.instance.$marker)
     return null
   }

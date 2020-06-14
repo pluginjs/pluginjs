@@ -5,7 +5,7 @@ import keywordAngleMap from './keywordAngleMap'
 const angleKeywordMap = util.flip(keywordAngleMap)
 
 const RegExpStrings = (() => {
-  const color = /(?:rgba|rgb|hsla|hsl)\s*\([\s\d.,%]+\)|#[a-z0-9]{3,6}|[a-z]+/i
+  const color = /(?:rgba|rgb|hsla|hsl)\s*\([\s\d.,%]+\)|#[a-f0-9]{3,8}|[a-z]+/i
   const position = /\d{1,3}%/i
   const angle = /(?:to ){0,1}(?:(?:top|left|right|bottom)\s*){1,2}|(?:-)\d+deg|\d+deg/i
   const shape = /circle/i
@@ -23,9 +23,7 @@ const RegExpStrings = (() => {
 
   const type = /linear|radial/i
   const full = new RegExp(
-    `^(-webkit-|-moz-|-ms-|-o-){0,1}(${type.source})-gradient\\s*\\(\\s*(${
-      parameters.source
-    })\\s*\\)$`,
+    `^(-webkit-|-moz-|-ms-|-o-){0,1}(${type.source})-gradient\\s*\\(\\s*(${parameters.source})\\s*\\)$`,
     'i'
   )
 
@@ -150,9 +148,9 @@ export default {
       } else {
         position = stop.position
       }
-  
+
       positions.push(position)
-  
+
       colors.push(stop.color.toString())
     }
 
@@ -187,7 +185,7 @@ export default {
       } else {
         position = ` ${this.formatPosition(positions[x])}`
       }
-    
+
       output.push(colors[x] + position)
     }
 

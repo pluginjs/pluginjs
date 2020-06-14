@@ -44,8 +44,9 @@ class Color {
     if (typeof value === 'undefined') {
       return this.toString()
     }
+
     this.fromString(value)
-    
+
     return this
   }
 
@@ -165,7 +166,7 @@ class Color {
         return value
       }
     }
-  
+
     if (value.a === 0 && this.options.zeroAlphaAsTransparent) {
       return ColorStrings.TRANSPARENT.to(value, this)
     }
@@ -176,22 +177,22 @@ class Color {
     } else {
       format = this.privateFormat
     }
-    
-    if (this.options.reduceAlpha && value.a === 1) {
-      switch (format) {
-        case 'RGBA':
-          format = 'RGB'
-          break
-        case 'HSLA':
-          format = 'HSL'
-          break
-        case 'HEXA':
-          format = 'HEX'
-          break
-        default:
-          break
-      }
-    }
+
+    // if (this.options.reduceAlpha && value.a === 1) {
+    //   switch (format) {
+    //     case 'RGBA':
+    //       format = 'RGB'
+    //       break
+    //     case 'HSLA':
+    //       format = 'HSL'
+    //       break
+    //     case 'HEXA':
+    //       format = 'HEX'
+    //       break
+    //     default:
+    //       break
+    //   }
+    // }
 
     if (
       value.a !== 1 &&
@@ -207,7 +208,7 @@ class Color {
         format = this.options.alphaConvert[format]
       }
     }
-   
+
     return ColorStrings[format].to(value, this)
   }
 
@@ -249,6 +250,7 @@ class Color {
       this.value.g = rgb.g
       this.value.b = rgb.b
     }
+
     return this
   }
 
@@ -261,7 +263,7 @@ class Color {
       string = string.trim()
       let matched = null
       let rgb
-      
+
       for (const i in ColorStrings) {
         if ((matched = ColorStrings[i].match.exec(string)) !== null) {
           rgb = ColorStrings[i].parse(matched)

@@ -81,7 +81,7 @@ class Gradient {
     }
     const stop = new ColorStop(color, position, this)
     this.value.stops.splice(index, 0, stop)
-    this.length = this.length + 1
+    this.length += 1
     this.current = index
     return stop
   }
@@ -148,7 +148,7 @@ class Gradient {
     }
     if (index >= 0 && index < this.length) {
       this.value.stops.splice(index, 1)
-      this.length = this.length - 1
+      this.length -= 1
       this.current = index - 1
     }
   }
@@ -181,7 +181,6 @@ class Gradient {
   fromString(string) {
     this.reset()
     const result = GradientString.parseString(string)
-  
     if (result) {
       this.privatePrefix = result.prefix
       this.type(result.type)
@@ -202,7 +201,7 @@ class Gradient {
   toString(prefix) {
     if (prefix === true) {
       prefix = util.getPrefix()
-    }  
+    }
 
     return GradientTypes[this.type()].to(this.value, this, prefix)
   }

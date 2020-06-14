@@ -33,6 +33,7 @@ export default {
       if (!privatePrefix) {
         standard = true
       }
+
       if (prefix && instance.options.prefixes.indexOf(prefix) !== -1) {
         standard = false
         privatePrefix = prefix
