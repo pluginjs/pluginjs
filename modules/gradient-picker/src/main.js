@@ -750,6 +750,8 @@ class GradientPicker extends Component {
         color = v.color.toRGBA()
       } else if (v.color.privateMatchFormat.indexOf('HEX') !== -1) {
         color = v.color.toHEXA()
+      } else {
+        color = v.color.toNAME()
       }
 
       const options = {

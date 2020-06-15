@@ -350,8 +350,21 @@ class ColorSelector extends Component {
             } else if (i === 0) {
               percent = 0
             }
+            
+            let color = null
+
+            if (v.color.privateMatchFormat.indexOf('HSL') !== -1) {
+              color = v.color.toHSLA()
+            } else if (v.color.privateMatchFormat.indexOf('RGB') !== -1) {
+              color = v.color.toRGBA()
+            } else if (v.color.privateMatchFormat.indexOf('HEX') !== -1) {
+              color = v.color.toHEXA()
+            } else {
+              color = v.color.toNAME()
+            }
+
             const options = {
-              color: v.color.toRGBA(),
+              color: color,
               index: i,
               percent
             }
