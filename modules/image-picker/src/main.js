@@ -243,6 +243,7 @@ class ImagePicker extends Component {
       )(this.$wrap)
     }
   }
+  
   update(trigger = true) {
     this.element.value = this.val()
     if (trigger) {

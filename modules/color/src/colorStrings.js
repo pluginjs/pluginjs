@@ -197,7 +197,7 @@ const ColorStrings = {
       }
 
       const type = instance.options.nameDegradation.toUpperCase()
-      return ColorStrings[`${type}A`].to(color)
+      return ColorStrings[color.a === 1 ? type : `${type}A`].to(color)
     }
   }
 }

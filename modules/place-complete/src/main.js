@@ -175,6 +175,7 @@ class PlaceComplete extends AutoComplete {
           this.geocodeByAddress(
             value,
             place => {
+              if(place && place.length > 0)
               this.setPlace(this.formatPlace(value, place[0]))
             },
             (...args) => {

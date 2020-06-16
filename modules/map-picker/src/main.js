@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { compose, deepMerge } from '@pluginjs/utils'
+import { compose, deepMerge, triggerNative } from '@pluginjs/utils'
 import { parseHTML, query, queryAll, wrap, unwrap } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -358,12 +358,10 @@ class MapPicker extends Component {
     }
 
     addClass(this.classes.OPENDISABLE, this.TRIGGER.$trigger)
-    addClass(this.classes.SHOW, this.$wrap)
     this.enter('open')
   }
 
   close() {
-    removeClass(this.classes.SHOW, this.$wrap)
     this.DROPDOWN.hide()
     this.leave('open')
   }
@@ -435,18 +433,27 @@ class MapPicker extends Component {
     }
   }
 
-  clear() {
+  clear(trigger = true) {
     this.data = {}
     this.element.value = ''
     removeClass(this.classes.WRITE, this.$wrap)
     this.TRIGGER.clear()
-
-    queryAll(`.${this.classes.FIELD} input`, this.$dropdown).forEach(el => {
-      el.value = ''
-    })
-
+    
+    this.$lat.value = ''
+    this.$lng.value = ''
+    const placeAutoComplete = query(`.pj-autoComplete`, this.$place)
+    query(`input`, this.$place).value  = ''
+    if(placeAutoComplete) {
+      removeClass('pj-autoComplete-filled', placeAutoComplete)
+    }
+    
     if (this.$map) {
       this.$map.clearMarkers()
+    }
+
+    if (trigger) {
+      this.trigger(EVENTS.CHANGE, this.value)
+      triggerNative(this.element, 'change')
     }
   }
 
@@ -478,6 +485,7 @@ class MapPicker extends Component {
       if (this.options.theme) {
         // removeClass(this.getThemeClass(, this.$wrapper));
       }
+      
       compose(
         unwrap,
         // clearData,

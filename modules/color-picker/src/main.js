@@ -294,31 +294,30 @@ class ColorPicker extends Component {
 
     let classify = ''
 
-    if (isString(val) && val.indexOf('#') > -1) {
+    if (isString(val) && val.indexOf('#') > -1 || color.privateMatchFormat.indexOf('HEX') !== -1) {
+      color.value.a === 1 ?
+      classify = color.toHEX() :
       classify = color.toHEXA()
-      this.setInput(color.toHEXA())
-    } else if (isString(val) && val.indexOf('HSL') > -1) {
+      this.setInput(classify)
+    } else if (isString(val) && val.indexOf('HSL') > -1 || color.privateMatchFormat.indexOf('HSL') !== -1) {
+      color.value.a === 1 ?
+      classify = color.toHSL() :
       classify = color.toHSLA()
-      this.setInput(color.toHSLA())
-    } else if (isString(val) && val.indexOf('RGB') > -1) {
+      this.setInput(classify)
+    } else if (isString(val) && val.indexOf('RGB') > -1 || color.privateMatchFormat.indexOf('RGB') !== -1) {
+      color.value.a === 1 ?
+      classify = color.toRGB() :
       classify = color.toRGBA()
-      this.setInput(color.toRGBA())
-    } else if (isString(val) && !val.match(/\d/g)) {
-      classify = color.toNAME()
-      this.setInput(color.toNAME())
-    } else if (color.privateMatchFormat === 'HSLA') {
-      classify = color.toHSLA()
-      this.setInput(color.toHSLA())
-    } else if (color.privateMatchFormat === 'RGBA') {
-      classify = color.toRGBA()
-      this.setInput(color.toRGBA())
-    } else if (color.privateMatchFormat === 'HEXA') {
-      classify = color.toHEXA()
-      this.setInput(color.toHEXA())
+      this.setInput(classify)
     } else {
       classify = color.toNAME()
-      this.setInput(color.toNAME())
+      this.setInput(classify)
     }
+
+    // else if (isString(val) && !val.match(/\d/g)) {
+    //   classify = color.toNAME()
+    //   this.setInput(classify)
+    // }
 
     if (!this.options.inline) {
       this.PREVIEW.update(color)

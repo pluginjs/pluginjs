@@ -35,7 +35,6 @@ export const classes = {
   ACTION: '{namespace}-action',
   CANCEL: '{namespace}-canel',
   SAVE: '{namespace}-save',
-  SHOW: '{namespace}-show',
   LOADING: '{namespace}-loading',
   LOADINGWRAP: '{namespace}-loading-wrap',
   DISABLED: '{namespace}-disabled',

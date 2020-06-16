@@ -178,21 +178,21 @@ class Color {
       format = this.privateFormat
     }
 
-    // if (this.options.reduceAlpha && value.a === 1) {
-    //   switch (format) {
-    //     case 'RGBA':
-    //       format = 'RGB'
-    //       break
-    //     case 'HSLA':
-    //       format = 'HSL'
-    //       break
-    //     case 'HEXA':
-    //       format = 'HEX'
-    //       break
-    //     default:
-    //       break
-    //   }
-    // }
+    if (this.options.reduceAlpha && value.a === 1) {
+      switch (format) {
+        case 'RGBA':
+          format = 'RGB'
+          break
+        case 'HSLA':
+          format = 'HSL'
+          break
+        case 'HEXA':
+          format = 'HEX'
+          break
+        default:
+          break
+      }
+    }
 
     if (
       value.a !== 1 &&

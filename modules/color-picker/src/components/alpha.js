@@ -90,6 +90,8 @@ class Alpha {
   }
 
   update() {
+    this.alpha === "1.00" ?
+    this.instance.setColor({ a: 1 }) :
     this.instance.setColor({ a: this.alpha })
   }
 }

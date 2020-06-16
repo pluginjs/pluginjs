@@ -60,11 +60,6 @@ $mapPicker: "pj-mapPicker" !default;
     cursor: pointer;
   }
 
-  &-dropdown {
-    position: relative;
-    display: none;
-  }
-
   &-field {
     display: flex;
     flex-direction: column;
@@ -111,12 +106,6 @@ $mapPicker: "pj-mapPicker" !default;
 
     .#{$mapPicker}-trigger-action {
       display: flex;
-    }
-  }
-
-  &-show {
-    .#{$mapPicker}-dropdown {
-      display: block;
     }
   }
 }
