@@ -315,6 +315,7 @@ class GradientPicker extends Component {
         }
 
         const $marker = this.$marker
+        console.log($marker)
         const index = getData('value', $marker).index
         $marker.remove()
         removeClass(this.classes.DELETEACTIVE, this.$delete)
@@ -329,23 +330,24 @@ class GradientPicker extends Component {
       },
       this.$handle
     )
+    
     this.KEYBOARD = keyboard()
-
-    this.KEYBOARD.on('down', 'esc', ({ target: $this }) => {
+    
+    this.KEYBOARD.on('down', 'esc', () => {
       if (
         !this.is('openPanel') ||
         this.markers.length <= 2 ||
-        this.module !== 'gradient' ||
-        !hasClass(this.classes.DELETEACTIVE, $this)
+        !hasClass(this.classes.DELETEACTIVE, this.$delete)
       ) {
         return false
       }
-
-      const $marker = this.instance.$marker
+    
+      const $marker = this.$marker
+      console.log($marker)
       const index = getData('value', $marker).index
-
       $marker.remove()
       removeClass(this.classes.DELETEACTIVE, this.$delete)
+
       this.markers.splice(index, 1)
       this.GRADIENT.removeById(index + 1)
       this.sort()
@@ -426,9 +428,11 @@ class GradientPicker extends Component {
             this.COLORPICKER.Saturation.position(
               this.COLORPICKER.COLOR.val(getData('value', this.$marker).color)
             )
+            this.enter('openPanel')
             this.leave('save')
           },
           onHided: () => {
+            this.leave('openPanel')
             if (!this.is('save')) {
               this.reset()
             }
