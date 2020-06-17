@@ -315,7 +315,6 @@ class GradientPicker extends Component {
         }
 
         const $marker = this.$marker
-        console.log($marker)
         const index = getData('value', $marker).index
         $marker.remove()
         removeClass(this.classes.DELETEACTIVE, this.$delete)
@@ -323,16 +322,15 @@ class GradientPicker extends Component {
         this.GRADIENT.removeById(index)
         this.sort()
         this.GRADIENT.reorder()
-
         this.update(false)
         this.leave('SelectedMarker')
         return null
       },
       this.$handle
     )
-    
+
     this.KEYBOARD = keyboard()
-    
+
     this.KEYBOARD.on('down', 'esc', () => {
       if (
         !this.is('openPanel') ||
@@ -341,18 +339,15 @@ class GradientPicker extends Component {
       ) {
         return false
       }
-    
+
       const $marker = this.$marker
-      console.log($marker)
       const index = getData('value', $marker).index
       $marker.remove()
       removeClass(this.classes.DELETEACTIVE, this.$delete)
-
       this.markers.splice(index, 1)
-      this.GRADIENT.removeById(index + 1)
+      this.GRADIENT.removeById(index)
       this.sort()
       this.GRADIENT.reorder()
-
       this.update(false)
       this.leave('SelectedMarker')
       return null
