@@ -618,6 +618,13 @@ $share-text-triangle-lg-size: 14px;
           padding: 0 $share-text-xs-font-size;
         }
       }
+
+      &.#{$shares}-left,
+      &.#{$shares}-right {
+        .#{$share}-text {
+          flex-grow: 1;
+        }
+      }
     }
 
     &.#{$shares}-triangle {
