@@ -11,8 +11,8 @@ class Hex {
     this.element = element
     this.classes = this.instance.classes
     this.opac = 100
-    this.color = null
     this.COLOR = new Color()
+    this.color = this.COLOR
     this.mode = this.COLOR.toHEX()
     this.value = this.COLOR.toHEX()
     this.selectValue = 'HEX'
@@ -95,7 +95,6 @@ class Hex {
       this.instance.selfEventName('changeColor'),
       (e, el, color) => {
         this.color = color
-   
         if (this.instance.module.alpha) {
           query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
         }
@@ -114,7 +113,6 @@ class Hex {
     bindEvent(
       this.instance.eventName('change'),
       ({ target }) => {
-    
         this.update(this.value)
       },
       this.$el
@@ -164,8 +162,6 @@ class Hex {
       this.color.toHSL().toUpperCase(),
       this.color.toRGB().toUpperCase()
     ]
-
- 
 
     this.element
       .querySelectorAll('.pj-dropdown-item')

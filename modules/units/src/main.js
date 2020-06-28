@@ -1,5 +1,6 @@
 import Component from '@pluginjs/component'
 import DROPDOWN from '@pluginjs/dropdown'
+import { debounce } from '@pluginjs/utils'
 import { isNull, isString, isUndefined, isArray, isObject } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -48,6 +49,7 @@ class Units extends Component {
         '%': true
       }
     }
+    
     if (
       isObject(this.options.units) &&
       Object.keys(this.options.units).length < 2
@@ -137,6 +139,7 @@ class Units extends Component {
         DROPDOWN: `{namespace} ${this.classes.DROPDOWN}`
       },
       trigger: 'click',
+      value: isString(this.value) ? this.value : this.value.unit,
       reference: this.$trigger,
       placement: this.options.placement,
       data: this.getUnits().map(i => {
@@ -188,9 +191,9 @@ class Units extends Component {
 
     bindEvent(
       this.eventName('input'),
-      () => {
+      debounce(e => {
         this.setInput(this.$input.value)
-      },
+      }, 1000),
       this.$input
     )
   }
@@ -224,12 +227,7 @@ class Units extends Component {
   }
 
   setInput(input, trigger = true) {
-    this.set(
-      {
-        input
-      },
-      trigger
-    )
+    this.set({ input }, trigger)
   }
 
   set(value, trigger = true) {
@@ -245,17 +243,38 @@ class Units extends Component {
       if (isString(this.value)) {
         this.value = { unit: '', input: '' }
       }
+
       if (!isUndefined(value.unit) && value.unit !== this.value.unit) {
         this.value.unit = value.unit ? value.unit : this.getDefaultUnit()
         html(this.value.unit, this.$trigger)
+        
+        const unit = this.options.units[this.value.unit]
+
+        if(unit.min && unit.min > value.input || unit.max && unit.max < value.input) {
+          this.enter('initInput')
+        } 
+    
         this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
         changed = true
       }
-
-      if (!isUndefined(value.input) && value.input !== this.value.input) {
-        this.value.input = value.input
-        if (!isNull(value.input)) {
-          this.cached.input = value.input
+  
+      if (!isUndefined(value.input) && value.input !== this.value.input || this.is('initInput')) {
+        if(this.is('initInput')) {
+          this.leave('initInput')
+        }
+   
+        const unit = this.options.units[this.value.unit]
+  
+        if(unit.min && unit.min > value.input) {
+          this.value.input = unit.min
+        } else if (unit.max && unit.max < value.input) {
+          this.value.input = unit.max
+        } else {
+          this.value.input = value.input
+        }
+    
+        if (!isNull(this.value.input)) {
+          this.cached.input = this.value.input
         }
 
         this.trigger(EVENTS.CHANGEINPUT, this.value.input)

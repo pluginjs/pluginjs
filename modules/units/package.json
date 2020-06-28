@@ -44,7 +44,8 @@
     "@pluginjs/dropdown": "^0.8.7",
     "@pluginjs/events": "^0.8.3",
     "@pluginjs/is": "^0.8.3",
-    "@pluginjs/styled": "^0.8.3"
+    "@pluginjs/styled": "^0.8.3",
+    "@pluginjs/utils": "^0.8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

@@ -339,7 +339,7 @@ class ColorSelector extends Component {
 
         if (typeName === 'solid') {
           this.COLORPICKER.Saturation.init()
-          this.COLORPICKER.Saturation.position(this.COLORPICKER.COLOR.val(this.get()))
+          this.COLORPICKER.Saturation.position(this.COLORPICKER.COLOR.val(this.COLORPICKER.color))
         } else if (typeName === 'gradient') {
           this.GRADIENTPICKER.clearMarks()
           this.GRADIENTPICKER.GRADIENT.reorder()
@@ -396,6 +396,7 @@ class ColorSelector extends Component {
       default:
         break
     }
+
     this.trigger(EVENTS.SWITCHMODULE, this.module)
   }
 

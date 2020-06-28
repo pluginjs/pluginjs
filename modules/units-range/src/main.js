@@ -33,7 +33,6 @@ import {
 class UnitsRange extends Units {
   constructor(element, options = {}) {
     super(element, options)
-
     if (
       isObject(this.options.units) &&
       Object.keys(this.options.units).length === 0
@@ -71,7 +70,7 @@ class UnitsRange extends Units {
         input: false,
         range: false,
         onChange: val => {
-          this.setInput(val)
+          this.setInput(val, false)
         }
       })
     )
@@ -100,7 +99,7 @@ class UnitsRange extends Units {
         if (this.RANGE.is('disabled')) {
           this.RANGE.enable()
         }
-        this.RANGE.update(options, false, true, false)
+        this.RANGE.update(options, false, true)
       },
       this.element
     )
