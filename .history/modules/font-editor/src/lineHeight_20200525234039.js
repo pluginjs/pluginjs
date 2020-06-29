@@ -40,7 +40,7 @@ export default class LineHeight {
     this.instance.options.lineHeight.units.forEach(v => {
       if (v === 'inherit') {
         units[v] = false
-      } else if (v === 'num') {
+      } else if (v === 'no') {
         units[v] = true
       } else {
         units[v] = {

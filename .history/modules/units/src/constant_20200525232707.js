@@ -52,7 +52,7 @@ export const defaults = {
     }
     const { input, unit } = value
     if (!isNull(input) && !isNull(unit)) {
-      if(unit == 'num')
+      if(unit == 'no')
       return `${value.input}`
       return `${value.input}${value.unit}`
     }

@@ -42,7 +42,7 @@ class Units extends Component {
       Object.keys(this.options.units).length === 0
     ) {
       this.options.units = {
-        num: true,
+        no: true,
         inherit: false,
         px: true,
         '%': true
@@ -231,7 +231,9 @@ class Units extends Component {
 
   set(value, trigger = true) {
     let changed = false
+    console.log(value)
     if (this.isStatic(value)) {
+      console.log(this.value)
       if (value !== this.value) {
         this.value = value
         html(this.value, this.$trigger)
@@ -287,7 +289,7 @@ class Units extends Component {
         this.element.value = this.val()
       } else {
         if (this.isStatic(value)) {
-          this.$input ? this.$input.value = "" : null
+          // this.$input.value = ""
           this.element.value = value
         } else {
           this.element.value = ''
