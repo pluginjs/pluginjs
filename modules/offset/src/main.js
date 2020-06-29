@@ -163,6 +163,7 @@ class Offset extends Component {
       this.$right.value = '';
       this.$bottom.value = '';
       this.$left.value = '';
+      this.element.value = ''
     } else {
       this.$top.value = value.top
       this.$right.value = value.right
@@ -172,9 +173,9 @@ class Offset extends Component {
       if (typeof value.unit !== 'undefined') {
         this.unit.set(value.unit)
       }
+
+      this.update(trigger)
     } 
-    
-    this.update(trigger)
   }
 
   get() {

@@ -70,7 +70,7 @@ class UnitsRange extends Units {
         input: false,
         range: false,
         onChange: val => {
-          this.setInput(val, false)
+          this.setInput(val, true)
         }
       })
     )

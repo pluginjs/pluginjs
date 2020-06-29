@@ -1,6 +1,5 @@
 import Component from '@pluginjs/component'
 import DROPDOWN from '@pluginjs/dropdown'
-import { debounce } from '@pluginjs/utils'
 import { isNull, isString, isUndefined, isArray, isObject } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -190,10 +189,10 @@ class Units extends Component {
     )
 
     bindEvent(
-      this.eventName('input'),
-      debounce(e => {
+      this.eventName('change'),
+      e => {
         this.setInput(this.$input.value)
-      }, 1000),
+      }, 
       this.$input
     )
   }
@@ -232,6 +231,7 @@ class Units extends Component {
 
   set(value, trigger = true) {
     let changed = false
+
     if (this.isStatic(value)) {
       if (value !== this.value) {
         this.value = value
@@ -253,7 +253,7 @@ class Units extends Component {
         if(unit.min && unit.min > value.input || unit.max && unit.max < value.input) {
           this.enter('initInput')
         } 
-    
+   
         this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
         changed = true
       }
@@ -262,7 +262,7 @@ class Units extends Component {
         if(this.is('initInput')) {
           this.leave('initInput')
         }
-   
+  
         const unit = this.options.units[this.value.unit]
   
         if(unit.min && unit.min > value.input) {
@@ -276,17 +276,16 @@ class Units extends Component {
         if (!isNull(this.value.input)) {
           this.cached.input = this.value.input
         }
-
+ 
         this.trigger(EVENTS.CHANGEINPUT, this.value.input)
 
         changed = true
       }
     }
 
-    if (changed && trigger) {
+    if (changed) {
       if (this.value.input) {
         this.element.value = this.val()
-        this.trigger(EVENTS.CHANGE, this.element.value)
       } else {
         if (this.isStatic(value)) {
           this.$input.value = ''
@@ -294,8 +293,11 @@ class Units extends Component {
         } else {
           this.element.value = ''
         }
-        this.trigger(EVENTS.CHANGE, this.element.value)
       }
+    }
+
+    if (trigger && changed) {
+      this.trigger(EVENTS.CHANGE, this.element.value)
     }
   }
 
