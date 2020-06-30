@@ -3,7 +3,8 @@ import ScrollProgress from '@pluginjs/scroll-progress'
 
 const element = query('#apis .apiExample')
 let instance = ScrollProgress.of(element, {
-  /** options **/
+  size: 10,
+  innerColor: 'linear-gradient(120deg, rgb(132, 250, 176), rgb(143, 211, 244))'
 })
 
 const apisHandler = ({ target }) => {

@@ -7,55 +7,69 @@ $scrollProgress-zindex: 1100 !default;
 
 // Core
 // =====================
-.#{$scrollProgress}-bar {
+.#{$scrollProgress}-wrap {
   position: fixed;
   z-index: $scrollProgress-zindex;
+}
 
-  &.#{$scrollProgress}-top-left {
-    top: 0;
-    left: 0;
+.#{$scrollProgress}-top-left,
+.#{$scrollProgress}-top-right,
+.#{$scrollProgress}-bottom-left,
+.#{$scrollProgress}-bottom-right {
+  width: 100%;
+
+  .#{$scrollProgress}-bar {
     width: 0;
   }
+}
 
-  &.#{$scrollProgress}-top-right {
-    top: 0;
-    right: 0;
-    width: 0;
-  }
+.#{$scrollProgress}-left-bottom,
+.#{$scrollProgress}-left-top,
+.#{$scrollProgress}-right-bottom,
+.#{$scrollProgress}-right-top {
+  height: 100%;
 
-  &.#{$scrollProgress}-bottom-left {
-    bottom: 0;
-    left: 0;
-    width: 0;
-  }
-
-  &.#{$scrollProgress}-bottom-right {
-    right: 0;
-    bottom: 0;
-    width: 0;
-  }
-
-  &.#{$scrollProgress}-left-bottom {
-    bottom: 0;
-    left: 0;
+  .#{$scrollProgress}-bar {
     height: 0;
   }
+}
 
-  &.#{$scrollProgress}-left-top {
-    top: 0;
-    left: 0;
-    height: 0;
-  }
+.#{$scrollProgress}-top-left {
+  top: 0;
+  left: 0;
+}
 
-  &.#{$scrollProgress}-right-bottom {
-    right: 0;
-    bottom: 0;
-    height: 0;
-  }
+.#{$scrollProgress}-top-right {
+  top: 0;
+  right: 0;
+}
 
-  &.#{$scrollProgress}-right-top {
-    top: 0;
-    right: 0;
-    height: 0;
-  }
+.#{$scrollProgress}-bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.#{$scrollProgress}-bottom-right {
+  right: 0;
+  bottom: 0;
+}
+
+.#{$scrollProgress}-left-bottom {
+  bottom: 0;
+  left: 0;
+}
+
+.#{$scrollProgress}-left-top {
+  top: 0;
+  left: 0;
+}
+
+.#{$scrollProgress}-right-bottom {
+  right: 0;
+  bottom: 0;
+}
+
+.#{$scrollProgress}-right-top {
+  top: 0;
+  right: 0;
 }

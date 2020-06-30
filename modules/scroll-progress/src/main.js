@@ -51,9 +51,10 @@ class ScrollProgress extends Component {
   initialize() {
     addClass(this.classes.NAMESPACE, this.element)
 
-    this.$bar = query(`.${this.classes.BAR}`)
-      ? query(`.${this.classes.BAR}`)
-      : parseHTML(this.creatHtml())
+    this.$bar = parseHTML(this.createBar())
+    this.$wrap = parseHTML(this.createWrap())
+
+    prepend(this.$bar, this.$wrap)
 
     this.position = POSITIONS.includes(this.options.position)
       ? this.options.position
@@ -61,7 +62,7 @@ class ScrollProgress extends Component {
     this.direction = this.getDirection()
     this.resetBarPosition()
 
-    prepend(this.$bar, query(this.options.appendTo))
+    prepend(this.$wrap, query(this.options.appendTo))
 
     this.bind()
     if (this.options.custom === true) {
@@ -77,7 +78,7 @@ class ScrollProgress extends Component {
       setStyle(
         {
           width: this.options.size,
-          backgroundColor: this.options.color,
+          background: this.options.innerColor,
           opacity: this.options.opacity
         },
         this.$bar
@@ -86,23 +87,32 @@ class ScrollProgress extends Component {
       setStyle(
         {
           height: this.options.size,
-          backgroundColor: this.options.color,
+          background: this.options.innerColor,
           opacity: this.options.opacity
         },
         this.$bar
       )
     }
+
+    if (this.options.wrapColor) {
+      setStyle(
+        {
+          background: this.options.wrapColor
+        },
+        this.$wrap
+      )
+    }
   }
 
   resetBarPosition() {
-    if (hasClass(this.getClass(`{namespace}-${this.position}`), this.$bar)) {
+    if (hasClass(this.getClass(`{namespace}-${this.position}`), this.$wrap)) {
       return
     }
     this.setBardefaultAttr()
     for (let i = 0; i < POSITIONS.length; i++) {
-      removeClass(this.getClass(`{namespace}-${POSITIONS[i]}`), this.$bar)
+      removeClass(this.getClass(`{namespace}-${POSITIONS[i]}`), this.$wrap)
     }
-    addClass(this.getClass(`{namespace}-${this.position}`), this.$bar)
+    addClass(this.getClass(`{namespace}-${this.position}`), this.$wrap)
   }
 
   getDirection() {
@@ -185,12 +195,20 @@ class ScrollProgress extends Component {
     this.setBarSize(total)
   }
 
-  creatHtml() {
-    const html = templateEngine.render(this.options.templates.bar.call(this), {
+  createBar() {
+    const bar = templateEngine.render(this.options.templates.bar.call(this), {
       classes: this.classes
     })
 
-    return html
+    return bar
+  }
+
+  createWrap() {
+    const wrap = templateEngine.render(this.options.templates.wrap.call(this), {
+      classes: this.classes
+    })
+
+    return wrap
   }
 
   refresh() {
