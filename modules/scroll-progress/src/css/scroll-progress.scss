@@ -10,12 +10,14 @@ $scrollProgress-zindex: 1100 !default;
 .#{$scrollProgress}-wrap {
   position: fixed;
   z-index: $scrollProgress-zindex;
+  display: flex;
 }
 
 .#{$scrollProgress}-top-left,
 .#{$scrollProgress}-top-right,
 .#{$scrollProgress}-bottom-left,
 .#{$scrollProgress}-bottom-right {
+  flex-direction: row;
   width: 100%;
 
   .#{$scrollProgress}-bar {
@@ -27,11 +29,19 @@ $scrollProgress-zindex: 1100 !default;
 .#{$scrollProgress}-left-top,
 .#{$scrollProgress}-right-bottom,
 .#{$scrollProgress}-right-top {
+  flex-direction: column;
   height: 100%;
 
   .#{$scrollProgress}-bar {
     height: 0;
   }
+}
+
+.#{$scrollProgress}-top-right,
+.#{$scrollProgress}-bottom-right,
+.#{$scrollProgress}-left-bottom,
+.#{$scrollProgress}-right-bottom {
+  justify-content: flex-end;
 }
 
 .#{$scrollProgress}-top-left {
