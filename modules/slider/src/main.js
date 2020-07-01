@@ -74,6 +74,10 @@ class Slider extends Component {
       return
     }
 
+    if ( this.data.length <= this.current ) {
+      this.current = this.data.length - 1
+    }
+
     if (this.options.breakpoint) {
       this.initBreakpoints()
     }

@@ -67,10 +67,10 @@ class ScrollTo extends Component {
         if (this.is('disable')) {
           return
         }
-
+  
         const target = event.target
         this.active(target)
-
+        
         const href = target.getAttribute(this.options.href)
 
         if (href) {
@@ -152,8 +152,7 @@ class ScrollTo extends Component {
     if ($href) {
       addClass(this.classes.ANIMATING, window.document)
 
-      const top = getOffset($href).top
-
+      const top = getOffset($href).top - parseInt(this.options.offsetTop, 10)
       this.trigger(EVENTS.JUMP, top)
 
       Scroll.to({

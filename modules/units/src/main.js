@@ -249,7 +249,7 @@ class Units extends Component {
         
         const unit = this.options.units[this.value.unit]
 
-        if(unit.min && unit.min > value.input || unit.max && unit.max < value.input) {
+        if( unit && ( unit.min && unit.min > value.input || unit.max && unit.max < value.input )) {
           this.enter('initInput')
         } 
    
@@ -263,10 +263,10 @@ class Units extends Component {
         }
   
         const unit = this.options.units[this.value.unit]
-  
-        if(unit.min && unit.min > value.input) {
+       
+        if(unit && ( unit.min && unit.min > value.input )) {
           this.value.input = unit.min
-        } else if (unit.max && unit.max < value.input) {
+        } else if (unit && ( unit.max && unit.max < value.input )) {
           this.value.input = unit.max
         } else {
           this.value.input = value.input
