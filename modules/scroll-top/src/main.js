@@ -79,13 +79,16 @@ class ScrollTop extends GlobalComponent {
       this.$trigger = parseHTML(
         templateEngine.render(this.options.template.call(this), {
           classes: this.classes,
-          themeClass: this.getThemeClass(),
           icon: this.options.icon
             ? `<i class="${this.options.icon}"></i>`
             : null,
           label: this.translate('label')
         })
       )
+    }
+
+    if (this.options.type) {
+      addClass(this.getTypeClass(), this.$trigger)
     }
 
     if (this.options.color) {
@@ -97,10 +100,10 @@ class ScrollTop extends GlobalComponent {
       )
     }
 
-    if (this.options.background && this.options.theme.indexOf('text') === -1) {
+    if (this.options.background && this.options.type.indexOf('text') === -1) {
       setStyle(
         {
-          background: this.options.background
+          backgroundColor: this.options.background
         },
         this.$trigger
       )
@@ -125,6 +128,32 @@ class ScrollTop extends GlobalComponent {
       const key = `${transitionProperty()}-duration`
       setStyle(key, `${this.options.animationDuration}ms`, this.$trigger)
     }
+  }
+
+  getTypeClass(types, TYPE) {
+    if (typeof types === 'undefined' && this.options.type) {
+      return this.getTypeClass(this.options.type)
+    }
+    if (isString(types)) {
+      if (typeof TYPE === 'undefined') {
+        TYPE = this.classes.TYPE
+      }
+      types = types.split(' ')
+
+      if (TYPE) {
+        for (let i = 0; i < types.length; i++) {
+          types[i] = TYPE.replace('{type}', types[i])
+        }
+      } else {
+        for (let i = 0; i < types.length; i++) {
+          types[i] = this.getClass(types[i])
+        }
+      }
+
+      return types
+    }
+
+    return ''
   }
 
   bind() {
@@ -252,7 +281,11 @@ class ScrollTop extends GlobalComponent {
   }
 
   can() {
-    if (this.scrollTop() > this.distance + this.target) {
+    const scrollTop = this.scrollTop()
+    const clientHeight = document.documentElement.clientHeight
+    const height = document.body.scrollHeight
+    const total = (scrollTop / (height - clientHeight)) * 100
+    if (scrollTop > this.distance + this.target || total > 100) {
       return true
     }
     return false

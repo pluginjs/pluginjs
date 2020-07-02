@@ -14,6 +14,7 @@ export const events = {
 export const classes = {
   NAMESPACE: `pj-${namespace}`,
   THEME: '{namespace}--{theme}',
+  TYPE: '{namespace}-{type}',
   TRIGGER: '{namespace}',
   ANIMATION: '{namespace}-{animation}',
   ANIMATING: '{namespace}-animating',
@@ -41,7 +42,7 @@ export const defaults = {
     animationDuration: 200
   },
 
-  theme: 'circle', // circle, square, text
+  type: 'circle', // circle, square, text
   locale: 'en',
   localeFallbacks: true,
   throttle: null,
@@ -49,7 +50,7 @@ export const defaults = {
   color: null, // custom color
   background: null, // custom background
   template() {
-    return '<a href="#" class="{classes.TRIGGER} {themeClass}">{icon} {label}</a>'
+    return '<a href="#" class="{classes.TRIGGER} {typeClass}">{icon} {label}</a>'
   }
 }
 

@@ -4,12 +4,12 @@ import ScrollTop from '@pluginjs/scroll-top'
 const example = query('#default')
 const easing = query('[data-option="easing"]', example)
 const duration = query('[data-option="duration"]', example)
-const theme = query('[data-option="theme"]', example)
+const type = query('[data-option="type"]', example)
 const color = query('[data-option="color"]', example)
 const animation = query('[data-option="animation"]', example)
 
 let instance = ScrollTop.of({
-  theme: theme.value,
+  type: type.value,
   easing: easing.value,
   duration: duration.value,
   animation: animation.value
@@ -20,7 +20,7 @@ queryAll('[data-api]').forEach(el =>
     const api = getData('api', e.target)
     if (api === 'init') {
       instance = ScrollTop.of({
-        theme: theme.value,
+        type: type.value,
         easing: easing.value,
         duration: duration.value,
         animation: animation.value
@@ -38,19 +38,15 @@ queryAll('[data-option]').forEach(el =>
     }
 
     instance = ScrollTop.of({
-      theme:
-        color.value === 'default'
-          ? theme.value
-          : `${theme.value} ${color.value}`,
+      type:
+        color.value === 'default' ? type.value : `${type.value} ${color.value}`,
       easing: easing.value,
       duration: duration.value,
       animation: animation.value,
       color: color.value === 'custom' ? '#fff' : null,
-      background:
-        color.value === 'custom'
-          ? 'linear-gradient(45deg, #215fdb, #2feffd)'
-          : null
+      background: null
     })
+    console.log('instance', instance)
   })
 )
 
