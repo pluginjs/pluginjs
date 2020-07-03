@@ -140,8 +140,12 @@ export default class Trigger {
       if (i === 'fontSize' || i === 'lineHeight') {
         return
       }
-      if (i === 'fontFamily' && v !== 'inherit') {
-        this.$fillContentName.textContent = v.font
+      if (i === 'fontFamily') {
+        if(v === 'inherit') {
+          this.$fillContentName.textContent = v
+        } else {
+          this.$fillContentName.textContent = v.font
+        }
       }
       if (i === 'textAlign') {
         i = 'justify-content'

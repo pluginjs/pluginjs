@@ -88,6 +88,7 @@ export default class FontSize {
   update(val) {
     this.instance.value.fontSize = val
   }
+  
   set(value) {
     this.UNITSRANGE.val(value)
     this.update(value)

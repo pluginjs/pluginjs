@@ -251,6 +251,7 @@ class FontPicker extends Component {
           this.DROPDOWN.unselectByValue(this.getItemValue(this.selected), false)
         }
       }
+      
       if (isNull(item)) {
         this.setPlaceholderLabel()
         removeClass(this.classes.SELECTED, this.$wrap)
@@ -292,7 +293,7 @@ class FontPicker extends Component {
       } else {
         value = ''
       }
-
+      
       if (value !== this.element.value) {
         this.element.value = value
 

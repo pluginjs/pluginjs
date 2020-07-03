@@ -74,6 +74,7 @@ class FontEditor extends Component {
       this.defaultVal,
       this.options.parse(this.element.value.replace(/'/g, '"'))
     )
+
     // init
     this.fontFamily = new FontFamily(this)
     this.fontWeight = new FontWeight(this)
@@ -83,9 +84,9 @@ class FontEditor extends Component {
     this.fontStyle = new FontStyle(this)
     this.textTransform = new TextTransform(this)
     this.textDecoration = new TextDecoration(this)
-
+ 
     if (
-      this.value.fontFamily === 'inherit' ||
+      this.value.fontFamily === "" ||
       typeof this.value.fontFamily === 'undefined'
     ) {
       compose(
@@ -107,6 +108,7 @@ class FontEditor extends Component {
     if (this.element.disabled || this.options.disabled) {
       this.disable()
     }
+
     this.set(this.value, false, true)
     this.enter('initialized')
 
@@ -161,6 +163,7 @@ class FontEditor extends Component {
       () => {
         addClass(that.classes.EXSIT, that.$wrap)
         removeClass(that.classes.WRITE, that.$wrap)
+        this.value.fontFamily === "" ? this.value.fontFamily = 'inherit' : null
         that.update()
         that.DROPDOWN.hide()
         return
@@ -215,6 +218,10 @@ class FontEditor extends Component {
 
   val(value, trigger = true) {
     if (typeof value === 'undefined') {
+      if(this.value.fontFamily === "") {
+        return ""
+      }
+
       return this.options.process.call(this, this.value)
     }
 
@@ -271,8 +278,6 @@ class FontEditor extends Component {
   }
 
   clear(update = true) {
-    this.value = {}
-
     if (update !== false) {
       this.textAlign.clear()
       this.fontStyle.clear()

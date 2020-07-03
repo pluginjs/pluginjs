@@ -5,7 +5,6 @@ import { parseHTML, query } from '@pluginjs/dom'
 export default class FontFamily {
   constructor(instance) {
     this.instance = instance
-    // this.values = instance.options.fontFamily.values
     this.defaultValue = instance.options.fontFamily.value
     this.initialize()
   }
@@ -33,21 +32,23 @@ export default class FontFamily {
     this.FONTPICKER = FontPicker.of(this.element, {
       ...options,
       keyboard: true,
-      clearable: false,
+      clearable: true,
       onChange: value => {
         if (this.instance.is('disabled')) {
           return
         }
-        this.instance.value.fontFamily = JSON.parse(value)
+  
+        this.instance.value.fontFamily = value ? JSON.parse(value) : "inherit"
       }
     })
   }
 
   set(value) {
-    this.FONTPICKER.set(value)
+    this.FONTPICKER.set(value && value !== "inherit" ? value : null)
   }
 
   clear() {
-    this.set(this.defaultValue)
+    this.instance.value.fontFamily = ""
+    this.set(null)
   }
 }
