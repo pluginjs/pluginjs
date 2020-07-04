@@ -37,18 +37,22 @@ export default class FontFamily {
         if (this.instance.is('disabled')) {
           return
         }
-  
-        this.instance.value.fontFamily = value ? JSON.parse(value) : "inherit"
+    
+        this.instance.value.fontFamily = value && value !== "" ? JSON.parse(value) : "inherit"
       }
     })
   }
 
+  update(val) {
+    this.instance.value.fontFamily = val
+  }
+
   set(value) {
     this.FONTPICKER.set(value && value !== "inherit" ? value : null)
+    this.update(value ? value : "")
   }
 
   clear() {
-    this.instance.value.fontFamily = ""
     this.set(null)
   }
 }

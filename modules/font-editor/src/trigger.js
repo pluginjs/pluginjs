@@ -51,10 +51,6 @@ export default class Trigger {
           color: 'danger',
           fn(resolve) {
             that.instance.clear(true)
-            compose(
-              removeClass(that.classes.EXSIT),
-              addClass(that.classes.WRITE)
-            )(that.instance.$wrap)
             resolve()
           }
         }
@@ -140,7 +136,7 @@ export default class Trigger {
       if (i === 'fontSize' || i === 'lineHeight') {
         return
       }
-      if (i === 'fontFamily') {
+      if (i === 'fontFamily' && v) {
         if(v === 'inherit') {
           this.$fillContentName.textContent = v
         } else {
@@ -166,11 +162,13 @@ export default class Trigger {
     // set sub
     this.$fillContentSub.textContent = `${this.instance.value.fontSize ||
       'inherit'} / ${this.instance.value.lineHeight || 'inherit'}`
-    if (
-      this.instance.value.fontFamily &&
-      this.instance.value.fontFamily !== 'inherit'
-    ) {
-      addClass(this.classes.EXSIT, this.instance.$wrap)
+      
+    if ( this.instance.value.fontFamily && this.instance.value.fontFamily !== "" ) {
+      addClass(this.instance.classes.EXSIT, this.instance.$wrap)
+      removeClass(this.instance.classes.WRITE, this.instance.$wrap)
+    } else {
+      removeClass(this.instance.classes.EXSIT, this.instance.$wrap)
+      addClass(this.instance.classes.WRITE, this.instance.$wrap)
     }
   }
 

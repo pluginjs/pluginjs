@@ -161,8 +161,6 @@ class FontEditor extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        addClass(that.classes.EXSIT, that.$wrap)
-        removeClass(that.classes.WRITE, that.$wrap)
         this.value.fontFamily === "" ? this.value.fontFamily = 'inherit' : null
         that.update()
         that.DROPDOWN.hide()
@@ -210,6 +208,7 @@ class FontEditor extends Component {
     const value = this.val()
     this.element.value = value
     this.TRIGGER.update()
+    
     if (trigger) {
       this.trigger(EVENTS.CHANGE, value)
       triggerNative(this.element, 'change')
@@ -278,17 +277,15 @@ class FontEditor extends Component {
   }
 
   clear(update = true) {
-    if (update !== false) {
-      this.textAlign.clear()
-      this.fontStyle.clear()
-      this.textTransform.clear()
-      this.textDecoration.clear()
-      this.fontWeight.clear()
-      this.lineHeight.clear()
-      this.fontSize.clear()
-      this.fontFamily.clear()
-      this.update()
-    }
+    this.textAlign.clear()
+    this.fontStyle.clear()
+    this.textTransform.clear()
+    this.textDecoration.clear()
+    this.fontWeight.clear()
+    this.lineHeight.clear()
+    this.fontSize.clear()
+    this.fontFamily.clear()
+    this.update(update)
   }
 
   getUnitNumber(value) {
