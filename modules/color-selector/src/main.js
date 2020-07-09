@@ -4,7 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hideElement } from '@pluginjs/styled'
-import { isNull } from '@pluginjs/is'
+import { isNull, isIE, isIE11 } from '@pluginjs/is'
 import {
   append,
   parseHTML,
@@ -223,8 +223,12 @@ class ColorSelector extends Component {
     })
 
     append(this.$panel, this.$wrap)
-    query(`.${this.classes.NAMESPACE}-collection`, this.$panel).remove()
-
+    if(isIE() || isIE11()) {
+      query(`.${this.classes.NAMESPACE}-collection`, this.$panel).removeNode(true);
+    } else {
+      query(`.${this.classes.NAMESPACE}-collection`, this.$panel).remove()
+    }
+   
     // init element
     this.$trigger = query(`.${this.classes.PANELTRIGGER}`, this.$panel)
     this.$container = query(`.${this.classes.PANELCONTAINER}`, this.$panel)
@@ -539,13 +543,22 @@ class ColorSelector extends Component {
       empty(this.element)
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
-      this.PREVIEW.remove()
+      if(isIE() || isIE11()) {
+        this.PREVIEW.removeNode(true);
+      } else {
+        this.PREVIEW.remove()
+      }
 
       if (this.options.clearable) {
         this.CLEARABLE.destroy()
       }
 
-      this.$panel.remove()
+      if(isIE() || isIE11()) {
+        this.$panel.removeNode(true);
+      } else {
+        this.$panel.remove()
+      }
+
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }

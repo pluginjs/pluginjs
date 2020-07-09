@@ -24,7 +24,9 @@ import {
   isNull,
   isPlainObject,
   isEmpty,
-  isObject
+  isObject,
+  isIE,
+  isIE11
 } from '@pluginjs/is'
 import Clearable from './clearable'
 import Filterable from './filterable'
@@ -43,7 +45,6 @@ import {
   parseHTML,
   closest,
   empty,
-  remove
 } from '@pluginjs/dom'
 import { deepClone, each, triggerNative } from '@pluginjs/utils'
 
@@ -409,14 +410,16 @@ class FontPicker extends Component {
   }
 
   buildDropdownContent() {
-    if (this.data.length > 1) {
-      if (this.SWITCHER && query('.pj-fontPicker-switcher',  this.getActions())) 
-        query('.pj-fontPicker-switcher',  this.getActions()).remove()
-        this.SWITCHER = new Switcher(this)
-    } else {
-      if (this.SWITCHER && query('.pj-fontPicker-switcher', this.getActions())) { 
+    if (this.SWITCHER && query('.pj-fontPicker-switcher', this.getActions())) { 
+      if(isIE() || isIE11()) {
+        query('.pj-fontPicker-switcher', this.getActions()).removeNode(true);
+      } else {
         query('.pj-fontPicker-switcher', this.getActions()).remove();
-      } 
+      }
+    } 
+
+    if (this.data.length > 1) {
+      this.SWITCHER = new Switcher(this)
     }
 
     if (this.options.filterable && !this.FILTERABLE) 
@@ -584,7 +587,13 @@ class FontPicker extends Component {
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$wrap)
       }
-      this.$wrap.remove()
+
+      if(isIE() || isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+
       removeClass(this.classes.ELEMENT, this.element)
       this.leave('initialized')
     }

@@ -3,7 +3,7 @@ import Marker from './marker'
 import Wheel from './wheel'
 import { compose } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { query, getData, setData, find, parseHTML, parent } from '@pluginjs/dom'
+import { query, getData, setData, find, parseHTML, parent, append } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 import { hasClass, removeClass, addClass } from '@pluginjs/classes'
 import Select from '@pluginjs/select'
@@ -75,13 +75,11 @@ class Gradient {
       )}' />><div/></div>`
     )
 
-    this.element.append(
-      this.$actionBar,
-      $selector,
-      this.$angle,
-      this.$wheel,
-      this.$remove
-    )
+    append(this.$actionBar, this.element)
+    append($selector, this.element)
+    append(this.$angle, this.element)
+    append(this.$wheel, this.element)
+    append(this.$remove, this.element)
 
     this.$view = query(`.${this.classes.GRADIENTBARVIEW}`, this.element)
     this.$selector = query(
@@ -191,7 +189,6 @@ class Gradient {
           },
           window.document
         )
-        // e.preventDefault()
         return false
       },
       this.$actionBar
@@ -201,7 +198,6 @@ class Gradient {
       this.instance.eventNameWithId('mouseup'),
       () => {
         removeEvent(this.instance.eventNameWithId('mousemove'), window.document)
-        // removeEvent('mouseup', window.document)
       },
       window.document
     )
@@ -220,18 +216,7 @@ class Gradient {
       },
       this.$angle
     )
-    // clear selected
-    // this.instance.$panel.on(this.instance.eventName('click'), (e) => {
-    //   const $this = $(e.target);
-    //   if (
-    //     $this.parent().hasClass(this.classes.PANELCONTAINER) ||
-    //     $this.parent().hasClass(this.classes.PANELTRIGGER)
-    //   ) {
-    //     removeClass(this.classes.MARKERACTIVE, this.instance.$marker);
-    //     removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove);
-    //     this.instance.enter('noSelectedMarker');
-    //   }
-    // });
+
     bindEvent(
       this.instance.eventName('click'),
       `.${this.classes.PANELTRIGGER}>i`,
@@ -263,7 +248,12 @@ class Gradient {
         const $marker = this.instance.$marker
         const index = getData('value', $marker).index
 
-        $marker.remove()
+        if(isIE() || isIE11()) {
+          $marker.removeNode(true);
+        } else {
+          $marker.remove()
+        }
+   
         removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
         this.markers.splice(index, 1)
         this.sort()
@@ -287,7 +277,12 @@ class Gradient {
       const $marker = this.instance.$marker
       const index = getData('value', $marker).index
 
-      $marker.remove()
+      if(isIE() || isIE11()) {
+        $marker.removeNode(true);
+      } else {
+        $marker.remove()
+      }
+
       removeClass(this.classes.GRADIENTREMOVEACTIVE, this.$remove)
       this.markers.splice(index, 1)
       this.sort()

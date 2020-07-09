@@ -4,7 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { getStyle, setStyle, hideElement } from '@pluginjs/styled'
-import { isString } from '@pluginjs/is'
+import { isString, isIE, isIE11 } from '@pluginjs/is'
 import {
   append,
   parseHTML,
@@ -265,10 +265,12 @@ class GradientPicker extends Component {
           if (this.COLORPICKER.HISTORY) {
             this.COLORPICKER.HISTORY.set(this.tempColor)
           }
+  
           this.GRADIENT.append(
             this.tempColor,
             this.getMarkerPercent(e.offsetX) / 100
           )
+
           this.GRADIENT.reorder()
           this.addMarker(e.offsetX)
         }
@@ -281,7 +283,6 @@ class GradientPicker extends Component {
       () => {
         this.leave('DownSelectedMarker')
         removeEvent(this.eventNameWithId('mousemove'), window.document)
-        // removeEvent('mouseup', window.document)
       },
       window.document
     )
@@ -316,7 +317,13 @@ class GradientPicker extends Component {
 
         const $marker = this.$marker
         const index = getData('value', $marker).index
-        $marker.remove()
+        
+        if(isIE() || isIE11()) {
+          $marker.removeNode(true);
+        } else {
+          $marker.remove()
+        }
+
         removeClass(this.classes.DELETEACTIVE, this.$delete)
         this.markers.splice(index, 1)
         this.GRADIENT.removeById(index)
@@ -342,7 +349,13 @@ class GradientPicker extends Component {
 
       const $marker = this.$marker
       const index = getData('value', $marker).index
-      $marker.remove()
+
+      if(isIE() || isIE11()) {
+        $marker.removeNode(true);
+      } else {
+        $marker.remove()
+      }
+
       removeClass(this.classes.DELETEACTIVE, this.$delete)
       this.markers.splice(index, 1)
       this.GRADIENT.removeById(index)
@@ -451,15 +464,18 @@ class GradientPicker extends Component {
     this.$panel = this.createEl('panel', {
       classes: this.classes
     })
-    append(this.$panel, this.$wrap)
 
+    append(this.$panel, this.$wrap)
     this.$handle = query(`.${this.classes.HANDLE}`, this.$panel)
-    // this.registerComponent()
     this.initHandle()
     if (!this.options.inline || this.options.showControl) {
       this.initControl()
     } else {
-      query(`.${this.classes.CONTROL}`, this.$panel).remove()
+      if(isIE() || isIE11()) {
+        query(`.${this.classes.CONTROL}`, this.$panel).removeNode(true);
+      } else {
+        query(`.${this.classes.CONTROL}`, this.$panel).remove()
+      }
     }
   }
 
@@ -470,13 +486,11 @@ class GradientPicker extends Component {
     this.$delete = this.createEl('delete', { classes: this.classes })
     const $selector = this.createEl('selector', { classes: this.classes })
 
-    this.$handle.append(
-      this.$actionBar,
-      $selector,
-      this.$angle,
-      this.$wheel,
-      this.$delete
-    )
+    append(this.$actionBar, this.$handle)
+    append($selector, this.$handle)
+    append(this.$angle, this.$handle)
+    append(this.$wheel, this.$handle)
+    append(this.$delete, this.$handle)
 
     this.$view = query(`.${this.classes.BARVIEW}`, this.$handle)
     this.$selector = query(`.${this.classes.MODE}>input`, this.$handle)
@@ -485,7 +499,6 @@ class GradientPicker extends Component {
       match.toUpperCase()
     )
     this.SELECT = Select.of(this.$selector, {
-      // value: this.mode.replace(/^.?/g, match => match.toUpperCase()),
       classes: {
         TRIGGER: '{namespace}-trigger pj-input pj-input-sm'
       },
@@ -517,7 +530,6 @@ class GradientPicker extends Component {
         onChangeColor: color => {
           if (this.$marker) {
             this.setGradientColor(color, getData('value', this.$marker).index)
-            // this.trigger(EVENTS.COLORCHANGE, color)
           }
         }
       }
@@ -813,18 +825,28 @@ class GradientPicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-
       this.clear()
       empty(this.element)
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
       if (!this.options.inline) {
-        this.PREVIEW.remove()
+        if(isIE() || isIE11()) {
+          this.PREVIEW.removeNode(true);
+        } else {
+          this.PREVIEW.remove()
+        }
+  
         if (this.options.clearable) {
           this.CLEARABLE.destroy()
         }
       }
-      this.$panel.remove()
+
+      if(isIE() || isIE11()) {
+        this.$panel.removeNode(true);
+      } else {
+        this.$panel.remove()
+      }
+    
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }

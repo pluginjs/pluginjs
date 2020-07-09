@@ -1,4 +1,4 @@
-import { isNumber } from '@pluginjs/is'
+import { isNumber, isIE, isIE11 } from '@pluginjs/is'
 import Hammer from 'hammerjs'
 import anime from 'animejs'
 import { compose } from '@pluginjs/utils'
@@ -25,6 +25,7 @@ class Responsive {
   }
 
   initialize() {
+
     this.index = isNumber(this.instance.current[0])
       ? this.instance.current[0]
       : 0
@@ -58,6 +59,7 @@ class Responsive {
     if (Breakpoints.is(`${this.breakpoint}-`)) {
       this.toggle(true)
     }
+
   }
 
   initBreakpoints() {
@@ -143,7 +145,7 @@ class Responsive {
     if (this.instance.current.length === 0) {
       this.instance.current = [0]
     }
-
+  
     this.initDistance()
 
     const classes = this.instance.classes
@@ -166,10 +168,19 @@ class Responsive {
       }
       return $li
     })
-    this.$dropdownList.append(...this.$dropdownItems)
+
+    if(isIE()||isIE11()) {
+      for(let i in this.$dropdownItems){
+        append(this.$dropdownItems[i], this.$dropdownList)
+      }
+    } else {
+      this.$dropdownList.append(...this.$dropdownItems)
+    }
+
     if (this.instance.options.theme) {
       addClass(this.instance.getThemeClass(), this.$dropdown)
     }
+
     const insertBeforeInstanceElement = dropdown =>
       compose(
         insertBefore(dropdown),
@@ -195,7 +206,12 @@ class Responsive {
       return
     }
 
-    this.$dropdown.remove()
+    if(isIE()||isIE11()) {
+      this.$dropdown.removeNode(true);
+    } else {
+      this.$dropdown.remove()
+    }
+
     this.instance.$panes.map(removeAttr('style'))
     compose(
       removeClass(this.instance.classes.RESPONSIVE),

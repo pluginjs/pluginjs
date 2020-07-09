@@ -2,7 +2,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import Video from '@pluginjs/video'
 import { setStyle } from '@pluginjs/styled'
 import { append, parseHTML } from '@pluginjs/dom'
-import { isString } from '@pluginjs/is'
+import { isString, isIE, isIE11 } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -59,7 +59,11 @@ class BgVideo extends Video {
   destroy() {
     if (this.is('initialized')) {
       if (this.options.overlay) {
-        this.$overlay.remove()
+        if(isIE()||isIE11()) {
+          this.$overlay.removeNode(true);
+        } else {
+          this.$overlay.remove()
+        }
       }
 
       removeClass(this.classes.WRAP, this.element)
@@ -67,7 +71,11 @@ class BgVideo extends Video {
 
     super.destroy()
 
-    this.$video.remove()
+    if(isIE()||isIE11()) {
+      this.$video.removeNode(true);
+    } else {
+      this.$video.remove()
+    }
   }
 }
 

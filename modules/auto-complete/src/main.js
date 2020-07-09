@@ -22,7 +22,9 @@ import {
   isNull,
   isPlainObject,
   isString,
-  isUndefined
+  isUndefined,
+  isIE,
+  isIE11
 } from '@pluginjs/is'
 import Clearable from './clearable'
 import Hint from './hint'
@@ -547,7 +549,11 @@ class AutoComplete extends Component {
       insertAfter(this.element, this.$wrap)
       removeClass(this.classes.INPUT, this.element)
 
-      this.$wrap.remove()
+      if(isIE()||isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
 
       this.leave('initialized')
     }

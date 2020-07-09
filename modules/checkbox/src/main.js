@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { isArray } from '@pluginjs/is'
+import { isArray, isIE, isIE11 } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import {
@@ -133,6 +133,10 @@ class Checkbox extends Component {
 
   get() {
     if (this.group) {
+      if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector;
+      }
+
       return this.$group
         .filter(el => el.matches(':checked'))
         .map(item => item.value)
@@ -256,7 +260,12 @@ class Checkbox extends Component {
       removeClass(this.classes.CHECKED, this.$wrap)
       if (this.is('wrapped')) {
         unwrap(this.element)
-        this.$icon.remove()
+
+        if(isIE()||isIE11()) {
+          this.$icon.removeNode(true);
+        } else {
+          this.$icon.remove()
+        }
       }
       this.unbind()
       this.leave('initialized')

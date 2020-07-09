@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { deepMerge, compose, curry, triggerNative } from '@pluginjs/utils'
-import { isString, isArray } from '@pluginjs/is'
+import { isString, isArray, isIE, isIE11 } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -301,7 +301,11 @@ class GalleryPicker extends Component {
     const target = children(this.$items)[this.indexed]
 
     if (target) {
-      target.remove()
+      if(isIE() || isIE11()) {
+        target.removeNode(true);
+      } else {
+        target.remove()
+      }
     }
   }
 
@@ -312,7 +316,13 @@ class GalleryPicker extends Component {
   clearImages() {
     const images = queryAll(`.${this.classes.ITEM}`, this.$panel)
     if (images.length) {
-      images.map(el => el.remove())
+      images.map(el => {
+        if(isIE() || isIE11()) {
+          el.removeNode(true);
+        } else {
+          el.remove()
+        }
+      })
     }
   }
 
@@ -379,11 +389,20 @@ class GalleryPicker extends Component {
     this.value.splice(index - 1, 1)
     this.count -= 1
     const eq = curry((index, arr) => arr[index])
-    compose(
-      eq(index),
-      children,
-      find(`.${this.classes.ITEMS}`)
-    )(this.$panel).remove()
+
+    if(isIE() || isIE11()) {
+      compose(
+        eq(index),
+        children,
+        find(`.${this.classes.ITEMS}`)
+      )(this.$panel).removeNode(true);
+    } else {
+      compose(
+        eq(index),
+        children,
+        find(`.${this.classes.ITEMS}`)
+      )(this.$panel).remove()
+    }
 
     if (this.$items.children.length > 1) {
       for (let i = 1; i <= this.value.length; i++) {
@@ -442,7 +461,13 @@ class GalleryPicker extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      this.$wrap.remove()
+      
+      if(isIE() || isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$wrap)
       }

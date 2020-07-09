@@ -38,7 +38,6 @@ class Wheel {
               this.instance.eventNameWithId('mousemove'),
               window.document
             )
-            // removeEvent(this.instance.eventName('mouseup'), window.document)
           },
           window.document
         )

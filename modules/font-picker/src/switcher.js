@@ -1,4 +1,5 @@
 import { prependTo, query, html } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import templateEngine from '@pluginjs/template'
 import Dropdown from '@pluginjs/dropdown'
 
@@ -51,6 +52,10 @@ export default class Switcher {
 
   destroy() {
     this.DROPDOWN.destroy()
-    this.element.remove()
+    if(isIE() || isIE11()) {
+      this.element.removeNode(true);
+    } else {
+      this.element.remove()
+    }
   }
 }

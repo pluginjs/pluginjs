@@ -4,7 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hideElement } from '@pluginjs/styled'
-import { isString, isNull } from '@pluginjs/is'
+import { isString, isNull, isIE, isIE11 } from '@pluginjs/is'
 import {
   append,
   prepend,
@@ -347,12 +347,20 @@ class ColorPicker extends Component {
     if (this.module.hex) {
       this.initHex()
     } else {
-      query(`.${this.classes.HEX}`, this.$panel).remove()
+      if(isIE()||isIE11()) {
+        query(`.${this.classes.HEX}`, this.$panel).removeNode(true);
+      } else {
+        query(`.${this.classes.HEX}`, this.$panel).remove()
+      }
     }
     if (this.module.history) {
       this.initHistory()
     } else {
-      query(`.${this.classes.HISTORY}`, this.$panel).remove()
+      if(isIE()||isIE11()) {
+        query(`.${this.classes.HISTORY}`, this.$panel).removeNode(true);
+      } else {
+        query(`.${this.classes.HISTORY}`, this.$panel).remove()
+      }
     }
 
     if (this.module.saturation) {
@@ -362,7 +370,11 @@ class ColorPicker extends Component {
     if (!this.options.inline || this.options.showControl) {
       this.initControl()
     } else {
-      query(`.${this.classes.CONTROL}`, this.$panel).remove()
+      if(isIE()||isIE11()) {
+        query(`.${this.classes.CONTROL}`, this.$panel).removeNode(true);
+      } else {
+        query(`.${this.classes.CONTROL}`, this.$panel).remove()
+      }
     }
   }
 
@@ -466,12 +478,23 @@ class ColorPicker extends Component {
       this.element.setAttribute('placeholder', '')
       unwrap(unwrap(this.element))
       if (!this.options.inline) {
-        this.PREVIEW.remove()
+        if(isIE()||isIE11()) {
+          this.PREVIEW.removeNode(true);
+        } else {
+          this.PREVIEW.remove()
+        }
+  
         if (this.options.clearable) {
           this.CLEARABLE.destroy()
         }
       }
-      this.$panel.remove()
+
+      if(isIE()||isIE11()) {
+        this.$panel.removeNode(true);
+      } else {
+        this.$panel.remove()
+      }
+
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }

@@ -172,7 +172,7 @@ $colorPicker-saturation-pointer-shadow: $box-shadow-base;
     }
 
     .#{$colorPicker}-hex-mode {
-      width: unset;
+      width: auto;
       margin-left: $colorPicker-hex-box-margin-left;
 
       .pj-select-label {

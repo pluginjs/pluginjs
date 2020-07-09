@@ -1,5 +1,6 @@
 import templateEngine from '@pluginjs/template'
 import { query } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { removeClass, addClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 import {
@@ -95,13 +96,21 @@ class Popover extends Tooltip {
     if (title) {
       this.setElementContent($title, title)
     } else if ($title) {
-      $title.remove()
+      if(isIE()||isIE11()) {
+        $title.removeNode(true);
+      } else {
+        $title.remove()
+      }
     }
 
     if (content) {
       this.setElementContent($content, content)
     } else if ($content) {
-      $content.remove()
+      if(isIE()||isIE11()) {
+        $content.removeNode(true);
+      } else {
+        $content.remove()
+      }
     }
 
     if (this.options.arrow) {

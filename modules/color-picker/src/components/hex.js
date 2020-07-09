@@ -1,5 +1,5 @@
 import { bindEvent } from '@pluginjs/events'
-import { query, parseHTML, attr } from '@pluginjs/dom'
+import { query, parseHTML, attr, append } from '@pluginjs/dom'
 import { compose, debounce } from '@pluginjs/utils'
 import { Color } from '@pluginjs/color'
 import Select from '@pluginjs/select'
@@ -49,7 +49,7 @@ class Hex {
         attr({ placeholder: this.instance.options.placeholder })
       )(this.$input)
 
-      this.element.append(this.$input)
+      append(this.$input, this.element)
 
       addClass(this.classes.HEXWIDTHINPUT, this.element)
     }
@@ -62,9 +62,10 @@ class Hex {
         </div>`
       )
 
-      this.element.append($selector, this.$opac)
+      append($selector, this.element)
+      append(this.$opac, this.element)
     } else {
-      this.element.append($selector)
+      append($selector, this.element)
     }
 
     this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
@@ -163,6 +164,10 @@ class Hex {
       this.color.toRGB().toUpperCase()
     ]
 
+    if (typeof NodeList.prototype.forEach !== 'function')  {
+      NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+
     this.element
       .querySelectorAll('.pj-dropdown-item')
       .forEach((value, index) => {
@@ -185,7 +190,6 @@ class Hex {
   update(value) {
     if (this.instance.COLOR.isValid(value)) {
       this.instance.setColor(value)
-      // this.updateColor(this.instance.color, this.instance.COLOR)
     }
   }
 }

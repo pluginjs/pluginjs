@@ -7,6 +7,7 @@ import {
   has,
   insertBefore
 } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { triggerNative } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -393,9 +394,14 @@ class BgPicker extends Component {
     if (this.is('initialized')) {
       this.unbind()
       this.leave('initialized')
-
       removeClass(this.classes.INPUT, this.element)
-      this.$wrap.remove()
+
+      if(isIE()||isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+   
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }

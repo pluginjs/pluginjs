@@ -1,16 +1,7 @@
-// import alpha from './alpha'
 import { bindEvent } from '@pluginjs/events'
-import {
-  query,
-  // getData,
-  // setData,
-  // find,
-  parseHTML
-  // parent
-  // queryAll
-} from '@pluginjs/dom'
+import { query, parseHTML, append } from '@pluginjs/dom'
 import { Color } from '@pluginjs/color'
-// import Dropdown from '@pluginjs/dropdown'
+
 import Select from '@pluginjs/select'
 class Hex {
   constructor(instance, element) {
@@ -33,8 +24,7 @@ class Hex {
       { label: this.HSL, value: 'HSL' },
       { label: this.RGB, value: 'RGB' }
     ]
-    // this.bind()
-
+    
     this.init()
   }
 
@@ -53,10 +43,11 @@ class Hex {
     const $selector = parseHTML(
       `<div class='${this.classes.HEXMODE}'><input type="text" /></div>`
     )
-    this.element.append($selector, this.$opac)
 
+    append($selector, this.element)
+    append(this.$opac, this.element)
     this.$el = query(`.${this.classes.HEXMODE}>input`, this.element)
-    // this.$selector = query(`.${this.classes.HEXMODE}>div`, this.element)
+
     this.SELECT = Select.of(this.$el, {
       value: this.classify,
       source: this.data,

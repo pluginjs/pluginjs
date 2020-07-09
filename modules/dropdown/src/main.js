@@ -104,7 +104,7 @@ class Dropdown extends Component {
     if (this.options.value) {
       this.selectByValue(this.options.value, false)
     }
-
+  
     if (this.options.keyboard) {
       this.KEYBOARD = new Keyboard(this)
     }
@@ -115,12 +115,10 @@ class Dropdown extends Component {
           classes: this.classes
         })
       )
-
       this.RESPONSIVE = new Responsive(this)
     }
 
     this.bind()
-
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }

@@ -1,6 +1,6 @@
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
-import { query } from '@pluginjs/dom'
+import { query, append } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 
 class Marker {
@@ -17,7 +17,7 @@ class Marker {
       this.instance.$gradient
     )
 
-    this.$wrap.append(this.$el)
+    append(this.$el, this.$wrap)
 
     this.wrapSize = parseInt(getStyle('width', this.$wrap), 10)
     this.elSize = parseInt(getStyle('width', this.$el), 10)

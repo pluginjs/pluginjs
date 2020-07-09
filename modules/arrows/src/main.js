@@ -13,7 +13,7 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-import { isString, isArray } from '@pluginjs/is'
+import { isString, isArray, isIE, isIE11 } from '@pluginjs/is'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -142,14 +142,21 @@ class Arrows extends Component {
 
   load(prev, next) {
     empty(this.element)
-
     this.buildPrev(prev)
     this.buildNext(next)
   }
 
   empty() {
     const arrows = Array.prototype.slice.call(this.element.children)
-    arrows.map(arrow => arrow.remove())
+    arrows.map(
+      arrow => {
+        if(isIE()||isIE11()) {
+          arrow.removeNode(true);
+        } else {
+          arrow.remove()
+        }
+      }
+    )
   }
 
   prev() {

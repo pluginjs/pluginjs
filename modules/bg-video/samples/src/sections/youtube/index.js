@@ -9,6 +9,10 @@ const instance = BgVideo.of(element, {
 })
 query('.api', root).addEventListener('click', event => {
   const el = event.target
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector;
+  }
+  
   if (!el.matches('[data-api]')) {
     return
   }

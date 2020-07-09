@@ -53,7 +53,6 @@ class Alpha {
               this.instance.eventNameWithId('mousemove'),
               window.document
             )
-            // removeEvent('mouseup', window.document)
           },
           window.document
         )

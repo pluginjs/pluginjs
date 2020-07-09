@@ -43,13 +43,10 @@ class Accordion extends Component {
   initialize() {
     this.initPointer()
     this.processHtml()
-
     this.ANIMATE = new Animate(this)
     this.RESPONSIVE = new Responsive(this)
-
     this.bind()
     this.open(this.current, false)
-
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }

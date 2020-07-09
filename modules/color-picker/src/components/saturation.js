@@ -1,4 +1,4 @@
-import { parseHTML } from '@pluginjs/dom'
+import { parseHTML, append } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, getStyle } from '@pluginjs/styled'
@@ -12,7 +12,7 @@ class Saturation {
       `<i class="${this.instance.classes.POINTER}"></i>`
     )
 
-    this.element.append(this.$pointer)
+    append(this.$pointer, this.element)
     this.size = parseInt(getStyle('width', this.$pointer), 10) / 2
 
     this.init()

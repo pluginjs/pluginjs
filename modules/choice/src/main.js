@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { isArray } from '@pluginjs/is'
+import { isArray, isIE, isIE11 } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { arrayEqual, deepMerge, compose, triggerNative } from '@pluginjs/utils'
 import {
@@ -66,11 +66,29 @@ class Choice extends Component {
     this.$element = this.element
     this.$options = queryAll('option', this.$element)
     const override = {}
+
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+
     if (this.$options.length !== 0) {
       override.data = {}
-      override.value = this.$element.multiple
+      
+      if(isIE()||isIE11()) {
+        const elements = queryAll('option[selected]', this.$element)
+        const value = []
+        for(let i in elements) {
+          value.push(elements[i].value)
+        }
+        override.value = this.$element.multiple
+        ? value
+        : this.$element.value
+      } else {
+        override.value = this.$element.multiple
         ? Array.from(this.$element.selectedOptions).map(el => el.value)
         : this.$element.value
+      }
+
       override.multiple = this.$element.multiple
       this.$options.forEach($item => {
         const value = $item.getAttribute('value')
@@ -88,6 +106,7 @@ class Choice extends Component {
 
     this.setupClasses()
     this.setupOptions(options)
+ 
     this.options = deepMerge({}, this.options, override)
     this.data = this.options.data || getData('data', this.$element)
     this.value = this.$element.value
@@ -103,9 +122,11 @@ class Choice extends Component {
         }
       }
     }
+
     if (this.$element.value) {
       this.val(this.value)
     }
+
     this.setupStates()
     this.initialize()
   }
@@ -164,8 +185,7 @@ class Choice extends Component {
       }
 
       setData('item', item, $item)
-
-      this.$wrap.append($item)
+      append($item, this.$wrap)
     })
 
     this.$items = queryAll('[data-value]', this.$wrap)
@@ -601,7 +621,11 @@ class Choice extends Component {
       }
 
       if (childrenMatchSelector('[data-value]', this.$dropdown).length === 0) {
-        this.$toggle.remove()
+        if(isIE()||isIE11()) {
+          this.$toggle.removeNode(true);
+        } else {
+          this.$toggle.remove()
+        }
       }
 
       if (this.is('popper')) {
@@ -661,7 +685,13 @@ class Choice extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      this.$wrap.remove()
+      
+      if(isIE()||isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+  
       showElement(this.$element)
       this.leave('initialized')
     }

@@ -1,6 +1,7 @@
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent } from '@pluginjs/events'
-import { query } from '@pluginjs/dom'
+import { query, append } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { hasClass } from '@pluginjs/classes'
 
 class Marker {
@@ -12,7 +13,7 @@ class Marker {
     this.percent = this.options.percent
     this.index = this.options.index
     this.$wrap = query(`.${this.instance.classes.BAR}`, this.instance.$panel)
-    this.$wrap.append(this.$el)
+    append(this.$el, this.$wrap)
 
     this.init()
   }
@@ -80,7 +81,11 @@ class Marker {
   }
 
   destroy() {
-    this.$el.remove()
+    if(isIE() || isIE11()) {
+      this.$el.removeNode(true);
+    } else {
+      this.$el.remove()
+    }
   }
 }
 

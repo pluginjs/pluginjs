@@ -1,6 +1,6 @@
 import { bindEvent } from '@pluginjs/events'
 import { addClass, hasClass } from '@pluginjs/classes'
-import { parseHTML, queryAll, parentWith } from '@pluginjs/dom'
+import { parseHTML, queryAll, parentWith, append } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 
 const colors = []
@@ -15,10 +15,11 @@ class History {
     this.build()
     this.bind()
   }
+
   build() {
     for (let i = 0; i < 18; i++) {
       const $item = `<span class='${this.classes.HISTORYITEM}'></span>`
-      this.element.append(parseHTML($item))
+      append(parseHTML($item), this.element)
     }
 
     this.$items = queryAll(`.${this.classes.HISTORYITEM}`, this.element)
@@ -49,6 +50,10 @@ class History {
       this.instance.eventName('click'),
       `.${this.classes.HISTORYITEM}`,
       ({ target }) => { /* eslint-disable-line */
+        if (!Element.prototype.matches) {
+          Element.prototype.matches = Element.prototype.msMatchesSelector;
+        }
+
         const el = target.matches(`.${this.classes.HISTORYITEM}`)
           ? target
           : parentWith(hasClass(this.classes.HISTORYITEM), target)

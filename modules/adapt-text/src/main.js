@@ -22,7 +22,6 @@ class AdaptText extends Component {
   constructor(element, options = {}) {
     super(element)
     this.setupOptions(options)
-
     const display = getStyle('display', this.element)
     this.inline = display === 'inline' || Boolean(display === 'inline-block')
     this.width = this.getWidth()

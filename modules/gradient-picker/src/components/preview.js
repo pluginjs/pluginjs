@@ -1,4 +1,4 @@
-import { isString } from '@pluginjs/is'
+import { isString, isIE, isIE11 } from '@pluginjs/is'
 import { query } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
@@ -32,7 +32,11 @@ class Preview {
   }
 
   remove() {
-    this.element.remove()
+    if(isIE() || isIE11()) {
+      this.element.removeNode(true);
+    } else {
+      this.element.remove()
+    }
   }
 }
 

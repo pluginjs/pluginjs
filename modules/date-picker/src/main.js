@@ -160,11 +160,11 @@ class DatePicker extends Component {
 
     // set base Views
     for (let i = 0; i < this.calendarsNum; i++) {
-      this.$picker.append(parseHTML(content))
+     append(parseHTML(content), this.$picker)
       this.views[i] = this.options.views[i] || 'days'
     }
     this.$picker.setAttribute('tabindex', '0')
-    this.$inputWrap.append(this.$picker)
+    append(this.$picker, this.$inputWrap)
 
     //
     this.$dropdown = wrapElement(
@@ -2109,9 +2109,16 @@ class DatePicker extends Component {
         removeClass(this.getThemeClass(), this.$element)
       }
       unwrap(this.$element)
-      this.$picker.remove()
-      this.$dropdown.remove()
-      this.$inputIcon.remove()
+
+      if(isIE() || isIE11()) {
+        this.$picker.removeNode(true);
+        this.$dropdown.removeNode(true);
+        this.$inputIcon.removeNode(true);
+      } else {
+        this.$picker.remove()
+        this.$dropdown.remove()
+        this.$inputIcon.remove()
+      }
 
       this.$element.className = this.firstClassName
       this.$element.value = ''
@@ -2134,7 +2141,13 @@ class DatePicker extends Component {
       }
     }
     this.unbind()
-    this.$picker.remove()
+
+    if(isIE() || isIE11()) {
+      this.$picker.removeNode(true);
+    } else {
+      this.$picker.remove()
+    }
+
     this.setupStates()
     this.initialize()
     return undefined    /* eslint-disable-line */
@@ -2144,11 +2157,13 @@ class DatePicker extends Component {
     if (this.is('disabled')) {
       return null
     }
+    
     for (const m in this.defaultOptions) {
       if ({}.hasOwnProperty.call(this.defaultOptions, m)) {
         this.options[m] = this.defaultOptions[m]
       }
     }
+
     if (typeof _options !== 'undefined') {
       for (const n in _options) {
         if ({}.hasOwnProperty.call(_options, n)) {
@@ -2156,8 +2171,15 @@ class DatePicker extends Component {
         }
       }
     }
+
     this.unbind()
-    this.$picker.remove()
+
+    if(isIE() || isIE11()) {
+      this.$picker.removeNode(true);
+    } else {
+      this.$picker.remove()
+    }
+
     this.setupStates()
     this.initialize()
     return undefined  /* eslint-disable-line */

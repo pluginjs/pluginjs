@@ -1,6 +1,6 @@
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { getStyle, setStyle } from '@pluginjs/styled'
-import { parseHTML } from '@pluginjs/dom'
+import { parseHTML, append } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 
 class Hue {
@@ -15,7 +15,7 @@ class Hue {
   }
 
   init() {
-    this.element.append(this.$pointer)
+    append(this.$pointer, this.element)
     this.size = parseInt(getStyle('height', this.$pointer), 10) / 2
     this.maxLength = parseInt(getStyle('height', this.element), 10)
     this.bind()

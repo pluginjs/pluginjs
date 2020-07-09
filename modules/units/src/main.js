@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import DROPDOWN from '@pluginjs/dropdown'
-import { isNull, isString, isUndefined, isArray, isObject } from '@pluginjs/is'
+import { isNull, isString, isUndefined, isArray, isObject, isIE, isIE11 } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
@@ -366,7 +366,13 @@ class Units extends Component {
 
       setStyle('display', null, this.element)
       removeClass(this.getThemeClass(), this.$wrap)
-      this.$input.remove()
+   
+      if(isIE()||isIE11()) {
+        this.$input.removeNode(true);
+      } else {
+        this.$input.remove()
+      }
+   
       unwrap(this.element)
       this.leave('initialized')
     }

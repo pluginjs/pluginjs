@@ -47,6 +47,10 @@ class Gallery extends Component {
       return
     }
 
+    if (typeof NodeList.prototype.forEach !== 'function')  {
+      NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+
     this.data =
       this.options.data === 'html' ? this.parseHtml() : this.options.data
     this.generate()
@@ -121,7 +125,6 @@ class Gallery extends Component {
   parseHtml() {
     const data = []
     const items = this.element.querySelectorAll(this.options.delegate)
-
     items.forEach(item => {
       let info = {
         orig: item.getAttribute('href'),

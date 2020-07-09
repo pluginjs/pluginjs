@@ -196,7 +196,13 @@ class Breadcrumb extends Component {
         target: false
       })
     } else {
-      children(this.DROPDOWN.$dropdown).map(item => item.remove())
+      children(this.DROPDOWN.$dropdown).map(item => {
+        if(isIE()||isIE11()) {
+          item.removeNode(true);
+        } else {
+          item.remove()
+        }
+      })
       this.DROPDOWN.appendItems(this.$data)
     }
 
@@ -260,7 +266,11 @@ class Breadcrumb extends Component {
     children(this.element).map(removeClass(this.classes.HIDDEN))
     addClass(this.classes.DISABLED, this.$dropdown)
     if (this.options.ellipsisText) {
-      this.$ellipsis.remove()
+      if(isIE()||isIE11()) {
+        this.$ellipsis.removeNode(true);
+      } else {
+        this.$ellipsis.remove()
+      }
     }
 
     this.trigger(EVENTS.DISABLE)
@@ -272,10 +282,19 @@ class Breadcrumb extends Component {
         removeClass(this.getThemeClass(), this.element)
       }
       children(this.element).map(removeClass(this.classes.HIDDEN))
-      this.$dropdown.remove()
+   
+      if(isIE()||isIE11()) {
+        this.$dropdown.removeNode(true);
+      } else {
+        this.$dropdown.remove()
+      }
 
       if (this.options.ellipsisText) {
-        this.$ellipsis.remove()
+        if(isIE()||isIE11()) {
+          this.$ellipsis.removeNode(true);
+        } else {
+          this.$ellipsis.remove()
+        }
       }
 
       this.leave('initialized')

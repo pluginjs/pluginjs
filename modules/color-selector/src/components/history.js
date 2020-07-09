@@ -4,10 +4,8 @@ import {
   parseHTML,
   queryAll,
   parentWith,
-  getData
-  // parent,
-  // query,
-  // children
+  getData,
+  append
 } from '@pluginjs/dom'
 import { getStyle, setStyle } from '@pluginjs/styled'
 
@@ -26,7 +24,7 @@ class History {
   build() {
     for (let i = 0; i < 18; i++) {
       const $item = `<span class='${this.classes.HISTORYITEM}'></span>`
-      this.element.append(parseHTML($item))
+      append(parseHTML($item, this.element))
     }
 
     this.$items = queryAll(`.${this.classes.HISTORYITEM}`, this.element)

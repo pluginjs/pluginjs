@@ -192,3 +192,21 @@ export const isPositive = n => {
   return isNumber(n) && n > 0
 }
 
+// is ie?
+export const isIE = () => {
+　if(!!window.ActiveXObject || "ActiveXObject" in window){
+　　return true; 
+　}else{
+　　return false;
+　} 
+}
+
+// is ie11?
+export const isIE11 = () => {
+　if((/Trident\/7\./).test(navigator.userAgent)){
+  　return true;
+  }else{
+  　return false;
+  } 
+}
+

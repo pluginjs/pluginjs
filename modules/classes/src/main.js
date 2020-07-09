@@ -1,5 +1,5 @@
 import { curry, curryWith } from '@pluginjs/utils'
-import { isElement } from '@pluginjs/is'
+import { isElement, isIE11, isIE } from '@pluginjs/is'
 
 export const hasClass = curry((classes, element) => {
   let has = true
@@ -16,12 +16,18 @@ export const indexOfClass = curry((className, element) =>
 export const addClass = curryWith((...args) => {
   let classes = args.slice(0, -1)
   const element = args.slice(-1)[0]
-
   if (isElement(element)) {
     if (classes.length === 1) {
       classes = classes[0].split(/\s+/g).filter(v => v !== '')
     }
-    element.classList.add(...classes)
+    
+    if(isIE()||isIE11()) {
+      for(let i in classes) {
+        element.classList.add(classes[i])
+      }
+    } else {
+      element.classList.add(...classes)
+    }
   }
 
   return element

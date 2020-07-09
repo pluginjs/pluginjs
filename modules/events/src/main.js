@@ -8,6 +8,18 @@ const supportEventListener = element => {
 }
 
 export const trigger = (event, ...args) => {
+  (function () {
+    if ( typeof window.CustomEvent === "function" ) return false;
+    function CustomEvent ( event, params ) {
+      params = params || { bubbles: false, cancelable: false, detail: null };
+      var evt = document.createEvent( 'CustomEvent' );
+      evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+      return evt;
+     }
+  
+    window.CustomEvent = CustomEvent;
+  })();
+  
   const element = args[args.length - 1]
   if (!supportEventListener(element)) {
     return
@@ -31,6 +43,7 @@ export const trigger = (event, ...args) => {
   if (namespace) {
     cusEvent.namespace = namespace
   }
+
   element.dispatchEvent(cusEvent)
 }
 
@@ -40,9 +53,13 @@ const getDelegator = (event, selector, callback, element) => {
     const currentTarget = e.currentTarget || element
     const applyArgs = args ? [e].concat(args) : [e]
     let result
-
+ 
     if (isString(selector)) {
       while (target && target !== currentTarget) {
+        if (!Element.prototype.matches) {
+          Element.prototype.matches = Element.prototype.msMatchesSelector;
+        }
+        
         if (target.matches(selector)) {
           result = callback.apply(target, applyArgs)
         }

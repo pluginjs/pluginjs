@@ -37,6 +37,10 @@ class Collapse extends Component {
     this.setupOptions(options)
     this.setupClasses()
 
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+    
     if (this.element.matches(`.${this.classes.COLLAPSED}`)) {
       this.options.collapsed = true
     }

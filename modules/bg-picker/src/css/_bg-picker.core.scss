@@ -123,8 +123,8 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
         display: none;
       }
 
-       .#{$bgPicker}-image-name,
-       .#{$bgPicker}-image-remove {
+      .#{$bgPicker}-image-name,
+      .#{$bgPicker}-image-remove {
         display: inline-block;
         cursor: pointer;
       }
@@ -134,10 +134,16 @@ $bgPicker-dropdown-zindex: $zindex-dropdown !default;
       .#{$bgPicker}-image-change {
         display: block;
       }
+
       .#{$bgPicker}-image-name {
         display: none;
       }
+
+      .#{$bgPicker}-image-remove {
+        display: none;
+      }
     }
+
     .#{$bgPicker}-image-changed-disabled {
       .#{$bgPicker}-image-name {
         pointer-events: none;

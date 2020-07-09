@@ -1,4 +1,4 @@
-import { parseHTML, getData } from '@pluginjs/dom'
+import { parseHTML, getData, append } from '@pluginjs/dom'
 import { hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, getStyle } from '@pluginjs/styled'
@@ -16,7 +16,7 @@ class Saturation {
   }
 
   init() {
-    this.element.append(this.$pointer)
+    append(this.$pointer, this.element)
     this.size = parseInt(getStyle('width', this.$pointer), 10) / 2
     this.maxLengthX = parseInt(getStyle('width', this.element), 10)
     this.maxLengthY = parseInt(getStyle('height', this.element), 10)

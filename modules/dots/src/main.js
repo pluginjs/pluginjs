@@ -150,15 +150,23 @@ class Dots extends Component {
     const item = this.getItemByValue(value)
 
     if (item) {
-      item.remove()
-
+      if(isIE() || isIE11()) {
+        item.removeNode(true);
+      } else {
+        item.remove()
+      }
+      
       this.dots = this._getDots()
     }
   }
 
   empty() {
     this.dots.forEach(dot => {
-      dot.remove()
+      if(isIE() || isIE11()) {
+        dot.removeNode(true);
+      } else {
+        dot.remove()
+      }
     })
   }
 

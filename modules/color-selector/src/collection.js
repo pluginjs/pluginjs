@@ -31,9 +31,10 @@ class Collection {
         manageText: this.instance.translate('manage')
       })
 
-      this.element.append($scheme, $manage)
+      append($scheme, this.element)
+      append($manage, this.element)
     } else {
-      this.element.append($scheme)
+      append($scheme, this.element)
     }
 
     // create favorite item

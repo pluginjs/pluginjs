@@ -4,6 +4,7 @@ import { compose, triggerNative } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { query, parentWith, parseHTML, insertAfter } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { setStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
 import {
@@ -298,7 +299,13 @@ class AudioPicker extends Component {
       }
       removeClass(`${this.classes.INPUT}`, this.element)
       this.element.value = ''
-      this.$wrap.remove()
+
+      if(isIE()||isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+     
       this.leave('initialized')
     }
 

@@ -110,6 +110,7 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
   display: flex;
 
   > .pj-dropdown {
+    position: static;
     max-width: 90%;
   }
 }

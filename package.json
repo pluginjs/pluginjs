@@ -69,5 +69,8 @@
       "git add"
     ]
   },
+  "dependencies": {
+    "@babel/polyfill": "7.10.4"
+  },
   "scope": "pluginjs"
 }

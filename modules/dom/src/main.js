@@ -1,5 +1,5 @@
 import { curry, curryWith, camelize } from '@pluginjs/utils'
-import { isString, isElement, isEmptyObject } from '@pluginjs/is'
+import { isString, isElement, isEmptyObject, isIE, isIE11 } from '@pluginjs/is'
 
 export const docReady = callback => {
   const readyState = document.readyState
@@ -84,6 +84,10 @@ export const children = (selector, el) => {
   }
 
   if (isString(selector)) {
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+
     return Array.from(el.children).filter(c => c.matches(selector))
   }
 
@@ -145,6 +149,10 @@ export const parents = (selector, el) => {
     last !== document.body.parentNode
   ) {
     last = last.parentNode
+    
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
 
     if (!selector || (selector && last.matches(selector))) {
       result.push(last)
@@ -166,9 +174,15 @@ export const parentWith = curry((fn, el) => {
 })
 
 export const closest = (selector, el) => {
+
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector;
+  }
+
   if (el.matches(selector)) {
     return el
   }
+
   return parentWith(el => el.matches(selector), el)
 }
 
@@ -356,7 +370,13 @@ export const detach = curry(el => {
   return el
 })
 
-export const remove = curry(el => el.remove())
+export const remove = curry(el => {
+  if(isIE()||isIE11()) {
+    el.removeNode(true);
+  } else {
+    el.remove()
+  }
+})
 
 export const empty = curry(el => {
   while (el.lastChild) {
@@ -399,7 +419,7 @@ export const append = curry((child, el) => {
   if (isString(child)) {
     el.insertAdjacentHTML('beforeend', child)
   } else {
-    el.append(child)
+    el.appendChild(child)
   }
 
   return el
@@ -409,7 +429,7 @@ export const appendTo = curry((child, el) => {
   if (isString(child)) {
     child = parseHTML(child)
   }
-  el.append(child)
+  el.appendChild(child)
 
   return child
 })
@@ -418,6 +438,7 @@ export const prepend = curry((child, el) => {
   if (isString(child)) {
     el.insertAdjacentHTML('afterbegin', child)
   } else {
+    prependPolyfill()
     el.prepend(child)
   }
 
@@ -428,6 +449,8 @@ export const prependTo = curry((child, el) => {
   if (isString(child)) {
     child = parseHTML(child)
   }
+
+  prependPolyfill()
   el.prepend(child)
 
   return child
@@ -525,12 +548,20 @@ export const unwrap = curryWith((selector, el) => {
 
   const parentEl = el.parentNode
 
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector;
+  }
+
   if (!selector || parentEl.matches(selector)) {
     children(parentEl).forEach(child => {
       insertBefore(child, parentEl)
     })
 
-    parentEl.remove()
+    if(isIE()||isIE11()) {
+      parentEl.removeNode(true);
+    } else {
+      parentEl.remove()
+    }
   }
   return el
 }, isElement)
@@ -541,7 +572,32 @@ export const replace = curry((newContent, el) => {
   }
 
   el.parentNode.replaceChild(newContent, el)
-  el.remove()
+
+  if(isIE()||isIE11()) {
+    el.removeNode(true);
+  } else {
+    el.remove()
+  }
 
   return newContent
 })
+
+const prependPolyfill = () => {
+  (function (arr) {
+    arr.forEach(function (item) {
+        item.prepend = item.prepend || function () {
+            var argArr = Array.prototype.slice.call(arguments),
+                docFrag = document.createDocumentFragment();
+            
+            argArr.forEach(function (argItem) {
+                var isNode = argItem instanceof Node;
+                docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+            });
+            
+            this.insertBefore(docFrag, this.firstChild);
+        };
+    });
+  })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+}
+
+
