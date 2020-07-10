@@ -55,6 +55,10 @@ class Grids extends Component {
   initialize() {
     addClass(this.classes.NAMESPACE, this.element)
 
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+    
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
