@@ -255,6 +255,21 @@ class Tree extends Component {
 
   click(e) {
     const target = e.target
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+
+    if (!Element.prototype.closest)
+      Element.prototype.closest = function(s) {
+        var el = this;
+        if (!document.documentElement.contains(el)) return null;
+        do {
+            if (el.matches(s)) return el;
+            el = el.parentElement;
+        } while (el !== null);
+        return null;
+    };
+
     const nodeEl = target.closest('li')
     if (!nodeEl) {
       return
@@ -424,7 +439,11 @@ class Tree extends Component {
   remove(position) {
     const node = this.get(position)
     if (node) {
-      node.remove()
+      if(isIE() || isIE11()) {
+        node.removeNode(true);
+      } else {
+        node.remove()
+      }
     }
     return this
   }

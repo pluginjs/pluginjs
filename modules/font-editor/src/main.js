@@ -2,6 +2,7 @@ import Component from '@pluginjs/component'
 import { compose, deepMerge, triggerNative } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { parseHTML, query, insertAfter, insertBefore } from '@pluginjs/dom'
+import { isIE11, isIE } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hideElement, showElement } from '@pluginjs/styled'
@@ -381,7 +382,13 @@ class FontEditor extends Component {
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }
-      this.$wrap.remove()
+ 
+      if(isIE() || isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+
       showElement(removeClass(`${this.classes.NAMESPACE}-input`, this.element))
       this.element.value = ''
       this.leave('initialized')

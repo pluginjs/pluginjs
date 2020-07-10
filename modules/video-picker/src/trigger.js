@@ -2,7 +2,7 @@ import { compose } from '@pluginjs/utils'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events' // , bindEventOnce
-import { parseHTML, query } from '@pluginjs/dom'
+import { parseHTML, query, append } from '@pluginjs/dom'
 import PopDialog from '@pluginjs/pop-dialog'
 
 export default class Trigger {
@@ -41,8 +41,10 @@ export default class Trigger {
       })
     )
 
-    this.instance.$wrap.append(this.element)
-    this.element.append(this.$empty, this.$fill, this.$triggerAction)
+    append(this.element, this.instance.$wrap)
+    append(this.$empty, this.element)
+    append(this.$fill, this.element)
+    append(this.$triggerAction, this.element)
 
     this.$edit = query(`.${this.classes.EDITOR}`, this.instance.$wrap)
 

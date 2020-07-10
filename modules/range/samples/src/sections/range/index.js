@@ -40,6 +40,10 @@ const instances = {
 
 query('#range .api').addEventListener('click', event => {
   const el = event.target
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector;
+  }
+  
   if (!el.matches('[data-api]')) {
     return
   }

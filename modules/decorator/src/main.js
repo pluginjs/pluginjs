@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import register from './register'
 import eventable from './eventable'
 import stateable from './stateable'

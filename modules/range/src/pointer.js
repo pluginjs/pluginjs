@@ -2,6 +2,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, offset as getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { appendTo } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { events as EVENTS } from './constant'
 
 class Pointer {
@@ -165,7 +166,12 @@ class Pointer {
 
   destroy() {
     removeEvent(this.instance.eventNameWithId(), window)
-    this.element.remove()
+
+    if(isIE() || isIE11()) {
+      this.element.removeNode(true);
+    } else {
+      this.element.remove()
+    }
   }
 }
 

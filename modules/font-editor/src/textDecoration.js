@@ -1,5 +1,5 @@
 import template from '@pluginjs/template'
-import { parseHTML, queryAll } from '@pluginjs/dom'
+import { parseHTML, queryAll, append } from '@pluginjs/dom'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 import Tooltip from '@pluginjs/tooltip'
@@ -23,11 +23,12 @@ export default class TextDecoration {
       lineThrough: this.instance.translate('lineThrough')
     })
     this.$wrap = []
-    for (let i = 0; i < parseHTML(html).children.length; i++) {
-      this.$wrap.push(parseHTML(html).children[i])
-    }
-    this.instance.$typoDecorations.append(...this.$wrap)
+    this.$wrap.push(parseHTML(html))
 
+    for(let i in this.$wrap) {
+      append(this.$wrap[i], this.instance.$typoDecorations)
+    }
+  
     this.$items = queryAll(
       `.${this.instance.classes.TEXTDECORATION}`,
       this.instance.$typoDecorations

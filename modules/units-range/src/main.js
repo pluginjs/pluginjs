@@ -3,7 +3,7 @@ import Units from '@pluginjs/units'
 import { prependTo, wrap, unwrap } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { deepMerge } from '@pluginjs/utils'
-import { isObject } from '@pluginjs/is'
+import { isObject, isIE11, isIE } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -134,7 +134,13 @@ class UnitsRange extends Units {
   destroy() {
     if (this.is('initialized')) {
       this.RANGE.destroy()
-      this.$range.remove()
+
+      if(isIE() || isIE11()) {
+        this.$range.removeNode(true);
+      } else {
+        this.$range.remove()
+      }
+
       unwrap(this.$wrap)
     }
 

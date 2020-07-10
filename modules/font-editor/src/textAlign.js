@@ -24,21 +24,20 @@ export default class TextAlign {
 
   initialize() {
     const that = this
-
     const html = template.compile(this.instance.options.textAlign.template())({
       classes: this.instance.classes,
       textStart: this.instance.translate('textStart'),
       textEnd: this.instance.translate('textEnd'),
       textCenter: this.instance.translate('textCenter')
     })
+
     this.$wrap = parseHTML(html)
-
     this.instance.$typoDecorations = this.$wrap
-
     this.$items = queryAll(
       `.${this.instance.classes.TEXTALIGN}`,
       this.instance.$typoDecorations
     )
+
     for (let i = 0; i < this.$items.length; i++) {
       Tooltip.of(this.$items[i], {
         trigger: 'hover',
@@ -46,8 +45,8 @@ export default class TextAlign {
         placement: 'bottom'
       })
     }
+
     this.values.forEach((value, key) => {
-      // that.$items[key].dataset.textAlign = value
       setData('textAlign', value, that.$items[key])
     })
 
@@ -71,11 +70,11 @@ export default class TextAlign {
         if (value === this.values[i]) {
           this.instance.value.textAlign = value
           addClass(this.instance.classes.ACTIVE, this.$items[i])
-
           found = true
         }
       }
     }
+
     if (!found) {
       this.set(this.defaultValue)
     }

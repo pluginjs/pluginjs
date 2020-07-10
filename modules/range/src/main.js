@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { isString, isNumeric } from '@pluginjs/is'
+import { isString, isNumeric, isIE, isIE11 } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { offset as getOffset, setStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
@@ -335,7 +335,13 @@ class Range extends Component {
       this.unbind()
 
       this.pointers.forEach(pointer => pointer.destroy())
-      this.$control.remove()
+
+      if(isIE() || isIE11()) {
+        this.$control.removeNode(true);
+      } else {
+        this.$control.remove()
+      }
+ 
       if (this.options.input) {
         removeClass(this.classes.INPUT, this.element)
       } else {

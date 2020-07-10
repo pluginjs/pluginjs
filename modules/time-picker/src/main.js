@@ -300,7 +300,13 @@ class TimePicker extends Component {
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$wrap)
       }
-      this.$wrap.remove()
+
+      if(isIE() || isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+      
       removeClass(this.classes.INPUT, this.element)
       this.leave('initialized')
     }

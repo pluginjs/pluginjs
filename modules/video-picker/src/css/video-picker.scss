@@ -172,10 +172,7 @@ $videoPicker-poster-with: 190px;
       color: $videoPicker-active-color;
       cursor: pointer;
     }
-    .pj-icon {
-      display: none
-    }
-
+    
     &-name {
       width: $videoPicker-poster-with;
       overflow: hidden;
@@ -207,29 +204,19 @@ $videoPicker-poster-with: 190px;
       }
     }
   }
+
   &-local-url {
     position: relative;
     .#{$videoPicker}-local-url-add {
       color: $videoPicker-active-color;
       cursor: pointer;
     }
+
     .#{$videoPicker}-local-url-delete {
       color: $videoPicker-poster-delete-color;
     }
-
-    &-delete {
-      position: absolute;
-      right: 5px;
-      display: none !important;
-    }
-
-
   }
-  &-local-url-selected {
-    .#{$videoPicker}-local-url-delete {
-      display: block !important;
-    }
-  }
+
   &-warning {
     animation: warning 400ms ease both;
   }

@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
-import { isString, isBoolean } from '@pluginjs/is'
-import { wrap, parseHTML, unwrap } from '@pluginjs/dom'
+import { isString, isBoolean, isIE, isIE11 } from '@pluginjs/is'
+import { wrap, parseHTML, unwrap, append } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { getWidth, setStyle, getStyle } from '@pluginjs/styled'
 import { triggerNative } from '@pluginjs/utils'
@@ -59,14 +59,13 @@ class Toggle extends Component {
 
     this.$inner = parseHTML(`<div class="${this.classes.INNER}"></div>`)
     this.$on = parseHTML(`<div class="${this.classes.ON}">${this.onText}</div>`)
-    this.$off = parseHTML(
-      `<div class="${this.classes.OFF}">${this.offText}</div>`
-    )
+    this.$off = parseHTML(`<div class="${this.classes.OFF}">${this.offText}</div>`)
     this.$handle = parseHTML(`<div class="${this.classes.HANDLE}"></div>`)
 
-    this.$inner.append(this.$on, this.$handle, this.$off)
-
-    this.$wrap.append(this.$inner)
+    append(this.$on, this.$inner)
+    append(this.$handle, this.$inner)
+    append(this.$off, this.$inner)
+    append(this.$inner, this.$wrap)
 
     this.initIcon()
 
@@ -77,14 +76,14 @@ class Toggle extends Component {
       )
     }
     // get components width
-
     const borderWidth = 3
     const wrapWidth = parseInt(getStyle('width', this.$wrap).replace(/px|pt|em/gi, ''), 0)
-    const wrapClientWidth = wrapWidth - 2 * borderWidth
-   
-    this.distance =
-      wrapClientWidth -
-      parseInt(getStyle('width', this.$handle).replace(/px|pt|em/gi, ''), 0)
+    let wrapClientWidth = wrapWidth - 2 * borderWidth
+
+    if(isIE() || isIE11()) 
+    wrapClientWidth = wrapWidth
+    
+    this.distance = wrapClientWidth - parseInt(getStyle('width', this.$handle).replace(/px|pt|em/gi, ''), 0)
 
     if (!this.distance) {
       const clientWidth = 

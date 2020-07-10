@@ -10,7 +10,7 @@ import {
   getHeight
 } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events' // , bindEventOnce
-import { parseHTML, query, closest, wrap } from '@pluginjs/dom'
+import { parseHTML, query, closest, wrap, append } from '@pluginjs/dom'
 import Video from '@pluginjs/video'
 import Dropdown from '@pluginjs/dropdown'
 import Select from '@pluginjs/select'
@@ -108,7 +108,7 @@ class VideoPicker extends Component {
         classes: this.classes
       })
     )
-    this.$wrap.append(this.$dropdown)
+    append(this.$dropdown, this.$wrap)
     // set Aspect Ratio
     const sourceData = []
     this.options.sources.forEach((v, i) => {
@@ -130,7 +130,8 @@ class VideoPicker extends Component {
 
     // create priview
     this.$preview = parseHTML(`<div class='${this.classes.PREVIEW}'></div>`)
-    this.$preview.append(this.$action, this.$videoPreview)
+    append(this.$action, this.$preview)
+    append(this.$videoPreview, this.$preview)
     // create components
     this.$source = parseHTML(
       `<div class='${this.classes.FIELD}'><span class='${
@@ -214,15 +215,13 @@ class VideoPicker extends Component {
       hideOnSelect: false,
       onShow: () => {
         if (!this.DROPDOWN.is('builded')) {
-          this.$dropdown.append(
-            this.$preview,
-            this.$source,
-            this.$videoUrlContent,
-            this.$localUrlContent,
-            this.$ratioContent,
-            this.$posterContent,
-            this.$btnAction
-          )
+          append(this.$preview, this.$dropdown)
+          append(this.$source, this.$dropdown)
+          append(this.$videoUrlContent, this.$dropdown)
+          append(this.$localUrlContent, this.$dropdown)
+          append(this.$ratioContent, this.$dropdown)
+          append(this.$posterContent, this.$dropdown)
+          append(this.$btnAction, this.$dropdown)
         }
       },
       onHided: () => {

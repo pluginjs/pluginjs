@@ -13,12 +13,13 @@ import {
   empty,
   insertAfter,
   insertBefore,
-  getData
+  getData,
+  append
 } from '@pluginjs/dom'
 import { arrayEqual, each, triggerNative } from '@pluginjs/utils'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { hasClass, addClass, removeClass } from '@pluginjs/classes'
-import { isArray } from '@pluginjs/is'
+import { isArray, isIE11, isIE } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import Sortable from 'sortablejs'
 import {
@@ -218,7 +219,7 @@ class List extends Component {
     empty(this.$list)
     this.data.forEach(item => {
       const $item = this.buildItem(item)
-      this.$list.append($item)
+      append($item, this.$list)
       this.initActions(item, $item)
     })
   }
@@ -310,8 +311,12 @@ class List extends Component {
     const $item = this.getItem(index)
 
     if ($item) {
-      $item.remove()
-
+      if(isIE() || isIE11()) {
+        $item.removeNode(true);
+      } else {
+        $item.remove()
+      }
+    
       const item = this.data[index]
       this.data.splice(index, 1)
 
@@ -332,7 +337,7 @@ class List extends Component {
 
     if (index === this.data.length || this.data.length === 0) {
       this.data.push(item)
-      this.$list.append($item)
+      append($item, this.$list)
     } else {
       this.data.splice(index, 0, item)
       const $currentItem = this.getItem(index)
@@ -390,7 +395,12 @@ class List extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
-      this.$list.remove()
+      if(isIE() || isIE11()) {
+        this.$list.removeNode(true);
+      } else {
+        this.$list.remove()
+      }
+
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$wrapper)
       }

@@ -5,6 +5,7 @@ import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { parseHTML, query, setData, getData, append } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { getUID, deepMerge } from '@pluginjs/utils'
 import {
   register,
@@ -562,7 +563,11 @@ class Tooltip extends Component {
       this.unbind()
 
       if (this.$tip) {
-        this.$tip.remove()
+        if(isIE() || isIE11()) {
+          this.$tip.removeNode(true);
+        } else {
+          this.$tip.remove()
+        }
       }
 
       this._timeout = null

@@ -82,6 +82,7 @@ export default class LineHeight {
       inlineUnit = val.split(/\d/g)
       inlineUnit = inlineUnit[inlineUnit.length - 1]
     }
+    
     this.value = inlineVal || this.instance.options.lineHeight.value
     this.unit = inlineUnit || this.instance.options.lineHeight.unit
 

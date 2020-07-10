@@ -173,8 +173,8 @@ $videoPicker-icon: $pj-icon-play-circle !default;
     }
   }
 
-  &-local-url,
-  &-poster {
+  .#{$videoPicker}-local-url,
+  .#{$videoPicker}-poster {
     &-change,
     &-name,
     &-content,
@@ -187,17 +187,14 @@ $videoPicker-icon: $pj-icon-play-circle !default;
       .#{$videoPicker}-poster-add {
         display: none;
       }
-      .#{$videoPicker}-poster-delete {
-        position: absolute;
-        right: $videoPicker-poster-delete-right;
-      }
 
       .#{$videoPicker}-local-url-content,
       .#{$videoPicker}-local-url-delete,
       .#{$videoPicker}-poster-name,
       .#{$videoPicker}-poster-delete {
-        display: inline-block !important;
+        display: inline-block;
       }
+
       .#{$videoPicker}-local-url-content {
         width: $videoPicker-local-url-content-width;
         overflow: hidden;
@@ -210,8 +207,13 @@ $videoPicker-icon: $pj-icon-play-circle !default;
       .#{$videoPicker}-poster-change {
         display: inline-block;
       }
+
+      .#{$videoPicker}-poster-delete {
+        display: none;
+      }
+
       .#{$videoPicker}-poster-name {
-        display: none !important;
+        display: none;
       }
     }
 

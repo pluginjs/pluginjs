@@ -1,4 +1,5 @@
 import { insertAfter } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { bindEvent } from '@pluginjs/events'
 import { addClass } from '@pluginjs/classes'
 
@@ -21,6 +22,10 @@ export default class Clearable {
   }
 
   destroy() {
-    this.element.remove()
+    if(isIE() || isIE11()) {
+      this.element.removeNode(true);
+    } else {
+      this.element.remove()
+    }
   }
 }
