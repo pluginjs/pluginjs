@@ -82,6 +82,21 @@ class Tree extends Component {
   }
 
   bind() {
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+
+    if (!Element.prototype.closest)
+      Element.prototype.closest = function(s) {
+        var el = this;
+        if (!document.documentElement.contains(el)) return null;
+        do {
+            if (el.matches(s)) return el;
+            el = el.parentElement;
+        } while (el !== null);
+        return null;
+    };
+    
     bindEvent(this.eventName('click'), this.click.bind(this), this.element)
     // this.$element.on({ click: $.proxy(this.click, this) })
 
@@ -255,25 +270,12 @@ class Tree extends Component {
 
   click(e) {
     const target = e.target
-    if (!Element.prototype.matches) {
-      Element.prototype.matches = Element.prototype.msMatchesSelector;
-    }
-
-    if (!Element.prototype.closest)
-      Element.prototype.closest = function(s) {
-        var el = this;
-        if (!document.documentElement.contains(el)) return null;
-        do {
-            if (el.matches(s)) return el;
-            el = el.parentElement;
-        } while (el !== null);
-        return null;
-    };
-
     const nodeEl = target.closest('li')
+
     if (!nodeEl) {
       return
     }
+
     const node = getData('node', nodeEl)
 
     if (target.classList.contains(this.classes.TOGGLER)) {

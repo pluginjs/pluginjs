@@ -10,7 +10,7 @@ import {
   insertAfter,
   getData
 } from '@pluginjs/dom'
-import { isObject } from '@pluginjs/is'
+import { isObject, isIE, isIE11 } from '@pluginjs/is'
 
 const FilterFromData = (dataAttr, value = true, elements) =>
   elements.filter(item => {
@@ -117,10 +117,26 @@ class List {
   bind() {
     const that = this
     const instance = this.instance
+    
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+
+    if (!Element.prototype.closest)
+      Element.prototype.closest = function(s) {
+        var el = this;
+        if (!document.documentElement.contains(el)) return null;
+        do {
+            if (el.matches(s)) return el;
+            el = el.parentElement;
+        } while (el !== null);
+        return null;
+    };
 
     this.getItems()
     this.getNext()
     this.getPrev()
+
     bindEvent(
       'click',
       `.${instance.classes.ITEM}`,
@@ -209,22 +225,38 @@ class List {
       )[0]
       if (this.hasPrev()) {
         if (this.prev) {
-          this.prev.remove()
+          if(isIE() || isIE11()) {
+            this.prev.removeNode(true);
+          } else {
+            this.prev.remove()
+          } 
         }
         this.prev = parseHTML(this.generatePrev())
         insertAfter(this.prev, items[0])
       } else if (this.prev) {
-        this.prev.remove()
+        if(isIE() || isIE11()) {
+          this.prev.removeNode(true);
+        } else {
+          this.prev.remove()
+        }
       }
 
       if (this.hasNext()) {
         if (this.next) {
-          this.next.remove()
+          if(isIE() || isIE11()) {
+            this.next.removeNode(true);
+          } else {
+            this.next.remove()
+          }
         }
         this.next = parseHTML(this.generateNext())
         insertBefore(this.next, items[items.length - 1])
       } else if (this.next) {
-        this.next.remove()
+        if(isIE() || isIE11()) {
+          this.next.removeNode(true);
+        } else {
+          this.next.remove()
+        }
       }
 
       newPages.forEach(page => {
@@ -252,7 +284,11 @@ class List {
       oldPages.forEach(page => {
         if (newPages.indexOf(page) === -1) {
           const item = FilterFromData(this.options.itemAttr, page, items)
-          item[0].remove()
+          if(isIE() || isIE11()) {
+            item[0].removeNode(true);
+          } else {
+            item[0].remove()
+          }
         }
       })
 

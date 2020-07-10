@@ -57,6 +57,11 @@ export default class Switcher {
     if (this.DROPDOWN) {
       this.DROPDOWN.destroy()
     }
-    this.element.remove()
+
+    if(isIE() || isIE11()) {
+      this.element.removeNode(true);
+    } else {
+      this.element.remove()
+    }
   }
 }

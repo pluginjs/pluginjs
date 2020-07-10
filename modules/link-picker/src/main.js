@@ -1,5 +1,6 @@
 import Component from '@pluginjs/component'
 import { deepMerge, compose } from '@pluginjs/utils'
+import { isIE, isIE11 } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import {
   wrap,
@@ -7,6 +8,8 @@ import {
   unwrap,
   query,
   parent,
+  append,
+  prepend,
   parseHTML,
   insertAfter
 } from '@pluginjs/dom'
@@ -138,15 +141,19 @@ class LinkPicker extends Component {
       insertAfter(el, this.element)
     )
 
-    this.$fill.append(this.$action)
-    this.$dropdown.append(this.$dropdownAction)
-    this.$dropdown.prepend(this.type.$wrap)
+    append(this.$action, this.$fill)
+    append(this.$dropdownAction, this.$dropdown)
+    append(this.$action, this.$dropdown)
+    prepend(this.type.$wrap, this.$dropdown)
     insertAfter(this.internal.$wrap, this.type.$wrap)
     insertAfter(this.target.$wrap, this.internal.$wrap)
     insertAfter(this.external.$wrap, this.internal.$wrap)
     insertAfter(this.title.$wrap, this.target.$wrap)
-    this.$trigger.append(this.$empty, this.$fill)
-    this.$wrap.append(this.$trigger, this.$dropdown)
+    append(this.$empty, this.$trigger)
+    append(this.$fill, this.$trigger)
+    append(this.$trigger, this.$wrap)
+    append(this.$dropdown, this.$wrap)
+
     if (this.value.type === 'internal') {
       addClass(
         `${this.classes.TYPESHOW}`,
@@ -454,8 +461,15 @@ class LinkPicker extends Component {
       }
       unwrap(this.element)
       removeClass(this.classes.INPUT, this.element)
-      this.$trigger.remove()
-      this.$dropdown.remove()
+
+      if(isIE() || isIE11()) {
+        this.$trigger.removeNode(true);
+        this.$dropdown.removeNode(true);
+      } else {
+        this.$trigger.remove()
+        this.$dropdown.remove()
+      }
+
       this.leave('initialized')
     }
 

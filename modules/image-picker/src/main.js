@@ -4,6 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { query, parentWith, parseHTML, insertAfter } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { setStyle } from '@pluginjs/styled'
 import PopDialog from '@pluginjs/pop-dialog'
 import Modal from '@pluginjs/modal'
@@ -54,6 +55,10 @@ class ImagePicker extends Component {
     // build dom
     this.createHtml()
 
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+    
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
@@ -334,7 +339,13 @@ class ImagePicker extends Component {
 
       removeClass(`${this.classes.INPUT}`, this.element)
       this.element.value = ''
-      this.$wrap.remove()
+
+      if(isIE() || isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+
       this.leave('initialized')
     }
 

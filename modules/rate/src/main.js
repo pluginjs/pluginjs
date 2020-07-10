@@ -45,7 +45,7 @@ class Rate extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass, this.element)
     }
-
+ 
     this.setupStates()
     this.initialize()
   }
@@ -62,17 +62,17 @@ class Rate extends Component {
     } else {
       this.setSvgStyle()
     }
-
+  
     if (isNumber(this.options.value)) {
       this.updateUnit(this.options.value)
     }
-
+ 
     if (!this.options.readonly) {
       this.bind()
     } else {
       addClass(this.classes.DISABLED, this.range)
     }
-
+  
     hideElement(this.element)
 
     insertAfter(this.range, this.element)
@@ -207,11 +207,10 @@ class Rate extends Component {
     if (!this.svgIcon) {
       const unitNub = this.correctScore(Number(score))
       const fullUnit = Math.floor(unitNub)
-
+    
       this.clearIconColor()
-
       this.resetUnit(fullUnit)
-
+     
       if (unitNub > fullUnit) {
         this.resetHalfUnit(fullUnit)
       }
@@ -248,7 +247,9 @@ class Rate extends Component {
   }
 
   removerColor(element) {
+ 
     removeClass(this.defaulColor, element)
+
     addClass(this.classes.CLEAR, element)
   }
 
@@ -259,13 +260,15 @@ class Rate extends Component {
 
   clearIconColor() {
     this.removeClassAll(this.classes.HALFACTIVE)
-
+ 
     const fullunits = queryAll(`.${this.classes.FULL}`, this.range)
     const halfunits = queryAll(`.${this.classes.HALF}`, this.range)
 
     fullunits.forEach(f => {
       this.removerColor(f)
     })
+
+
     halfunits.forEach(h => {
       this.removerColor(h)
     })

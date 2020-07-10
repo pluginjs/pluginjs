@@ -5,7 +5,6 @@ import { setStyle, getStyle } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { isArray } from '@pluginjs/is'
 import { append, find, query, queryAll, children, getData } from '@pluginjs/dom'
-
 import {
   eventable,
   register,
@@ -14,7 +13,6 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -23,12 +21,10 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-
 // import components
 import Item from './components/item'
 import Animate from './components/animate'
 import Toolbar from './components/toolbar'
-
 // import models
 import Grid from './models/grid'
 import Justified from './models/justified'

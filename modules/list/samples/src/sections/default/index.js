@@ -31,6 +31,11 @@ let api = List.of(element, {
 
 query('.api').addEventListener('click', event => {
   const el = event.target
+  
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector;
+  }
+
   if (!el.matches('[data-api]')) {
     return
   }

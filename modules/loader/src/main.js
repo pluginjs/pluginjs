@@ -1,6 +1,7 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { append, appendTo } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { setStyle } from '@pluginjs/styled'
 import {
   eventable,
@@ -79,23 +80,19 @@ class Loader extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      // this.unbind()
+      if(isIE() || isIE11()) {
+        if (this.options.text) 
+        this.$text.removeNode(true);
 
-      if (this.options.text) {
+        this.$loader.removeNode(true);
+        this.$mask.removeNode(true);
+      } else {
+        if (this.options.text) 
         this.$text.remove()
+        
+        this.$loader.remove()
+        this.$mask.remove()
       }
-
-      this.$loader.remove()
-
-      // if (this.options.theme) {
-      //   removeClass(this.getThemeClass(), this.$loader)
-      // }
-
-      // if (this.is('shown')) {
-      //   removeClass(this.classes.SHOW, this.$mask)
-      // }
-
-      this.$mask.remove()
 
       this.leave('initialized')
     }

@@ -2,6 +2,7 @@ import Hammer from 'hammerjs'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import { parseHTML, query, insertBefore, wrap, unwrap } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import Breakpoints from '@pluginjs/breakpoints'
 
 class Responsive {
@@ -138,7 +139,11 @@ class Responsive {
     }
 
     if (this.mode === 'drop') {
-      this.instance.navLabel.remove()
+      if(isIE() || isIE11()) {
+        this.instance.navLabel.removeNode(true);
+      } else {
+        this.instance.navLabel.remove()
+      }
 
       this.dropToggle(false)
     } else if (this.mode === 'scroll') {

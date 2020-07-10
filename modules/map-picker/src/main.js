@@ -1,9 +1,9 @@
 import Component from '@pluginjs/component'
 import { compose, deepMerge, triggerNative } from '@pluginjs/utils'
-import { parseHTML, query, queryAll, wrap, unwrap } from '@pluginjs/dom'
+import { parseHTML, query, wrap, unwrap, append } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { isString, isNumber, isEmptyObject } from '@pluginjs/is'
+import { isString, isNumber, isEmptyObject, isIE, isIE11 } from '@pluginjs/is'
 import Dropdown from '@pluginjs/dropdown'
 import template from '@pluginjs/template'
 import {
@@ -112,7 +112,7 @@ class MapPicker extends Component {
       })
     )
     this.TRIGGER = new Trigger(this)
-    this.$wrap.append(this.$dropdown)
+    append(this.$dropdown, this.$wrap)
     this.buildPanelItem()
     // this.buildPop()
     this.initDropdown(this.options.dropdown)
@@ -140,7 +140,9 @@ class MapPicker extends Component {
   }
 
   buildDropdown() {
-    this.$dropdown.append(...this.$list)
+    for(let i in this.$list) {
+      append(this.$list[i], this.$dropdown)
+    }
 
     // change $lat&$lng input
     if (this.options.showLatlng) {
@@ -491,9 +493,17 @@ class MapPicker extends Component {
         // clearData,
         removeClass(this.classes.INPUT)
       )(this.element)
-      this.TRIGGER.$empty.remove()
-      this.TRIGGER.$fill.remove()
-      this.$dropdown.remove()
+ 
+
+      if(isIE() || isIE11()) {
+        this.TRIGGER.$empty.removeNode(true);
+        this.TRIGGER.$fill.removeNode(true);
+        this.$dropdown.removeNode(true);
+      } else {
+        this.TRIGGER.$empty.remove()
+        this.TRIGGER.$fill.remove()
+        this.$dropdown.remove()
+      }
 
       this.leave('initialized')
     }

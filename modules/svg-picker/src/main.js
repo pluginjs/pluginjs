@@ -25,7 +25,9 @@ import {
   isPlainObject,
   isEmpty,
   isElement,
-  isString
+  isString,
+  isIE,
+  isIE11
 } from '@pluginjs/is'
 import Clearable from './clearable'
 import Filterable from './filterable'
@@ -506,7 +508,13 @@ class SvgPicker extends Component {
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$wrap)
       }
-      this.$wrap.remove()
+
+      if(isIE() || isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+
       removeClass(this.classes.ELEMENT, this.element)
       this.leave('initialized')
     }

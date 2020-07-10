@@ -2,6 +2,7 @@ import Component from '@pluginjs/component'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
+import { isIE, isIE11 } from '@pluginjs/is'
 import {
   append,
   parseHTML,
@@ -256,7 +257,12 @@ class Radio extends Component {
       removeClass(this.classes.CHECKED, this.$wrap)
       if (this.is('wrapped')) {
         unwrap(this.element)
-        this.$icon.remove()
+
+        if(isIE() || isIE11()) {
+          this.$icon.removeNode(true);
+        } else {
+          this.$icon.remove()
+        }
       }
       this.unbind()
       this.leave('initialized')

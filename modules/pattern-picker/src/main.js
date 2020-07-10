@@ -4,6 +4,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle, hideElement } from '@pluginjs/styled' // , getStyle
+import { isIE, isIE11 } from '@pluginjs/is'
 import {
   query,
   queryAll,
@@ -11,6 +12,7 @@ import {
   parseHTML,
   getData,
   setData,
+  append,
   wrap
 } from '@pluginjs/dom'
 import ColorPicker from '@pluginjs/color-picker'
@@ -187,7 +189,7 @@ class PatternPicker extends Component {
       classes: this.classes
     })
 
-    this.$wrap.append(this.$panel)
+    append(this.$panel, this.$wrap)
 
     this.handelComponent()
     // init element
@@ -230,12 +232,11 @@ class PatternPicker extends Component {
       text: this.translate('save')
     })
 
-    this.$custom.append(
-      this.$foreColor,
-      this.$bgColor,
-      this.$opacity,
-      this.$control
-    )
+    
+    append(this.$foreColor, this.$custom)
+    append(this.$bgColor, this.$custom)
+    append(this.$opacity, this.$custom)
+    append(this.$control, this.$custom)
 
     this.setupField()
   }
@@ -452,7 +453,13 @@ class PatternPicker extends Component {
     queryAll(
       `.${this.classes.COLLECTIONITEM}`,
       this.COLLECTION.$selectorList
-    ).map(el => el.remove())
+    ).map(el => {
+      if(isIE() || isIE11()) {
+        el.removeNode(true);
+      } else {
+        el.remove()
+      }
+    })
     this.imgs = data
     this.render()
   }

@@ -43,6 +43,10 @@ class Strength extends Component {
       this.$username = query(this.options.usernameField)
     }
 
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+
     this.score = 0
     this.status = null
 

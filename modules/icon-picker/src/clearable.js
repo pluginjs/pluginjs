@@ -1,6 +1,7 @@
 import { appendTo } from '@pluginjs/dom'
 import { bindEvent } from '@pluginjs/events'
 import { addClass } from '@pluginjs/classes'
+import { isIE, isIE11 } from '@pluginjs/is'
 
 export default class Clearable {
   constructor(instance) {
@@ -21,6 +22,10 @@ export default class Clearable {
   }
 
   destroy() {
-    this.element.remove()
+    if(isIE() || isIE11()) {
+      this.element.removeNode(true);
+    } else {
+      this.element.remove()
+    }
   }
 }

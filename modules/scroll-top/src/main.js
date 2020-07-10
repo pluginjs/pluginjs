@@ -1,6 +1,6 @@
 import GlobalComponent from '@pluginjs/global-component'
 import { transitionProperty } from '@pluginjs/feature'
-import { isString, isNumber } from '@pluginjs/is'
+import { isString, isNumber, isIE, isIE11 } from '@pluginjs/is'
 import { throttle } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, offset as getOffset } from '@pluginjs/styled'
@@ -353,7 +353,11 @@ class ScrollTop extends GlobalComponent {
     if (this.is('initialized')) {
       this.unbind()
 
-      this.$trigger.remove()
+      if(isIE() || isIE11()) {
+        this.$trigger.removeNode(true);
+      } else {
+        this.$trigger.remove()
+      }
 
       this.leave('initialized')
     }

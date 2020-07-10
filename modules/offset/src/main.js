@@ -3,6 +3,7 @@ import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled' // getStyle
 import { bindEvent, removeEvent } from '@pluginjs/events'
+import { isIE, isIE11 } from '@pluginjs/is'
 import {
   parseHTML,
   queryAll,
@@ -230,7 +231,13 @@ class Offset extends Component {
       }
 
       this.element.display = ''
-      this.$wrap.remove()
+
+      if(isIE() || isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+
       this.leave('initialized')
     }
 

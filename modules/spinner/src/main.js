@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import Component from '@pluginjs/component'
-import { isNumeric } from '@pluginjs/is'
+import { isNumeric, isIE, isIE11 } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent, bindEventOnce } from '@pluginjs/events'
@@ -364,7 +364,13 @@ class Spinner extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      this.$control.remove()
+
+      if(isIE() || isIE11()) {
+        this.$control.removeNode(true);
+      } else {
+        this.$control.remove()
+      }
+
       unwrap(this.element)
 
       this.leave('initialized')

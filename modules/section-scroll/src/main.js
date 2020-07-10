@@ -1,9 +1,4 @@
 import Component from '@pluginjs/component'
-import Hammer from 'hammerjs'
-import { addClass, removeClass } from '@pluginjs/classes'
-import { bindEvent, removeEvent } from '@pluginjs/events'
-import { query, queryAll } from '@pluginjs/dom'
-import { isArray, isString } from '@pluginjs/is'
 import {
   eventable,
   register,
@@ -12,6 +7,11 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
+import Hammer from 'hammerjs'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { bindEvent, removeEvent } from '@pluginjs/events'
+import { query, queryAll } from '@pluginjs/dom'
+import { isArray, isString } from '@pluginjs/is'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,

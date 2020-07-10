@@ -65,6 +65,10 @@ class Thumbnails extends Component {
       return
     }
 
+    if (typeof NodeList.prototype.forEach !== 'function')  {
+      NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+
     if (this.options.breakpoint) {
       this.initBreakpoints()
     }

@@ -1,9 +1,4 @@
 import Component from '@pluginjs/component'
-import { svg as isSupportedSvg } from '@pluginjs/feature'
-import Tween from '@pluginjs/tween'
-import { isPercentage } from '@pluginjs/is'
-import { addClass, removeClass } from '@pluginjs/classes'
-import { append, parseHTML, query } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -12,6 +7,11 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
+import { svg as isSupportedSvg } from '@pluginjs/feature'
+import Tween from '@pluginjs/tween'
+import { isPercentage } from '@pluginjs/is'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { append, parseHTML, query } from '@pluginjs/dom'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -44,7 +44,7 @@ class SvgProgress extends Component {
     this.setupOptions(options)
     this.setupClasses()
     this.setupStates()
-
+  
     if (
       !isSupportedSvg() ||
       !Object.prototype.hasOwnProperty.call(shapes, this.options.shape)
@@ -70,7 +70,7 @@ class SvgProgress extends Component {
 
     this.width = size.length > 1 ? size[0] : this.options.size
     this.height = size.length > 1 ? size[1] : this.options.size
-
+  
     this.initialize()
   }
 

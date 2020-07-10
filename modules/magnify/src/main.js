@@ -13,7 +13,7 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { query, wrap, unwrap, appendTo, append } from '@pluginjs/dom'
 import { innerWidth, innerHeight, setStyle, getOffset } from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { isElement, isPlainObject, isString } from '@pluginjs/is'
+import { isElement, isPlainObject, isString, isIE, isIE11 } from '@pluginjs/is'
 import Loader from '@pluginjs/loader'
 import ImageLoader from '@pluginjs/image-loader'
 import {
@@ -364,12 +364,18 @@ class Magnify extends Component {
     this.large = large
     this.initDimension()
     this.zoom = this.options.zoom
-    // this.$targetImage.remove()
     this.$targetImage = null
+
     if (this.$lensImage) {
-      this.$lensImage.remove()
+      if(isIE() || isIE11()) {
+        this.$lensImage.removeNode(true);
+      } else {
+        this.$lensImage.remove()
+      }
+   
       this.$lensImage = null
     }
+
     this.loaded = false
     this.position = null
 
@@ -702,7 +708,11 @@ class Magnify extends Component {
           this.$wrap
         )
         if (this.$lens) {
-          this.$lens.remove()
+          if(isIE() || isIE11()) {
+            this.$lens.removeNode(true);
+          } else {
+            this.$lens.remove()
+          }
         }
       } else {
         unwrap(`.${this.classes.WRAP}`, this.$image)

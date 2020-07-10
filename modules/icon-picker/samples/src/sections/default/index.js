@@ -21,6 +21,11 @@ let api = init()
 
 query('.api').addEventListener('click', event => {
   const el = event.target
+
+  if (typeof NodeList.prototype.forEach !== 'function')  {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+  
   if (!el.matches('[data-api]')) {
     return
   }

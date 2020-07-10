@@ -34,14 +34,23 @@ export const addClass = curryWith((...args) => {
 }, isElement)
 
 export const removeClass = curryWith((...args) => {
+
   let classes = args.slice(0, -1)
+
   const element = args.slice(-1)[0]
 
   if (isElement(element)) {
     if (classes.length === 1) {
       classes = classes[0].split(/\s+/g).filter(v => v !== '')
     }
-    element.classList.remove(...classes)
+
+    if(isIE()||isIE11()) {
+      for(let i in classes) {
+        element.classList.remove(classes[i])
+      }
+    } else {
+      element.classList.remove(...classes)
+    }
   }
 
   return element

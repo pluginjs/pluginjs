@@ -1,6 +1,7 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
+import { isIE, isIE11 } from '@pluginjs/is'
 import {
   append,
   parseHTML,
@@ -183,6 +184,21 @@ class Tabs extends Component {
   bind() {
     this.navEvent = new Hammer(this.$nav)
 
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector;
+    }
+
+     if (!Element.prototype.closest)
+      Element.prototype.closest = function(s) {
+        var el = this;
+        if (!document.documentElement.contains(el)) return null;
+        do {
+            if (el.matches(s)) return el;
+            el = el.parentElement;
+        } while (el !== null);
+        return null;
+    };
+    
     this.navEvent.on('tap', e => {
       if (this.is('disabled')) {
         return
@@ -294,7 +310,11 @@ class Tabs extends Component {
   }
 
   hideLoading() {
-    this.$loading.remove()
+    if(isIE() || isIE11()) {
+      this.$loading.removeNode(true);
+    } else {
+      this.$loading.remove()
+    } 
   }
 
   update(options) {
@@ -425,8 +445,13 @@ class Tabs extends Component {
       return this
     }
 
-    this.$tabs[index].remove()
-    this.panes[index].remove()
+    if(isIE() || isIE11()) {
+      this.$tabs.removeNode(true);
+      this.panes.removeNode(true);
+    } else {
+      this.$tabs[index].remove()
+      this.panes[index].remove()
+    }
 
     this.initPointer()
 

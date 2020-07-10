@@ -1,5 +1,5 @@
 import template from '@pluginjs/template'
-import { query, parseHTML } from '@pluginjs/dom'
+import { query, parseHTML, append } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   eventable,
@@ -53,7 +53,7 @@ class TagList extends List {
     this.$input = query(`.${this.classes.ADDINPUT}`, this.$add)
     this.$btn = query(`.${this.classes.ADDBTN}`, this.$add)
 
-    this.$wrapper.append(this.$add)
+    append(this.$add, this.$wrapper)
   }
 
   bind() {

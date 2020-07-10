@@ -18,7 +18,7 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
-import { isArray, isFunction, isPlainObject, isEmpty } from '@pluginjs/is'
+import { isArray, isFunction, isPlainObject, isEmpty, isIE, isIE11 } from '@pluginjs/is'
 import Loading from './loading'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
@@ -536,10 +536,17 @@ class ImageSelector extends Component {
       if (this.CLEARABLE) {
         this.CLEARABLE.destroy()
       }
+
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.$wrap)
       }
-      this.$wrap.remove()
+
+      if(isIE() || isIE11()) {
+        this.$wrap.removeNode(true);
+      } else {
+        this.$wrap.remove()
+      }
+
       removeClass(this.classes.ELEMENT, this.element)
       this.leave('initialized')
     }

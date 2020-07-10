@@ -49,6 +49,10 @@ class Lightbox extends Component {
   }
 
   initialize() {
+    if (typeof NodeList.prototype.forEach !== 'function')  {
+      NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+    
     if (!this.options.data || this.options.data.length < 0) {
       return
     }

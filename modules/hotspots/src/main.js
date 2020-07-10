@@ -2,7 +2,7 @@ import Component from '@pluginjs/component'
 import { compose } from '@pluginjs/utils'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { queryAll, parseHTML } from '@pluginjs/dom'
+import { queryAll, parseHTML, append } from '@pluginjs/dom'
 import Popover from '@pluginjs/popover'
 import templateEngine from '@pluginjs/template'
 import { isArray } from '@pluginjs/is'
@@ -162,7 +162,7 @@ class Hotspots extends Component {
       })
     })
 
-    this.element.append(parseHTML(html))
+    append(parseHTML(html), this.element)
   }
 
   getHotspotOptions(item) {

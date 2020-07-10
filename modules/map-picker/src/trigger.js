@@ -1,5 +1,5 @@
 import { compose } from '@pluginjs/utils'
-import { parseHTML, query, children } from '@pluginjs/dom'
+import { parseHTML, query, children, append } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
 import PopDialog from '@pluginjs/pop-dialog'
@@ -44,8 +44,10 @@ export default class Trigger {
       })
     )
 
-    this.$trigger.append(this.$empty, this.$fill, this.$triggerAction)
-    this.instance.$wrap.append(this.$trigger)
+    append(this.$empty, this.$trigger)
+    append(this.$fill, this.$trigger)
+    append(this.$triggerAction, this.$trigger)
+    append(this.$trigger, this.instance.$wrap)
 
     this.buildPop()
   }

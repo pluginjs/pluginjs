@@ -1,9 +1,4 @@
 import Component from '@pluginjs/component'
-import template from '@pluginjs/template'
-import Tween from '@pluginjs/tween'
-import { isPercentage } from '@pluginjs/is'
-import { addClass, removeClass } from '@pluginjs/classes'
-import { append, parseHTML, query } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -12,6 +7,11 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
+import template from '@pluginjs/template'
+import Tween from '@pluginjs/tween'
+import { isPercentage } from '@pluginjs/is'
+import { addClass, removeClass } from '@pluginjs/classes'
+import { append, parseHTML, query } from '@pluginjs/dom'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,

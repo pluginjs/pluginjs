@@ -22,6 +22,7 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { arrayEqual, arrayDiff, triggerNative } from '@pluginjs/utils'
 import { append, detach, insertBefore, parseHTML, parent } from '@pluginjs/dom'
+import { isIE, isIE11 } from '@pluginjs/is'
 import { isArray } from '@pluginjs/is'
 const isSelect = el => el.tagName === 'SELECT'
 const isInput = el => el.tagName === 'INPUT'
@@ -217,7 +218,11 @@ class MultiSelect extends Select {
       const option = this.getOptionByValue(value)
 
       if (option.__chip) {
-        option.__chip.remove()
+        if(isIE() || isIE11()) {
+          option.__chip.removeNode(true);
+        } else {
+          option.__chip.remove()
+        }
       }
 
       this.selected = this.selected.filter(v => v !== value)
