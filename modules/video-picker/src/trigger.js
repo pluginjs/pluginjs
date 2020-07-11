@@ -5,6 +5,7 @@ import { bindEvent } from '@pluginjs/events' // , bindEventOnce
 import { parseHTML, query, append } from '@pluginjs/dom'
 import PopDialog from '@pluginjs/pop-dialog'
 
+
 export default class Trigger {
   constructor(instance) {
     this.instance = instance
@@ -68,9 +69,7 @@ export default class Trigger {
             label: this.instance.translate('delete'),
             color: 'danger',
             fn: resolve => {
-              removeClass(that.classes.SHOW, that.instance.$wrap)
-              that.instance.removeVideo()
-              that.instance.$fillCover.setAttribute('src', '')
+              that.instance.clear()
               resolve()
             }
           }

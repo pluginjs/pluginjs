@@ -390,7 +390,6 @@ class VideoPicker extends Component {
           this.videoApi.stop()
         }
         this.set(this.data)
-        // addClass(this.classes.SHOW, this.$wrap)
         return false
       })
     )(this.$btnAction)
@@ -459,6 +458,25 @@ class VideoPicker extends Component {
     this.pos = url.lastIndexOf('\\')
     const filename = url.substr(this.pos + 1)
     this.localUrlContent.innerHTML = filename
+  }
+
+  clear () {
+    this.data.url = ''
+    this.localFile = ''
+    this.inputUrl = ''
+    this.$urlInput.value = ''
+    this.element.value = ''
+    this.$fillCover.setAttribute('src', '')
+    triggerNative(this.element, 'change')
+    removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
+    removeClass(this.classes.SHOW, this.$wrap)
+    this.deletePoster()
+    
+    if (this.videoApi) {
+      if (this.videoApi.element) {
+        this.videoApi.destroy()
+      }
+    }
   }
 
   removeVideo() {
@@ -616,6 +634,7 @@ class VideoPicker extends Component {
     this.data = Object.assign({}, this.data, data)
 
     if (trigger) {
+      triggerNative(this.element, 'change')
       this.trigger(EVENTS.CHANGE, data)
     }
 
