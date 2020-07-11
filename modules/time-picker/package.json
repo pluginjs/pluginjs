@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "form",
   "main": "dist/time-picker.common.js",
   "module": "dist/time-picker.esm.js",
@@ -37,21 +37,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.3",
-    "@pluginjs/component": "^0.8.3",
-    "@pluginjs/decorator": "^0.8.3",
-    "@pluginjs/dom": "^0.8.3",
-    "@pluginjs/dropdown": "^0.8.7",
-    "@pluginjs/events": "^0.8.3",
-    "@pluginjs/input-mask": "^0.8.3",
-    "@pluginjs/is": "^0.8.3",
-    "@pluginjs/template": "^0.8.3",
-    "@pluginjs/utils": "^0.8.3"
+    "@pluginjs/classes": "^0.8.4",
+    "@pluginjs/component": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/dom": "^0.8.4",
+    "@pluginjs/dropdown": "^0.8.8",
+    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/input-mask": "^0.8.4",
+    "@pluginjs/is": "^0.8.4",
+    "@pluginjs/template": "^0.8.4",
+    "@pluginjs/utils": "^0.8.4"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@pluginjs/browserslist-config": "^1.3.0",
-    "@pluginjs/cli": "^0.8.0",
+    "@pluginjs/browserslist-config": "^1.3.1",
+    "@pluginjs/cli": "^0.8.1",
     "@rollup/plugin-commonjs": "^12.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "babel-jest": "*",
