@@ -47,12 +47,13 @@ $datePicker-clear-right: 35px !default;
 
       &::after {
         position: absolute;
+        left: 50%;
         top: 50%;
         z-index: -1;
         display: block;
         content: "";
         border-radius: 100%;
-        transform: translateY(-50%);
+        transform:translate(-50%,-50%);
       }
     }
   }

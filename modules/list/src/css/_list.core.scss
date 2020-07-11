@@ -5,6 +5,7 @@
 $list: "pj-list" !default;
 
 $list-actions-right: 15px !default;
+$list-item-handle-padding: 12px !default;
 
 // Core
 // =====================
@@ -20,7 +21,6 @@ $list-actions-right: 15px !default;
   &-item {
     position: relative;
     display: flex;
-    align-items: center;
     overflow: hidden;
     user-select: none;
 
@@ -43,7 +43,8 @@ $list-actions-right: 15px !default;
 
     &-actions {
       position: absolute;
-      right: $list-actions-right;
+      padding: $list-item-handle-padding;
+      right: 0;
       line-height: 100%;
 
       &:hover {

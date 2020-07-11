@@ -214,6 +214,7 @@ $videoPicker-poster-with: 190px;
 
     .#{$videoPicker}-local-url-delete {
       color: $videoPicker-poster-delete-color;
+      cursor: pointer;
     }
   }
 

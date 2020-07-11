@@ -143,7 +143,6 @@ class LinkPicker extends Component {
 
     append(this.$action, this.$fill)
     append(this.$dropdownAction, this.$dropdown)
-    append(this.$action, this.$dropdown)
     prepend(this.type.$wrap, this.$dropdown)
     insertAfter(this.internal.$wrap, this.type.$wrap)
     insertAfter(this.target.$wrap, this.internal.$wrap)

@@ -29,6 +29,9 @@ $strength-check-active-bg: $color-primary;
   }
 
   &-addon {
+    position: absolute;
+    top: 5px;
+    right: 8px;
     font-weight: $font-weight-medium;
     color: $strength-addon-color;
     cursor: pointer;

@@ -13,6 +13,10 @@ GalleryPicker.of(element, {
     }, {
       image: 'https://picsum.photos/200/300?image=980',
       id: 654
+    },
+    {
+      image: 'https://picsum.photos/200/300?image=980',
+      id: 789
     }])
   },
   change(resolve) {

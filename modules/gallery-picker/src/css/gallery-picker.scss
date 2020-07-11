@@ -32,7 +32,7 @@ $galleryPicker-fill-count-bg: rgba($color-black, 0.8);
 $galleryPicker-fill-width: 16px;
 
 $galleryPicker-expand-width: 285px;
-$galleryPicker-expand-item-width: calc(50% - #{$galleryPicker-spacer} / 2);
+$galleryPicker-expand-item-width: calc( 50% - 12px );
 $galleryPicker-expand-item-change-bg: $color-opacity;
 
 // Style
@@ -118,15 +118,15 @@ $galleryPicker-expand-item-change-bg: $color-opacity;
     li {
       width: $galleryPicker-expand-item-width;
       height: $galleryPicker-expand-item-width;
-      margin: $galleryPicker-spacer;
-      margin-bottom: 0;
       border: 1px solid $galleryPicker-border-color;
       border-radius: $galleryPicker-border-radius;
-
-      + li {
-        margin-left: 0;
+      
+      &:nth-child(2n) {
+        margin-left: $galleryPicker-spacer;
+        margin-bottom: $galleryPicker-spacer;
       }
     }
+    
   }
 
   &-add {

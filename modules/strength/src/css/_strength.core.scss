@@ -4,7 +4,6 @@
 $strength: "pj-strength" !default;
 $input: "pj-input" !default;
 
-$strength-width: 200px !default;
 $strength-height: 32px !default;
 $strength-gatter: 8px !default;
 
@@ -23,12 +22,11 @@ $strength-check-border-color: $border-color !default;
 $strength-check-border-radius: $border-radius-base !default;
 
 .#{$strength} {
+  position: relative;
   box-sizing: border-box;
-  width: $strength-width !important;
   height: $strength-height;
 
   &-has-icon {
-    position: relative;
     > input {
       padding-right: $strength-has-icon-spacer;
     }

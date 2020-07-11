@@ -50,6 +50,8 @@ class VideoPicker extends Component {
     this.setupClasses()
     this.setupI18n()
     addClass(this.classes.NAMESPACE, this.element)
+    this.inputUrl = ""
+    this.localFile = ""
     this.data = {}
     this.data.source = this.options.sources[0]
     this.data.url = ''
@@ -228,6 +230,7 @@ class VideoPicker extends Component {
         removeClass(this.classes.OPENDISABLE, this.TRIGGER.element)
       },
       onUpdate: () => {
+      
         this.$fillCover.setAttribute('src', this.data.poster)
 
         if (this.videoApi) {
@@ -248,14 +251,13 @@ class VideoPicker extends Component {
         if (value === 'Local File') {
           showElement(closest(`.${this.classes.FIELD}`, this.$localUrl))
           hideElement(closest(`.${this.classes.FIELD}`, this.$videoUrl))
+          this.data.url = this.localFile
         } else {
           hideElement(closest(`.${this.classes.FIELD}`, this.$localUrl))
           showElement(closest(`.${this.classes.FIELD}`, this.$videoUrl))
+          this.data.url = this.inputUrl
         }
-        if (this.$videoPoster) {
-          setStyle('backgroundImage', null, this.$videoPoster)
-        }
-        removeClass(this.classes.POSTERSELECTED, this.$poster)
+
         if (this.videoApi) {
           if (query('.pj-video', this.$wrap)) {
             this.removeVideo()
@@ -276,6 +278,7 @@ class VideoPicker extends Component {
     this.$fillCover = query(`.${this.classes.FILLPOSTER}`, this.TRIGGER.element)
     this.$video = query(`.${this.classes.VIDEO}`, this.$preview)
     this.$urlInput = query('input', this.$videoUrl)
+    this.localUrlContent = query(`.${this.classes.LOCALURLCONTENT}`, this.$localUrl)
     this.$videoAction = query(`.${this.classes.VIDEOACTION}`, this.$preview)
     this.$videoPoster = query(`.${this.classes.VIDEOPOSTER}`, this.$preview)
     this.$posterChange = query(`.${this.classes.POSTERCHANGE}`, this.$poster)
@@ -314,7 +317,9 @@ class VideoPicker extends Component {
             'placeholder',
             ''
           )
+
           this.data.url = this.$urlInput.value
+          this.inputUrl = this.$urlInput.value
           this.changeVideo()
           return false
         }
@@ -385,7 +390,7 @@ class VideoPicker extends Component {
           this.videoApi.stop()
         }
         this.set(this.data)
-        addClass(this.classes.SHOW, this.$wrap)
+        // addClass(this.classes.SHOW, this.$wrap)
         return false
       })
     )(this.$btnAction)
@@ -447,24 +452,25 @@ class VideoPicker extends Component {
     }
   }
   selectLocalVideo(url) {
+    this.localFile = url
     this.data.url = url
     this.pos = url.lastIndexOf('/')
-    if (this.pos === -1) {
-      this.pos = url.lastIndexOf('\\')
-    }
+    if (this.pos === -1) 
+    this.pos = url.lastIndexOf('\\')
     const filename = url.substr(this.pos + 1)
-    query(
-      `.${this.classes.LOCALURLCONTENT}`,
-      this.$localUrl
-    ).innerHTML = filename
+    this.localUrlContent.innerHTML = filename
   }
 
   removeVideo() {
-    this.data.poster = ''
+    if(this.data.source === "Local File") {
+      this.localFile = ''
+    } else {
+      this.$urlInput.value = ''
+      this.inputUrl = ''
+    }
+  
     this.data.url = ''
-    this.element.value = ''
-    triggerNative(this.element, 'change')
-    this.$urlInput.value = ''
+
     if (this.videoApi) {
       if (this.videoApi.element) {
         this.videoApi.destroy()
@@ -486,7 +492,6 @@ class VideoPicker extends Component {
       query(`.${this.classes.LOCALURLCHANGE}`, this.$poster)
     )
     removeClass(this.classes.LOCALURLSELECTED, this.$localUrl)
-    removeClass(this.classes.POSTERSELECTED, this.$poster)
     removeClass(this.classes.VIDEOPLAYING, this.$videoAction)
     removeClass(this.classes.VIDEOLOADING, this.$videoAction)
 
@@ -557,7 +562,16 @@ class VideoPicker extends Component {
           })
           break
         case 'url':
-          this.$urlInput.value = value
+          if(data.source === "Local File") {
+            this.selectLocalVideo(value)
+
+            if(value) {
+              addClass(this.classes.LOCALURLSELECTED, this.$localUrl)
+            }
+          } else {
+            this.$urlInput.value = value
+          }
+       
           break
         case 'id':
           this.data.url = value
@@ -575,11 +589,18 @@ class VideoPicker extends Component {
           break
       }
     })
+ 
+    if(this.data.url) {
+      addClass(this.classes.SHOW, this.$wrap)
+    } else {
+      removeClass(this.classes.SHOW, this.$wrap)
+    }
 
     if (this.data.poster) {
       this.$fillCover.setAttribute('src', this.data.poster)
-      addClass(this.classes.SHOW, this.$wrap)
-    }
+    } else {
+      this.$fillCover.setAttribute('src', '')
+    } 
 
     if (this.videoApi) {
       this.videoApi.stop()
@@ -597,6 +618,7 @@ class VideoPicker extends Component {
     if (trigger) {
       this.trigger(EVENTS.CHANGE, data)
     }
+
     this.update(this.data)
   }
 
@@ -613,6 +635,7 @@ class VideoPicker extends Component {
       const val = this.options.process.call(this, this.get())
       return val
     }
+
     return this.set(this.options.parse.call(this, value), trigger)
   }
 

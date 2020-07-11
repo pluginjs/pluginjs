@@ -92,30 +92,17 @@ $galleryPicker-dropdown-zindex: $zindex-dropdown !default;
   }
 
   &-items {
-    display: inline-block;
+    width: 100%;
     height: $galleryPicker-items-height;
     padding: 0;
     margin: 0;
-    overflow-x: hidden;
     overflow-y: auto;
     list-style: none;
 
     li {
       position: relative;
       box-sizing: border-box;
-
-      &:nth-child(1),
-      &:nth-child(2) {
-        margin-top: 0;
-      }
-
-      &:nth-child(odd) {
-        margin-left: 0;
-      }
-
-      &:nth-child(even) {
-        margin-right: 0;
-      }
+      float: left;
     }
   }
 
@@ -125,12 +112,8 @@ $galleryPicker-dropdown-zindex: $zindex-dropdown !default;
     justify-content: center;
   }
 
-  &-add,
   &-items {
     box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    // align-content: space-between;
   }
 
   &-item {
