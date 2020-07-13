@@ -1,5 +1,5 @@
 import { setStyle } from '@pluginjs/styled'
-import { append, query, setData, wrap } from '@pluginjs/dom'
+import { append, query, setData, wrap, parseHTML } from '@pluginjs/dom'
 import Tooltip from '@pluginjs/tooltip'
 
 class Collection {
@@ -63,32 +63,37 @@ class Collection {
       })
 
       let pattern = v.pattern.replace(/\"/g, "'") /* eslint-disable-line */
+      let patternHTML = parseHTML(pattern) /* eslint-disable-line */
       const fillValue = pattern.match(/fill='(.*?)'/)
       const fillOpacity = pattern.match(/fill-opacity='(.*?)'/)
-      const dRule = pattern.match(/\sd='(.*?)'/)
+  
+      if(!fillValue) {
+        patternHTML.setAttribute('fill', '');
+      }
+
+      if(!fillOpacity) {
+        patternHTML.setAttribute('fill-opacity', '');
+      }
+
+      const div = document.createElement("div")
+      div.appendChild(patternHTML)
+      const str = div.innerHTML
+      .replace(/[\r\n]/g,"")
+      .replace(/#/g,'%23')
+      .replace(/\"/g, "'")
+      .replace(/</g,"%3C")
+      .replace(/>/g,"%3E")
+  
       let bgValue = ''
       let bgColor = ''
       if (v.backcolor) {
         bgColor = v.backcolor
       }
 
-      if (!fillOpacity && !fillValue && dRule) {
-        pattern = pattern.replace(
-          dRule[0],
-          `${dRule[0]} fill-opacity='1' fill='%23000000'`
-        )
-      } else if (!fillOpacity && fillValue && dRule) {
-        pattern = pattern.replace(dRule[0], `${dRule[0]} fill-opacity='1'`)
-      } else if (fillOpacity && !fillValue && dRule) {
-        pattern = pattern.replace(dRule[0], `${dRule[0]} fill='%23000000'`)
-      }
-
-      pattern = pattern.replace(/[\r\n]/g, '').replace(/\s+/g, ' ')
-
       if (pattern.match(/encoding='UTF-8'/)) {
-        bgValue = `url(\"data:image/svg+xml,${pattern}\")` /* eslint-disable-line */
+        bgValue = `url(\"data:image/svg+xml,${str}\")` /* eslint-disable-line */
       } else {
-        bgValue = `url(\"data:image/svg+xml,<?xml version='1.0' encoding='UTF-8' standalone='no'?>${pattern}\")` /* eslint-disable-line */
+        bgValue = `url(\"data:image/svg+xml,%3C?xml version='1.0' encoding='UTF-8' standalone='no'?%3E${str}\")` /* eslint-disable-line */
       }
 
       setStyle('background', bgValue, $item)
