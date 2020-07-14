@@ -1,6 +1,14 @@
 import Component from '@pluginjs/component'
 import DROPDOWN from '@pluginjs/dropdown'
-import { isNull, isString, isUndefined, isArray, isObject, isIE, isIE11 } from '@pluginjs/is'
+import {
+  isNull,
+  isString,
+  isUndefined,
+  isArray,
+  isObject,
+  isIE,
+  isIE11
+} from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { setStyle } from '@pluginjs/styled'
@@ -48,7 +56,7 @@ class Units extends Component {
         '%': true
       }
     }
-    
+
     if (
       isObject(this.options.units) &&
       Object.keys(this.options.units).length < 2
@@ -190,9 +198,9 @@ class Units extends Component {
 
     bindEvent(
       this.eventName('change'),
-      e => {
+      () => {
         this.setInput(this.$input.value)
-      }, 
+      },
       this.$input
     )
   }
@@ -246,36 +254,44 @@ class Units extends Component {
       if (!isUndefined(value.unit) && value.unit !== this.value.unit) {
         this.value.unit = value.unit ? value.unit : this.getDefaultUnit()
         html(this.value.unit, this.$trigger)
-        
+
         const unit = this.options.units[this.value.unit]
 
-        if( unit && ( unit.min && unit.min > value.input || unit.max && unit.max < value.input )) {
+        if (
+          unit &&
+          ((unit.min && unit.min > value.input) ||
+            (unit.max && unit.max < value.input))
+        ) {
           this.enter('initInput')
-        } 
-   
+        }
         this.trigger(EVENTS.CHANGEUNIT, this.value.unit)
         changed = true
       }
-  
-      if (!isUndefined(value.input) && value.input !== this.value.input || this.is('initInput')) {
-        if(this.is('initInput')) {
+
+      if (
+        (!isUndefined(value.input) && value.input !== this.value.input) ||
+        this.is('initInput')
+      ) {
+        if (this.is('initInput')) {
           this.leave('initInput')
         }
-  
         const unit = this.options.units[this.value.unit]
-       
-        if(unit && ( unit.min && unit.min > value.input )) {
+
+        const overMin = unit.min && value.input && unit.min > value.input
+        const overMax = unit.max && value.input && unit.max < value.input
+
+        if (unit && overMin) {
           this.value.input = unit.min
-        } else if (unit && ( unit.max && unit.max < value.input )) {
+        } else if (unit && overMax) {
           this.value.input = unit.max
         } else {
           this.value.input = value.input
         }
-    
+
         if (!isNull(this.value.input)) {
           this.cached.input = this.value.input
         }
- 
+
         this.trigger(EVENTS.CHANGEINPUT, this.value.input)
 
         changed = true
@@ -285,13 +301,11 @@ class Units extends Component {
     if (changed) {
       if (this.value.input) {
         this.element.value = this.val()
+      } else if (this.isStatic(value)) {
+        this.$input.value = this.$input ? '' : null
+        this.element.value = value
       } else {
-        if (this.isStatic(value)) {
-          this.$input ? this.$input.value = "" : null
-          this.element.value = value
-        } else {
-          this.element.value = ''
-        }
+        this.element.value = ''
       }
     }
 
@@ -366,13 +380,13 @@ class Units extends Component {
 
       setStyle('display', null, this.element)
       removeClass(this.getThemeClass(), this.$wrap)
-   
-      if(isIE()||isIE11()) {
-        this.$input.removeNode(true);
+
+      if (isIE() || isIE11()) {
+        this.$input.removeNode(true)
       } else {
         this.$input.remove()
       }
-   
+
       unwrap(this.element)
       this.leave('initialized')
     }
