@@ -11,6 +11,7 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
+import Proxy from 'es6-proxy-polyfill'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,

@@ -65,7 +65,9 @@ class BgPicker extends Component {
     addClass(this.classes.INPUT, this.element)
     this.setupI18n()
     this.setupStates()
+  
     this.initialize()
+  
   }
 
   initialize() {

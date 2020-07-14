@@ -1,4 +1,31 @@
-import 'babel-polyfill';
+
+import { 
+  arrayIncludesPolyfill,
+  arrayFindIndexPolyfill,
+  arrayFilterPolyfill,
+  arrayFindPolyfill,
+  arrayFromPolyfill,
+  intersectionObserverPolyfill,
+  objectEntriesPolyfill,
+  objectValuesPolyfill,
+  objectKeysPolyfill,
+  objectAssignPolyfill,
+  stringIncludesPolyfill
+} from '@pluginjs/polyfills'
+
+objectAssignPolyfill()
+arrayIncludesPolyfill()
+arrayFilterPolyfill()
+arrayFindPolyfill()
+arrayFromPolyfill()
+arrayFindIndexPolyfill()
+intersectionObserverPolyfill()
+objectEntriesPolyfill()
+objectValuesPolyfill()
+objectKeysPolyfill()
+objectAssignPolyfill()
+stringIncludesPolyfill()
+
 import register from './register'
 import eventable from './eventable'
 import stateable from './stateable'

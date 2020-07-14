@@ -47,7 +47,8 @@
     "@pluginjs/styled": "^0.8.4",
     "@pluginjs/styles": "^0.8.3",
     "@pluginjs/template": "^0.8.4",
-    "@pluginjs/utils": "^0.8.4"
+    "@pluginjs/utils": "^0.8.4",
+    "es6-proxy-polyfill": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
