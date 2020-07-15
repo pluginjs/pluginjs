@@ -25,7 +25,7 @@ function getPlugin(name) {
   if (window.Pj && window.Pj.has(name)) {
     const Plugin = window.Pj.get(name)
 
-    return function(element, options) {
+    return function (element, options) {
       return Plugin.of(element, options)
     }
   }
@@ -82,7 +82,7 @@ const Initializer = {
 
   register(plugin, callback, defaults = null) {
     if (
-      toString.call(callback) === '[object Function]' ||
+      Object.prototype.toString.call(callback) === '[object Function]' ||
       typeof callback === 'function'
     ) {
       PLUGINS[plugin] = callback
@@ -106,7 +106,7 @@ const Initializer = {
 
   get(plugin) {
     if (hasPlugin(plugin)) {
-      return function(element, options = {}) {
+      return function (element, options = {}) {
         initializePlugin(plugin, element, options)
       }
     }
