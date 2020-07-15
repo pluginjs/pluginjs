@@ -162,7 +162,7 @@ class FontEditor extends Component {
     bindEvent(
       this.eventName('click'),
       () => {
-        this.value.fontFamily === "" ? this.value.fontFamily = 'inherit' : null
+        // this.value.fontFamily === "" ? this.value.fontFamily = 'inherit' : null
         that.update()
         that.DROPDOWN.hide()
         return
@@ -208,7 +208,7 @@ class FontEditor extends Component {
   update(trigger = true) {
     const value = this.val()
     this.element.value = value
-    this.TRIGGER.update()
+    this.TRIGGER.update(value)
     
     if (trigger) {
       this.trigger(EVENTS.CHANGE, value)
@@ -218,10 +218,6 @@ class FontEditor extends Component {
 
   val(value, trigger = true) {
     if (typeof value === 'undefined') {
-      if(this.value.fontFamily === "") {
-        return ""
-      }
-
       return this.options.process.call(this, this.value)
     }
 

@@ -215,7 +215,17 @@ export const defaults = {
   },
   process(value) {
     if (value && typeof value !== 'undefined') {
-      return JSON.stringify(value)
+      let isNull = true
+      for(let i in value) {
+        if(value[i] !== "")
+        isNull = false
+      }
+
+      if(isNull) {
+        return ''
+      } else {
+        return JSON.stringify(value)
+      }
     }
     return ''
   },

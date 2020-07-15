@@ -69,6 +69,7 @@ export const defaults = {
       title: 'System',
       icon: 'pj-icon pj-icon-desktop',
       fonts: {
+        'Inherited': ['inherit'],
         'Sans Serif': [
           'Arial',
           'Calibri',
@@ -84,6 +85,7 @@ export const defaults = {
       },
       load($item, fontFamily) {
         const fonts = {
+          inherit: "inherit",
           Arial:
             '"Arial", "Helvetica Neue", "Helvetica", "Nimbus Sans L", "Liberation Sans", "Arimo", "sans-serif"',
           Calibri:

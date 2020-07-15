@@ -128,21 +128,24 @@ export default class Trigger {
     )
   }
 
-  update() {
+  update(value) {
     Object.entries(this.instance.value).forEach(([i, v]) => {
       if (this.instance.defaultVal[i] === v) {
         return
       }
+
       if (i === 'fontSize' || i === 'lineHeight') {
         return
       }
-      if (i === 'fontFamily' && v) {
-        if(v === 'inherit') {
-          this.$fillContentName.textContent = v
+
+      if (i === 'fontFamily') {
+        if(v === "") {
+          this.$fillContentName.textContent = 'Null'
         } else {
           this.$fillContentName.textContent = v.font
         }
       }
+
       if (i === 'textAlign') {
         i = 'justify-content'
         setStyle(
@@ -161,9 +164,9 @@ export default class Trigger {
 
     // set sub
     this.$fillContentSub.textContent = `${this.instance.value.fontSize ||
-      'inherit'} / ${this.instance.value.lineHeight || 'inherit'}`
-      
-    if ( this.instance.value.fontFamily && this.instance.value.fontFamily !== "" ) {
+      'null'} / ${this.instance.value.lineHeight || 'null'}`
+    
+    if(value) {
       addClass(this.instance.classes.EXSIT, this.instance.$wrap)
       removeClass(this.instance.classes.WRITE, this.instance.$wrap)
     } else {

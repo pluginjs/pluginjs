@@ -213,7 +213,6 @@ class FontPicker extends Component {
 
   resolveData(data) {
     this.data = deepClone(data)
-
     if (!isArray(this.data)) {
       this.data = [this.data]
     }
