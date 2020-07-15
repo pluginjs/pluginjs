@@ -5,7 +5,8 @@ export const events = {
   ENABLE: 'enable',
   DISABLE: 'disable',
   DESTROY: 'destroy',
-  RESIZE: 'resize'
+  RESIZE: 'resize',
+  UPDATE: 'update'
 }
 
 export const classes = {
@@ -26,7 +27,7 @@ export const classes = {
   MULTIPLE: '{namespace}-multiple'
 }
 
-export const methods = ['enable', 'disable', 'destroy']
+export const methods = ['update', 'enable', 'disable', 'destroy']
 
 export const defaults = {
   theme: null,

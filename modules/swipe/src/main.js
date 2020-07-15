@@ -17,7 +17,8 @@ import {
   attr,
   query,
   queryAll,
-  children
+  children,
+  remove
 } from '@pluginjs/dom'
 import {
   eventable,
@@ -140,6 +141,7 @@ class Swipe extends Component {
     this.translate = 0
     this.activeIndex = 0
     this.realIndex = 0
+    this.snapIndex = undefined
     this.prevTranslate = 0
     this.virtualHeight = 0
     this.itemNums = this.options.itemNums
@@ -740,7 +742,6 @@ class Swipe extends Component {
     }
 
     const translate = -snapGrid[snapIndex]
-
     this.updateProgress(translate)
 
     for (let i = 0; i < itemsGrid.length; i++) {
@@ -760,8 +761,8 @@ class Swipe extends Component {
 
     if (translate === this.translate) {
       this.updateActiveIndex(itemIndex)
-
       this.updateItemsClass()
+      this.setTranslate(translate)
       if (direction !== 'reset') {
         this.transitionStart(runCallback, direction)
         this.transitionEnd(runCallback, direction)
@@ -889,16 +890,6 @@ class Swipe extends Component {
     }
 
     this.trigger('progress', this.progress)
-  }
-
-  updateTranslate() {
-    const newTranslate = Math.min(
-      Math.max(this.translate, this.maxTranslate()),
-      this.minTranslate()
-    )
-    this.setTranslate(newTranslate)
-    this.updateActiveIndex()
-    this.updateItemsClass()
   }
 
   updateActiveIndex(newActiveIndex) {
@@ -1209,13 +1200,96 @@ class Swipe extends Component {
       this.$swipeable.unbind()
     }
 
+    if (this.options.arrows) {
+      this.$arrows.unbind()
+      removeEvent(this.selfEventName('toEdge'), this.element)
+      removeEvent(this.selfEventName('fromEdge'), this.element)
+    }
+
+    if (this.options.pagination) {
+      this.$pagination.unbind()
+
+      removeEvent(this.selfEventName('activeIndexChange'), this.element)
+      removeEvent(this.selfEventName('snapIndexChange'), this.element)
+    }
+
     removeEvent(this.eventName(), this.element)
+  }
+
+  update(config) {
+    if (this.is('initialized')) {
+      this.unbind()
+      if (this.$arrows) {
+        remove(this.$arrows.$prev)
+        remove(this.$arrows.$next)
+        this.$arrows = null
+      }
+      if (this.$pagination) {
+        remove(this.$pagination.element)
+        this.$pagination = null
+      }
+      if (this.$swipeable) {
+        this.$swipeable = null
+      }
+      this.leave('initialized')
+
+      this.options = Object.assign({}, this.options, config)
+
+      this.initState()
+
+      if (this.options.loop && !this.options.multiple) {
+        this.initLoop()
+      }
+      if (this.options.multiple) {
+        addClass(this.classes.MULTIPLE, this.element)
+      }
+      this.updateSize()
+      this.updateItem()
+
+      if (this.items.length === 0) {
+        return
+      }
+
+      if (this.options.loop && !this.options.multiple) {
+        this.moveTo(
+          this.options.defaultActive + this.loopedItemsLength,
+          0,
+          true
+        )
+      } else {
+        this.moveTo(this.options.defaultActive, 0, true)
+      }
+
+      if (this.options.arrows) {
+        this.initArrows()
+        this.updateArrows()
+      }
+
+      if (this.options.pagination) {
+        this.initPagination()
+        this.updatePagination()
+      }
+
+      if (this.options.swipeable) {
+        this.initSwipeable()
+      }
+
+      this.bind()
+      this.enter('initialized')
+      this.trigger(EVENTS.UPDATE)
+    }
   }
 
   enable() {
     if (this.is('disabled')) {
       if (this.options.swipeable) {
         this.$swipeable.enable()
+      }
+      if (this.options.arrows) {
+        this.$arrows.enable()
+      }
+      if (this.options.pagination) {
+        this.$pagination.enable()
       }
       this.leave('disabled')
     }
@@ -1227,6 +1301,12 @@ class Swipe extends Component {
       if (this.options.swipeable) {
         this.$swipeable.disable()
       }
+      if (this.options.arrows) {
+        this.$arrows.disable()
+      }
+      if (this.options.pagination) {
+        this.$pagination.disable()
+      }
       this.enter('disabled')
     }
 
@@ -1237,6 +1317,15 @@ class Swipe extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
+      if (this.options.swipeable) {
+        this.$swipeable.destroy()
+      }
+      if (this.options.arrows) {
+        this.$arrows.destroy()
+      }
+      if (this.options.pagination) {
+        this.$pagination.destroy()
+      }
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }
