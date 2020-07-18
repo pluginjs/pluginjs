@@ -22,8 +22,6 @@ $units-trigger-height: $units-height;
 $units-trigger-spacer: 8px;
 $units-trigger-width: 32px;
 
-$units-input-padding: 8px 35px 8px 8px;
-
 $units-dropdown-box-shadow: $box-shadow-1;
 
 $units-disabled-color: $disabled-color;
@@ -45,10 +43,6 @@ $units-disabled-color: $disabled-color;
         border-color: $units-active-color;
       }
     }
-  }
-
-  &-input.#{$input} {
-    padding: $units-input-padding;
   }
 
   &-trigger {

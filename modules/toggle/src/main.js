@@ -75,25 +75,16 @@ class Toggle extends Component {
         this.$wrap
       )
     }
+    
     // get components width
     const borderWidth = 3
-    const wrapWidth = parseInt(getStyle('width', this.$wrap).replace(/px|pt|em/gi, ''), 0)
-    let wrapClientWidth = wrapWidth - 2 * borderWidth
+    let wrapWidth = this.$wrap.offsetWidth
+    if(wrapWidth === 0) {
+      wrapWidth = parseInt(getStyle('width', this.$wrap).replace(/px|pt|em/gi, ''), 0)
+    } 
 
-    if(isIE() || isIE11()) 
-    wrapClientWidth = wrapWidth
-    
+    let wrapClientWidth = wrapWidth  - 2 * borderWidth
     this.distance = wrapClientWidth - parseInt(getStyle('width', this.$handle).replace(/px|pt|em/gi, ''), 0)
-
-    if (!this.distance) {
-      const clientWidth = 
-        parseInt(getStyle('width', this.$wrap).replace(/px|pt|em/gi, ''), 0) -
-        Math.abs(getWidth(this.$wrap))
-      this.distance =
-        clientWidth -
-        parseInt(getStyle('width', this.$handle).replace(/px|pt|em/gi, ''), 0)
-    }
-
     setStyle('marginLeft', `-${this.distance}`, this.$inner)
 
     this.bind()

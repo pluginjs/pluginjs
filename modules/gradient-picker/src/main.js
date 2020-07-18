@@ -831,9 +831,9 @@ class GradientPicker extends Component {
       unwrap(unwrap(this.element))
       if (!this.options.inline) {
         if(isIE() || isIE11()) {
-          this.PREVIEW.removeNode(true);
+          this.PREVIEW.element.removeNode(true);
         } else {
-          this.PREVIEW.remove()
+          this.PREVIEW.element.remove()
         }
   
         if (this.options.clearable) {

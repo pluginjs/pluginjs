@@ -300,6 +300,7 @@ class Units extends Component {
       if (this.value.input) {
         this.element.value = this.val()
       } else if (this.isStatic(value)) {
+        if(this.$input)
         this.$input.value = this.$input ? '' : null
         this.element.value = value
       } else {
