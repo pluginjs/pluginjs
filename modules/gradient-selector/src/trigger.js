@@ -1,7 +1,7 @@
 import template from '@pluginjs/template'
 import { bindEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { query, parseHTML } from '@pluginjs/dom'
+import { query, parseHTML, append } from '@pluginjs/dom'
 import PopDialog from '@pluginjs/pop-dialog'
 
 export default class Trigger {
@@ -39,8 +39,11 @@ export default class Trigger {
       })
     )
 
-    this.instance.$wrap.append(this.$trigger)
-    this.$trigger.append(this.$empty, this.$fill, this.$triggerAction)
+    append(this.$trigger, this.instance.$wrap)
+    append(this.$empty, this.$trigger)
+    append(this.$fill, this.$trigger)
+    append(this.$triggerAction, this.$trigger)
+
     this.buildPop()
     this.bind()
   }

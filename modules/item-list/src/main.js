@@ -1,5 +1,5 @@
 import template from '@pluginjs/template'
-import { parseHTML } from '@pluginjs/dom'
+import { parseHTML, append } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   eventable,
@@ -49,14 +49,12 @@ class ItemList extends List {
       })
     )
 
-    this.$wrapper.append(this.$add)
+    append(this.$add, this.$wrapper)
   }
 
   clone(index) {
     const item = this.data[index]
-
     this.add(item, index + 1)
-
     this.trigger(EVENTS.CLONE, index, item)
   }
 

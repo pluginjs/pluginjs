@@ -6,12 +6,11 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import {
   query,
   queryAll,
-  // parent,
   parseHTML,
   setData,
   getData,
   children,
-  // has,
+  append,
   wrap
 } from '@pluginjs/dom'
 import { setStyle, hideElement } from '@pluginjs/styled' // , getStyle
@@ -174,8 +173,8 @@ class GradientSelector extends Component {
     this.$panel = this.createEl('panel', {
       classes: this.classes
     })
-    this.$wrap.append(this.$panel)
-
+    
+    append(this.$panel, this.$wrap)
     this.$trigger = query(`.${this.classes.TRIGGERPANEL}`, this.$panel)
     this.$container = query(`.${this.classes.CONTAINERPANEL}`, this.$panel)
 
