@@ -251,7 +251,7 @@ class Range extends Component {
 
   getMatchedValue(value) {
     if (!isNumeric(value)) {
-      return this.min
+      return value === '' && this.options.clear ? '' : this.min
     }
     if (value > this.max) {
       return this.max
@@ -336,12 +336,12 @@ class Range extends Component {
 
       this.pointers.forEach(pointer => pointer.destroy())
 
-      if(isIE() || isIE11()) {
-        this.$control.removeNode(true);
+      if (isIE() || isIE11()) {
+        this.$control.removeNode(true)
       } else {
         this.$control.remove()
       }
- 
+
       if (this.options.input) {
         removeClass(this.classes.INPUT, this.element)
       } else {

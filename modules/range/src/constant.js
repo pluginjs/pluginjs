@@ -1,4 +1,4 @@
-import { isArray } from '@pluginjs/is'
+import { isArray, isNumber } from '@pluginjs/is'
 
 export const namespace = 'range'
 
@@ -48,6 +48,7 @@ export const defaults = {
   step: 1,
   value: null,
   limit: true,
+  clear: true,
   range: false,
   input: false,
   vertical: false,
@@ -76,7 +77,12 @@ export const defaults = {
     if (this.options.replaceFirst && value === this.options.replaceFirst) {
       return this.min
     }
-    return parseFloat(value, 10)
+
+    if (isNumber(value)) {
+      return parseFloat(value, 10)
+    }
+
+    return value
   },
   process(value) {
     if (this.options.range && isArray(value)) {
