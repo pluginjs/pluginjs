@@ -1,7 +1,7 @@
 import Component from '@pluginjs/component'
 import templateEngine from '@pluginjs/template'
 import { isArray } from '@pluginjs/is'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { getStyle } from '@pluginjs/styled'
 import {
@@ -10,7 +10,8 @@ import {
   query,
   queryAll,
   getData,
-  appendTo
+  appendTo,
+  closest
 } from '@pluginjs/dom'
 import Dropdown from '@pluginjs/dropdown'
 import Pj from '@pluginjs/factory'
@@ -165,6 +166,9 @@ class Filters extends Component {
       this.itemSelector,
       ({ target }) => {
         if (!this.is('disabled')) {
+          if (!hasClass(this.itemSelector, target)) {
+            target = closest(this.itemSelector, target)
+          }
           this.setActiveItem(target)
         }
       },
