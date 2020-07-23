@@ -1,4 +1,6 @@
 import ArrayIncludesPolyfill from './Array/prototype/includes.js'
+import ArrayOfPolyfill from './Array/prototype/arrayOf.js'
+import ArrayFillPolyfill from './Array/prototype/fill.js'
 import ArrayFindIndexPolyfill from './Array/prototype/findIndex.js'
 import ArrayFilterPolyfill from './Array/prototype/filter.js'
 import ArrayFindPolyfill from './Array/prototype/find.js'
@@ -9,6 +11,14 @@ import ObjectKeysPolyfill from './Object/keys.js'
 import ObjectValuesPolyfill from './Object/values.js'
 import ObjectEntriesPolyfill from './Object/entries.js'
 import IntersectionObserverPolyfill from './IntersectionObserver.js'
+
+export const arrayOfPolyfill = () => {
+  ArrayOfPolyfill()
+}
+
+export const arrayFillPolyfill = () => {
+  ArrayFillPolyfill()
+}
 
 export const arrayFindIndexPolyfill = () => {
   ArrayFindIndexPolyfill()

@@ -1,5 +1,7 @@
 
 import { 
+  arrayFillPolyfill,
+  arrayOfPolyfill,
   arrayIncludesPolyfill,
   arrayFindIndexPolyfill,
   arrayFilterPolyfill,
@@ -13,7 +15,15 @@ import {
   stringIncludesPolyfill
 } from '@pluginjs/polyfills'
 
+if (!Array.of) {
+  Array.of = function() {
+    return Array.prototype.slice.call(arguments);
+  };
+}
+
+arrayOfPolyfill()
 objectAssignPolyfill()
+arrayFillPolyfill()
 arrayIncludesPolyfill()
 arrayFilterPolyfill()
 arrayFindPolyfill()
