@@ -11,26 +11,24 @@ $time-picker-clear-icon: $pj-icon-close !default;
 $time-picker-clear-font: $pj-icon-font-family !default;
 $time-picker-clear-right: 40px !default;
 
+$time-picker-trigger-width: 30px !default;
 $time-picker-trigger-icon: $pj-icon-time !default;
 $time-picker-trigger-font: $pj-icon-font-family !default;
 
 // Core
 // =====================
 .#{$time-picker} {
-  position: relative;
-
   &-input {
-    width: $time-picker-width !important; 
+    width: 100%;
   }
 
   &-dropdown {
-    width: 100%;
     max-height: $time-picker-max-height;
     overflow: auto;
   }
 
   &-group {
-    height: 100%;
+    position: relative;
   }
 
   &-clear {
@@ -65,7 +63,18 @@ $time-picker-trigger-font: $pj-icon-font-family !default;
   }
 
   &-trigger {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: $time-picker-trigger-width;
+    height: $time-picker-trigger-width;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #e6e6e6;
     cursor: pointer;
+
     &-icon {
       font-family: $time-picker-trigger-font;
       &::after {
