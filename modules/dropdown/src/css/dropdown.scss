@@ -69,7 +69,6 @@ $dropdown-item-highlighted-bg: $dropdown-item-hover-bg;
   &-trigger {
     font-family: $dropdown-font-family;
     font-size: $dropdown-font-size;
-    color: $dropdown-color;
     outline: none;
 
     &[aria-expanded="true"] {

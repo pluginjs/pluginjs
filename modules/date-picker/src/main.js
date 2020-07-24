@@ -96,7 +96,9 @@ class DatePicker extends Component {
         classes: this.classes
       })
     )
-    this.$inputGroup = query('.pj-input-group', this.$inputWrap)
+
+    
+    this.$inputGroup = query(`.${this.classes.GROUP}`, this.$inputWrap)
     append(this.$element, this.$inputGroup)
     append(this.$inputIcon, this.$inputGroup)
 

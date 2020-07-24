@@ -114,7 +114,7 @@ class TimePicker extends Component {
       this.$wrap
     )
 
-    this.DROPDOWN = Dropdown.of(this.$group, {
+    this.DROPDOWN = Dropdown.of(this.$trigger, {
       ...this.options.dropdown,
       data: this.getTimeList().map(value => ({ label: value, value })),
       target: this.$dropdown,

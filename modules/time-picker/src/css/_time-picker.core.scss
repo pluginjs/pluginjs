@@ -66,12 +66,14 @@ $time-picker-trigger-font: $pj-icon-font-family !default;
     position: absolute;
     top: 50%;
     right: 0;
-    width: $time-picker-trigger-width;
-    height: $time-picker-trigger-width;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
+    width: $time-picker-trigger-width;
+    height: $time-picker-trigger-width;
+    color: #b3b3b3;
+    transform: translateY(-50%);
+   
     border-left: 1px solid #e6e6e6;
     cursor: pointer;
 

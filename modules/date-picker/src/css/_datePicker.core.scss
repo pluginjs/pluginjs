@@ -19,12 +19,32 @@ $datePicker-clear-icon: $pj-icon-close !default;
 $datePicker-clear-font: $pj-icon-font-family !default;
 $datePicker-clear-right: 35px !default;
 
+$datePicker-icon-width: 30px !default;
+
 // core
 //==========================
 .#{$datePicker} {
-  display: inline-flex;
+  &-group {
+    position: relative;
+  }
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $datePicker-icon-width;
+    height: $datePicker-icon-width;
+    color: #b3b3b3;
+    transform: translateY(-50%);
+    border-left: 1px solid #e6e6e6;
+    cursor: pointer;
+  }
 
   &-input {
+    width: 100%;
     z-index: 1;
     overflow: hidden;
     text-overflow: ellipsis;

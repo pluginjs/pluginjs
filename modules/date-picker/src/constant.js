@@ -57,7 +57,8 @@ export const classes = {
   FIRSTMONTH: '{namespace}-select-first-in-month',
   CLEARABLE: '{namespace}-clearable',
   CLEAR: '{namespace}-clear',
-  SELECTED: '{namespace}-selected'
+  SELECTED: '{namespace}-selected',
+  GROUP: '{namespace}-group'
 }
 
 export const methods = [
@@ -117,10 +118,10 @@ export const defaults = {
 
   templates: {
     inputWrap() {
-      return '<div class="{classes.INPUTWRAP}"><div class="pj-input-group"></div></div>'
+      return '<div class="{classes.INPUTWRAP}"><div class="{classes.GROUP}"></div></div>'
     },
     inputIcon() {
-      return '<div class="pj-input-group-addon {classes.ICON}"><i class="pj-icon pj-icon-calendar"></i></div>'
+      return '<div class="{classes.ICON}"><i class="pj-icon pj-icon-calendar"></i></div>'
     },
     wrap() {
       return '<div class="{classes.WRAP}"></div>'

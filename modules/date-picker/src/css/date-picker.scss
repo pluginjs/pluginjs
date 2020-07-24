@@ -73,39 +73,6 @@ $datePicker-body-font-size: $font-size-xs;
   width: $datePicker-width;
   font-family: $datePicker-font;
 
-  &-input,
-  &-icon {
-    border-color: $datePicker-border-color;
-    border-style: $datePicker-border-style;
-    border-width: $datePicker-border-width;
-    outline: none;
-  }
-
-
-  &.#{$datePicker}-active {
-    /* stylelint-disable */
-    .#{$datePicker}-input {
-      &::-webkit-input-placeholder{
-        color: $color-white;
-      }
-      &:-moz-placeholder{
-        color: $color-white
-      }
-      &::-moz-placeholder{
-        color: $color-white
-      }
-      &:-ms-input-placeholder{
-        color: $color-white
-      }
-    }
-    /* stylelint-enable */
-
-    &.#{$datePicker}-startDay.#{$datePicker}-select-last-in-month::before,
-    &.#{$datePicker}-endDay.#{$datePicker}-select-first-in-month::before {
-      display: none;
-    }
-  }
-
   &-wrap {
     padding: $datePicker-content-padding;
     color: $datePicker-color;
