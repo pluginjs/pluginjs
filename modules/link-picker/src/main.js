@@ -391,20 +391,18 @@ class LinkPicker extends Component {
 
   updatePreview() {
     const data = this.get()
-    if (data.internal === '' || data.external === '') {
-      this.element.value = ''
-      removeClass(this.classes.WRITE, this.$wrap)
-    }
-    // if( data.external === '') {
-    //   this.element.value = ''
-    // }
     const content = query('.pj-cascader-label', this.$wrap).innerHTML
-    if (data.type === 'internal' && data.internal !== '') {
+    const link = query(`.${this.classes.LINK}`, this.$fill)
+    if (data.type === 'internal') {
       addClass(this.classes.WRITE, this.$wrap)
-      query(`.${this.classes.LINK}`, this.$fill).textContent = content
-    } else if (data.type === 'external' && data.external !== '') {
+      data.internal !== '' ? 
+      link.textContent = content :
+      link.textContent = 'Null' 
+    } else if (data.type === 'external') {
       addClass(this.classes.WRITE, this.$wrap)
-      query(`.${this.classes.LINK}`, this.$fill).textContent = data.external
+      data.external !== '' ? 
+      link.textContent = data.external :
+      link.textContent = 'Null' 
     }
   }
 

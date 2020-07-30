@@ -521,6 +521,7 @@ class VideoPicker extends Component {
 
   loadVideo() {
     const url = this.data.url
+
     if (!url.replace(/(^\s*)|(\s*$)/g, '').length) {
       addClass(this.classes.WARNING, this.$urlInput).setAttribute(
         'placeholder',
@@ -529,6 +530,7 @@ class VideoPicker extends Component {
 
       return false
     }
+
     const videoConfig = { source: 'youtube' }
     switch (this.data.source) {
       case 'YouTube':
@@ -541,7 +543,7 @@ class VideoPicker extends Component {
         videoConfig.type = 'html5'
         break
     }
-
+    console.log(videoConfig)
     if (url.indexOf('http') === 0 || url.indexOf('https') === 0) {
       videoConfig.url = `${url}`
     } else {
@@ -553,12 +555,15 @@ class VideoPicker extends Component {
     }
     this.videoApi = Video.of(this.$video, videoConfig)
     this.videoApi.options.onLoad = () => {
+      console.log(1111)
       addClass(this.classes.VIDEOLOADING, this.$videoAction)
     }
 
     this.videoApi.options.onLoaded = () => {
+      console.log(2222)
       removeClass(this.classes.VIDEOLOADING, this.$videoAction)
       addClass(this.classes.VIDEOPLAYING, this.$videoAction)
+      this.videoApi.play()
     }
 
     // this.videoApi.load()

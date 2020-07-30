@@ -18,8 +18,8 @@ export default class FontFamily {
       ),
       typeface: this.instance.translate('typeface')
     })
-    this.$wrap = parseHTML(html)
 
+    this.$wrap = parseHTML(html)
     this.$content = query(`.${this.instance.classes.FIELDCONTENT}`, this.$wrap)
     this.element = query(`.${this.instance.classes.FONTPICKER}`, this.$content)
 

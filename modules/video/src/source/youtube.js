@@ -97,7 +97,11 @@ class Youtube {
     if (this.options.id) {
       return this.options.id
     } else if (this.options.url) {
-      return this.options.url.split('/')[3].split('?v=')[1]
+      if(this.options.url.indexOf('?v=') !== -1) {
+        return this.options.url.split('/')[3].split('?v=')[1]
+      } else {
+        return this.options.url.split('/')[3]
+      }
     }
     return undefined /* eslint-disable-line */
   }

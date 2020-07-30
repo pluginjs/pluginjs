@@ -81,7 +81,7 @@ export const defaults = {
     placement: 'bottom-start'
   },
   fontFamily: {
-    value: { source: 'system', font: 'Arial' },
+    value: '',
     template() {
       return (
         '<div class="{field}">' +
