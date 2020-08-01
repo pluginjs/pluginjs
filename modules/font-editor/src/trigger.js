@@ -9,8 +9,7 @@ export default class Trigger {
   constructor(instance) {
     this.instance = instance
     this.classes = this.instance.classes
-    // this.defaultValue = instance.options.fontSize.value
-
+  
     this.initialize()
     this.bind()
   }
