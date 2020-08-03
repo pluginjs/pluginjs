@@ -32,6 +32,7 @@ export const defaults = {
   to: 100,
   delay: 0,
   duration: 2000,
+  delimiter: '', // ' ', ',', '.'
   loop: false,
   easing: x => x, // 'ease', 'linear', 'ease-in', 'ease-out'
   autoplay: false,
@@ -39,10 +40,15 @@ export const defaults = {
   format(value, options) {
     const decimal = String(options.to).split('.')[1]
 
-    if (decimal) {
-      return value.toFixed(decimal.length)
-    }
+    const num = decimal ? value.toFixed(decimal.length) : value.toFixed(0)
 
-    return value.toFixed(0)
+    if (options.delimiter) {
+      return num.toString().replace(/\d+/, n => {
+        return n.replace(/(\d)(?=(\d{3})+$)/g, $1 => {
+          return $1 + options.delimiter
+        })
+      })
+    }
+    return num
   }
 }
