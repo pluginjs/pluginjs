@@ -63,6 +63,7 @@ class Flip {
   }
 
   update(value, type) {
+    console.log(233)
     const index = this.types.indexOf(type)
     const maximum = this.maximums[index]
     value = Number(value)

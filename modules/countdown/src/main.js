@@ -3,6 +3,8 @@ import { addClass, removeClass } from '@pluginjs/classes'
 import { parseHTML } from '@pluginjs/dom'
 import templateEngine from '@pluginjs/template'
 import { deepMerge } from '@pluginjs/utils'
+import { hideElement } from '@pluginjs/styled'
+import { insertAfter } from '@pluginjs/dom'
 import {
   register,
   stateable,
@@ -11,7 +13,7 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
-import Proxy from 'es6-proxy-polyfill'
+// import Proxy from 'es6-proxy-polyfill'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -40,12 +42,17 @@ class CountDown extends Component {
   _interval = {
     createTimer: time => {
       this.timer = () => {
+        if (this.counttime === 0) {
+          return
+        }
         this.update()
       }
       return window.setInterval(this.timer, time)
     },
     removeTimer: () => {
-      window.clearInterval(this.timer())
+      if (this.timer) {
+        window.clearInterval(this.timer())
+      }
     }
   }
 
@@ -68,6 +75,7 @@ class CountDown extends Component {
     this.maximums = this.options.maximums.split(/,|，|\s+/)
     this.types = []
     this.labels = []
+    this.counttime = 0
 
     this.format.forEach((type, index) => {
       const name = KEY_MAP[type]
@@ -167,18 +175,23 @@ class CountDown extends Component {
     return html
   }
 
-  getDif() {
+  getCountTime() {
     return this.due - Date.now()
   }
 
   update() {
-    let dif = this.getDif()
+    this.counttime = this.getCountTime()
 
-    if (dif < 0 || isNaN(dif)) {
-      dif = 0
+    if (this.counttime < 0 || isNaN(this.counttime)) {
+      this.counttime = 0
     }
 
-    const newTimes = new Times(dif)
+    if (this.counttime === 0) {
+      clearInterval(this.timer)
+      this.runAction()
+    }
+
+    const newTimes = new Times(this.counttime)
 
     if (this.options.overall) {
       this.times = newTimes
@@ -205,6 +218,30 @@ class CountDown extends Component {
           return true
         }
       })
+    }
+  }
+
+  runAction() {
+    if (this.element.dataset.redirectUrl) {
+      window.location.href = this.element.dataset.redirectUrl
+    }
+
+    if (this.element.dataset.hide) {
+      hideElement(this.element)
+    }
+
+    if (this.element.dataset.message) {
+      this.$message = templateEngine.render(
+        this.options.templates.message.call(this),
+        {
+          classes: this.classes,
+          message: this.element.dataset.message
+        }
+      )
+
+      if (this.element.dataset.message) {
+        insertAfter(this.$message, this.element)
+      }
     }
   }
 

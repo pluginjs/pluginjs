@@ -52,7 +52,7 @@ export const defaults = {
   overall: false, // event trigger Modularity
   label: 'default', // 'default' or custom labels like 'day,hour,month,second'
   labelInverse: false, // bottome | above
-  due: '2019-9-9', // scheduled time
+  due: '2020-7-5/', // scheduled time
   interval: 1000, // refresh interval
   maximums: '999,24,60,60', // progress module maximums
   svgSize: 100, // progress size
@@ -94,6 +94,9 @@ export const defaults = {
     },
     ring() {
       return '<div class={classes.RING}></div>'
+    },
+    message() {
+      return '<div class="{classes.NAMESPACE}-message">{message}</div>'
     }
   }
 }
