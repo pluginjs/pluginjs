@@ -255,7 +255,8 @@ class Tooltip extends Component {
 
       if (this.options.hideOutClick && this.clickTrigger) {
         bindEvent(
-          this.eventNameWithId('click touchend'),
+          // this.eventNameWithId('click touchend'),
+          this.eventNameWithId('mousedown'),
           event => {
             if (!this.is('shown')) {
               return
@@ -264,7 +265,7 @@ class Tooltip extends Component {
             if (this._hoverState === HoverState.OUT) {
               return
             }
-
+         
             if (
               event.target === this.$tip ||
               this.$tip.contains(event.target)
@@ -278,10 +279,11 @@ class Tooltip extends Component {
             ) {
               return
             }
-
+   
             this.hide()
           },
-          window.document
+          document
+          // window.document
         )
       }
     }
@@ -325,7 +327,8 @@ class Tooltip extends Component {
     this._hoverState = ''
 
     if (this.options.hideOutClick && this.clickTrigger) {
-      removeEvent(this.eventNameWithId('click'), window.document)
+      removeEvent(this.eventNameWithId('mousedown'), document)
+      // removeEvent(this.eventNameWithId('click'), window.document)
     }
   }
 

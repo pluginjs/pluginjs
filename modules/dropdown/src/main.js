@@ -470,9 +470,12 @@ class Dropdown extends Component {
         bindEvent(
           this.eventNameWithId('mousedown'),
           e => {
+            this.$popover = query('.pj-popover-inner', document)
             this.$mediaModals = queryAll('.media-modal', document)
             this.$mediaModal = this.$mediaModals[this.$mediaModals.length - 1]
             if (
+              e.target === this.$popover ||
+              (this.$popover ? has(e.target, this.$popover) : null) ||
               e.target === this.$mediaModal ||
               (this.$mediaModal ? has(e.target, this.$mediaModal) : null) ||
               e.target === this.$dropdown ||
