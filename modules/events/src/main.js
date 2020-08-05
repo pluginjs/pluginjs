@@ -4,22 +4,26 @@ import { curryWith } from '@pluginjs/utils'
 import EventEmitter from './eventEmitter'
 
 const supportEventListener = element => {
-  return typeof element === 'object' && 'addEventListener' in element
+  return (
+    element !== null &&
+    typeof element === 'object' &&
+    'addEventListener' in element
+  )
 }
 
 export const trigger = (event, ...args) => {
-  (function () {
-    if ( typeof window.CustomEvent === "function" ) return false;
-    function CustomEvent ( event, params ) {
-      params = params || { bubbles: false, cancelable: false, detail: null };
-      var evt = document.createEvent( 'CustomEvent' );
-      evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-      return evt;
-     }
-  
-    window.CustomEvent = CustomEvent;
-  })();
-  
+  // (function () {
+  //   if ( typeof window.CustomEvent === "function" ) return false;
+  //   function CustomEvent ( event, params ) {
+  //     params = params || { bubbles: false, cancelable: false, detail: null };
+  //     var evt = document.createEvent( 'CustomEvent' );
+  //     evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+  //     return evt;
+  //    }
+
+  //   window.CustomEvent = CustomEvent;
+  // })();
+
   const element = args[args.length - 1]
   if (!supportEventListener(element)) {
     return
@@ -53,13 +57,13 @@ const getDelegator = (event, selector, callback, element) => {
     const currentTarget = e.currentTarget || element
     const applyArgs = args ? [e].concat(args) : [e]
     let result
- 
+
     if (isString(selector)) {
       while (target && target !== currentTarget) {
         if (!Element.prototype.matches) {
-          Element.prototype.matches = Element.prototype.msMatchesSelector;
+          Element.prototype.matches = Element.prototype.msMatchesSelector
         }
-        
+
         if (target.matches(selector)) {
           result = callback.apply(target, applyArgs)
         }
