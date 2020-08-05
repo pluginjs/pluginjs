@@ -76,7 +76,6 @@ class BeforeAfter extends Component {
     }, 0)
 
     this.bind()
-
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }

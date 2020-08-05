@@ -11,18 +11,17 @@ const supportEventListener = element => {
   )
 }
 
-export const trigger = (event, ...args) => {
-  // (function () {
-  //   if ( typeof window.CustomEvent === "function" ) return false;
-  //   function CustomEvent ( event, params ) {
-  //     params = params || { bubbles: false, cancelable: false, detail: null };
-  //     var evt = document.createEvent( 'CustomEvent' );
-  //     evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-  //     return evt;
-  //    }
+const initCustomEvent = (event, params) => {
+  params = params || { bubbles: false, cancelable: false, detail: null };
+  var evt = document.createEvent( 'CustomEvent' );
+  evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+  return evt;
+}
 
-  //   window.CustomEvent = CustomEvent;
-  // })();
+export const trigger = (event, ...args) => {
+  if(typeof window.CustomEvent !== "function") {
+    window.CustomEvent = initCustomEvent;
+  }
 
   const element = args[args.length - 1]
   if (!supportEventListener(element)) {
