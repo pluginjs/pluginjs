@@ -25,7 +25,8 @@ $range-tip-arrow-size: 4px !default;
   &-rail,
   &-track {
     position: absolute;
-    top: $range-pointer-width / 2;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   &-rail {

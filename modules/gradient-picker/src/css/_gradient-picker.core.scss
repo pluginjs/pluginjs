@@ -77,11 +77,10 @@ $gradientPicker-wheel-height: $gradientPicker-wheel-width !default;
   &-preview {
     position: absolute;
     top: 50%;
-    right: 1px;
+    right: 0;
     width: $gradientPicker-preview-width;
     height: $gradientPicker-preview-height - 2px;
     cursor: pointer;
-    background-color: $gradientPicker-preview-bg;
     transform: translateY(-50%);
 
     span {
