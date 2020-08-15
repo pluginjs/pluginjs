@@ -316,22 +316,12 @@ class PatternPicker extends Component {
       input: true,
       tip: false,
       range: false,
-      units: {
-        '%': {
-          min: 0,
-          max: 100,
-          step: 1
-        }
-      },
       onChange: data => {
         this.opacity = data / 100
-
         this.leave('foreChange')
         this.leave('bgChange')
         this.enter('opacityChange')
         this.updateComponent()
-
-        // return
       }
     })
   }
@@ -442,7 +432,7 @@ class PatternPicker extends Component {
 
     this.BGCOLOR.val(this.options.format(info, 'background-color'))
     this.FORECOLOR.val(this.options.format(info, 'color'))
-    this.OPACITY.val(`${this.options.format(info, 'opacity')}%`)
+    this.OPACITY.val(`${this.options.format(info, 'opacity')}`)
 
     // set preview
 
@@ -500,7 +490,7 @@ class PatternPicker extends Component {
 
       this.BGCOLOR.val(this.options.format(info, 'background-color'))
       this.FORECOLOR.val(this.options.format(info, 'color'))
-      this.OPACITY.val(`${this.options.format(info, 'opacity')}%`)
+      this.OPACITY.val(`${this.options.format(info, 'opacity')}`)
 
       // set preview
       this.setInfo(this.$fillImg)
@@ -545,7 +535,7 @@ class PatternPicker extends Component {
         this.$selecting = $this
         this.BGCOLOR.val(this.options.format(data, 'background-color'))
         this.FORECOLOR.val(this.options.format(data, 'color'))
-        this.OPACITY.val(`${this.options.format(data, 'opacity')}%`)
+        this.OPACITY.val(`${this.options.format(data, 'opacity')}`)
         this.enter('save')
         this.update(data, trigger)
       }
@@ -559,7 +549,6 @@ class PatternPicker extends Component {
       return this.options.process.call(this, this.get())
     }
     const val = this.options.parse.call(this, value)
-
     this.set(val, trigger)
     return null
   }
@@ -574,7 +563,7 @@ class PatternPicker extends Component {
       this.$fillImg
     )
 
-    this.OPACITY.val('100%')
+    this.OPACITY.val('100')
     this.FORECOLOR.clear()
     this.BGCOLOR.clear()
 

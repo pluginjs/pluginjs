@@ -68,11 +68,11 @@ class Collection {
       const fillOpacity = pattern.match(/fill-opacity='(.*?)'/)
   
       if(!fillValue) {
-        patternHTML.setAttribute('fill', '');
+        patternHTML.setAttribute('fill', '#000');
       }
 
       if(!fillOpacity) {
-        patternHTML.setAttribute('fill-opacity', '');
+        patternHTML.setAttribute('fill-opacity', '1');
       }
 
       const div = document.createElement("div")

@@ -112,11 +112,11 @@ class SectionScroll extends Component {
     bindEvent(
       this.eventName('wheel'),
       e => {
-        if (e.cancelable) {
-          if (!e.defaultPrevented) {
-            e.preventDefault()
-          }
-        }
+        // if (e.cancelable) {
+        //   if (!e.defaultPrevented) {
+        //     e.preventDefault()
+        //   }
+        // }
 
         if (e.deltaY > 0) {
           this.next()

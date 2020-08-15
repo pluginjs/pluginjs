@@ -270,7 +270,7 @@ class Range extends Component {
       }
 
       this.element.value = this.val()
-
+       
       if (update) {
         this.trigger(EVENTS.UPDATE, this.value)
       }
@@ -283,6 +283,7 @@ class Range extends Component {
   }
 
   val(value, trigger = true) {
+    console.log(value,99999)
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }
