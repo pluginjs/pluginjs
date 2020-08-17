@@ -283,7 +283,6 @@ class Range extends Component {
   }
 
   val(value, trigger = true) {
-    console.log(value,99999)
     if (typeof value === 'undefined') {
       return this.options.process.call(this, this.get())
     }

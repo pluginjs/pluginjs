@@ -230,7 +230,7 @@ export const defaults = {
     return ''
   },
   parse(value) {
-    if (value) {
+    if (value && value !== '[]') {
       try {
         return JSON.parse(value)
       } catch (e) {
