@@ -1,25 +1,12 @@
-/* Credit to https://swiperjs.com/ MIT */
-import { transitionEndEvent } from '@pluginjs/feature'
+import anime from 'animejs'
 import Component from '@pluginjs/component'
-import { bindEvent, removeEvent, bindEventOnce } from '@pluginjs/events'
+import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import templateEngine from '@pluginjs/template'
-import { setStyle, getStyle, getWidth, getHeight } from '@pluginjs/styled'
-import { isPlainObject, isElement } from '@pluginjs/is'
-import {
-  append,
-  appendTo,
-  prependTo,
-  parentWith,
-  prev,
-  next,
-  clone,
-  attr,
-  query,
-  queryAll,
-  children,
-  remove
-} from '@pluginjs/dom'
+import { setStyle, getStyle } from '@pluginjs/styled'
+import { isPlainObject } from '@pluginjs/is'
+import { compose } from '@pluginjs/utils'
+import { append, parentWith, query, queryAll, remove } from '@pluginjs/dom'
 import {
   eventable,
   register,
@@ -37,6 +24,8 @@ import {
   namespace as NAMESPACE
 } from './constant'
 
+import Breakpoints from '@pluginjs/breakpoints'
+import Item from './item'
 import Swipeable from '@pluginjs/swipeable'
 import Arrows from '@pluginjs/arrows'
 import Dots from '@pluginjs/dots'
@@ -67,36 +56,34 @@ class Swipe extends Component {
 
     addClass(this.classes.NAMESPACE, this.element)
 
+    this.initContainer()
     this.initWrapper()
     this.initInner()
     this.initState()
-    if (this.options.loop && !this.options.multiple) {
-      this.initLoop()
-    }
-    if (this.options.multiple) {
-      addClass(this.classes.MULTIPLE, this.element)
-    }
-    this.updateSize()
-    this.updateItem()
-
-    if (this.items.length === 0) {
-      return
-    }
-
-    if (this.options.loop && !this.options.multiple) {
-      this.moveTo(this.options.defaultActive + this.loopedItemsLength, 0, true)
-    } else {
-      this.moveTo(this.options.defaultActive, 0, true)
-    }
-
     if (this.options.arrows) {
       this.initArrows()
-      this.updateArrows()
     }
+
+    this.width = this.getWidth()
+    this.itemWidth = this.getItemWidth()
+    this.$items = this.getItems()
+    this.chunks = this.createChunks(this.$items)
+    this.innerWidth =
+      this.chunks.length * (this.itemWidth + this.gutter) - this.gutter
+    this.itemsGrid = this.getItemsGrid()
+    this.snapGrid = this.getSnapGrid()
+    this.maxCount = this.getMaxCount()
+    this.active =
+      this.options.active > this.maxCount - 1
+        ? this.maxCount
+        : this.options.active
 
     if (this.options.pagination) {
       this.initPagination()
-      this.updatePagination()
+    }
+
+    if (this.options.arrows) {
+      this.updateArrows()
     }
 
     if (this.options.swipeable) {
@@ -104,20 +91,50 @@ class Swipe extends Component {
     }
 
     this.bind()
+
+    this.render(this.active, false)
+
+    if (this.options.autoplay) {
+      this.autoPlay()
+    }
+
+    console.log('instance', this)
+
     this.enter('initialized')
     this.trigger(EVENTS.READY)
+  }
+
+  initContainer() {
+    this.$container = query(`.${this.classes.CONTAINER}`, this.element)
+
+    if (!this.$container) {
+      if (this.options.containerSelector) {
+        this.$container = query(this.options.containerSelector, this.element)
+        addClass(this.classes.CONTAINER, this.$wrapper)
+      } else {
+        const $container = this.createEle('container', {
+          classes: this.classes
+        })
+        append($container, this.element)
+        this.$container = query(`.${this.classes.CONTAINER}`, this.element)
+      }
+    }
   }
 
   initWrapper() {
     this.$wrapper = query(`.${this.classes.WRAPPER}`, this.element)
 
     if (!this.$wrapper) {
-      if (!this.options.wrapperSelector) {
-        throw Error('can\'t find option "wrapperSelector"!')
+      if (this.options.wrapperSelector) {
+        this.$wrapper = query(this.options.wrapperSelector, this.element)
+        addClass(this.classes.WRAPPER, this.$wrapper)
+      } else {
+        const $wrapper = this.createEle('wrapper', {
+          classes: this.classes
+        })
+        append($wrapper, this.$container)
+        this.$wrapper = query(`.${this.classes.WRAPPER}`, this.element)
       }
-
-      this.$wrapper = query(this.options.wrapperSelector, this.element)
-      addClass(this.classes.WRAPPER, this.$wrapper)
     }
   }
 
@@ -125,61 +142,196 @@ class Swipe extends Component {
     this.$inner = query(`.${this.classes.INNER}`, this.element)
 
     if (!this.$inner) {
-      if (!this.options.innerSelector) {
-        throw Error('can\'t find option "innerSelector"!')
+      if (this.options.innerSelector) {
+        this.$inner = query(this.options.innerSelector, this.element)
+        addClass(this.classes.INNER, this.$inner)
+      } else {
+        const $inner = this.createEle('inner', {
+          classes: this.classes
+        })
+        append($inner, this.$wrapper)
+        this.$inner = query(`.${this.classes.INNER}`, this.element)
+        this.getItems().forEach($item => {
+          append($item, this.$inner)
+        })
       }
-
-      this.$inner = query(this.options.innerSelector, this.element)
-      addClass(this.classes.INNER, this.$inner)
     }
   }
 
   initState() {
-    this.enter('first')
-    this.leave('last')
-    this.progress = 0
-    this.translate = 0
-    this.activeIndex = 0
-    this.realIndex = 0
-    this.snapIndex = undefined
-    this.prevTranslate = 0
-    this.virtualHeight = 0
-    this.itemNums = this.options.itemNums
-    this.items = []
+    this.initBreakpoint()
+    this.gutter = this.column > 1 ? this.options.gutter : 0
+    this.duration = this.options.duration
+    this.outside = this.options.outside
+    this.group = this.options.group
+    this.loop = this.options.loop
+    this.center = this.options.center
+
+    this.$items = []
+    this.chunks = []
     this.itemsGrid = []
     this.snapGrid = []
-    this.itemsSizesGrid = []
-    this.leave('animating')
+
+    this._interval = {
+      createTimer: time => {
+        return window.setInterval(() => {
+          this.next()
+        }, time)
+      },
+      removeTimer: () => {
+        window.clearInterval(this.timer())
+      }
+    }
   }
 
-  initArrows() {
-    this.$arrows = Arrows.of(this.$wrapper, this.options.arrows)
+  initBreakpoint() {
+    Breakpoints.init()
+    if (Breakpoints.is('lg+')) {
+      this.column =
+        this.options.desktopColumn > 0 ? this.options.desktopColumn : 1
+    }
+
+    if (Breakpoints.is('md')) {
+      this.column =
+        this.options.tabletColumn > 0 ? this.options.tabletColumn : 1
+    }
+
+    if (Breakpoints.is('sm-')) {
+      this.column =
+        this.options.mobileColumn > 0 ? this.options.mobileColumn : 1
+    }
+  }
+
+  getItems() {
+    let $items = queryAll(`.${this.classes.ITEM}`, this.element)
+    if ($items.length === 0) {
+      $items = queryAll(this.options.itemSelector, this.element)
+      $items.forEach($item => {
+        addClass(this.classes.ITEM, $item)
+      })
+    }
+
+    return $items
+  }
+
+  createChunks($items) {
+    const chunks = []
+    const length = $items.length
+
+    $items.forEach(($item, index) => {
+      chunks.push(
+        new Item(this, $item, {
+          index,
+          length
+        })
+      )
+    })
+    return chunks
+  }
+
+  getItemsGrid() {
+    const itemsGrid = []
+    this.chunks.forEach((chunk, index) => {
+      itemsGrid.push((this.itemWidth + this.gutter) * index)
+    })
+    return itemsGrid
+  }
+
+  getSnapGrid() {
+    let snapGrid = []
+    const itemGroupNum = this.group ? this.column : 1
+    let index = 0
+    let itemPosition = 0
+    let prevItemSize = 0
+
+    for (let i = 0; i < this.$items.length; i++) {
+      if (this.center) {
+        itemPosition =
+          itemPosition + this.itemWidth / 2 + prevItemSize / 2 + this.gutter
+        if ((prevItemSize === 0 && i !== 0) || i === 0) {
+          itemPosition = itemPosition - this.width / 2 - this.gutter
+        }
+        if (Math.abs(itemPosition) < 1 / 1000) {
+          itemPosition = 0
+        }
+        if (index % itemGroupNum === 0) {
+          snapGrid.push(itemPosition)
+        }
+      } else {
+        if (index % itemGroupNum === 0) {
+          snapGrid.push(itemPosition)
+        }
+        itemPosition = itemPosition + this.itemWidth + this.gutter
+      }
+
+      prevItemSize = this.itemWidth
+
+      index += 1
+    }
+
+    if (!this.center) {
+      const newItemsGrid = []
+      for (let i = 0; i < snapGrid.length; i++) {
+        const itemsGridItem = snapGrid[i]
+        if (snapGrid[i] <= this.innerWidth - this.width) {
+          newItemsGrid.push(itemsGridItem)
+        }
+      }
+
+      snapGrid = newItemsGrid
+      if (
+        Math.floor(this.innerWidth - this.width) -
+          Math.floor(snapGrid[snapGrid.length - 1]) >
+        1
+      ) {
+        snapGrid.push(this.innerWidth - this.width)
+      }
+    }
+
+    if (snapGrid.length === 0) {
+      snapGrid = [0]
+    }
+
+    return snapGrid
+  }
+
+  getMaxCount() {
+    let count = 0
+    let targetItem = this.itemsGrid[0]
+    const maxWidth = this.innerWidth - this.width
+    if (maxWidth <= 0) {
+      return 1
+    }
+    for (const item of this.itemsGrid) {
+      if (item >= maxWidth) {
+        break
+      }
+      count++
+      targetItem = item
+    }
+
+    if (Math.floor(targetItem) < Math.floor(maxWidth) && !this.loop) {
+      count += 1
+    }
+
+    return Math.max(1, count)
   }
 
   initPagination() {
     const that = this
-    const pagination = this.createEl('pagination', {
+    const $pagination = this.createEle('pagination', {
       classes: this.classes
     })
     const items = []
-    const itemGroupNum = this.options.group ? this.itemNums : 1
 
-    const paginationCounts =
-      this.options.loop && !this.options.multiple
-        ? Math.ceil(
-            (this.items.length - this.loopedItemsLength * 2) / itemGroupNum
-          )
-        : this.snapGrid.length
-    this.paginationCounts = paginationCounts
-
-    for (let i = 0; i < paginationCounts; i++) {
-      items.push({ index: i })
+    for (let index = 0; index < this.maxCount; index++) {
+      items.push({ index })
     }
 
     let config = {
       items,
       valueFrom: 'data-href',
-      default: `${this.activeIndex}`,
+      default: `${this.active}`,
       template: {
         item(css) {
           return `<li class="${css} ${that.classes.PAGINATIONITEM}" data-href="{index}"><a>{index}</a></li>`
@@ -187,8 +339,7 @@ class Swipe extends Component {
       }
     }
 
-    append(pagination, this.element)
-
+    append($pagination, this.element)
     config = isPlainObject(this.options.pagination)
       ? Object.assign({}, config, this.options.pagination)
       : config
@@ -199,72 +350,60 @@ class Swipe extends Component {
     )
   }
 
-  updateArrows() {
-    if (!this.options.arrows || this.options.loop) {
-      return
-    }
-    if (this.is('first')) {
-      this.$arrows.disable('prev')
-    } else {
-      this.$arrows.enable('prev')
-    }
-    if (this.is('last')) {
-      this.$arrows.disable('next')
-    } else {
-      this.$arrows.enable('next')
+  initArrows() {
+    this.$arrows = Arrows.of(this.$container, this.options.arrows)
+    if (this.options.outside) {
+      addClass(this.classes.OUTSIDE, this.element)
     }
   }
 
-  updatePagination() {
-    if (!this.options.pagination) {
+  updateArrows() {
+    if (this.loop) {
       return
     }
-    let current
-    const itemGroupNum = this.options.group ? this.itemNums : 1
-    const slidesLength = this.items.length
-    const paginationCounts = this.paginationCounts
 
-    if (this.options.loop && !this.options.multiple) {
-      current = Math.ceil(
-        (this.activeIndex - this.loopedItemsLength) / itemGroupNum
-      )
-      if (current > slidesLength - 1 - this.loopedItemsLength * 2) {
-        current -= slidesLength - this.loopedItemsLength * 2
-      }
-      if (current > paginationCounts - 1) {
-        current -= paginationCounts
-      }
-      if (current < 0) {
-        current = paginationCounts + current
-      }
-    } else if (typeof this.snapIndex !== 'undefined') {
-      current = this.snapIndex
+    if (this.maxCount === 1) {
+      this.$arrows.disable('prev')
+      this.$arrows.disable('next')
+    } else if (this.active === 0) {
+      this.$arrows.disable('prev')
+      this.$arrows.enable('next')
+    } else if (this.active === this.maxCount - 1) {
+      this.$arrows.disable('next')
+      this.$arrows.enable('prev')
     } else {
-      current = this.activeIndex || 0
+      this.$arrows.enable('prev')
+      this.$arrows.enable('next')
     }
-    this.$pagination.set(current)
   }
 
   initSwipeable() {
     const that = this
 
     this.$swipeable = Swipeable.of(this.$inner, {
-      container: that.$wrapper,
-      power: 1,
-      duration: that.options.duration,
+      container: that.element,
       onStart() {
         that.startTime = Date.now()
-        that.updateSize()
         this.startPointer = this.info.pointer.x
+        if (that.anime) {
+          that.anime.pause()
+        }
+        if (that.options.autoplay) {
+          that.intervalToggle(false)
+        }
         that.leave('move')
       },
       onMove() {
+        if (that.is('disable')) {
+          return
+        }
         if (!that.is('move')) {
-          if (that.options.loop && !that.options.multiple) {
-            that.fixLoop()
+          if (that.loop) {
+            // ================================
+            // ==========    loop    ==========
+            // ================================
           }
           this.startPosition.x = that.getTranslate()
-          that.setTransition(0)
         }
         that.enter('move')
 
@@ -284,19 +423,21 @@ class Swipe extends Component {
             (that.maxTranslate() - this.startPosition.x - diff) ** 0.85
         }
 
-        that.updateProgress(that.currentTranslate)
         that.setTranslate(that.currentTranslate)
         this.position = { x: that.currentTranslate, y: 0 }
       },
       onEnd() {
+        if (that.is('disable')) {
+          return
+        }
         that.leave('move')
         const EndTime = Date.now()
         const timeDiff = EndTime - that.startTime
         const currentPos = -this.position.x
         const itemsGrid = that.itemsGrid
         let stopIndex = 0
-        let groupSize = that.itemsSizesGrid[0]
-        const itemGroupNum = that.options.group ? that.itemNums : 1
+        let groupSize = that.itemWidth
+        const itemGroupNum = that.group ? that.column : 1
 
         for (let i = 0; i < itemsGrid.length; i += itemGroupNum) {
           if (typeof itemsGrid[i + itemGroupNum] !== 'undefined') {
@@ -315,744 +456,31 @@ class Swipe extends Component {
         }
 
         const ratio = (currentPos - itemsGrid[stopIndex]) / groupSize
-
         if (timeDiff > 300) {
           if (that.swipeDirection === 'next') {
             if (ratio >= 0.5) {
-              that.moveTo(stopIndex + itemGroupNum)
+              that.render(stopIndex + itemGroupNum)
             } else {
-              that.moveTo(stopIndex)
+              that.render(stopIndex)
             }
           }
           if (that.swipeDirection === 'prev') {
             if (ratio > 0.5) {
-              that.moveTo(stopIndex + itemGroupNum)
+              that.render(stopIndex + itemGroupNum)
             } else {
-              that.moveTo(stopIndex)
+              that.render(stopIndex)
             }
           }
         } else {
           if (that.swipeDirection === 'next') {
-            that.moveTo(stopIndex + itemGroupNum)
+            that.render(stopIndex + itemGroupNum)
           }
           if (that.swipeDirection === 'prev') {
-            that.moveTo(stopIndex)
+            that.render(stopIndex)
           }
         }
       }
     })
-  }
-
-  initLoop() {
-    children(
-      `.${this.classes.ITEM}.${this.classes.CLONED}`,
-      this.$inner
-    ).forEach(clonedItem => {
-      clonedItem.remove()
-    })
-
-    const items = this.getItems()
-
-    if (items.length === 0) {
-      return
-    }
-
-    this.loopedItemsLength = Math.ceil(parseFloat(this.itemNums, 10))
-
-    if (this.loopedItemsLength > items.length) {
-      this.loopedItemsLength = items.length
-    }
-
-    const prependItems = []
-    const appendItems = []
-
-    items.forEach((item, index) => {
-      if (index < this.loopedItemsLength) {
-        appendItems.push(item)
-      }
-      if (
-        index < items.length &&
-        index >= items.length - this.loopedItemsLength
-      ) {
-        prependItems.push(item)
-      }
-      attr('data-swipe-item-index', index, item)
-    })
-
-    for (let i = 0; i < appendItems.length; i++) {
-      addClass(
-        this.classes.CLONED,
-        appendTo(clone(appendItems[i]), this.$inner)
-      )
-    }
-
-    for (let i = prependItems.length - 1; i >= 0; i--) {
-      addClass(
-        this.classes.CLONED,
-        prependTo(clone(prependItems[i]), this.$inner)
-      )
-    }
-  }
-
-  fixLoop() {
-    this.trigger('beforeFixLoop')
-    let newIndex
-    const snapTranslate = -this.snapGrid[this.activeIndex]
-    const diff = snapTranslate - this.getTranslate()
-
-    if (this.activeIndex < this.loopedItemsLength) {
-      newIndex =
-        this.items.length - this.loopedItemsLength * 3 + this.activeIndex
-      newIndex += this.loopedItemsLength
-      const changed = this.moveTo(newIndex, 0, false)
-      if (changed && diff !== 0) {
-        this.setTranslate(this.translate - diff)
-      }
-    } else if (this.activeIndex >= this.items.length - this.loopedItemsLength) {
-      newIndex = -this.items.length + this.activeIndex + this.loopedItemsLength
-      newIndex += this.loopedItemsLength
-      const changed = this.moveTo(newIndex, 0, false)
-      if (changed && diff !== 0) {
-        this.setTranslate(this.translate - diff)
-      }
-    }
-
-    this.trigger('fixLoop')
-  }
-
-  updateSize() {
-    const width = getWidth(this.element)
-    this.width = width
-    this.size = width
-  }
-
-  updateGutter() {
-    this.gutter = this.options.gutter
-
-    if (typeof this.gutter === 'string' && this.gutter.indexOf('%') >= 0) {
-      this.gutter = (parseFloat(this.gutter.replace('%', '')) / 100) * this.size
-    }
-  }
-
-  setMultipleMargin(numFullColumns, index, item) {
-    let column = Math.floor(index / 2)
-    let row = index - column * 2
-
-    if (column > numFullColumns || (column === numFullColumns && row === 1)) {
-      row += 1
-      if (row >= 2) {
-        row = 0
-        column += 1
-      }
-    }
-
-    if (row === 0) {
-      this.firstRowHeight = getHeight(item)
-    }
-
-    if (row === 1) {
-      this.secondRowHeight = getHeight(item)
-      const columnHeight =
-        this.firstRowHeight + this.gutter + this.secondRowHeight
-
-      this.virtualHeight = Math.max(this.virtualHeight, columnHeight)
-      this.firstRowHeight = 0
-      this.secondRowHeight = 0
-    }
-
-    setStyle(
-      {
-        'margin-top': row !== 0 && this.gutter && `${this.gutter}px`
-      },
-      item
-    )
-  }
-
-  updateItem() {
-    const prevItemsLength = this.items.length
-    const items = this.getItems()
-    const itemsLength = items.length
-    let snapGrid = []
-    const itemsGrid = []
-    const itemsSizesGrid = []
-    const prevSnapGridLength = this.snapGrid.length
-    const prevItemsGridLength = this.snapGrid.length
-    let itemPosition = -0
-    let prevItemSize = 0
-    let index = 0
-    this.firstRowHeight = 0
-    this.secondRowHeight = 0
-    this.virtualHeight = 0
-
-    if (typeof this.size === 'undefined' || itemsLength === 0) {
-      return
-    }
-
-    this.updateGutter()
-    this.virtualSize = -this.gutter
-
-    const itemGroupNum = this.options.group ? this.itemNums : 1
-    const itemSize =
-      (this.size - (this.itemNums - 1) * this.gutter) / this.itemNums
-    const numFullColumns = this.options.multiple
-      ? Math.floor(itemsLength / 2)
-      : Math.floor(itemsLength)
-
-    for (let i = 0; i < itemsLength; i++) {
-      const item = items[i]
-      setStyle({ width: `${itemSize}px` }, item)
-
-      if (this.options.multiple) {
-        this.setMultipleMargin(numFullColumns, index, item)
-      }
-
-      if (getStyle('display', item) === 'none') {
-        continue
-      }
-
-      item.swipeItemSize = itemSize
-      itemsSizesGrid.push(itemSize)
-
-      if (this.options.center) {
-        itemPosition =
-          itemPosition + itemSize / 2 + prevItemSize / 2 + this.gutter
-        if ((prevItemSize === 0 && i !== 0) || i === 0) {
-          itemPosition = itemPosition - this.size / 2 - this.gutter
-        }
-        if (Math.abs(itemPosition) < 1 / 1000) {
-          itemPosition = 0
-        }
-        if (index % itemGroupNum === 0) {
-          snapGrid.push(itemPosition)
-        }
-        itemsGrid.push(itemPosition)
-      } else {
-        if (index % itemGroupNum === 0) {
-          snapGrid.push(itemPosition)
-        }
-        itemsGrid.push(itemPosition)
-        itemPosition = itemPosition + itemSize + this.gutter
-      }
-
-      if (this.gutter !== 0) {
-        setStyle({ marginRight: `${this.gutter}px` }, item)
-      }
-
-      this.virtualSize += itemSize + this.gutter
-
-      prevItemSize = itemSize
-
-      index += 1
-    }
-
-    this.virtualSize = Math.max(this.virtualSize, this.size)
-
-    let newItemsGrid
-    let itemsNumberEvenToRows
-
-    if (this.options.multiple) {
-      if (Math.floor(itemsLength / 2) === itemsLength / 2) {
-        itemsNumberEvenToRows = itemsLength
-      } else {
-        itemsNumberEvenToRows = Math.ceil(itemsLength / 2) * 2
-      }
-
-      this.virtualSize = (itemSize + this.gutter) * itemsNumberEvenToRows
-      this.virtualSize = Math.ceil(this.virtualSize / 2) - this.gutter
-      setStyle({ width: `${this.virtualSize + this.gutter}px` }, this.$inner)
-      setStyle({ height: `${this.virtualHeight}px` }, this.$inner)
-
-      if (this.options.center) {
-        newItemsGrid = []
-        for (let i = 0; i < snapGrid.length; i++) {
-          const itemsGridItem = snapGrid[i]
-          if (snapGrid[i] < this.virtualSize + snapGrid[0]) {
-            newItemsGrid.push(itemsGridItem)
-          }
-        }
-        snapGrid = newItemsGrid
-      }
-    } else {
-      setStyle({ width: `${this.virtualSize}px` }, this.$inner)
-    }
-
-    if (!this.options.center) {
-      newItemsGrid = []
-      for (let i = 0; i < snapGrid.length; i++) {
-        const itemsGridItem = snapGrid[i]
-        if (snapGrid[i] <= this.virtualSize - this.size) {
-          newItemsGrid.push(itemsGridItem)
-        }
-      }
-
-      snapGrid = newItemsGrid
-      if (
-        Math.floor(this.virtualSize - this.size) -
-          Math.floor(snapGrid[snapGrid.length - 1]) >
-        1
-      ) {
-        snapGrid.push(this.virtualSize - this.size)
-      }
-    }
-
-    if (snapGrid.length === 0) {
-      snapGrid = [0]
-    }
-
-    this.items = items
-    this.snapGrid = snapGrid
-    this.itemsGrid = itemsGrid
-    this.itemsSizesGrid = itemsSizesGrid
-
-    if (itemsLength !== prevItemsLength) {
-      this.trigger('itemsLengthChange')
-    }
-    if (snapGrid.length !== prevSnapGridLength) {
-      this.trigger('snapGridLengthChange')
-    }
-    if (itemsGrid.length !== prevItemsGridLength) {
-      this.trigger('itemsGridLengthChange')
-    }
-  }
-
-  updateItemsClass() {
-    if (this.items.length === 0) {
-      return
-    }
-
-    this.items.forEach(item => {
-      removeClass(
-        this.classes.ACTIVE,
-        this.classes.PREV,
-        this.classes.NEXT,
-        this.classes.CLONEDACTIVE,
-        this.classes.CLONEDPREV,
-        this.classes.CLONEDNEXT,
-        item
-      )
-    })
-    const activeItem = this.items[this.activeIndex]
-
-    addClass(this.classes.ACTIVE, activeItem)
-
-    if (this.options.loop && !this.options.multiple) {
-      if (hasClass(this.classes.CLONED, activeItem)) {
-        children(
-          `.${this.classes.ITEM}:not(.${this.classes.CLONED})[data-swipe-item-index="${this.realIndex}"]`,
-          this.$inner
-        ).forEach(children => {
-          addClass(this.classes.CLONEDACTIVE, children)
-        })
-      } else {
-        children(
-          `.${this.classes.ITEM}.${this.classes.CLONED}[data-swipe-item-index="${this.realIndex}"]`,
-          this.$inner
-        ).forEach(children => {
-          addClass(this.classes.CLONEDACTIVE, children)
-        })
-      }
-    }
-
-    let nextItem = addClass(this.classes.NEXT, next(activeItem))
-    if (this.options.loop && !this.options.multiple && !isElement(nextItem)) {
-      nextItem = this.items[0]
-      addClass(this.classes.NEXT, nextItem)
-    }
-    let prevItem = addClass(this.classes.PREV, prev(activeItem))
-    if (this.options.loop && !this.options.multiple && !isElement(prevItem)) {
-      prevItem = this.items[this.items.length - 1]
-      addClass(this.classes.PREV, prevItem)
-    }
-
-    if (this.options.loop && !this.options.multiple) {
-      if (hasClass(this.classes.CLONED, nextItem)) {
-        children(
-          `.${this.classes.ITEM}:not(.${
-            this.classes.CLONED
-          })[data-swipe-item-index="${attr(
-            'data-swipe-item-index',
-            nextItem
-          )}"]`,
-          this.$inner
-        ).forEach(children => {
-          addClass(this.classes.CLONEDNEXT, children)
-        })
-      } else {
-        children(
-          `.${this.classes.ITEM}.${
-            this.classes.CLONED
-          }[data-swipe-item-index="${attr(
-            'data-swipe-item-index',
-            nextItem
-          )}"]`,
-          this.$inner
-        ).forEach(children => {
-          addClass(this.classes.CLONEDNEXT, children)
-        })
-      }
-      if (hasClass(this.classes.CLONED, prevItem)) {
-        children(
-          `.${this.classes.ITEM}:not(.${
-            this.classes.CLONED
-          })[data-swipe-item-index="${attr(
-            'data-swipe-item-index',
-            prevItem
-          )}"]`,
-          this.$inner
-        ).forEach(children => {
-          addClass(this.classes.CLONEDPREV, children)
-        })
-      } else {
-        children(
-          `.${this.classes.ITEM}.${
-            this.classes.CLONED
-          }[data-swipe-item-index="${attr(
-            'data-swipe-item-index',
-            prevItem
-          )}"]`,
-          this.$inner
-        ).forEach(children => {
-          addClass(this.classes.CLONEDPREV, children)
-        })
-      }
-    }
-  }
-
-  moveTo(index = 0, speed = this.options.duration, runCallback = true) {
-    if (this.is('disabled')) {
-      return
-    }
-    let itemIndex = index
-    if (itemIndex < 0) {
-      itemIndex = 0
-    }
-    const { snapGrid, itemsGrid, prevIndex, activeIndex } = this
-    const itemGroupNum = this.options.group ? this.itemNums : 1
-
-    let snapIndex = Math.floor(itemIndex / itemGroupNum)
-    if (snapIndex >= snapGrid.length) {
-      snapIndex = snapGrid.length - 1
-    }
-
-    if (
-      (activeIndex || this.options.defaultActive || 0) === (prevIndex || 0) &&
-      runCallback
-    ) {
-      this.trigger('beforeItemChangeStart')
-    }
-
-    const translate = -snapGrid[snapIndex]
-    this.updateProgress(translate)
-
-    for (let i = 0; i < itemsGrid.length; i++) {
-      if (-Math.floor(translate * 100) >= Math.floor(itemsGrid[i] * 100)) {
-        itemIndex = i
-      }
-    }
-
-    let direction
-    if (itemIndex > activeIndex) {
-      direction = 'next'
-    } else if (itemIndex < activeIndex) {
-      direction = 'prev'
-    } else {
-      direction = 'reset'
-    }
-
-    if (translate === this.translate) {
-      this.updateActiveIndex(itemIndex)
-      this.updateItemsClass()
-      this.setTranslate(translate)
-      if (direction !== 'reset') {
-        this.transitionStart(runCallback, direction)
-        this.transitionEnd(runCallback, direction)
-      }
-
-      return
-    }
-
-    if (speed === 0) {
-      this.setTransition(0)
-      this.setTranslate(translate)
-      this.updateActiveIndex(itemIndex)
-      this.updateItemsClass()
-      this.trigger('beforeTransitionStart', speed)
-      this.transitionStart(runCallback, direction)
-      this.transitionEnd(runCallback, direction)
-    } else {
-      this.setTransition(speed)
-      this.setTranslate(translate)
-      this.updateActiveIndex(itemIndex)
-      this.updateItemsClass()
-      this.trigger('beforeTransitionStart', speed)
-      this.transitionStart(runCallback, direction)
-      if (!this.is('animating')) {
-        this.enter('animating')
-        bindEventOnce(
-          transitionEndEvent(),
-          () => {
-            this.transitionEnd(runCallback, direction)
-          },
-          this.$inner
-        )
-      }
-    }
-
-    return
-  }
-
-  prev(speed = this.options.duration, runCallback = true) {
-    if (this.is('disabled')) {
-      return
-    }
-    if (this.options.loop && !this.options.multiple) {
-      if (this.is('animating')) {
-        return
-      }
-      this.fixLoop()
-      this.clientLeft = this.$inner.clientLeft
-    }
-    const translate = -this.translate
-    const normalizedTranslate = this.normalize(translate)
-    const normalizedSnapGrid = this.snapGrid.map(value => this.normalize(value))
-    const prevSnap = this.snapGrid[
-      normalizedSnapGrid.indexOf(normalizedTranslate) - 1
-    ]
-
-    let prevIndex
-    if (typeof prevSnap !== 'undefined') {
-      prevIndex = this.itemsGrid.indexOf(prevSnap)
-      if (prevIndex < 0) {
-        prevIndex = this.activeIndex - 1
-      }
-    }
-
-    this.moveTo(prevIndex, speed, runCallback)
-  }
-
-  next(speed = this.options.duration, runCallback = true) {
-    if (this.is('disabled')) {
-      return
-    }
-    const itemGroupNum = this.options.group ? this.itemNums : 1
-
-    if (this.options.loop && !this.options.multiple) {
-      if (this.is('animating')) {
-        return
-      }
-      this.fixLoop()
-      this.clientLeft = this.$inner.clientLeft
-      this.moveTo(this.activeIndex + itemGroupNum, speed, runCallback)
-      return
-    }
-
-    this.moveTo(this.activeIndex + itemGroupNum, speed, runCallback)
-  }
-
-  updateProgress(translate) {
-    if (typeof translate === 'undefined') {
-      translate = (this && this.translate) || 0
-    }
-    const translateDiff = this.maxTranslate() - this.minTranslate()
-    const isFirst = this.is('first')
-    const isLast = this.is('last')
-    if (translateDiff === 0) {
-      this.progress = 0
-      this.enter('first')
-      this.enter('last')
-    } else {
-      this.progress = (translate - this.minTranslate()) / translateDiff
-
-      if (this.progress <= 0) {
-        this.enter('first')
-      } else {
-        this.leave('first')
-      }
-      if (this.progress >= 1) {
-        this.enter('last')
-      } else {
-        this.leave('last')
-      }
-    }
-
-    if (this.is('first') && !isFirst) {
-      this.trigger('reachFirst')
-      this.trigger('toEdge')
-    }
-
-    if (this.is('last') && !isLast) {
-      this.trigger('reachLast')
-      this.trigger('toEdge')
-    }
-
-    if ((isFirst && !this.is('first')) || (isLast && !this.is('last'))) {
-      this.trigger('fromEdge')
-    }
-
-    this.trigger('progress', this.progress)
-  }
-
-  updateActiveIndex(newActiveIndex) {
-    const translate = -this.translate
-    const {
-      itemsGrid,
-      snapGrid,
-      activeIndex: prevIndex,
-      realIndex: prevRealIndex,
-      snapIndex: prevSnapIndex
-    } = this
-    const itemGroupNum = this.options.group ? this.itemNums : 1
-    let activeIndex = newActiveIndex
-    let snapIndex
-    if (typeof activeIndex === 'undefined') {
-      for (let i = 0; i < itemsGrid.length; i++) {
-        if (typeof itemsGrid[i + 1] !== 'undefined') {
-          if (
-            translate >= itemsGrid[i] &&
-            translate < itemsGrid[i + 1] - (itemsGrid[i + 1] - itemsGrid[i]) / 2
-          ) {
-            activeIndex = i
-          } else if (
-            translate >= itemsGrid[i] &&
-            translate < itemsGrid[i + 1]
-          ) {
-            activeIndex = i + 1
-          }
-        } else if (translate >= itemsGrid[i]) {
-          activeIndex = i
-        }
-      }
-
-      if (activeIndex < 0 || typeof activeIndex === 'undefined') {
-        activeIndex = 0
-      }
-    }
-
-    if (snapGrid.indexOf(translate) >= 0) {
-      snapIndex = snapGrid.indexOf(translate)
-    } else {
-      snapIndex = Math.floor(activeIndex / itemGroupNum)
-    }
-    if (snapIndex >= snapGrid.length) {
-      snapIndex = snapGrid.length - 1
-    }
-    if (activeIndex === prevIndex) {
-      if (snapIndex !== prevSnapIndex) {
-        this.snapIndex = snapIndex
-        this.trigger('snapIndexChange')
-      }
-      return
-    }
-
-    const realIndex = parseInt(
-      this.items[activeIndex].dataset.swipeItemIndex || activeIndex,
-      10
-    )
-
-    this.snapIndex = snapIndex
-    this.realIndex = realIndex
-    this.prevIndex = prevIndex
-    this.activeIndex = activeIndex
-
-    this.trigger('activeIndexChange')
-    this.trigger('snapIndexChange')
-    if (prevRealIndex !== realIndex) {
-      this.trigger('realIndexChange')
-    }
-    this.trigger('itemChange')
-  }
-
-  transitionStart(runCallback = true, direction) {
-    const { activeIndex, prevIndex } = this
-
-    let dir = direction
-    if (!dir) {
-      if (activeIndex > prevIndex) {
-        dir = 'next'
-      } else if (activeIndex < prevIndex) {
-        dir = 'prev'
-      } else {
-        dir = 'reset'
-      }
-    }
-
-    this.trigger('transitionStart')
-
-    if (runCallback && activeIndex !== prevIndex) {
-      if (dir === 'reset') {
-        this.trigger('itemResetTransitionStart')
-        return
-      }
-      this.trigger('itemChangeTransitionStart')
-      if (dir === 'next') {
-        this.trigger('itemNextTransitionStart')
-      } else {
-        this.trigger('itemPrevTransitionStart')
-      }
-    }
-  }
-
-  transitionEnd(runCallback = true, direction) {
-    const { activeIndex, prevIndex } = this
-    this.leave('animating')
-    this.setTransition(0)
-
-    let dir = direction
-    if (!dir) {
-      if (activeIndex > prevIndex) {
-        dir = 'next'
-      } else if (activeIndex < prevIndex) {
-        dir = 'prev'
-      } else {
-        dir = 'reset'
-      }
-    }
-
-    this.trigger('transitionEnd')
-
-    if (runCallback && activeIndex !== prevIndex) {
-      if (dir === 'reset') {
-        this.trigger('itemResetTransitionEnd')
-        return
-      }
-      this.trigger('itemChangeTransitionEnd')
-      if (dir === 'next') {
-        this.trigger('itemNextTransitionEnd')
-      } else {
-        this.trigger('itemPrevTransitionEnd')
-      }
-    }
-  }
-
-  setTransition(duration) {
-    setStyle({ transitionDuration: `${duration}ms` }, this.$inner)
-    this.trigger('setTransition', duration)
-  }
-
-  setTranslate(translate) {
-    const x = translate
-    const y = 0
-
-    setStyle(
-      { transform: `translateX(${x}px) translateY(${y}px) translateZ(0)` },
-      this.$inner
-    )
-    this.prevTranslate = this.translate
-    this.translate = x
-
-    let newProgress
-    const translateDiff = this.maxTranslate() - this.minTranslate()
-    if (translateDiff === 0) {
-      newProgress = 0
-    } else {
-      newProgress = (translate - this.minTranslate()) / translateDiff
-    }
-
-    if (newProgress !== this.progress) {
-      this.updateProgress(translate)
-    }
-
-    this.trigger('setTranslate', this.translate)
   }
 
   getTranslate() {
@@ -1064,6 +492,12 @@ class Swipe extends Component {
     return Number(transform.split(',')[4])
   }
 
+  setTranslate(translate) {
+    const x = translate
+
+    setStyle({ transform: `translateX(${x}px)` }, this.$inner)
+  }
+
   minTranslate() {
     return -this.snapGrid[0]
   }
@@ -1072,68 +506,161 @@ class Swipe extends Component {
     return -this.snapGrid[this.snapGrid.length - 1]
   }
 
-  getItems() {
-    let items = children(`.${this.classes.ITEM}`, this.$inner)
-
-    if (items.length === 0) {
-      items = queryAll(this.options.itemSelector, this.element)
-      items.forEach(item => {
-        addClass(this.classes.ITEM, item)
-      })
+  render(index, duration = this.duration) {
+    if (this.is('disabled')) {
+      return
+    }
+    let itemIndex = index
+    if (itemIndex >= this.maxCount) {
+      itemIndex = this.maxCount - 1
+    }
+    if (itemIndex < 0) {
+      itemIndex = 0
     }
 
-    return items
+    this.active = itemIndex
+
+    let distance = 0
+
+    distance = this.itemsGrid[itemIndex]
+
+    if (this.$pagination) {
+      this.$pagination.set(`${this.active}`)
+    }
+
+    if (this.options.arrows) {
+      this.updateArrows()
+    }
+
+    this.move(distance, duration)
+
+    this.updateItemActive()
   }
 
-  resize() {
-    this.updateSize()
-    this.updateItem()
-    this.updateItemsClass()
-
-    if (this.options.itemNums > 1 && this.is('end') && !this.options.center) {
-      this.moveTo(this.items.length - 1, 0, false)
+  move(distance, duration) {
+    if (!duration) {
+      setStyle({ transform: `translateX(${-distance}px)` }, this.$inner)
     } else {
-      this.moveTo(this.activeIndex, 0, false)
+      if (this.$anime) {
+        this.$anime.pause()
+      }
+      this.$anime = anime({
+        targets: this.$inner,
+        translateX: -distance,
+        easing: 'cubicBezier(0.25, 0.1, 0.25, 1)',
+        duration: this.duration,
+        begin: () => {
+          this.enter('decaying')
+          if (this.options.autoplay) {
+            this.intervalToggle(false)
+          }
+        },
+        complete: () => {
+          this.leave('decaying')
+          if (this.options.autoplay) {
+            this.intervalToggle(true)
+          }
+        }
+      })
     }
+  }
+
+  prev() {
+    if (this.is('disabled')) {
+      return
+    }
+
+    const maxIndex = this.loop ? this.maxCount - 1 : 0
+
+    const active = this.active - 1 >= 0 ? this.active - 1 : maxIndex
+
+    if (this.loop && active === this.maxCount - 1) {
+      // ================================
+      // ==========    loop    ==========
+      // ================================
+    }
+
+    this.render(active)
+  }
+
+  next() {
+    if (this.is('disabled')) {
+      return
+    }
+
+    const minIndex = this.loop ? 0 : this.active
+
+    const active = this.active >= this.maxCount - 1 ? minIndex : this.active + 1
+
+    if (this.loop && active === 0) {
+      // ================================
+      // ==========    loop    ==========
+      // ================================
+    }
+
+    this.render(active)
+  }
+
+  updateItemActive() {
+    if (this.loop) {
+      return
+    }
+
+    this.chunks.forEach((chunk, index) => {
+      removeClass(this.classes.ACTIVE, chunk.element)
+      if (index === this.active) {
+        addClass(this.classes.ACTIVE, chunk.element)
+      }
+    })
+  }
+
+  resizeDebounce() {
+    this.update()
 
     if (!this.is('disabled')) {
       this.trigger(EVENTS.RESIZE)
     }
   }
 
-  bind() {
-    if (this.options.arrows) {
-      this.$arrows.options.onNext = () => {
-        if (this.is('last') && !this.options.loop) {
-          return
-        }
-        this.next()
-      }
+  autoPlay() {
+    this.intervalToggle(true)
+  }
 
-      this.$arrows.options.onPrev = () => {
-        if (this.is('first') && !this.options.loop) {
-          return
-        }
-        this.prev()
-      }
+  intervalToggle(open) {
+    if (open) {
+      this.setIntervalTime(this.options.playCycle)
+      this.enter('play')
+    } else {
+      this._interval.removeTimer()
+      this.leave('play')
+    }
+  }
 
-      bindEvent(
-        this.selfEventName('toEdge'),
-        () => {
-          this.updateArrows()
-        },
-        this.element
-      )
-
-      bindEvent(
-        this.selfEventName('fromEdge'),
-        () => {
-          this.updateArrows()
-        },
-        this.element
-      )
+  setIntervalTime(time) {
+    if (this._interval.timer) {
+      this._interval.removeTimer()
     }
 
+    this._interval.timer = this._interval.createTimer(time)
+  }
+
+  timer() {
+    return this._interval.timer
+  }
+
+  getWidth() {
+    return parseFloat(getStyle('width', this.element), 10)
+  }
+
+  getItemWidth() {
+    return (this.width - (this.column - 1) * this.gutter) / this.column
+  }
+
+  createEle(name, options) {
+    return templateEngine.compile(this.options.templates[name]())(options)
+  }
+
+  bind() {
     if (this.options.pagination) {
       bindEvent(
         this.eventName('click'),
@@ -1143,154 +670,109 @@ class Swipe extends Component {
             hasClass(this.classes.PAGINATIONITEM),
             e.target
           )
-          let index = this.$pagination.dots.indexOf($item)
-          if (this.options.group) {
-            index *= this.itemNums
-          }
-          if (this.options.loop && !this.options.multiple) {
-            index += this.loopedItemsLength
-          }
-
-          this.moveTo(index)
+          const index = this.$pagination.dots.indexOf($item)
+          this.render(index)
         },
         this.element
       )
-
-      bindEvent(
-        this.selfEventName('activeIndexChange'),
-        () => {
-          if (this.options.loop) {
-            this.updatePagination()
-          } else if (typeof this.snapIndex === 'undefined') {
-            this.updatePagination()
-          }
-        },
-        this.element
-      )
-
-      bindEvent(
-        this.selfEventName('snapIndexChange'),
-        () => {
-          if (!this.options.loop) {
-            this.updatePagination()
-          }
-        },
-        this.element
-      )
-    }
-
-    if (this.options.swipeable && !this.$swipeable.is('bind')) {
-      this.$swipeable.bind()
-    }
-  }
-
-  createEl(name, options) {
-    return templateEngine.compile(this.options.templates[name]())(options)
-  }
-
-  normalize(value) {
-    if (value < 0) {
-      return -Math.floor(Math.abs(value))
-    }
-    return Math.floor(value)
-  }
-
-  unbind() {
-    if (this.options.swipeable) {
-      this.$swipeable.unbind()
     }
 
     if (this.options.arrows) {
+      this.$arrows.options.onPrev = () => {
+        this.prev()
+        this.trigger(EVENTS.PREV)
+      }
+
+      this.$arrows.options.onNext = () => {
+        this.next()
+        this.trigger(EVENTS.NEXT)
+      }
+    }
+
+    compose(
+      bindEvent(this.eventName('mousedown'), () => {
+        if (!this.is('decaying')) {
+          return
+        }
+        this.enter('pause')
+        this.$anime.pause()
+      })
+      // bindEvent(this.eventName('mouseup'), () => {
+      //   if (!this.is('pause')) {
+      //     return
+      //   }
+      //   this.$anime.play()
+      //   this.leave('pause')
+      // })
+    )(this.$wrapper)
+  }
+
+  unbind() {
+    if (this.options.arrows) {
       this.$arrows.unbind()
-      removeEvent(this.selfEventName('toEdge'), this.element)
-      removeEvent(this.selfEventName('fromEdge'), this.element)
     }
 
     if (this.options.pagination) {
       this.$pagination.unbind()
-
-      removeEvent(this.selfEventName('activeIndexChange'), this.element)
-      removeEvent(this.selfEventName('snapIndexChange'), this.element)
     }
 
     removeEvent(this.eventName(), this.element)
   }
 
-  update(config) {
-    if (this.is('initialized')) {
-      this.unbind()
-      if (this.$arrows) {
-        remove(this.$arrows.$prev)
-        remove(this.$arrows.$next)
-        this.$arrows = null
-      }
-      if (this.$pagination) {
-        remove(this.$pagination.element)
-        this.$pagination = null
-      }
-      if (this.$swipeable) {
-        this.$swipeable = null
-      }
-      this.leave('initialized')
-
-      this.options = Object.assign({}, this.options, config)
-
-      this.initState()
-
-      if (this.options.loop && !this.options.multiple) {
-        this.initLoop()
-      }
-      if (this.options.multiple) {
-        addClass(this.classes.MULTIPLE, this.element)
-      }
-      this.updateSize()
-      this.updateItem()
-
-      if (this.items.length === 0) {
-        return
-      }
-
-      if (this.options.loop && !this.options.multiple) {
-        this.moveTo(
-          this.options.defaultActive + this.loopedItemsLength,
-          0,
-          true
-        )
-      } else {
-        this.moveTo(this.options.defaultActive, 0, true)
-      }
-
-      if (this.options.arrows) {
-        this.initArrows()
-        this.updateArrows()
-      }
-
-      if (this.options.pagination) {
-        this.initPagination()
-        this.updatePagination()
-      }
-
-      if (this.options.swipeable) {
-        this.initSwipeable()
-      }
-
-      this.bind()
-      this.enter('initialized')
-      this.trigger(EVENTS.UPDATE)
+  update() {
+    if (Breakpoints.is('lg+')) {
+      this.column =
+        this.options.desktopColumn > 0 ? this.options.desktopColumn : 1
     }
+
+    if (Breakpoints.is('md')) {
+      this.column =
+        this.options.tabletColumn > 0 ? this.options.tabletColumn : 1
+    }
+
+    if (Breakpoints.is('sm-')) {
+      this.column =
+        this.options.mobileColumn > 0 ? this.options.mobileColumn : 1
+    }
+    this.unbind()
+    if (this.$arrows) {
+      remove(this.$arrows.$prev)
+      remove(this.$arrows.$next)
+      this.$arrows = null
+    }
+    if (this.$pagination) {
+      remove(this.$pagination.element)
+      this.$pagination = null
+    }
+
+    this.width = this.getWidth()
+    this.itemWidth = this.getItemWidth()
+    this.innerWidth =
+      this.chunks.length * (this.itemWidth + this.gutter) - this.gutter
+    this.itemsGrid = this.getItemsGrid()
+    this.maxCount = this.getMaxCount()
+    this.active = this.active > this.maxCount - 1 ? this.maxCount : this.active
+
+    if (this.options.pagination) {
+      this.initPagination()
+    }
+
+    if (this.options.arrows) {
+      this.initArrows()
+      this.updateArrows()
+    }
+
+    this.chunks.forEach(chunk => {
+      chunk.updateSize()
+    })
+
+    this.bind()
+
+    this.render(this.active, false)
   }
 
   enable() {
     if (this.is('disabled')) {
-      if (this.options.swipeable) {
-        this.$swipeable.enable()
-      }
-      if (this.options.arrows) {
-        this.$arrows.enable()
-      }
-      if (this.options.pagination) {
-        this.$pagination.enable()
-      }
       this.leave('disabled')
     }
     this.trigger(EVENTS.ENABLE)
@@ -1298,15 +780,6 @@ class Swipe extends Component {
 
   disable() {
     if (!this.is('disabled')) {
-      if (this.options.swipeable) {
-        this.$swipeable.disable()
-      }
-      if (this.options.arrows) {
-        this.$arrows.disable()
-      }
-      if (this.options.pagination) {
-        this.$pagination.disable()
-      }
       this.enter('disabled')
     }
 
@@ -1317,15 +790,6 @@ class Swipe extends Component {
     if (this.is('initialized')) {
       this.unbind()
 
-      if (this.options.swipeable) {
-        this.$swipeable.destroy()
-      }
-      if (this.options.arrows) {
-        this.$arrows.destroy()
-      }
-      if (this.options.pagination) {
-        this.$pagination.destroy()
-      }
       if (this.options.theme) {
         removeClass(this.getThemeClass(), this.element)
       }

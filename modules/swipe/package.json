@@ -48,7 +48,9 @@
     "@pluginjs/is": "^0.8.4",
     "@pluginjs/styled": "^0.8.4",
     "@pluginjs/swipeable": "^0.8.4",
-    "@pluginjs/template": "^0.8.4"
+    "@pluginjs/template": "^0.8.4",
+    "@pluginjs/utils": "^0.8.4",
+    "animejs": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
