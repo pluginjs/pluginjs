@@ -1,5 +1,5 @@
 import { setStyle } from '@pluginjs/styled'
-import { append, detach, parseHTML } from '@pluginjs/dom'
+import { append, detach, parseHTML, parent } from '@pluginjs/dom'
 import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { isString } from '@pluginjs/is'
@@ -36,8 +36,8 @@ export default class Overlay {
     )
   }
 
-  attach() {
-    append(this.el, document.body)
+  attach(el) {
+    append(this.el, parent(el.element))
     reflow(this.el)
     addClass(this.instance.classes.OVERLAYSHOW, this.el)
   }

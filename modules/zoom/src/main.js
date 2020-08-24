@@ -19,7 +19,7 @@ import {
 import ImageLoader from '@pluginjs/image-loader'
 import { bindEvent, removeEvent, bindEventOnce } from '@pluginjs/events'
 import { isFunction, isString, isObject } from '@pluginjs/is'
-import { addClass, removeClass } from '@pluginjs/classes'
+import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import Pj from '@pluginjs/factory'
 import Keyboard from './keyboard'
@@ -140,7 +140,7 @@ class Zoom extends Component {
         if (!this.overlay) {
           this.overlay = new Overlay(this)
         }
-        this.overlay.attach()
+        this.overlay.attach(this)
       }
       if (this.options.closeOnScroll) {
         this.lastScrollTop = this.getScrollTop()
@@ -219,6 +219,11 @@ class Zoom extends Component {
       },
       this.element
     )
+    setTimeout(()=> {
+      if(hasClass('pj-lazyloaded', this.element)) {
+        this.element.srcset = this.element.dataset.srcset
+      }
+    }, 1000)
   }
 
   calculateTranslate() {
