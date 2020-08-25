@@ -27,7 +27,8 @@ export const classes = {
   CLONED: '{namespace}-cloned',
   CLONEDACTIVE: '{namespace}-cloned-active',
   CLONEDPREV: '{namespace}-cloned-prev',
-  CLONEDNEXT: '{namespace}-cloned-next'
+  CLONEDNEXT: '{namespace}-cloned-next',
+  MULTIPLE: '{namespace}-multiple'
 }
 
 export const methods = ['update', 'enable', 'disable', 'destroy']
@@ -43,21 +44,22 @@ export const defaults = {
   mobileColumn: 1,
   duration: 300,
   arrows: {
+    theme: 'light',
     type: 'lg'
   },
-  outside: true,
+  outside: false,
   pagination: {
     type: 'square light'
   },
   swipeable: true,
   group: false,
-  loop: false,
+  loop: true,
   multiple: false,
   center: false,
   gutter: 0,
   active: 0,
   autoplay: false,
-  playCycle: 4000,
+  playCycle: 3000,
   templates: {
     container() {
       return '<div class="{classes.CONTAINER}"></div>'

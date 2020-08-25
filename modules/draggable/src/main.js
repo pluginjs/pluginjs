@@ -133,6 +133,13 @@ class Draggable extends Component {
   bindHandles(isAdd) {
     if (isAdd) {
       this.$drag = new Hammer(this.element)
+      this.$drag.get('pan').set({
+        threshold: 0,
+        direction:
+          this.options.axis === 'y'
+            ? Hammer.DIRECTION_VERTICAL
+            : Hammer.DIRECTION_HORIZONTAL
+      })
       this.$drag.on('panstart panmove panend', e => {
         switch (e.type) {
           case 'panstart':

@@ -63,6 +63,7 @@ class Swipeable extends Component {
 
     this.hammer = new Hammer(this.element)
     this.hammer.get('pan').set({
+      threshold: 0,
       direction:
         this.axis === 'y'
           ? Hammer.DIRECTION_VERTICAL
@@ -123,7 +124,6 @@ class Swipeable extends Component {
     }
 
     this.enter('paning')
-    addClass('is-dragging', this.element)
 
     this.startPosition = this.getLocation(this.element)
     this.trigger(EVENTS.START)
@@ -185,7 +185,6 @@ class Swipeable extends Component {
       this.rebound(this.element)
     }
 
-    removeClass('is-dragging', this.element)
     this.leave('paning')
     this.trigger(EVENTS.END)
   }
