@@ -128,8 +128,6 @@ class Swipe extends Component {
       this.autoPlay()
     }
 
-    console.log('instance', this)
-
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
@@ -228,6 +226,9 @@ class Swipe extends Component {
     if (Breakpoints.is('sm-')) {
       this.column =
         this.options.mobileColumn > 0 ? this.options.mobileColumn : 1
+      if (isPlainObject(this.options.pagination.mobile)) {
+        this.paginationMobileOption = this.options.pagination.mobile
+      }
     }
   }
 
@@ -257,6 +258,9 @@ class Swipe extends Component {
     config = isPlainObject(this.options.pagination)
       ? Object.assign({}, config, this.options.pagination)
       : config
+    if (this.paginationMobileOption) {
+      config = Object.assign({}, config, this.paginationMobileOption)
+    }
 
     this.$pagination = Dots.of(
       query(`.${this.classes.PAGINATION}`, this.element),
@@ -846,16 +850,28 @@ class Swipe extends Component {
     if (Breakpoints.is('lg+')) {
       this.column =
         this.options.desktopColumn > 0 ? this.options.desktopColumn : 1
+
+      if (isPlainObject(this.options.pagination.mobile)) {
+        this.paginationMobileOption = null
+      }
     }
 
     if (Breakpoints.is('md')) {
       this.column =
         this.options.tabletColumn > 0 ? this.options.tabletColumn : 1
+
+      if (isPlainObject(this.options.pagination.mobile)) {
+        this.paginationMobileOption = null
+      }
     }
 
     if (Breakpoints.is('sm-')) {
       this.column =
         this.options.mobileColumn > 0 ? this.options.mobileColumn : 1
+
+      if (isPlainObject(this.options.pagination.mobile)) {
+        this.paginationMobileOption = this.options.pagination.mobile
+      }
     }
     if (this.options.autoplay) {
       this.intervalToggle(false)
@@ -916,7 +932,7 @@ class Swipe extends Component {
     }
   }
 
-  resizeDebounce() {
+  resize() {
     this.update()
 
     if (!this.is('disabled')) {
