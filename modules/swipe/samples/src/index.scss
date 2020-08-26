@@ -4,37 +4,11 @@
 @import "@pluginjs/swipe/src/css/swipe.scss";
 
 body {
-	padding: 0;
-	margin: 0;
 	background-color: #fafbfc;
 }
 
-.container {
-
-	@media (min-width: 576px) {
-		max-width: 540px;
-	}
-
-	@media (min-width: 768px) {
-		max-width: 720px;
-	}
-
-	@media (min-width: 992px) {
-		max-width: 960px;
-	}
-
-	@media (min-width: 1200px) {
-		max-width: 1140px;
-	}
-
-	@media (min-width: 1440px) {
-		max-width: 1400px;
-	}
-	width: 100%;
-	padding-right: 1rem;
-	padding-left: 1rem;
-	margin-right: auto;
-	margin-left: auto;
+.pj-swipe-item {
+	text-align: center;
 }
 
 .item-inner {
@@ -59,4 +33,10 @@ body {
 	margin: 0;
 	color: #fff;
 	text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.item-caption {
+	margin-top: 15px;
+	font-size: 22px;
+	font-weight: 600;
 }

@@ -6,6 +6,7 @@ import templateEngine from '@pluginjs/template'
 import { setStyle, getStyle } from '@pluginjs/styled'
 import { isPlainObject } from '@pluginjs/is'
 import {
+  attr,
   append,
   appendTo,
   prependTo,
@@ -71,20 +72,35 @@ class Swipe extends Component {
     if (this.options.arrows && this.options.outside) {
       addClass(this.classes.OUTSIDE, this.element)
     }
+    if (this.options.pagination && this.options.inside) {
+      addClass(this.classes.INSIDE, this.element)
+    }
     if (this.options.loop && !this.options.multiple) {
       this.initLoop()
     }
     if (this.options.multiple) {
       addClass(this.classes.MULTIPLE, this.element)
     }
+    if (this.options.imageStretch) {
+      addClass(this.classes.IMAGESTRETCH, this.element)
+    }
 
     this.width = this.getWidth()
     this.itemWidth = this.getItemWidth()
     this.updateItem()
+    this.itemGroupNum = this.options.group ? this.column : 1
+    this.maxCount =
+      this.options.loop && !this.options.multiple
+        ? Math.ceil(
+            (this.$items.length - this.loopItemsCount * 2) / this.itemGroupNum
+          )
+        : this.snapSize.length
 
     if (this.$items.length === 0) {
       return
     }
+
+    this.updateCurrent()
 
     if (this.options.pagination) {
       this.initPagination()
@@ -177,6 +193,7 @@ class Swipe extends Component {
     this.gutter = this.options.gutter
     this.duration = this.options.duration
     this.active = 0
+    this.realIndex = 0
     this.translate = 0
     this.progress = 0
     this.snapIndex = undefined
@@ -220,18 +237,8 @@ class Swipe extends Component {
       classes: this.classes
     })
     const items = []
-    const itemGroupNum = this.options.group ? this.column : 1
 
-    const paginationCount =
-      this.options.loop && !this.options.multiple
-        ? Math.ceil(
-            (this.$items.length - this.loopItemsCount * 2) / itemGroupNum
-          )
-        : this.snapSize.length
-
-    this.paginationCount = paginationCount
-
-    for (let index = 0; index < paginationCount; index++) {
+    for (let index = 0; index < this.maxCount; index++) {
       items.push({ index })
     }
 
@@ -395,6 +402,7 @@ class Swipe extends Component {
       if (index < items.length && index >= items.length - this.loopItemsCount) {
         prependItems.push(item)
       }
+      attr('data-item-index', index, item)
     })
 
     for (let i = 0; i < appendItems.length; i++) {
@@ -434,6 +442,13 @@ class Swipe extends Component {
     }
   }
 
+  setMultipleMargin(itemsLength, index, $item) {
+    const maxColumnCount = Math.ceil(itemsLength / 2)
+    if (index >= maxColumnCount) {
+      setStyle({ 'margin-top': `${this.gutter}px` }, $item)
+    }
+  }
+
   updateItem() {
     const $items = this.getItems()
     const itemsLength = $items.length
@@ -449,9 +464,16 @@ class Swipe extends Component {
       const $item = $items[i]
       setStyle({ width: `${this.itemWidth}px` }, $item)
 
-      // =====================================
-      // =======    multiple margin    =======
-      // =====================================
+      const images = queryAll('img', $item)
+      images.forEach(image => {
+        image.onmousedown = e => {
+          e.preventDefault()
+        }
+      })
+
+      if (this.options.multiple) {
+        this.setMultipleMargin(itemsLength, index, $item)
+      }
 
       if (this.options.center) {
         itemPosition =
@@ -556,43 +578,6 @@ class Swipe extends Component {
     addClass(this.classes.ACTIVE, activeItem)
   }
 
-  updateProgress(translate) {
-    const translateDiff = this.maxTranslate() - this.minTranslate()
-    const isFirst = this.is('first')
-    const isLast = this.is('last')
-
-    if (translateDiff === 0) {
-      this.progress = 0
-      this.enter('first')
-      this.enter('last')
-    } else {
-      this.progress = (translate - this.minTranslate()) / translateDiff
-
-      if (this.progress <= 0) {
-        this.enter('first')
-      } else {
-        this.leave('first')
-      }
-      if (this.progress >= 1) {
-        this.enter('last')
-      } else {
-        this.leave('last')
-      }
-    }
-
-    if (this.is('first') && !isFirst) {
-      this.updateArrows()
-    }
-
-    if (this.is('last') && !isLast) {
-      this.updateArrows()
-    }
-
-    if ((isFirst && !this.is('first')) || (isLast && !this.is('last'))) {
-      this.updateArrows()
-    }
-  }
-
   updateArrows() {
     if (this.options.loop) {
       return
@@ -615,10 +600,14 @@ class Swipe extends Component {
       return
     }
 
+    this.$pagination.set(this.current)
+  }
+
+  updateCurrent(updateArrow = false) {
     let current
     const itemGroupNum = this.options.group ? this.column : 1
     const itemsLength = this.$items.length
-    const paginationCount = this.paginationCount
+    const paginationCount = this.maxCount
 
     if (this.options.loop && !this.options.multiple) {
       current = Math.ceil((this.active - this.loopItemsCount) / itemGroupNum)
@@ -637,7 +626,27 @@ class Swipe extends Component {
       current = this.active || 0
     }
 
-    this.$pagination.set(current)
+    if (this.maxCount === 1) {
+      this.enter('first')
+      this.enter('last')
+    } else if (!this.options.loop) {
+      if (current === 0) {
+        this.enter('first')
+      } else {
+        this.leave('first')
+      }
+      if (current === this.maxCount - 1) {
+        this.enter('last')
+      } else {
+        this.leave('last')
+      }
+    }
+
+    if (updateArrow && this.options.arrows) {
+      this.updateArrows()
+    }
+
+    this.current = current
   }
 
   updateActiveIndex(newActiveIndex) {
@@ -686,6 +695,7 @@ class Swipe extends Component {
     if (activeIndex === prevIndex) {
       if (snapIndex !== prevSnapIndex) {
         this.snapIndex = snapIndex
+        this.updateCurrent(true)
         if (!this.options.loop) {
           this.updatePagination()
         }
@@ -693,8 +703,16 @@ class Swipe extends Component {
       return
     }
 
+    const realIndex = parseInt(
+      this.$items[activeIndex].dataset.itemIndex || activeIndex,
+      10
+    )
+
     this.snapIndex = snapIndex
+    this.realIndex = realIndex
     this.active = activeIndex
+
+    this.updateCurrent(true)
 
     if (this.options.loop) {
       this.updatePagination()
@@ -723,7 +741,6 @@ class Swipe extends Component {
     }
 
     const distance = -this.snapSize[snapIndex]
-    this.updateProgress(distance)
 
     for (let i = 0; i < this.itemsSize.length; i++) {
       if (-Math.floor(distance * 100) >= Math.floor(this.itemsSize[i] * 100)) {
@@ -792,6 +809,13 @@ class Swipe extends Component {
       }
     }
 
+    if (this.options.loop && this.options.multiple) {
+      if (this.current === 0) {
+        this.render(this.maxCount - 1)
+        return
+      }
+    }
+
     this.render(prevIndex)
   }
 
@@ -806,6 +830,13 @@ class Swipe extends Component {
       this.clientLeft = this.$inner.clientLeft
       this.render(this.active + itemGroupNum)
       return
+    }
+
+    if (this.options.loop && this.options.multiple) {
+      if (this.current === this.maxCount - 1) {
+        this.render(0)
+        return
+      }
     }
 
     this.render(this.active + itemGroupNum)
@@ -848,6 +879,15 @@ class Swipe extends Component {
     this.width = this.getWidth()
     this.itemWidth = this.getItemWidth()
     this.updateItem()
+    this.itemGroupNum = this.options.group ? this.column : 1
+    this.maxCount =
+      this.options.loop && !this.options.multiple
+        ? Math.ceil(
+            (this.$items.length - this.loopItemsCount * 2) / this.itemGroupNum
+          )
+        : this.snapSize.length
+
+    this.updateCurrent()
 
     if (this.options.pagination) {
       this.initPagination()
@@ -865,13 +905,11 @@ class Swipe extends Component {
 
     this.bind()
 
-    // if (this.options.loop && !this.options.multiple) {
-    //   this.render(this.active, false)
-    // } else {
-    //   this.render(this.active, false)
-    // }
-
-    this.render(this.active, false)
+    if (this.options.loop && !this.options.multiple) {
+      this.render(this.realIndex + this.loopItemsCount, false)
+    } else {
+      this.render(this.active, false)
+    }
 
     if (this.options.autoplay) {
       this.autoPlay()
@@ -903,18 +941,6 @@ class Swipe extends Component {
     }
 
     this.translate = x
-
-    let newProgress
-    const translateDiff = this.maxTranslate() - this.minTranslate()
-    if (translateDiff === 0) {
-      newProgress = 0
-    } else {
-      newProgress = (translate - this.minTranslate()) / translateDiff
-    }
-
-    if (newProgress !== this.progress) {
-      this.updateProgress(translate)
-    }
   }
 
   minTranslate() {

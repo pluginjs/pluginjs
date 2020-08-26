@@ -20,6 +20,7 @@ export const classes = {
   ITEM: '{namespace}-item',
   ACTIVE: '{namespace}-active',
   OUTSIDE: '{namespace}-outside',
+  INSIDE: '{namespace}-inside',
   PAGINATION: '{namespace}-pagination',
   PAGINATIONITEM: '{namespace}-pagination-item',
   PREV: '{namespace}-prev',
@@ -28,7 +29,8 @@ export const classes = {
   CLONEDACTIVE: '{namespace}-cloned-active',
   CLONEDPREV: '{namespace}-cloned-prev',
   CLONEDNEXT: '{namespace}-cloned-next',
-  MULTIPLE: '{namespace}-multiple'
+  MULTIPLE: '{namespace}-multiple',
+  IMAGESTRETCH: '{namespace}-image-stretch'
 }
 
 export const methods = ['update', 'enable', 'disable', 'destroy']
@@ -44,18 +46,19 @@ export const defaults = {
   mobileColumn: 1,
   duration: 300,
   arrows: {
-    theme: 'light',
     type: 'lg'
   },
   outside: false,
+  inside: false,
   pagination: {
-    type: 'square light'
+    type: 'square'
   },
   swipeable: true,
   group: false,
-  loop: true,
+  loop: false,
   multiple: false,
   center: false,
+  imageStretch: false,
   gutter: 0,
   active: 0,
   autoplay: false,
