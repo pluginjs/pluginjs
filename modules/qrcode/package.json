@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.4",
+  "version": "0.8.5",
   "category": "ui",
   "main": "dist/qrcode.common.js",
   "module": "dist/qrcode.esm.js",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
     "@pluginjs/is": "^0.8.4",
     "jr-qrcode": "^1.1.4"

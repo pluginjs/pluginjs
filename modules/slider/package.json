@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.6",
+  "version": "0.8.7",
   "category": "ui",
   "main": "dist/slider.common.js",
   "module": "dist/slider.esm.js",
@@ -37,21 +37,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/arrows": "^0.8.4",
+    "@pluginjs/arrows": "^0.8.5",
     "@pluginjs/breakpoints": "^0.8.4",
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/factory": "^0.8.4",
     "@pluginjs/icons": "^0.8.3",
-    "@pluginjs/loader": "^0.8.4",
+    "@pluginjs/loader": "^0.8.5",
     "@pluginjs/styled": "^0.8.4",
-    "@pluginjs/swipeable": "^0.8.4",
+    "@pluginjs/swipeable": "^0.8.5",
     "@pluginjs/template": "^0.8.4",
     "@pluginjs/utils": "^0.8.4",
-    "@pluginjs/video": "^0.8.4",
+    "@pluginjs/video": "^0.8.5",
     "animejs": "*"
   },
   "devDependencies": {

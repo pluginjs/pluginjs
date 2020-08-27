@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.4",
+  "version": "0.8.5",
   "category": "scroll",
   "main": "dist/scroll-progress.common.js",
   "module": "dist/scroll-progress.esm.js",
@@ -39,9 +39,9 @@
   "dependencies": {
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/factory": "^0.8.4",
     "@pluginjs/styled": "^0.8.4",
     "@pluginjs/template": "^0.8.4"

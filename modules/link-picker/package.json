@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.9",
+  "version": "0.8.10",
   "category": "form",
   "main": "dist/link-picker.common.js",
   "module": "dist/link-picker.esm.js",
@@ -37,18 +37,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/cascader": "^0.8.9",
+    "@pluginjs/cascader": "^0.8.10",
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/dropdown": "^0.8.8",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/dropdown": "^0.8.9",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/factory": "^0.8.4",
     "@pluginjs/is": "^0.8.4",
-    "@pluginjs/pop-dialog": "^0.8.4",
-    "@pluginjs/radio": "^0.8.4",
-    "@pluginjs/select": "^0.8.8",
+    "@pluginjs/pop-dialog": "^0.8.5",
+    "@pluginjs/radio": "^0.8.5",
+    "@pluginjs/select": "^0.8.9",
     "@pluginjs/styled": "^0.8.4",
     "@pluginjs/template": "^0.8.4",
     "@pluginjs/utils": "^0.8.4"

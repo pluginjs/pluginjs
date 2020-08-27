@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.8",
+  "version": "0.8.9",
   "category": "form",
   "main": "dist/auto-complete.common.js",
   "module": "dist/auto-complete.esm.js",
@@ -39,10 +39,10 @@
   "dependencies": {
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/dropdown": "^0.8.8",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/dropdown": "^0.8.9",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/is": "^0.8.4",
     "@pluginjs/match": "^0.8.4",
     "@pluginjs/styled": "^0.8.4",

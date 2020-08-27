@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.8",
+  "version": "0.8.9",
   "category": "form",
   "main": "dist/multi-select.common.js",
   "module": "dist/multi-select.esm.js",
@@ -39,12 +39,12 @@
   "dependencies": {
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/icons": "^0.8.3",
     "@pluginjs/is": "^0.8.4",
-    "@pluginjs/select": "^0.8.8",
+    "@pluginjs/select": "^0.8.9",
     "@pluginjs/template": "^0.8.4",
     "@pluginjs/utils": "^0.8.4"
   },

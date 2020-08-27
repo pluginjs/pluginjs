@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.4",
+  "version": "0.8.5",
   "category": "scroll",
   "main": "dist/scrollable.common.js",
   "module": "dist/scrollable.esm.js",
@@ -39,13 +39,13 @@
   "dependencies": {
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
     "@pluginjs/easing": "^0.8.4",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/factory": "^0.8.4",
     "@pluginjs/is": "^0.8.4",
-    "@pluginjs/scrollbar": "^0.8.4",
+    "@pluginjs/scrollbar": "^0.8.5",
     "@pluginjs/styled": "^0.8.4",
     "@pluginjs/utils": "^0.8.4"
   },

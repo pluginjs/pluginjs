@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.4",
+  "version": "0.8.5",
   "category": "ui",
   "main": "dist/notice.common.js",
   "module": "dist/notice.esm.js",
@@ -39,9 +39,9 @@
   "dependencies": {
     "@pluginjs/breakpoints": "^0.8.4",
     "@pluginjs/classes": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/factory": "^0.8.4",
     "@pluginjs/global-component": "^0.8.4",
     "@pluginjs/is": "^0.8.4",

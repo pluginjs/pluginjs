@@ -3,7 +3,7 @@
   "name": "units-samples",
   "description": "Simple units example",
   "license": "GPL-3.0",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -13,7 +13,7 @@
     "@pluginjs/dom": "^0.8.4",
     "@pluginjs/icons": "^0.8.3",
     "@pluginjs/styles": "^0.8.3",
-    "@pluginjs/units": "^0.8.8"
+    "@pluginjs/units": "^0.8.9"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

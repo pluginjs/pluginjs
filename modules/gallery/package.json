@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.6",
+  "version": "0.8.7",
   "category": "media",
   "main": "dist/gallery.common.js",
   "module": "dist/gallery.esm.js",
@@ -39,15 +39,15 @@
   "dependencies": {
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/factory": "^0.8.4",
-    "@pluginjs/slider": "^0.8.6",
+    "@pluginjs/slider": "^0.8.7",
     "@pluginjs/styled": "^0.8.4",
     "@pluginjs/styles": "^0.8.3",
     "@pluginjs/template": "^0.8.4",
-    "@pluginjs/thumbnails": "^0.8.5",
+    "@pluginjs/thumbnails": "^0.8.6",
     "@pluginjs/utils": "^0.8.4",
     "animejs": "*"
   },

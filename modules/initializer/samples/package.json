@@ -3,7 +3,7 @@
   "name": "initializer-samples",
   "description": "Simple initializer example",
   "license": "GPL-3.0",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/initializer": "^0.8.4",
-    "@pluginjs/toggle": "^0.8.6",
+    "@pluginjs/initializer": "^0.8.5",
+    "@pluginjs/toggle": "^0.8.7",
     "number-flip": "*"
   },
   "devDependencies": {

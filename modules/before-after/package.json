@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.11",
+  "version": "0.8.12",
   "category": "media",
   "main": "dist/before-after.common.js",
   "module": "dist/before-after.esm.js",
@@ -39,10 +39,10 @@
   "dependencies": {
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
     "@pluginjs/easing": "^0.8.4",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/factory": "^0.8.4",
     "@pluginjs/feature": "^0.8.4",
     "@pluginjs/styled": "^0.8.4",

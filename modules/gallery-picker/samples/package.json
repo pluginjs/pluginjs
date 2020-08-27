@@ -3,7 +3,7 @@
   "name": "gallery-picker-samples",
   "description": "Simple gallery-picker example",
   "license": "GPL-3.0",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/gallery-picker": "^0.8.8",
+    "@pluginjs/gallery-picker": "^0.8.9",
     "@pluginjs/icons": "^0.8.3",
     "@pluginjs/styles": "^0.8.3"
   },

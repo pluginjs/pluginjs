@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.4",
+  "version": "0.8.5",
   "category": "media",
   "main": "dist/lazyload.common.js",
   "module": "dist/lazyload.esm.js",
@@ -38,12 +38,12 @@
   },
   "dependencies": {
     "@pluginjs/classes": "^0.8.4",
-    "@pluginjs/decorator": "^0.8.4",
+    "@pluginjs/decorator": "^0.8.5",
     "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/events": "^0.8.4",
+    "@pluginjs/events": "^0.8.5",
     "@pluginjs/image-loader": "^0.8.4",
     "@pluginjs/styled": "^0.8.4",
-    "@pluginjs/viewport": "^0.8.4"
+    "@pluginjs/viewport": "^0.8.5"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
