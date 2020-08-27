@@ -456,6 +456,11 @@ class Swipe extends Component {
     } else if (!hasClass(this.classes.MULTIPLEROWFIRST, $item)) {
       addClass(this.classes.MULTIPLEROWFIRST, $item)
     }
+    if (index === maxColumnCount - 1 || index === itemsLength - 1) {
+      if (!hasClass(this.classes.MULTIPLEROWLAST, $item)) {
+        addClass(this.classes.MULTIPLEROWLAST, $item)
+      }
+    }
   }
 
   updateItem() {
