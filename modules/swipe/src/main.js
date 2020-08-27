@@ -450,6 +450,11 @@ class Swipe extends Component {
     const maxColumnCount = Math.ceil(itemsLength / 2)
     if (index >= maxColumnCount) {
       setStyle({ 'margin-top': `${this.gutter}px` }, $item)
+      if (!hasClass(this.classes.MULTIPLEROWSECOND, $item)) {
+        addClass(this.classes.MULTIPLEROWSECOND, $item)
+      }
+    } else if (!hasClass(this.classes.MULTIPLEROWFIRST, $item)) {
+      addClass(this.classes.MULTIPLEROWFIRST, $item)
     }
   }
 
@@ -574,12 +579,15 @@ class Swipe extends Component {
       return
     }
 
-    this.$items.forEach($item => {
-      removeClass(this.classes.ACTIVE, $item)
-    })
-    const activeItem = this.$items[this.active]
+    this.$items.forEach(($item, index) => {
+      if (index !== this.active && hasClass(this.classes.ACTIVE, $item)) {
+        removeClass(this.classes.ACTIVE, $item)
+      }
 
-    addClass(this.classes.ACTIVE, activeItem)
+      if (index === this.active && !hasClass(this.classes.ACTIVE, $item)) {
+        addClass(this.classes.ACTIVE, $item)
+      }
+    })
   }
 
   updateArrows() {

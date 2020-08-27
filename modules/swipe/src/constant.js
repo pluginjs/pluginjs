@@ -30,6 +30,8 @@ export const classes = {
   CLONEDPREV: '{namespace}-cloned-prev',
   CLONEDNEXT: '{namespace}-cloned-next',
   MULTIPLE: '{namespace}-multiple',
+  MULTIPLEROWFIRST: '{namespace}-multiple-row-1',
+  MULTIPLEROWSECOND: '{namespace}-multiple-row-2',
   IMAGESTRETCH: '{namespace}-image-stretch'
 }
 
