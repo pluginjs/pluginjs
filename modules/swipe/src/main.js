@@ -1078,7 +1078,7 @@ class Swipe extends Component {
   }
 
   unbind() {
-    if (this.options.arrows) {
+    if (this.$arrows) {
       this.$arrows.unbind()
     }
 
