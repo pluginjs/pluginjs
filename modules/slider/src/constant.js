@@ -55,7 +55,7 @@ const defaults = {
   vertical: false,
   current: 0,
   duration: 300,
-  autoplay: false,
+  autoplay: true,
   playCycle: 4000,
   loader: {
     theme: 'ring',

@@ -74,7 +74,7 @@ class Slider extends Component {
       return
     }
 
-    if ( this.data.length <= this.current ) {
+    if (this.data.length <= this.current) {
       this.current = this.data.length - 1
     }
 
@@ -95,7 +95,7 @@ class Slider extends Component {
 
     this.bind()
 
-    if (this.options.autoPlay) {
+    if (this.options.autoplay) {
       this.autoPlay()
     }
 
