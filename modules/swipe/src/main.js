@@ -1082,11 +1082,11 @@ class Swipe extends Component {
       this.$arrows.unbind()
     }
 
-    if (this.options.pagination) {
+    if (this.$pagination) {
       this.$pagination.unbind()
     }
 
-    if (this.options.swipeable) {
+    if (this.$swipeable) {
       this.$swipeable.unbind()
     }
 
