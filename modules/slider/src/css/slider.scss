@@ -94,6 +94,8 @@ $slider-video-color: $color-white;
   }
 
   &-video-wrap {
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 
     &::before,
@@ -121,6 +123,14 @@ $slider-video-color: $color-white;
       height: $slider-video-outer-size;
       border: 4px solid $slider-video-color;
       border-radius: 100%;
+    }
+
+    .#{$slider}-image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
     }
 
     &.#{$slider}-active {

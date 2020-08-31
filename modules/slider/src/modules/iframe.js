@@ -14,8 +14,8 @@ class Iframe extends Base {
     this.load(this.element)
   }
 
-  loadHandler() {
-    this.loaded()
+  loadHandler(target) {
+    this.loaded(target)
   }
 
   errorHandler(target) {

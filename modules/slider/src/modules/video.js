@@ -1,5 +1,5 @@
 import { addClass, removeClass } from '@pluginjs/classes'
-import { query } from '@pluginjs/dom'
+import { query, append, remove } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import Base from './base'
 import VIDEO from '@pluginjs/video'
@@ -14,11 +14,15 @@ class Video extends Base {
 
   initialize() {
     this.element = this.instance.createElement('video')
+    this.newImage = document.createElement('img')
     this.imageEl = query(`.${this.classes.IMAGE}`, this.element)
+
     this.videoEl = query(`.${this.classes.VIDEO}`, this.element)
 
-    this.imageEl.src = this.data.src
-    this.load(this.imageEl)
+    this.imageEl.style.backgroundImage = `url(${this.data.src})`
+    this.newImage.src = this.data.src
+    append(this.newImage, this.element)
+    this.load(this.newImage)
 
     bindEvent(
       this.instance.eventName('mousedown'),
@@ -31,6 +35,7 @@ class Video extends Base {
 
   loadHandler(target) {
     this.loaded(target)
+    remove(this.newImage, this.element)
     this.bind()
   }
 
@@ -67,10 +72,10 @@ class Video extends Base {
       },
       onLoaded: () => {
         this.isload = true
-      },
-      onPlay: () => {
         addClass(this.classes.ACTIVE, this.element)
         removeClass(this.classes.LOADING, this.element)
+      },
+      onPlay: () => {
         this.instance.enter('video')
       },
       onPause: () => {

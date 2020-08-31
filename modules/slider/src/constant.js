@@ -55,7 +55,7 @@ const defaults = {
   vertical: false,
   current: 0,
   duration: 300,
-  autoplay: true,
+  autoplay: false,
   playCycle: 4000,
   loader: {
     theme: 'ring',
@@ -80,7 +80,7 @@ const defaults = {
     video() {
       return (
         '<div class="{classes.VIDEOWRAP} {classes.CONTENT}">' +
-        '<img class="{classes.IMAGE}">' +
+        '<div class="{classes.IMAGE}"></div>' +
         '<div class="{classes.VIDEO}"></div>' +
         '</div>'
       )
