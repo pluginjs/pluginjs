@@ -453,7 +453,7 @@ class Slider extends Component {
       this.swipeable.bind()
     }
 
-    if (!this.arrows.is('bind')) {
+    if (this.arrows && !this.arrows.is('bind')) {
       this.arrows.bind()
     }
 
@@ -474,24 +474,31 @@ class Slider extends Component {
       })
     )(this.box)
 
-    compose(
-      bindEvent('arrows:next', () => {
-        this.next()
-      }),
-      bindEvent('arrows:prev', () => {
-        this.prev()
-      })
-    )(this.arrows.element)
+    if (this.arrows) {
+      compose(
+        bindEvent('arrows:next', () => {
+          this.next()
+        }),
+        bindEvent('arrows:prev', () => {
+          this.prev()
+        })
+      )(this.arrows.element)
+    }
   }
 
   unbind() {
-    this.arrows.unbind()
+    if (this.arrows) {
+      this.arrows.unbind()
+    }
+
     this.swipeable.unbind()
 
     removeEvent(this.eventName('mousedown'), this.box)
     removeEvent(this.eventName('mouseup'), this.box)
-    removeEvent('arrows:next', this.arrows.element)
-    removeEvent('arrows:prev', this.arrows.element)
+    if (this.arrows) {
+      removeEvent('arrows:next', this.arrows.element)
+      removeEvent('arrows:prev', this.arrows.element)
+    }
   }
 
   reset(index) {
@@ -550,7 +557,10 @@ class Slider extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      this.arrows.destroy()
+      if (this.arrows) {
+        this.arrows.destroy()
+      }
+
       this.swipeable.destroy()
 
       if (this.options.vertical === true) {

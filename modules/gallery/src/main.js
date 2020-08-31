@@ -47,8 +47,8 @@ class Gallery extends Component {
       return
     }
 
-    if (typeof NodeList.prototype.forEach !== 'function')  {
-      NodeList.prototype.forEach = Array.prototype.forEach;
+    if (typeof NodeList.prototype.forEach !== 'function') {
+      NodeList.prototype.forEach = Array.prototype.forEach
     }
 
     this.data =
@@ -149,6 +149,7 @@ class Gallery extends Component {
       info = deepMerge(info, _data)
 
       data.push(info)
+      item.remove()
     })
 
     return data

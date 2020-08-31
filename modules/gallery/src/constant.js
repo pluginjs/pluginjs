@@ -63,7 +63,7 @@ const defaults = {
   },
   order: ['slider', 'thumbs'],
   data: 'html', // html or DATA
-  delegate: '>*',
+  delegate: 'a',
   arrows: true,
   vertical: false,
   current: 2,
