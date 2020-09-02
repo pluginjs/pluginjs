@@ -1,134 +1,98 @@
-import { transitionEndEvent } from '@pluginjs/feature'
+import anime from 'animejs'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { find, query, append, children } from '@pluginjs/dom'
-import { setStyle, getStyle } from '@pluginjs/styled'
-import { bindEventOnce } from '@pluginjs/events'
+import { query } from '@pluginjs/dom'
+import { setStyle } from '@pluginjs/styled'
 import { isObject } from '@pluginjs/is'
 
 import ImageLoader from '@pluginjs/image-loader'
 import Loader from '@pluginjs/loader'
 
+import EFFECTS from './effects'
+
 class Item {
   constructor(instance, element, options) {
     this.instance = instance
     this.element = element
-    this.options = Object.assign({}, options, this.element.dataset)
+    this.options = Object.assign(
+      {},
+      this.instance.options,
+      options,
+      this.element.dataset
+    )
     this.init()
   }
 
   init() {
     addClass(this.instance.classes.CHUNK, this.element)
 
-    const $children = children(this.element)
-
-    append(
-      `<div class='${this.instance.classes.CHUNKINNER}'></div>`,
-      this.element
-    )
-    this.chunkInner = find(`.${this.instance.classes.CHUNKINNER}`, this.element)
-
-    $children.forEach(child => {
-      append(child, this.chunkInner)
-    })
-
+    const aspectRatio = this.renderAspectRatio(this.options.ratio)
+    this.widthRatio = aspectRatio[0] || 1
+    this.heightRatio = aspectRatio[1] || 1
+    this.aspectRatio = this.widthRatio / this.heightRatio
+    this.imageRatio = (this.heightRatio / this.widthRatio) * 100
+    this.effect = this.getEffect()
     this.index = this.options.index
+    this.length = this.options.length
+    this.position = { x: 0, y: 0 }
+    this.element.dataset.index = this.index
 
-    // aspectRatio => [width, height]
-    const aspectRatio = this.compileAspectRatio(this.options.aspectRatio)
+    this.initLoader()
+  }
 
-    // element Attribute First
-    // this.width = aspectRatio[0] || this.element.offsetWidth || 1
-    // this.height = aspectRatio[1] || this.element.offsetHeight || 1
-
-    this.width =
-      aspectRatio[0] || parseFloat(getStyle('width', this.element), 10) || 1
-    this.height =
-      aspectRatio[1] || parseFloat(getStyle('height', this.element), 10) || 1
-
-    this.aspectRatio = this.width / this.height
-
-    this.col = parseInt(this.options.col, 10) || 1
-    this.row = parseInt(this.options.row, 10) || 1
-
+  initLoader() {
     this.img = this.instance.options.imgSelector
       ? query(this.instance.options.imgSelector, this.element)
       : query('img', this.element)
 
-    if (this.img) {
-      let loader = ''
+    addClass(this.instance.classes.IMAGE, this.img)
 
-      if (this.instance.options.loader) {
-        loader = Loader.of(this.chunkInner, this.instance.options.loader)
-        loader.show()
-      }
+    setStyle(
+      {
+        paddingBottom: `${this.imageRatio}%`
+      },
+      this.img
+    )
 
-      if (this.instance.options.imageLoader) {
-        addClass(this.instance.classes.IMAGELOADING, this.chunkInner)
-
-        ImageLoader.of(this.img).on('loaded', () => {
-          if (this.instance.options.loader) {
-            loader.hide()
-          }
-          removeClass(this.instance.classes.IMAGELOADING, this.chunkInner)
-          addClass(this.instance.classes.IMAGELOADED, this.chunkInner)
-        })
-
-        ImageLoader.of(this.img).on('error', () => {
-          if (this.instance.options.loader) {
-            loader.hide()
-          }
-          removeClass(this.instance.classes.IMAGELOADING, this.chunkInner)
-          addClass(this.instance.classes.IMAGEERROR, this.chunkInner)
-        })
-      } else if (this.instance.options.loader) {
-        addClass(this.instance.classes.IMAGELOADED, this.chunkInner)
-        loader.hide()
-      } else {
-        addClass(this.instance.classes.IMAGELOADED, this.chunkInner)
-      }
-    }
-
-    if (this.col > 2 || this.row > 2) {
+    if (!this.instance.options.imageLoader || !this.img) {
       return
     }
 
-    this.info = {
-      x: this.getPosition().x,
-      y: this.getPosition().y,
-      width: this.width,
-      height: this.height
-    }
+    this.loader = this.instance.options.loader
+      ? Loader.of(this.element, this.instance.options.loader)
+      : {}
 
-    this.movePosition = {
-      x: this.info.x,
-      y: this.info.y
-    }
+    this.toggleLoader(true)
 
-    this.sort = this.options.sort ? this.parseSort() : null
+    addClass(this.instance.classes.IMAGELOADING, this.element)
 
-    this.tags = this.options.tags
-      ? this.instance.options.parseTagsStr(this.options.tags)
-      : []
-
-    if (this.tags) {
-      this.tags.forEach((item, index) => {
-        this.tags[index] = item.trim()
+    ImageLoader.of(this.img)
+      .on('loaded', () => {
+        this.toggleLoader(false)
+        removeClass(this.instance.classes.IMAGELOADING, this.element)
+        addClass(this.instance.classes.IMAGELOADED, this.element)
+        this.instance.trigger(this.instance.events.IMAGELOADED)
       })
-    }
-
-    if (this.instance.options.model === 'justified') {
-      this.element.dataset.aspectRatio = `${this.width}:${this.height}`
-    }
-
-    if (this.instance.options.model === 'nested') {
-      this.element.dataset.col = this.col
-      this.element.dataset.row = this.row
-    }
-
-    this.element.dataset.index = this.index
+      .on('error', () => {
+        this.toggleLoader(false)
+        removeClass(this.instance.classes.IMAGELOADING, this.element)
+        addClass(this.instance.classes.IMAGEERROR, this.element)
+        this.instance.trigger(this.instance.events.IMAGEERROR)
+      })
   }
 
-  compileAspectRatio(aspectRatio) {
+  toggleLoader(show) {
+    if (!this.instance.options.loader) {
+      return
+    }
+
+    if (show) {
+      this.loader.show()
+    } else {
+      this.loader.hide()
+    }
+  }
+
+  renderAspectRatio(aspectRatio) {
     if (!aspectRatio) {
       return false
     }
@@ -136,83 +100,69 @@ class Item {
     return aspectRatio.split(':')
   }
 
-  getPosition() {
-    return {
-      x: this.element.offsetLeft,
-      y: this.element.offsetTop
-    }
-  }
-
-  parseSort() {
-    return isObject(this.options.sort)
-      ? this.options.sort
-      : JSON.parse(this.options.sort)
-  }
-
-  setSize(size) {
-    const { width, height } = size
-
-    // const duration = this.getDuration()
+  setSize(width) {
+    this.width = width
+    this.height = this.width / this.aspectRatio
 
     setStyle(
       {
-        width,
-        height
-        // transition: `width ${duration}ms, height ${duration}ms`
+        width: this.width,
+        height: this.height
+      },
+      this.element
+    )
+  }
+
+  render(effect) {
+    setStyle(
+      {
+        position: 'absolute'
       },
       this.element
     )
 
-    // size.width = parseFloat(getStyle('width', this.element), 10)
-    // size.height = parseFloat(getStyle('height', this.element), 10)
+    this.setPosition(this.position, effect)
+  }
 
-    this.info = Object.assign({}, this.info, size)
+  setPosition(position, effect) {
+    anime(
+      this.getAnimeConfig(position, effect ? this.effect : this.effect && true)
+    )
+  }
+
+  getAnimeConfig(position, effect) {
+    const config = {
+      targets: this.element,
+      easing: 'cubicBezier(0.25, 0.1, 0.25, 1)',
+      duration: effect ? this.getDuration() : 0
+    }
+
+    if (isObject(effect)) {
+      for (const key in effect) {
+        if (effect[key]) {
+          const value = effect[key]
+
+          config[key] = typeof value === 'function' ? value.call(this) : value
+        }
+      }
+    } else {
+      config.translateX = position.x
+      config.translateY = position.y
+    }
+
+    return config
+  }
+
+  getEffect() {
+    if (!this.instance.options.animate) {
+      return false
+    }
+
+    return EFFECTS[this.instance.options.animate] || EFFECTS.fadeInUp
   }
 
   getDuration() {
     return parseFloat(this.instance.options.duration, 10)
-  }
-
-  moveTo(position) {
-    const duration = this.getDuration()
-
-    setStyle(
-      {
-        transform: `translate3d(${position.x -
-          parseFloat(getStyle('left', this.element), 10)}px, ${position.y -
-          parseFloat(getStyle('top', this.element), 10)}px, 0)`,
-        transition: `transform ${duration}ms`
-      },
-      this.element
-    )
-
-    bindEventOnce(
-      transitionEndEvent(),
-      () => {
-        setStyle(
-          {
-            left: `${position.x}px`,
-            top: `${position.y}px`
-          },
-          this.element
-        )
-
-        this.element.style.removeProperty('transition')
-        this.element.style.removeProperty('transform')
-      },
-      this.element
-    )
-
-    this.info.x = position.x
-    this.info.y = position.y
-  }
-
-  show() {
-    this.instance.ANIMATE.show(this)
-  }
-
-  hide() {
-    this.instance.ANIMATE.hide(this)
   }
 }
 

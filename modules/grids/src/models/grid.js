@@ -1,202 +1,121 @@
 import { addClass } from '@pluginjs/classes'
-import { bindEvent } from '@pluginjs/events'
 
 class Grid {
   constructor(instanced) {
-    this.api = instanced
-
+    this.instance = instanced
+    this.options = this.instance.options
     this.init()
   }
 
   init() {
-    addClass(this.api.classes.GRIDMODEL, this.api.element)
+    addClass(this.instance.classes.GRIDMODEL, this.instance.element)
+    this.chunks = this.instance.chunks
+    this.ratio = this.instance.ratio
+    this.column = this.instance.column
+    this.gutter = this.instance.gutter
+    this.width = this.instance.getWidth()
+    this.chunkWidth = this.getColWidth()
+    this.chunkHeight = this.chunkWidth / this.ratio
+    this.render(true)
 
-    this.handleState()
-
-    this.height = this.getHeight()
-    this.bind()
+    // this.bind()
   }
 
-  handleState() {
-    this.columnCount = this.getColumnCount()
-    this.chunksArr = this.compute(this.api.chunks)
+  getColWidth() {
+    return (this.width - (this.column - 1) * this.gutter) / this.column
   }
 
-  getColumnCount() {
-    const gutter = parseFloat(this.api.gutter, 10)
-    const minWidth = parseFloat(this.api.minWidth, 10)
-    const maxColumn = parseFloat(this.api.options.maxColumn, 10)
-
-    let columnCount = Math.floor(
-      (this.api.width - gutter) / (minWidth + gutter)
-    )
-
-    columnCount = columnCount < 1 ? 1 : columnCount
-
-    if (this.api.options.maxColumn) {
-      columnCount = columnCount > maxColumn ? maxColumn : columnCount
-    }
-
-    return columnCount
+  render(effect = false) {
+    this.computeChunks = this.getComputeChunks()
+    this.renderChunks(this.computeChunks, effect)
+    this.instance.setHeight(this.getHeight())
   }
 
-  compute(chunks) {
-    const chunksArr = []
-    let tempArr = []
-    let count = 0
-    const chunkWidth = this.getChunkWidth()
-    const columnCount = this.columnCount
-
-    chunks.forEach(chunk => {
-      if (count < columnCount) {
-        this.setItemSize(chunk, chunkWidth)
-        tempArr.push(chunk)
-        count++
-      } else {
-        count = 1
-        chunksArr.push(tempArr)
-        this.setItemSize(chunk, chunkWidth)
-        tempArr = [chunk]
-      }
-    })
-
-    chunksArr.push(tempArr)
-
-    return this.update(chunksArr)
-  }
-
-  setItemSize(chunk, width) {
-    const size = {
-      width,
-      height: chunk.info.height * (width / chunk.info.width)
-    }
-
-    chunk.setSize(size)
-  }
-
-  getChunkWidth() {
-    const gutter = parseFloat(this.api.options.gutter, 10)
-
-    return (this.api.width - (this.columnCount - 1) * gutter) / this.columnCount
-  }
-
-  getHeight() {
-    const index = this.chunksArr.length - 1
-    let height = 0
-
-    if (this.chunksArr[index].length === 0) {
-      return
-    }
-
-    this.chunksArr[index].forEach(chunk => {
-      height = Math.max(height, chunk.info.height)
-    })
-
-    return Math.abs(this.chunksArr[index][0].movePosition.y) + height
-  }
-
-  bind() {
-    bindEvent(
-      `${this.api.namespace}:${this.api.events.RESIZE}`,
-      (e, instance, data) => {
-        if (data < this.api.minWidth) {
-          return
-        }
-
-        this.handleState()
-        this.render()
-      },
-      this.api.element
-    )
-
-    bindEvent(
-      `${this.api.namespace}:${this.api.events.FILTER}`,
-      (e, instance, data) => {
-        const { showChunks, hideChunks, moveChunks } = data
-
-        this.handleState()
-
-        if (hideChunks) {
-          hideChunks.forEach(chunk => {
-            chunk.hide()
-          })
-        }
-
-        if (showChunks) {
-          showChunks.forEach(chunk => {
-            chunk.show()
-          })
-        }
-
-        if (moveChunks) {
-          moveChunks.forEach(chunk => {
-            chunk.moveTo(chunk.movePosition)
-          })
-        }
-
-        this.api.setHeight(this.getHeight())
-      },
-      this.api.element
-    )
-
-    bindEvent(
-      `${this.api.namespace}:${this.api.events.SORT}`,
-      () => {
-        this.api.setHeight(this.getHeight())
-      },
-      this.api.element
-    )
-
-    bindEvent(
-      `${this.api.namespace}:${this.api.events.REVERSE}`,
-      () => {
-        this.api.setHeight(this.getHeight())
-      },
-      this.api.element
-    )
-  }
-
-  update(chunksArr) {
-    if (this.api.options.direction.indexOf('bottom') >= 0) {
-      chunksArr = chunksArr.reverse()
-    }
-
-    chunksArr.forEach((row, rowIndex) => {
+  renderChunks(chunks, effect) {
+    chunks.forEach((row, rowIndex) => {
       row.forEach((chunk, index) => {
-        const gutter = parseFloat(this.api.gutter, 10)
-        const x = (chunk.info.width + gutter) * index
-        const y = (chunk.info.height + gutter) * rowIndex
+        const gutter = parseFloat(this.gutter, 10)
+        const x = (chunk.width + gutter) * index
+        const y = (chunk.height + gutter) * rowIndex
         const position = {
           x,
           y
         }
 
-        if (this.api.options.direction.indexOf('Right') >= 0) {
-          position.x = this.api.width - chunk.info.width - position.x
-        }
-        chunk.movePosition = position
+        chunk.position = position
+        chunk.render(effect)
       })
     })
-
-    return chunksArr
   }
 
-  render() {
-    this.api.chunks.forEach(item => {
-      // set item size.
-      item.info = Object.assign({}, item.info, item.movePosition)
+  getComputeChunks() {
+    let count = 0
+    const chunksArr = []
+    let tempArr = []
 
-      if (this.api.options.delay) {
-        setTimeout(() => {
-          item.moveTo(item.movePosition)
-        }, item.index * this.api.options.delay)
+    this.chunks.forEach(chunk => {
+      chunk.setSize(this.chunkWidth)
+      if (count < this.column) {
+        tempArr.push(chunk)
+        count++
       } else {
-        item.moveTo(item.movePosition)
+        count = 1
+        chunksArr.push(tempArr)
+        tempArr = [chunk]
       }
     })
 
-    this.api.setHeight(this.getHeight(this.chunksArr))
+    chunksArr.push(tempArr)
+    return chunksArr
   }
+
+  getHeight() {
+    const index = this.computeChunks.length - 1
+    let height = 0
+
+    if (this.computeChunks[index].length === 0) {
+      return height
+    }
+
+    this.computeChunks[index].forEach(chunk => {
+      height = Math.max(height, chunk.height)
+    })
+
+    return Math.abs(this.computeChunks[index][0].position.y) + height
+  }
+
+  resize() {
+    this.chunks = this.instance.chunks
+    this.column = this.instance.column
+    this.gutter = this.instance.gutter
+    this.width = this.instance.getWidth()
+    this.chunkWidth = this.getColWidth()
+    this.chunkHeight = this.chunkWidth / this.ratio
+    this.render()
+  }
+
+  // bind() {
+  //   bindEvent(
+  //     `${this.instance.namespace}:${this.instance.events.RESIZE}`,
+  //     (e, instance, data) => {
+  //       if (data < this.instance.minWidth) {
+  //         return
+  //       }
+
+  //       this.handleState()
+  //       this.render()
+  //     },
+  //     this.instance.element
+  //   )
+
+  //   bindEvent(
+  //     `${this.instance.namespace}:${this.instance.events.REVERSE}`,
+  //     () => {
+  //       this.instance.setHeight(this.getHeight())
+  //     },
+  //     this.instance.element
+  //   )
+  // }
 }
 
 export default Grid

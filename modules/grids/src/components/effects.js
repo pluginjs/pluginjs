@@ -1,266 +1,154 @@
-import anime from 'animejs'
-
 const EFFECTS = {
-  bounce: {
-    animeOpts: {
-      duration: 800,
-      elasticity: 600,
-      delay(el, i) {
-        return i * 100
-      },
-      opacity: {
-        value: [0, 1],
-        duration: 1000,
-        easing: 'linear'
-      },
-      scaleX: {
-        value: [0.4, 1],
-        duration: 800
-      },
-      scaleY: {
-        value: [0.6, 1],
-        duration: 1000
-      }
-    }
-  },
-  bounceIn: {
-    animeOpts: {
-      duration: 900,
-      elasticity: 500,
-      delay(el, i) {
-        return i * 15
-      },
-      opacity: [0, 1],
-      translateX() {
-        return [anime.random(0, 1) === 0 ? 100 : -100, 0]
-      },
-      translateY() {
-        return [anime.random(0, 1) === 0 ? 100 : -100, 0]
-      }
-    }
-  },
-  calendar: {
-    elOpts: {
-      perspective: '800px',
-      'transform-origin': '50% 0%'
+  fadeInUp: {
+    translateX() {
+      return [this.position.x, this.position.x]
     },
-    animeOpts: {
-      duration: 1500,
-      elasticity: 400,
-      delay(el, i) {
-        return i * 75
-      },
-      opacity: {
-        value: [0, 1],
-        duration: 1000,
-        easing: 'linear'
-      },
-      rotateX: [-90, 0]
-    }
-  },
-  cards: {
-    animeOpts: {
-      duration: 600,
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 100
-      },
-      opacity: {
-        value: [0, 1],
-        duration: 100,
-        easing: 'linear'
-      },
-      translateX(el) {
-        const docScrolls = {
-          left: document.body.scrollLeft + document.documentElement.scrollLeft
-        }
-
-        const x1 = window.innerWidth / 2 + docScrolls.left
-
-        const tBounds = el.getBoundingClientRect()
-
-        const x2 = tBounds.left + docScrolls.left + tBounds.width / 2
-
-        return [x1 - x2, 0]
-      },
-      translateY(el) {
-        const docScrolls = {
-          top: document.body.scrollTop + document.documentElement.scrollTop
-        }
-
-        const y1 = window.innerHeight + docScrolls.top
-
-        const tBounds = el.getBoundingClientRect()
-
-        const y2 = tBounds.top + docScrolls.top + tBounds.height / 2
-
-        return [y1 - y2, 0]
-      },
-      rotate(el) {
-        const x1 = window.innerWidth / 2
-
-        const tBounds = el.getBoundingClientRect()
-
-        const x2 = tBounds.left + tBounds.width / 2
-
-        return [x2 < x1 ? 90 : -90, 0]
-      },
-      scale: [0, 1]
-    }
+    translateY() {
+      return [this.position.y + 100, this.position.y]
+    },
+    delay() {
+      return this.index * this.options.delay
+    },
+    easing: 'easeOutQuad',
+    opacity: [0, 1]
   },
   fadeInDown: {
-    resetChunksSort(a, b) {
-      const aBounds = a.getBoundingClientRect()
-      const bBounds = b.getBoundingClientRect()
-
-      return aBounds.left - bBounds.left || aBounds.top - bBounds.top
+    translateX() {
+      return [this.position.x, this.position.x]
     },
-    animeOpts: {
-      duration(el, i) {
-        return 500 + i * 50
-      },
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 20
-      },
-      opacity: [0, 1],
-      translateY: [-200, 0]
-    }
-  },
-  fadeInUp: {
-    resetChunksSort(a, b) {
-      const aBounds = a.getBoundingClientRect()
-      const bBounds = b.getBoundingClientRect()
-
-      return aBounds.left - bBounds.left || aBounds.top - bBounds.top
+    translateY() {
+      return [this.position.y - 100, this.position.y]
     },
-    animeOpts: {
-      duration(el, i) {
-        return 500 + i * 50
-      },
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 20
-      },
-      opacity: [0, 1],
-      translateY: [200, 0]
-    }
+    delay() {
+      return this.index * this.options.delay
+    },
+    easing: 'easeOutQuad',
+    opacity: [0, 1]
   },
   fadeInLeft: {
-    resetChunksSort(a, b) {
-      return b.getBoundingClientRect().left - a.getBoundingClientRect().left
+    translateX() {
+      return [this.position.x + 100, this.position.x]
     },
-    animeOpts: {
-      duration: 800,
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 20
-      },
-      opacity: [0, 1],
-      translateX: [-500, 0],
-      rotateZ: [15, 0]
-    }
+    translateY() {
+      return [this.position.y, this.position.y]
+    },
+    delay() {
+      return this.index * this.options.delay
+    },
+    easing: 'easeOutQuad',
+    opacity: [0, 1]
   },
   fadeInRight: {
-    resetChunksSort(a, b) {
-      return b.getBoundingClientRect().left - a.getBoundingClientRect().left
+    translateX() {
+      return [this.position.x - 100, this.position.x]
     },
-    animeOpts: {
-      duration: 800,
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 20
-      },
-      opacity: [0, 1],
-      translateX: [500, 0],
-      rotateZ: [-15, 0]
-    }
-  },
-  fan: {
-    resetChunksSort(a, b) {
-      const docScrolls = {
-        top: document.body.scrollTop + document.documentElement.scrollTop
-      }
-
-      const y1 = window.innerHeight + docScrolls.top
-
-      const aBounds = a.getBoundingClientRect()
-
-      const ay1 = aBounds.top + docScrolls.top + aBounds.height / 2
-
-      const bBounds = b.getBoundingClientRect()
-
-      const by1 = bBounds.top + docScrolls.top + bBounds.height / 2
-
-      return Math.abs(y1 - ay1) - Math.abs(y1 - by1)
+    translateY() {
+      return [this.position.y, this.position.y]
     },
-    elOpts: {
-      perspective: '1000px',
-      'transform-origin': '50% 0%'
+    delay() {
+      return this.index * this.options.delay
     },
-    animeOpts: {
-      duration: 800,
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 35
-      },
-      opacity: [0, 1],
-      translateX: [100, 0],
-      translateY: [-100, 0],
-      translateZ: [400, 0],
-      rotateZ: [10, 0],
-      rotateX: [75, 0]
-    }
-  },
-  flip: {
-    elOpts: { perspective: '3000px' },
-    animeOpts: {
-      duration() {
-        return anime.random(500, 1000)
-      },
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 50
-      },
-      opacity: [0, 1],
-      translateZ: {
-        value: [-3000, 0],
-        duration: 1000
-      },
-      rotateY: [-180, 0]
-    }
+    easing: 'easeOutQuad',
+    opacity: [0, 1]
   },
   zoomIn: {
-    animeOpts: {
-      duration(el, i) {
-        return 600 + i * 75
-      },
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 50
-      },
-      opacity: {
-        value: [0, 1],
-        easing: 'linear'
-      },
-      scale: [1.8, 1]
-    }
+    translateX() {
+      return [this.position.x, this.position.x]
+    },
+    translateY() {
+      return [this.position.y, this.position.y]
+    },
+    delay() {
+      return this.index * this.options.delay
+    },
+    easing: 'easeOutExpo',
+    // opacity: [0, 1],
+    scale: [1.5, 1]
   },
   zoomOut: {
-    animeOpts: {
-      duration(el, i) {
-        return 600 + i * 75
-      },
-      easing: 'easeOutExpo',
-      delay(el, i) {
-        return i * 50
-      },
-      opacity: {
-        value: [0, 1],
-        easing: 'linear'
-      },
-      scale: [0, 1]
-    }
+    translateX() {
+      return [this.position.x, this.position.x]
+    },
+    translateY() {
+      return [this.position.y, this.position.y]
+    },
+    delay() {
+      return this.index * this.options.delay
+    },
+    easing: 'easeOutExpo',
+    opacity: [0, 1],
+    scale: [0, 1]
+  },
+  bounce: {
+    translateX() {
+      return [this.position.x, this.position.x]
+    },
+    translateY() {
+      return [this.position.y, this.position.y]
+    },
+    delay() {
+      return this.index * this.options.delay
+    },
+    easing: 'easeOutBack',
+    opacity: [0, 1],
+    scaleX: [0.4, 1],
+    scaleY: [0.6, 1]
+  },
+  bounceIn: {
+    translateX() {
+      const test = Math.random(0, 1) > 0.5 ? 100 : -100
+      return [this.position.x + test, this.position.x]
+    },
+    translateY() {
+      const test = Math.random(0, 1) > 0.5 ? 100 : -100
+      return [this.position.y + test, this.position.y]
+    },
+    delay() {
+      return this.index * this.options.delay
+    },
+    easing: 'easeInOutBack',
+    opacity: [0, 1],
+    scaleX: [0.4, 1],
+    scaleY: [0.6, 1]
+  },
+  cards: {
+    translateX() {
+      return [this.instance.width / 2, this.position.x]
+    },
+    translateY() {
+      return [this.position.y + 200, this.position.y]
+    },
+    delay() {
+      return this.index * this.options.delay
+    },
+    easing: 'easeOutExpo',
+    opacity: [0, 1]
+  },
+  unfold: {
+    translateX() {
+      return [this.instance.width / 2, this.position.x]
+    },
+    translateY() {
+      return [this.position.y + 200, this.position.y]
+    },
+    delay() {
+      return this.options.delay * (this.length - this.index)
+    },
+    easing: 'easeOutExpo',
+    opacity: [0, 1]
+  },
+  fan: {
+    translateX() {
+      return [this.position.x, this.position.x]
+    },
+    translateY() {
+      return [this.position.y - 200, this.position.y]
+    },
+    delay() {
+      return this.options.delay * (this.length - this.index)
+    },
+    easing: 'easeOutExpo',
+    opacity: [0, 1]
   }
 }
 
