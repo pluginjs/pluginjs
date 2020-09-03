@@ -1,6 +1,6 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { setStyle, getStyle, outerWidth } from '@pluginjs/styled'
+import { setStyle, getStyle } from '@pluginjs/styled'
 import { removeEvent } from '@pluginjs/events'
 import { isPlainObject } from '@pluginjs/is'
 import { queryAll, children } from '@pluginjs/dom'
@@ -71,15 +71,9 @@ class Grids extends Component {
     this.$items = this.options.itemSelector
       ? queryAll(this.options.itemSelector, this.element)
       : children(this.element)
-    this.width = this.getWidth()
-
     this.chunks = this.createChunks(this.$items)
-
+    this.width = this.getWidth()
     this.model = this.initModel(this.options.model)
-
-    // this.bind()
-
-    console.log('grids', this)
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -184,10 +178,6 @@ class Grids extends Component {
     this.trigger(EVENTS.RESIZE, this.width)
   }
 
-  bind() {
-    //
-  }
-
   unbind() {
     removeEvent(this.eventName(), window)
   }
@@ -202,25 +192,7 @@ class Grids extends Component {
   }
 
   getWidth() {
-    let width = outerWidth(false, this.element, true)
-    let { marginLeft, marginRight } = getStyle(
-      ['marginLeft', 'marginRight'],
-      this.element
-    )
-
-    marginLeft = parseFloat(marginLeft, 10)
-    marginRight = parseFloat(marginRight, 10)
-
-    if (marginLeft < 0) {
-      width += -marginLeft
-    }
-    if (marginRight < 0) {
-      width += -marginRight
-    }
-
-    width += this.gutter
-
-    return width
+    return parseFloat(getStyle('width', this.element), 10)
   }
 
   // reverse() {

@@ -17,8 +17,6 @@ class Grid {
     this.chunkWidth = this.getColWidth()
     this.chunkHeight = this.chunkWidth / this.ratio
     this.render(true)
-
-    // this.bind()
   }
 
   getColWidth() {
@@ -54,7 +52,10 @@ class Grid {
     let tempArr = []
 
     this.chunks.forEach(chunk => {
-      chunk.setSize(this.chunkWidth)
+      chunk.setSize({
+        width: this.chunkWidth,
+        height: this.chunkWidth / chunk.aspectRatio
+      })
       if (count < this.column) {
         tempArr.push(chunk)
         count++
@@ -93,29 +94,6 @@ class Grid {
     this.chunkHeight = this.chunkWidth / this.ratio
     this.render()
   }
-
-  // bind() {
-  //   bindEvent(
-  //     `${this.instance.namespace}:${this.instance.events.RESIZE}`,
-  //     (e, instance, data) => {
-  //       if (data < this.instance.minWidth) {
-  //         return
-  //       }
-
-  //       this.handleState()
-  //       this.render()
-  //     },
-  //     this.instance.element
-  //   )
-
-  //   bindEvent(
-  //     `${this.instance.namespace}:${this.instance.events.REVERSE}`,
-  //     () => {
-  //       this.instance.setHeight(this.getHeight())
-  //     },
-  //     this.instance.element
-  //   )
-  // }
 }
 
 export default Grid

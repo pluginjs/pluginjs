@@ -43,19 +43,24 @@ export const defaults = {
   theme: null,
   itemSelector: null, // [selector / null] null => select children of the element.
   imgSelector: 'img', // [selector / null] If there is any image in item, the grid will select an IMG element marked by Imgselector
-  model: 'grid', // select model
+  model: 'grid', // grid /justified
   column: {
     desktop: 5,
     tablet: 3,
     mobile: 1
   }, // [number] set the column number / [object] desktop column, tablet column, mobile column.
   gutter: 0, // [number] set the gutter number / [object] desktop gutter, tablet gutter, mobile gutter.
-  rowHeight: 200, // item min height. unit: px.
+  rowHeight: {
+    desktop: 200,
+    tablet: 200,
+    mobile: 150
+  }, // item min height. unit: px.
   aspectRatio: '1:1', // 'Width:Height' items aspect ratio.
   delay: 35, // chunk animating delay for each of list. unit: ms.
   duration: 300, // The animation duration. unit: ms.
   animate: 'fadeInUp', // fadeInUp, fadeInDown, fadeInLeft, fadeInRight, zoomIn, zoomOut, bounce, bounceIn, unfold, cards, fan
   imageLoader: true,
+  lazyload: true,
   loader: {
     theme: 'snake',
     color: '#000000',
