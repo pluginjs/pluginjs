@@ -5,6 +5,6 @@ const element = query('#ratio .grids')
 Grids.of(element, {
   itemSelector: '.grids-item',
   imgSelector: '.grids-image',
-  aspectRatio: '16:9',
+  aspectRatio: '3:2',
   gutter: 20
 })

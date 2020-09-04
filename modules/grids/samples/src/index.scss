@@ -11,6 +11,8 @@ body {
 }
 
 .grids-item {
+	border-radius: 4px;
+
 	&:hover {
 		.grids-item-overlay {
 			background-color: rgba(0, 0, 0, 0.5);

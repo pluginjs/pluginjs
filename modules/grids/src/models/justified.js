@@ -13,134 +13,158 @@ class Justified {
     this.chunks = this.instance.chunks
     this.rowHeight = this.instance.rowHeight
     this.gutter = this.instance.gutter
-    this.rowsAspectRatio = []
-    this.rowsHeight = []
+    this.rowsHeights = []
+    this.rowsCount = 0
     this.render(true)
   }
 
   render(effect = false) {
-    this.computeChunks = this.getComputeChunks()
-    this.updateChunkSize()
-    this.renderChunks(effect)
-    this.instance.setHeight(this.getHeight())
+    this.renderRow(0)
+    this.updateSize(effect)
+    this.instance.setHeight(this.height)
   }
 
-  getComputeChunks() {
-    let tempArr = []
-    let count = 0
-    let countItemAspectRatio
-    const chunksArr = []
+  renderRow(startIndex) {
+    let oldRowWidth = 0
 
+    for (let index = startIndex; ; index++) {
+      const chunk = this.chunks[index]
+      let itemComputedWidth = Math.round(this.rowHeight * chunk.aspectRatio)
+
+      if (itemComputedWidth > this.width) {
+        itemComputedWidth = this.width
+      }
+
+      const newRowWidth = oldRowWidth + itemComputedWidth
+
+      if (newRowWidth > this.width) {
+        const oldDiff = this.width - oldRowWidth
+        const newDiff = newRowWidth - this.width
+
+        if (oldDiff < newDiff) {
+          this.updateInfo(startIndex, index, oldRowWidth)
+          this.rowsCount++
+          this.renderRow(index)
+          break
+        }
+      }
+
+      const isLastItem = index === this.chunks.length - 1
+      chunk.computedWidth = itemComputedWidth
+
+      if (isLastItem) {
+        const totalRowWidth =
+          newRowWidth / this.width >= 0.7 ? newRowWidth : this.width
+        this.updateInfo(startIndex, index + 1, totalRowWidth)
+        this.updateHeight()
+        break
+      }
+
+      oldRowWidth = newRowWidth
+    }
+  }
+
+  updateInfo(startIndex, endIndex, rowWidth) {
+    const gapCount = endIndex - startIndex - 1
+    let aggregatedWidth = 0
+
+    for (let index = startIndex; index < endIndex; index++) {
+      const chunk = this.chunks[index]
+      const percentWidth = chunk.computedWidth / rowWidth
+      chunk.info.itemWidth =
+        percentWidth * (this.width - this.gutter * gapCount)
+      chunk.info.itemHeight = chunk.info.itemWidth / chunk.aspectRatio
+      chunk.info.x =
+        aggregatedWidth * (this.width - this.gutter * gapCount) +
+        this.gutter * (index - startIndex)
+      chunk.info.rowIndex = index - startIndex
+      chunk.info.gapCount = gapCount
+
+      aggregatedWidth += percentWidth
+
+      if (index === startIndex) {
+        const imagePxWidth =
+          percentWidth * (this.width - gapCount * this.gutter)
+        this.rowsHeights.push(imagePxWidth / chunk.aspectRatio)
+      }
+    }
+  }
+
+  updateHeight() {
+    const totalRowsHeight = this.rowsHeights.reduce((total, item) => {
+      return total + item
+    })
+    const finalHeight = totalRowsHeight + this.rowsCount * this.gutter
+    const percentRowsHeights = this.rowsHeights.map(rowHeight => {
+      return (rowHeight / finalHeight) * 100
+    })
+    let currentRow = -1
+    let accumulatedTop = 0
     this.chunks.forEach(chunk => {
-      countItemAspectRatio = chunk.aspectRatio
+      const itemRowIndex = chunk.info.rowIndex
+      const isFirstItem = itemRowIndex === 0
 
-      tempArr.forEach(tempChunk => {
-        countItemAspectRatio += tempChunk.aspectRatio
-      })
+      if (isFirstItem) {
+        currentRow++
 
-      const tempHeight =
-        (this.width - (tempArr.length - 1) * this.gutter) / countItemAspectRatio
-
-      if (tempHeight >= this.rowHeight) {
-        tempArr.push(chunk)
-        this.rowsAspectRatio[count] = countItemAspectRatio
-      } else {
-        count++
-        this.rowsAspectRatio[count] =
-          countItemAspectRatio - this.rowsAspectRatio[count - 1]
-        chunksArr.push(tempArr)
-        tempArr = [chunk]
-      }
-    })
-
-    chunksArr.push(tempArr)
-
-    return chunksArr
-  }
-
-  updateChunkSize() {
-    this.computeChunks.forEach((row, rowIndex) => {
-      const chunksNum = row.length
-      let rowHeight =
-        (this.width - (chunksNum - 1) * this.gutter) /
-        this.rowsAspectRatio[rowIndex]
-
-      if (rowIndex === this.computeChunks.length - 1) {
-        let countHeight = 0
-
-        this.rowsHeight.forEach(height => {
-          countHeight += height
-        })
-
-        const averageHeight = countHeight / rowIndex
-
-        rowHeight =
-          rowHeight >= averageHeight * 1.1 ? averageHeight * 1.1 : rowHeight
+        if (currentRow) {
+          accumulatedTop += percentRowsHeights[currentRow - 1]
+        }
       }
 
-      row.forEach(chunk => {
-        const size = {
-          width: chunk.aspectRatio * rowHeight,
-          height: rowHeight
-        }
+      chunk.info.y =
+        (accumulatedTop / 100) * finalHeight + currentRow * this.gutter
+      chunk.info.row = currentRow
+    })
+    this.height = finalHeight
+  }
 
-        chunk.setSize(size)
+  updateSize(effect) {
+    this.chunks.forEach(chunk => {
+      chunk.setSize({
+        width: chunk.info.itemWidth,
+        height: chunk.info.itemHeight
       })
-
-      this.rowsHeight.push(rowHeight)
+      chunk.position = {
+        x: chunk.info.x,
+        y: chunk.info.y
+      }
+      chunk.render(effect)
     })
   }
 
-  renderChunks(effect) {
-    this.computeChunks.forEach((rowChunks, rowIndex) => {
-      rowChunks.forEach((chunk, colIndex) => {
-        let position
-
-        if (!rowIndex && !colIndex) {
-          position = {
-            x: 0,
-            y: 0
-          }
-        } else if (rowIndex > 0 && colIndex <= 0) {
-          position = {
-            x: 0,
-            y:
-              this.computeChunks[rowIndex - 1][0].height +
-              this.computeChunks[rowIndex - 1][0].position.y +
-              this.gutter
-          }
-        } else {
-          position = {
-            x:
-              this.computeChunks[rowIndex][colIndex - 1].width +
-              this.computeChunks[rowIndex][colIndex - 1].position.x +
-              this.gutter,
-            y: this.computeChunks[rowIndex][0].position.y
-          }
-        }
-
-        chunk.position = position
-        chunk.render(effect)
-      })
-    })
-  }
-
-  getHeight() {
-    const lastRowFirstChunk = this.computeChunks[
-      this.computeChunks.length - 1
-    ][0]
-
-    return lastRowFirstChunk.position.y + lastRowFirstChunk.height
-  }
-
-  resize() {
+  update(effect = false) {
     this.width = this.instance.getWidth()
     this.chunks = this.instance.chunks
     this.rowHeight = this.instance.rowHeight
     this.gutter = this.instance.gutter
-    this.rowsAspectRatio = []
-    this.rowsHeight = []
-    this.render()
+    this.rowsHeights = []
+    this.rowsCount = 0
+    this.render(effect)
+  }
+
+  add() {
+    this.addChunks = this.instance.addChunks
+    this.chunks = this.instance.chunks
+    this.rowsHeights = []
+    this.rowsCount = 0
+    this.renderRow(0)
+    this.chunks.forEach(chunk => {
+      chunk.setSize({
+        width: chunk.info.itemWidth,
+        height: chunk.info.itemHeight
+      })
+      chunk.position = {
+        x: chunk.info.x,
+        y: chunk.info.y
+      }
+      if (this.addChunks.includes(chunk)) {
+        chunk.render(true)
+      } else {
+        chunk.render(false)
+      }
+    })
+    this.instance.setHeight(this.height)
   }
 }
 

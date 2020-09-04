@@ -32,9 +32,8 @@ class Grid {
   renderChunks(chunks, effect) {
     chunks.forEach((row, rowIndex) => {
       row.forEach((chunk, index) => {
-        const gutter = parseFloat(this.gutter, 10)
-        const x = (chunk.width + gutter) * index
-        const y = (chunk.height + gutter) * rowIndex
+        const x = (chunk.width + this.gutter) * index
+        const y = (chunk.height + this.gutter) * rowIndex
         const position = {
           x,
           y
@@ -85,14 +84,38 @@ class Grid {
     return Math.abs(this.computeChunks[index][0].position.y) + height
   }
 
-  resize() {
+  update(effect = false) {
     this.chunks = this.instance.chunks
     this.column = this.instance.column
     this.gutter = this.instance.gutter
     this.width = this.instance.getWidth()
     this.chunkWidth = this.getColWidth()
     this.chunkHeight = this.chunkWidth / this.ratio
-    this.render()
+    this.render(effect)
+  }
+
+  add() {
+    this.addChunks = this.instance.addChunks
+    this.chunks = this.instance.chunks
+    this.computeChunks = this.getComputeChunks()
+    this.computeChunks.forEach((row, rowIndex) => {
+      row.forEach((chunk, index) => {
+        const x = (chunk.width + this.gutter) * index
+        const y = (chunk.height + this.gutter) * rowIndex
+        const position = {
+          x,
+          y
+        }
+
+        chunk.position = position
+        if (this.addChunks.includes(chunk)) {
+          chunk.render(true)
+        } else {
+          chunk.render(false)
+        }
+      })
+    })
+    this.instance.setHeight(this.getHeight())
   }
 }
 

@@ -1,7 +1,6 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, getStyle } from '@pluginjs/styled'
-import { removeEvent } from '@pluginjs/events'
 import { isPlainObject } from '@pluginjs/is'
 import { queryAll, children } from '@pluginjs/dom'
 import {
@@ -174,12 +173,8 @@ class Grids extends Component {
   resizeDebounce() {
     this.updateBreakpoint()
     this.width = this.getWidth()
-    this.model.resize()
+    this.model.update()
     this.trigger(EVENTS.RESIZE, this.width)
-  }
-
-  unbind() {
-    removeEvent(this.eventName(), window)
   }
 
   setHeight(height) {
@@ -195,84 +190,33 @@ class Grids extends Component {
     return parseFloat(getStyle('width', this.element), 10)
   }
 
-  // reverse() {
-  //   this.chunks.reverse()
+  add($items) {
+    if (!$items) {
+      return
+    }
 
-  //   this.model.handleState()
+    if (!Array.isArray($items)) {
+      $items = [$items]
+    }
 
-  //   this.chunks.forEach(chunk => {
-  //     chunk.moveTo(chunk.movePosition)
-  //   })
+    const chunks = this.createChunks($items)
+    this.$items = this.$items.concat($items)
+    this.addChunks = chunks
+    this.chunks = this.chunks.concat(chunks)
+    this.model.add()
+    this.trigger(EVENTS.ADD)
+  }
 
-  //   toggleClass(this.classes.REVERSEMIN, this.TOOLBAR.$reverse)
-  //   this.trigger(EVENTS.REVERSE)
-  // }
+  reverse() {
+    this.chunks.reverse()
+    this.chunks.forEach((chunk, index) => {
+      chunk.index = index
+    })
 
-  // add(datas) {
-  //   if (!isArray(datas) || datas.length <= 0) {
-  //     return
-  //   }
+    this.model.update(true)
 
-  //   let addItems = ''
-  //   const chunkOptions = []
-  //   const tempWrap = document.createElement('div')
-
-  //   datas.forEach(data => {
-  //     const html = data.html ? data.html : ''
-  //     const customClass = data.class ? data.class : ''
-  //     const chunkOption = data.options ? data.options : {}
-  //     const chunk = templateEngine.render(
-  //       this.options.templates.chunk.call(this),
-  //       {
-  //         classes: this.classes,
-  //         html,
-  //         class: customClass
-  //       }
-  //     )
-
-  //     addItems += chunk
-  //     chunkOptions.push(chunkOption)
-  //   })
-
-  //   append(addItems, tempWrap)
-
-  //   this.addItems = queryAll(`.${this.classes.CHUNK}`, tempWrap)
-
-  //   this.addChunks = []
-
-  //   const oldItemsLength = this.$items.length
-
-  //   this.addItems.forEach((addItem, index) => {
-  //     append(addItem, this.$inner)
-  //     this.$items.push(addItem)
-  //     this.addChunks.push(
-  //       new Item(
-  //         this,
-  //         addItem,
-  //         Object.assign({}, chunkOptions[index], {
-  //           index: oldItemsLength + index,
-  //           aspectRatio:
-  //             chunkOptions[index].aspectRatio || this.options.aspectRatio
-  //         })
-  //       )
-  //     )
-  //   })
-
-  //   this.tags = this.getTags(datas)
-
-  //   this.filters = this.options.filters
-  //   this.sortby = this.options.sortby
-
-  //   this.defaultChunks = this.defaultChunks.concat(this.addChunks)
-
-  //   this.handleChunks()
-
-  //   this.model.handleState()
-
-  //   this.model.height = this.model.getHeight()
-
-  //   this.loading(this.chunks, true)
-  // }
+    this.trigger(EVENTS.REVERSE)
+  }
 
   enable() {
     if (this.is('disabled')) {
@@ -298,7 +242,6 @@ class Grids extends Component {
 
   destroy() {
     if (this.is('initialized')) {
-      this.unbind()
       this.model = null
 
       if (this.options.theme) {

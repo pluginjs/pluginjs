@@ -38,8 +38,7 @@ class Item {
     this.index = this.options.index
     this.length = this.options.length
     this.position = { x: 0, y: 0 }
-    this.element.dataset.index = this.index
-
+    this.info = {}
     this.initLoader()
   }
 
