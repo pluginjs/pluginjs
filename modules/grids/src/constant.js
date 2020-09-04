@@ -59,7 +59,7 @@ export const defaults = {
   duration: 300, // The animation duration. unit: ms.
   animate: 'fadeInUp', // fadeInUp, fadeInDown, fadeInLeft, fadeInRight, zoomIn, zoomOut, bounce, bounceIn, unfold, cards, fan
   imageLoader: true,
-  lazyload: true,
+  lazyload: false,
   loader: {
     theme: 'snake',
     color: '#000000',

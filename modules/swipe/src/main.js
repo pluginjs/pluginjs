@@ -945,7 +945,7 @@ class Swipe extends Component {
     }
   }
 
-  resize() {
+  resizeDebounce() {
     this.update()
 
     if (!this.is('disabled')) {
