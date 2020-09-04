@@ -64,12 +64,7 @@ export const defaults = {
     theme: 'snake',
     color: '#000000',
     size: 'lg'
-  }, // false, options
-  templates: {
-    chunk() {
-      return '<div class="{class} {classes.CHUNK}">{html}</div>'
-    }
-  }
+  } // false, options
 }
 
-export const dependencies = ['anime', 'image-loader', 'loader']
+export const dependencies = ['anime', 'breakpoints', 'image-loader', 'loader']

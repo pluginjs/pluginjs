@@ -82,4 +82,4 @@ export const defaults = {
   }
 }
 
-export const dependencies = ['arrows', 'dots']
+export const dependencies = ['arrows', 'breakpoints', 'dots']
