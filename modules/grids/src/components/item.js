@@ -28,7 +28,11 @@ class Item {
 
     this.img = this.instance.options.imgSelector
       ? query(this.instance.options.imgSelector, this.element)
-      : query('img', this.element)
+      : query(`.${this.instance.classes.IMAGE}`, this.element)
+
+    if (!this.img) {
+      this.img = query('img', this.element)
+    }
 
     addClass(this.instance.classes.IMAGE, this.img)
 

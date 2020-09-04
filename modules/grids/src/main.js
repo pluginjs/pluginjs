@@ -170,7 +170,7 @@ class Grids extends Component {
     return null
   }
 
-  resizeDebounce() {
+  resize() {
     this.updateBreakpoint()
     this.width = this.getWidth()
     this.model.update()
