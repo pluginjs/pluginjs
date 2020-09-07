@@ -43,6 +43,7 @@ export const defaults = {
   itemSelector: null, // [selector / null] null => select children of the element.
   imgSelector: null, // [selector / null] If there is any image in item, the grid will select an IMG element marked by Imgselector
   model: 'grid', // grid /justified
+  background: true,
   column: {
     desktop: 5,
     tablet: 3,

@@ -80,7 +80,9 @@ class Item {
     this.src = this.img.dataset.src || this.img.getAttribute('src') || ''
 
     if (!this.instance.options.imageLoader) {
-      setStyle('backgroundImage', `url(${this.src})`, this.img)
+      if (this.instance.options.background) {
+        setStyle('backgroundImage', `url(${this.src})`, this.img)
+      }
       return
     }
 
@@ -116,7 +118,9 @@ class Item {
         this.instance.trigger(this.instance.events.IMAGEERROR)
       })
 
-    setStyle('backgroundImage', `url(${this.src})`, this.img)
+    if (this.instance.options.background) {
+      setStyle('backgroundImage', `url(${this.src})`, this.img)
+    }
   }
 
   toggleLoader(show) {
