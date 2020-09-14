@@ -46,6 +46,7 @@
     "@pluginjs/is": "^0.8.4",
     "@pluginjs/styled": "^0.8.4",
     "@pluginjs/template": "^0.8.4",
+    "@pluginjs/modal": "^0.8.6",
     "@pluginjs/utils": "^0.8.4",
     "popper.js": "*"
   },

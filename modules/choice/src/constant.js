@@ -35,6 +35,10 @@ export const methods = [
 
 export const defaults = {
   theme: null,
+  clickModal: false,
+  modalTitle: 'Tips',
+  modalContent: 'Are you sure? This will reset the saved color options to the prese',
+  modalTheme: null,
   multiple: false,
   overflow: false,
   disabled: false,

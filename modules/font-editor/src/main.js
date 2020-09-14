@@ -69,7 +69,6 @@ class FontEditor extends Component {
     }
 
     this.defaultVal = this.initVal()
-    console.log(this.element.value.replace(/'/g, '"'))
     this.value = deepMerge(
       {},
       this.defaultVal,
@@ -238,7 +237,6 @@ class FontEditor extends Component {
   }
 
   set(value, trigger = true, update = true) {
-    console.log(value)
     if (update !== false) {
       if (typeof value.textAlign !== 'undefined') {
         this.textAlign.set(value.textAlign)

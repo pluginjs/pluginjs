@@ -33,6 +33,7 @@ import {
   themeable,
   optionable
 } from '@pluginjs/decorator'
+import Modal from '@pluginjs/modal'
 import Popper from 'popper.js'
 import {
   classes as CLASSES,
@@ -226,22 +227,57 @@ class Choice extends Component {
       if (this.is('disabled')) {
         return false
       }
+   
       const $item = target.matches('[data-value]')
         ? target
         : closest('[data-value]', target)
       const value = getData('value', $item)
       const data = getData('item', $item)
+
       if (data.disabled) {
         return false
       }
-      if (this.options.multiple) {
-        if (this.isSelected(value)) {
-          this.unselect($item)
+   
+      if (this.options.clickModal) {
+        Modal.open({
+          content: this.options.modalContent,
+          title: this.options.modalTitle,
+          theme: this.options.modalTheme,
+          buttons: [
+            {
+              action: 'cancel',
+              label: 'Cancel',
+              classes: 'pj-btn pj-modal-btn-alignment',
+            },
+            {
+              action: 'success',
+              label: 'Ok',
+              classes: 'pj-btn pj-modal-btn-alignment pj-btn-danger',
+              fn: resolve => {
+                resolve()
+                if (this.options.multiple) {
+                  if (this.isSelected(value)) {
+                    this.unselect($item)
+                  } else {
+                    this.select($item)
+                  }
+                } else {
+                  this.select($item)
+                }
+              }
+            }
+          ]
+        })
+      } else {
+        if (this.options.multiple) {
+          if (this.isSelected(value)) {
+            this.unselect($item)
+          } else {
+            this.select($item)
+          }
         } else {
           this.select($item)
         }
-      } else {
-        this.select($item)
       }
 
       return false
