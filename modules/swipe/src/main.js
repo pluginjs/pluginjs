@@ -664,6 +664,7 @@ class Swipe extends Component {
     }
 
     this.current = current
+    this.trigger(EVENTS.UPDATE)
   }
 
   updateActiveIndex(newActiveIndex) {
