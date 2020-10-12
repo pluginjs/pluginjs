@@ -93,7 +93,7 @@ class Reveal extends Component {
       })
     }
 
-    Breakpoints.on('change', function() {
+    Breakpoints.on('change', function () {
       if (that.screenOptions[this.current.name]) {
         Object.keys(that.screenOptions[this.current.name]).forEach(key => {
           that[key] = that.screenOptions[this.current.name][key]
@@ -191,7 +191,7 @@ class Reveal extends Component {
       this.removeAnimation()
       this.trigger(EVENTS.LEAVE)
 
-      if (this.count !== 'infinite' && this.count === this.loop) {
+      if (this.count !== 'infinite' && this.count >= this.loop) {
         this.destroy()
       }
     }
