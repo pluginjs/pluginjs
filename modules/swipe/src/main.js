@@ -188,7 +188,7 @@ class Swipe extends Component {
 
   initState() {
     this.initBreakpoint()
-    this.gutter = this.options.gutter
+    this.gutter = this.options.gutter || 0
     this.duration = this.options.duration
     this.active = 0
     this.realIndex = 0
