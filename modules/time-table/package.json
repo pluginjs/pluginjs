@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.9",
+  "version": "0.8.10",
   "category": "ui",
   "main": "dist/time-table.common.js",
   "module": "dist/time-table.esm.js",
@@ -38,7 +38,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/choice": "^0.8.6",
+    "@pluginjs/choice": "^0.8.7",
     "@pluginjs/classes": "^0.8.4",
     "@pluginjs/component": "^0.8.4",
     "@pluginjs/date-picker": "^0.8.9",

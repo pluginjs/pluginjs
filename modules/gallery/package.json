@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "media",
   "main": "dist/gallery.common.js",
   "module": "dist/gallery.esm.js",
@@ -43,7 +43,7 @@
     "@pluginjs/dom": "^0.8.4",
     "@pluginjs/events": "^0.8.5",
     "@pluginjs/factory": "^0.8.4",
-    "@pluginjs/slider": "^0.8.7",
+    "@pluginjs/slider": "^0.8.8",
     "@pluginjs/styled": "^0.8.4",
     "@pluginjs/styles": "^0.8.3",
     "@pluginjs/template": "^0.8.4",
