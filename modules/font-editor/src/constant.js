@@ -37,6 +37,7 @@ export const classes = {
   FILLCONTENTSUB: '{namespace}-fill-content-sub',
   FONTSIZERANGE: '{namespace}-fontSize-range',
   LINEHEIGHTRANGE: '{namespace}-lineHeight-range',
+  LETTERSPACINGRANGE: '{namespace}-letterSpacing-range',
   // textalign
   DECORATIONS: '{namespace}-decorations',
   TEXTALIGN: '{namespace}-textAlign',
@@ -153,6 +154,24 @@ export const defaults = {
       )
     }
   },
+  letterSpacing: {
+    value: '',
+    unit: 'px',
+    units: ['inherit', 'px', 'em', 'rem'],
+    min: 1,
+    max: 100,
+    step: 2,
+    template() {
+      return (
+        '<div class="{field}">' +
+        '<span class="{classes.FIELDTITLE}">{letterSpacing}</span>' +
+        '<div class="{classes.FIELDCONTENT}">' +
+        '<div class="{classes.LETTERSPACINGRANGE}"></div>' +
+        '</div>' +
+        '</div>'
+      )
+    }
+  },
   textAlign: {
     value: '',
     values: ['left', 'center', 'right'],
@@ -262,6 +281,7 @@ export const translations = {
     typeface: 'Typeface',
     fontSize: 'Font Size',
     lineHeight: 'Line Height',
+    letterSpacing: 'Letter Spacing',
     weight: 'Weight'
   },
   zh: {
@@ -279,6 +299,7 @@ export const translations = {
     change: '更改',
     typeface: '风格',
     fontSize: '字号',
+    letterSpacing: '间距',
     lineHeight: '行高',
     weight: '字重'
   }

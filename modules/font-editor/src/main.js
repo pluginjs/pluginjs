@@ -31,6 +31,7 @@ import FontSize from './fontSize'
 import FontStyle from './fontStyle'
 import FontWeight from './fontWeight'
 import LineHeight from './lineHeight'
+import LetterSpacing from './letterSpacing'
 import TextAlign from './textAlign'
 import TextDecoration from './textDecoration'
 import TextTransform from './textTransform'
@@ -80,6 +81,7 @@ class FontEditor extends Component {
     this.fontWeight = new FontWeight(this)
     this.fontSize = new FontSize(this)
     this.lineHeight = new LineHeight(this)
+    this.letterSpacing = new LetterSpacing(this)
     this.textAlign = new TextAlign(this)
     this.fontStyle = new FontStyle(this)
     this.textTransform = new TextTransform(this)
@@ -143,6 +145,7 @@ class FontEditor extends Component {
     insertBefore(this.fontWeight.$wrap, this.$Control)
     insertBefore(this.fontSize.$wrap, this.$Control)
     insertBefore(this.lineHeight.$wrap, this.$Control)
+    insertBefore(this.letterSpacing.$wrap, this.$Control)
     insertBefore(this.textAlign.$wrap, this.$Control)
   }
 
@@ -175,6 +178,7 @@ class FontEditor extends Component {
       fontSize: this.options.fontSize.value,
       lineHeight: this.options.lineHeight.value,
       fontWeight: this.options.fontWeight.value,
+      letterSpacing: this.options.letterSpacing.value,
       textAlign: this.options.textAlign.value,
       textDecoration: this.options.textDecoration.value,
       textTransform: this.options.textTransform.value,
@@ -261,6 +265,9 @@ class FontEditor extends Component {
       if (typeof value.lineHeight !== 'undefined') {
         this.lineHeight.set(value.lineHeight)
       }
+      if (typeof value.letterSpacing !== 'undefined') {
+        this.letterSpacing.set(value.letterSpacing)
+      }
       if (typeof value.fontSize !== 'undefined') {
         this.fontSize.set(value.fontSize)
       }
@@ -278,6 +285,7 @@ class FontEditor extends Component {
     this.textDecoration.clear()
     this.fontWeight.clear()
     this.lineHeight.clear()
+    this.letterSpacing.clear()
     this.fontSize.clear()
     this.fontFamily.clear()
     this.update(update)

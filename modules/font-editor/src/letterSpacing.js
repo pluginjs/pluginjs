@@ -2,49 +2,46 @@ import template from '@pluginjs/template'
 import { parseHTML, query } from '@pluginjs/dom'
 import UnitsRange from '@pluginjs/units-range'
 
-export default class LineHeight {
+export default class LetterSpacing {
   constructor(instance) {
     this.instance = instance
-    this.defaultValue = instance.options.lineHeight.value
-
+    this.defaultValue = instance.options.letterSpacing.value
     this.initialize()
   }
 
   initialize() {
-    this.initUnitsRange()
+    this.initRange()
   }
 
-  initUnitsRange() {
+  initRange() {
     const that = this
     const units = {}
     const value = this.value
-    // create $lineHeight
-    const html = template.compile(this.instance.options.lineHeight.template())({
+    // create $letterSpacing
+    const html = template.compile(this.instance.options.letterSpacing.template())({
       classes: this.instance.classes,
       field: this.instance.getClassName(
         this.instance.classes.NAMESPACE,
-        'lineHeight'
+        'letterSpacing'
       ),
-      lineHeight: this.instance.translate('lineHeight')
+      letterSpacing: this.instance.translate('letterSpacing')
     })
     this.$wrap = parseHTML(html)
 
     this.element = query(
-      `.${this.instance.classes.LINEHEIGHTRANGE}`,
+      `.${this.instance.classes.LETTERSPACINGRANGE}`, 
       this.$wrap
     )
 
     // create units
-    this.instance.options.lineHeight.units.forEach(v => {
+    this.instance.options.letterSpacing.units.forEach(v => {
       if (v === 'inherit') {
         units[v] = false
-      } else if (v === 'num') {
-        units[v] = true
       } else {
         units[v] = {
-          min: parseInt(this.instance.options.lineHeight.min, 10),
-          max: parseInt(this.instance.options.lineHeight.max, 10),
-          step: parseFloat(this.instance.options.lineHeight.step, 10)
+          min: parseInt(this.instance.options.letterSpacing.min, 10),
+          max: parseInt(this.instance.options.letterSpacing.max, 10),
+          step: parseFloat(this.instance.options.letterSpacing.step, 10)
         }
       }
     })
@@ -79,9 +76,9 @@ export default class LineHeight {
       inlineUnit = val.split(/\d/g)
       inlineUnit = inlineUnit[inlineUnit.length - 1]
     }
-    
-    this.value = inlineVal || this.instance.options.lineHeight.value
-    this.unit = inlineUnit || this.instance.options.lineHeight.unit
+
+    this.value = inlineVal || this.instance.options.letterSpacing.value
+    this.unit = inlineUnit || this.instance.options.letterSpacing.unit
 
     return
   }
@@ -91,8 +88,9 @@ export default class LineHeight {
   }
 
   update(val) {
-    this.instance.value.lineHeight = val
+    this.instance.value.letterSpacing = val
   }
+  
   set(value) {
     this.UNITSRANGE.val(value)
     this.update(value)

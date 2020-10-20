@@ -129,7 +129,7 @@ export default class Trigger {
 
   update(value) {
     Object.entries(this.instance.value).forEach(([i, v]) => {
-      if (i === 'fontSize' || i === 'lineHeight') {
+      if (i === 'fontSize' || i === 'lineHeight' || i === 'letterSpacing') {
         return
       }
 
@@ -159,7 +159,7 @@ export default class Trigger {
 
     // set sub
     this.$fillContentSub.textContent = `${this.instance.value.fontSize ||
-      'null'} / ${this.instance.value.lineHeight || 'null'}`
+      'null'} / ${this.instance.value.lineHeight || 'null'} / ${this.instance.value.letterSpacing || 'null'}`
     
     if(value) {
       addClass(this.instance.classes.EXSIT, this.instance.$wrap)

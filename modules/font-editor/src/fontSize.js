@@ -1,7 +1,6 @@
 import template from '@pluginjs/template'
 import { parseHTML, query } from '@pluginjs/dom'
 import UnitsRange from '@pluginjs/units-range'
-// import { addClass, removeClass } from '@pluginjs/classes'
 
 export default class FontSize {
   constructor(instance) {
@@ -30,7 +29,10 @@ export default class FontSize {
     })
     this.$wrap = parseHTML(html)
 
-    this.element = query(`.${this.instance.classes.FONTSIZERANGE}`, this.$wrap)
+    this.element = query(
+      `.${this.instance.classes.FONTSIZERANGE}`, 
+      this.$wrap
+    )
 
     // create units
     this.instance.options.fontSize.units.forEach(v => {
