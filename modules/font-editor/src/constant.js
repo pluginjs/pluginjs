@@ -97,15 +97,18 @@ export const defaults = {
   fontWeight: {
     value: '',
     values: [
+      'inherit',
       'normal',
       'bold',
-      'bolder',
-      'lighter',
-      'inherit',
+      '100',
+      '200',
       '300',
       '400',
       '500',
-      '600'
+      '600',
+      '700',
+      '800',
+      '900',
     ],
     template() {
       return (
