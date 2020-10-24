@@ -1,4 +1,7 @@
-@keyframes pj-rotate {
+// ==============================
+//            keyframes
+// ==============================
+@keyframes pj-reveal-rotate {
   0% {
     transform: rotate3d(0, 0, 1, -200deg);
 		transform-origin: center;
@@ -10,11 +13,7 @@
   }
 }
 
-.#{$reveal}.pj-rotate {
-  animation-name: pj-rotate;
-}
-
-@keyframes pj-rotateUpLeft {
+@keyframes pj-reveal-rotateUpLeft {
   0% {
     transform: rotate3d(0, 0, 1, 45deg);
 		transform-origin: left bottom;
@@ -26,11 +25,7 @@
   }
 }
 
-.#{$reveal}.pj-rotateUpLeft {
-  animation-name: pj-rotateUpLeft;
-}
-
-@keyframes pj-rotateUpRight {
+@keyframes pj-reveal-rotateUpRight {
   0% {
     transform: rotate3d(0, 0, 1, -90deg);
 		transform-origin: right bottom;
@@ -42,11 +37,7 @@
   }
 }
 
-.#{$reveal}.pj-rotateUpRight {
-  animation-name: pj-rotateUpRight;
-}
-
-@keyframes pj-rotateDownLeft {
+@keyframes pj-reveal-rotateDownLeft {
   0% {
     transform: rotate3d(0, 0, 1, -45deg);
 		transform-origin: left bottom;
@@ -58,11 +49,7 @@
   }
 }
 
-.#{$reveal}.pj-rotateDownLeft {
-  animation-name: pj-rotateDownLeft;
-}
-
-@keyframes pj-rotateDownRight {
+@keyframes pj-reveal-rotateDownRight {
   0% {
     transform: rotate3d(0, 0, 1, 45deg);
 		transform-origin: right bottom;
@@ -74,6 +61,28 @@
   }
 }
 
-.#{$reveal}.pj-rotateDownRight {
-  animation-name: pj-rotateDownRight;
+
+// ==============================
+//
+//            Rotates
+//
+// ==============================
+.#{$reveal}.pj-reveal-rotate {
+  animation-name: pj-reveal-rotate;
+}
+
+.#{$reveal}.pj-reveal-rotateUpLeft {
+  animation-name: pj-reveal-rotateUpLeft;
+}
+
+.#{$reveal}.pj-reveal-rotateUpRight {
+  animation-name: pj-reveal-rotateUpRight;
+}
+
+.#{$reveal}.pj-reveal-rotateDownLeft {
+  animation-name: pj-reveal-rotateDownLeft;
+}
+
+.#{$reveal}.pj-reveal-rotateDownRight {
+  animation-name: pj-reveal-rotateDownRight;
 }

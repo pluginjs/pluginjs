@@ -1,4 +1,7 @@
-@keyframes pj-flip {
+// ==============================
+//            keyframes
+// ==============================
+@keyframes pj-reveal-flip {
   from {
     transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
     animation-timing-function: ease-out;
@@ -25,11 +28,7 @@
   }
 }
 
-.#{$reveal}.pj-flip {
-  animation-name: pj-flip;
-}
-
-@keyframes pj-flipX {
+@keyframes pj-reveal-flipX {
   from {
     filter: alpha(opacity=0);
     opacity: 0;
@@ -57,11 +56,7 @@
   }
 }
 
-.#{$reveal}.pj-flipX {
-  animation-name: pj-flipX;
-}
-
-@keyframes pj-flipY {
+@keyframes pj-reveal-flipY {
   from {
     filter: alpha(opacity=0);
     opacity: 0;
@@ -89,6 +84,19 @@
   }
 }
 
-.#{$reveal}.pj-flipY {
-  animation-name: pj-flipY;
+// ==============================
+//
+//            Flippers
+//
+// ==============================
+.#{$reveal}.pj-reveal-flip {
+  animation-name: pj-reveal-flip;
+}
+
+.#{$reveal}.pj-reveal-flipX {
+  animation-name: pj-reveal-flipX;
+}
+
+.#{$reveal}.pj-reveal-flipY {
+  animation-name: pj-reveal-flipY;
 }

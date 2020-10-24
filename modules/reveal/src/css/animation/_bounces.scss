@@ -1,6 +1,7 @@
-$reveal: "pj-reveal";
-
-@keyframes pj-bounceIn {
+// ==============================
+//            keyframes
+// ==============================
+@keyframes pj-reveal-bounceIn {
 	from,
 	20%,
 	40%,
@@ -37,11 +38,7 @@ $reveal: "pj-reveal";
   }
 }
 
-.#{$reveal}.pj-bounceIn {
-	animation-name: pj-bounceIn;
-}
-
-@keyframes pj-bounceOut {
+@keyframes pj-reveal-bounceOut {
 	from,
 	20%,
 	40%,
@@ -78,11 +75,7 @@ $reveal: "pj-reveal";
   }
 }
 
-.#{$reveal}.pj-bounceOut {
-	animation-name: pj-bounceOut;
-}
-
-@keyframes pj-bounceUp {
+@keyframes pj-reveal-bounceUp {
 	from,
 	60%,
 	75%,
@@ -112,11 +105,7 @@ $reveal: "pj-reveal";
   }
 }
 
-.#{$reveal}.pj-bounceUp {
-	animation-name: pj-bounceUp;
-}
-
-@keyframes pj-bounceDown {
+@keyframes pj-reveal-bounceDown {
 	from,
 	60%,
 	75%,
@@ -146,11 +135,7 @@ $reveal: "pj-reveal";
   }
 }
 
-.#{$reveal}.pj-bounceDown {
-	animation-name: pj-bounceDown;
-}
-
-@keyframes pj-bounceLeft {
+@keyframes pj-reveal-bounceLeft {
 	from,
 	60%,
 	75%,
@@ -180,11 +165,7 @@ $reveal: "pj-reveal";
   }
 }
 
-.#{$reveal}.pj-bounceLeft {
-	animation-name: pj-bounceLeft;
-}
-
-@keyframes pj-bounceRight {
+@keyframes pj-reveal-bounceRight {
 	from,
 	60%,
 	75%,
@@ -214,6 +195,32 @@ $reveal: "pj-reveal";
   }
 }
 
-.#{$reveal}.pj-bounceRight {
-	animation-name: pj-bounceRight;
+
+// ==============================
+//
+//            Bounces
+//
+// ==============================
+.#{$reveal}.pj-reveal-bounceIn {
+	animation-name: pj-reveal-bounceIn;
+}
+
+.#{$reveal}.pj-reveal-bounceOut {
+	animation-name: pj-reveal-bounceOut;
+}
+
+.#{$reveal}.pj-reveal-bounceUp {
+	animation-name: pj-reveal-bounceUp;
+}
+
+.#{$reveal}.pj-reveal-bounceDown {
+	animation-name: pj-reveal-bounceDown;
+}
+
+.#{$reveal}.pj-reveal-bounceLeft {
+	animation-name: pj-reveal-bounceLeft;
+}
+
+.#{$reveal}.pj-reveal-bounceRight {
+	animation-name: pj-reveal-bounceRight;
 }

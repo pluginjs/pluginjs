@@ -1,4 +1,7 @@
-@keyframes pj-rollLeft {
+// ==============================
+//            keyframes
+// ==============================
+@keyframes pj-reveal-rollLeft {
   0% {
     transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -120deg);
   }
@@ -8,11 +11,7 @@
   }
 }
 
-.#{$reveal}.pj-rollLeft {
-  animation-name: pj-rollLeft;
-}
-
-@keyframes pj-rollRight {
+@keyframes pj-reveal-rollRight {
   0% {
     transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
   }
@@ -22,11 +21,7 @@
   }
 }
 
-.#{$reveal}.pj-rollRight {
-  animation-name: pj-rollRight;
-}
-
-@keyframes pj-rollUp {
+@keyframes pj-reveal-rollUp {
   0% {
     transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, -120deg);
   }
@@ -36,11 +31,7 @@
   }
 }
 
-.#{$reveal}.pj-rollUp {
-  animation-name: pj-rollUp;
-}
-
-@keyframes pj-rollDown {
+@keyframes pj-reveal-rollDown {
   0% {
     transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -120deg);
   }
@@ -50,6 +41,23 @@
   }
 }
 
-.#{$reveal}.pj-rollDown {
-  animation-name: pj-rollDown;
+// ==============================
+//
+//            Rolls
+//
+// ==============================
+.#{$reveal}.pj-reveal-rollLeft {
+  animation-name: pj-reveal-rollLeft;
+}
+
+.#{$reveal}.pj-reveal-rollRight {
+  animation-name: pj-reveal-rollRight;
+}
+
+.#{$reveal}.pj-reveal-rollUp {
+  animation-name: pj-reveal-rollUp;
+}
+
+.#{$reveal}.pj-reveal-rollDown {
+  animation-name: pj-reveal-rollDown;
 }

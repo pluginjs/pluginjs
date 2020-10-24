@@ -2,7 +2,8 @@ export const namespace = 'viewport'
 
 export const events = {
   ENTER: 'enter',
-  LEAVE: 'leave'
+  LEAVE: 'leave',
+  CHANGE: 'change'
 }
 
 export const methods = ['destroy', 'getOffset', 'isVisible']

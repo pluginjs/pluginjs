@@ -7,10 +7,10 @@ $reveal: "pj-reveal" !default;
 // Core
 // =====================
 .#{$reveal} {
-  visibility: hidden;
+  visibility: hidden !important;
 
-  &-animated {
-  	visibility: visible;
+  &.#{$reveal}-show {
+    visibility: visible !important;
   }
 }
 
@@ -20,6 +20,5 @@ $reveal: "pj-reveal" !default;
 @import "animation/rolls";
 @import "animation/rotates";
 @import "animation/slides";
-@import "animation/zoomIns";
-@import "animation/zoomOuts";
+@import "animation/zooms";
 @import "animation/others";

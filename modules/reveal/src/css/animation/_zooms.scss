@@ -1,0 +1,148 @@
+// ==============================
+//            keyframes
+// ==============================
+@keyframes pj-reveal-zoomIn {
+  0% {
+    transform: scale3d(1.5, 1.5, 1.5);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomInUp {
+  0% {
+    transform: scale3d(1.5, 1.5, 1.5) translate3d(0, 50%, 0);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomInDown {
+  0% {
+    transform: scale3d(1.5, 1.5, 1.5) translate3d(0, -50%, 0);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomInLeft {
+  0% {
+    transform: scale3d(1.5, 1.5, 1.5) translate3d(50%, 0, 0);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomInRight {
+  0% {
+    transform: scale3d(1.5, 1.5, 1.5) translate3d(-50%, 0, 0);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomOut {
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomOutUp {
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomOutDown {
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3) translate3d(0, -100%, 0);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomOutLeft {
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3) translate3d(100%, 0, 0);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pj-reveal-zoomOutRight {
+  0% {
+    transform: scale3d(0.3, 0.3, 0.3) translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+// ==============================
+//
+//            Zooms
+//
+// ==============================
+.#{$reveal}.pj-reveal-zoomIn {
+  animation-name: pj-reveal-zoomIn;
+}
+
+.#{$reveal}.pj-reveal-zoomInUp {
+  animation-name: pj-reveal-zoomInUp;
+}
+
+.#{$reveal}.pj-reveal-zoomInDown {
+  animation-name: pj-reveal-zoomInDown;
+}
+
+.#{$reveal}.pj-reveal-zoomInLeft {
+  animation-name: pj-reveal-zoomInLeft;
+}
+
+.#{$reveal}.pj-reveal-zoomInRight {
+  animation-name: pj-reveal-zoomInRight;
+}
+
+.#{$reveal}.pj-reveal-zoomOut {
+  animation-name: pj-reveal-zoomOut;
+}
+
+.#{$reveal}.pj-reveal-zoomOutUp {
+  animation-name: pj-reveal-zoomOutUp;
+}
+
+.#{$reveal}.pj-reveal-zoomOutDown {
+  animation-name: pj-reveal-zoomOutDown;
+}
+
+.#{$reveal}.pj-reveal-zoomOutLeft {
+  animation-name: pj-reveal-zoomOutLeft;
+}
+
+.#{$reveal}.pj-reveal-zoomOutRight {
+  animation-name: pj-reveal-zoomOutRight;
+}

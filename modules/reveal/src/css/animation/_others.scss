@@ -1,4 +1,7 @@
-@keyframes pj-flash {
+// ==============================
+//            keyframes
+// ==============================
+@keyframes pj-reveal-flash {
   from,
   50%,
   to {
@@ -11,11 +14,7 @@
   }
 }
 
-.#{$reveal}.pj-flash {
-  animation-name: pj-flash;
-}
-
-@keyframes pj-headShake {
+@keyframes pj-reveal-headShake {
   0% {
     transform: translateX(0);
   }
@@ -41,11 +40,7 @@
   }
 }
 
-.#{$reveal}.pj-headShake {
-  animation-name: pj-headShake;
-}
-
-@keyframes pj-jello {
+@keyframes pj-reveal-jello {
   from,
   11.1%,
   to {
@@ -81,12 +76,7 @@
   }
 }
 
-.#{$reveal}.pj-jello {
-  transform-origin: center;
-  animation-name: pj-jello;
-}
-
-@keyframes pj-pulse {
+@keyframes pj-reveal-pulse {
   from {
     transform: scale3d(1, 1, 1);
   }
@@ -100,11 +90,7 @@
   }
 }
 
-.#{$reveal}.pj-pulse {
-  animation-name: pj-pulse;
-}
-
-@keyframes pj-rubberBand {
+@keyframes pj-reveal-rubberBand {
   from {
     transform: scale3d(1, 1, 1);
   }
@@ -134,11 +120,7 @@
   }
 }
 
-.#{$reveal}.pj-rubberBand {
-  animation-name: pj-rubberBand;
-}
-
-@keyframes pj-shake {
+@keyframes pj-reveal-shake {
   from,
   to {
     transform: translate3d(0, 0, 0);
@@ -160,11 +142,7 @@
   }
 }
 
-.#{$reveal}.pj-shake {
-  animation-name: pj-shake;
-}
-
-@keyframes pj-swing {
+@keyframes pj-reveal-swing {
   20% {
     transform: rotate3d(0, 0, 1, 15deg);
   }
@@ -186,12 +164,7 @@
   }
 }
 
-.#{$reveal}.pj-swing {
-  transform-origin: top center;
-  animation-name: pj-swing;
-}
-
-@keyframes pj-tada {
+@keyframes pj-reveal-tada {
   from {
     transform: scale3d(1, 1, 1);
   }
@@ -219,11 +192,7 @@
   }
 }
 
-.#{$reveal}.pj-tada {
-  animation-name: pj-tada;
-}
-
-@keyframes pj-wobble {
+@keyframes pj-reveal-wobble {
   from {
     transform: none;
   }
@@ -253,6 +222,46 @@
   }
 }
 
-.#{$reveal}.pj-wobble {
-  animation-name: pj-wobble;
+
+// ==============================
+//
+//            Others
+//
+// ==============================
+.#{$reveal}.pj-reveal-flash {
+  animation-name: pj-reveal-flash;
+}
+
+.#{$reveal}.pj-reveal-headShake {
+  animation-name: pj-reveal-headShake;
+}
+
+.#{$reveal}.pj-reveal-jello {
+  transform-origin: center;
+  animation-name: pj-reveal-jello;
+}
+
+.#{$reveal}.pj-reveal-pulse {
+  animation-name: pj-reveal-pulse;
+}
+
+.#{$reveal}.pj-reveal-rubberBand {
+  animation-name: pj-reveal-rubberBand;
+}
+
+.#{$reveal}.pj-reveal-shake {
+  animation-name: pj-reveal-shake;
+}
+
+.#{$reveal}.pj-reveal-swing {
+  transform-origin: top center;
+  animation-name: pj-reveal-swing;
+}
+
+.#{$reveal}.pj-reveal-tada {
+  animation-name: pj-reveal-tada;
+}
+
+.#{$reveal}.pj-reveal-wobble {
+  animation-name: pj-reveal-wobble;
 }

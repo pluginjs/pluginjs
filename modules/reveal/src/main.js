@@ -9,7 +9,7 @@ import {
 } from '@pluginjs/decorator'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
-import { bindEvent, removeEvent } from '@pluginjs/events'
+import { bindEvent, bindEventOnce, removeEvent } from '@pluginjs/events'
 import { closest, query } from '@pluginjs/dom'
 import {
   classes as CLASSES,
@@ -21,7 +21,6 @@ import {
 
 import Viewport from '@pluginjs/viewport'
 import Breakpoints from '@pluginjs/breakpoints'
-
 import Easings from './easings'
 
 @themeable()
@@ -51,31 +50,21 @@ class Reveal extends Component {
     this.reset()
 
     this.initBreakpoints()
-    this.initViewport()
     this.initStyle()
+    this.initViewport()
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  initViewport() {
-    if (!this.options.anchor) {
-      this.viewElement = this.element
-    } else {
-      this.viewElement = closest(this.options.anchor, this.element)
-        ? closest(this.options.anchor, this.element)
-        : query(this.options.anchor)
-    }
-
-    if (!this.viewElement) {
-      throw new Error('Can not find anchor element')
-    }
-
-    this.viewport = Viewport.of(this.viewElement, {
-      container: this.container,
-      offset: this.options.offset,
-      threshold: this.options.threshold
-    })
+  reset() {
+    this.animation = this.options.animation
+    this.duration = this.options.duration
+    this.easing = this.options.easing
+    this.delay = this.options.delay
+    this.order = this.options.order
+    this.anchor = this.options.anchor
+    this.once = this.options.once
   }
 
   initBreakpoints() {
@@ -94,35 +83,17 @@ class Reveal extends Component {
     }
 
     Breakpoints.on('change', function () {
+      removeClass(`${that.classes.NAMESPACE}-${that.animation}`, that.element)
       if (that.screenOptions[this.current.name]) {
         Object.keys(that.screenOptions[this.current.name]).forEach(key => {
           that[key] = that.screenOptions[this.current.name][key]
         })
-
-        that.initCount()
       } else {
         that.reset()
       }
 
       that.initStyle()
     })
-  }
-
-  initCount() {
-    if (this.loop === true) {
-      this.count = 'infinite'
-    } else {
-      this.loop = Number(this.loop)
-      this.count = 0
-    }
-  }
-
-  reset() {
-    Object.keys(this.options).forEach(key => {
-      this[key] = this.options[key]
-    })
-
-    this.initCount()
   }
 
   initScreenOptions(screens) {
@@ -161,78 +132,102 @@ class Reveal extends Component {
     )
   }
 
+  initViewport() {
+    if (!this.anchor) {
+      this.viewElement = this.element
+    } else {
+      this.viewElement = closest(this.anchor, this.element)
+        ? closest(this.anchor, this.element)
+        : query(this.anchor)
+    }
+
+    if (!this.viewElement) {
+      throw new Error('Can not find anchor element')
+    }
+
+    this.viewport = Viewport.of(this.viewElement, {
+      container: this.options.container,
+      offset: this.options.offset,
+      threshold: this.options.threshold
+    })
+  }
+
   initEasing() {
     return Easings[this.easing] ? Easings[this.easing] : 'ease'
   }
 
   bind() {
-    bindEvent('viewport:enter', this.enterHandle.bind(this), this.viewElement)
-    bindEvent('viewport:leave', this.leaveHandle.bind(this), this.viewElement)
+    if (this.once) {
+      bindEventOnce(
+        'viewport:enter',
+        () => {
+          if (!this.is('disabled')) {
+            addClass(
+              `${this.classes.NAMESPACE}-${this.animation}`,
+              this.element
+            )
+
+            this.enterHandle()
+          }
+        },
+        this.viewElement
+      )
+    } else {
+      bindEvent(
+        'viewport:enter',
+        () => {
+          if (!this.is('disabled')) {
+            addClass(
+              `${this.classes.NAMESPACE}-${this.animation}`,
+              this.element
+            )
+
+            this.enterHandle()
+          }
+        },
+        this.viewElement
+      )
+
+      bindEvent(
+        'viewport:leave',
+        () => {
+          if (!this.is('disabled')) {
+            this.hide()
+          }
+        },
+        this.viewElement
+      )
+    }
   }
 
   unbind() {
-    removeEvent('viewport:enter', this.viewElement)
-    removeEvent('viewport:leave', this.viewElement)
+    if (!this.once) {
+      removeEvent('viewport:enter', this.viewElement)
+      removeEvent('viewport:leave', this.viewElement)
+    }
   }
 
   enterHandle() {
-    if (!this.is('disabled')) {
-      if (this.count !== 'infinite') {
-        this.count++
-      }
-
-      this.addAnimation()
-      this.trigger(EVENTS.ENTER)
+    if (this.delay > 0 || this.order > 1) {
+      bindEventOnce(
+        'animationstart',
+        () => {
+          this.show()
+          this.trigger(EVENTS.SHOW)
+        },
+        this.element
+      )
+    } else {
+      this.show()
+      this.trigger(EVENTS.SHOW)
     }
-  }
 
-  leaveHandle() {
-    if (!this.is('disabled')) {
-      this.removeAnimation()
-      this.trigger(EVENTS.LEAVE)
-
-      if (this.count !== 'infinite' && this.count >= this.loop) {
-        this.destroy()
-      }
-    }
-  }
-
-  addAnimation() {
-    const hasAnimation = this.element.classList.contains(this.animation)
-
-    if (!hasAnimation) {
-      addClass(`pj-${this.animation}`, this.element)
-
-      const effectStartCallback = () => {
-        this.show()
-      }
-
-      const effectEndCallback = () => {
-        removeEvent(this.eventName(), this.element)
-        this.trigger(EVENTS.END)
-      }
-
-      if (this.delay || this.order > 1) {
-        bindEvent(
-          this.eventName('animationstart'),
-          effectStartCallback,
-          this.element
-        )
-      } else {
-        this.show()
-      }
-
-      bindEvent(this.eventName('animationend'), effectEndCallback, this.element)
-    }
-  }
-
-  removeAnimation() {
-    this.hide()
+    this.trigger(EVENTS.ENTER)
   }
 
   hide() {
     removeClass(this.classes.ANIMATED, this.element)
-    removeClass(`pj-${this.animation}`, this.element)
+    removeClass(`${this.classes.NAMESPACE}-${this.animation}`, this.element)
   }
 
   show() {
@@ -253,7 +248,8 @@ class Reveal extends Component {
       this.leave('initialized')
     }
     removeClass(this.classes.NAMESPACE, this.element)
-    removeClass(this.animation, this.element)
+    removeClass(this.classes.ANIMATED, this.element)
+    removeClass(`${this.classes.NAMESPACE}-${this.animation}`, this.element)
 
     this.trigger(EVENTS.DESTROY)
   }
@@ -265,7 +261,7 @@ class Reveal extends Component {
       this.enter('disabled')
     }
     removeClass(this.classes.NAMESPACE, this.element)
-    removeClass(this.animation, this.element)
+    removeClass(`${this.classes.NAMESPACE}-${this.animation}`, this.element)
     this.trigger(EVENTS.DISABLE)
   }
 
@@ -278,7 +274,9 @@ class Reveal extends Component {
     // hide
     addClass(this.classes.NAMESPACE, this.element)
     if (this.isVisible()) {
-      this.addAnimation()
+      addClass(`${this.classes.NAMESPACE}-${this.animation}`, this.element)
+
+      this.enterHandle()
     }
     this.trigger(EVENTS.ENABLE)
   }

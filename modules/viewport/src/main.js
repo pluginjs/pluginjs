@@ -25,6 +25,8 @@ class Viewport extends Component {
 
     this.observer = new IntersectionObserver(
       event => {
+        this.entry = event[0]
+        this.trigger(EVENTS.CHANGE)
         if (event[0].isIntersecting) {
           this.isIntersecting = true
           return this.trigger(EVENTS.ENTER)

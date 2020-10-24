@@ -25,12 +25,13 @@ section {
 
 .reveal {
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 120px;
   height: 120px;
-  padding-top: 45px;
   margin: 20px;
   color: #eee;
-  text-align: center;
   word-break: break-all;
   background: #4c93d9;
   border-radius: 4px;

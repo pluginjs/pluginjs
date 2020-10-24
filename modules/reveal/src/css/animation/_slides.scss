@@ -1,4 +1,7 @@
-@keyframes pj-slideLeft {
+// ==============================
+//            keyframes
+// ==============================
+@keyframes pj-reveal-slideLeft {
   0% {
     transform: translate3d(100vw, 0, 0);
   }
@@ -8,11 +11,7 @@
   }
 }
 
-.#{$reveal}.pj-slideLeft {
-  animation-name: pj-slideLeft;
-}
-
-@keyframes pj-slideRight {
+@keyframes pj-reveal-slideRight {
   0% {
     transform: translate3d(-100vw, 0, 0);
   }
@@ -22,11 +21,7 @@
   }
 }
 
-.#{$reveal}.pj-slideRight {
-  animation-name: pj-slideRight;
-}
-
-@keyframes pj-slideUp {
+@keyframes pj-reveal-slideUp {
   0% {
     transform: translate3d(0, 100vh, 0);
   }
@@ -36,11 +31,7 @@
   }
 }
 
-.#{$reveal}.pj-slideUp {
-  animation-name: pj-slideUp;
-}
-
-@keyframes pj-slideDown {
+@keyframes pj-reveal-slideDown {
   0% {
     transform: translate3d(0, -100vh, 0);
   }
@@ -50,6 +41,24 @@
   }
 }
 
-.#{$reveal}.pj-slideDown {
-  animation-name: pj-slideDown;
+
+// ==============================
+//
+//            Slides
+//
+// ==============================
+.#{$reveal}.pj-reveal-slideLeft {
+  animation-name: pj-reveal-slideLeft;
+}
+
+.#{$reveal}.pj-reveal-slideRight {
+  animation-name: pj-reveal-slideRight;
+}
+
+.#{$reveal}.pj-reveal-slideUp {
+  animation-name: pj-reveal-slideUp;
+}
+
+.#{$reveal}.pj-reveal-slideDown {
+  animation-name: pj-reveal-slideDown;
 }
