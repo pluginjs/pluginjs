@@ -16,7 +16,7 @@
 @keyframes pj-reveal-fadeUp {
 	from {
 		opacity: 0;
-		transform: translate3d(0, 6rem, 0);
+		transform: translate3d(0, 5rem, 0);
 	}
 
 	to {
@@ -28,7 +28,7 @@
 @keyframes pj-reveal-fadeDown {
 	from {
 		opacity: 0;
-		transform: translate3d(0, -6rem, 0);
+		transform: translate3d(0, -5rem, 0);
 	}
 
 	to {
@@ -40,7 +40,7 @@
 @keyframes pj-reveal-fadeLeft {
 	from {
 		opacity: 0;
-		transform: translate3d(6rem, 0, 0);
+		transform: translate3d(5rem, 0, 0);
 	}
 
 	to {
@@ -52,7 +52,7 @@
 @keyframes pj-reveal-fadeRight {
 	from {
 		opacity: 0;
-		transform: translate3d(-6rem, 0, 0);
+		transform: translate3d(-5rem, 0, 0);
 	}
 
 	to {
@@ -64,7 +64,7 @@
 @keyframes pj-reveal-fadeUpLeft {
   from {
     opacity: 0;
-    transform: translate3d(-6rem, 6rem, 0);
+    transform: translate3d(-5rem, 5rem, 0);
   }
 
   to {
@@ -76,7 +76,7 @@
 @keyframes pj-reveal-fadeUpRight {
   from {
     opacity: 0;
-    transform: translate3d(6rem, 6rem, 0);
+    transform: translate3d(5rem, 5rem, 0);
   }
 
   to {
@@ -88,7 +88,7 @@
 @keyframes pj-reveal-fadeDownLeft {
   from {
     opacity: 0;
-    transform: translate3d(-6rem, -6rem, 0);
+    transform: translate3d(-5rem, -5rem, 0);
   }
 
   to {
@@ -100,7 +100,7 @@
 @keyframes pj-reveal-fadeDownRight {
   from {
     opacity: 0;
-    transform: translate3d(6rem, -6rem, 0);
+    transform: translate3d(5rem, -5rem, 0);
   }
 
   to {

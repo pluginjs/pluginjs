@@ -29,5 +29,5 @@ export const defaults = {
   order: 1,
   anchor: '',
   offset: '0px', // also can have values similar to the CSS margin property, ["10px 20px 30px 40px"](top, right, bottom, left)
-  threshold: 0.5 // Either a single number or an array of numbers  [0, 0.25, 0.5, 0.75, 1]
+  threshold: 0 // Either a single number or an array of numbers  [0, 0.25, 0.5, 0.75, 1]
 }
