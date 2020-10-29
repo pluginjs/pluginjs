@@ -239,6 +239,7 @@ class Units extends Component {
 
   set(value, trigger = true) {
     let changed = false
+    
     if (this.isStatic(value)) {
       if (value !== this.value) {
         this.value = value

@@ -144,8 +144,8 @@ export const defaults = {
     unit: 'em',
     units: ['inherit', 'px', 'em', 'rem', 'num'],
     min: 1,
-    max: 10,
-    step: 0.5,
+    max: 100,
+    step: 2,
     template() {
       return (
         '<div class="{field}">' +

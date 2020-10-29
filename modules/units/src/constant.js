@@ -70,9 +70,12 @@ export const defaults = {
       }
 
       input = parseFloat(value)
+
       unit = value.match(/\D+$/g)
       if (isNull(unit)) {
-        unit = this.options.defaultUnit
+        this.options.units.num ?
+        unit = 'num' :
+        unit = this.options.defaultUnit 
       } else {
         unit = unit[0]
       }

@@ -18,6 +18,7 @@ export default class LineHeight {
     const that = this
     const units = {}
     const value = this.value
+
     // create $lineHeight
     const html = template.compile(this.instance.options.lineHeight.template())({
       classes: this.instance.classes,
