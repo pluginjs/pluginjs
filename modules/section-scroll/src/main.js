@@ -153,6 +153,7 @@ class SectionScroll extends Component {
   }
 
   bindChouch() {
+    delete Hammer.defaults.cssProps.userSelect
     this.hammer = new Hammer(this.element)
     this.hammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL })
 
@@ -249,7 +250,8 @@ class SectionScroll extends Component {
     const index = this.getIndexById(id)
 
     if (
-      index > 0 && 0 < this.$sections.length &&
+      index > 0 &&
+      this.$sections.length > 0 &&
       (this.currIndex !== index || !this.is('initialized'))
     ) {
       this.currIndex = index
@@ -259,7 +261,7 @@ class SectionScroll extends Component {
 
   scrollTo(id) {
     const index = this.getIndexById(id)
-    if (index > 0 && 0 < this.$sections.length && this.currIndex !== index) {
+    if (index > 0 && this.$sections.length > 0 && this.currIndex !== index) {
       if (!this.is('moveing')) {
         this.currIndex = index
         this.history.changePage()
