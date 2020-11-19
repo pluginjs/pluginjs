@@ -18,6 +18,6 @@ $lazyload: "pj-lazyload" !default;
 
 	&.pj-lazyloaded {
     opacity: 1;
-    transition: opacity 0.3s;
+    transition: all 0.3s;
 	}
 }
