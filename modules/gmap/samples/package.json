@@ -3,20 +3,20 @@
   "name": "gmap-samples",
   "description": "Simple gmap example",
   "license": "GPL-3.0",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.8.4",
-    "@pluginjs/gmap": "^0.8.5"
+    "@pluginjs/dom": "^0.8.5",
+    "@pluginjs/gmap": "^0.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
-    "@pluginjs/browserslist-config": "^1.3.1",
+    "@pluginjs/browserslist-config": "^1.3.2",
     "parcel-bundler": "^1.12.4",
     "posthtml-include": "^1.4.3"
   },
