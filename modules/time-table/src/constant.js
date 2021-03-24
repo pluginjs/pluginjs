@@ -148,7 +148,7 @@ export const defaults = {
     timeBetween: '09:00-19:30'
   },
   monthly: {
-    controllerLabel: 'MMM YYYY',
+    controllerLabel: 'MMM yyyy',
     eventLabel: 'HH:mm'
   }
 }

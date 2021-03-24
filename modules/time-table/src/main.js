@@ -24,20 +24,17 @@ import View from './components/view'
 import Classifier from './components/classifier'
 import Util from './util'
 // data-fns
-// import getYear from 'date-fns/get_year'
-// import getMonth from 'date-fns/get_month'
-import getDaysInMonth from 'date-fns/get_days_in_month'
-import startOfMonth from 'date-fns/start_of_month'
-// import startOfWeek from 'date-fns/start_of_week'
-import getDay from 'date-fns/get_day'
-// import getDate from 'date-fns/get_date'
-import subDays from 'date-fns/sub_days'
-import subWeeks from 'date-fns/sub_weeks'
-import subMonths from 'date-fns/sub_months'
-import addDays from 'date-fns/add_days'
-import addMonths from 'date-fns/add_months'
-import addWeeks from 'date-fns/add_weeks'
-// import format from 'date-fns/format'
+import {
+  getDaysInMonth,
+  startOfMonth,
+  getDay,
+  subDays,
+  subWeeks,
+  subMonths,
+  addDays,
+  addMonths,
+  addWeeks
+} from 'date-fns'
 
 // const COMPONENTS = {}
 

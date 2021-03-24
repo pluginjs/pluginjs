@@ -36,7 +36,8 @@ export default [
       name: pkg.name,
       file: pkg.umd,
       format: 'umd',
-      globals
+      globals,
+      interop: false
     },
     plugins: [babelCallback(), commonjs(), resolve()]
   },
@@ -44,8 +45,8 @@ export default [
     input: pkg.source,
     //external,
     output: [
-      { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' }
+      { file: pkg.main, format: 'cjs', interop: false },
+      { file: pkg.module, format: 'es', interop: false }
     ],
     plugins: [babelCallback({ esmodules: true }), commonjs(), resolve()]
   }

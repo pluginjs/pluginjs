@@ -1,10 +1,4 @@
-// import getYear from 'date-fns/get_year'
-// import getMonth from 'date-fns/get_month'
-// import subWeeks from 'date-fns/sub_weeks'
-// import subMonths from 'date-fns/sub_months'
-// import subDays from 'date-fns/sub_days'
-// import addWeeks from 'date-fns/add_weeks'
-import format from 'date-fns/format'
+import { format } from 'date-fns'
 import templateEngine from '@pluginjs/template'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { bindEvent } from '@pluginjs/events'
@@ -74,7 +68,7 @@ class Controller {
       this.instance.currentWeek[this.instance.currentWeek.length - 1],
       this.instance.options.weekly.controllerLabel[1]
     )
-    // log('test  cssss', this.controllerStr)
+
     this.$content.textContent = controllerStr
   }
 

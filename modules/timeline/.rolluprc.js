@@ -29,23 +29,45 @@ const babelCallback = (options = {}) => {
 
 export default [
   {
-    input: 'src/main.js',
+    input: pkg.source,
     external,
     output: {
       name: pkg.name,
       file: pkg.umd,
       format: 'umd',
-      globals
+      globals,
+      interop: false
     },
     plugins: [babelCallback(), commonjs()]
   },
   {
-    input: 'src/main.js',
+    input: pkg.source,
     external,
     output: [
-      { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' }
+      { file: pkg.main, format: 'cjs', interop: false },
+      { file: pkg.module, format: 'es', interop: false }
     ],
     plugins: [babelCallback({ esmodules: true }), commonjs()]
+  },
+  {
+    input: pkg.source,
+    external,
+    output: {
+      name: pkg.name,
+      file: rename(pkg.umd, {suffix: '.min'}),
+      format: 'umd',
+      globals,
+      interop: false
+    },
+    plugins: [babelCallback(), commonjs(), terser()]
+  },
+  {
+    input: pkg.source,
+    external,
+    output: [
+      { file: rename(pkg.main, {suffix: '.min'}), format: 'cjs', interop: false },
+      { file: rename(pkg.module, {suffix: '.min'}), format: 'es', interop: false }
+    ],
+    plugins: [babelCallback({ esmodules: true }), commonjs(), terser()]
   }
 ]
