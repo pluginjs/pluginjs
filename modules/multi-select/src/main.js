@@ -22,8 +22,7 @@ import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass, hasClass } from '@pluginjs/classes'
 import { arrayEqual, arrayDiff, triggerNative } from '@pluginjs/utils'
 import { append, detach, insertBefore, parseHTML, parent } from '@pluginjs/dom'
-import { isIE, isIE11 } from '@pluginjs/is'
-import { isArray } from '@pluginjs/is'
+import { isArray, isIE, isIE11 } from '@pluginjs/is'
 const isSelect = el => el.tagName === 'SELECT'
 const isInput = el => el.tagName === 'INPUT'
 
@@ -128,7 +127,7 @@ class MultiSelect extends Select {
 
   val(value, trigger = true) {
     if (typeof value === 'undefined') {
-      return null
+      return
     }
     this.set(value, trigger)
   }
@@ -213,13 +212,13 @@ class MultiSelect extends Select {
     if (!this.isValidValue(value)) {
       return
     }
-    
+
     if (this.selected.includes(value)) {
       const option = this.getOptionByValue(value)
 
       if (option.__chip) {
-        if(isIE() || isIE11()) {
-          option.__chip.removeNode(true);
+        if (isIE() || isIE11()) {
+          option.__chip.removeNode(true)
         } else {
           option.__chip.remove()
         }
@@ -239,12 +238,14 @@ class MultiSelect extends Select {
     }
 
     if (update && this.value.includes(value)) {
-      this.set(this.value.filter(v => v !== value), true)
+      this.set(
+        this.value.filter(v => v !== value),
+        true
+      )
     }
   }
 
   buildChip(option) {
-    console.log(this.chipTemplate)
     if (!this.chipTemplate) {
       this.chipTemplate = templateEngine.compile(
         this.options.templates.chip.call(this)
