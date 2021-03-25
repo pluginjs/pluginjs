@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.6",
+  "version": "0.8.7",
   "category": "scroll",
   "main": "dist/scrollbar.common.js",
   "module": "dist/scrollbar.esm.js",
@@ -37,24 +37,24 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.5",
-    "@pluginjs/component": "^0.8.5",
-    "@pluginjs/decorator": "^0.8.6",
-    "@pluginjs/dom": "^0.8.5",
-    "@pluginjs/easing": "^0.8.5",
-    "@pluginjs/events": "^0.8.6",
-    "@pluginjs/factory": "^0.8.5",
-    "@pluginjs/feature": "^0.8.5",
-    "@pluginjs/is": "^0.8.5",
-    "@pluginjs/keyboard": "^0.8.5",
-    "@pluginjs/styled": "^0.8.5",
-    "@pluginjs/template": "^0.8.5",
-    "@pluginjs/utils": "^0.8.5"
+    "@pluginjs/classes": "^0.8.6",
+    "@pluginjs/component": "^0.8.6",
+    "@pluginjs/decorator": "^0.8.7",
+    "@pluginjs/dom": "^0.8.6",
+    "@pluginjs/easing": "^0.8.6",
+    "@pluginjs/events": "^0.8.7",
+    "@pluginjs/factory": "^0.8.6",
+    "@pluginjs/feature": "^0.8.6",
+    "@pluginjs/is": "^0.8.6",
+    "@pluginjs/keyboard": "^0.8.6",
+    "@pluginjs/styled": "^0.8.6",
+    "@pluginjs/template": "^0.8.6",
+    "@pluginjs/utils": "^0.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@pluginjs/browserslist-config": "^1.3.2",
-    "@pluginjs/cli": "^0.8.2",
+    "@pluginjs/cli": "^0.8.3",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "babel-jest": "*",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.10",
+  "version": "0.8.11",
   "category": "form",
   "main": "dist/auto-complete.common.js",
   "module": "dist/auto-complete.esm.js",
@@ -37,22 +37,22 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.5",
-    "@pluginjs/component": "^0.8.5",
-    "@pluginjs/decorator": "^0.8.6",
-    "@pluginjs/dom": "^0.8.5",
-    "@pluginjs/dropdown": "^0.8.10",
-    "@pluginjs/events": "^0.8.6",
-    "@pluginjs/is": "^0.8.5",
-    "@pluginjs/match": "^0.8.5",
-    "@pluginjs/styled": "^0.8.5",
-    "@pluginjs/template": "^0.8.5",
-    "@pluginjs/utils": "^0.8.5"
+    "@pluginjs/classes": "^0.8.6",
+    "@pluginjs/component": "^0.8.6",
+    "@pluginjs/decorator": "^0.8.7",
+    "@pluginjs/dom": "^0.8.6",
+    "@pluginjs/dropdown": "^0.8.11",
+    "@pluginjs/events": "^0.8.7",
+    "@pluginjs/is": "^0.8.6",
+    "@pluginjs/match": "^0.8.6",
+    "@pluginjs/styled": "^0.8.6",
+    "@pluginjs/template": "^0.8.6",
+    "@pluginjs/utils": "^0.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@pluginjs/browserslist-config": "^1.3.2",
-    "@pluginjs/cli": "^0.8.2",
+    "@pluginjs/cli": "^0.8.3",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "babel-jest": "*",

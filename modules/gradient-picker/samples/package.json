@@ -3,15 +3,15 @@
   "name": "gradient-picker-samples",
   "description": "Simple gradient-picker example",
   "license": "GPL-3.0",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open --no-cache"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.8.5",
-    "@pluginjs/gradient-picker": "^0.8.13",
+    "@pluginjs/dom": "^0.8.6",
+    "@pluginjs/gradient-picker": "^0.8.14",
     "@pluginjs/icons": "^0.8.3",
     "@pluginjs/styles": "^0.8.4"
   },

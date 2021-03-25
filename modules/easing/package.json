@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.5",
+  "version": "0.8.6",
   "category": "utils",
   "main": "dist/easing.common.js",
   "module": "dist/easing.esm.js",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@pluginjs/browserslist-config": "^1.3.2",
-    "@pluginjs/cli": "^0.8.2",
+    "@pluginjs/cli": "^0.8.3",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "babel-jest": "*",

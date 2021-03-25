@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.8",
+  "version": "0.8.9",
   "category": "form",
   "main": "dist/toggle-list.common.js",
   "module": "dist/toggle-list.esm.js",
@@ -37,19 +37,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.5",
-    "@pluginjs/decorator": "^0.8.6",
-    "@pluginjs/dom": "^0.8.5",
-    "@pluginjs/events": "^0.8.6",
-    "@pluginjs/is": "^0.8.5",
-    "@pluginjs/list": "^0.8.6",
-    "@pluginjs/toggle": "^0.8.8",
-    "@pluginjs/utils": "^0.8.5"
+    "@pluginjs/classes": "^0.8.6",
+    "@pluginjs/decorator": "^0.8.7",
+    "@pluginjs/dom": "^0.8.6",
+    "@pluginjs/events": "^0.8.7",
+    "@pluginjs/is": "^0.8.6",
+    "@pluginjs/list": "^0.8.7",
+    "@pluginjs/toggle": "^0.8.9",
+    "@pluginjs/utils": "^0.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@pluginjs/browserslist-config": "^1.3.2",
-    "@pluginjs/cli": "^0.8.2",
+    "@pluginjs/cli": "^0.8.3",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "babel-jest": "*",

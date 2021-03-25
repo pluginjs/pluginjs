@@ -3,17 +3,17 @@
   "name": "tag-list-samples",
   "description": "Simple tag-list example",
   "license": "GPL-3.0",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.8.5",
+    "@pluginjs/dom": "^0.8.6",
     "@pluginjs/icons": "^0.8.3",
     "@pluginjs/styles": "^0.8.4",
-    "@pluginjs/tag-list": "^0.8.6"
+    "@pluginjs/tag-list": "^0.8.7"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
