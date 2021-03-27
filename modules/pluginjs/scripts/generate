@@ -40,13 +40,18 @@ concat(files).then(code => {
   fs.ensureFileSync(pkg.umd)
   fs.writeFileSync(pkg.umd, `${banner}\n${code}`)
 
-  let min = rename(pkg.umd, {suffix: '.min'})
-  let result = Terser.minify(code)
-
-  fs.ensureFileSync(min)
-  fs.writeFileSync(min, `${banner}\n${result.code}`)
-
   logger.success(
     `pluginjs generated → ${pkg.umd}`
   )
+
+  let min = rename(pkg.umd, {suffix: '.min'})
+
+  Terser.minify(code).then(result => {
+    fs.ensureFileSync(min)
+    fs.writeFileSync(min, `${banner}\n${result.code}`)
+
+    logger.success(
+      `pluginjs generated → ${min}`
+    )
+  })
 })
