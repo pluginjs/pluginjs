@@ -61,7 +61,7 @@ export const defaults = {
   errorDuration: 3000,
   min: 1.5,
   max: 5,
-  zoom: 2,
+  zoom: 3,
   zoomable: true,
   zoomStep: 0.1,
   lens: true,

@@ -84,11 +84,6 @@ $magnify-inside-lens-border-radius: 100% !default;
     bottom: 0;
   }
 
-  &-has-lens.#{$magnify}-show.#{$magnify}-zoom,
-  &-has-lens.#{$magnify}-show .#{$magnify}-zoom {
-    cursor: none;
-  }
-
   &-lens,
   &-overlay {
     position: absolute;
