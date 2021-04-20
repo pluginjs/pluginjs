@@ -1,8 +1,8 @@
 import Component from '@pluginjs/component'
-import { isString, isBoolean, isIE, isIE11 } from '@pluginjs/is'
+import { isString, isBoolean } from '@pluginjs/is'
 import { wrap, parseHTML, unwrap, append } from '@pluginjs/dom'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { getWidth, setStyle, getStyle } from '@pluginjs/styled'
+import { setStyle, getStyle } from '@pluginjs/styled'
 import { triggerNative } from '@pluginjs/utils'
 import {
   eventable,
@@ -85,6 +85,12 @@ class Toggle extends Component {
 
     let wrapClientWidth = wrapWidth  - 2 * borderWidth
     this.distance = wrapClientWidth - parseInt(getStyle('width', this.$handle).replace(/px|pt|em/gi, ''), 0)
+    if (!this.distance || isNaN(this.distance)) {
+      this.options.size ?
+      this.distance = 16 :
+      this.distance = 48
+    }
+    console.log(this.distance)
     setStyle('marginLeft', `-${this.distance}`, this.$inner)
 
     this.bind()

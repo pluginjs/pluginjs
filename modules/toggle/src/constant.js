@@ -36,19 +36,14 @@ export const methods = [
 
 export const defaults = {
   theme: null,
-
   dragable: true,
   clickable: true,
   disabled: false,
-
   size: null,
-
   showText: false,
   locale: 'en',
-
   onText: null,
   offText: null,
-
   checked: null,
   duration: 200
 }
