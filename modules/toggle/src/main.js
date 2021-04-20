@@ -85,12 +85,13 @@ class Toggle extends Component {
 
     let wrapClientWidth = wrapWidth  - 2 * borderWidth
     this.distance = wrapClientWidth - parseInt(getStyle('width', this.$handle).replace(/px|pt|em/gi, ''), 0)
+    
     if (!this.distance || isNaN(this.distance)) {
       this.options.size ?
       this.distance = 16 :
       this.distance = 48
     }
-    console.log(this.distance)
+
     setStyle('marginLeft', `-${this.distance}`, this.$inner)
 
     this.bind()
