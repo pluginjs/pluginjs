@@ -4,50 +4,59 @@
 
 $magnify-cursor: crosshair;
 
-$magnify-border-width: $border-width;
-$magnify-border-color: $border-color;
 $magnify-border-radius: $border-radius-base;
+$magnify-lens-border-width: 4px;
+$magnify-lens-border-color: $color-white;
 
-$magnify-show-hover-color: $border-color;
-$magnify-show-border-color: $border-color;
+$magnify-window-gutter: 15px;
 
 $magnify-error-color: $color-white;
 $magnify-error-bg: $gray-darkest;
 $magnify-error-padding: 0.5*$sizer $sizer;
 $magnify-error-border-radius: $border-radius-md;
 
-$magnify-outside-border-width: 1px;
-$magnify-outside-border-color: $border-color-hover;
-$magnify-outside-gutter: 10px;
-$magnify-outside-border-radius: $magnify-border-radius;
-
-$magnify-target-bg: $gray-darkest;
-
-$magnify-lens-border-width: 4px;
-$magnify-lens-border-color: $color-white;
-$magnify-lens-bg: $magnify-target-bg;
-
-$magnify-outside-lens-border-radius: $magnify-border-radius;
+$magnify-overlay-bg: rgba(0, 0, 0, 0.4);
+$magnify-lens-bg: rgba(0, 0, 0, 0.4);
+$magnify-window-box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.5);
 
 .#{$magnify} {
-  border: $magnify-border-width solid $magnify-border-color;
+  &-overlay {
+    background-color: $magnify-overlay-bg;
+  }
 
-  &,
-  &-image {
+  &-lens {
+    margin-top: -$magnify-lens-border-width;
+    margin-left: -$magnify-lens-border-width;
+    background-color: $magnify-lens-bg;
+    border: $magnify-lens-border-width solid $magnify-lens-border-color;
     border-radius: $magnify-border-radius;
   }
 
-  &:hover {
-    border-color: $magnify-show-hover-color;
-  }
-
-  &-show,
-  &-show:hover {
-    border-color: $magnify-show-border-color;
-  }
-
-  &-zoom {
+  &-image {
     cursor: $magnify-cursor;
+  }
+
+  &-window {
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border-radius: $magnify-border-radius;
+    box-shadow: $magnify-window-box-shadow;
+  }
+
+  &-window-left &-window {
+    margin-right: $magnify-window-gutter;
+  }
+
+  &-window-right &-window {
+    margin-left: $magnify-window-gutter;
+  }
+
+  &-window-top &-window {
+    margin-bottom: $magnify-window-gutter;
+  }
+
+  &-window-bottom &-window {
+    margin-top: $magnify-window-gutter;
   }
 
   &-error {
@@ -57,64 +66,15 @@ $magnify-outside-lens-border-radius: $magnify-border-radius;
     border-radius: $magnify-error-border-radius;
   }
 
-  &-target {
-    background-color: $magnify-target-bg;
-  }
-
-  &-lens {
-    margin-top: -$magnify-lens-border-width;
-    margin-left: -$magnify-lens-border-width;
-    background-color: $magnify-lens-bg;
-    border: $magnify-lens-border-width solid $magnify-lens-border-color;
-  }
-
-  &-outside &-lens {
-    border-radius: $magnify-outside-lens-border-radius;
-  }
-
-  &-outside &-target {
-    border: $magnify-outside-border-width solid $magnify-outside-border-color;
-
-    &,
-    & img {
-      border-radius: $magnify-outside-border-radius;
-    }
-  }
-
-  &-outside-left &-target {
-    margin-top: -$magnify-outside-border-width;
-    margin-left: $magnify-outside-gutter;
-  }
-
-  &-outside-right &-target {
-    margin-top: -$magnify-outside-border-width;
-    margin-right: $magnify-outside-gutter;
-  }
-
-  &-outside-top &-target {
-    margin-bottom: $magnify-outside-gutter;
-    margin-left: -$magnify-outside-border-width;
-  }
-
-  &-outside-bottom &-target {
-    margin-top: $magnify-outside-gutter;
-    margin-left: -$magnify-outside-border-width;
-  }
-
-  &-click:not(.#{$magnify}-show).#{$magnify}-zoom,
-  &-click:not(.#{$magnify}-show) .#{$magnify}-zoom,
-  &-toggle:not(.#{$magnify}-show).#{$magnify}-zoom,
-  &-toggle:not(.#{$magnify}-show) .#{$magnify}-zoom {
-    cursor: zoom-in;
-  }
-
-  &-toggle:not(.#{$magnify}-has-lens).#{$magnify}-show.#{$magnify}-zoom,
-  &-toggle:not(.#{$magnify}-has-lens).#{$magnify}-show .#{$magnify}-zoom {
-    cursor: zoom-out;
-  }
-
   &-disabled {
-    .#{$magnify}-target {
+    .#{$magnify}-image {
+      cursor: auto;
+    }
+
+    .#{$magnify}-overlay,
+    .#{$magnify}-lens,
+    .#{$magnify}-window,
+    .#{$magnify}-error {
       display: none;
     }
   }

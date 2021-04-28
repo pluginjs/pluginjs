@@ -10,12 +10,18 @@ import {
   optionable
 } from '@pluginjs/decorator'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { query, wrap, unwrap, appendTo, append } from '@pluginjs/dom'
-import { innerWidth, innerHeight, setStyle, getOffset } from '@pluginjs/styled'
+import { query, appendTo, attr } from '@pluginjs/dom'
+import {
+  outerWidth,
+  outerHeight,
+  innerWidth,
+  innerHeight,
+  setStyle,
+  getOffset
+} from '@pluginjs/styled'
 import { bindEvent, removeEvent } from '@pluginjs/events'
-import { isElement, isPlainObject, isString, isIE, isIE11 } from '@pluginjs/is'
+import { isIE, isIE11 } from '@pluginjs/is'
 import Loader from '@pluginjs/loader'
-import ImageLoader from '@pluginjs/image-loader'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -45,212 +51,181 @@ class Magnify extends Component {
   }
 
   initialize() {
-    if (this.element.tagName !== 'IMG' || this.element.tagName !== 'PICTURE') {
-      this.$wrap = this.element
-      addClass(this.classes.WRAP, this.$wrap)
-      this.$image = query('img, picture', this.$wrap)
-    } else {
-      this.$image = this.element
-      this.$wrap = wrap(`<div class="${this.classes.WRAP}"></div>`, this.$image)
+    this.$image = query('img', this.element)
+    if (!this.$image) {
+      return
     }
 
-    this.loaded = false
-    this.large = this.options.image
-    this.zoom = this.options.zoom
-    this.width = innerWidth(this.$wrap)
-    this.height = innerHeight(this.$wrap)
-    this.ratio = this.width / this.height
-    this.mode = this.options.mode
-    this.limit =
-      this.mode === 'inside' && this.options.lens ? false : this.options.limit
-
+    this.pageX = null
+    this.pageY = null
+    this.imageRatio = 1
+    this.lensSize = {}
+    this.resetOptions()
+    this.$wrap = query(this.options.wrapSelector)
+      ? query(this.options.wrapSelector)
+      : this.element
+    addClass(this.classes.NAMESPACE, this.element)
     addClass(this.classes.IMAGE, this.$image)
 
-    addClass(this.getClass(this.classes.MODE, 'mode', this.mode), this.$wrap)
-    addClass(
-      this.getClass(this.classes.TRIGGER, 'trigger', this.options.trigger),
-      this.$wrap
-    )
-
-    if (this.options.lens) {
-      addClass(this.classes.HASLENS, this.$wrap)
-    }
     if (this.options.theme) {
-      addClass(this.getThemeClasss(), this.$wrap)
+      addClass(this.getThemeClasss(), this.element)
     }
-
-    if (this.options.target) {
-      if (isElement(this.options.target)) {
-        this.$target = this.options.target
-      } else {
-        this.$target = query(this.options.target)
-      }
-      addClass(this.classes.TARGET, this.$target)
-    }
-
-    if (this.mode === 'inside') {
-      this.$zoom = this.$wrap
-    } else {
-      if (!this.options.target) {
-        this.initPlacement()
-      }
-
-      this.$zoom = this.$image
-    }
-
-    addClass(this.classes.ZOOM, this.$zoom)
 
     if (this.options.loader) {
-      this.LOADER = Loader.of(this.$wrap, this.options.loader)
+      this.LOADER = Loader.of(this.element, this.options.loader)
     }
 
-    this.initDimension()
+    this.initBreakpoints()
+    this.resetZoom()
+    this.initOverlay()
+    this.initLens()
+    this.initWindow()
+    this.initMode()
+
     this.bind()
 
     this.enter('initialized')
     this.trigger(EVENTS.READY)
   }
 
-  initPlacement() {
+  resetOptions() {
+    this.errorText = this.options.error
+    this.errorDuration = this.options.errorDuration
+    this.mode = this.options.mode
+    this.zoom = this.options.zoom
+    this.position = this.options.position
+    this.windowWidth = this.options.windowWidth
+    this.windowHeight = this.options.windowHeight
+  }
+
+  initBreakpoints() {
     Breakpoints.init()
 
-    let prevPlacement = null
-    const setupPlacement = placement => {
-      if (prevPlacement) {
-        removeClass(
-          this.getClass(
-            this.classes.OUTSIDEPLACEMENT,
-            'placement',
-            prevPlacement
-          ),
+    const screens = Breakpoints.all()
+    this.initScreenOptions(screens)
+
+    const that = this
+    const currentName = Breakpoints.current().name
+
+    if (this.screenOptions[currentName]) {
+      Object.keys(this.screenOptions[currentName]).forEach(key => {
+        this[key] = this.screenOptions[currentName][key]
+      })
+    }
+
+    Breakpoints.on('change', function () {
+      if (that.screenOptions[this.current.name]) {
+        Object.keys(that.screenOptions[this.current.name]).forEach(key => {
+          that[key] = that.screenOptions[this.current.name][key]
+        })
+      } else {
+        that.resetOptions()
+      }
+
+      that.initMode()
+      that.reset()
+    })
+  }
+
+  initScreenOptions(screens) {
+    this.screenOptions = {}
+    Object.keys(this.options).forEach(key => {
+      screens.forEach(screen => {
+        const screenFirstUpper =
+          screen.substring(0, 1).toUpperCase() + screen.substring(1)
+
+        if (key.endsWith(screenFirstUpper)) {
+          if (!this.screenOptions[screen]) {
+            this.screenOptions[screen] = {}
+          }
+
+          this.screenOptions[screen][
+            key.slice(0, key.indexOf(screenFirstUpper))
+          ] = this.options[key]
+        }
+      })
+    })
+  }
+
+  initOverlay() {
+    this.$overlay = appendTo(
+      template.render(this.options.templates.overlay.call(this), {
+        classes: this.classes
+      }),
+      this.element
+    )
+  }
+
+  initLens() {
+    this.$lens = appendTo(
+      template.render(this.options.templates.lens.call(this), {
+        classes: this.classes
+      }),
+      this.element
+    )
+    this.$lensImage = query(`.${this.classes.LENSIMAGE}`, this.$lens)
+  }
+
+  initWindow() {
+    this.$window = appendTo(
+      template.render(this.options.templates.window.call(this), {
+        classes: this.classes
+      }),
+      this.$wrap
+    )
+    this.$windowImage = query(`.${this.classes.WINDOWIMAGE}`, this.$window)
+
+    setStyle(
+      {
+        width: this.windowWidth,
+        height: this.windowHeight
+      },
+      this.$window
+    )
+  }
+
+  initMode() {
+    this.clearClass()
+
+    switch (this.mode) {
+      case 'window':
+        addClass(
+          this.getClass(this.classes.POSITION, 'position', this.position),
           this.$wrap
         )
-      }
-      addClass(
-        this.getClass(this.classes.OUTSIDEPLACEMENT, 'placement', placement),
-        this.$wrap
-      )
-      prevPlacement = placement
-    }
+        this.$targetImage = this.$windowImage
+        this.targetWidth = this.windowWidth
+        this.targetHeight = this.windowHeight
+        break
 
-    this.placements = this.options.placement.split(',').map(placement => {
-      const arr = placement.trim().split(' ')
-      if (arr.length === 1) {
-        return arr[0]
-      } else if (arr.length > 1) {
-        return {
-          placement: arr[0],
-          breakpoint: arr[1]
-        }
-      }
-      return placement
-    })
-
-    let globalPlacement = null
-
-    if (this.placements.length === 1) {
-      setupPlacement(this.placements[0])
-    } else {
-      this.placements.forEach(item => {
-        if (isString(item)) {
-          globalPlacement = item
-          setupPlacement(item)
-        } else {
-          if (Breakpoints.is(item.breakpoint)) {
-            setupPlacement(item.placement)
-          }
-          Breakpoints.on(item.breakpoint, {
-            enter: () => {
-              setupPlacement(item.placement)
-            },
-            leave: () => {
-              if (globalPlacement) {
-                setupPlacement(globalPlacement)
-              }
-            }
-          })
-        }
-      })
-    }
-  }
-
-  initDimension() {
-    const _initDimension = () => {
-      this.width = innerWidth(this.$wrap)
-      this.height = innerHeight(this.$wrap)
-      this.ratio = this.width / this.height
-    }
-    if (this.$image.complete && this.$image.naturalWidth) {
-      _initDimension()
-    } else {
-      ImageLoader.of(this.$image).on('loaded', () => {
-        _initDimension()
-      })
-    }
-  }
-
-  initTargetDimension() {
-    if (this.$target) {
-      this.targetWidth = innerWidth(this.$target)
-      this.targetHeight = innerHeight(this.$target)
-    } else {
-      this.targetWidth = null
-      this.targetHeight = null
+      default:
+        addClass(
+          this.getClass(this.classes.MODE, 'mode', this.mode),
+          this.element
+        )
+        this.$targetImage = this.$lensImage
+        this.targetWidth = outerWidth(this.element)
+        this.targetHeight = outerHeight(this.element)
     }
   }
 
   bind() {
-    if (this.options.trigger === 'hover') {
-      bindEvent(
-        this.eventName('mouseenter touchstart'),
-        () => {
-          this.show()
-        },
-        this.$zoom
-      )
-      bindEvent(
-        this.eventName('mouseleave touchend'),
-        () => {
-          this.hide()
-        },
-        this.$zoom
-      )
-    } else if (this.options.trigger === 'click') {
-      bindEvent(
-        this.eventName('click'),
-        () => {
-          this.show()
-        },
-        this.$zoom
-      )
-      bindEvent(
-        this.eventName('mouseleave touchend'),
-        () => {
-          this.hide()
-        },
-        this.$zoom
-      )
-    } else if (this.options.trigger === 'toggle') {
-      bindEvent(
-        this.eventName('click'),
-        () => {
-          if (this.is('shown')) {
-            this.hide()
-          } else {
-            this.show()
-          }
-        },
-        this.$zoom
-      )
-    }
-
     bindEvent(
       this.eventName('mouseenter touchstart'),
-      this.onEnter.bind(this),
-      this.$zoom
+      () => {
+        if (this.is('disabled')) {
+          return
+        }
+
+        this.trigger(EVENTS.ENTER)
+
+        this.show()
+      },
+      this.$image
     )
-    bindEvent(this.eventName('dragstart'), () => false, this.$zoom)
-    bindEvent(this.eventName('selectstart'), () => false, this.$zoom)
+
+    bindEvent(this.eventName('dragstart'), () => false, this.$image)
+    bindEvent(this.eventName('selectstart'), () => false, this.$image)
 
     if (this.options.zoomable) {
       bindEvent(
@@ -264,171 +239,13 @@ class Magnify extends Component {
             this.zoomDown(this.options.zoomStep)
           }
         },
-        this.$zoom
+        this.$image
       )
     }
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.$zoom)
-  }
-
-  onEnter() {
-    addClass(this.classes.MOVING, this.$wrap)
-
-    bindEvent(
-      this.eventName('mousemove touchmove'),
-      this.onMove.bind(this),
-      this.$zoom
-    )
-
-    bindEvent(
-      this.eventName('mouseleave touchend touchcancel'),
-      this.onLeave.bind(this),
-      this.$zoom
-    )
-
-    this.offset = getOffset(this.$zoom)
-    this.initTargetDimension()
-
-    this.enter('moving')
-    this.trigger(EVENTS.ENTER)
-  }
-
-  onMove(event) {
-    if (!this.is('moving')) {
-      return
-    }
-    this.position = this.getPosition(event)
-    if (this.is('shown')) {
-      this.positionTarget(this.position.x, this.position.y)
-      if (this.options.lens) {
-        this.positionLens(this.position.x, this.position.y)
-      }
-      this.trigger(EVENTS.MOVE, this.position)
-    }
-  }
-
-  onLeave() {
-    if (!this.is('moving')) {
-      return
-    }
-
-    removeClass(this.classes.MOVING, this.$wrap)
-    removeEvent(
-      this.eventName('mousemove mouseup touchmove touchend touchcancel'),
-      this.$zoom
-    )
-
-    this.leave('moving')
-    this.trigger(EVENTS.LEAVE)
-  }
-
-  getPosition(event) {
-    const result = {
-      x: null,
-      y: null
-    }
-
-    event = event.originalEvent || event || window.event
-
-    if (event.touches && event.touches.length) {
-      event = event.touches[0]
-    } else if (event.changedTouches && event.changedTouches.length) {
-      event = event.changedTouches[0]
-    }
-
-    if (event.pageX) {
-      result.x = event.pageX
-      result.y = event.pageY
-    } else {
-      result.x = event.clientX
-      result.y = event.clientY
-    }
-
-    return {
-      x: (result.x - this.offset.left) / this.width,
-      y: (result.y - this.offset.top) / this.height
-    }
-  }
-
-  swap(small, large) {
-    if (isElement(small)) {
-      this.$image = small
-    } else if (isPlainObject(small)) {
-      Object.assign(this.$image, small)
-    } else if (isString(small)) {
-      this.$image.src = this.small
-    }
-
-    this.large = large
-    this.initDimension()
-    this.zoom = this.options.zoom
-    this.$targetImage = null
-
-    if (this.$lensImage) {
-      if(isIE() || isIE11()) {
-        this.$lensImage.removeNode(true);
-      } else {
-        this.$lensImage.remove()
-      }
-   
-      this.$lensImage = null
-    }
-
-    this.loaded = false
-    this.position = null
-
-    if (this.is('loading')) {
-      this.leave('loading')
-    }
-  }
-
-  load(done) {
-    this.enter('loading')
-    if (this.LOADER) {
-      this.LOADER.show()
-    }
-    this.trigger(EVENTS.LOADING)
-
-    ImageLoader.of(this.large)
-      .on('loaded', () => {
-        done.call(this)
-        this.loaded = true
-
-        if (this.is('error')) {
-          removeClass(this.classes.ERRORSHOW, this.$error)
-          this.leave('error')
-        }
-        this.trigger(EVENTS.LOADED)
-      })
-      .on('error', () => {
-        if (!this.$error) {
-          this.$error = appendTo(
-            template.render(this.options.templates.error.call(this), {
-              classes: this.classes,
-              text: this.options.error
-            }),
-            this.$wrap
-          )
-        }
-        addClass(this.classes.ERRORSHOW, this.$error)
-
-        if (this.options.errorDuration) {
-          setTimeout(() => {
-            removeClass(this.classes.ERRORSHOW, this.$error)
-          }, this.options.errorDuration)
-        }
-
-        this.enter('error')
-        this.trigger(EVENTS.ERROR)
-      })
-      .on('always', () => {
-        if (this.LOADER) {
-          this.LOADER.hide()
-        }
-        this.leave('loading')
-      })
+    removeEvent(this.eventName(), this.$image)
   }
 
   show() {
@@ -436,229 +253,454 @@ class Magnify extends Component {
       this.leave('hided')
     }
 
-    if (!this.is('shown') && !this.is('loading')) {
-      const _show = () => {
-        if (this.is('hided')) {
-          return
-        }
+    if (!this.is('shown')) {
+      bindEvent(
+        this.eventName('mousemove touchmove'),
+        this.moveTarget.bind(this),
+        this.$image
+      )
 
-        this.prepareTargetImage()
-        if (this.options.lens) {
-          this.prepareLens()
-        }
-        this.zoomTo(this.zoom, false)
-        addClass(this.classes.SHOW, this.$wrap)
-        addClass(this.classes.TARGETSHOW, this.$target)
+      bindEvent(
+        this.eventName('mouseleave touchend touchcancel'),
+        () => {
+          this.trigger(EVENTS.LEAVE)
 
-        this.trigger(EVENTS.SHOW)
-        this.enter('shown')
-      }
+          this.hide()
+        },
+        this.$image
+      )
 
-      if (!this.loaded) {
-        this.load(_show.bind(this))
-      } else {
-        _show()
-      }
+      addClass(this.classes.SHOW, this.$overlay)
+
+      this.enter('stopLoading')
+      this.loadingImage()
+
+      this.enter('shown')
+      this.trigger(EVENTS.SHOW)
     }
   }
 
   hide() {
     if (this.is('shown')) {
-      removeClass(this.classes.SHOW, this.$wrap)
-      removeClass(this.classes.TARGETSHOW, this.$target)
-      this.trigger(EVENTS.HIDE)
-      this.leave('shown')
-    }
-
-    if (!this.is('hided')) {
-      this.enter('hided')
-    }
-  }
-
-  prepareLens() {
-    if (!this.$lens) {
-      if (this.options.lensOverlay) {
-        const $overlay = appendTo(
-          `<div class="${this.classes.OVERLAY}"></div>`,
-          this.$wrap
-        )
-        if (isString(this.options.lensOverlay)) {
-          setStyle('background', this.options.lensOverlay, $overlay)
-        }
+      if (this.LOADER) {
+        this.LOADER.hide()
       }
-      if (this.mode === 'outside') {
-        this.$lens = appendTo(
-          `<div class="${this.classes.LENS}"></div>`,
-          this.$wrap
-        )
-      } else {
-        this.$lens = this.$target
-        addClass(this.classes.LENS, this.$lens)
-      }
-    }
+      removeClass(this.classes.SHOW, this.$lens)
+      removeClass(this.classes.SHOW, this.$overlay)
+      removeClass(this.classes.SHOW, this.$window)
 
-    if (!this.$lensImage && this.mode === 'outside') {
-      this.$lensImage = new Image()
-      ;['sizes', 'srcset', 'src'].forEach(prop => {
-        this.$lensImage[prop] = this.$image[prop]
-      })
-
-      append(this.$lensImage, this.$lens)
-    }
-  }
-
-  prepareTargetImage() {
-    if (!this.$target) {
-      this.$target = appendTo(
-        `<div class="${this.classes.TARGET}"></div>`,
-        this.$wrap
+      removeEvent(
+        this.eventName('mousemove mouseleave touchmove touchend touchcancel'),
+        this.$image
       )
-    }
-
-    if (!this.$targetImage) {
-      let $image
-      if (isElement(this.large)) {
-        $image = this.large
-      } else {
-        $image = new Image()
-        if (isString(this.large)) {
-          $image.src = this.large
-        } else if (isPlainObject(this.large)) {
-          Object.assign($image, this.large)
-        }
-      }
-
-      this.$targetImage = $image
-      this.initTargetDimension()
-      append(this.$targetImage, this.$target)
-    }
-  }
-
-  positionLens(x, y) {
-    let left = parseInt(x * this.width - this.lensWidth / 2, 10)
-    let top = parseInt(y * this.height - this.lensHeight / 2, 10)
-
-    if (this.limit && this.mode === 'outside') {
-      if (left > this.width - this.lensWidth) {
-        left = this.width - this.lensWidth
-      } else if (left < 0) {
-        left = 0
-      }
-      if (top > this.height - this.lensHeight) {
-        top = this.height - this.lensHeight
-      } else if (top < 0) {
-        top = 0
-      }
-    }
-
-    const transform =
-      this.zoom === 1
-        ? `translate(${left}px,${top}px)`
-        : `translate3d(${left}px,${top}px,0)`
-    this.$lens.style.transform = transform
-
-    if (this.$lensImage) {
-      const imageTransform =
-        this.zoom === 1
-          ? `translate(${-1 * left}px,${-1 * top}px)`
-          : `translate3d(${-1 * left}px,${-1 * top}px,0)`
-      this.$lensImage.style.transform = imageTransform
-    }
-  }
-
-  positionTarget(x, y) {
-    let left = parseInt(-x * this.zoom * this.width + this.targetWidth / 2, 10)
-    let top = parseInt(-y * this.zoom * this.height + this.targetHeight / 2, 10)
-
-    if (this.limit) {
-      if (left > 0) {
-        left = 0
-      } else if (left < this.targetWidth - this.zoom * this.width) {
-        left = this.targetWidth - this.zoom * this.width
-      }
-      if (top > 0) {
-        top = 0
-      } else if (top < this.targetHeight - this.zoom * this.height) {
-        top = this.targetHeight - this.zoom * this.height
-      }
-    }
-    const transform =
-      this.zoom === 1
-        ? `translate(${left}px,${top}px)`
-        : `translate3d(${left}px,${top}px,0)`
-    this.$targetImage.style.transform = transform
-  }
-
-  zoomTo(zoom, trigger = true) {
-    zoom = parseFloat(zoom)
-
-    if (this.options.lens && this.mode === 'inside' && zoom < 1) {
-      zoom = 1
-    } else if (zoom < this.targetWidth / this.width) {
-      zoom = this.targetWidth / this.width
-    }
-
-    if (zoom < this.options.min) {
-      zoom = this.options.min
-    } else if (zoom > this.options.max) {
-      zoom = this.options.max
-    }
-
-    this.zoom = zoom
-
-    if (this.$targetImage) {
+      this.leave('stopLoading')
       setStyle(
         {
-          width: `${this.width * zoom}px`,
-          height: `${this.height * zoom}px`
+          width: 'auto',
+          height: 'auto',
+          transform: 'none'
+        },
+        this.$windowImage
+      )
+
+      this.leave('shown')
+
+      if (!this.is('hided')) {
+        this.enter('hided')
+      }
+
+      this.trigger(EVENTS.HIDE)
+    }
+  }
+
+  moveTarget(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    if (!this.is('error')) {
+      this.pageX = e.pageX
+      this.pageY = e.pageY
+      this.positionTarget(e, this.$image)
+
+      this.trigger(EVENTS.MOVE, {
+        x: e.pageX,
+        y: e.pageY
+      })
+    }
+  }
+
+  loadingImage() {
+    const imagePreview = new Image()
+    const src = attr(this.options.source, this.$image)
+    imagePreview.src = src
+
+    if (this.is('stopLoading')) {
+      if (this.mode === 'window') {
+        attr('src', src, this.$windowImage)
+      } else {
+        attr('src', src, this.$lensImage)
+      }
+
+      if (this.LOADER) {
+        this.LOADER.show()
+      }
+    }
+
+    bindEvent(
+      'load',
+      () => {
+        this.imageOnLoaded(imagePreview, src)
+      },
+      imagePreview
+    )
+
+    bindEvent(
+      'error',
+      () => {
+        this.imageOnError()
+      },
+      imagePreview
+    )
+  }
+
+  imageOnLoaded(imagePreview, src) {
+    if (this.LOADER) {
+      this.LOADER.hide()
+    }
+
+    if (this.is('error')) {
+      removeClass(this.classes.ERRORSHOW, this.$error)
+      this.leave('error')
+    }
+
+    if (this.is('stopLoading')) {
+      if (this.mode === 'window') {
+        addClass(this.classes.SHOW, this.$window)
+      }
+      if (this.mode === 'inside') {
+        removeClass(this.classes.SHOW, this.$overlay)
+      }
+      this.imageRatio = imagePreview.width / imagePreview.height
+      const e = {
+        pageX: this.pageX,
+        pageY: this.pageY
+      }
+
+      this.prepareImage()
+      this.setImageSrc(src, this.$targetImage)
+      this.setLens()
+      this.positionTarget(e, this.$image)
+
+      this.trigger(EVENTS.LOADED)
+    }
+  }
+
+  imageOnError() {
+    if (this.LOADER) {
+      this.LOADER.hide()
+    }
+
+    removeClass(this.classes.SHOW, this.$overlay)
+
+    if (!this.is('error')) {
+      if (!this.$error) {
+        this.$error = appendTo(
+          template.render(this.options.templates.error.call(this), {
+            classes: this.classes,
+            text: this.errorText
+          }),
+          this.element
+        )
+      }
+
+      addClass(this.classes.ERRORSHOW, this.$error)
+
+      if (this.errorDuration) {
+        setTimeout(() => {
+          removeClass(this.classes.ERRORSHOW, this.$error)
+          this.leave('error')
+        }, this.errorDuration)
+      }
+
+      this.enter('error')
+    }
+
+    this.trigger(EVENTS.ERROR)
+  }
+
+  prepareImage() {
+    const targetRatio = this.targetWidth / this.targetHeight
+    const size = {
+      width: this.targetWidth * this.zoom,
+      height: this.targetHeight * this.zoom
+    }
+
+    if (this.imageRatio > targetRatio) {
+      size.width = 'auto'
+    }
+    if (this.imageRatio < targetRatio) {
+      size.height = 'auto'
+    }
+
+    this.setImageSize(size, this.$targetImage)
+  }
+
+  positionTarget(e, $image) {
+    const mouseX = Math.round(e.pageX - getOffset($image).left)
+    const mouseY = Math.round(e.pageY - getOffset($image).top)
+
+    if (this.mode === 'round') {
+      const x = (e.pageX - getOffset($image).left) / outerWidth($image)
+      const y = (e.pageY - getOffset($image).top) / outerHeight($image)
+      const left = 0.5 * this.lensSize.width - outerWidth(this.$targetImage) * x
+      const top =
+        0.5 * this.lensSize.height - outerHeight(this.$targetImage) * y
+
+      const pos = this.getPosition(mouseX, mouseY)
+
+      this.moveLens(pos.left, pos.top)
+      setStyle(
+        {
+          transform: `translate(${left}px, ${top}px)`
         },
         this.$targetImage
       )
+    } else {
+      const pos = this.getPosition(mouseX, mouseY)
+      const left = -Math.round(outerWidth(this.$targetImage) * pos.x)
+      const top = -Math.round(outerHeight(this.$targetImage) * pos.y)
+
+      if (this.mode === 'window') {
+        this.moveLens(pos.left, pos.top)
+      }
+      this.moveTargetImage(left, top)
+    }
+  }
+
+  moveTargetImage(left, top) {
+    if (left >= 0) {
+      left = 0
+    }
+    if (left <= this.targetWidth - outerWidth(this.$targetImage)) {
+      left = this.targetWidth - outerWidth(this.$targetImage)
+    }
+    if (top >= 0) {
+      top = 0
+    }
+    if (top <= this.targetHeight - outerHeight(this.$targetImage)) {
+      top = this.targetHeight - outerHeight(this.$targetImage)
     }
 
-    if (this.options.lens && this.$lens) {
-      if (this.mode === 'outside') {
-        this.lensWidth = this.width / zoom
-        this.lensHeight = this.height / zoom
+    setStyle(
+      {
+        transform: `translate(${left}px, ${top}px)`
+      },
+      this.$targetImage
+    )
+  }
 
-        setStyle(
-          {
-            width: `${this.lensWidth}px`,
-            height: `${this.lensHeight}px`
-          },
-          this.$lens
-        )
-      } else {
-        this.lensWidth = innerWidth(this.$lens)
-        this.lensHeight = innerHeight(this.$lens)
-        this.targetWidth = this.lensWidth
-        this.targetHeight = this.lensHeight
+  setLens(showLens = true) {
+    let height
+    let width
+
+    if (this.mode === 'round') {
+      width = innerWidth(this.$lens)
+      height = innerHeight(this.$lens)
+    } else {
+      const ratioWidth = this.targetWidth / outerWidth(this.$targetImage)
+      const ratioHeight = this.targetHeight / outerHeight(this.$targetImage)
+      width = Math.round(ratioWidth * outerWidth(this.$image))
+      height = Math.round(ratioHeight * outerHeight(this.$image))
+
+      if (this.mode === 'window') {
+        const src = attr('src', this.$image)
+        const size = {
+          width: outerWidth(this.$image),
+          height: outerHeight(this.$image)
+        }
+        this.setImageSize(size, src, this.$lensImage)
+        this.setImageSrc(src, this.$lensImage)
       }
     }
 
-    if (this.$targetImage && this.position) {
-      this.positionTarget(this.position.x, this.position.y)
+    this.lensSize.width = width
+    this.lensSize.height = height
+
+    if (this.mode !== 'inside') {
+      setStyle({ width, height }, this.$lens)
     }
 
-    if (this.$lens && this.position) {
-      this.positionLens(this.position.x, this.position.y)
+    if (showLens) {
+      addClass(this.classes.SHOW, this.$lens)
+    }
+  }
+
+  getPosition(mouseX, mouseY) {
+    let left = Math.round(mouseX - this.lensSize.width / 2)
+    let top = Math.round(mouseY - this.lensSize.height / 2)
+
+    if (this.mode !== 'round') {
+      if (left <= 0) {
+        left = 0
+      }
+      if (left >= outerWidth(this.$image) - this.lensSize.width) {
+        left = outerWidth(this.$image) - this.lensSize.width
+      }
+      if (top <= 0) {
+        top = 0
+      }
+      if (top >= outerHeight(this.$image) - this.lensSize.height) {
+        top = outerHeight(this.$image) - this.lensSize.height
+      }
     }
 
-    if (trigger) {
-      this.trigger(EVENTS.ZOOM, zoom)
+    return {
+      left,
+      top,
+      x: left / outerWidth(this.$image),
+      y: top / outerHeight(this.$image)
+    }
+  }
+
+  moveLens(left, top) {
+    setStyle(
+      {
+        transform: `translate(${left}px, ${top}px)`
+      },
+      this.$lens
+    )
+
+    setStyle(
+      {
+        transform: `translate(${-left}px, ${-top}px)`
+      },
+      this.$lensImage
+    )
+  }
+
+  setImageSize(size, $image) {
+    setStyle(
+      {
+        width: size.width,
+        height: size.height
+      },
+      $image
+    )
+
+    attr(
+      {
+        width: size.width,
+        height: size.height
+      },
+      $image
+    )
+  }
+
+  setImageSrc(src, $image) {
+    attr({ src }, $image)
+  }
+
+  resetZoom() {
+    if (this.options.min < 1) {
+      this.options.min = 1
+    }
+    if (this.zoom < this.options.min) {
+      this.zoom = this.options.min
+    } else if (this.zoom > this.options.max) {
+      this.zoom = this.options.max
     }
   }
 
   zoomUp(val) {
-    this.zoomBy(val)
+    this.zoom = (this.zoom * 10 + parseFloat(val) * 10) / 10
+    this.resetZoom()
+    this.zoomTarget()
   }
 
   zoomDown(val) {
-    this.zoomBy(-1 * val)
+    this.zoom = (this.zoom * 10 - parseFloat(val) * 10) / 10
+    this.resetZoom()
+    this.zoomTarget()
   }
 
-  zoomBy(val) {
-    this.zoomTo(this.zoom + parseFloat(val))
+  zoomTo(val) {
+    this.zoom = parseFloat(val)
+    this.resetZoom()
+    this.zoomTarget()
+  }
+
+  zoomTarget() {
+    if (this.is('error')) {
+      return
+    }
+
+    const e = {
+      pageX: this.pageX,
+      pageY: this.pageY
+    }
+
+    this.prepareImage()
+    this.setLens(false)
+    this.positionTarget(e, this.$image)
+
+    this.trigger(EVENTS.ZOOM)
+  }
+
+  changeMode(mode) {
+    if (
+      this.is('initialized') &&
+      ['round', 'window', 'inside'].includes(mode)
+    ) {
+      this.mode = mode
+
+      this.initMode()
+      this.reset()
+    }
+  }
+
+  clearClass() {
+    ;['left', 'right', 'top', 'bottom'].forEach(position => {
+      removeClass(
+        this.getClass(this.classes.POSITION, 'position', position),
+        this.$wrap
+      )
+    })
+    removeClass(this.classes.INSIDE, this.element)
+    removeClass(this.classes.ROUND, this.element)
+  }
+
+  reset() {
+    setStyle(
+      {
+        width: '',
+        height: '',
+        transform: ''
+      },
+      this.$lens
+    )
+    setStyle(
+      {
+        width: '',
+        height: '',
+        transform: ''
+      },
+      this.$lensImage
+    )
+    attr(
+      {
+        width: '',
+        height: '',
+        src: ''
+      },
+      this.$lensImage
+    )
+    attr(
+      {
+        width: '',
+        height: '',
+        src: ''
+      },
+      this.$windowImage
+    )
   }
 
   enable() {
@@ -678,50 +720,46 @@ class Magnify extends Component {
     this.trigger(EVENTS.DISABLE)
   }
 
-  resize() {
-    this.initDimension()
-    this.initTargetDimension()
-  }
-
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      if (this.$wrap === this.element) {
-        if (this.options.theme) {
-          removeClass(this.getThemeClasss(), this.$wrap)
+
+      if (this.options.theme) {
+        removeClass(this.getThemeClasss(), this.element)
+      }
+
+      this.clearClass()
+
+      if (this.$overlay) {
+        if (isIE() || isIE11()) {
+          this.$overlay.removeNode(true)
+        } else {
+          this.$overlay.remove()
         }
-        removeClass(this.classes.WRAP, this.$wrap)
-        removeClass(
-          this.getClass(this.classes.MODE, 'mode', this.mode),
-          this.$wrap
-        )
-        removeClass(
-          this.getClass(this.classes.TRIGGER, 'trigger', this.options.trigger),
-          this.$wrap
-        )
-        removeClass(
-          this.getClass(
-            this.classes.OUTSIDEPLACEMENT,
-            'placement',
-            this.options.placement
-          ),
-          this.$wrap
-        )
-        if (this.$lens) {
-          if(isIE() || isIE11()) {
-            this.$lens.removeNode(true);
-          } else {
-            this.$lens.remove()
-          }
+      }
+
+      if (this.$lens) {
+        if (isIE() || isIE11()) {
+          this.$lens.removeNode(true)
+        } else {
+          this.$lens.remove()
         }
-      } else {
-        unwrap(`.${this.classes.WRAP}`, this.$image)
+      }
+
+      if (this.$window) {
+        if (isIE() || isIE11()) {
+          this.$window.removeNode(true)
+        } else {
+          this.$window.remove()
+        }
       }
 
       if (this.LOADER) {
         this.LOADER.destroy()
       }
+
       removeClass(this.classes.IMAGE, this.$image)
+      removeClass(this.classes.NAMESPACE, this.element)
 
       this.leave('initialized')
     }

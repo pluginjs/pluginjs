@@ -3,81 +3,15 @@
 $magnify: "pj-magnify" !default;
 $magnify-target-zindex: $zindex-magnify !default;
 $magnify-lens-zindex: $magnify-target-zindex + 1 !default;
+$magnify-window-zindex: 999999 !default;
 
-$magnify-inside-lens-width: 180px !default;
-$magnify-inside-lens-height: 180px !default;
-$magnify-inside-lens-border-radius: 100% !default;
+$magnify-round-lens-width: 180px !default;
+$magnify-round-lens-height: 180px !default;
+$magnify-round-lens-border-radius: 100% !default;
 
 .#{$magnify} {
   position: relative;
   box-sizing: content-box;
-
-  &-image {
-    width: 100%;
-    height: 100%;
-  }
-
-  &-error {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 300ms, visibility 300ms;
-    transform: translate(-50%,-50%);
-
-    &-show {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
-  &-target {
-    position: absolute;
-    z-index: $magnify-target-zindex;
-    box-sizing: content-box;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 300ms, visibility 300ms;
-
-    &-show {
-      visibility: visible;
-      opacity: 1;
-    }
-    img {
-      position: absolute;
-    }
-  }
-
-  &-inside &-target {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-
-  &-outside-left &-target {
-    top: 0;
-    left: 100%;
-  }
-
-  &-outside-right &-target {
-    top: 0;
-    right: 100%;
-  }
-
-  &-outside-top &-target {
-    bottom: 100%;
-    left: 0;
-  }
-
-  &-outside-bottom &-target {
-    top: 100%;
-    left: 0;
-  }
 
   &-overlay {
     right: 0;
@@ -94,25 +28,92 @@ $magnify-inside-lens-border-radius: 100% !default;
     visibility: hidden;
     opacity: 0;
     transition: opacity 300ms, visibility 300ms;
+
+    &.#{$magnify}-show {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 
   &-lens {
     z-index: $magnify-lens-zindex;
   }
 
-  &-inside &-lens {
-    width: $magnify-inside-lens-width;
-    height: $magnify-inside-lens-height;
-    border-radius: $magnify-inside-lens-border-radius;
+  &-round &-lens {
+    width: $magnify-round-lens-width;
+    height: $magnify-round-lens-height;
+    border-radius: $magnify-round-lens-border-radius;
   }
 
-  &-show &-lens,
-  &-show &-overlay {
-    visibility: visible;
-    opacity: 1;
+  &-inside {
+    .#{$magnify}-lens {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin-top: auto;
+      margin-left: auto;
+      border: none;
+    }
+  }
+
+  &-window {
+    position: absolute;
+    z-index: $magnify-window-zindex;
+    display: none;
+    overflow: hidden;
+
+    img,
+    .#{$magnify}-window-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+    }
+
+    &.#{$magnify}-show {
+      display: block;
+    }
+  }
+
+  &-window-left &-window {
+    top: 0;
+    right: 100%;
+  }
+
+  &-window-right &-window {
+    top: 0;
+    left: 100%;
+  }
+
+  &-window-top &-window {
+    bottom: 100%;
+    left: 0;
+  }
+
+  &-window-bottom &-window {
+    top: 100%;
+    left: 0;
   }
 
   .pj-loader-mask {
+    z-index: 100;
     pointer-events: none; // need for move event
+  }
+
+  &-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 300ms, visibility 300ms;
+    transform: translate(-50%,-50%);
+
+    &-show {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }

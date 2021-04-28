@@ -1,7 +1,10 @@
-import { query } from '@pluginjs/dom'
+import { queryAll } from '@pluginjs/dom'
 import Magnify from '@pluginjs/magnify'
 
-const element = query('#disable-loader .example')
-Magnify.of(element, {
-  loader: false
+const elements = queryAll('#disable-loader .example')
+
+elements.forEach(element => {
+  Magnify.of(element, {
+    loader: false
+  })
 })

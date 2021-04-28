@@ -1,7 +1,8 @@
 import { query } from '@pluginjs/dom'
 import Magnify from '@pluginjs/magnify'
 
-const element = query('#click .example')
+const element = query('#inside .example')
+
 Magnify.of(element, {
-  trigger: 'click'
+  mode: 'inside'
 })

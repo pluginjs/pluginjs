@@ -2,6 +2,7 @@ import { query } from '@pluginjs/dom'
 import Magnify from '@pluginjs/magnify'
 
 const element = query('#default .example')
+const img = query('img', element)
 let api = Magnify.of(element)
 
 function getRandomInt(min, max) {
@@ -14,9 +15,9 @@ query('.api').addEventListener('click', event => {
   const el = event.target
 
   if (!Element.prototype.matches) {
-    Element.prototype.matches = Element.prototype.msMatchesSelector;
+    Element.prototype.matches = Element.prototype.msMatchesSelector
   }
-  
+
   if (!el.matches('[data-api]')) {
     return
   }
@@ -26,29 +27,31 @@ query('.api').addEventListener('click', event => {
       api = Magnify.of(element)
       break
     case 'swap': {
-      const i = getRandomInt(1, 20)
-      api.swap(
-        {
-          src: `https://picsum.photos/400/300?image=${i}`
-        },
-        {
-          src: `https://picsum.photos/800/600?image=${i}`,
-          srcset: `https://picsum.photos/1600/1200?image=${i} 2x`
-        }
+      const i = getRandomInt(1, 200)
+      img.setAttribute('src', `https://picsum.photos/400/300?image=${i}`)
+      img.setAttribute(
+        'data-origin',
+        `https://picsum.photos/1600/1200?image=${i}`
       )
       break
     }
-    case 'show':
-      api.show()
+    case 'window':
+      api.changeMode('window')
       break
-    case 'hide':
-      api.hide()
+    case 'round':
+      api.changeMode('round')
+      break
+    case 'inside':
+      api.changeMode('inside')
+      break
+    case 'zoomUp':
+      api.zoomUp(0.3)
+      break
+    case 'zoomDown':
+      api.zoomDown(0.3)
       break
     case 'zoomTo':
-      api.zoomTo(1.5)
-      break
-    case 'zoomBy':
-      api.zoomBy(el.dataset.value)
+      api.zoomTo(el.dataset.value)
       break
     case 'disable':
       api.disable()
@@ -59,8 +62,7 @@ query('.api').addEventListener('click', event => {
     case 'destroy':
       api.destroy()
       break
-    default: {
-      console.info(el.dataset.api)
-    }
+    default:
+      break
   }
 })

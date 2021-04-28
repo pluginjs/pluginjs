@@ -1,10 +1,10 @@
 import { queryAll } from '@pluginjs/dom'
 import Magnify from '@pluginjs/magnify'
 
-const elements = queryAll('#outside .example')
+const elements = queryAll('#window .example')
 
 elements.forEach(el =>
   Magnify.of(el, {
-    mode: 'outside'
+    mode: 'window'
   })
 )
