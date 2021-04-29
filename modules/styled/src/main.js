@@ -121,7 +121,7 @@ export const outerHeight = (includeMargins, el, isFloat = false) => {
   }
 
   const offsetHeight = isFloat
-    ? parseFloat(getStyle('width', el), 10)
+    ? parseFloat(getStyle('height', el), 10)
     : el.offsetHeight
 
   if (includeMargins) {

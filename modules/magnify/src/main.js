@@ -174,14 +174,6 @@ class Magnify extends Component {
       this.$wrap
     )
     this.$windowImage = query(`.${this.classes.WINDOWIMAGE}`, this.$window)
-
-    setStyle(
-      {
-        width: this.windowWidth,
-        height: this.windowHeight
-      },
-      this.$window
-    )
   }
 
   initMode() {
@@ -196,6 +188,14 @@ class Magnify extends Component {
         this.$targetImage = this.$windowImage
         this.targetWidth = this.windowWidth
         this.targetHeight = this.windowHeight
+
+        setStyle(
+          {
+            width: this.windowWidth,
+            height: this.windowHeight
+          },
+          this.$window
+        )
         break
 
       default:
@@ -204,8 +204,8 @@ class Magnify extends Component {
           this.element
         )
         this.$targetImage = this.$lensImage
-        this.targetWidth = outerWidth(this.element)
-        this.targetHeight = outerHeight(this.element)
+        this.targetWidth = outerWidth(false, this.element, true)
+        this.targetHeight = outerHeight(false, this.element, true)
     }
   }
 
@@ -449,11 +449,16 @@ class Magnify extends Component {
     const mouseY = Math.round(e.pageY - getOffset($image).top)
 
     if (this.mode === 'round') {
-      const x = (e.pageX - getOffset($image).left) / outerWidth($image)
-      const y = (e.pageY - getOffset($image).top) / outerHeight($image)
-      const left = 0.5 * this.lensSize.width - outerWidth(this.$targetImage) * x
+      const x =
+        (e.pageX - getOffset($image).left) / outerWidth(false, $image, true)
+      const y =
+        (e.pageY - getOffset($image).top) / outerHeight(false, $image, true)
+      const left =
+        0.5 * this.lensSize.width -
+        outerWidth(false, this.$targetImage, true) * x
       const top =
-        0.5 * this.lensSize.height - outerHeight(this.$targetImage) * y
+        0.5 * this.lensSize.height -
+        outerHeight(false, this.$targetImage, true) * y
 
       const pos = this.getPosition(mouseX, mouseY)
 
@@ -466,8 +471,12 @@ class Magnify extends Component {
       )
     } else {
       const pos = this.getPosition(mouseX, mouseY)
-      const left = -Math.round(outerWidth(this.$targetImage) * pos.x)
-      const top = -Math.round(outerHeight(this.$targetImage) * pos.y)
+      const left = -Math.round(
+        outerWidth(false, this.$targetImage, true) * pos.x
+      )
+      const top = -Math.round(
+        outerHeight(false, this.$targetImage, true) * pos.y
+      )
 
       if (this.mode === 'window') {
         this.moveLens(pos.left, pos.top)
@@ -480,14 +489,17 @@ class Magnify extends Component {
     if (left >= 0) {
       left = 0
     }
-    if (left <= this.targetWidth - outerWidth(this.$targetImage)) {
-      left = this.targetWidth - outerWidth(this.$targetImage)
+    if (left <= this.targetWidth - outerWidth(false, this.$targetImage, true)) {
+      left = this.targetWidth - outerWidth(false, this.$targetImage, true)
     }
     if (top >= 0) {
       top = 0
     }
-    if (top <= this.targetHeight - outerHeight(this.$targetImage)) {
-      top = this.targetHeight - outerHeight(this.$targetImage)
+    if (
+      top <=
+      this.targetHeight - outerHeight(false, this.$targetImage, true)
+    ) {
+      top = this.targetHeight - outerHeight(false, this.$targetImage, true)
     }
 
     setStyle(
@@ -506,18 +518,20 @@ class Magnify extends Component {
       width = innerWidth(this.$lens)
       height = innerHeight(this.$lens)
     } else {
-      const ratioWidth = this.targetWidth / outerWidth(this.$targetImage)
-      const ratioHeight = this.targetHeight / outerHeight(this.$targetImage)
-      width = Math.round(ratioWidth * outerWidth(this.$image))
-      height = Math.round(ratioHeight * outerHeight(this.$image))
+      const ratioWidth =
+        this.targetWidth / outerWidth(false, this.$targetImage, true)
+      const ratioHeight =
+        this.targetHeight / outerHeight(false, this.$targetImage, true)
+      width = ratioWidth * outerWidth(false, this.$image, true)
+      height = ratioHeight * outerHeight(false, this.$image, true)
 
       if (this.mode === 'window') {
         const src = attr('src', this.$image)
         const size = {
-          width: outerWidth(this.$image),
-          height: outerHeight(this.$image)
+          width: outerWidth(false, this.$image, true),
+          height: outerHeight(false, this.$image, true)
         }
-        this.setImageSize(size, src, this.$lensImage)
+        this.setImageSize(size, this.$lensImage)
         this.setImageSrc(src, this.$lensImage)
       }
     }
@@ -542,39 +556,37 @@ class Magnify extends Component {
       if (left <= 0) {
         left = 0
       }
-      if (left >= outerWidth(this.$image) - this.lensSize.width) {
-        left = outerWidth(this.$image) - this.lensSize.width
+      if (left >= outerWidth(false, this.$image, true) - this.lensSize.width) {
+        left = outerWidth(false, this.$image, true) - this.lensSize.width
       }
       if (top <= 0) {
         top = 0
       }
-      if (top >= outerHeight(this.$image) - this.lensSize.height) {
-        top = outerHeight(this.$image) - this.lensSize.height
+      if (top >= outerHeight(false, this.$image, true) - this.lensSize.height) {
+        top = outerHeight(false, this.$image, true) - this.lensSize.height
       }
     }
 
     return {
       left,
       top,
-      x: left / outerWidth(this.$image),
-      y: top / outerHeight(this.$image)
+      x: left / outerWidth(false, this.$image, true),
+      y: top / outerHeight(false, this.$image, true)
     }
   }
 
   moveLens(left, top) {
-    setStyle(
-      {
-        transform: `translate(${left}px, ${top}px)`
-      },
-      this.$lens
-    )
+    const lensTransform =
+      this.zoom === 1
+        ? `translate(${left}px, ${top}px)`
+        : `translate3d(${left}px, ${top}px, 0)`
+    const lensImgTransform =
+      this.zoom === 1
+        ? `translate(${-left}px, ${-top}px)`
+        : `translate3d(${-left}px, ${-top}px, 0)`
 
-    setStyle(
-      {
-        transform: `translate(${-left}px, ${-top}px)`
-      },
-      this.$lensImage
-    )
+    setStyle({ transform: lensTransform }, this.$lens)
+    setStyle({ transform: lensImgTransform }, this.$lensImage)
   }
 
   setImageSize(size, $image) {
