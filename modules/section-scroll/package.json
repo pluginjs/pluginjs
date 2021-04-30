@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "scroll",
   "main": "dist/section-scroll.common.js",
   "module": "dist/section-scroll.esm.js",
@@ -47,9 +47,9 @@
     "@pluginjs/is": "^0.8.6",
     "@pluginjs/scroll": "^0.8.6",
     "@pluginjs/scroll-spy": "^0.8.7",
-    "@pluginjs/styled": "^0.8.6",
+    "@pluginjs/styled": "^0.8.7",
     "@pluginjs/template": "^0.8.6",
-    "@pluginjs/tooltip": "^0.8.7",
+    "@pluginjs/tooltip": "^0.8.8",
     "hammerjs": "*"
   },
   "devDependencies": {
@@ -84,5 +84,5 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6"
+  "gitHead": "be006e0f2bdf496bd1af53da0b7ccda5ca727801"
 }

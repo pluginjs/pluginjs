@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.11",
+  "version": "0.8.12",
   "category": "form",
   "main": "dist/select.common.js",
   "module": "dist/select.esm.js",
@@ -41,7 +41,7 @@
     "@pluginjs/component": "^0.8.6",
     "@pluginjs/decorator": "^0.8.7",
     "@pluginjs/dom": "^0.8.6",
-    "@pluginjs/dropdown": "^0.8.11",
+    "@pluginjs/dropdown": "^0.8.12",
     "@pluginjs/events": "^0.8.7",
     "@pluginjs/is": "^0.8.6",
     "@pluginjs/match": "^0.8.6",
@@ -70,5 +70,5 @@
       "fixtures"
     ]
   },
-  "gitHead": "c290de9b0e5456a45889dd6a5eb44e8a18e71be4"
+  "gitHead": "be006e0f2bdf496bd1af53da0b7ccda5ca727801"
 }

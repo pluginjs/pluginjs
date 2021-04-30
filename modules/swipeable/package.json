@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "ui",
   "main": "dist/swipeable.common.js",
   "module": "dist/swipeable.esm.js",
@@ -41,7 +41,7 @@
     "@pluginjs/component": "^0.8.6",
     "@pluginjs/decorator": "^0.8.7",
     "@pluginjs/dom": "^0.8.6",
-    "@pluginjs/styled": "^0.8.6",
+    "@pluginjs/styled": "^0.8.7",
     "animejs": "*",
     "hammerjs": "*"
   },
@@ -71,5 +71,5 @@
       "fixtures"
     ]
   },
-  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6"
+  "gitHead": "be006e0f2bdf496bd1af53da0b7ccda5ca727801"
 }

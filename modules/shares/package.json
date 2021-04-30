@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.1.7",
+  "version": "0.1.8",
   "category": "ui",
   "main": "dist/shares.common.js",
   "module": "dist/shares.esm.js",
@@ -43,7 +43,7 @@
     "@pluginjs/dom": "^0.8.6",
     "@pluginjs/events": "^0.8.7",
     "@pluginjs/template": "^0.8.6",
-    "@pluginjs/tooltip": "^0.8.7",
+    "@pluginjs/tooltip": "^0.8.8",
     "@pluginjs/utils": "^0.8.6"
   },
   "devDependencies": {
@@ -74,5 +74,6 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "gitHead": "be006e0f2bdf496bd1af53da0b7ccda5ca727801"
 }

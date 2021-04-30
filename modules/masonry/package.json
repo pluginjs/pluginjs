@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.1.11",
+  "version": "0.1.12",
   "category": "media",
   "main": "dist/masonry.common.js",
   "module": "dist/masonry.esm.js",
@@ -43,8 +43,8 @@
     "@pluginjs/dom": "^0.8.6",
     "@pluginjs/image-loader": "^0.8.6",
     "@pluginjs/is": "^0.8.6",
-    "@pluginjs/loader": "^0.8.7",
-    "@pluginjs/styled": "^0.8.6",
+    "@pluginjs/loader": "^0.8.8",
+    "@pluginjs/styled": "^0.8.7",
     "animejs": "*"
   },
   "devDependencies": {
@@ -79,5 +79,5 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "c290de9b0e5456a45889dd6a5eb44e8a18e71be4"
+  "gitHead": "be006e0f2bdf496bd1af53da0b7ccda5ca727801"
 }

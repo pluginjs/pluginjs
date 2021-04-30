@@ -3,7 +3,7 @@
   "name": "reveal-samples",
   "description": "Simple reveal example",
   "license": "GPL-3.0",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pluginjs/dom": "^0.8.6",
-    "@pluginjs/reveal": "^0.8.8"
+    "@pluginjs/reveal": "^0.8.9"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

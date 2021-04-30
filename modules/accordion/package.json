@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "ui",
   "main": "dist/accordion.common.js",
   "module": "dist/accordion.esm.js",
@@ -45,7 +45,7 @@
     "@pluginjs/events": "^0.8.7",
     "@pluginjs/factory": "^0.8.6",
     "@pluginjs/is": "^0.8.6",
-    "@pluginjs/styled": "^0.8.6",
+    "@pluginjs/styled": "^0.8.7",
     "@pluginjs/styles": "^0.8.4",
     "@pluginjs/utils": "^0.8.6",
     "animejs": "*",
@@ -84,6 +84,6 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6",
+  "gitHead": "be006e0f2bdf496bd1af53da0b7ccda5ca727801",
   "sassrc": ".sassrc.js"
 }
