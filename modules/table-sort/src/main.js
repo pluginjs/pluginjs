@@ -11,6 +11,7 @@ import { compose, curry } from '@pluginjs/utils'
 import { attr, append, children, query, getData, setData } from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass } from '@pluginjs/classes'
+import { isElement } from '@pluginjs/is'
 import {
   classes as CLASSES,
   defaults as DEFAULTS,
@@ -199,9 +200,7 @@ class TableSort extends Component {
       const direction =
         config.direction || isDesc(columnNameList[index]) ? 'asc' : 'desc'
       this.data = this.format(this.data, { key: index, direction })
-      Dataset.of(columnNameList)
-        .clear()
-        .map(direction, index)
+      Dataset.of(columnNameList).clear().map(direction, index)
       if (this.options.icons) {
         columnNameList[index]
           .querySelector('i')
@@ -239,7 +238,7 @@ class TableSort extends Component {
       Object.entries(column).reduce((initState, [key, value]) => {
         const index = keys.indexOf(key)
         const dom = document.createElement('td')
-        if (value instanceof HTMLElement) {
+        if (value instanceof HTMLElement || isElement(value)) {
           dom.appendChild(value)
         } else {
           dom.textContent = value

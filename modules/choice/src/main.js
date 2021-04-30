@@ -1,5 +1,5 @@
 import Component from '@pluginjs/component'
-import { isArray, isIE, isIE11 } from '@pluginjs/is'
+import { isArray, isIE, isIE11, isElement } from '@pluginjs/is'
 import template from '@pluginjs/template'
 import { arrayEqual, deepMerge, compose, triggerNative } from '@pluginjs/utils'
 import {
@@ -69,25 +69,25 @@ class Choice extends Component {
     const override = {}
 
     if (!Element.prototype.matches) {
-      Element.prototype.matches = Element.prototype.msMatchesSelector;
+      Element.prototype.matches = Element.prototype.msMatchesSelector
     }
 
     if (this.$options.length !== 0) {
       override.data = {}
-      
-      if(isIE()||isIE11()) {
+
+      if (isIE() || isIE11()) {
         const elements = queryAll('option[selected]', this.$element)
         const value = []
-        for(let i in elements) {
-          value.push(elements[i].value)
+        for (const i in elements) {
+          if (Object.prototype.hasOwnProperty.call(elements, i)) {
+            value.push(elements[i].value)
+          }
         }
-        override.value = this.$element.multiple
-        ? value
-        : this.$element.value
+        override.value = this.$element.multiple ? value : this.$element.value
       } else {
         override.value = this.$element.multiple
-        ? Array.from(this.$element.selectedOptions).map(el => el.value)
-        : this.$element.value
+          ? Array.from(this.$element.selectedOptions).map(el => el.value)
+          : this.$element.value
       }
 
       override.multiple = this.$element.multiple
@@ -107,7 +107,7 @@ class Choice extends Component {
 
     this.setupClasses()
     this.setupOptions(options)
- 
+
     this.options = deepMerge({}, this.options, override)
     this.data = this.options.data || getData('data', this.$element)
     this.value = this.$element.value
@@ -227,7 +227,7 @@ class Choice extends Component {
       if (this.is('disabled')) {
         return false
       }
-   
+
       const $item = target.matches('[data-value]')
         ? target
         : closest('[data-value]', target)
@@ -237,7 +237,7 @@ class Choice extends Component {
       if (data.disabled) {
         return false
       }
-   
+
       if (this.options.clickModal) {
         Modal.open({
           content: this.options.modalContent,
@@ -247,7 +247,7 @@ class Choice extends Component {
             {
               action: 'cancel',
               label: 'Cancel',
-              classes: 'pj-btn pj-modal-btn-alignment',
+              classes: 'pj-btn pj-modal-btn-alignment'
             },
             {
               action: 'success',
@@ -268,16 +268,14 @@ class Choice extends Component {
             }
           ]
         })
-      } else {
-        if (this.options.multiple) {
-          if (this.isSelected(value)) {
-            this.unselect($item)
-          } else {
-            this.select($item)
-          }
+      } else if (this.options.multiple) {
+        if (this.isSelected(value)) {
+          this.unselect($item)
         } else {
           this.select($item)
         }
+      } else {
+        this.select($item)
       }
 
       return false
@@ -485,7 +483,7 @@ class Choice extends Component {
 
   select(value, trigger = true, update = true) {
     let $item
-    if (value instanceof HTMLElement) {
+    if (value instanceof HTMLElement || isElement(value)) {
       $item = value
       value = getData('value', $item)
     } else {
@@ -543,7 +541,7 @@ class Choice extends Component {
 
   unselect(value, trigger = true, update = true) {
     let $item
-    if (value instanceof HTMLElement) {
+    if (value instanceof HTMLElement || isElement(value)) {
       $item = value
       value = getData('value', $item)
     } else {
@@ -551,8 +549,9 @@ class Choice extends Component {
     }
 
     if (this.options.overflow) {
-      if ( this.$dropdown.contains($item) &&
-      queryAll(`.${this.classes.SELECTED}`, this.$dropdown).length == 1
+      if (
+        this.$dropdown.contains($item) &&
+        queryAll(`.${this.classes.SELECTED}`, this.$dropdown).length === 1
       ) {
         removeClass(this.classes.SELECTED, this.$toggle)
       }
@@ -657,8 +656,8 @@ class Choice extends Component {
       }
 
       if (childrenMatchSelector('[data-value]', this.$dropdown).length === 0) {
-        if(isIE()||isIE11()) {
-          this.$toggle.removeNode(true);
+        if (isIE() || isIE11()) {
+          this.$toggle.removeNode(true)
         } else {
           this.$toggle.remove()
         }
@@ -721,13 +720,13 @@ class Choice extends Component {
   destroy() {
     if (this.is('initialized')) {
       this.unbind()
-      
-      if(isIE()||isIE11()) {
-        this.$wrap.removeNode(true);
+
+      if (isIE() || isIE11()) {
+        this.$wrap.removeNode(true)
       } else {
         this.$wrap.remove()
       }
-  
+
       showElement(this.$element)
       this.leave('initialized')
     }

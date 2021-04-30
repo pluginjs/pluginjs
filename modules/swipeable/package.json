@@ -42,6 +42,7 @@
     "@pluginjs/decorator": "^0.8.7",
     "@pluginjs/dom": "^0.8.6",
     "@pluginjs/styled": "^0.8.7",
+    "@pluginjs/is": "^0.8.6",
     "animejs": "*",
     "hammerjs": "*"
   },

@@ -1,6 +1,7 @@
 import Component from '@pluginjs/component'
 import Hammer from 'hammerjs'
 import Anime from 'animejs'
+import { isElement } from '@pluginjs/is'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle, outerWidth, outerHeight } from '@pluginjs/styled'
 import {
@@ -294,7 +295,7 @@ class Swipeable extends Component {
 
     if (container) {
       container =
-        container instanceof HTMLElement
+        container instanceof HTMLElement || isElement(container)
           ? container
           : document.querySelector(container)
     } else {

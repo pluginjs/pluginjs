@@ -1,4 +1,5 @@
 import { attr, queryAll } from '@pluginjs/dom'
+import { isElement } from '@pluginjs/is'
 import { deepMerge } from '@pluginjs/utils'
 import Pj from '@pluginjs/factory'
 
@@ -63,7 +64,7 @@ const Initializer = {
       selector instanceof HTMLCollection
     ) {
       elements = Array.from(selector)
-    } else if (selector instanceof Node) {
+    } else if (selector instanceof Node || isElement(selector)) {
       elements = Array.of(selector)
     } else if (selector instanceof Array) {
       elements = selector

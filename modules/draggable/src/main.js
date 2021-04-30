@@ -4,6 +4,7 @@ import Hammer from 'hammerjs'
 import { addClass, removeClass } from '@pluginjs/classes'
 import { setStyle } from '@pluginjs/styled'
 import getSize from './getSize'
+import { isElement } from '@pluginjs/is'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import {
   eventable,
@@ -220,9 +221,9 @@ class Draggable extends Component {
     if (!container) {
       return null
     }
-    const isElement = container instanceof HTMLElement
+    const isEle = container instanceof HTMLElement || isElement(container)
 
-    if (isElement) {
+    if (isEle) {
       return container
     }
 

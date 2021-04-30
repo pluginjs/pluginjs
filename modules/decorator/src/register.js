@@ -1,4 +1,4 @@
-import { isFunction, isString, isArray } from '@pluginjs/is'
+import { isFunction, isString, isArray, isElement } from '@pluginjs/is'
 import GlobalComponent from '@pluginjs/global-component'
 import Pj from '@pluginjs/factory'
 import { deepMerge, getUID } from '@pluginjs/utils'
@@ -90,7 +90,7 @@ export default function register(name, obj = {}) {
         ) {
           return Array.from(selector)
         }
-        if (selector instanceof Node) {
+        if (selector instanceof Node || isElement(selector)) {
           return Array.of(selector)
         }
         if (isArray(selector)) {
