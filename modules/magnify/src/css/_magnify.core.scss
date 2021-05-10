@@ -42,6 +42,11 @@ $magnify-round-lens-border-radius: 100% !default;
 
   &-lens {
     z-index: $magnify-lens-zindex;
+
+    &-image {
+      max-width: none !important;
+      max-height: none !important;
+    }
   }
 
   &-round &-lens {
