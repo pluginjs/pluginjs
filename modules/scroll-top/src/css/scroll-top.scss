@@ -15,6 +15,8 @@ $scrollTop-square-border-radius: $border-radius-base;
 $scrollTop-color: $gray;
 $scrollTop-hover-color: $gray-darker;
 
+$scrollTop-box-shadow: $box-shadow-3;
+
 $scrollTop-solid-color: $color-white;
 $scrollTop-solid-bg: $scrollTop-color;
 $scrollTop-solid-hover-bg: $scrollTop-hover-color;
@@ -34,6 +36,7 @@ $scrollTop-disabled-bg: $gray-lightest;
   font-family: $scrollTop-font-family;
   font-size: $scrollTop-font-size;
   color: $scrollTop-color;
+  box-shadow: $scrollTop-box-shadow;
 
   &:hover,
   &:focus {
