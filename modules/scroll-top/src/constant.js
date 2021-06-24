@@ -31,7 +31,7 @@ export const defaults = {
   duration: 1000,
   easing: 'linear',
   animation: 'fade', // fade, slide, none
-  animationDuration: 500,
+  animationDuration: 200,
 
   mobile: {
     width: 768,
@@ -46,7 +46,7 @@ export const defaults = {
   locale: 'en',
   localeFallbacks: true,
   throttle: null,
-  icon: 'pj-scrollTop-icon pj-icon pj-icon-arrow-slim-up',
+  icon: 'pj-scrollTop-icon pj-icon pj-icon-angle-up',
   color: null, // custom color
   background: null, // custom background
   template() {

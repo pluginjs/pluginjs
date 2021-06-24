@@ -37,13 +37,13 @@ $scrollTop-gutter-bottom: 1.25rem !default;
   }
 
   &-fade {
-    transition-property: opacity;
+    transition-property: opacity, color, background-color;
   }
 }
 
 .#{$scrollTop}-slide {
   bottom: -100px;
-  transition-property: bottom, opacity;
+  transition-property: bottom, opacity, color, background-color;
 
   &.#{$scrollTop}-show {
     bottom: $scrollTop-gutter-bottom;

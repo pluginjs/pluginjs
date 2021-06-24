@@ -16,17 +16,23 @@ $scrollTop-color: $gray;
 $scrollTop-hover-color: $gray-darker;
 
 $scrollTop-box-shadow: $box-shadow-3;
+$scrollTop-dark-box-shadow: $box-shadow-1;
+$scrollTop-dark-hover-box-shadow: $box-shadow-3;
 
 $scrollTop-solid-color: $color-white;
 $scrollTop-solid-bg: $scrollTop-color;
 $scrollTop-solid-hover-bg: $scrollTop-hover-color;
 
-$scrollTop-light-color: $gray-light;
+$scrollTop-light-color: $gray-dark;
 $scrollTop-light-hover-color: $color-white;
 
 $scrollTop-light-solid-bg: $color-white;
 $scrollTop-light-solid-color: $scrollTop-color;
 $scrollTop-light-solid-hover-color: $scrollTop-hover-color;
+
+$scrollTop-dark-solid-bg: #252627;
+$scrollTop-dark-solid-color: #cbcccd;
+$scrollTop-dark-solid-hover-color: $color-white;
 
 $scrollTop-disabled-bg: $gray-lightest;
 
@@ -36,7 +42,6 @@ $scrollTop-disabled-bg: $gray-lightest;
   font-family: $scrollTop-font-family;
   font-size: $scrollTop-font-size;
   color: $scrollTop-color;
-  box-shadow: $scrollTop-box-shadow;
 
   &:hover,
   &:focus {
@@ -58,6 +63,7 @@ $scrollTop-disabled-bg: $gray-lightest;
     color: $scrollTop-solid-color;
     text-indent: 100%;
     background-color: $scrollTop-solid-bg;
+    box-shadow: $scrollTop-box-shadow;
 
     &:hover,
     &:focus {
@@ -80,20 +86,6 @@ $scrollTop-disabled-bg: $gray-lightest;
     }
   }
 
-  &-lighten {
-    &:hover,
-    &:focus {
-      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
-    }
-  }
-
-  &-darken {
-    &:hover,
-    &:focus {
-      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-    }
-  }
-
   &-light {
     color: $scrollTop-light-color;
 
@@ -111,6 +103,27 @@ $scrollTop-disabled-bg: $gray-lightest;
       &:focus {
         color: $scrollTop-light-solid-hover-color;
         background-color: $scrollTop-light-solid-bg;
+      }
+    }
+  }
+
+  &-dark {
+    // &:hover,
+    // &:focus {
+    //   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+    // }
+
+    &.#{$scrollTop}-square,
+    &.#{$scrollTop}-circle {
+      color: $scrollTop-dark-solid-color;
+      background-color: $scrollTop-dark-solid-bg;
+      box-shadow: $scrollTop-dark-box-shadow;
+
+      &:hover,
+      &:focus {
+        color: $scrollTop-dark-solid-hover-color;
+        box-shadow: $scrollTop-dark-hover-box-shadow;
+        // background-color: $scrollTop-light-solid-bg;
       }
     }
   }

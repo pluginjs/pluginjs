@@ -50,12 +50,12 @@ queryAll('[data-option]').forEach(el =>
   })
 )
 
-color.addEventListener('change', () => {
-  const value = color.value
+// color.addEventListener('change', () => {
+//   const value = color.value
 
-  if (value === 'default') {
-    example.style.background = '#fff'
-  } else {
-    example.style.background = '#333'
-  }
-})
+//   if (value === 'default') {
+//     example.style.background = '#fff'
+//   } else {
+//     example.style.background = '#333'
+//   }
+// })
