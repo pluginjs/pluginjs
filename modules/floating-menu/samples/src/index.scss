@@ -1,0 +1,85 @@
+// import floating-menu css
+@import "@pluginjs/floating-menu/src/css/floating-menu.scss";
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.header,
+.main,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+}
+
+.header,
+.footer {
+  height: 500px;
+}
+
+.main {
+  height: 1500px;
+}
+
+.demo {
+  &-panel {
+    padding: 30px 24px;
+  }
+
+  &-header {
+    text-align: center;
+
+    hr {
+      width: 80%;
+    }
+  }
+
+  &-content {
+    padding: 45px 0;
+
+    .col + .col{
+      margin-top: 20px;
+    }
+  }
+
+  &-link {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  &-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #4c6aff;
+    background-color: #FBE5C6;
+  }
+
+  &-footer {
+    &-items {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+}
+
+.placeholder-bg {
+  color: #fff;
+  background-color: #5ACAD0;
+}

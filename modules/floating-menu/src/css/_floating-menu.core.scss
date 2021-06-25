@@ -1,0 +1,102 @@
+@import "@pluginjs/styles/variables.scss";
+
+// Vars
+// =====================
+$floatingMenu: "pj-floatingMenu" !default;
+$floatingMenu-font-size-base: $font-size-md !default;
+$floatingMenu-size: 500px !default;
+$floatingMenu-zindex: 10000 !default;
+$floatingMenu-mask-zindex: 9999 !default;
+$floatingMenu-toggle-size: 66px !default;
+$floatingMenu-nav-top: 150px !default;
+$floatingMenu-nav-left: $floatingMenu-toggle-size + 8px !default;
+
+
+// Core
+// =====================
+.#{$floatingMenu} {
+
+  @media screen and (max-width: 578px) {
+    &,
+    &-mask {
+      display: none;
+    }
+
+    &-lock {
+      overflow: visible;
+    }
+  }
+  position: fixed;
+  top: 0;
+  right: -$floatingMenu-size;
+  z-index: $floatingMenu-zindex;
+  width: $floatingMenu-size;
+  height: 100%;
+  min-height: 100%;
+
+  &.#{$floatingMenu}-active {
+    transform: translateX(-100%);
+  }
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $floatingMenu-mask-zindex;
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+    &.#{$floatingMenu}-active {
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+    }
+  }
+
+  &-lock {
+    overflow: hidden;
+  }
+
+  &-nav {
+    position: absolute;
+    top: $floatingMenu-nav-top;
+    left: -$floatingMenu-nav-left;
+  }
+
+  &-content {
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%);
+
+    &.#{$floatingMenu}-active {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: $floatingMenu-toggle-size;
+    height: $floatingMenu-toggle-size;
+  }
+}

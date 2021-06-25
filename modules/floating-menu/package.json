@@ -1,0 +1,78 @@
+{
+  "name": "@pluginjs/floating-menu",
+  "description": "A flexible modern floating-menu js plugin.",
+  "license": "GPL-3.0",
+  "author": "Creation Studio Limited",
+  "homepage": "https://pluginjs.com",
+  "repository": {
+    "url": "git@github.com:pluginjs/pluginjs.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/pluginjs/pluginjs/issues"
+  },
+  "version": "0.0.1",
+  "category": "ui",
+  "main": "dist/floating-menu.common.js",
+  "module": "dist/floating-menu.esm.js",
+  "umd": "dist/floating-menu.js",
+  "unpkg": "dist/floating-menu.js",
+  "jsdelivr": "dist/floating-menu.js",
+  "source": "src/main.js",
+  "style": "dist/floating-menu.css",
+  "sass": "src/css/floating-menu.scss",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "npm run build:js & npm run build:scss",
+    "build:js": "plugin script build-js",
+    "build:md": "plugin script build-md",
+    "build:scss": "plugin script build-scss",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "eslint ./src/**/*.js --fix",
+    "lint:scss": "stylelint ./src/**/*.scss --fix",
+    "prepublishOnly": "npm run build",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@pluginjs/classes": "^0.8.6",
+    "@pluginjs/component": "^0.8.6",
+    "@pluginjs/decorator": "^0.8.7",
+    "@pluginjs/dom": "^0.8.6",
+    "@pluginjs/events": "^0.8.7",
+    "@pluginjs/factory": "^0.8.6",
+    "@pluginjs/is": "^0.8.6",
+    "@pluginjs/template": "^0.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@pluginjs/browserslist-config": "^1.3.2",
+    "@pluginjs/cli": "^0.8.3",
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.1.0",
+    "babel-jest": "*",
+    "jest": "*",
+    "jest-extended": "*",
+    "rename": "^1.0.4",
+    "rollup": "^2.38.1",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-terser": "*"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-extended",
+    "verbose": true,
+    "testURL": "http://localhost",
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  },
+  "browserslist": [
+    "extends @pluginjs/browserslist-config"
+  ]
+}

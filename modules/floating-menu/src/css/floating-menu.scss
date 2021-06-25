@@ -1,0 +1,73 @@
+@import "@pluginjs/styles/variables.scss";
+@import "floating-menu.core";
+
+// Vars
+// =====================
+$floatingMenu: "pj-floatingMenu";
+$floatingMenu-mask-bg: rgba(0, 0, 0, 0.2);
+
+$floatingMenu-content-bg: $color-white;
+$floatingMenu-content-box-shadow: $box-shadow-2;
+
+$floatingMenu-panel-bg: $color-white;
+
+$floatingMenu-toggle-font-size: 0.75 * $floatingMenu-font-size-base;
+$floatingMenu-toggle-icon-font-size: 1.5 * $floatingMenu-font-size-base;
+$floatingMenu-toggle-padding: 6px;
+$floatingMenu-toggle-gutter: 0.375 * $floatingMenu-font-size-base;
+$floatingMenu-toggle-border-radius: 4px;
+$floatingMenu-toggle-color: $gray-dark;
+$floatingMenu-toggle-active-color: #121212;
+$floatingMenu-toggle-bg: $color-white;
+$floatingMenu-toggle-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+
+// default
+// =====================
+.#{$floatingMenu} {
+  transition: transform 0.3s;
+
+  &-mask {
+    background-color: $floatingMenu-mask-bg;
+    transition: opacity 0.2s;
+  }
+
+  &-content {
+    background-color: $floatingMenu-content-bg;
+    box-shadow: $floatingMenu-content-box-shadow;
+  }
+
+  &-panel {
+    background-color: $floatingMenu-panel-bg;
+    transition: transform 0.2s, visibility 0.2s, opacity 0.2s;
+  }
+
+  &-toggle {
+    padding: $floatingMenu-toggle-padding;
+    font-size: $floatingMenu-toggle-font-size;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $floatingMenu-toggle-color;
+    text-align: center;
+    text-decoration: none;
+    background-color: $floatingMenu-toggle-bg;
+    border-radius: $floatingMenu-toggle-border-radius;
+    box-shadow: $floatingMenu-toggle-box-shadow;
+    transition: color 0.3s;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &.#{$floatingMenu}-active {
+      color: $floatingMenu-toggle-active-color;
+    }
+
+    & + & {
+      margin-top: $floatingMenu-toggle-gutter;
+    }
+
+    .icon,
+    i {
+      font-size: $floatingMenu-toggle-icon-font-size;
+    }
+  }
+}
