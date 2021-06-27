@@ -1,24 +1,35 @@
-<h2>Type: Html</h2>
-<div class="header">Header</div>
-<div class="main">Main</div>
-<div class="footer">Footer</div>
-<div class="floating-menu">
-  <div>
-    <a href="javascript: void(0);" data-id="demos" title="Demos">
-      <i class="pj-icon pj-icon-star-solid"></i>
-      Demos
-    </a>
-    <a href="#" target="_blank" title="Buy Now">
-      <i class="pj-icon pj-icon-shop"></i>
-      Buy Now
-    </a>
-    <a href="javascript: void(0);" data-id="blogs" title="Blogs">
-      <i class="pj-icon pj-icon-news"></i>
-      Blogs
-    </a>
-  </div>
-  <div>
-    <div data-id="demos">
+import { query } from '@pluginjs/dom'
+import FloatingMenu from '@pluginjs/floating-menu'
+
+const element = query('#data')
+const customData = {
+  toggle: [
+    {
+      title: 'Demos',
+      url: '#',
+      external: false,
+      id: 'demos',
+      icon: 'pj-icon pj-icon-star-solid'
+    },
+    {
+      title: 'Buy Now',
+      url: '#',
+      external: true,
+      id: false,
+      icon: 'pj-icon pj-icon-shop'
+    },
+    {
+      title: 'Blogs',
+      url: '#',
+      external: false,
+      id: 'blogs',
+      icon: 'pj-icon pj-icon-news'
+    }
+  ],
+  panel: [
+    {
+      id: 'demos',
+      html: `
       <div class="demo-panel">
         <div class="demo-header">
           <h2 class="demo-title">Demos</h2>
@@ -94,9 +105,11 @@
             Demo Footer
           </div>
         </div>
-      </div>
-    </div>
-    <div data-id="blogs">
+      </div>`
+    },
+    {
+      id: 'blogs',
+      html: `
       <div class="demo-panel">
         <div class="demo-header">
           <h2 class="demo-title">Blogs</h2>
@@ -157,7 +170,12 @@
             Blog Footer
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+      </div>`
+    }
+  ]
+}
+
+FloatingMenu.of(element, {
+  type: 'data',
+  data: customData
+})

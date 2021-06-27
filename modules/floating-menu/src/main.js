@@ -1,5 +1,11 @@
 import Component from '@pluginjs/component'
-import { children, insertBefore } from '@pluginjs/dom'
+import {
+  query,
+  children,
+  insertBefore,
+  appendTo,
+  parseHTML
+} from '@pluginjs/dom'
 import { bindEvent, removeEvent } from '@pluginjs/events'
 import { addClass, removeClass } from '@pluginjs/classes'
 import templateEngine from '@pluginjs/template'
@@ -46,9 +52,17 @@ class FloatingMenu extends Component {
 
   initialize() {
     if (this.options.type === 'data') {
+      this.datas = this.options.data
+      if (!this.datas) {
+        this.enter('exit')
+      }
       this.initDatas()
     } else {
       this.initElements()
+    }
+
+    if (this.is('exit')) {
+      return
     }
 
     this.initMask()
@@ -60,7 +74,61 @@ class FloatingMenu extends Component {
   }
 
   initDatas() {
-    //
+    this.$wrapElement = this.element
+    this.element = this.createElement('element', {
+      classes: this.classes
+    })
+    this.$nav = query(`.${this.classes.NAV}`, this.element)
+    this.$content = query(`.${this.classes.CONTENT}`, this.element)
+
+    this.renderToggle()
+    this.renderPanel()
+
+    appendTo(this.element, this.$wrapElement)
+  }
+
+  renderToggle() {
+    this.datas.toggle.forEach(toggle => {
+      let iconTemplate = ''
+      if (toggle.icon) {
+        iconTemplate = this.renderElement('icon', {
+          toggle
+        })
+      }
+      const $toggle = this.createElement('toggle', {
+        classes: this.classes,
+        toggle,
+        icon: iconTemplate
+      })
+      if (toggle.external) {
+        $toggle.setAttribute('target', '_blank')
+      }
+      if (toggle.id) {
+        $toggle.dataset.id = toggle.id
+      }
+
+      appendTo($toggle, this.$nav)
+    })
+
+    this.$toggles = children(this.$nav)
+  }
+
+  renderPanel() {
+    if (!this.datas.panel) {
+      this.$panels = null
+      return
+    }
+
+    this.datas.panel.forEach(panel => {
+      const $panel = this.createElement('panel', {
+        classes: this.classes,
+        panel
+      })
+
+      appendTo($panel, this.$content)
+    })
+
+    this.$panels = children(this.$content)
   }
 
   initElements() {
@@ -93,7 +161,7 @@ class FloatingMenu extends Component {
 
   initId() {
     this.$toggles.forEach($toggle => {
-      const $id = $toggle.dataset.to
+      const $id = $toggle.dataset.id
       if ($id) {
         this.toggles[$id] = $toggle
       }
@@ -111,11 +179,11 @@ class FloatingMenu extends Component {
 
   bind() {
     this.$toggles.forEach($toggle => {
-      if ($toggle.dataset.to && this.panels[$toggle.dataset.to]) {
+      if ($toggle.dataset.id && this.panels[$toggle.dataset.id]) {
         bindEvent(
-          this.eventNameWithId('click'),
+          this.eventName('click'),
           () => {
-            this.toggle($toggle.dataset.to)
+            this.toggle($toggle.dataset.id)
           },
           $toggle
         )
@@ -123,7 +191,7 @@ class FloatingMenu extends Component {
     })
 
     bindEvent(
-      this.eventNameWithId('click'),
+      this.eventName('click'),
       () => {
         this.close()
       },
@@ -176,11 +244,16 @@ class FloatingMenu extends Component {
   }
 
   unbind() {
-    removeEvent(this.eventName(), this.element)
+    removeEvent(this.eventName(), this.$toggle)
+    removeEvent(this.eventName(), this.$mask)
+  }
+
+  renderElement(name, options) {
+    return templateEngine.compile(this.options.templates[name]())(options)
   }
 
   createElement(name, options) {
-    return templateEngine.compile(this.options.templates[name]())(options)
+    return parseHTML(this.renderElement(name, options))
   }
 
   enable() {
