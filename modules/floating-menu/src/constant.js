@@ -23,7 +23,7 @@ export const classes = {
 export const methods = ['enable', 'disable', 'destroy']
 
 export const defaults = {
-  type: 'html', // html, data (when type if data, element is the wrap element, such as document.body)
+  type: 'html', // html, data (when type is data, element is the wrap element, such as document.body)
   data: null,
   templates: {
     mask() {
