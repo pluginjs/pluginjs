@@ -10,6 +10,7 @@ $floatingMenu-mask-zindex: 9999 !default;
 $floatingMenu-toggle-size: 66px !default;
 $floatingMenu-nav-top: 150px !default;
 $floatingMenu-nav-left: $floatingMenu-toggle-size + 8px !default;
+$floatingMenu-lock-margin: 15px !default;
 
 
 // Core
@@ -23,6 +24,7 @@ $floatingMenu-nav-left: $floatingMenu-toggle-size + 8px !default;
     }
 
     &-lock {
+      margin-right: auto;
       overflow: visible;
     }
   }
@@ -55,6 +57,7 @@ $floatingMenu-nav-left: $floatingMenu-toggle-size + 8px !default;
   }
 
   &-lock {
+    margin-right: $floatingMenu-lock-margin;
     overflow: hidden;
   }
 
