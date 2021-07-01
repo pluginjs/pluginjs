@@ -70,7 +70,7 @@ $floatingMenu-lock-margin: 15px !default;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     visibility: hidden;
     opacity: 0;
     transform: translateX(100%);
