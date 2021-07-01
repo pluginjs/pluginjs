@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.9",
+  "version": "0.8.10",
   "category": "form",
   "main": "dist/swipe.common.js",
   "module": "dist/swipe.esm.js",
@@ -37,25 +37,25 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/arrows": "^0.8.7",
-    "@pluginjs/breakpoints": "^0.8.6",
-    "@pluginjs/classes": "^0.8.6",
-    "@pluginjs/component": "^0.8.6",
-    "@pluginjs/decorator": "^0.8.7",
-    "@pluginjs/dom": "^0.8.6",
-    "@pluginjs/dots": "^0.8.7",
-    "@pluginjs/events": "^0.8.7",
-    "@pluginjs/is": "^0.8.6",
-    "@pluginjs/styled": "^0.8.7",
-    "@pluginjs/swipeable": "^0.8.8",
-    "@pluginjs/template": "^0.8.6",
-    "@pluginjs/utils": "^0.8.6",
+    "@pluginjs/arrows": "^0.8.8",
+    "@pluginjs/breakpoints": "^0.8.7",
+    "@pluginjs/classes": "^0.8.7",
+    "@pluginjs/component": "^0.8.7",
+    "@pluginjs/decorator": "^0.8.8",
+    "@pluginjs/dom": "^0.8.7",
+    "@pluginjs/dots": "^0.8.8",
+    "@pluginjs/events": "^0.8.8",
+    "@pluginjs/is": "^0.8.7",
+    "@pluginjs/styled": "^0.8.8",
+    "@pluginjs/swipeable": "^0.8.9",
+    "@pluginjs/template": "^0.8.7",
+    "@pluginjs/utils": "^0.8.7",
     "animejs": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@pluginjs/browserslist-config": "^1.3.2",
-    "@pluginjs/cli": "^0.8.3",
+    "@pluginjs/cli": "^0.8.4",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "babel-jest": "*",
@@ -84,5 +84,5 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "be006e0f2bdf496bd1af53da0b7ccda5ca727801"
+  "gitHead": "b0669d11c54fcb08d637b893f90ea375b8ef136c"
 }

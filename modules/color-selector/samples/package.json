@@ -3,15 +3,15 @@
   "name": "color-selector-samples",
   "description": "Simple color-selector example",
   "license": "GPL-3.0",
-  "version": "1.2.17",
+  "version": "1.2.18",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/color-selector": "^0.8.17",
-    "@pluginjs/dom": "^0.8.6",
+    "@pluginjs/color-selector": "^0.8.18",
+    "@pluginjs/dom": "^0.8.7",
     "@pluginjs/icons": "^0.8.3",
     "@pluginjs/styles": "^0.8.4"
   },

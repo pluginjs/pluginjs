@@ -3,15 +3,15 @@
   "name": "auto-complete-samples",
   "description": "Simple auto-complete example",
   "license": "GPL-3.0",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/auto-complete": "^0.8.12",
-    "@pluginjs/dom": "^0.8.6",
+    "@pluginjs/auto-complete": "^0.8.13",
+    "@pluginjs/dom": "^0.8.7",
     "countries-list": "*"
   },
   "devDependencies": {

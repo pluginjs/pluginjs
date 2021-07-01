@@ -2,7 +2,7 @@
   "name": "@pluginjs/cli",
   "description": "cli tools for pluginjs",
   "license": "GPL-3.0",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "main": "index.js",
   "bin": {
     "plugin": "index.js"
@@ -16,5 +16,5 @@
     "rollup": "^2.38.1",
     "yargs": "^16.2.0"
   },
-  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6"
+  "gitHead": "b0669d11c54fcb08d637b893f90ea375b8ef136c"
 }

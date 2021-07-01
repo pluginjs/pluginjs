@@ -3,16 +3,16 @@
   "name": "pattern-picker-samples",
   "description": "Simple pattern-picker example",
   "license": "GPL-3.0",
-  "version": "1.2.18",
+  "version": "1.2.19",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.8.6",
+    "@pluginjs/dom": "^0.8.7",
     "@pluginjs/icons": "^0.8.3",
-    "@pluginjs/pattern-picker": "^0.8.18",
+    "@pluginjs/pattern-picker": "^0.8.19",
     "@pluginjs/styles": "^0.8.4",
     "font-awesome": "^4.7.0"
   },

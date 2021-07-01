@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.6",
+  "version": "0.8.7",
   "category": "core",
   "main": "dist/component.common.js",
   "module": "dist/component.esm.js",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@pluginjs/browserslist-config": "^1.3.2",
-    "@pluginjs/cli": "^0.8.3",
+    "@pluginjs/cli": "^0.8.4",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "babel-jest": "*",
@@ -61,6 +61,6 @@
   "browserslist": [
     "extends @pluginjs/browserslist-config"
   ],
-  "gitHead": "e0247ab4b5e2026b77a390619f2b96bac30609c6",
+  "gitHead": "b0669d11c54fcb08d637b893f90ea375b8ef136c",
   "title": "Plugin"
 }
