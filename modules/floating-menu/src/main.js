@@ -201,6 +201,10 @@ class FloatingMenu extends Component {
 
   toggle($id) {
     if (!this.is('active')) {
+      if (this.is('disabled')) {
+        return
+      }
+
       if (this.$activePanel && $id !== this.activeId) {
         removeClass(this.classes.ACTIVE, this.$activePanel)
         removeClass(this.classes.ACTIVE, this.$activeToggle)
@@ -218,7 +222,7 @@ class FloatingMenu extends Component {
   }
 
   open() {
-    addClass(this.classes.LOCK, document.body)
+    addClass(this.classes.LOCK, document.documentElement)
     addClass(this.classes.ACTIVE, this.$mask)
     addClass(this.classes.ACTIVE, this.element)
 
@@ -227,7 +231,7 @@ class FloatingMenu extends Component {
   }
 
   close() {
-    removeClass(this.classes.LOCK, document.body)
+    removeClass(this.classes.LOCK, document.documentElement)
     removeClass(this.classes.ACTIVE, this.$mask)
     removeClass(this.classes.ACTIVE, this.$activeToggle)
     removeClass(this.classes.ACTIVE, this.element)

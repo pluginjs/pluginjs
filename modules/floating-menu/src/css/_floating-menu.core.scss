@@ -16,18 +16,6 @@ $floatingMenu-lock-margin: 15px !default;
 // Core
 // =====================
 .#{$floatingMenu} {
-
-  @media screen and (max-width: 578px) {
-    &,
-    &-mask {
-      display: none;
-    }
-
-    &-lock {
-      margin-right: auto;
-      overflow: visible;
-    }
-  }
   position: fixed;
   top: 0;
   right: -$floatingMenu-size;
@@ -82,7 +70,7 @@ $floatingMenu-lock-margin: 15px !default;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     visibility: hidden;
     opacity: 0;
     transform: translateX(100%);
@@ -101,5 +89,19 @@ $floatingMenu-lock-margin: 15px !default;
     justify-content: center;
     width: $floatingMenu-toggle-size;
     height: $floatingMenu-toggle-size;
+  }
+}
+
+@media screen and (max-width: 578px) {
+  .#{$floatingMenu} {
+    &,
+    &-mask {
+      display: none;
+    }
+
+    &-lock {
+      margin-right: auto;
+      overflow: visible;
+    }
   }
 }
