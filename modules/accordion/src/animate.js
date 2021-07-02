@@ -58,10 +58,7 @@ class Animate {
       }
       return compose(
         outerHeight,
-        compose(
-          parentWith,
-          hasClass
-        )(this.instance.classes.PANECONTENT)
+        compose(parentWith, hasClass)(this.instance.classes.PANECONTENT)
       )(element)
     })
     return this.contentDistance
@@ -98,6 +95,8 @@ class Animate {
   }
 
   open(index, trigger) {
+    this.initDistance()
+
     const pane = this.instance.$panes[index]
     const opts = {
       targets: pane,
@@ -111,6 +110,7 @@ class Animate {
   }
 
   close(index, trigger) {
+    this.getHeaderDistance()
     const pane = this.instance.$panes[index]
     const opts = {
       targets: pane,
