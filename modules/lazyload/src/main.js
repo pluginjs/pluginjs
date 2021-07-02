@@ -44,7 +44,6 @@ class Lazyload extends Viewport {
       .filter(key => Boolean(this.options[key]))
       .map(key => (this[key] = this.options[key]))
 
-    this.viewport = Viewport.of(this.element)
     this.bind()
     this.enter('initialized')
     this.trigger(EVENTS.READY)
@@ -111,7 +110,7 @@ class Lazyload extends Viewport {
 
   bind() {
     bindEventOnce(
-      'viewport:enter',
+      this.selfEventName('enter'),
       () => {
         this.load()
       },
@@ -120,7 +119,7 @@ class Lazyload extends Viewport {
   }
 
   unbind() {
-    removeEvent('viewport:enter', this.element)
+    removeEvent(this.selfEventName('enter'), this.element)
   }
 
   forceLoad() {
