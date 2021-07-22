@@ -1,10 +1,9 @@
 import Component from '@pluginjs/component'
 import { addClass, removeClass } from '@pluginjs/classes'
-import { parseHTML } from '@pluginjs/dom'
+import { parseHTML, insertAfter } from '@pluginjs/dom'
 import templateEngine from '@pluginjs/template'
 import { deepMerge } from '@pluginjs/utils'
 import { hideElement } from '@pluginjs/styled'
-import { insertAfter } from '@pluginjs/dom'
 import {
   register,
   stateable,
@@ -90,7 +89,7 @@ class CountDown extends Component {
       this.maximums[index] = Number(this.maximums[index])
     })
 
-    this.due = new Date(this.options.due).getTime()
+    this.due = new Date(this.options.due.replace(/-/g, '/')).getTime()
 
     this.start()
 

@@ -50,9 +50,9 @@ export const defaults = {
   format: 'TD,H,M,S', // which key to show
   places: '3,2,2,2', // key places
   overall: false, // event trigger Modularity
-  label: 'default', // 'default' or custom labels like 'day,hour,month,second'
+  label: 'Days,Hours,Minutes,Seconds', // 'default' or custom labels like 'day,hour,month,second'
   labelInverse: false, // bottome | above
-  due: '2020-7-5/', // scheduled time
+  due: '2023-7-5/', // scheduled time
   interval: 1000, // refresh interval
   maximums: '999,24,60,60', // progress module maximums
   svgSize: 100, // progress size
