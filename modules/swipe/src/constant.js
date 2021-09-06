@@ -47,7 +47,7 @@ export const defaults = {
   desktopColumn: 3,
   tabletColumn: 2,
   mobileColumn: 1,
-  duration: 300,
+  duration: 500,
   arrows: {
     type: 'lg'
   },
