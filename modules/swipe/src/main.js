@@ -1076,6 +1076,26 @@ class Swipe extends Component {
     if (this.options.swipeable && !this.$swipeable.is('bind')) {
       this.$swipeable.bind()
     }
+
+    if (this.options.autoplay) {
+      bindEvent(
+        this.eventName('mouseenter'),
+        e => {
+          e.preventDefault()
+          this.intervalToggle(false)
+        },
+        this.$wrapper
+      )
+
+      bindEvent(
+        this.eventName('mouseleave'),
+        e => {
+          e.preventDefault()
+          this.intervalToggle(true)
+        },
+        this.$wrapper
+      )
+    }
   }
 
   unbind() {
