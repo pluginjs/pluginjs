@@ -70,7 +70,7 @@ class Slider extends Component {
       this.data = this.options.data
     }
 
-    if (this.data.length === 0) {
+    if (this.data.length < 2) {
       return
     }
 
@@ -268,8 +268,14 @@ class Slider extends Component {
   }
 
   setPos(reset = false) {
-    const length = this.data.length
+    const newData = this.data
+    const length = newData.length
     const offset = reset ? 0 : this.stash * 100
+
+    if (length === 2) {
+      newData[2] = this.data[0]
+      newData[3] = this.data[1]
+    }
 
     for (let i = 0; i < 3; i++) {
       let index = null
@@ -308,11 +314,11 @@ class Slider extends Component {
             this.modules[oldIndex].video.destroy()
           }
 
-          this.cards[i].createModule(this.data[index], index)
+          this.cards[i].createModule(newData[index], index)
           this.cards[i].module.setData({ index }).replace(content)
         }
       } else {
-        this.cards[i].createModule(this.data[index], index)
+        this.cards[i].createModule(newData[index], index)
         this.cards[i].module.setData({ index }).appendTo(card)
       }
 

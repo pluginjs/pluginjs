@@ -16,6 +16,7 @@ class Card {
     this.classes = this.instance.classes
     this.data = this.instance.data
 
+    console.log('111', this.data)
     this.initialize()
   }
 
