@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "core",
   "main": "dist/keyboard.common.js",
   "module": "dist/keyboard.esm.js",
@@ -33,9 +33,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.8.7",
+    "@pluginjs/dom": "^0.8.8",
     "@pluginjs/simple-emitter": "^0.8.7",
-    "@pluginjs/utils": "^0.8.7"
+    "@pluginjs/utils": "^0.8.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

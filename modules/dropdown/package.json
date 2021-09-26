@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.13",
+  "version": "0.8.14",
   "category": "ui",
   "main": "dist/dropdown.common.js",
   "module": "dist/dropdown.esm.js",
@@ -37,17 +37,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/breakpoints": "^0.8.7",
-    "@pluginjs/classes": "^0.8.7",
+    "@pluginjs/breakpoints": "^0.8.8",
+    "@pluginjs/classes": "^0.8.8",
     "@pluginjs/component": "^0.8.7",
-    "@pluginjs/decorator": "^0.8.8",
-    "@pluginjs/dom": "^0.8.7",
-    "@pluginjs/events": "^0.8.8",
-    "@pluginjs/factory": "^0.8.7",
+    "@pluginjs/decorator": "^0.8.9",
+    "@pluginjs/dom": "^0.8.8",
+    "@pluginjs/events": "^0.8.9",
+    "@pluginjs/factory": "^0.8.8",
     "@pluginjs/is": "^0.8.7",
-    "@pluginjs/keyboard": "^0.8.7",
-    "@pluginjs/styled": "^0.8.8",
-    "@pluginjs/template": "^0.8.7",
+    "@pluginjs/keyboard": "^0.8.8",
+    "@pluginjs/styled": "^0.8.9",
+    "@pluginjs/template": "^0.8.8",
     "popper.js": "*"
   },
   "devDependencies": {

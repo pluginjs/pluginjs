@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.8",
+  "version": "0.8.9",
   "category": "utils",
   "main": "dist/events.common.js",
   "module": "dist/events.esm.js",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@pluginjs/emitter": "^0.8.7",
     "@pluginjs/is": "^0.8.7",
-    "@pluginjs/utils": "^0.8.7"
+    "@pluginjs/utils": "^0.8.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

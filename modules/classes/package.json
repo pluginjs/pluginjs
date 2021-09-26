@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "utils",
   "main": "dist/classes.common.js",
   "module": "dist/classes.esm.js",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@pluginjs/is": "^0.8.7",
-    "@pluginjs/utils": "^0.8.7"
+    "@pluginjs/utils": "^0.8.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.8",
+  "version": "0.8.9",
   "category": "media",
   "main": "dist/gmap.common.js",
   "module": "dist/gmap.esm.js",
@@ -37,11 +37,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.7",
+    "@pluginjs/classes": "^0.8.8",
     "@pluginjs/component": "^0.8.7",
-    "@pluginjs/decorator": "^0.8.8",
-    "@pluginjs/dom": "^0.8.7",
-    "@pluginjs/factory": "^0.8.7",
+    "@pluginjs/decorator": "^0.8.9",
+    "@pluginjs/dom": "^0.8.8",
+    "@pluginjs/factory": "^0.8.8",
     "@pluginjs/is": "^0.8.7"
   },
   "devDependencies": {

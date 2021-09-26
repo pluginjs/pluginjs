@@ -3,15 +3,15 @@
   "name": "progress-samples",
   "description": "Simple progress example",
   "license": "GPL-3.0",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.8.7",
-    "@pluginjs/progress": "^0.8.8"
+    "@pluginjs/dom": "^0.8.8",
+    "@pluginjs/progress": "^0.8.9"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

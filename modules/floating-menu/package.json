@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "category": "ui",
   "main": "dist/floating-menu.common.js",
   "module": "dist/floating-menu.esm.js",
@@ -37,14 +37,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.7",
+    "@pluginjs/classes": "^0.8.8",
     "@pluginjs/component": "^0.8.7",
-    "@pluginjs/decorator": "^0.8.8",
-    "@pluginjs/dom": "^0.8.7",
-    "@pluginjs/events": "^0.8.8",
-    "@pluginjs/factory": "^0.8.7",
+    "@pluginjs/decorator": "^0.8.9",
+    "@pluginjs/dom": "^0.8.8",
+    "@pluginjs/events": "^0.8.9",
+    "@pluginjs/factory": "^0.8.8",
     "@pluginjs/is": "^0.8.7",
-    "@pluginjs/template": "^0.8.7"
+    "@pluginjs/template": "^0.8.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

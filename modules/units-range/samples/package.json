@@ -3,16 +3,16 @@
   "name": "units-range-samples",
   "description": "Simple units-range example",
   "license": "GPL-3.0",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "main": "index.html",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
   "dependencies": {
-    "@pluginjs/dom": "^0.8.7",
-    "@pluginjs/units-range": "^0.8.13",
-    "@pluginjs/utils": "^0.8.7"
+    "@pluginjs/dom": "^0.8.8",
+    "@pluginjs/units-range": "^0.8.14",
+    "@pluginjs/utils": "^0.8.8"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.7",
+  "version": "0.8.8",
   "category": "core",
   "main": "dist/tween.common.js",
   "module": "dist/tween.esm.js",
@@ -36,7 +36,7 @@
     "@pluginjs/easing": "^0.8.7",
     "@pluginjs/is": "^0.8.7",
     "@pluginjs/simple-emitter": "^0.8.7",
-    "@pluginjs/utils": "^0.8.7"
+    "@pluginjs/utils": "^0.8.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

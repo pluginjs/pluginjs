@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.14",
+  "version": "0.8.15",
   "category": "ui",
   "main": "dist/time-table.common.js",
   "module": "dist/time-table.esm.js",
@@ -38,18 +38,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/choice": "^0.8.11",
-    "@pluginjs/classes": "^0.8.7",
+    "@pluginjs/choice": "^0.8.12",
+    "@pluginjs/classes": "^0.8.8",
     "@pluginjs/component": "^0.8.7",
-    "@pluginjs/date-picker": "^0.8.13",
-    "@pluginjs/decorator": "^0.8.8",
-    "@pluginjs/dom": "^0.8.7",
-    "@pluginjs/events": "^0.8.8",
-    "@pluginjs/factory": "^0.8.7",
-    "@pluginjs/filters": "^0.8.13",
+    "@pluginjs/date-picker": "^0.8.14",
+    "@pluginjs/decorator": "^0.8.9",
+    "@pluginjs/dom": "^0.8.8",
+    "@pluginjs/events": "^0.8.9",
+    "@pluginjs/factory": "^0.8.8",
+    "@pluginjs/filters": "^0.8.14",
     "@pluginjs/is": "^0.8.7",
-    "@pluginjs/styled": "^0.8.8",
-    "@pluginjs/template": "^0.8.7",
+    "@pluginjs/styled": "^0.8.9",
+    "@pluginjs/template": "^0.8.8",
     "date-fns": "^2.16.1"
   },
   "devDependencies": {

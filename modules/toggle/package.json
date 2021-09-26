@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.11",
+  "version": "0.8.12",
   "category": "form",
   "main": "dist/toggle.common.js",
   "module": "dist/toggle.esm.js",
@@ -37,13 +37,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.7",
+    "@pluginjs/classes": "^0.8.8",
     "@pluginjs/component": "^0.8.7",
-    "@pluginjs/decorator": "^0.8.8",
-    "@pluginjs/dom": "^0.8.7",
+    "@pluginjs/decorator": "^0.8.9",
+    "@pluginjs/dom": "^0.8.8",
     "@pluginjs/is": "^0.8.7",
-    "@pluginjs/styled": "^0.8.8",
-    "@pluginjs/utils": "^0.8.7",
+    "@pluginjs/styled": "^0.8.9",
+    "@pluginjs/utils": "^0.8.8",
     "hammerjs": "*"
   },
   "devDependencies": {
