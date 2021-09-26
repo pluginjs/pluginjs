@@ -119,11 +119,12 @@ function deepMergeTwo(target, source) {
   } else if (sourceIsArray) {
     return clone(source)
   } else if (isPlainObject(target) && isPlainObject(source)) {
+    const newTarget = clone(target)
     Object.keys(source).forEach(key => {
-      target[key] = deepMergeTwo(target[key], source[key])
+      newTarget[key] = deepMergeTwo(newTarget[key], source[key])
     })
 
-    return target
+    return newTarget
   }
 
   return clone(source)

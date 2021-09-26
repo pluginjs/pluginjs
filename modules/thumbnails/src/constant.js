@@ -42,7 +42,7 @@ const defaults = {
       )
     }
   },
-  data: 'html', // html or DATA
+  data: null, // html or DATA
   delegate: 'img',
   vertical: false,
   current: 0,

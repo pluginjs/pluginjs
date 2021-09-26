@@ -61,20 +61,23 @@ class Thumbnails extends Component {
   }
 
   initialize() {
-    if (!this.options.data || this.options.data.length < 0) {
-      return
+    if (typeof NodeList.prototype.forEach !== 'function') {
+      NodeList.prototype.forEach = Array.prototype.forEach
     }
 
-    if (typeof NodeList.prototype.forEach !== 'function')  {
-      NodeList.prototype.forEach = Array.prototype.forEach;
+    if (!this.options.data || this.options.data.length < 0) {
+      this.data = this.parseHtml()
+    } else {
+      this.data = this.options.data
+    }
+
+    if (this.data.length < 2) {
+      return
     }
 
     if (this.options.breakpoint) {
       this.initBreakpoints()
     }
-
-    this.data =
-      this.options.data === 'html' ? this.parseHtml() : this.options.data
 
     this.generate()
     this.items = this.inner.querySelectorAll(`.${this.classes.THUMB}`)

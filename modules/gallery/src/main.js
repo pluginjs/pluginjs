@@ -43,16 +43,22 @@ class Gallery extends Component {
   }
 
   initialize() {
-    if (!this.options.data || this.options.data.length < 0) {
-      return
-    }
-
     if (typeof NodeList.prototype.forEach !== 'function') {
       NodeList.prototype.forEach = Array.prototype.forEach
     }
 
-    this.data =
-      this.options.data === 'html' ? this.parseHtml() : this.options.data
+    if (!this.options.data || this.options.data.length < 0) {
+      this.data = this.parseHtml()
+    } else {
+      this.data = this.options.data
+    }
+
+    this.length = this.data.length
+
+    if (this.length < 2) {
+      return
+    }
+
     this.generate()
 
     this.enter('initialized')
@@ -77,11 +83,18 @@ class Gallery extends Component {
       append(sections[item], this.element)
     })
 
+    if (this.length === 2) {
+      this.options.current = this.current % 2
+    }
+
     this.slider = Slider.of(
       sections.slider,
       deepMerge(this.options, this.options.slider, {
         data: this.processData(this.data, 'orig'),
         onChange() {
+          if (this.length === 2) {
+            this.current %= 2
+          }
           that.thumbs.go(this.current, false)
         }
       })

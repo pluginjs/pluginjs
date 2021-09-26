@@ -58,24 +58,41 @@ class Slider extends Component {
       }
     }
 
+    console.log(this.options)
+
     this.setupClasses()
     this.setupStates()
     this.initialize()
   }
 
   initialize() {
+    if (typeof NodeList.prototype.forEach !== 'function') {
+      NodeList.prototype.forEach = Array.prototype.forEach
+    }
+
     if (!this.options.data || this.options.data.length < 0) {
       this.data = this.parseHtml()
     } else {
       this.data = this.options.data
     }
 
-    if (this.data.length < 2) {
+    this.length = this.data.length
+
+    if (this.length < 2) {
       return
     }
 
-    if (this.data.length <= this.current) {
-      this.current = this.data.length - 1
+    this.newData = [...this.data]
+
+    if (this.length === 2) {
+      this.newData[2] = this.data[0]
+      this.newData[3] = this.data[1]
+    }
+
+    this.newLength = this.newData.length
+
+    if (this.newLength <= this.current) {
+      this.current = this.newLength - 1
     }
 
     if (this.options.breakpoint) {
@@ -268,14 +285,7 @@ class Slider extends Component {
   }
 
   setPos(reset = false) {
-    const newData = this.data
-    const length = newData.length
     const offset = reset ? 0 : this.stash * 100
-
-    if (length === 2) {
-      newData[2] = this.data[0]
-      newData[3] = this.data[1]
-    }
 
     for (let i = 0; i < 3; i++) {
       let index = null
@@ -284,13 +294,13 @@ class Slider extends Component {
       switch (i) {
         case this.page + 1:
         case this.page - 2:
-          index = this.current === length - 1 ? 0 : this.current + 1
+          index = this.current === this.newLength - 1 ? 0 : this.current + 1
           pos = `${offset + 100}%`
           this.cards[i].inactive()
           break
         case this.page - 1:
         case this.page + 2:
-          index = this.current === 0 ? length - 1 : this.current - 1
+          index = this.current === 0 ? this.newLength - 1 : this.current - 1
           pos = `${offset - 100}%`
           this.cards[i].inactive()
           break
@@ -314,11 +324,11 @@ class Slider extends Component {
             this.modules[oldIndex].video.destroy()
           }
 
-          this.cards[i].createModule(newData[index], index)
+          this.cards[i].createModule(this.newData[index], index)
           this.cards[i].module.setData({ index }).replace(content)
         }
       } else {
-        this.cards[i].createModule(newData[index], index)
+        this.cards[i].createModule(this.newData[index], index)
         this.cards[i].module.setData({ index }).appendTo(card)
       }
 
@@ -332,22 +342,21 @@ class Slider extends Component {
   }
 
   go(index, change = true, retime = true) {
-    const length = this.data.length
     const current = this.current
     this.direction = true
 
     if (
       index === null ||
       typeof index === 'undefined' ||
-      index > length - 1 ||
+      index > this.newLength - 1 ||
       index < 0
     ) {
       return
     }
 
     if (
-      (index < current && !(current === length - 1 && index === 0)) ||
-      (current === 0 && index === length - 1)
+      (index < current && !(current === this.newLength - 1 && index === 0)) ||
+      (current === 0 && index === this.newLength - 1)
     ) {
       this.direction = false
     }
@@ -369,13 +378,6 @@ class Slider extends Component {
         this.enter('decaying')
       },
       complete: () => {
-        // if (this.direction) {
-        //   this.page = this.page === 2 ? 0 : this.page + 1
-        // } else {
-        //   this.page = this.page === 0 ? 2 : this.page - 1
-        // }
-        // this.setPos()
-
         this.leave('decaying')
       }
     }
@@ -407,7 +409,7 @@ class Slider extends Component {
       return
     }
 
-    const index = this.current === 0 ? this.data.length - 1 : this.current - 1
+    const index = this.current === 0 ? this.newLength - 1 : this.current - 1
     this.go(index, true, retime)
 
     this.trigger(EVENTS.PREV)
@@ -418,11 +420,11 @@ class Slider extends Component {
       return
     }
 
-    if (this.current === this.data.length - 1 && !this.options.loop) {
+    if (this.current === this.newLength - 1 && !this.options.loop) {
       return
     }
 
-    const index = this.current === this.data.length - 1 ? 0 : this.current + 1
+    const index = this.current === this.newLength - 1 ? 0 : this.current + 1
     this.go(index, true, retime)
     this.trigger(EVENTS.NEXT)
   }
@@ -521,7 +523,7 @@ class Slider extends Component {
   }
 
   resize() {
-    if (this.data.length === 0) {
+    if (this.newLength === 0) {
       return
     }
 

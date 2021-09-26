@@ -79,6 +79,7 @@ $slider-video-color: $color-white;
 
     &.#{$slider}-iframe {
       visibility: visible;
+      background-color: #fff;
       opacity: 1;
     }
   }

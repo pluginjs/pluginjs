@@ -62,7 +62,7 @@ const defaults = {
     }
   },
   order: ['slider', 'thumbs'],
-  data: 'html', // html or DATA
+  data: null, // html or DATA
   delegate: 'a',
   arrows: true,
   vertical: false,
