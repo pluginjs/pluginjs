@@ -19,18 +19,18 @@ class Slider {
 
   initSlider() {
     const instance = this.instance
+    console.log(instance)
     this.plugin = SLIDER.of(
       this.element,
       deepMerge(instance.options, instance.options.slider, {
         data: instance.processData(instance.data, 'orig'),
         current: instance.active,
         onChange() {
-          instance.topbar.setCounter(this.current)
-          instance.caption.setInfo(instance.data[this.current])
-
-          if (instance.options.hasThumbs) {
-            instance.thumbs.plugin.go(this.current, false)
-          }
+          // instance.topbar.setCounter(this.current)
+          // instance.caption.setInfo(instance.data[this.current])
+          // if (instance.options.hasThumbs) {
+          //   instance.thumbs.plugin.go(this.current, false)
+          // }
         }
       })
     )

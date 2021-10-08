@@ -58,8 +58,6 @@ class Slider extends Component {
       }
     }
 
-    console.log(this.options)
-
     this.setupClasses()
     this.setupStates()
     this.initialize()
@@ -78,7 +76,7 @@ class Slider extends Component {
 
     this.length = this.data.length
 
-    if (this.length < 2) {
+    if (this.length < 1) {
       return
     }
 
@@ -211,7 +209,9 @@ class Slider extends Component {
   }
 
   initArrows() {
-    this.arrows = Arrows.of(this.element, this.options.arrows)
+    if (this.length > 1) {
+      this.arrows = Arrows.of(this.element, this.options.arrows)
+    }
   }
 
   initSwipeable() {
@@ -382,7 +382,8 @@ class Slider extends Component {
       }
     }
 
-    opts[this.axis] = `${this.stash * -this.distance}px`
+    opts[this.axis] = `${this.stash * -100}%`
+
     this.animate = Anime(opts)
 
     this.current = index
@@ -514,12 +515,12 @@ class Slider extends Component {
     this.stash = 0
     this.setPos(true)
 
-    setStyle(
-      {
-        transform: `${this.axis}(${this.stash * -this.distance}px)`
-      },
-      this.box
-    )
+    // setStyle(
+    //   {
+    //     transform: `${this.axis}(${this.stash * -this.distance}%)`
+    //   },
+    //   this.box
+    // )
   }
 
   resize() {
@@ -531,12 +532,12 @@ class Slider extends Component {
     this.height = outerHeight(this.box)
     this.distance = this.getDistance(this.box, this.options.vertical)
 
-    setStyle(
-      {
-        transform: `${this.axis}(${this.stash * -this.distance}px)`
-      },
-      this.box
-    )
+    // setStyle(
+    //   {
+    //     transform: `${this.axis}(${this.stash * -this.distance}%)`
+    //   },
+    //   this.box
+    // )
 
     if (!this.is('disable')) {
       this.trigger(EVENTS.RESIZE)

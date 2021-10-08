@@ -113,7 +113,7 @@ const defaults = {
     }
   },
   theme: null,
-  data: 'html', // html or DATA
+  data: null, // html or DATA
   delegate: 'a',
   actions: ['play', 'fullScreen', 'download', 'close'], // ['play', 'fullScreen', 'download', 'share', 'close']
   overlayClose: true,

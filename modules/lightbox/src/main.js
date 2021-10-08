@@ -49,11 +49,19 @@ class Lightbox extends Component {
   }
 
   initialize() {
-    if (typeof NodeList.prototype.forEach !== 'function')  {
-      NodeList.prototype.forEach = Array.prototype.forEach;
+    if (typeof NodeList.prototype.forEach !== 'function') {
+      NodeList.prototype.forEach = Array.prototype.forEach
     }
-    
+
     if (!this.options.data || this.options.data.length < 0) {
+      this.data = this.parseHtml()
+    } else {
+      this.data = this.options.data
+    }
+
+    this.length = this.data.length
+
+    if (this.length < 1) {
       return
     }
 
@@ -62,11 +70,6 @@ class Lightbox extends Component {
     if (this.options.theme) {
       addClass(this.getThemeClass(), this.element)
     }
-
-    this.data =
-      this.options.data === 'html' ? this.parseHtml() : this.options.data
-
-    this.length = this.data.length
 
     this.bind()
 
@@ -107,7 +110,7 @@ class Lightbox extends Component {
     bindEvent(
       this.eventName('click'),
       this.options.delegate,
-      function(event) {
+      function (event) {
         event.preventDefault()
         that.active = Number(this.dataset.index)
         that.open()

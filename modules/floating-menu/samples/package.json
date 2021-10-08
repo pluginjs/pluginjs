@@ -22,5 +22,6 @@
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"
-  ]
+  ],
+  "gitHead": "b3a9941966a6b7df1769d69b8c829cd859674814"
 }
