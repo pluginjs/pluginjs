@@ -19,7 +19,7 @@ class Slider {
 
   initSlider() {
     const instance = this.instance
-    console.log(instance)
+
     this.plugin = SLIDER.of(
       this.element,
       deepMerge(instance.options, instance.options.slider, {

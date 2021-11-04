@@ -80,6 +80,8 @@ class Slider extends Component {
       return
     }
 
+    this.single = this.length === 1
+
     this.newData = [...this.data]
 
     if (this.length === 2) {
@@ -105,7 +107,12 @@ class Slider extends Component {
     this.height = outerHeight(this.box)
     this.distance = this.getDistance(this.box, this.options.vertical)
 
-    this.setPos()
+    if (this.single) {
+      this.setSinglePos()
+    } else {
+      this.setPos()
+    }
+
     this.initSwipeable()
 
     this.bind()
@@ -193,7 +200,7 @@ class Slider extends Component {
     this.box = this.createElement('box')
     this.cards = []
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < (this.single ? 1 : 3); i++) {
       const card = new Card(this)
 
       card.appendTo(this.box)
@@ -209,14 +216,15 @@ class Slider extends Component {
   }
 
   initArrows() {
-    if (this.length > 1) {
-      this.arrows = Arrows.of(this.element, this.options.arrows)
+    if (this.single) {
+      return
     }
+
+    this.arrows = Arrows.of(this.element, this.options.arrows)
   }
 
   initSwipeable() {
     const that = this
-
     this.swipeable = Swipeable.of(this.box, {
       axis: that.options.vertical ? 'y' : 'x',
       onStart() {
@@ -227,7 +235,9 @@ class Slider extends Component {
           return
         }
 
-        if (that.is('decaying')) {
+        if (that.length === 1) {
+          this.back(0)
+        } else if (that.is('decaying')) {
           const test = this.position[this.axis] / that.distance + that.stash
 
           if (test > 0.5) {
@@ -255,8 +265,12 @@ class Slider extends Component {
           return
         }
 
-        const offset = this.info[that.options.vertical ? 'deltaY' : 'deltaX']
-        that.decay(offset)
+        if (that.length === 1) {
+          this.back(0)
+        } else {
+          const offset = this.info[that.options.vertical ? 'deltaY' : 'deltaX']
+          that.decay(offset)
+        }
       }
     })
   }
@@ -282,6 +296,13 @@ class Slider extends Component {
 
   getDistance(target, vertical = false) {
     return vertical ? outerHeight(target) : outerWidth(target)
+  }
+
+  setSinglePos() {
+    const card = this.cards[0].element
+
+    this.cards[0].createModule(this.newData[0], 0)
+    this.cards[0].module.setData({ index: 0 }).appendTo(card)
   }
 
   setPos(reset = false) {

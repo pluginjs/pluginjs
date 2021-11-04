@@ -65,6 +65,8 @@ class Lightbox extends Component {
       return
     }
 
+    this.single = this.length === 1
+
     addClass(this.classes.NAMESPACE, this.element)
 
     if (this.options.theme) {
@@ -148,11 +150,15 @@ class Lightbox extends Component {
       })
 
       this.keyboard.on('down', 'left', () => {
-        this.slider.plugin.prev()
+        if (!this.single) {
+          this.slider.plugin.prev()
+        }
       })
 
       this.keyboard.on('down', 'right', () => {
-        this.slider.plugin.next()
+        if (!this.single) {
+          this.slider.plugin.next()
+        }
       })
     }
   }
@@ -188,7 +194,9 @@ class Lightbox extends Component {
   }
 
   initShow(index) {
-    this.slider.plugin.reset(index)
+    if (!this.single) {
+      this.slider.plugin.reset(index)
+    }
     this.topbar.setCounter(index)
     this.caption.setInfo(this.data[index])
 

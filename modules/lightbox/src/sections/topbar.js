@@ -18,13 +18,14 @@ class Topbar {
     this.element = this.instance.getElement('topbar')
 
     this.instance.options.actions.forEach(item => {
-      this[item] = this.instance.getElement(item)
-      append(this[item], this.element)
+      if (!(this.instance.single && item === 'play')) {
+        this[item] = this.instance.getElement(item)
+        append(this[item], this.element)
+      }
     })
     this.setCounter(this.instance.active)
     append(this.element, this.instance.container)
 
-    // this.fullscreen = new Fullscreen(this.instance.container)
     this.fullscreen = new Fullscreen()
 
     this.bind()

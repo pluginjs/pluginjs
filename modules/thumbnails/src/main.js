@@ -71,9 +71,11 @@ class Thumbnails extends Component {
       this.data = this.options.data
     }
 
-    if (this.data.length < 2) {
+    if (this.data.length < 1) {
       return
     }
+
+    this.single = this.length === 1
 
     if (this.options.breakpoint) {
       this.initBreakpoints()

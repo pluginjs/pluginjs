@@ -64,6 +64,7 @@ $lightbox-overlay-color: $color-black;
   }
 
   &-topbar {
+    z-index: 1;
     width: 100%;
     font-size: 16px;
     text-align: right;
