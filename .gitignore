@@ -4,6 +4,7 @@ tools/cli/build
 
 ### Parcel ###
 .cache/
+.parcel-cache/
 
 ### Node ###
 package-lock.json

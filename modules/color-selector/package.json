@@ -68,7 +68,7 @@
     "jest-extended": "*",
     "rename": "^1.0.4",
     "rollup": "^2.38.1",
-    "rollup-plugin-babel": "*",
+    "@rollup/plugin-babel": "^5.3.0",
     "rollup-plugin-terser": "*"
   },
   "engines": {

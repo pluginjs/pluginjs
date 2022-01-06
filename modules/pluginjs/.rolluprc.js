@@ -1,5 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs'
-import babel from 'rollup-plugin-babel'
+import { babel } from '@rollup/plugin-babel'
 import { terser } from "rollup-plugin-terser"
 import rename from 'rename'
 import pkg from './package.json'
@@ -20,6 +20,7 @@ const babelCallback = (options = {}) => {
     exclude: 'node_modules/**',
     presets: [['@babel/preset-env', presetEnvOptions]],
     babelrc: false,
+    babelHelpers: 'bundled',
     plugins: [
       ['@babel/plugin-proposal-decorators', { legacy: true }],
       '@babel/plugin-proposal-object-rest-spread',

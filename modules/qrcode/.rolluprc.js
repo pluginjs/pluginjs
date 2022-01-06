@@ -1,5 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs'
-import babel from 'rollup-plugin-babel'
+import { babel } from '@rollup/plugin-babel'
 import { terser } from "rollup-plugin-terser"
 import resolve from 'rollup-plugin-node-resolve'
 import rename from 'rename'
@@ -20,6 +20,7 @@ const babelCallback = (options = {}) => {
     exclude: 'node_modules/**',
     presets: [['@babel/preset-env', presetEnvOptions]],
     babelrc: false,
+    babelHelpers: 'bundled',
     plugins: [
       ['@babel/plugin-proposal-decorators', { legacy: true }],
       '@babel/plugin-proposal-object-rest-spread',
@@ -38,19 +39,20 @@ export default [
       name: pkg.name,
       file: pkg.umd,
       format: 'umd',
+      exports: 'auto',
       globals,
       interop: false
     },
-    plugins: [resolve(), babelCallback(), commonjs()]
+    plugins: [babelCallback(), commonjs()]
   },
   {
     input: pkg.source,
     external,
     output: [
-      { file: pkg.main, format: 'cjs', interop: false },
-      { file: pkg.module, format: 'es', interop: false }
+      { file: pkg.main, format: 'cjs', interop: false, exports: 'auto' },
+      { file: pkg.module, format: 'es', interop: false, exports: 'auto' }
     ],
-    plugins: [resolve(), babelCallback({ esmodules: true }), commonjs()]
+    plugins: [babelCallback({ esmodules: true }), commonjs()]
   },
   {
     input: pkg.source,
@@ -59,18 +61,19 @@ export default [
       name: pkg.name,
       file: rename(pkg.umd, {suffix: '.min'}),
       format: 'umd',
+      exports: 'auto',
       globals,
       interop: false
     },
-    plugins: [resolve(), babelCallback(), commonjs(), terser()]
+    plugins: [babelCallback(), commonjs(), terser()]
   },
   {
     input: pkg.source,
     external,
     output: [
-      { file: rename(pkg.main, {suffix: '.min'}), format: 'cjs', interop: false },
-      { file: rename(pkg.module, {suffix: '.min'}), format: 'es', interop: false }
+      { file: rename(pkg.main, {suffix: '.min'}), format: 'cjs', interop: false, exports: 'auto' },
+      { file: rename(pkg.module, {suffix: '.min'}), format: 'es', interop: false, exports: 'auto' }
     ],
-    plugins: [resolve(), babelCallback({ esmodules: true }), commonjs(), terser()]
+    plugins: [babelCallback({ esmodules: true }), commonjs(), terser()]
   }
 ]

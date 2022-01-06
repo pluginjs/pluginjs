@@ -145,4 +145,4 @@ For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).
+Copyright (C) 2022 [Creation Studio Limited](creationstudio.com).

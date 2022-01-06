@@ -14,11 +14,11 @@
     "@pluginjs/dom": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@pluginjs/browserslist-config": "^1.2.10",
-    "parcel-bundler": "^1.12.3",
-    "posthtml-include": "*"
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@pluginjs/browserslist-config": "^1.3.2",
+    "parcel": "^2.0.1",
+    "posthtml-include": "^1.7.2"
   },
   "browserslist": [
     "extends @pluginjs/browserslist-config"

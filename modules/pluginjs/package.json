@@ -13,10 +13,12 @@
   },
   "version": "0.8.10",
   "category": "core",
-  "main": "dist/pluginjs.js",
+  "main": "dist/pluginjs.common.js",
+  "module": "dist/pluginjs.esm.js",
   "umd": "dist/pluginjs.js",
   "unpkg": "dist/pluginjs.js",
   "jsdelivr": "dist/pluginjs.js",
+  "source": "src/main.js",
   "files": [
     "dist",
     "src"
@@ -59,7 +61,7 @@
     "jest-extended": "*",
     "rename": "^1.0.4",
     "rollup": "^2.38.1",
-    "rollup-plugin-babel": "*",
+    "@rollup/plugin-babel": "^5.3.0",
     "rollup-plugin-terser": "*",
     "terser": "*"
   },

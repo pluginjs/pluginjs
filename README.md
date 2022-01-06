@@ -4,7 +4,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 
 ## Installation
-`Nodejs 8+` and `Yarn` are required, make sure Yarn version is up-to-date.
+`Nodejs 16+` and `Yarn` are required, make sure Yarn version is up-to-date.
 
 If you do not have yarn installed, follow https://yarnpkg.com/en/docs/install.
 
@@ -99,4 +99,4 @@ For purchase an Commercial License, contact us purchase@thecreation.co.
 
 ## Copyright
 
-Copyright (C) 2018 [Creation Studio Limited](creationstudio.com).
+Copyright (C) 2022 [Creation Studio Limited](creationstudio.com).

@@ -10,11 +10,11 @@
   "dependencies": {
     "@pluginjs/helper": "^0.2.1",
     "@rollup/plugin-json": "^4.1.0",
-    "fs-extra": "^9.1.0",
-    "inquirer": "^7.3.3",
-    "node-sass": "^5.0.0",
-    "rollup": "^2.38.1",
-    "yargs": "^16.2.0"
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.2.0",
+    "node-sass": "^7.0.1",
+    "rollup": "^2.62.0",
+    "yargs": "^17.3.1"
   },
   "gitHead": "b0669d11c54fcb08d637b893f90ea375b8ef136c"
 }

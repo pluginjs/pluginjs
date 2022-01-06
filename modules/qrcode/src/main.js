@@ -8,6 +8,7 @@ import {
   methods as METHODS,
   namespace as NAMESPACE
 } from './constant'
+
 @eventable(EVENTS)
 @stateable()
 @optionable(DEFAULTS, true)

@@ -64,7 +64,8 @@ async function AssetsJS(configPath) {
     }
   })
   const { output } = await bundle.generate({
-    format: 'cjs'
+    format: 'cjs',
+    exports: 'auto'
   })
   let code
   if (Array.isArray(output)) {
