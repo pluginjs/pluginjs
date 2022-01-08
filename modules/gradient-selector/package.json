@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.20",
+  "version": "0.8.21",
   "category": "form",
   "main": "dist/gradient-selector.common.js",
   "module": "dist/gradient-selector.esm.js",
@@ -37,27 +37,28 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.8",
-    "@pluginjs/color-selector": "^0.8.19",
-    "@pluginjs/component": "^0.8.7",
-    "@pluginjs/decorator": "^0.8.9",
-    "@pluginjs/dom": "^0.8.8",
-    "@pluginjs/dropdown": "^0.8.14",
-    "@pluginjs/events": "^0.8.9",
-    "@pluginjs/factory": "^0.8.8",
-    "@pluginjs/gradient-picker": "^0.8.17",
-    "@pluginjs/pop-dialog": "^0.8.10",
-    "@pluginjs/range": "^0.8.10",
-    "@pluginjs/scrollable": "^0.8.10",
-    "@pluginjs/styled": "^0.8.9",
-    "@pluginjs/template": "^0.8.8",
-    "@pluginjs/tooltip": "^0.8.10",
-    "@pluginjs/utils": "^0.8.8"
+    "@pluginjs/classes": "^0.8.9",
+    "@pluginjs/color-selector": "^0.8.20",
+    "@pluginjs/component": "^0.8.8",
+    "@pluginjs/decorator": "^0.8.10",
+    "@pluginjs/dom": "^0.8.9",
+    "@pluginjs/dropdown": "^0.8.15",
+    "@pluginjs/events": "^0.8.10",
+    "@pluginjs/factory": "^0.8.9",
+    "@pluginjs/gradient-picker": "^0.8.18",
+    "@pluginjs/pop-dialog": "^0.8.11",
+    "@pluginjs/range": "^0.8.11",
+    "@pluginjs/scrollable": "^0.8.11",
+    "@pluginjs/styled": "^0.8.10",
+    "@pluginjs/template": "^0.8.9",
+    "@pluginjs/tooltip": "^0.8.11",
+    "@pluginjs/utils": "^0.8.9"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
-    "@pluginjs/browserslist-config": "^1.3.2",
-    "@pluginjs/cli": "^0.8.4",
+    "@pluginjs/browserslist-config": "^1.3.3",
+    "@pluginjs/cli": "^0.8.5",
+    "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "babel-jest": "^27.4.6",
@@ -65,7 +66,6 @@
     "jest-extended": "^1.2.0",
     "rename": "^1.0.4",
     "rollup": "^2.63.0",
-    "@rollup/plugin-babel": "^5.3.0",
     "rollup-plugin-terser": "^7.0.2"
   },
   "engines": {
