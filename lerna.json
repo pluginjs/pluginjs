@@ -14,6 +14,7 @@
   "ignoreChanges": [
     "__mocks__/**",
     "__tests__/**",
+    ".parcel-cache/**",
     "node_modules/**",
     "samples/**",
     ".babelrc",

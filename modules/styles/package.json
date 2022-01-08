@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "rename": "^1.0.4",
-    "sass": "^1.45.1"
+    "sass": "^1.47.0"
   },
   "engines": {
     "node": ">= 8",

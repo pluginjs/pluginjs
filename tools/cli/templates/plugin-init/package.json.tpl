@@ -45,18 +45,18 @@
     "@pluginjs/decorator": "*"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@pluginjs/browserslist-config": "^1.2.10",
-    "@pluginjs/cli": "^0.7.13",
-    "babel-jest": "*",
-    "jest": "*",
-    "jest-extended": "*",
+    "@babel/core": "^7.16.7",
+    "@pluginjs/browserslist-config": "^1.3.2",
+    "@pluginjs/cli": "^0.8.4",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "babel-jest": "^27.4.6",
+    "jest": "^27.4.7",
+    "jest-extended": "^1.2.0",
     "rename": "^1.0.4",
-    "rollup": "*",
-    "rollup-plugin-babel": "*",
-    "@rollup/plugin-commonjs": "*",
-    "@rollup/plugin-node-resolve": "*",
-    "rollup-plugin-terser": "*"
+    "rollup": "^2.63.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "engines": {
     "node": ">= 8",

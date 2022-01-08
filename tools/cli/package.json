@@ -13,7 +13,7 @@
     "fs-extra": "^10.0.0",
     "inquirer": "^8.2.0",
     "node-sass": "^7.0.1",
-    "rollup": "^2.62.0",
+    "rollup": "^2.63.0",
     "yargs": "^17.3.1"
   },
   "gitHead": "b0669d11c54fcb08d637b893f90ea375b8ef136c"
