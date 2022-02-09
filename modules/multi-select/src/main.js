@@ -127,7 +127,7 @@ class MultiSelect extends Select {
 
   val(value, trigger = true) {
     if (typeof value === 'undefined') {
-      return
+      return this.get();
     }
     this.set(value, trigger)
   }
