@@ -3,6 +3,7 @@
 // Vars
 // =====================
 $fontEditor: "pj-fontEditor" !default;
+$fontPicker: "pj-fontPicker" !default;
 $select: "pj-select" !default;
 $range: "pj-range" !default;
 $dropdown: "pj-dropdown" !default;
@@ -88,5 +89,11 @@ $fontEditor-dropdown-zindex: $zindex-dropdown !default;
     margin: 0;
     overflow: hidden;
     list-style: none;
+  }
+
+  .#{$fontPicker} {
+    .#{$fontPicker}-dropdown {
+      width: 100%;
+    }
   }
 }
