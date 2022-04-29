@@ -157,7 +157,8 @@ $fontPicker-manage-font: $pj-icon-font-family !default;
     }
 
     .#{$fontPicker}-selected:not(.#{$fontPicker}-disabled) .#{$fontPicker}-trigger:hover & {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
     }
   }
 
