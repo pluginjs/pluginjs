@@ -1,6 +1,6 @@
 import { search } from '@pluginjs/match'
 
-export const namespace = 'image-selector'
+export const namespace = 'imageSelector'
 
 export const events = {
   READY: 'ready',

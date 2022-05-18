@@ -78,7 +78,7 @@ $font-weight-bolder:  bolder !default;
 $font-weight-base: $font-weight-normal !default;
 
 $line-height-base: 1.5 !default;
-$line-height-lg: (4 / 3) !default;
+$line-height-lg: calc(4 / 3) !default;
 $line-height-sm: 1.2 !default;
 
 // 4. Border

@@ -58,7 +58,7 @@ describe('ImageSelector', () => {
     test('should trigger ready event', () => {
       let called = 0
 
-      $element.addEventListener('image-selector:ready', () => {
+      $element.addEventListener('imageSelector:ready', () => {
         called++
       })
 
@@ -80,7 +80,7 @@ describe('ImageSelector', () => {
     test('should trigger destroy event', () => {
       let called = 0
 
-      $element.addEventListener('image-selector:destroy', () => {
+      $element.addEventListener('imageSelector:destroy', () => {
         called++
       })
 
@@ -210,7 +210,7 @@ describe('ImageSelector', () => {
     test('should trigger enable event', () => {
       let called = 0
 
-      $element.addEventListener('image-selector:enable', () => {
+      $element.addEventListener('imageSelector:enable', () => {
         called++
       })
 
@@ -238,7 +238,7 @@ describe('ImageSelector', () => {
     test('should trigger disable event', () => {
       let called = 0
 
-      $element.addEventListener('image-selector:disable', () => {
+      $element.addEventListener('imageSelector:disable', () => {
         called++
       })
 
