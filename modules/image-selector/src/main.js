@@ -82,7 +82,7 @@ class ImageSelector extends Component {
 
       this.$image = query(`.${this.classes.TRIGGERIMAGE}`, this.$trigger)
       this.$label = query(`.${this.classes.TRIGGERLABEL}`, this.$trigger)
-      this.$change = query('.pj-image-selector-change', this.$trigger)
+      this.$change = query(`.${this.classes.CHANGE}`, this.$trigger)
     }
 
     this.setupDropdown(this.options.dropdown)
@@ -194,7 +194,7 @@ class ImageSelector extends Component {
       const self = this // eslint-disable-line
       bindEvent(
         this.eventName('mousedown'),
-        '.pj-image-selector-option',
+        `.${this.classes.OPTION}`,
         function() {
         const $item = this // eslint-disable-line
           const value = $item.getAttribute(self.options.itemValueAttr)
@@ -344,7 +344,7 @@ class ImageSelector extends Component {
   }
 
   getInlineOption() {
-    return queryAll('.pj-image-selector-option', this.$content)
+    return queryAll(`.${this.classes.OPTION}`, this.$content)
   }
 
   set(value, trigger = true) {

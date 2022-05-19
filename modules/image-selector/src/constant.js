@@ -31,11 +31,15 @@ export const classes = {
   LABEL: '{namespace}-label',
   WRAP: '{namespace}',
   SHOW: '{namespace}-show',
+  CHANGE: '{namespace}-change',
   DROPDOWN: '{namespace}-dropdown',
   CONTENT: '{namespace}-dropdown-content',
   GROUP: '{namespace}-group',
   GROUPLABEL: '{namespace}-group-label',
-  OPTION: '{namespace}-option pj-dropdown-item',
+  OPTION: '{namespace}-option',
+  OPTIONITEM: '{namespace}-option pj-dropdown-item',
+  OPTIONLABEL: '{namespace}-option-label',
+  OPTIONIMAGE: '{namespace}-option-image',
   OPTIONDISABLED: '{namespace}-option-disabled pj-dropdown-item-disabled',
   SELECTED: '{namespace}-selected',
   DISABLED: '{namespace}-disabled',
@@ -44,9 +48,7 @@ export const classes = {
   FILTERABLE: '{namespace}-filterable',
   FILTER: '{namespace}-filter',
   NOTFOUND: '{namespace}-not-found',
-  LOADING: '{namespace}-loading',
-  OPTIONLABEL: '{namespace}-option-label',
-  OPTIONIMAGE: '{namespace}-option-image'
+  LOADING: '{namespace}-loading'
 }
 
 export const methods = [
@@ -97,7 +99,7 @@ export const defaults = {
       return '<div class="{classes.GROUPLABEL}">{group.label}</div><div class="{classes.GROUP}"></div>'
     },
     option() {
-      return '<div class="{classes.OPTION}" data-value="{option.value}"><img class="{classes.OPTIONIMAGE}" src="{option.image}" alt="{option.label}" /><span class="{classes.OPTIONLABEL}">{option.label}</span></div>'
+      return '<div class="{classes.OPTIONITEM}" data-value="{option.value}"><img class="{classes.OPTIONIMAGE}" src="{option.image}" alt="{option.label}" /><span class="{classes.OPTIONLABEL}">{option.label}</span></div>'
     }
   },
   parse(value) {
