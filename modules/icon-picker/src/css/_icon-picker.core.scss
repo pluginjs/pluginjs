@@ -233,16 +233,9 @@ $iconPicker-search-icon: $pj-icon-search !default;
       content: icon-content($iconPicker-clear-icon);
     }
 
-    &::after {
-      display: inline-block;
-      width: 0;
-      height: 100%;
-      vertical-align: middle;
-      content: "";
-    }
-
     .#{$iconPicker}-selected:not(.#{$iconPicker}-disabled) .#{$iconPicker}-trigger:hover & {
-      display: inline-block;
+      display: flex;
+      align-items: center;
     }
   }
 
