@@ -122,13 +122,13 @@ export const defaults = {
   },
   defaultColor: '#000',
   color: {
-    format: false,
+    format: 'HEX',
     alphaConvert: {
       // or false will disable convert
       RGB: 'RGBA',
-      HSL: 'HSLA',
+      HSL: 'RGBA',
       HEX: 'RGBA',
-      NAMESPACE: 'RGBA'
+      NAME: 'RGBA'
     },
     shortenHex: false,
     hexUseName: false,

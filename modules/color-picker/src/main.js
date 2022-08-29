@@ -294,25 +294,24 @@ class ColorPicker extends Component {
 
     let classify = ''
 
-    if (isString(val) && val.indexOf('#') > -1 || color.privateMatchFormat.indexOf('HEX') !== -1) {
-      // color.value.a === 1 ?
-      // classify = color.toHEX() :
-      // classify = color.toHEXA()
-      this.setInput(color.to('hex'))
-    } else if (isString(val) && val.indexOf('HSL') > -1 || color.privateMatchFormat.indexOf('HSL') !== -1) {
-      // color.value.a === 1 ?
-      // classify = color.toHSL() :
-      // classify = color.toHSLA()
-      this.setInput(this.setInput(color.to('hsl')))
-    } else if (isString(val) && val.indexOf('RGB') > -1 || color.privateMatchFormat.indexOf('RGB') !== -1) {
-      // color.value.a === 1 ?
-      // classify = color.toRGB() :
-      // classify = color.toRGBA()
-      this.setInput(this.setInput(color.to('rgb')))
-    } else {
-      classify = color.toNAME()
-      this.setInput(classify)
-    }
+    this.setInput(color.toString())
+
+    // if (isString(val) && val.indexOf('#') > -1 || color.privateMatchFormat.indexOf('HEX') !== -1) {
+    //   color.value.a === 1 ?
+    //   classify = color.toHEX() :
+    //   classify = color.toHEXA()
+    // } else if (isString(val) && val.indexOf('HSL') > -1 || color.privateMatchFormat.indexOf('HSL') !== -1) {
+    //   color.value.a === 1 ?
+    //   classify = color.toHSL() :
+    //   classify = color.toHSLA()
+    // } else if (isString(val) && val.indexOf('RGB') > -1 || color.privateMatchFormat.indexOf('RGB') !== -1) {
+    //   color.value.a === 1 ?
+    //   classify = color.toRGB() :
+    //   classify = color.toRGBA()
+    // } else {
+    //   classify = color.toNAME()
+    //   this.setInput(classify)
+    // }
 
     // else if (isString(val) && !val.match(/\d/g)) {
     //   classify = color.toNAME()

@@ -10,22 +10,13 @@ class Hex {
     this.instance = instance
     this.element = element
     this.classes = this.instance.classes
-    this.opac = 100
-    this.COLOR = new Color()
-    this.color = this.COLOR
-    this.mode = this.COLOR.toHEX()
-    this.value = this.COLOR.toHEX()
-    this.selectValue = 'HEX'
-    this.HSL = this.COLOR.toHSL().toUpperCase()
-    this.HEX = this.COLOR.toHEX().toUpperCase()
-    this.RGB = this.COLOR.toRGB().toUpperCase()
 
-    this.classify = this.HEX
-
+    let color = instance.COLOR
+    this.selected = 'HEX'
     this.data = [
-      { label: this.HEX, value: 'HEX' },
-      { label: this.RGB, value: 'RGB' },
-      { label: this.HSL, value: 'HSL' }
+      { label: color.toHEX().toUpperCase(), value: 'HEX', selected: true },
+      { label: color.toRGB().toUpperCase(), value: 'RGB' },
+      { label: color.toHSL().toUpperCase(), value: 'HSL' }
     ]
     this.init()
   }
@@ -57,7 +48,7 @@ class Hex {
     if (this.instance.module.alpha) {
       this.$opac = parseHTML(
         `<div class='${this.classes.HEXBOX}'>
-          <input class="pj-input pj-input-sm ${this.classes.HEXANGLE}" type="text"/>
+          <input class="pj-input pj-input-sm ${this.classes.HEXANGLE}" type="text" value="${parseInt(this.instance.COLOR.value.a * 100)}"/>
           <div class="${this.classes.HEXUNIT}">%</div>
         </div>`
       )
@@ -78,15 +69,16 @@ class Hex {
       classes: {
         TRIGGER: '{namespace}-trigger pj-input pj-input-sm'
       },
-      onChange: res => {
-        this.updateColor(res, this.color)
+      onChange: selected => {
+        this.selected = selected
+        this.updateInput(selected, this.instance.COLOR)
       },
       onShow: () => {
-        if (!this.instance.is('hexFirsrtShown')) {
-          this.color &&
-          this.updateColor(this.SELECT.element.value, this.color)
-          this.instance.enter('hexFirsrtShown')
-        }   
+        if (!this.instance.is('hexFirstShown')) {
+          this.instance.COLOR &&
+          this.updateSelect(this.SELECT.element.value, this.instance.COLOR)
+          this.instance.enter('hexFirstShown')
+        }
       }
     })
   }
@@ -95,41 +87,31 @@ class Hex {
     bindEvent(
       this.instance.selfEventName('changeColor'),
       (e, el, color) => {
-        this.color = color
+        console.info(color)
         if (this.instance.module.alpha) {
-          query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100) /* eslint-disable-line */
+          this.updateOpac(color) /* eslint-disable-line */
         }
 
-        if (color.privateMatchFormat.indexOf(this.SELECT.element.value) !== -1) {
-          this.updateColor(this.SELECT.element.value, color)
-        } else {
-          this.updateColor(color.privateMatchFormat, color)
-          this.instance.leave('setColor')
+        if(this.instance.module.hexInput) {
+          this.updateInput(this.selected, color)
         }
-    
+
+        this.updateSelect(this.selected, color)
       },
       this.instance.element
     )
 
-    bindEvent(
-      this.instance.eventName('change'),
-      ({ target }) => {
-        this.update(this.value)
-      },
-      this.$el
-    )
-
-    bindEvent(
-      this.instance.eventName('input'),
-      debounce(e => {
-        if (new Color().matchString(e.target.value)) {
-          this.instance.enter('setColor')
-          this.instance.setColor(e.target.value)
-
-        }
-      }, 1000),
-      this.$input
-    )
+    if(this.instance.module.hexInput) {
+      bindEvent(
+        this.instance.eventName('input'),
+        debounce(e => {
+          if (Color.matchString(e.target.value)) {
+            this.instance.setColor(e.target.value)
+          }
+        }, 1000),
+        this.$input
+      )
+    }
 
     if (this.instance.module.alpha) {
       bindEvent(
@@ -143,25 +125,29 @@ class Hex {
     }
   }
 
-  updateColor(val, color) {
-    if (val.indexOf('HSL') > -1) {
-      this.mode = color.toHSL().toUpperCase()
-      this.value = color.toHSLA().toUpperCase()
-      this.selectValue = 'HSL'
-    } else if (val.indexOf('RGB') > -1) {
-      this.mode = color.toRGB().toUpperCase()
-      this.value = color.toRGBA().toUpperCase()
-      this.selectValue = 'RGB'
+  updateOpac(color) {
+    query(`.${this.classes.HEXANGLE}`, this.$opac).value = parseInt(color.value.a * 100)
+  }
+
+  updateSelect(format, color) {
+    let selected = this.selected
+    if (format.indexOf('HSL') > -1) {
+      selected = 'HSL'
+    } else if (format.indexOf('RGB') > -1) {
+      selected = 'RGB'
     } else {
-      this.mode = color.toHEX().toUpperCase()
-      this.value = color.toHEXA().toUpperCase()
-      this.selectValue = 'HEX'
+      selected = 'HEX'
+    }
+    if (selected != this.selected) {
+      this.instance.COLOR.format(this.selected)
+      this.SELECT.set(this.selected, false)
+      this.selected = selected
     }
 
     this.data = [
-      this.color.toHEX().toUpperCase(),
-      this.color.toHSL().toUpperCase(),
-      this.color.toRGB().toUpperCase()
+      color.toHEX().toUpperCase(),
+      color.toRGB().toUpperCase(),
+      color.toHSL().toUpperCase()
     ]
 
     if (typeof NodeList.prototype.forEach !== 'function')  {
@@ -173,12 +159,11 @@ class Hex {
       .forEach((value, index) => {
         value.innerText = this.data[index]
       })
+  }
 
-    this.SELECT.set(this.selectValue, false)
-    this.SELECT.$label.innerText = this.mode
-
+  updateInput(format, color) {
     if(this.$input)
-    this.$input.value = this.mode
+      this.$input.value = color.to(format)
   }
 
   updateAlpha(percent) {
