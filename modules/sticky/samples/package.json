@@ -3,7 +3,7 @@
   "name": "sticky-samples",
   "description": "Simple sticky example",
   "license": "GPL-3.0",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "type": "module",
   "scripts": {
     "build": "parcel build index.html",
@@ -11,13 +11,13 @@
   },
   "source": "index.html",
   "dependencies": {
-    "@pluginjs/dom": "^0.8.9",
-    "@pluginjs/sticky": "^0.8.11"
+    "@pluginjs/dom": "^0.8.10",
+    "@pluginjs/sticky": "^0.8.12"
   },
   "devDependencies": {
     "@babel/core": "7.18.13",
     "@babel/preset-env": "7.18.10",
-    "@pluginjs/browserslist-config": "^1.3.3",
+    "@pluginjs/browserslist-config": "^1.3.4",
     "parcel-bundler": "^1.12.5",
     "posthtml": "^0.16.6",
     "posthtml-modules": "^0.9.0"
