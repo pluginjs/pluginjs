@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.9",
+  "version": "0.8.10",
   "category": "core",
   "main": "dist/tween.common.js",
   "module": "dist/tween.esm.js",
@@ -33,16 +33,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/easing": "^0.8.8",
-    "@pluginjs/is": "^0.8.8",
-    "@pluginjs/simple-emitter": "^0.8.8",
-    "@pluginjs/utils": "^0.8.9"
+    "@pluginjs/easing": "^0.8.9",
+    "@pluginjs/is": "^0.8.9",
+    "@pluginjs/simple-emitter": "^0.8.9",
+    "@pluginjs/utils": "^0.8.10"
   },
   "devDependencies": {
     "@babel/core": "7.18.13",
     "@babel/preset-env": "7.18.10",
-    "@pluginjs/browserslist-config": "^1.3.3",
-    "@pluginjs/cli": "^0.8.5",
+    "@pluginjs/browserslist-config": "^1.3.4",
+    "@pluginjs/cli": "^0.8.6",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-commonjs": "22.0.2",
     "@rollup/plugin-node-resolve": "^13.3.0",

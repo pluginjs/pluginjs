@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.10",
+  "version": "0.8.11",
   "category": "form",
   "main": "dist/spinner.common.js",
   "module": "dist/spinner.esm.js",
@@ -37,21 +37,21 @@
     "test": "jest"
   },
   "dependencies": {
-    "@pluginjs/classes": "^0.8.9",
-    "@pluginjs/component": "^0.8.8",
-    "@pluginjs/decorator": "^0.8.10",
-    "@pluginjs/dom": "^0.8.9",
-    "@pluginjs/events": "^0.8.10",
-    "@pluginjs/factory": "^0.8.9",
-    "@pluginjs/is": "^0.8.8",
-    "@pluginjs/template": "^0.8.9",
-    "@pluginjs/utils": "^0.8.9"
+    "@pluginjs/classes": "^0.8.10",
+    "@pluginjs/component": "^0.8.9",
+    "@pluginjs/decorator": "^0.8.11",
+    "@pluginjs/dom": "^0.8.10",
+    "@pluginjs/events": "^0.8.11",
+    "@pluginjs/factory": "^0.8.10",
+    "@pluginjs/is": "^0.8.9",
+    "@pluginjs/template": "^0.8.10",
+    "@pluginjs/utils": "^0.8.10"
   },
   "devDependencies": {
     "@babel/core": "7.18.13",
     "@babel/preset-env": "7.18.10",
-    "@pluginjs/browserslist-config": "^1.3.3",
-    "@pluginjs/cli": "^0.8.5",
+    "@pluginjs/browserslist-config": "^1.3.4",
+    "@pluginjs/cli": "^0.8.6",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-commonjs": "22.0.2",
     "@rollup/plugin-node-resolve": "^13.3.0",
