@@ -17,8 +17,7 @@
   "style": "dist/plugin-icons.css",
   "scripts": {
     "build": "./scripts/generate",
-    "build:md": "plugin script build-md",
-    "prepublish": "npm run build"
+    "build:md": "plugin script build-md"
   },
   "devDependencies": {
     "glob-expand": "^0.2.1",
