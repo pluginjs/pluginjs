@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/pluginjs/pluginjs/issues"
   },
-  "version": "0.8.21",
+  "version": "0.8.22",
   "category": "form",
   "main": "dist/color-selector.common.js",
   "module": "dist/color-selector.esm.js",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@pluginjs/classes": "^0.8.10",
     "@pluginjs/color": "^0.8.10",
-    "@pluginjs/color-picker": "^0.8.19",
+    "@pluginjs/color-picker": "^0.8.20",
     "@pluginjs/component": "^0.8.9",
     "@pluginjs/decorator": "^0.8.11",
     "@pluginjs/dom": "^0.8.10",

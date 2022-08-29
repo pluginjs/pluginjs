@@ -293,7 +293,7 @@ class ColorSelector extends Component {
       showControl: true,
       onChangeColor: (color, val) => {
         if (this.module === 'solid') {
-          this.setInput(val)
+          this.setInput(color.toString())
         }
       },
       onClick: val => {
