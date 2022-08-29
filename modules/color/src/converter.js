@@ -256,11 +256,11 @@ export default {
 
   hasNAME(rgb) {
     let hex = null
-    if(rgb.a === 1) {
+    // if(rgb.a === 1) {
       hex = this.RGBtoHEX(rgb)
-    } else {
-      hex = this.RGBtoHEXA(rgb)
-    }
+    // } else {
+    //   hex = this.RGBtoHEXA(rgb)
+    // }
 
     hex = util.shrinkHex(hex)
  

@@ -10,7 +10,7 @@ export const defaults = {
     RGB: 'RGBA',
     HSL: 'HSLA',
     HEX: 'RGBA',
-    NAMESPACE: 'RGBA'
+    NAME: 'RGBA'
   },
   nameDegradation: 'HEX',
   invalidValue: '',

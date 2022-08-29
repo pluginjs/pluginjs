@@ -24,8 +24,8 @@ class Hex {
 
     this.data = [
       { label: this.HEX, value: 'HEX' },
-      { label: this.HSL, value: 'HSL' },
-      { label: this.RGB, value: 'RGB' }
+      { label: this.RGB, value: 'RGB' },
+      { label: this.HSL, value: 'HSL' }
     ]
     this.init()
   }

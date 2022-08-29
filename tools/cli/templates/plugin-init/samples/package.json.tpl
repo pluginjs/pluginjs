@@ -5,10 +5,12 @@
   "license": "GPL-3.0",
   "version": "1.0.0",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "build": "parcel build index.html",
     "start": "parcel index.html --open"
   },
+  "source": "index.html",
   "dependencies": {
     "@pluginjs/{{moduleName}}": "*",
     "@pluginjs/dom": "*"

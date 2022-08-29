@@ -177,34 +177,32 @@ class Color {
     } else {
       format = this.privateFormat
     }
-
-    if (this.options.reduceAlpha && value.a === 1) {
-      switch (format) {
-        case 'RGBA':
-          format = 'RGB'
-          break
-        case 'HSLA':
-          format = 'HSL'
-          break
-        case 'HEXA':
-          format = 'HEX'
-          break
-        default:
-          break
+    
+    if (value.a === 1) {
+      if (this.options.reduceAlpha) {
+        switch (format) {
+          case 'RGBA':
+            format = 'RGB'
+            break
+          case 'HSLA':
+            format = 'HSL'
+            break
+          case 'HEXA':
+            format = 'HEX'
+            break
+          default:
+            break
+        }
       }
-    }
-
-    if (
-      value.a !== 1 &&
+    } else if (
       format !== 'RGBA' &&
       format !== 'HSLA' &&
       format !== 'HEXA' &&
-      this.options.alphaConvert
+      this.options.alphaConvert !== false
     ) {
       if (isString(this.options.alphaConvert)) {
         format = this.options.alphaConvert
-      }
-      if (typeof this.options.alphaConvert[format] !== 'undefined') {
+      } else if (typeof this.options.alphaConvert[format] !== 'undefined') {
         format = this.options.alphaConvert[format]
       }
     }

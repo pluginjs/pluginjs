@@ -57,6 +57,11 @@ Publish
 npx plugin publish <moduleName> [--repo-version=x.x.x]
 ```
 
+## Update
+```sh
+npx lerna exec -- npx ncu -u
+```
+
 ## Contributing Guide
 
 Hi, Thank you for chooing Plugin.js

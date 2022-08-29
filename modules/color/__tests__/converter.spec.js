@@ -571,42 +571,49 @@ describe('Converter', () => {
     describe('HEXtoRGB()', () => {
       test('should convent hex to rgb', () => {
         expect(Converter.HEXtoRGB('#000000')).toEqual({
+          a: 1,
           r: 0,
           g: 0,
           b: 0
         })
 
         expect(Converter.HEXtoRGB('#ffffff')).toEqual({
+          a: 1,
           r: 255,
           g: 255,
           b: 255
         })
 
         expect(Converter.HEXtoRGB('#ff0000')).toEqual({
+          a: 1,
           r: 255,
           g: 0,
           b: 0
         })
 
         expect(Converter.HEXtoRGB('#00ff00')).toEqual({
+          a: 1,
           r: 0,
           g: 255,
           b: 0
         })
 
         expect(Converter.HEXtoRGB('#0000ff')).toEqual({
+          a: 1,
           r: 0,
           g: 0,
           b: 255
         })
 
         expect(Converter.HEXtoRGB('#778899')).toEqual({
+          a: 1,
           r: 119,
           g: 136,
           b: 153
         })
 
         expect(Converter.HEXtoRGB('#789')).toEqual({
+          a: 1,
           r: 119,
           g: 136,
           b: 153
@@ -641,6 +648,7 @@ describe('Converter', () => {
     describe('NAMEtoRGB()', () => {
       test('should return rgb if a color name given', () => {
         expect(Converter.NAMEtoRGB('white')).toEqual({
+          a: 1,
           r: 255,
           g: 255,
           b: 255
@@ -652,6 +660,7 @@ describe('Converter', () => {
       test('should return name if a rgb has a name', () => {
         expect(
           Converter.hasNAME({
+            a: 1,
             r: 255,
             g: 255,
             b: 255
@@ -662,6 +671,7 @@ describe('Converter', () => {
       test('should return false if a rgb dont have a name', () => {
         expect(
           Converter.hasNAME({
+            a: 1,
             r: 255,
             g: 255,
             b: 254
@@ -674,6 +684,7 @@ describe('Converter', () => {
       test('should return name if a rgb has a name', () => {
         expect(
           Converter.RGBtoNAME({
+            a: 1,
             r: 255,
             g: 255,
             b: 255

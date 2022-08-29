@@ -10,6 +10,6 @@
   <section id="default">
     <include src="src/sections/default/index.html"></include>
   </section>
-  <script src="src/index.js"></script>
+  <script type="module" src="src/index.js"></script>
 </body>
 </html>

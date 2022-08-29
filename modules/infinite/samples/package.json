@@ -12,10 +12,11 @@
   "dependencies": {
     "@pluginjs/dom": "^0.8.9",
     "@pluginjs/infinite": "^0.8.11",
-    "lorem-ipsum": "^2.0.4"
+    "lorem-ipsum": "^2.0.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.10",
+    "@babel/core": "7.18.13",
+    "@babel/preset-env": "7.18.10",
     "@pluginjs/browserslist-config": "^1.3.3",
     "parcel-bundler": "^1.12.5",
     "posthtml": "^0.16.6",

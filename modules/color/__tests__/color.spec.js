@@ -234,6 +234,117 @@ describe('Color', () => {
   })
 
   describe('options', () => {
+    test('alphaConvert with self', () => {
+      const color = new Color('rgba(255, 255, 255, 0.5)', {
+        alphaConvert: {
+          RGB: 'RGB',
+          HSL: 'HSL',
+          HEX: 'HEX',
+          NAME: 'NAME'
+        },
+      })
+      color.format('rgba')
+      expect(color.toRGBA()).toEqual('rgba(255, 255, 255, 0.5)')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+
+      color.format('rgb')
+      expect(color.toRGB()).toEqual('rgb(255, 255, 255)')
+      expect(color.to()).toEqual('rgb(255, 255, 255)')
+
+      color.format('hsla')
+      expect(color.toHSLA()).toEqual('hsla(0, 0%, 100%, 0.5)')
+      expect(color.to()).toEqual('hsla(0, 0%, 100%, 0.5)')
+
+      color.format('hsl')
+      expect(color.toHSL()).toEqual('hsl(0, 0%, 100%)')
+      expect(color.to()).toEqual('hsl(0, 0%, 100%)')
+
+      color.format('hexa')
+      expect(color.toHEXA()).toEqual('#ffffff80')
+      expect(color.to()).toEqual('#ffffff80')
+
+      color.format('hex')
+      expect(color.toHEX()).toEqual('#ffffff')
+      expect(color.to()).toEqual('#ffffff')
+
+      color.format('name')
+      expect(color.to()).toEqual('white')
+    })
+
+    test('alphaConvert with convent', () => {
+      const color = new Color('rgba(255, 255, 255, 0.5)', {
+        alphaConvert: {
+          RGB: 'RGBA',
+          HSL: 'RGBA',
+          HEX: 'RGBA',
+          NAME: 'RGBA'
+        },
+      })
+      color.format('rgba')
+      expect(color.toRGBA()).toEqual('rgba(255, 255, 255, 0.5)')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+
+      color.format('rgb')
+      expect(color.toRGB()).toEqual('rgb(255, 255, 255)')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+
+      color.format('hsla')
+      expect(color.toHSLA()).toEqual('hsla(0, 0%, 100%, 0.5)')
+      expect(color.to()).toEqual('hsla(0, 0%, 100%, 0.5)')
+
+      color.format('hsl')
+      expect(color.toHSL()).toEqual('hsl(0, 0%, 100%)')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+
+      color.format('hexa')
+      expect(color.toHEXA()).toEqual('#ffffff80')
+      expect(color.to()).toEqual('#ffffff80')
+
+      color.format('hex')
+      expect(color.toHEX()).toEqual('#ffffff')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+
+      color.format('name')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+    })
+
+    test('alphaConvert with alpha', () => {
+      const color = new Color('rgba(255, 255, 255, 0.5)', {
+        alphaConvert: {
+          RGB: 'RGBA',
+          HSL: 'HSLA',
+          HEX: 'HEXA',
+          NAME: 'RGBA'
+        },
+      })
+      color.format('rgba')
+      expect(color.toRGBA()).toEqual('rgba(255, 255, 255, 0.5)')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+
+      color.format('rgb')
+      expect(color.toRGB()).toEqual('rgb(255, 255, 255)')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+
+      color.format('hsla')
+      expect(color.toHSLA()).toEqual('hsla(0, 0%, 100%, 0.5)')
+      expect(color.to()).toEqual('hsla(0, 0%, 100%, 0.5)')
+
+      color.format('hsl')
+      expect(color.toHSL()).toEqual('hsl(0, 0%, 100%)')
+      expect(color.to()).toEqual('hsla(0, 0%, 100%, 0.5)')
+
+      color.format('hexa')
+      expect(color.toHEXA()).toEqual('#ffffff80')
+      expect(color.to()).toEqual('#ffffff80')
+
+      color.format('hex')
+      expect(color.toHEX()).toEqual('#ffffff')
+      expect(color.to()).toEqual('#ffffff80')
+
+      color.format('name')
+      expect(color.to()).toEqual('rgba(255, 255, 255, 0.5)')
+    })
+
     describe('nameDegradation', () => {
       test('should degradation to the format with options.nameDegradation if color dont have a name', () => {
         let color = new Color('#126782', { format: 'name' })
@@ -512,7 +623,7 @@ describe('Color', () => {
         expect(color.toHEX()).toEqual('#ff8024')
         expect(color.to('hex')).toEqual('#ff8024')
 
-        expect(color.to('name')).toEqual('#ff8024')
+        expect(color.to('name')).toEqual('#ff802480')
 
         color.val('#fff')
         expect(color.to('name')).toEqual('white')
