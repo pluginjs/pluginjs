@@ -24,7 +24,7 @@
     "src"
   ],
   "scripts": {
-    "build": "./scripts/generate",
+    "build": "node ./scripts/generate",
     "prepublishOnly": "npm run build",
     "test": "jest"
   },
